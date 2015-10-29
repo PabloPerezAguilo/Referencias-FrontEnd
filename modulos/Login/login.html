@@ -1,16 +1,15 @@
 <div>
-    
-        
-          <label>Usuario</label>
-          <input ng-model="user.Usuario">
-       <br>
-    
-       
-          <label>Contraseña</label>
-          <input type="password" ng-model="user.password">
-       <br>
-        <button ng-click="login()">Entrar</button>
-    
+
+    <form ng-submit="login()">
+        <label>Usuario</label>
+        <input type="text" ng-model="user.name">
+        <br>
+        <label>Contraseña</label>
+        <input type="password" ng-model="user.password">
+        <br>
+        <input type="submit" id="submit" value="Entrar" />             
+    </form>
+
 </div>
 
 

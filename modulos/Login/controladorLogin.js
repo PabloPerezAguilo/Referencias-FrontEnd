@@ -1,18 +1,18 @@
-app.controller('controladorLogin', function(servicioRest, config, $scope) {
+app.controller('controladorLogin', function(servicioRest, config, $scope, $http) {
     $scope.user={        
-        usuario:'',
+        name:'',
         password: ''
-    }   
+    };   
 	$scope.login = function () {
 
-		servicioRest.postUsuario(user)
+		servicioRest.postUsuario($scope.user)
 			.then(function(data) {
 				console.log(data);
 			})
 			.catch(function(err) {
 				console.log("Error");
 			});
-	}
+	};
 });
 
 
