@@ -12,6 +12,26 @@ function ServicioREST($http, $q, $rootScope, config) {
 			defered.reject(data.message);
 		}
 	}
+    /* ---------- SERVICIOS LOGIN ---------- */
+    
+    function postUsuario(usuario) {
+		var defered = $q.defer();
+		var promise = defered.promise;
+		$http({
+			method: 'POST',
+			url: url + '/login ',
+			data: usuario
+		})
+		.success(function(data, status, headers, config) {
+			defered.resolve(data);
+		})
+		.error(function(data, status, headers, config) {
+			tratarError(data, status, defered);
+		});
+
+		return promise;
+	}
+    
 
 	/* ---------- SERVICIOS ENTIDAD ---------- */
 	function postEntidad(objetoAEnviar) {
