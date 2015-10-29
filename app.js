@@ -12,13 +12,13 @@ app.run(function(servicioRest, $rootScope, $http, $location) {
 app.config(function($routeProvider) {
 
 	$routeProvider
-	.when('/', {
-		templateUrl: 'modulos/modulo1/modulo1.html',
-		controller: 'controladorModulo1'
-	})
 	.when('/pageNotFound', {
 		templateUrl: 'modulos/error/templateError.html'
 	})
+    .when('/altas', {
+        templateUrl: 'modulos/altaUsuario/altaUsuario.html',
+        controller: 'controladorAltaUsuario'
+    })
 	.otherwise({
 		redirectTo: "/pageNotFound"
 	});

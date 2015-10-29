@@ -1,0 +1,27 @@
+<div ng-controller="controladorAltaUsuario">
+    <h1>Introduzca el nombre del usuario que quiere dar de alta y el rol que desea asignarle.</h1>
+    <p>Nombre:</p>
+	<p><input type="text" ng-model="nombre"></p>
+    <select ng-model="$scope.combobox">
+       <option 
+           ng-repeat="x in combobox | filter:nombre | orderBy:'nombre'" 
+           value="{{x.nombre + ', ' + x.apellido + ', ' + x.correo}}"
+       >
+           {{(x.apellido | uppercase) + ', ' + x.nombre + ', ' + x.correo}}
+       </option>
+    </select>
+    </md-virtual-repeat-container>
+  </md-content>
+    <p>Rol:</p>
+    <br>
+    <input type="radio" name="rol" ng-model="administrador" checked>Administrador
+	<br>
+	<input type="radio" name="rol" ng-model="mantenimiento">Mantenimiento
+	<br>
+	<input type="radio" name="rol" ng-model="validador">Validador
+	<br>
+	<input type="radio" name="rol" ng-model="consulta">Consulta
+	<br>
+    <button type="button" ng-click="crear()" >Crear</button>
+    <br>
+</div>

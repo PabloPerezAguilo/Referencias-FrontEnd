@@ -65,10 +65,47 @@ function ServicioREST($http, $q, $rootScope, config) {
 
 		return promise;
 	}
+
+	function getLDAP(){
+		var defered = $q.defer();
+		var promise = defered.promise;
+		$http({
+			method: 'GET',
+			url: url + '/usuarios/'
+		})
+		.success(function(data, status, headers, config) {
+			defered.resolve(data);
+		})
+		.error(function(data, status, headers, config) {
+			tratarError(data, status, defered);
+		});
+
+		return promise;
+	}
+    
+    function postUsuario(usuario){
+        var defered = $q.defer();
+		var promise = defered.promise;
+		$http({
+			method: 'POST',
+			url: url + '/usuarios',
+			data: usuario
+		})
+		.success(function(data, status, headers, config) {
+			defered.resolve(data);
+		})
+		.error(function(data, status, headers, config) {
+			tratarError(data, status, defered);
+		});
+
+		return promise;
+    }
 		
 	return {
 		getEntidades: getEntidades,
 		getEntidad: getEntidad,
-		postEntidad: postEntidad
+		postEntidad: postEntidad,
+		getLDAP: getLDAP,
+        postUsuario: postUsuario
 	}
 }
