@@ -14,7 +14,7 @@ function ServicioREST($http, $q, $rootScope, config) {
 	}
     /* ---------- SERVICIOS LOGIN ---------- */
     
-    function postUsuario(usuario) {
+    function postLogin(usuario) {
 		var defered = $q.defer();
 		var promise = defered.promise;
 		$http({
@@ -126,6 +126,7 @@ function ServicioREST($http, $q, $rootScope, config) {
 		getEntidad: getEntidad,
 		postEntidad: postEntidad,
 		getLDAP: getLDAP,
-        postUsuario: postUsuario
+        postUsuario: postUsuario,
+        postLogin : postLogin
 	}
 }
