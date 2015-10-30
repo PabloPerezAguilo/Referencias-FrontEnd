@@ -91,12 +91,21 @@ gulp.task('cdnReplace', function() {
 	.pipe(htmlreplace({
 
 		'JSCDNs': [
-		'https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular.min.js',
+		
 		'https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular-route.min.js',
 		'https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular-mocks.js',
 		'https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular-messages.min.js',
-		'https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular-animate.min.js',
-		'https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular-aria.min.js',
+            
+		//'https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular-animate.min.js',
+		//'https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular-aria.min.js',
+  
+        //    Añadidos para la version Angular_Material 0.11.2
+        'https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.min.js',
+        'https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular-animate.min.js',
+        'https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular-aria.min.js',
+        'https://ajax.googleapis.com/ajax/libs/angular_material/0.11.2/angular-material.min.js',
+        //    
+            
 		'js/angular-material.min.js',
 		'https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js',
 		'https://cdnjs.cloudflare.com/ajax/libs/ng-tags-input/2.3.0/ng-tags-input.min.js',
@@ -105,7 +114,7 @@ gulp.task('cdnReplace', function() {
 		'https://cdnjs.cloudflare.com/ajax/libs/c3/0.4.10/c3.min.js'],
 
 		'CSSCDNs': [
-        'https://ajax.googleapis.com/ajax/libs/angular_material/1.0.0-rc1/angular-material.min.js',
+        'https://ajax.googleapis.com/ajax/libs/angular_material/0.11.2/angular-material.min.css',
 		'https://mbenford.github.io/ngTagsInput/css/ng-tags-input.min.css',
 		'https://cdnjs.cloudflare.com/ajax/libs/c3/0.4.10/c3.min.css']
 

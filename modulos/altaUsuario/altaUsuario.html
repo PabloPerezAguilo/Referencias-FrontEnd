@@ -9,7 +9,7 @@
            ng-repeat="x in combobox | filter:nombre | orderBy:'nombre'" 
            value="{{x.nombre + ', ' + x.apellido + ', ' + x.correo}}"
        >
-           {{(x.apellido | uppercase) + ', ' + x.nombre + ', ' + x.correo}}
+           {{(x.apellido | uppercase) + ', ' + x.nombre + ' >> ' + x.correo}}
        </option>
     </select>
     </div>
@@ -24,6 +24,6 @@
 	<br>
 	<input type="radio" ng-model="rol" value="consulta">Consulta
 	<br>
-    <button type="button" ng-click="crear()" >Crear</button>
     </div>
+    <button class="boton" type="button" ng-click="crear()" >Crear</button>
 </body>

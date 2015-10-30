@@ -13,7 +13,7 @@ app.config(function($routeProvider) {
 
 	$routeProvider
     .when('/', {
-		templateUrl: 'modulos/Login/login.html',
+		templateUrl: 'modulos/login/login.html',
 		controller: 'controladorLogin'
 	})
 	.when('/pageNotFound', {

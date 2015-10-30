@@ -1,5 +1,5 @@
 app.controller('controladorAltaUsuario', function(servicioRest, config, $scope, $http) {
-    $scope.combobox = servicioRest.getLDAP();
+    //$scope.combobox = servicioRest.getLDAP();
     $scope.crear = function () {
         console.log("creando..");
         usuario = new Object();

@@ -18,5 +18,8 @@
     "gulp-war": "0.0.1",
     "gulp-zip": "^3.0.2",
     "run-sequence": "^1.1.1"
+  },
+  "dependencies": {
+    "angular-material": "^0.11.4"
   }
 }
