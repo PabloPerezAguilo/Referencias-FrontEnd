@@ -2,7 +2,7 @@
     <h1>Introduzca el nombre del usuario que quiere dar de alta y el rol que desea asignarle.</h1>
     <div class="para1">
     <p>Nombre:</p>
-	<p><input type="text" ng-model="nombre"></p>
+	<p><input type="text" ng-model="name"></p>
         <br>
     <select ng-model="$scope.combobox">
        <option 
@@ -16,13 +16,13 @@
   <div class="para2">  
     <p>Rol:</p>
     <br>
-    <input type="radio" ng-model="rol" value="administrador" checked>Administrador
+    <input type="radio" ng-model="role" value="administrador" checked>Administrador
 	<br>
-	<input type="radio" ng-model="rol" value="mantenimiento">Mantenimiento
+	<input type="radio" ng-model="role" value="mantenimiento">Mantenimiento
 	<br>
-	<input type="radio" ng-model="rol" value="validador">Validador
+	<input type="radio" ng-model="role" value="validador">Validador
 	<br>
-	<input type="radio" ng-model="rol" value="consulta">Consulta
+	<input type="radio" ng-model="role" value="consulta">Consulta
 	<br>
     </div>
     <button class="boton" type="button" ng-click="crear()" >Crear</button>

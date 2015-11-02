@@ -2,10 +2,8 @@ app.controller('controladorAltaUsuario', function(servicioRest, config, $scope, 
     //$scope.combobox = servicioRest.getLDAP();
     $scope.crear = function () {
         console.log("creando..");
-        usuario = new Object();
-        usuario.id = $scope.nombre;
-        usuario.rol = $scope.rol;
-        $http.defaults.headers.common.Authorization = 'Basic dGVzdDp0ZXN0';
-        servicioRest.postUsuario(usuario)
+        $scope.usuario = {"user": $scope.user, "role": $scope.role};
+        //$http.defaults.headers.common.Authorization = 'Basic dGVzdDp0ZXN0';
+        servicioRest.postUsuario($scope.usuario);
 	}
 });
