@@ -1,23 +1,23 @@
-<section class="containerLogin">
+<div id="containerLogin">
     
-    <div layout layout-sm="column">
-      <h1>Login to Web App</h1>           
-      
-      
-        <md-input-container>
-          <label>Username</label>
+    <h2><span class="fontawesome-lock"></span>Acceder</h2>
+    
+    <fieldset>
+        <md-input-container flex>
+          <label>Usuario</label>
           <input ng-model="user.name" required="required" autofocus="autofocus">
         </md-input-container>
         
-        <!--md-input-container>
-          <label>Password</label>
-          <input ng-model="user.password" placeholder="password" required="required" autofocus="autofocus">
+        <md-input-container flex>
+          <label>Contraseña</label>
+          <input ng-model="user.password"  required="required" autofocus="autofocus">
         </md-input-container>
         
-
-        <p class="submit"><input type="submit"  ng-click="login()" name="commit" value="Entrar"></p-->
-    </div>   
-</section>
+        <p><md-button class="btLogin" ng-click="login()"  target="_blank">Entrar</md-button></p>
+        
+        <!--p class="submit"><input type="submit"  ng-click="login()" name="commit" value="Entrar"></p-->        
+    </fieldset>  
+</div>
 
 
        

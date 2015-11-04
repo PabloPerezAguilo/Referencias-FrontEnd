@@ -78,6 +78,39 @@ table {
 h1{
     text-align: center;
 }
+/* --------------------------- ESTILOS LOGIN ----------------------------- */
+#containerLogin {
+	margin: 50px auto;
+	width: 400px; 
+}
+
+#containerLogin h2 {
+	background-color: #088A85;
+	-webkit-border-radius: 20px 20px 0 0;
+	-moz-border-radius: 20px 20px 0 0;
+	border-radius: 20px 20px 0 0;
+	color: #fff;
+	font-size: 28px;
+	padding: 20px 26px;
+}
+#containerLogin fieldset {
+	background-color: #D8D8D8;
+	-webkit-border-radius: 0 0 20px 20px;
+	-moz-border-radius: 0 0 20px 20px;
+	border-radius: 0 0 20px 20px;
+	padding: 20px 26px;
+}
+
+#containerLogin fieldset p {
+	color: #777;
+	margin-bottom: 14px;
+    text-align: center;   
+}
+
+.btLogin{
+    
+    background-color:blueviolet;
+}
 
 -----------------------------------------------------------------*/
 @font-face {
