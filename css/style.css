@@ -101,7 +101,21 @@ h1{
 #listaUsuarios {
   background: whitesmoke;
   position: absolute;
-  left: 50%;
+  left: 75%;
+  margin-left: -175px;
+  margin-top: 35px;
+  width: 350px;
+  padding: 15px;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
+  box-shadow: inset 1px 1px 0 white;
+  max-height: 500px;
+}
+
+#listaRoles {
+  background: whitesmoke;
+  position: absolute;
+  left: 25%;
   margin-left: -175px;
   margin-top: 35px;
   width: 350px;

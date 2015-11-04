@@ -21,6 +21,7 @@
           <span>Usuario seleccionado:</span>
         <input type="text" ng-model="miUsuarioSeleccionado.usuario" />
     </div>
+    <div id="listaRoles">
         <p>Rol:</p>
         <br>
         <input type="radio" ng-model="role" value="administrador" checked>Administrador
@@ -30,6 +31,6 @@
         <input type="radio" ng-model="role" value="validador">Validador
         <br>
         <input type="radio" ng-model="role" value="consulta">Consulta
-        <br>
+     </div>
         <button class="boton" type="button" ng-click="crear()" >Crear</button>
 </section>

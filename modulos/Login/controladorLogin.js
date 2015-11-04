@@ -5,7 +5,7 @@ app.controller('controladorLogin', function(servicioRest, config, $scope, $http)
     };   
 	$scope.login = function () {
 
-		servicioRest.postUsuario($scope.user)
+		servicioRest.postLogin($scope.user)
 			.then(function(data) {
 				console.log(data);
 			})
