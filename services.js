@@ -91,7 +91,7 @@ function ServicioREST($http, $q, $rootScope, config) {
 		var promise = defered.promise;
 		$http({
 			method: 'GET',
-			url: url + '/usuarios/'
+			url: url + '/usuariosldap/'
 		})
 		.success(function(data, status, headers, config) {
 			defered.resolve(data);

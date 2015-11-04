@@ -1,29 +1,36 @@
 <body ng-controller="controladorAltaUsuario">
     <h1>Introduzca el nombre del usuario que quiere dar de alta y el rol que desea asignarle.</h1>
-    <div class="para1">
-    <p>Nombre:</p>
-	<p><input type="text" ng-model="name"></p>
+    <div id="listaUsuarios">
+      <input type="text" id="cajaFiltro" placeholder="Buscar..." ng-model="filtro"/>
+      <select ng-model="ordenadoPor">
+        <option value="usuario">Por Nombre</option>
+        <option value="nick">Por Nick</option>
+        <option value="mail">Por e-mail</option>
+      </select>
+      <ul id="usuarios_ul">
+        <li type="radio" ng-repeat="usuario in usuarios | filter:filtro | orderBy: ordenadoPor" ng-click="setValue(usuario)">
+            Nombre: {{usuario.usuario}}<br/>
+            Nick: {{usuario.nick}}<br/>
+            Correo: {{usuario.mail}}
+        </li>
+        <hr>
+      </ul>
         <br>
-    <select ng-model="$scope.combobox">
-       <option 
-           ng-repeat="x in combobox | filter:nombre | orderBy:'nombre'" 
-           value="{{x.nombre + ', ' + x.apellido + ', ' + x.correo}}"
-       >
-           {{(x.apellido | uppercase) + ', ' + x.nombre + ' >> ' + x.correo}}
-       </option>
-    </select>
+      <span>Numero total de usuarios: {{usuarios.length}}</span>
+          <hr>
+          <span>Usuario seleccionado:</span>
+        <input type="text" ng-model="miUsuarioSeleccionado.usuario" />
+        <br>
+        <p>Rol:</p>
+        <br>
+        <input type="radio" ng-model="role" value="administrador" checked>Administrador
+        <br>
+        <input type="radio" ng-model="role" value="mantenimiento">Mantenimiento
+        <br>
+        <input type="radio" ng-model="role" value="validador">Validador
+        <br>
+        <input type="radio" ng-model="role" value="consulta">Consulta
+        <br>
+        <button class="boton" type="button" ng-click="crear()" >Crear</button>
     </div>
-  <div class="para2">  
-    <p>Rol:</p>
-    <br>
-    <input type="radio" ng-model="role" value="administrador" checked>Administrador
-	<br>
-	<input type="radio" ng-model="role" value="mantenimiento">Mantenimiento
-	<br>
-	<input type="radio" ng-model="role" value="validador">Validador
-	<br>
-	<input type="radio" ng-model="role" value="consulta">Consulta
-	<br>
-    </div>
-    <button class="boton" type="button" ng-click="crear()" >Crear</button>
 </body>
