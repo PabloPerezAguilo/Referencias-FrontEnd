@@ -33,13 +33,14 @@ function ServicioREST($http, $q, $rootScope, config) {
 	}
     
 
-	/* ---------- SERVICIOS ENTIDAD ---------- */
-	function postEntidad(objetoAEnviar) {
+	/* ---------- SERVICIOS REFERENCIA ---------- */
+    
+	function postReferencia(objetoAEnviar) {
 		var defered = $q.defer();
 		var promise = defered.promise;
 		$http({
 			method: 'POST',
-			url: url + '/entidad',
+			url: url + '/referencia',
 			data: objetoAEnviar
 		})
 		.success(function(data, status, headers, config) {
@@ -52,12 +53,12 @@ function ServicioREST($http, $q, $rootScope, config) {
 		return promise;
 	}
 
-	function getEntidades() {
+	function getReferencias() {
 		var defered = $q.defer();
 		var promise = defered.promise;
 		$http({
 			method: 'GET',
-			url: url + '/resource/'
+			url: url + '/referencia'
 		})
 		.success(function(data, status, headers, config) {
 			defered.resolve(data);
@@ -69,12 +70,48 @@ function ServicioREST($http, $q, $rootScope, config) {
 		return promise;
 	}
 
-	function getEntidad(parametroA, parametroB, parametroC) {
+	function getReferencia(key) {
 		var defered = $q.defer();
 		var promise = defered.promise;
 		$http({
 			method: 'GET',
-			url: url + '/resource/' + parametroA + "?desde=" + parametroB + "&hasta=" + parametroC
+			url: url + '/referencia/' + key
+		})
+		.success(function(data, status, headers, config) {
+			defered.resolve(data);
+		})
+		.error(function(data, status, headers, config) {
+			tratarError(data, status,defered);
+		});
+
+		return promise;
+	}
+    
+    function updateReferencia(nuevo) {
+		var defered = $q.defer();
+		var promise = defered.promise;
+		$http({
+			method: 'PUT',
+			url: url + '/referencia/',
+            data: nuevo
+		})
+		.success(function(data, status, headers, config) {
+			defered.resolve(data);
+		})
+		.error(function(data, status, headers, config) {
+			tratarError(data, status,defered);
+		});
+
+		return promise;
+	}
+    
+    function deleteReferencia(key) {
+		var defered = $q.defer();
+		var promise = defered.promise;
+		$http({
+			method: 'DELETE',
+			url: url + '/referencia/' + key,
+            data: key
 		})
 		.success(function(data, status, headers, config) {
 			defered.resolve(data);
@@ -122,9 +159,11 @@ function ServicioREST($http, $q, $rootScope, config) {
     }
 		
 	return {
-		getEntidades: getEntidades,
-		getEntidad: getEntidad,
-		postEntidad: postEntidad,
+		getReferencias: getReferencias,
+		getReferencia: getReferencia,
+		postReferencia: postReferencia,
+        updateReferencia : updateReferencia,
+        deleteReferencia : deleteReferencia,
 		getLDAP: getLDAP,
         postUsuario: postUsuario,
         postLogin : postLogin
