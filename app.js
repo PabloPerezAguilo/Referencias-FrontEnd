@@ -12,18 +12,18 @@ app.run(function(servicioRest, $rootScope, $http, $location) {
 app.config(function($routeProvider) {
 
 	$routeProvider
-    .when('/login', {
+    .when('/', {
 		templateUrl: 'modulos/login/login.html',
 		controller: 'controladorLogin'
 	})
 	.when('/pageNotFound', {
 		templateUrl: 'modulos/error/templateError.html'
 	})
-    .when('/altas', {
+    .when('/alta', {
         templateUrl: 'modulos/altaUsuario/altaUsuario.html',
         controller: 'controladorAltaUsuario'
     })
-    .when('/', {
+    .when('/nueva', {
         templateUrl: 'modulos/nuevaReferencia/nuevaReferencia.html',
         controller: 'controladorNuevaReferencia'
     })
