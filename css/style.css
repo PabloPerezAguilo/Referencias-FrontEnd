@@ -25,7 +25,19 @@ footer, header, hgroup, menu, nav, section {
   display: block; }
 
 body {
-  line-height: 1; }
+  line-height: 1;  
+  font-size:20px;
+  height: 31px;
+  width: 100%;
+  /*text-shadow: #555 2px 2px 3px;
+  /*position: absolute;
+  display: block;
+  background: url("imagenes/gradiente.png") repeat-x;
+  width: 100%;
+  */
+  /*filter: shadow(color=#555555, direction=135, strength=2);*/
+   /* necesario para activar la propiedad hasLayout */
+}
 
 ol, ul {
   list-style: none; }
@@ -38,7 +50,7 @@ q:before, q:after {
   content: '';
   content: none; }
 
-table {
+table {      
   border-collapse: collapse;
   border-spacing: 0; }
 
@@ -119,4 +131,104 @@ ul {
 @font-face {
   font-family: 'principalCursiva';
   src: url("fonts/HelveticaNeueLTStd-LtCnO.otf"); }
+/*añadido oscar para menu */
+header {
+    width:100%; /* Establecemos que el header abarque el 100% del documento */
+    overflow:hidden; /* Eliminamos errores de float */
+    background:#252932;
+    margin-bottom:20px;
+}
+ 
+.wrapper {
+    width:90%; /* Establecemos que el ancho sera del 90% */
+    max-width:1000px; /* Aqui le decimos que el ancho máximo sera de 1000px */
+    margin:auto; /* Centramos los elementos */
+    overflow:hidden; /* Eliminamos errores de float */
+}
+ 
+header .logo {
+    color:#F0E68C;
+    font-size:50px;
+    line-height:200px;
+    float:left;
+}
+ 
+header nav {
+    float:right;
+    line-height:200px;
+}
+ 
+header nav a {
+    display:inline-block;
+    color:#fff;
+    text-decoration:none;
+    padding:10px 20px;
+    line-height:normal;
+    font-size:20px;
+    font-weight:bold;
+    -webkit-transition:all 500ms ease;
+    -o-transition:all 500ms ease;
+    transition:all 500ms ease;
+}
+ 
+header nav a:hover {
+    background:#f56f3a;
+    border-radius:50px;
+}
 
+/*pruebas*/
+footer {
+    width:100%; /* Establecemos que el footer abarque el 100% del documento */
+    overflow:hidden; /* Eliminamos errores de float */
+    background:#252932;
+    margin-bottom:20px;
+}
+ 
+.wrapper {
+    width:70%; /* Establecemos que el ancho sera del 90% */
+    max-width:1000px; /* Aqui le decimos que el ancho máximo sera de 1000px */
+    margin:auto; /* Centramos los elementos */
+    overflow:hidden; /* Eliminamos errores de float */
+}
+ 
+footer .logo {
+    color:#F0E68C;
+    font-size:40px;
+    line-height:100px;
+    float:left;
+}
+footer nav {
+    float:right;
+    line-height:200px;
+}
+ 
+footer nav a {
+    display:inline-block;
+    color:#fff;
+    text-decoration:none;
+    padding:10px 20px;
+    line-height:normal;
+    font-size:15px;
+    font-weight:bold;
+    -webkit-transition:all 500ms ease;
+    -o-transition:all 500ms ease;
+    transition:all 500ms ease;
+}
+ 
+footer nav a:hover {
+    background:#f56f3a;
+    border-radius:50px;
+
+}
+footer {
+    position: relative;
+    width:100%; /* Establecemos que el header abarque el 100% del documento */
+    overflow:hidden; /* Eliminamos errores de float */
+    background:#252932;
+    margin-top: 550px; /* ponga en negativo el alto de su pie de página para nuestro    ejemplo usamos 63, usted debe remplazarlo           según su diseño   */
+    margin-bottom:20px;
+    
+    
+    height: 63px;
+    clear:both;    
+}
