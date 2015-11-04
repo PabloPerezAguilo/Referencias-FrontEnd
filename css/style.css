@@ -67,36 +67,36 @@ h1{
 /* --------------------------- ESTILOS LOGIN ----------------------------- */
 #containerLogin {
 	margin: 50px auto;
-	width: 400px; 
+	width: 400px;
 }
 
-#containerLogin h2 {
-	background-color: #088A85;
-	-webkit-border-radius: 20px 20px 0 0;
-	-moz-border-radius: 20px 20px 0 0;
-	border-radius: 20px 20px 0 0;
+#containerLogin p {
+	background-color: #086A87;
+	-webkit-border-radius:  0 0 20px 20px;
+	-moz-border-radius: 0 0 20px 20px;
+	border-radius: 0 0 20px 20px;
 	color: #fff;
 	font-size: 28px;
 	padding: 20px 26px;
+    box-shadow: 2px 2px 4px #666;
+    text-align: center; 
 }
 #containerLogin fieldset {
-	background-color: #D8D8D8;
-	-webkit-border-radius: 0 0 20px 20px;
-	-moz-border-radius: 0 0 20px 20px;
-	border-radius: 0 0 20px 20px;
+	background-color: #E7E9EC;
+	-webkit-border-radius: 20px 20px 0 0 ;
+    -moz-border-radius: 20px 20px 0 0;
+	border-radius: 20px 20px 0 0;
 	padding: 20px 26px;
+    box-shadow: 2px 2px 4px #666;
 }
 
-#containerLogin fieldset p {
+/*#containerLogin fieldset p {
 	color: #777;
 	margin-bottom: 14px;
     text-align: center;   
-}
+}*/
 
-.btLogin{
-    
-    background-color:blueviolet;
-}
+
 
 /* ------------------------------- ESTILOS ALTA USUARIOS ---------------------- */
 #listaUsuarios {
