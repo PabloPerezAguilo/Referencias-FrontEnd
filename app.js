@@ -12,7 +12,7 @@ app.run(function(servicioRest, $rootScope, $http, $location) {
 app.config(function($routeProvider) {
 
 	$routeProvider
-    .when('/', {
+    .when('/login', {
 		templateUrl: 'modulos/login/login.html',
 		controller: 'controladorLogin'
 	})
@@ -23,7 +23,7 @@ app.config(function($routeProvider) {
         templateUrl: 'modulos/altaUsuario/altaUsuario.html',
         controller: 'controladorAltaUsuario'
     })
-    .when('/nueva', {
+    .when('/', {
         templateUrl: 'modulos/nuevaReferencia/nuevaReferencia.html',
         controller: 'controladorNuevaReferencia'
     })
