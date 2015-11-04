@@ -1,7 +1,4 @@
-<div id="containerLogin">
-    
-    <h2><span class="fontawesome-lock"></span>Acceder</h2>
-    
+<div id="containerLogin">     
     <fieldset>
         <md-input-container flex>
           <label>Usuario</label>
@@ -11,12 +8,9 @@
         <md-input-container flex>
           <label>Contraseña</label>
           <input ng-model="user.password"  required="required" autofocus="autofocus">
-        </md-input-container>
-        
-        <p><md-button class="btLogin" ng-click="login()"  target="_blank">Entrar</md-button></p>
-        
-        <!--p class="submit"><input type="submit"  ng-click="login()" name="commit" value="Entrar"></p-->        
-    </fieldset>  
+        </md-input-container>         
+    </fieldset>
+    <p><md-button class="md-raised" ng-click="login()">Entrar</md-button></p>  
 </div>
 
 
