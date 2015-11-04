@@ -23,6 +23,10 @@ app.config(function($routeProvider) {
         templateUrl: 'modulos/altaUsuario/altaUsuario.html',
         controller: 'controladorAltaUsuario'
     })
+    .when('/nueva', {
+        templateUrl: 'modulos/nuevaReferencia/nuevaReferencia.html',
+        controller: 'controladorNuevaReferencia'
+    })
 	.otherwise({
 		redirectTo: "/pageNotFound"
 	});
