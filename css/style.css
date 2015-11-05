@@ -288,7 +288,7 @@ footer {
     /*margin-top: auto; /* ponga en negativo el alto de su pie de página para nuestro    ejemplo usamos 63, usted debe remplazarlo           según su diseño   */
     
     position: fixed;
-  bottom: 0px;
+    bottom: 0px;
     
     
     height: 63px;
@@ -316,6 +316,7 @@ footer {
 
 #menu{
     color:beige;
-  margin-top: 130px;
+    margin-top: 130px;
+    font-family: verdana;
     
 }
