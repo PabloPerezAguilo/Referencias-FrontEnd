@@ -9,6 +9,12 @@ app.run(function(servicioRest, $rootScope, $http, $location) {
 	$http.defaults.headers.common['Accept'] = 'application/json, text/javascript';
 	$http.defaults.headers.common['Content-Type'] = 'application/json; charset=utf-8';
     
+    $rootScope.$on('$locationChangeStart', function(event, next, current) {
+		// Redirige a la pagina si no estas logeado
+		if ($rootScope.usuarioP===undefined || $rootScope.usuarioP === {}) {
+			$location.path('/');
+		}
+	});
 	
 });
 
