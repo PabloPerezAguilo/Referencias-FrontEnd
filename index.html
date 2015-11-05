@@ -23,7 +23,7 @@
 		<header>
             <p class="titulo">Referencias</p>
             <img id="logo" src="/logo_gfi.png"/>
-            <div id="menu" layout layout-sm="column">
+            <div ng-show="menu" id="menu" layout layout-sm="column">
                 <data md-toolbar class="md-menu-toolbar">
                     <md-menu>
                         <md-button ng-click="$mdOpenMenu()">
@@ -54,7 +54,8 @@
             </md-menu-content>
                     </md-menu>
                 </data>
-            </div>   
+            </div>  
+            
         </header>
         
         <div ng-view>            

@@ -1,3 +1,4 @@
+@charset "UTF-8";
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
@@ -24,7 +25,18 @@ footer, header, hgroup, menu, nav, section {
   display: block; }
 
 body {
-  line-height: 1; }
+  line-height: 1;
+  font-size: 20px;
+  height: 31px;
+  width: 100%;
+  /*text-shadow: #555 2px 2px 3px;
+  /*position: absolute;
+  display: block;
+  background: url("imagenes/gradiente.png") repeat-x;
+  width: 100%;
+  */
+  /*filter: shadow(color=#555555, direction=135, strength=2);*/
+  /* necesario para activar la propiedad hasLayout */ }
 
 ol, ul {
   list-style: none; }
@@ -41,9 +53,248 @@ table {
   border-collapse: collapse;
   border-spacing: 0; }
 
-/* ---------------------------------------------------------------------*/
+.boton {
+  position: absolute;
+  text-align: center;
+  bottom: 200px;
+  left: 600px; }
+
+h1 {
+  text-align: center; }
+
+/* --------------------------- ESTILOS LOGIN ----------------------------- */
+#containerLogin {
+  margin: 50px auto;
+  margin-top: 150px;
+  width: 400px; }
+
+#containerLogin fieldset {
+  background-color: #E7E9EC;
+  color: #777;
+  margin-bottom: 14px;
+  -webkit-border-radius: 20px 20px 0 0;
+  -moz-border-radius: 20px 20px 0 0;
+  border-radius: 20px 20px 0 0;
+  padding: 20px 26px;
+  box-shadow: 2px 2px 4px #666; }
+
+#log {
+  background-color: #086A87;
+  -webkit-border-radius: 0 0 20px 20px;
+  -moz-border-radius: 0 0 20px 20px;
+  border-radius: 0 0 20px 20px;
+  color: #fff;
+  font-size: 12px;
+  padding: 20px 26px;
+  box-shadow: 2px 2px 4px #666; }
+
+#log input {
+  text-align: left; }
+
+/* ------------------------------- ESTILOS ALTA USUARIOS ---------------------- */
+#listaUsuarios {
+  background: whitesmoke;
+  position: absolute;
+  left: 75%;
+  margin-left: -175px;
+  margin-top: 35px;
+  width: 350px;
+  padding: 15px;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
+  box-shadow: inset 1px 1px 0 white;
+  max-height: 500px; }
+
+#listaRoles {
+  background: whitesmoke;
+  position: absolute;
+  left: 25%;
+  margin-left: -175px;
+  margin-top: 35px;
+  width: 350px;
+  padding: 15px;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
+  box-shadow: inset 1px 1px 0 white;
+  max-height: 500px; }
+
+#cajaFiltro {
+  width: 100%;
+  box-sizing: border-box;
+  font-size: 19px;
+  padding: 5px;
+  font-family: calibri light;
+  margin-bottom: 10px;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 3px;
+  box-shadow: inset 1px 1px 0 rgba(0, 0, 0, 0.1); }
+
+li {
+  list-style: none;
+  background-color: rgba(0, 0, 0, 0.05);
+  background-image: linear-gradient(90deg, #FFD32E 10px, #EEE 10px, #EEE 11px, transparent 11px);
+  padding: 10px 15px 10px 25px;
+  border: 1px solid #CCC;
+  box-shadow: inset 1px 1px 0 rgba(255, 255, 255, 0.5);
+  margin-bottom: 5px;
+  width: 100%;
+  box-sizing: border-box;
+  cursor: pointer;
+  border-radius: 3px; }
+
+ul {
+  margin: 0 auto;
+  padding: 0;
+  max-height: 320px;
+  overflow-y: auto;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  padding: 5px 5px 0 5px;
+  border-left: none;
+  border-right: none; }
+
+#cajaFiltro:focus {
+  border: 2px solid #FAAAAA;
+  box-shadow: 0 0 10px rgba(255, 255, 0, 0.1);
+  outline: none; }
+
+.right {
+  float: right; }
+
+/*-----------------------------------------------------------------*/
 @font-face {
   font-family: 'principalCursiva';
   src: url("fonts/HelveticaNeueLTStd-LtCnO.otf"); }
+
+header {
+  width: 100%;
+  /* Establecemos que el header abarque el 100% del documento */
+  overflow: hidden;
+  /* Eliminamos errores de float */
+  background: #0B4C5F;
+  margin-bottom: 20px;
+  height: 180px; }
+
+.wrapper {
+  width: 100%;
+  /* Establecemos que el ancho sera del 90% */
+  max-width: 1024px;
+  /* Aqui le decimos que el ancho máximo sera de 1000px */
+  margin: auto;
+  /* Centramos los elementos */
+  overflow: hidden;
+  /* Eliminamos errores de float */ }
+
+header .titulo {
+  color: beige;
+  font-size: 50px;
+  float: left;
+  font-family: "Times New Roman";
+  margin-left: 30px;
+  margin-top: 50px; }
+
+header #logo {
+  position: relative;
+  float: right;
+  margin-top: 25px;
+  margin-right: 10px; }
+
+header nav {
+  float: right;
+  line-height: 200px; }
+
+header nav a {
+  display: inline-block;
+  color: #fff;
+  text-decoration: none;
+  padding: 10px 20px;
+  line-height: normal;
+  font-size: 20px;
+  font-weight: bold;
+  -webkit-transition: all 500ms ease;
+  -o-transition: all 500ms ease;
+  transition: all 500ms ease; }
+
+header nav a:hover {
+  background: #f56f3a;
+  border-radius: 50px; }
+
+footer {
+  width: 100%;
+  /* Establecemos que el footer abarque el 100% del documento */
+  overflow: hidden;
+  /* Eliminamos errores de float */
+  background: #0B4C5F;
+  margin-bottom: 20px; }
+
+.wrapper {
+  width: 70%;
+  /* Establecemos que el ancho sera del 90% */
+  max-width: 1000px;
+  /* Aqui le decimos que el ancho máximo sera de 1000px */
+  overflow: hidden;
+  /* Eliminamos errores de float */ }
+
+footer .logo {
+  color: #F0E68C;
+  font-size: 40px;
+  line-height: 100px;
+  float: left; }
+
+footer nav {
+  float: right;
+  line-height: 200px; }
+
+footer nav a {
+  display: inline-block;
+  color: #fff;
+  text-decoration: none;
+  padding: 10px 20px;
+  line-height: normal;
+  font-size: 15px;
+  font-weight: bold;
+  -webkit-transition: all 500ms ease;
+  -o-transition: all 500ms ease;
+  transition: all 500ms ease; }
+
+footer nav a:hover {
+  background: #f56f3a;
+  border-radius: 50px; }
+
+footer {
+  width: 100%;
+  /* Establecemos que el header abarque el 100% del documento */
+  overflow: hidden;
+  /* Eliminamos errores de float */
+  background: #0B4C5F;
+  position: fixed;
+  bottom: 0px;
+  height: 63px;
+  clear: both; }
+
+/*MENU */
+.menuBardemoBasicUsage .page-container {
+  background-color: #f1f1f1;
+  padding: 32px; }
+
+.menuBardemoBasicUsage .page {
+  margin: 0 auto;
+  background-color: white;
+  padding: 24px;
+  max-width: 680px;
+  box-shadow: 0px 1px 2px 1px rgba(0, 0, 0, 0.25); }
+
+.menuBardemoBasicUsage .page h1 {
+  text-align: center;
+  font-size: 1.8rem;
+  margin-top: 0;
+  font-weight: normal; }
+
+.menuBardemoBasicUsage .page p {
+  line-height: 1.6rem; }
+
+#menu {
+  color: beige;
+  margin-top: 130px;
+  font-family: verdana; }
 
 /*# sourceMappingURL=style.css.map */
