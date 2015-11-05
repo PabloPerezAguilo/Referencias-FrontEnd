@@ -188,7 +188,7 @@ header {
     overflow:hidden; /* Eliminamos errores de float */
     background:#0B4C5F;
     margin-bottom:20px;
-    height: 200px;
+    height: 180px;
 }
  
 .wrapper {
@@ -315,7 +315,7 @@ footer {
 }
 
 #menu{
-
-  margin-top: 150px;
+    color:beige;
+  margin-top: 130px;
     
 }
