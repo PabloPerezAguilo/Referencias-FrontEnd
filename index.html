@@ -21,8 +21,40 @@
 	</head>
 	<body>
 		<header>
-                <p class="titulo">Referencias</p>
-                <img id="logo" src="/logo_gfi.png"/>
+            <p class="titulo">Referencias</p>
+            <img id="logo" src="/logo_gfi.png"/>
+            <div layout layout-sm="row">
+                <data md-toolbar class="md-menu-toolbar">
+                    <md-menu>
+                        <md-button ng-click="$mdOpenMenu()">
+                        Usuarios
+                        </md-button>
+                        <md-menu-content>
+                            <md-menu-item>
+                                <md-button ng-click="ctrl.sampleAction('share', $event)" ><a href="#/altas">Alta Usuario
+                                </a></md-button>
+                            </md-menu-item>
+                  <md-menu-divider></md-menu-divider>
+                              <md-menu-item>
+                                <md-button ng-click="ctrl.sampleAction('share', $event)">
+                                  Eliminar Usuario
+                                </md-button>
+                              </md-menu-item>             
+                        </md-menu-content>
+                    </md-menu>
+                <md-menu-divider></md-menu-divider>  
+                    <md-menu>
+            <md-button ng-click="$mdOpenMenu()">Referencias</md-button>
+            <md-menu-content>
+            <md-menu-item><md-button ng-click="ctrl.sampleAction('New Document', $event)">Crear Ref</md-button></md-menu-item>
+            <md-menu-item><md-button ng-click="ctrl.sampleAction('New Spreadsheet', $event)">Eliminar Ref</md-button></md-menu-item>
+            <md-menu-item><md-button ng-click="ctrl.sampleAction('New Presentation', $event)">Mostrar Ref</md-button></md-menu-item>
+            <md-menu-item><md-button ng-click="ctrl.sampleAction('New Form', $event)">Modificar Ref</md-button></md-menu-item>
+            <md-menu-item><md-button ng-click="ctrl.sampleAction('New Drawing', $event)">Ref selection</md-button></md-menu-item>
+            </md-menu-content>
+                    </md-menu>
+                </data>
+            </div>   
         </header>
         
         <div ng-view>            
