@@ -67,34 +67,37 @@ h1{
 /* --------------------------- ESTILOS LOGIN ----------------------------- */
 #containerLogin {
 	margin: 50px auto;
+    margin-top: 150px;
 	width: 400px;
 }
 
-#containerLogin p {
-	background-color: #086A87;
-	-webkit-border-radius:  0 0 20px 20px;
-	-moz-border-radius: 0 0 20px 20px;
-	border-radius: 0 0 20px 20px;
-	color: #fff;
-	font-size: 28px;
-	padding: 20px 26px;
-    box-shadow: 2px 2px 4px #666;
-    text-align: center; 
-}
 #containerLogin fieldset {
 	background-color: #E7E9EC;
-	-webkit-border-radius: 20px 20px 0 0 ;
+    color: #777;
+    margin-bottom: 14px;
+	-webkit-border-radius:20px 20px 0 0 ;
     -moz-border-radius: 20px 20px 0 0;
-	border-radius: 20px 20px 0 0;
+	border-radius:  20px 20px 0 0;
 	padding: 20px 26px;
     box-shadow: 2px 2px 4px #666;
 }
 
-/*#containerLogin fieldset p {
-	color: #777;
-	margin-bottom: 14px;
-    text-align: center;   
-}*/
+ #log {
+	background-color: #086A87;
+	-webkit-border-radius: 0 0 20px 20px;
+	-moz-border-radius: 0 0 20px 20px;
+	border-radius: 0 0 20px 20px;
+	color: #fff;
+	font-size: 12px;
+	padding: 20px 26px;
+    box-shadow: 2px 2px 4px #666;
+}
+
+#log input{    
+    text-align: left;
+}
+
+
 
 
 
@@ -175,30 +178,39 @@ ul {
 }
 
 
------------------------------------------------------------------*/
+/*-----------------------------------------------------------------*/
 @font-face {
   font-family: 'principalCursiva';
   src: url("fonts/HelveticaNeueLTStd-LtCnO.otf"); }
-/*añadido oscar para menu */
+
 header {
     width:100%; /* Establecemos que el header abarque el 100% del documento */
     overflow:hidden; /* Eliminamos errores de float */
-    background:#252932;
+    background:#0B4C5F;
     margin-bottom:20px;
 }
  
 .wrapper {
-    width:90%; /* Establecemos que el ancho sera del 90% */
-    max-width:1000px; /* Aqui le decimos que el ancho máximo sera de 1000px */
+    width:100%; /* Establecemos que el ancho sera del 90% */
+    max-width:1024px; /* Aqui le decimos que el ancho máximo sera de 1000px */
     margin:auto; /* Centramos los elementos */
     overflow:hidden; /* Eliminamos errores de float */
 }
  
-header .logo {
-    color:#F0E68C;
+header .titulo {
+    color:beige;
     font-size:50px;
-    line-height:200px;
+    line-height:150px;
     float:left;
+    text-align: center;
+    font-family: "Times New Roman";   
+    margin-left: 30px;
+}
+header #logo {
+    float: right;
+    margin-top: 25px;
+    margin-right: 10px;
+    
 }
  
 header nav {
@@ -224,18 +236,17 @@ header nav a:hover {
     border-radius:50px;
 }
 
-/*pruebas*/
 footer {
     width:100%; /* Establecemos que el footer abarque el 100% del documento */
     overflow:hidden; /* Eliminamos errores de float */
-    background:#252932;
+    background:#0B4C5F;
     margin-bottom:20px;
 }
  
 .wrapper {
     width:70%; /* Establecemos que el ancho sera del 90% */
     max-width:1000px; /* Aqui le decimos que el ancho máximo sera de 1000px */
-    margin:auto; /* Centramos los elementos */
+    /*margin:auto; /* Centramos los elementos */
     overflow:hidden; /* Eliminamos errores de float */
 }
  
@@ -269,12 +280,14 @@ footer nav a:hover {
 
 }
 footer {
-    position: relative;
+    /*position: relative;*/
     width:100%; /* Establecemos que el header abarque el 100% del documento */
     overflow:hidden; /* Eliminamos errores de float */
-    background:#252932;
-    margin-top: 550px; /* ponga en negativo el alto de su pie de página para nuestro    ejemplo usamos 63, usted debe remplazarlo           según su diseño   */
-    margin-bottom:20px;
+    background:#0B4C5F;
+    /*margin-top: auto; /* ponga en negativo el alto de su pie de página para nuestro    ejemplo usamos 63, usted debe remplazarlo           según su diseño   */
+    
+    position: fixed;
+  bottom: 0px;
     
     
     height: 63px;
