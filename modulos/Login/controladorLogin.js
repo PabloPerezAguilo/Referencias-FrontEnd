@@ -19,7 +19,14 @@ app.controller('controladorLogin', function(servicioRest, config, $scope, $http,
 
                 }else if(data.role==="ROLE_MANTENIMIENTO"){
                     $location.path('/nueva');
+                    
+                }else if(data.role==="ROLE_VALIDADOR"){
+                    $location.path('/nueva');
+                    
+                }else if(data.role==="ROLE_CONSULTOR"){
+                    $location.path('/nueva');
                 }
+            
 
 			})
 			.catch(function(err) {
