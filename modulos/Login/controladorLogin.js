@@ -1,50 +1,68 @@
 app.controller('controladorLogin', function(servicioRest, config, $scope, $http, $location, $rootScope) {
     $scope.user={        
         name:'',
-        password: ''
-       
-    };
-    
+        password: '' 
+    };   
     
 	$scope.login = function () {
         
 		servicioRest.postLogin($scope.user)
-			.then(function(data) {          
-				console.log(data);
+			.then(function(data) {   
+            
+				console.log(data); 
                 $rootScope.menu = true;
+                $rootScope.datoRol=data;
+                //Redireccionamos al usuario según su ROL
+                redireccionar();
                 $rootScope.usuarioP = $scope.user;
-            $http.defaults.headers.common['Authorization'] = 'Basic ' + window.btoa($rootScope.usuarioP.name + ':' + $rootScope.usuarioP.password);
-            data.password=$rootScope.usuarioP.password;
-			$rootScope.usuarioP = data;
             
+                //Guardamos el usuario completo incluido el rol que nos devuelve
+                $rootScope.usuarioLS={
+                    name:$scope.user.name,
+                    password:$scope.user.password,
+                    role:data.role   
+                };
             
-            
-            
-            
-                if(data.role==="ROLE_ADMINISTRADOR"){
-                 $location.path('/alta');
+                $http.defaults.headers.common['Authorization'] = 'Basic ' + btoa($rootScope.usuarioP.name + ':' + $rootScope.usuarioP.password);
 
-                }else if(data.role==="ROLE_MANTENIMIENTO"){
-                    $location.path('/nueva');
-                    
-                }else if(data.role==="ROLE_VALIDADOR"){
-                    $location.path('/nueva');
-                    
-                }else if(data.role==="ROLE_CONSULTOR"){
-                    $location.path('/nueva');
-                }
-            
+                //Comprobamos si ha seleccionado recordar
+                comprobarRecordar();
 
 			})
 			.catch(function(err) {
-            
+            //Debemos tratar el error mostrando un mensaje
 				console.log("Error");
-            
-            
-            
+            	//$rootScope.usuarioLS={};
             
 			});
 	};
+    
+    function comprobarRecordar() {
+		// Si el usuario ha pulsado en recordar lo guardamos en el localStorage
+		if ($scope.recordar) {
+			localStorage.setItem("name", $rootScope.usuarioLS.name);
+			// Usamos el nombre de usuario como secreto
+			localStorage.setItem("password", Aes.Ctr.encrypt($rootScope.usuarioLS.password, $rootScope.usuarioLS.name, 256));
+			localStorage.setItem("role", $rootScope.usuarioLS.role);
+		}
+	}
+    
+    function redireccionar() {
+        console.log("Redireccionando segun rol"); 
+		// Redireccionamos al usuario logeado dependiendo de su rol
+		  if ($rootScope.datoRol.role==="ROLE_ADMINISTRADOR"){
+                 $location.path('/alta');
+
+                }else if($rootScope.datoRol.role==="ROLE_MANTENIMIENTO"){
+                    $location.path('/nueva');
+                    
+                }else if($rootScope.datoRol.role==="ROLE_VALIDADOR"){
+                    $location.path('/nueva');
+                    
+                }else if($rootScope.datoRol.role==="ROLE_CONSULTOR"){
+                    $location.path('/nueva');
+                }
+	}
 });
 
 
