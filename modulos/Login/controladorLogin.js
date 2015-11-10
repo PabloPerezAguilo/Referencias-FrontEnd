@@ -54,7 +54,7 @@ app.controller('controladorLogin', function(servicioRest, config, $scope, $http,
                  $location.path('/alta');
 
                 }else if($rootScope.datoRol.role==="ROLE_MANTENIMIENTO"){
-                    $location.path('/nueva');
+                    $location.path('/bienvenida');
                     
                 }else if($rootScope.datoRol.role==="ROLE_VALIDADOR"){
                     $location.path('/nueva');

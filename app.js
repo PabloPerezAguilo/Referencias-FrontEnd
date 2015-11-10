@@ -1,6 +1,6 @@
 'use strict';
 
-var app = angular.module('ref', ['ngRoute','ngMaterial','angularUtils.directives.dirPagination']);
+var app = angular.module('ref', ['ngRoute','ngMaterial','ngMdIcons']);
 app.run(function(servicioRest, $rootScope, $http, $location) {
 
     
@@ -44,11 +44,12 @@ app.run(function(servicioRest, $rootScope, $http, $location) {
         console.log("Pasa por la funcion salir");
         limpiarLocalStorage();
         $location.path('/');
-		
+		// Ocultamos el menú
+        $rootScope.menu=false;
 	}
     
     function limpiarLocalStorage() {
-		// Limpio el localStorage
+		// Limpiamos el localStorage
 		localStorage.clear();
 		localStorage.removeItem("name");
 		localStorage.removeItem("password");
@@ -84,6 +85,10 @@ app.config(function($routeProvider) {
     .when('/nueva', {
         templateUrl: 'modulos/nuevaReferencia/nuevaReferencia.html',
         controller: 'controladorNuevaReferencia'
+    })
+    .when('/bienvenida', {
+        templateUrl: 'modulos/bienvenida/bienvenida.html',
+        controller: 'controladorBienvenida'
     })
 	.otherwise({
 		redirectTo: "/pageNotFound"

@@ -25,34 +25,30 @@ footer, header, hgroup, menu, nav, section {
   display: block; }
 
 body {
-  line-height: 1;  
-  font-size:20px;
-  height: 31px;
-  width: 100%;
-  /*text-shadow: #555 2px 2px 3px;
-  /*position: absolute;
-  display: block;
-  background: url("imagenes/gradiente.png") repeat-x;
-  width: 100%;
-  */
-  /*filter: shadow(color=#555555, direction=135, strength=2);*/
-   /* necesario para activar la propiedad hasLayout */
+    line-height: 1;  
+    font-size:20px;
+    height: 31px;
+    width: 100%;
+    background-color:#E7EBEA;
 }
 
 ol, ul {
-  list-style: none; }
+list-style: none; }
 
 blockquote, q {
-  quotes: none; }
+    quotes: none; 
+}
 
 blockquote:before, blockquote:after,
 q:before, q:after {
-  content: '';
-  content: none; }
+    content: '';
+    content: none; 
+}
 
 table {      
-  border-collapse: collapse;
-  border-spacing: 0; }
+    border-collapse: collapse;
+    border-spacing: 0; 
+}
 
 .boton {
     position: absolute;
@@ -65,25 +61,27 @@ h1{
     text-align: center;
 }
 /* --------------------------- ESTILOS LOGIN ----------------------------- */
-#containerLogin {
+#contenedorLogin {
 	margin: 50px auto;
     margin-top: 150px;
 	width: 400px;
+    font-family: sans-serif;
+    font-size: 20px;   
 }
 
-#containerLogin fieldset {
-	background-color: #E7E9EC;
+#contenedorLogin #superior {
+	background-color: #E4E4E4;
     color: #777;
     margin-bottom: 14px;
 	-webkit-border-radius:20px 20px 0 0 ;
     -moz-border-radius: 20px 20px 0 0;
 	border-radius:  20px 20px 0 0;
 	padding: 20px 26px;
-    box-shadow: 2px 2px 4px #666;
+    box-shadow: 2px 2px 4px #666;  
 }
 
- #log {
-	background-color: #086A87;
+ #contenedorLogin #inferior {
+	background-color: #0B4C5F;
 	-webkit-border-radius: 0 0 20px 20px;
 	-moz-border-radius: 0 0 20px 20px;
 	border-radius: 0 0 20px 20px;
@@ -93,8 +91,18 @@ h1{
     box-shadow: 2px 2px 4px #666;
 }
 
-#log input{    
-    text-align: left;
+#inferior p{ 
+    margin-top: 15px;
+    float: right;
+    font-family: sans-serif;
+    font-size: 15px; 
+}
+#inferior #bt{ 
+    margin-top: 10px;
+    margin-left: 50px;
+    float: left;
+    font-family: sans-serif;
+    font-size: 15px; 
 }
 
 
@@ -202,7 +210,7 @@ header .titulo {
     color:beige;
     font-size:50px;
     float:left;
-    font-family: "Times New Roman";   
+    font-family:sans-serif;   
     margin-left: 30px;
     margin-top: 50px;
 }
@@ -251,7 +259,6 @@ footer {
 }
  
 footer .logo {
-    color:#F0E68C;
     font-size:40px;
     line-height:100px;
     float:left;
@@ -282,7 +289,7 @@ footer nav a:hover {
 footer {
     width:100%; /* Establecemos que el header abarque el 100% del documento */
     overflow:hidden; /* Eliminamos errores de float */
-    background:#0B4C5F;  
+    background:#0B4C5F;
     position: fixed;
     bottom: 0px;
     height: 63px;
@@ -314,6 +321,8 @@ footer {
     font-family: verdana;
     
 }
+
+
 /*paginacion*/
 .my-controller {
   border: 1px solid #fcc;
@@ -338,4 +347,14 @@ footer {
 }
 .third-controller small {
   color: #9c9;
+}
+
+/* ------------------------------- ESTILOS BIENVENIDA ---------------------- */
+
+#bienvenida{
+    text-align: center;
+    font-size: 35px;
+    color: #086A87;
+    margin-top: 300px;
+   
 }
