@@ -1,6 +1,6 @@
 'use strict';
 
-var app = angular.module('ref', ['ngRoute','ngMaterial']);
+var app = angular.module('ref', ['ngRoute','ngMaterial','angularUtils.directives.dirPagination']);
 app.run(function(servicioRest, $rootScope, $http, $location) {
 
     

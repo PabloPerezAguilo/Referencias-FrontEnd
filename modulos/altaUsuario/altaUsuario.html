@@ -1,4 +1,4 @@
-<section ng-controller="controladorAltaUsuario">
+<!--section ng-controller="controladorAltaUsuario">
     <h1>Introduzca el nombre del usuario que quiere dar de alta y el rol que desea asignarle</h1>
     <div id="listaUsuarios">
       <input type="text" id="cajaFiltro" placeholder="Buscar..." ng-model="filtro"/>
@@ -33,4 +33,49 @@
         <input type="radio" ng-model="role" value="consultor">Consulta
      </div>
         <button class="boton" type="button" ng-click="crear()" >Crear</button>
-</section>
+</section-->
+<div ng-controller="controladorAltaUsuario "class="container">
+    <div class="row">
+      <div class="col-lg-8">
+        <div  class="alta">
+          <h1>Tasty Paginated Menu</h1>
+
+          <small>this is in "controladorAltaUsuario"</small>
+
+
+          <div class="row">
+            <div class="col-xs-4">
+              <h3>Meals Page: {{ currentPage }}</h3>
+            </div>
+            <div class="col-xs-4">
+              <label for="search">Search:</label>
+              <input ng-model="q" id="search" class="form-control" placeholder="Filter text">
+            </div>
+            <div class="col-xs-4">
+              <label for="search">items per page:</label>
+              <input type="number" min="1" max="100" class="form-control" ng-model="pageSize">
+            </div>
+          </div>
+          <br>
+          <div class="panel panel-default">
+            <div class="panel-body">
+
+              <ul id="usuarios_ul">
+                <li dir-paginate="usuario in usuarios | filter:filtro | orderBy: ordenadoPor" ng-click="setValue(usuario) | itemsPerPage: pageSize" current-page="currentPage">Nombre: {{usuario.usuario}}<br/>
+            Nick: {{usuario.nick}}<br/>
+            Correo: {{usuario.mail}}</li>
+                
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div ng-controller="OtherController" class="other-controller">
+          <small>this is in "OtherController"</small>
+          <div class="text-center">
+          <dir-pagination-controls boundary-links="true" on-page-change="pageChangeHandler(newPageNumber)" template-url="./dirPagination.tpl.html"></dir-pagination-controls>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>
