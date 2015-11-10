@@ -48,23 +48,19 @@
                     <md-menu>
             <md-button ng-click="$mdOpenMenu()">Referencias</md-button>
             <md-menu-content>
-            <md-menu-item><md-button ng-click="ctrl.sampleAction('New Document', $event)">Crear Ref</md-button></md-menu-item>
-            <md-menu-item><md-button ng-click="ctrl.sampleAction('New Spreadsheet', $event)">Eliminar Ref</md-button></md-menu-item>
-            <md-menu-item><md-button ng-click="ctrl.sampleAction('New Presentation', $event)">Mostrar Ref</md-button></md-menu-item>
-            <md-menu-item><md-button ng-click="ctrl.sampleAction('New Form', $event)">Modificar Ref</md-button></md-menu-item>
-            <md-menu-item><md-button ng-click="ctrl.sampleAction('New Drawing', $event)">Ref selection</md-button></md-menu-item>
+                <md-menu-item><md-button ng-click="ctrl.sampleAction('New Document', $event)">Crear Ref</md-button></md-menu-item>
+                <md-menu-item><md-button ng-click="ctrl.sampleAction('New Spreadsheet', $event)">Eliminar Ref</md-button></md-menu-item>
+                <md-menu-item><md-button ng-click="ctrl.sampleAction('New Presentation', $event)">Mostrar Ref</md-button></md-menu-item>
+                <md-menu-item><md-button ng-click="ctrl.sampleAction('New Form', $event)">Modificar Ref</md-button></md-menu-item>
+                <md-menu-item><md-button ng-click="ctrl.sampleAction('New Drawing', $event)">Ref selection</md-button></md-menu-item>
             </md-menu-content>
                     </md-menu>
-                <md-menu-divider></md-menu-divider>  
+            <md-menu-divider></md-menu-divider>  
                     <md-menu>
-            <!--md-button ng-click="salir()">Salir</md-button>  
-                        <md-menu-content></md-menu-content-->
-                <ng-md-icon id="btSalir" ng-click="salir()" icon="logout" style="fill: #fff" size="24"></ng-md-icon>
-                    <md-menu-content></md-menu-content>
+            <md-button ng-click="salir()">Salir</md-button>  
+                <md-menu-content></md-menu-content>
                     </md-menu>
-                </data>
-            </div>  
-            
+                </data> 
         </header>
         
         <div ng-view>            

@@ -17,92 +17,60 @@ time, mark, audio, video {
   border: 0;
   font-size: 100%;
   font: inherit;
-  vertical-align: baseline; }
+  vertical-align: baseline; 
+}
 
 /* HTML5 display-role reset for older browsers */
 article, aside, details, figcaption, figure,
 footer, header, hgroup, menu, nav, section {
-  display: block; }
-
+  display: block; 
+}
 body {
     line-height: 1;  
-    font-size:20px;
+    font-size: 15px;
     height: 31px;
     width: 100%;
-    background-color:#E7EBEA;
+    background-color:#ececec;
 }
 
-ol, ul {
-list-style: none; }
-
-blockquote, q {
-    quotes: none; 
-}
-
-blockquote:before, blockquote:after,
-q:before, q:after {
-    content: '';
-    content: none; 
-}
-
-table {      
-    border-collapse: collapse;
-    border-spacing: 0; 
-}
-
-.boton {
-    position: absolute;
-    text-align: center;
-    bottom: 200px;
-    left: 600px;
-}
-
-h1{
-    text-align: center;
-}
 /* --------------------------- ESTILOS LOGIN ----------------------------- */
 #contenedorLogin {
 	margin: 50px auto;
     margin-top: 150px;
 	width: 400px;
     font-family: sans-serif;
-    font-size: 20px;   
+    font-size: 15px;  
 }
-
 #contenedorLogin #superior {
-	background-color: #E4E4E4;
+	background-color: #ececec;
     color: #777;
     margin-bottom: 14px;
 	-webkit-border-radius:20px 20px 0 0 ;
     -moz-border-radius: 20px 20px 0 0;
 	border-radius:  20px 20px 0 0;
 	padding: 20px 26px;
-    box-shadow: 2px 2px 4px #666;  
+    box-shadow: 2px 2px 4px 2px #666; 
+    
 }
-
  #contenedorLogin #inferior {
-	background-color: #0B4C5F;
+	background-color: #242424;
 	-webkit-border-radius: 0 0 20px 20px;
 	-moz-border-radius: 0 0 20px 20px;
 	border-radius: 0 0 20px 20px;
 	color: #fff;
 	font-size: 12px;
 	padding: 20px 26px;
-    box-shadow: 2px 2px 4px #666;
+     box-shadow: 2px 2px 4px 2px #666; 
 }
-
 #inferior p{ 
     margin-top: 15px;
     float: right;
-    font-family: sans-serif;
-    font-size: 15px; 
+   
 }
 #inferior #bt{ 
     margin-top: 10px;
     margin-left: 50px;
-    float: left;
-    font-family: sans-serif;
-    font-size: 15px; 
+    float: left; 
 }
 
 
@@ -111,103 +79,85 @@ h1{
 
 /* ------------------------------- ESTILOS ALTA USUARIOS ---------------------- */
 #listaUsuarios {
-  background: whitesmoke;
-  position: absolute;
-  left: 75%;
-  margin-left: -175px;
-  margin-top: 35px;
-  width: 350px;
-  padding: 15px;
-  border: 1px solid rgba(0, 0, 0, 0.2);
-  border-radius: 5px;
-  box-shadow: inset 1px 1px 0 white;
-  max-height: 500px;
+    background: whitesmoke;
+    position: absolute;
+    left: 75%;
+    margin-left: -175px;
+    margin-top: 35px;
+    width: 350px;
+    padding: 15px;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+    box-shadow: inset 1px 1px 0 white;
+    max-height: 500px;
 }
-
 #listaRoles {
-  background: whitesmoke;
-  position: absolute;
-  left: 25%;
-  margin-left: -175px;
-  margin-top: 35px;
-  width: 350px;
-  padding: 15px;
-  border: 1px solid rgba(0, 0, 0, 0.2);
-  border-radius: 5px;
-  box-shadow: inset 1px 1px 0 white;
-  max-height: 500px;
+    background: whitesmoke;
+    position: absolute;
+    left: 25%;
+    margin-left: -175px;
+    margin-top: 35px;
+    width: 350px;
+    padding: 15px;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+    box-shadow: inset 1px 1px 0 white;
+    max-height: 500px;
 }
-
 #cajaFiltro {
-  width: 100%;
-  box-sizing: border-box;
-  font-size: 19px;
-  padding: 5px;
-  font-family: calibri light;
-  margin-bottom: 10px;
-  border: 1px solid rgba(0, 0, 0, 0.2);
-  border-radius: 3px;
-  box-shadow: inset 1px 1px 0 rgba(0, 0, 0, 0.1);
+    width: 100%;
+    box-sizing: border-box;
+    font-size: 19px;
+    padding: 5px;
+    font-family: calibri light;
+    margin-bottom: 10px;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-radius: 3px;
+    box-shadow: inset 1px 1px 0 rgba(0, 0, 0, 0.1);
 }
-
 li {
-  list-style: none;
-  background-color: rgba(0, 0, 0, 0.05);
-  background-image: linear-gradient( 90deg, #FFD32E 10px, #EEE 10px, #EEE 11px, transparent 11px);
-  padding: 10px 15px 10px 25px;
-  border: 1px solid #CCC;
-  box-shadow: inset 1px 1px 0 rgba(255, 255, 255, 0.5);
-  margin-bottom: 5px;
-  width: 100%;
-  box-sizing: border-box;
-  cursor: pointer;
-  border-radius: 3px;
+    list-style: none;
+    background-color: rgba(0, 0, 0, 0.05);
+    background-image: linear-gradient( 90deg, #FFD32E 10px, #EEE 10px, #EEE 11px, transparent 11px);
+    padding: 10px 15px 10px 25px;
+    border: 1px solid #CCC;
+    box-shadow: inset 1px 1px 0 rgba(255, 255, 255, 0.5);
+    margin-bottom: 5px;
+    width: 100%;
+    box-sizing: border-box;
+    cursor: pointer;
+    border-radius: 3px;
 }
-
 ul {
-  margin: 0 auto;
-  padding: 0;
-  max-height: 320px;
-  overflow-y: auto;
-  border: 1px solid rgba(0, 0, 0, 0.1);
-  padding: 5px 5px 0 5px;
-  border-left: none;
-  border-right: none;
+    margin: 0 auto;
+    padding: 0;
+    max-height: 320px;
+    overflow-y: auto;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    padding: 5px 5px 0 5px;
+    border-left: none;
+    border-right: none;
 }
-
 #cajaFiltro:focus {
-  border: 2px solid #FAAAAA;
-  box-shadow: 0 0 10px rgba(255, 255, 0, 0.1);
-  outline: none;
+    border: 2px solid #FAAAAA;
+    box-shadow: 0 0 10px rgba(255, 255, 0, 0.1);
+    outline: none;
 }
-
 .right {
-  float: right;
+    float: right;
 }
 
 
 /*-----------------------------------------------------------------*/
-@font-face {
-  font-family: 'principalCursiva';
-  src: url("fonts/HelveticaNeueLTStd-LtCnO.otf"); }
-
 header {
     width:100%; /* Establecemos que el header abarque el 100% del documento */
     overflow:hidden; /* Eliminamos errores de float */
-    background:#0B4C5F;
+    background:#242424;
     margin-bottom:20px;
     height: 180px;
 }
- 
-.wrapper {
-    width:100%; /* Establecemos que el ancho sera del 90% */
-    max-width:1024px; /* Aqui le decimos que el ancho máximo sera de 1000px */
-    margin:auto; /* Centramos los elementos */
-    overflow:hidden; /* Eliminamos errores de float */
-}
- 
 header .titulo {
-    color:beige;
+    color:#ececec;
     font-size:50px;
     float:left;
     font-family:sans-serif;   
@@ -218,57 +168,21 @@ header #logo {
     position: relative;
     float: right;
     margin-top: 25px;
-    margin-right: 10px;
-    
+    margin-right: 10px;  
 }
- 
-header nav {
-    float:right;
-    line-height:200px;
-}
- 
-header nav a {
-    display:inline-block;
-    color:#fff;
-    text-decoration:none;
-    padding:10px 20px;
-    line-height:normal;
-    font-size:20px;
-    font-weight:bold;
-    -webkit-transition:all 500ms ease;
-    -o-transition:all 500ms ease;
-    transition:all 500ms ease;
-}
- 
-header nav a:hover {
-    background:#f56f3a;
-    border-radius:50px;
-}
-
 footer {
     width:100%; /* Establecemos que el footer abarque el 100% del documento */
     overflow:hidden; /* Eliminamos errores de float */
-    background:#0B4C5F;
+    background:#242424;
+    position: fixed;
     margin-bottom:20px;
+    bottom: 0px;
+    height: 63px;
+    clear:both;   
 }
- 
-.wrapper {
-    width:70%; /* Establecemos que el ancho sera del 90% */
-    max-width:1000px; /* Aqui le decimos que el ancho máximo sera de 1000px */
-    overflow:hidden; /* Eliminamos errores de float */
-}
- 
-footer .logo {
-    font-size:40px;
-    line-height:100px;
-    float:left;
-}
-footer nav {
-    float:right;
-    line-height:200px;
-}
- 
 footer nav a {
+    line-height:200px;
+    float:right;
     display:inline-block;
     color:#fff;
     text-decoration:none;
@@ -280,81 +194,74 @@ footer nav a {
     -o-transition:all 500ms ease;
     transition:all 500ms ease;
 }
- 
 footer nav a:hover {
-    background:#f56f3a;
+    background:#ee941a;
     border-radius:50px;
 
 }
-footer {
-    width:100%; /* Establecemos que el header abarque el 100% del documento */
-    overflow:hidden; /* Eliminamos errores de float */
-    background:#0B4C5F;
-    position: fixed;
-    bottom: 0px;
-    height: 63px;
-    clear:both;    
-}
 
-/*MENU */
-.menuBardemoBasicUsage .page-container {
-  background-color: #f1f1f1;
-  padding: 32px; }
-.menuBardemoBasicUsage .page {
-  margin: 0 auto;
-  background-color: white;
-  padding: 24px;
-  max-width: 680px;
-  box-shadow: 0px 1px 2px 1px rgba(0, 0, 0, 0.25); }
-.menuBardemoBasicUsage .page h1 {
-  text-align: center;
-  font-size: 1.8rem;
-  margin-top: 0;
-  font-weight: normal; }
-.menuBardemoBasicUsage .page p {
-  line-height: 1.6rem; 
-}
+
+/* ------------------------------- ESTILOS MENÚ ---------------------- */
 
 #menu{
-    color:beige;
+    color:#ececec;
     margin-top: 130px;
-    font-family: verdana;
-    
+    font-family: verdana; 
+}
+.menuBardemoBasicUsage .page-container {
+    background-color: #ececec;
+    padding: 32px;
+}
+.menuBardemoBasicUsage .page {
+    margin: 0 auto;
+    background-color: white;
+    padding: 24px;
+    max-width: 680px;
+    box-shadow: 0px 1px 2px 1px rgba(0, 0, 0, 0.25); 
+}
+.menuBardemoBasicUsage .page h1 {
+    text-align: center;
+    font-size: 1.8rem;
+    margin-top: 0;
+    font-weight: normal;
+}
+.menuBardemoBasicUsage .page p {
+    line-height: 1.6rem; 
 }
 
 
-/*paginacion*/
+
+
+/* ------------------------------- ESTILOS PAGINACIÓN ---------------------- */
 .my-controller {
-  border: 1px solid #fcc;
-  padding: 5px;
-  margin: 3px;
+    border: 1px solid #fcc;
+    padding: 5px;
+    margin: 3px;
 }
 .my-controller small {
-  color: #c99;
+    color: #c99;
 }
 .other-controller {
-  border: 1px solid #ccf;
-  padding: 5px;
-  margin: 3px;
+    border: 1px solid #ccf;
+    padding: 5px;
+    margin: 3px;
 }
 .other-controller small {
-  color: #99c;
+    color: #99c;
 }
 .third-controller {
-  border: 1px solid #cfc;
-  padding: 5px;
-  margin: 3px;
+    border: 1px solid #cfc;
+    padding: 5px;
+    margin: 3px;
 }
 .third-controller small {
-  color: #9c9;
+    color: #9c9;
 }
 
 /* ------------------------------- ESTILOS BIENVENIDA ---------------------- */
 
 #bienvenida{
     text-align: center;
-    font-size: 35px;
-    color: #086A87;
     margin-top: 300px;
    
 }
