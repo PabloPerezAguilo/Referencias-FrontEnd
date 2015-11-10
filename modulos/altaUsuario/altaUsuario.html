@@ -45,14 +45,14 @@
 
           <div class="row">
             <div class="col-xs-4">
-              <h3>Meals Page: {{ currentPage }}</h3>
+              <h3>Número de Pagina: {{ currentPage }}</h3>
             </div>
             <div class="col-xs-4">
               <label for="search">Search:</label>
               <input ng-model="q" id="search" class="form-control" placeholder="Filter text">
             </div>
             <div class="col-xs-4">
-              <label for="search">items per page:</label>
+              <label for="search">Usuario por pagina:</label>
               <input type="number" min="1" max="100" class="form-control" ng-model="pageSize">
             </div>
           </div>
@@ -61,7 +61,7 @@
             <div class="panel-body">
 
               <ul id="usuarios_ul">
-                <li dir-paginate="usuario in usuarios | filter:filtro | orderBy: ordenadoPor" ng-click="setValue(usuario) | itemsPerPage: pageSize" current-page="currentPage">Nombre: {{usuario.usuario}}<br/>
+                <li dir-paginate="usuario in usuarios | itemsPerPage: pageSize" current-page="currentPage">Nombre: {{usuario.usuario}}<br/>
             Nick: {{usuario.nick}}<br/>
             Correo: {{usuario.mail}}</li>
                 
@@ -71,7 +71,7 @@
         </div>
 
         <div ng-controller="OtherController" class="other-controller">
-          <small>this is in "OtherController"</small>
+          <small>Paginas </small>
           <div class="text-center">
           <dir-pagination-controls boundary-links="true" on-page-change="pageChangeHandler(newPageNumber)" template-url="./dirPagination.tpl.html"></dir-pagination-controls>
           </div>

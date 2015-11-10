@@ -65,6 +65,8 @@ app.controller('controladorAltaUsuario', function(servicioRest, config, $scope, 
       };
     
 
+     }); 
+    
     function OtherController($scope) {
       $scope.pageChangeHandler = function(num) {
         console.log('going to page ' + num);
@@ -73,4 +75,4 @@ app.controller('controladorAltaUsuario', function(servicioRest, config, $scope, 
 
     /*app.controller('controladorAltaUsuarior', controladorAltaUsuario);*/
     app.controller('OtherController', OtherController);
-   }); 
+  
