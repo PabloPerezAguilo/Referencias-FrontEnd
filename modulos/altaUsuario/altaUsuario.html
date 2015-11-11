@@ -34,48 +34,62 @@
      </div>
         <button class="boton" type="button" ng-click="crear()" >Crear</button>
 </section-->
-<div ng-controller="controladorAltaUsuario "class="container">
-    <div class="row">
-      <div class="col-lg-8">
-        <div  class="alta">
-          <h1>Tasty Paginated Menu</h1>
 
-          <small>this is in "controladorAltaUsuario"</small>
+<div ng-controller="controladorAltaUsuario as ctrl" layout="column"class="md-padding dialogdemoBasicUsage" id="popupContainer" ng-cloak="">
+  <md-content layout-padding layout="column">
+    <form ng-submit="$event.preventDefault()">
+      <p>Seleccione <small> USUARIO </small></p>
+        <br>
+      <md-autocomplete
+          ng-model="miUsuarioSeleccionado"
+          ng-disabled="ctrl.isDisabled"
+          md-no-cache="ctrl.noCache"
+          md-selected-item="ctrl.selectedItem"
+          md-search-text-change="ctrl.searchTextChange(ctrl.searchText)"
+          md-search-text="ctrl.searchText"
+          md-selected-item-change="ctrl.selectedItemChange(item)"
+          md-items="item in ctrl.querySearch(ctrl.searchText)"
+          md-item-text="item.usuario"
+          md-min-length="3"
+          placeholder="Seleccione por nombre de usuario o nick"
+          md-menu-class="autocomplete-custom-template"
+           >
+        <md-item-template>
+          <span class="item-title">
+            <!--md-icon md-svg-icon="img/icons/octicon-repo.svg"></md-icon-->
+            <span> {{item.usuario}} </span> |
+          </span>
+          <span class="item-metadata">
+            <span class="item-metastat">
+              <strong>{{item.nick}}</strong>
+            </span>
+            <!--span class="item-metastat">
+              <strong>{{item.mail}}</strong> Mail
+            </span-->
+          </span>
+        </md-item-template>
+      </md-autocomplete>
+    </form>
+  </md-content>
+   <md-content layout-padding layout="column">
+    <div class="radioButtondemoBasicUsage">
+  <form ng-submit="submit()" ng-cloak="">
+    <p>Selected Value: <span class="radioValue">{{ role }}</span> </p>
 
+    <md-radio-group ng-model="role">
 
-          <div class="row">
-            <div class="col-xs-4">
-              <h3>Número de Pagina: {{ currentPage }}</h3>
-            </div>
-            <div class="col-xs-4">
-              <label for="search">Search:</label>
-              <input ng-model="q" id="search" class="form-control" placeholder="Filter text">
-            </div>
-            <div class="col-xs-4">
-              <label for="search">Usuario por pagina:</label>
-              <input type="number" min="1" max="100" class="form-control" ng-model="pageSize">
-            </div>
-          </div>
-          <br>
-          <div class="panel panel-default">
-            <div class="panel-body">
+      <md-radio-button value="administrador" class="md-primary" checked>Administrador</md-radio-button>
+      <md-radio-button value="validador"> Validador </md-radio-button>
+      <md-radio-button value="consultor"> Consultor </md-radio-button>
+      <md-radio-button value="mantenimiento"> Mantenimiento </md-radio-button>    
+    </md-radio-group>
 
-              <ul id="usuarios_ul">
-                <li dir-paginate="usuario in usuarios | itemsPerPage: pageSize" current-page="currentPage">Nombre: {{usuario.usuario}}<br/>
-            Nick: {{usuario.nick}}<br/>
-            Correo: {{usuario.mail}}</li>
-                
-              </ul>
-            </div>
-          </div>
-        </div>
-
-        <div ng-controller="OtherController" class="other-controller">
-          <small>Paginas </small>
-          <div class="text-center">
-          <dir-pagination-controls boundary-links="true" on-page-change="pageChangeHandler(newPageNumber)" template-url="./dirPagination.tpl.html"></dir-pagination-controls>
-          </div>
-        </div>
-      </div>
-    </div>
+  </form>
 </div>
+  </md-content>  
+    <p>{{mensaje}}</p>
+    <form class="dialog-demo-content" layout="row" layout-sm="column" layout-wrap="" layout-align=" center center">
+      <md-button class="md-raised" ng-click="crear()">CREAR USUARIO</md-button>   
+    </form>    
+</div>
+

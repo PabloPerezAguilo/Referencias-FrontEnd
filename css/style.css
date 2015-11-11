@@ -297,29 +297,46 @@ footer {
   margin-top: 130px;
   font-family: verdana; }
 
-/*paginacion*/
-.my-controller {
-  border: 1px solid #fcc;
-  padding: 5px;
-  margin: 3px; }
+/*caja autocompletada*/
+.autocompletedemoCustomTemplate .autocomplete-custom-template li {
+  border-bottom: 1px solid #ccc;
+  height: auto;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  white-space: normal; }
 
-.my-controller small {
-  color: #c99; }
+.autocompletedemoCustomTemplate .autocomplete-custom-template li:last-child {
+  border-bottom-width: 0; }
 
-.other-controller {
-  border: 1px solid #ccf;
-  padding: 5px;
-  margin: 3px; }
+.autocompletedemoCustomTemplate .autocomplete-custom-template .item-title, .autocompletedemoCustomTemplate .autocomplete-custom-template .item-metadata {
+  display: block;
+  line-height: 2; }
 
-.other-controller small {
-  color: #99c; }
+.autocompletedemoCustomTemplate .autocomplete-custom-template .item-title md-icon {
+  height: 18px;
+  width: 18px; }
 
-.third-controller {
-  border: 1px solid #cfc;
-  padding: 5px;
-  margin: 3px; }
+/*boton*/
+.buttondemoBasicUsage .label {
+  position: absolute;
+  bottom: 5px;
+  left: 7px;
+  font-size: 14px;
+  opacity: 0.54; }
 
-.third-controller small {
-  color: #9c9; }
+/*RadioButon*/
+.radioButtondemoBasicUsage .radioValue {
+  margin-left: 5px;
+  color: #0f9d58;
+  font-weight: bold;
+  padding: 5px; }
+
+/*popup*/
+.dialogdemoBasicUsage #popupContainer {
+  position: relative; }
+
+.dialogdemoBasicUsage .footer, .dialogdemoBasicUsage .footer > code {
+  font-size: 0.8em;
+  margin-top: 50px; }
 
 /*# sourceMappingURL=style.css.map */
