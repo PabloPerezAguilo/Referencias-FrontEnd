@@ -52,9 +52,13 @@ body {
     box-shadow: 2px 2px 4px 2px #666; 
     
 }
+#contenedorLogin #superior #contenido{
+    margin-left: 20px;
+}
 #contenedorLogin #superior p{
     text-align: center;
     color: red;
+    font-size: 11px;
 }
  #contenedorLogin #inferior {
 	background-color: #242424;
@@ -152,7 +156,7 @@ ul {
 }
 
 
-/*-----------------------------------------------------------------*/
+/* ------------------------------- CABECERA Y PIE ---------------------- */
 header {
     width:100%; /* Establecemos que el header abarque el 100% del documento */
     overflow:hidden; /* Eliminamos errores de float */
@@ -160,7 +164,7 @@ header {
     margin-bottom:20px;
     height: 180px;
 }
-header .titulo {
+header #titulo {
     color:#ececec;
     font-size:50px;
     float:left;
@@ -178,8 +182,7 @@ footer {
     width:100%; /* Establecemos que el footer abarque el 100% del documento */
     overflow:hidden; /* Eliminamos errores de float */
     background:#242424;
-    position: fixed;
-    margin-bottom:20px;
+    position: fixed;  
     bottom: 0px;
     height: 63px;
     clear:both;   
@@ -188,11 +191,10 @@ footer nav a {
     line-height:200px;
     float:right;
     display:inline-block;
-    color:#fff;
-    text-decoration:none;
+    color:#ececec;
     padding:10px 20px;
     line-height:normal;
-    font-size:15px;
+    font-size:13px;
     font-weight:bold;
     -webkit-transition:all 500ms ease;
     -o-transition:all 500ms ease;
@@ -201,7 +203,13 @@ footer nav a {
 footer nav a:hover {
     background:#ee941a;
     border-radius:50px;
-
+}
+footer #lineaFooter{
+    background:#ee941a;
+    bottom: 0px;
+    height:4px;
+    width:100%;
+    position: fixed;
 }
 
 
@@ -212,55 +220,7 @@ footer nav a:hover {
     margin-top: 130px;
     font-family: verdana; 
 }
-.menuBardemoBasicUsage .page-container {
-    background-color: #ececec;
-    padding: 32px;
-}
-.menuBardemoBasicUsage .page {
-    margin: 0 auto;
-    background-color: white;
-    padding: 24px;
-    max-width: 680px;
-    box-shadow: 0px 1px 2px 1px rgba(0, 0, 0, 0.25); 
-}
-.menuBardemoBasicUsage .page h1 {
-    text-align: center;
-    font-size: 1.8rem;
-    margin-top: 0;
-    font-weight: normal;
-}
-.menuBardemoBasicUsage .page p {
-    line-height: 1.6rem; 
-}
 
-
-
-
-/* ------------------------------- ESTILOS PAGINACIÓN ---------------------- */
-.my-controller {
-    border: 1px solid #fcc;
-    padding: 5px;
-    margin: 3px;
-}
-.my-controller small {
-    color: #c99;
-}
-.other-controller {
-    border: 1px solid #ccf;
-    padding: 5px;
-    margin: 3px;
-}
-.other-controller small {
-    color: #99c;
-}
-.third-controller {
-    border: 1px solid #cfc;
-    padding: 5px;
-    margin: 3px;
-}
-.third-controller small {
-    color: #9c9;
-}
 
 /* ------------------------------- ESTILOS BIENVENIDA ---------------------- */
 
