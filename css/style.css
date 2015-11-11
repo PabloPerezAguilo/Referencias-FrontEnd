@@ -26,70 +26,51 @@ footer, header, hgroup, menu, nav, section {
 
 body {
   line-height: 1;
-  font-size: 20px;
+  font-size: 15px;
   height: 31px;
   width: 100%;
-  /*text-shadow: #555 2px 2px 3px;
-  /*position: absolute;
-  display: block;
-  background: url("imagenes/gradiente.png") repeat-x;
-  width: 100%;
-  */
-  /*filter: shadow(color=#555555, direction=135, strength=2);*/
-  /* necesario para activar la propiedad hasLayout */ }
-
-ol, ul {
-  list-style: none; }
-
-blockquote, q {
-  quotes: none; }
-
-blockquote:before, blockquote:after,
-q:before, q:after {
-  content: '';
-  content: none; }
-
-table {
-  border-collapse: collapse;
-  border-spacing: 0; }
-
-.boton {
-  position: absolute;
-  text-align: center;
-  bottom: 200px;
-  left: 600px; }
-
-h1 {
-  text-align: center; }
+  background-color: #ececec; }
 
 /* --------------------------- ESTILOS LOGIN ----------------------------- */
-#containerLogin {
+#contenedorLogin {
   margin: 50px auto;
   margin-top: 150px;
-  width: 400px; }
+  width: 400px;
+  font-family: sans-serif;
+  font-size: 15px; }
 
-#containerLogin fieldset {
-  background-color: #E7E9EC;
+#contenedorLogin #superior {
+  background-color: #ececec;
   color: #777;
   margin-bottom: 14px;
   -webkit-border-radius: 20px 20px 0 0;
   -moz-border-radius: 20px 20px 0 0;
   border-radius: 20px 20px 0 0;
   padding: 20px 26px;
-  box-shadow: 2px 2px 4px #666; }
+  box-shadow: 2px 2px 4px 2px #666; }
 
-#log {
-  background-color: #086A87;
+#contenedorLogin #superior p {
+  text-align: center;
+  color: red; }
+
+#contenedorLogin #inferior {
+  background-color: #242424;
   -webkit-border-radius: 0 0 20px 20px;
   -moz-border-radius: 0 0 20px 20px;
   border-radius: 0 0 20px 20px;
   color: #fff;
   font-size: 12px;
   padding: 20px 26px;
-  box-shadow: 2px 2px 4px #666; }
+  box-shadow: 2px 2px 4px 2px #666; }
 
-#log input {
-  text-align: left; }
+#inferior p {
+  margin-top: 15px;
+  float: right; }
+
+#inferior #bt {
+  margin-top: 10px;
+  margin-left: 50px;
+  float: left; }
 
 /* ------------------------------- ESTILOS ALTA USUARIOS ---------------------- */
 #listaUsuarios {
@@ -161,34 +142,20 @@ ul {
   float: right; }
 
 /*-----------------------------------------------------------------*/
-@font-face {
-  font-family: 'principalCursiva';
-  src: url("fonts/HelveticaNeueLTStd-LtCnO.otf"); }
-
 header {
   width: 100%;
   /* Establecemos que el header abarque el 100% del documento */
   overflow: hidden;
   /* Eliminamos errores de float */
-  background: #0B4C5F;
+  background: #242424;
   margin-bottom: 20px;
   height: 180px; }
 
-.wrapper {
-  width: 100%;
-  /* Establecemos que el ancho sera del 90% */
-  max-width: 1024px;
-  /* Aqui le decimos que el ancho máximo sera de 1000px */
-  margin: auto;
-  /* Centramos los elementos */
-  overflow: hidden;
-  /* Eliminamos errores de float */ }
-
 header .titulo {
-  color: beige;
+  color: #ececec;
   font-size: 50px;
   float: left;
-  font-family: "Times New Roman";
+  font-family: sans-serif;
   margin-left: 30px;
   margin-top: 50px; }
 
@@ -198,53 +165,21 @@ header #logo {
   margin-top: 25px;
   margin-right: 10px; }
 
-header nav {
-  float: right;
-  line-height: 200px; }
-
-header nav a {
-  display: inline-block;
-  color: #fff;
-  text-decoration: none;
-  padding: 10px 20px;
-  line-height: normal;
-  font-size: 20px;
-  font-weight: bold;
-  -webkit-transition: all 500ms ease;
-  -o-transition: all 500ms ease;
-  transition: all 500ms ease; }
-
-header nav a:hover {
-  background: #f56f3a;
-  border-radius: 50px; }
-
 footer {
   width: 100%;
   /* Establecemos que el footer abarque el 100% del documento */
   overflow: hidden;
   /* Eliminamos errores de float */
-  background: #0B4C5F;
-  margin-bottom: 20px; }
-
-.wrapper {
-  width: 70%;
-  /* Establecemos que el ancho sera del 90% */
-  max-width: 1000px;
-  /* Aqui le decimos que el ancho máximo sera de 1000px */
-  overflow: hidden;
-  /* Eliminamos errores de float */ }
-
-footer .logo {
-  color: #F0E68C;
-  font-size: 40px;
-  line-height: 100px;
-  float: left; }
-
-footer nav {
-  float: right;
-  line-height: 200px; }
+  background: #242424;
+  position: fixed;
+  margin-bottom: 20px;
+  bottom: 0px;
+  height: 63px;
+  clear: both; }
 
 footer nav a {
+  line-height: 200px;
+  float: right;
   display: inline-block;
   color: #fff;
   text-decoration: none;
@@ -257,23 +192,17 @@ footer nav a {
   transition: all 500ms ease; }
 
 footer nav a:hover {
-  background: #f56f3a;
+  background: #ee941a;
   border-radius: 50px; }
 
-footer {
-  width: 100%;
-  /* Establecemos que el header abarque el 100% del documento */
-  overflow: hidden;
-  /* Eliminamos errores de float */
-  background: #0B4C5F;
-  position: fixed;
-  bottom: 0px;
-  height: 63px;
-  clear: both; }
+/* ------------------------------- ESTILOS MENÚ ---------------------- */
+#menu {
+  color: #ececec;
+  margin-top: 130px;
+  font-family: verdana; }
 
-/*MENU */
 .menuBardemoBasicUsage .page-container {
-  background-color: #f1f1f1;
+  background-color: #ececec;
   padding: 32px; }
 
 .menuBardemoBasicUsage .page {
@@ -292,12 +221,7 @@ footer {
 .menuBardemoBasicUsage .page p {
   line-height: 1.6rem; }
 
-#menu {
-  color: beige;
-  margin-top: 130px;
-  font-family: verdana; }
-
-/*paginacion*/
+/* ------------------------------- ESTILOS PAGINACIÓN ---------------------- */
 .my-controller {
   border: 1px solid #fcc;
   padding: 5px;
@@ -321,5 +245,10 @@ footer {
 
 .third-controller small {
   color: #9c9; }
+
+/* ------------------------------- ESTILOS BIENVENIDA ---------------------- */
+#bienvenida {
+  text-align: center;
+  margin-top: 300px; }
 
 /*# sourceMappingURL=style.css.map */
