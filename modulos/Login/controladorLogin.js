@@ -2,7 +2,8 @@ app.controller('controladorLogin', function(servicioRest, config, $scope, $http,
     $scope.user={        
         name:'',
         password: '' 
-    };   
+    };
+    $scope.error;
     
 	$scope.login = function () {
         
@@ -31,8 +32,14 @@ app.controller('controladorLogin', function(servicioRest, config, $scope, $http,
 			})
 			.catch(function(err) {
             //Debemos tratar el error mostrando un mensaje
-				console.log("Error");
-            	//$rootScope.usuarioLS={};
+				
+            if(err==="User not fund in BD"){
+                
+                
+            }
+            $scope.error="El usuario no está registrado";
+            	
+            
             
 			});
 	};

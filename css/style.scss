@@ -52,6 +52,10 @@ body {
     box-shadow: 2px 2px 4px 2px #666; 
     
 }
+#contenedorLogin #superior p{
+    text-align: center;
+    color: red;
+}
  #contenedorLogin #inferior {
 	background-color: #242424;
 	-webkit-border-radius: 0 0 20px 20px;
@@ -60,7 +64,7 @@ body {
 	color: #fff;
 	font-size: 12px;
 	padding: 20px 26px;
-     box-shadow: 2px 2px 4px 2px #666; 
+    box-shadow: 2px 2px 4px 2px #666; 
 }
 #inferior p{ 
     margin-top: 15px;

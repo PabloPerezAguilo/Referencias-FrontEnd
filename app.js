@@ -1,6 +1,6 @@
 'use strict';
 
-var app = angular.module('ref', ['ngRoute','ngMaterial','ngMdIcons']);
+var app = angular.module('ref', ['ngRoute','ngMaterial','ngMdIcons','ngMessages']);
 app.run(function(servicioRest, $rootScope, $http, $location) {
 
     
