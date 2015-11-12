@@ -1,6 +1,6 @@
 <section ng-controller="controladorNuevaReferencia">
-    <h1>NUEVA REFERENCIA</h1>
-    <div>
+    <h1 class="cabeceraPagina">NUEVA REFERENCIA</h1>
+    <div class="para1" id="cajaNueva">
         <span>Cliente: </span>
         <select ng-model="cliente">
             <option value="option-1">Option 1</option>
@@ -14,23 +14,26 @@
             <option value="option-2">Option 2</option>
         </select><br>
         <span>Fecha de inicio: <md-datepicker ng-model="fechaInicio" md-placeholder="Seleccione la fecha"></md-datepicker></span><br>
-        <span>Duración en meses: </span><input type="number" ng-model="durancionMeses"><br>
+        <span>Duración en meses: </span><input type="number" ng-model="duracionMeses"><br>
         <span>Denominación: </span><input type="text" ng-model="denominacion"><br>
         <span>Resumen del proyecto: </span><input type="text" ng-model="resumenProyecto"><br>
         <span>Problemática del cliente: </span><input type="text" ng-model="problematicaCliente"><br>
+    </div>
+    <div class="para2" id="cajaNueva">
         <span>Solución GFI: </span><input type="text" ng-model="solucionGfi"><br>
         <span>Tecnologías: </span>
         <select ng-model="tecnologias">
             <option value="option-1">Option 1</option>
             <option value="option-2">Option 2</option>
         </select><br>
-        <span>FTE Totales: </span><input type="text" ng-model="fteTotales"><br>
+        <span>FTE Totales: </span><input type="number" ng-model="fteTotales"><br>
         <span>Imagen del proyecto: </span><input type="file" ng-model="imagenProyecto"><br>
-        <span>Existe certificado del cliente: </span><input type="radio" ng-model="certificado" value="si" checked>Si<input type="radio" ng-model="certificado" value="no">No<br>
+        <span>Existe certificado del cliente: </span><input type="radio" ng-model="certificado" value="si">Si<input type="radio" ng-model="certificado" value="no">No<br>
         <span>Registros de Pedido asociados a la referencia: </span><input ng-model="regPedidoAsociadoReferencia"><br>
         <span>Responsable Comercial: </span><input ng-model="responsableComercial"><br>
         <span>Resposable Técnico: </span><input ng-model="responsableTecnico"><br>
-        <span>Código QR: </span><input ng-model="CodigoQR"><br>
-        <button type="button" ng-click="crear()">Crear Referencia</button>
+        <span>Código QR: </span><input ng-model="codigoQr"><br>
     </div>
+        <div class="boton"><button type="button" ng-click="crear()">Crear Referencia</button>
+            </div>
 </section>

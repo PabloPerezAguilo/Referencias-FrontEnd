@@ -22,341 +22,298 @@ time, mark, audio, video {
 /* HTML5 display-role reset for older browsers */
 article, aside, details, figcaption, figure,
 footer, header, hgroup, menu, nav, section {
-  display: block; }
+    display: block; 
+}
 
 body {
-  line-height: 1;  
-  font-size:20px;
-  height: 31px;
-  width: 100%;
-  /*text-shadow: #555 2px 2px 3px;
-  /*position: absolute;
-  display: block;
-  background: url("imagenes/gradiente.png") repeat-x;
-  width: 100%;
-  */
-  /*filter: shadow(color=#555555, direction=135, strength=2);*/
-   /* necesario para activar la propiedad hasLayout */
+    line-height: 1;  
+    font-size: 17px;
+    height: 31px;
+    width: 100%;
+    background-color:#ececec;
 }
 
-ol, ul {
-  list-style: none; }
+/* ------------------------------- CABECERA Y PIE ---------------------- */
 
-blockquote, q {
-  quotes: none; }
+header {
+    width:100%; /* Establecemos que el header abarque el 100% del documento */
+    overflow:hidden; /* Eliminamos errores de float */
+    background:#242424;
+    margin-bottom:20px;
+    height: 180px;
+}
 
-blockquote:before, blockquote:after,
-q:before, q:after {
-  content: '';
-  content: none; }
+header #titulo {
+    color:#ececec;
+    font-size:50px;
+    float:left;
+    font-family:sans-serif;   
+    margin-left: 30px;
+    margin-top: 50px;
+}
 
-table {      
-  border-collapse: collapse;
-  border-spacing: 0; }
+header #logo {
+    position: relative;
+    float: right;
+    margin-top: 25px;
+    margin-right: 10px;  
+}
 
-.boton {
-    position: absolute;
+footer {
+    width:100%; /* Establecemos que el footer abarque el 100% del documento */
+    overflow:hidden; /* Eliminamos errores de float */
+    background:#242424;
+    position: fixed;  
+    bottom: 0px;
+    height: 63px;
+    clear:both;   
+}
+
+footer nav a {
+    line-height:200px;
+    float:right;
+    display:inline-block;
+    color:#ececec;
+    padding:10px 20px;
+    line-height:normal;
+    font-size:13px;
+    font-weight:bold;
+    -webkit-transition:all 500ms ease;
+    -o-transition:all 500ms ease;
+    transition:all 500ms ease;
+}
+
+footer nav a:hover {
+    background:#ee941a;
+    border-radius:50px;
+}
+
+footer #lineaFooter{
+    background:#ee941a;
+    bottom: 0px;
+    height:4px;
+    width:100%;
+    position: fixed;
+}
+
+/* --------------------------- ESTILOS MENÚ ---------------------- */
+
+#menu{
+    color:#ececec;
+    margin-top: 130px;
+    font-family: verdana; 
+}
+
+/* --------------------------- ESTILOS BIENVENIDA ---------------------- */
+
+#bienvenida{
     text-align: center;
-    bottom: 200px;
-    left: 600px;
+    margin-top: 300px;   
 }
 
-h1{
+/* --------------------------- ESTILOS COMUNES ----------------------------- */
+
+.cabeceraPagina {
     text-align: center;
+    font-size: 25px;
+    height: 40px;
+    color: #ee941a;
 }
+
 /* --------------------------- ESTILOS LOGIN ----------------------------- */
-#containerLogin {
+
+#contenedorLogin {
 	margin: 50px auto;
     margin-top: 150px;
 	width: 400px;
+    font-family: sans-serif;
+    font-size: 15px;  
 }
 
-#containerLogin fieldset {
-	background-color: #E7E9EC;
+#contenedorLogin #superior {
+	background-color: #ececec;
     color: #777;
     margin-bottom: 14px;
 	-webkit-border-radius:20px 20px 0 0 ;
     -moz-border-radius: 20px 20px 0 0;
 	border-radius:  20px 20px 0 0;
 	padding: 20px 26px;
-    box-shadow: 2px 2px 4px #666;
+    box-shadow: 2px 2px 4px 2px #666;     
 }
 
- #log {
-	background-color: #086A87;
+#contenedorLogin #superior #contenido{
+    margin-left: 20px;
+}
+
+#contenedorLogin #superior p{
+    text-align: center;
+    color: red;
+    font-size: 11px;
+}
+
+ #contenedorLogin #inferior {
+	background-color: #242424;
 	-webkit-border-radius: 0 0 20px 20px;
 	-moz-border-radius: 0 0 20px 20px;
 	border-radius: 0 0 20px 20px;
 	color: #fff;
 	font-size: 12px;
 	padding: 20px 26px;
-    box-shadow: 2px 2px 4px #666;
+    box-shadow: 2px 2px 4px 2px #666; 
 }
 
-#log input{    
-    text-align: left;
+#inferior p{ 
+    margin-top: 15px;
+    float: right;
+   
+}
+
+#inferior #bt{ 
+    margin-top: 10px;
+    margin-left: 50px;
+    float: left; 
 }
 
 
+/* ---------------------------- ESTILOS ALTA USUARIOS ---------------------- */
 
-
-
-/* ------------------------------- ESTILOS ALTA USUARIOS ---------------------- */
 #listaUsuarios {
-  background: whitesmoke;
-  position: absolute;
-  left: 75%;
-  margin-left: -175px;
-  margin-top: 35px;
-  width: 350px;
-  padding: 15px;
-  border: 1px solid rgba(0, 0, 0, 0.2);
-  border-radius: 5px;
-  box-shadow: inset 1px 1px 0 white;
-  max-height: 500px;
+    background: whitesmoke;
+    position: absolute;
+    left: 75%;
+    margin-left: -175px;
+    margin-top: 35px;
+    width: 350px;
+    padding: 15px;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+    box-shadow: inset 1px 1px 0 white;
+    max-height: 500px;
 }
 
 #listaRoles {
-  background: whitesmoke;
-  position: absolute;
-  left: 25%;
-  margin-left: -175px;
-  margin-top: 35px;
-  width: 350px;
-  padding: 15px;
-  border: 1px solid rgba(0, 0, 0, 0.2);
-  border-radius: 5px;
-  box-shadow: inset 1px 1px 0 white;
-  max-height: 500px;
+    background: whitesmoke;
+    position: absolute;
+    left: 25%;
+    margin-left: -175px;
+    margin-top: 35px;
+    width: 350px;
+    padding: 15px;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+    box-shadow: inset 1px 1px 0 white;
+    max-height: 500px;
 }
 
 #cajaFiltro {
-  width: 100%;
-  box-sizing: border-box;
-  font-size: 19px;
-  padding: 5px;
-  font-family: calibri light;
-  margin-bottom: 10px;
-  border: 1px solid rgba(0, 0, 0, 0.2);
-  border-radius: 3px;
-  box-shadow: inset 1px 1px 0 rgba(0, 0, 0, 0.1);
+    width: 100%;
+    box-sizing: border-box;
+    font-size: 19px;
+    padding: 5px;
+    font-family: calibri light;
+    margin-bottom: 10px;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-radius: 3px;
+    box-shadow: inset 1px 1px 0 rgba(0, 0, 0, 0.1);
 }
 
 li {
-  list-style: none;
-  background-color: rgba(0, 0, 0, 0.05);
-  background-image: linear-gradient( 90deg, #FFD32E 10px, #EEE 10px, #EEE 11px, transparent 11px);
-  padding: 10px 15px 10px 25px;
-  border: 1px solid #CCC;
-  box-shadow: inset 1px 1px 0 rgba(255, 255, 255, 0.5);
-  margin-bottom: 5px;
-  width: 100%;
-  box-sizing: border-box;
-  cursor: pointer;
-  border-radius: 3px;
+    list-style: none;
+    background-color: rgba(0, 0, 0, 0.05);
+    background-image: linear-gradient( 90deg, #FFD32E 10px, #EEE 10px, #EEE 11px, transparent 11px);
+    padding: 10px 15px 10px 25px;
+    border: 1px solid #CCC;
+    box-shadow: inset 1px 1px 0 rgba(255, 255, 255, 0.5);
+    margin-bottom: 5px;
+    width: 100%;
+    box-sizing: border-box;
+    cursor: pointer;
+    border-radius: 3px;
 }
 
 ul {
-  margin: 0 auto;
-  padding: 0;
-  max-height: 320px;
-  overflow-y: auto;
-  border: 1px solid rgba(0, 0, 0, 0.1);
-  padding: 5px 5px 0 5px;
-  border-left: none;
-  border-right: none;
+    margin: 0 auto;
+    padding: 0;
+    max-height: 320px;
+    overflow-y: auto;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    padding: 5px 5px 0 5px;
+    border-left: none;
+    border-right: none;
 }
 
 #cajaFiltro:focus {
-  border: 2px solid #FAAAAA;
-  box-shadow: 0 0 10px rgba(255, 255, 0, 0.1);
-  outline: none;
+    border: 2px solid #FAAAAA;
+    box-shadow: 0 0 10px rgba(255, 255, 0, 0.1);
+    outline: none;
 }
 
 .right {
-  float: right;
-}
-
-
-/*-----------------------------------------------------------------*/
-@font-face {
-  font-family: 'principalCursiva';
-  src: url("fonts/HelveticaNeueLTStd-LtCnO.otf"); }
-
-header {
-    width:100%; /* Establecemos que el header abarque el 100% del documento */
-    overflow:hidden; /* Eliminamos errores de float */
-    background:#0B4C5F;
-    margin-bottom:20px;
-    height: 180px;
-}
- 
-.wrapper {
-    width:100%; /* Establecemos que el ancho sera del 90% */
-    max-width:1024px; /* Aqui le decimos que el ancho máximo sera de 1000px */
-    margin:auto; /* Centramos los elementos */
-    overflow:hidden; /* Eliminamos errores de float */
-}
- 
-header .titulo {
-    color:beige;
-    font-size:50px;
-    float:left;
-    font-family: "Times New Roman";   
-    margin-left: 30px;
-    margin-top: 50px;
-}
-header #logo {
-    position: relative;
     float: right;
-    margin-top: 25px;
-    margin-right: 10px;
-    
 }
- 
-header nav {
-    float:right;
-    line-height:200px;
-}
- 
-header nav a {
-    display:inline-block;
-    color:#fff;
-    text-decoration:none;
-    padding:10px 20px;
-    line-height:normal;
-    font-size:20px;
-    font-weight:bold;
-    -webkit-transition:all 500ms ease;
-    -o-transition:all 500ms ease;
-    transition:all 500ms ease;
-}
- 
-header nav a:hover {
-    background:#f56f3a;
-    border-radius:50px;
-}
-
-footer {
-    width:100%; /* Establecemos que el footer abarque el 100% del documento */
-    overflow:hidden; /* Eliminamos errores de float */
-    background:#0B4C5F;
-    margin-bottom:20px;
-}
- 
-.wrapper {
-    width:70%; /* Establecemos que el ancho sera del 90% */
-    max-width:1000px; /* Aqui le decimos que el ancho máximo sera de 1000px */
-    overflow:hidden; /* Eliminamos errores de float */
-}
- 
-footer .logo {
-    color:#F0E68C;
-    font-size:40px;
-    line-height:100px;
-    float:left;
-}
-footer nav {
-    float:right;
-    line-height:200px;
-}
- 
-footer nav a {
-    display:inline-block;
-    color:#fff;
-    text-decoration:none;
-    padding:10px 20px;
-    line-height:normal;
-    font-size:15px;
-    font-weight:bold;
-    -webkit-transition:all 500ms ease;
-    -o-transition:all 500ms ease;
-    transition:all 500ms ease;
-}
- 
-footer nav a:hover {
-    background:#f56f3a;
-    border-radius:50px;
-
-}
-footer {
-    width:100%; /* Establecemos que el header abarque el 100% del documento */
-    overflow:hidden; /* Eliminamos errores de float */
-    background:#0B4C5F;  
-    position: fixed;
-    bottom: 0px;
-    height: 63px;
-    clear:both;    
-}
-
-/*MENU */
-.menuBardemoBasicUsage .page-container {
-  background-color: #f1f1f1;
-  padding: 32px; }
-.menuBardemoBasicUsage .page {
-  margin: 0 auto;
-  background-color: white;
-  padding: 24px;
-  max-width: 680px;
-  box-shadow: 0px 1px 2px 1px rgba(0, 0, 0, 0.25); }
-.menuBardemoBasicUsage .page h1 {
-  text-align: center;
-  font-size: 1.8rem;
-  margin-top: 0;
-  font-weight: normal; }
-.menuBardemoBasicUsage .page p {
-  line-height: 1.6rem; 
-}
-
-#menu{
-    color:beige;
-    margin-top: 130px;
-    font-family: verdana;
-    
-}
-
-/*caja autocompletada*/
-
-.autocompletedemoCustomTemplate .autocomplete-custom-template li {
-  border-bottom: 1px solid #ccc;
-  height: auto;
-  padding-top: 8px;
-  padding-bottom: 8px;
-  white-space: normal; }
-.autocompletedemoCustomTemplate .autocomplete-custom-template li:last-child {
-  border-bottom-width: 0; }
-.autocompletedemoCustomTemplate .autocomplete-custom-template .item-title, .autocompletedemoCustomTemplate .autocomplete-custom-template .item-metadata {
-  display: block;
-  line-height: 2; }
-.autocompletedemoCustomTemplate .autocomplete-custom-template .item-title md-icon {
-  height: 18px;
-  width: 18px; }
-
-/*boton*/
-
-.buttondemoBasicUsage .label {
-  position: absolute;
-  bottom: 5px;
-  left: 7px;
-  font-size: 14px;
-  opacity: 0.54; }
-
-/*RadioButon*/
-
 
 .radioButtondemoBasicUsage .radioValue {
-  margin-left: 5px;
-  color: #0f9d58;
-  font-weight: bold;
-  padding: 5px; }
-
-
-
-
-/*popup*/
+    margin-left: 5px;
+    color: #0f9d58;
+    font-weight: bold;
+    padding: 5px; 
+}
 
 .dialogdemoBasicUsage #popupContainer {
-  position: relative; }
+    position: relative; 
+}
+
 .dialogdemoBasicUsage .footer, .dialogdemoBasicUsage .footer > code {
-  font-size: 0.8em;
-  margin-top: 50px; }
+    font-size: 0.8em;
+    margin-top: 50px; 
+}
+
+.buttondemoBasicUsage .label {
+    position: absolute;
+    bottom: 5px;
+    left: 7px;
+    font-size: 14px;
+    opacity: 0.54; 
+}
+
+.autocompletedemoCustomTemplate .autocomplete-custom-template li {
+    border-bottom: 1px solid #ccc;
+    height: auto;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    white-space: normal; 
+}
+
+.autocompletedemoCustomTemplate .autocomplete-custom-template li:last-child {
+    border-bottom-width: 0; 
+}
+
+.autocompletedemoCustomTemplate .autocomplete-custom-template .item-title, .autocompletedemoCustomTemplate .autocomplete-custom-template .item-metadata {
+    display: block;
+    line-height: 2; 
+}
+
+.autocompletedemoCustomTemplate .autocomplete-custom-template .item-title md-icon {
+    height: 18px;
+    width: 18px; 
+}
+
+/*------------------------------ ESTILOS NUEVA REFERENCIA ---------------------------------*/
+#cajaNueva{
+    line-height: 45px;
+}
+
+.para1 {
+    float: left;
+}
+
+.para2 {
+    float: right;
+}
+
+.boton {
+    position: absolute;
+    bottom: 100px;
+    width:100%;
+    text-align: center;
+}

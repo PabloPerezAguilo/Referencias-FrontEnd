@@ -9,12 +9,12 @@
 		<title>Referencia</title>
         
 		<!-- build:CSSCDNs -->
-		   
+		 
+  
 		<!-- AQUI IRAN LOS CSS QUE TENGAN CDN-->
 		<!--link rel="stylesheet" href="css/style.css" /-->
 
 		<!-- endbuild -->
-       <link rel="stylesheet" href="https://cdn.gitcdn.xyz/cdn/angular/bower-material/v1.0.0-rc3/angular-material.css"/>
         <link rel="stylesheet" href="https://cdn.gitcdn.xyz/cdn/angular/bower-material/v1.0.0-rc2/angular-material.css"/>
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,400italic">
 		<!-- AQUI IRAN LOS CSS NUESTROS QUE NO TENGAN CDN-->
@@ -23,47 +23,47 @@
 	</head>
 	<body>
 		<header>
-            <p class="titulo">Referencias</p>
+            <p id="titulo">Referencias</p>
             <img id="logo" src="/logo_gfi.png"/>
             <div ng-show="menu" id="menu" layout layout-sm="column">
                 <data md-toolbar class="md-menu-toolbar">
                     <md-menu>
-                        <md-button ng-click="$mdOpenMenu()">
-                        Usuarios
-                        </md-button>
+                        <md-button ng-click="$mdOpenMenu()">Usuarios</md-button>
                         <md-menu-content>
                             <md-menu-item>
-                                <md-button ng-click="ctrl.sampleyAction('share', $event)" ><a href="#/alta">Alta Usuario
-                                </a></md-button>
+                                <md-button ng-click="irA('alta')">Alta</md-button>
                             </md-menu-item>
-                  <md-menu-divider></md-menu-divider>
-                              <md-menu-item>
-                                <md-button ng-click="ctrl.sampleAction('share', $event)">
-                                  Eliminar Usuario
-                                </md-button>
-                              </md-menu-item>             
+                            <md-menu-divider></md-menu-divider>
+                            <md-menu-item>
+                                <md-button ng-click="irA('eliminarUsu')">Eliminar</md-button>
+                            </md-menu-item>             
                         </md-menu-content>
                     </md-menu>
-                <md-menu-divider></md-menu-divider>  
+                    <md-menu-divider></md-menu-divider>  
                     <md-menu>
-            <md-button ng-click="$mdOpenMenu()">Referencias</md-button>
-            <md-menu-content>
-            <md-menu-item><md-button ng-click="ctrl.sampleAction('New Document', $event)">Crear Ref</md-button></md-menu-item>
-            <md-menu-item><md-button ng-click="ctrl.sampleAction('New Spreadsheet', $event)">Eliminar Ref</md-button></md-menu-item>
-            <md-menu-item><md-button ng-click="ctrl.sampleAction('New Presentation', $event)">Mostrar Ref</md-button></md-menu-item>
-            <md-menu-item><md-button ng-click="ctrl.sampleAction('New Form', $event)">Modificar Ref</md-button></md-menu-item>
-            <md-menu-item><md-button ng-click="ctrl.sampleAction('New Drawing', $event)">Ref selection</md-button></md-menu-item>
-            </md-menu-content>
+                        <md-button ng-click="$mdOpenMenu()">Referencias</md-button>
+                        <md-menu-content>
+                            <md-menu-item>
+                                <md-button ng-click="irA('listar')">Listar</md-button>
+                            </md-menu-item>
+                            <md-menu-item>
+                                <md-button ng-click="irA('nueva')">Nueva</md-button>
+                            </md-menu-item>
+                            <md-menu-item>
+                                <md-button ng-click="irA('modificar')">Modificar</md-button>
+                            </md-menu-item>
+                            <md-menu-item>
+                                <md-button ng-click="irA('eliminar')">Eliminar</md-button>
+                            </md-menu-item>
+                        </md-menu-content>
                     </md-menu>
-            <md-menu-divider></md-menu-divider>  
+                    <md-menu-divider></md-menu-divider>  
                     <md-menu>
-            <md-button ng-click="salir()">Salir</md-button>  
+                        <md-button ng-click="irA()">Salir</md-button>  
                         <md-menu-content></md-menu-content>
-
                     </md-menu>
-                </data>
-            </div>  
-            
+                </data> 
+            </div>
         </header>
         
         <div ng-view>            
@@ -71,11 +71,10 @@
 		</div>
         
         <footer>
-           <div class="wrapper">
-               <nav>                
+             <nav>                
                 <a href="http://www.gfi.es">2015.Sharon.Agile</a>               
-               </nav>       
-            </div>
+             </nav>       
+            <div id="lineaFooter"></div>
         </footer>   
 
 		<!-- build:JSCDNs -->
@@ -86,11 +85,10 @@
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.6/angular-aria.min.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.6/angular-messages.min.js"></script>
         <script src="https://cdn.gitcdn.xyz/cdn/angular/bower-material/v1.0.0-rc2/angular-material.js"></script>
-        <script src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/t-114/assets-cache.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-material-icons/0.6.0/angular-material-icons.min.js"></script>
        
 
 		<!-- endbuild -->       
-        
 		<!-- build:JS -->
 		<script src="services.js"></script>
 		<script src="app.js"></script>
@@ -98,6 +96,7 @@
         <script src="modulos/login/controladorLogin.js"></script>
         <script src="modulos/altaUsuario/controladorAltaUsuario.js"></script>
         <script src="modulos/nuevaReferencia/controladorNuevaReferencia.js"></script>
+        <script src="modulos/bienvenida/controladorBienvenida.js"></script>
 		<!-- endbuild -->
 		<script src="js/AES.min.js"></script>
 

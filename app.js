@@ -1,6 +1,6 @@
 'use strict';
 
-var app = angular.module('ref', ['ngRoute','ngMaterial']);
+var app = angular.module('ref', ['ngRoute','ngMaterial','ngMdIcons','ngMessages']);
 app.run(function(servicioRest, $rootScope, $http, $location) {
 
     
@@ -39,16 +39,36 @@ app.run(function(servicioRest, $rootScope, $http, $location) {
 	};
     
     
-    $rootScope.salir = function() {
-        
-        console.log("Pasa por la funcion salir");
-        limpiarLocalStorage();
-        $location.path('/');
-		
+    $rootScope.irA = function(cadena) {
+        switch(cadena) {
+            case 'nueva':
+                $location.path('/nueva')
+                break;
+            case 'listar':
+                $location.path('/listar')
+                break;
+            case 'modificar':
+                $location.path('/modificar')
+                break;
+            case 'eliminar':
+                $location.path('/eliminar')
+                break;
+            case 'alta':
+                $location.path('/alta')
+                break;
+            case 'eliminarUsu':
+                $location.path('/eliminarUsu')
+                break;
+            default:
+                limpiarLocalStorage();
+                $location.path('/');
+                // Ocultamos el menú
+                $rootScope.menu=false;
+        }
 	}
     
     function limpiarLocalStorage() {
-		// Limpio el localStorage
+		// Limpiamos el localStorage
 		localStorage.clear();
 		localStorage.removeItem("name");
 		localStorage.removeItem("password");
@@ -74,9 +94,6 @@ app.config(function($routeProvider) {
 		templateUrl: 'modulos/login/login.html',
 		controller: 'controladorLogin'
 	})
-	.when('/pageNotFound', {
-		templateUrl: 'modulos/error/templateError.html'
-	})
     .when('/alta', {
         templateUrl: 'modulos/altaUsuario/altaUsuario.html',
         controller: 'controladorAltaUsuario'
@@ -85,6 +102,13 @@ app.config(function($routeProvider) {
         templateUrl: 'modulos/nuevaReferencia/nuevaReferencia.html',
         controller: 'controladorNuevaReferencia'
     })
+    .when('/bienvenida', {
+        templateUrl: 'modulos/bienvenida/bienvenida.html',
+        controller: 'controladorBienvenida'
+    })
+	.when('/pageNotFound', {
+		templateUrl: 'modulos/error/templateError.html'
+	})
 	.otherwise({
 		redirectTo: "/pageNotFound"
 	});
