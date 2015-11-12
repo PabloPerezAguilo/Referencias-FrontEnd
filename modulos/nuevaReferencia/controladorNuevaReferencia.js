@@ -1,4 +1,10 @@
 app.controller('controladorNuevaReferencia', function(servicioRest, config, $scope, $http, $rootScope) {
+    servicioRest.getCatalogos().then(
+        function(response) {
+            $scope.catalogo = response;
+            console.log("Catalogos Cargados");
+        });
+    /*$scope.catalogo = {"tecnologia": [{"codigo":"","descripcion":"","entidad":""},{"codigo":"","descripcion":"","entidad":""},{"codigo":"","descripcion":"","entidad":""}], "clientes": [{"nombre":"lele","siglas":"","publico":"","alias":"","imagen":""},{"nombre":"lili","siglas":"","publico":"","alias":"","imagen":""},{"nombre":"lolo","siglas":"","publico":"","alias":"","imagen":""}]};*/
     $scope.fechaInicio = new Date();
     $scope.certificado = 'no';
     $scope.crear = function () {
