@@ -114,10 +114,18 @@ footer #lineaFooter{
 /* --------------------------- ESTILOS COMUNES ----------------------------- */
 
 .cabeceraPagina {
+    margin-top: 40px;
     text-align: center;
     font-size: 25px;
     height: 40px;
     color: #ee941a;
+}
+
+.botonesApp{
+    background-color: #ee941a;
+    font-size: 13px;
+    color: #ececec;
+    text-align: center;    
 }
 
 /* --------------------------- ESTILOS LOGIN ----------------------------- */
@@ -300,20 +308,42 @@ ul {
 
 /*------------------------------ ESTILOS NUEVA REFERENCIA ---------------------------------*/
 #cajaNueva{
-    line-height: 45px;
+    //line-height: 45px;
+    font-size: 15px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+#contenedorParrafos{
+    font-size: 15px;
+    /*  RECUADRO NARANJA
+    border: solid 1px #ee941a;
+    margin-left: 65px;
+    margin-right: 65px;
+    margin-top: 40px;*/
+    
 }
 
 .para1 {
     float: left;
+    margin-left: 70px;
+    height: 2px;
+ 
 }
 
 .para2 {
     float: right;
+    margin-right: 70px;
+    height: 20px;
 }
 
-.boton {
-    position: absolute;
-    bottom: 100px;
+.contenedorBoton {
+    
     width:100%;
-    text-align: center;
+    text-align: center;  
 }
+#inputdemoBasicUsage .md-datepicker-button {
+  width: 36px; }
+#inputdemoBasicUsage .md-datepicker-input-container {
+  margin-left: 2px; }
+
+
