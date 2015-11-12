@@ -140,6 +140,23 @@ function ServicioREST($http, $q, $rootScope, config) {
 		return promise;
 	}
     
+    function getCatalogos() {
+		var defered = $q.defer();
+		var promise = defered.promise;
+		$http({
+			method: 'GET',
+			url: url + '/catalogo'
+		})
+		.success(function(data, status, headers, config) {
+			defered.resolve(data);
+		})
+		.error(function(data, status, headers, config) {
+			tratarError(data, status,defered);
+		});
+
+		return promise;
+	}
+    
     function postUsuario(usuario){
         var defered = $q.defer();
 		var promise = defered.promise;
@@ -165,6 +182,7 @@ function ServicioREST($http, $q, $rootScope, config) {
         updateReferencia : updateReferencia,
         deleteReferencia : deleteReferencia,
 		getLDAP: getLDAP,
+        getCatalogos: getCatalogos,
         postUsuario: postUsuario,
         postLogin : postLogin
 	}

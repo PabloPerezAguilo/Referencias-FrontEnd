@@ -1,17 +1,20 @@
-<section ng-controller="controladorNuevaReferencia">
+<section>
     <h1 class="cabeceraPagina">NUEVA REFERENCIA</h1>
     <div class="para1" id="cajaNueva">
-        <span>Cliente: </span>
-        <select ng-model="cliente">
-            <option value="option-1">Option 1</option>
-            <option value="option-2">Option 2</option>
+        <label>Cliente: </label>
+        <md-select ng-model="cliente">
+            <md-option ng-value="cliente.nombre" data-ng-repeat="cliente in catalogo.clientes">{{ cliente.nombre }}</md-option>
+        </md-select><br>
+        <label>Sociedad: </label>
+        <select ng-model="sociedad">
+            <md-option ng-value="sociedades.codigo" data-ng-repeat="sociedad in catalogo.sociedades">{{ sociedad.codigo }}</md-option>
         </select><br>
-        <span>Sociedad: </span><input ng-model="sociedad"><br>
-        <span>Sector Empresarial: </span><input ng-model="sectorEmpresarial"><br>
+        <span>Sector Empresarial: </span>
+        <select ng-model="sectorEmpresarial">
+            <md-option ng-value="sectorempresarial.codigo" data-ng-repeat="sectorEmpresarial in catalogo.sectorempresarial">{{ sociedad.codigo }}</md-option>
+        </select><br>
         <span>Tipo de proyecto: </span>
-        <select ng-model="tipoProyecto">
-            <option value="option-1">Option 1</option>
-            <option value="option-2">Option 2</option>
+        <select ng-model="tipoProyecto" ng-options="proyecto.codigo for proyecto in catalogo.proyecto">
         </select><br>
         <span>Fecha de inicio: <md-datepicker ng-model="fechaInicio" md-placeholder="Seleccione la fecha"></md-datepicker></span><br>
         <span>Duración en meses: </span><input type="number" ng-model="duracionMeses"><br>
@@ -22,16 +25,18 @@
     <div class="para2" id="cajaNueva">
         <span>Solución GFI: </span><input type="text" ng-model="solucionGfi"><br>
         <span>Tecnologías: </span>
-        <select ng-model="tecnologias">
-            <option value="option-1">Option 1</option>
-            <option value="option-2">Option 2</option>
+        <select ng-model="tecnologias" ng-options="tecnologia.codigo for tecnologia in catalogo.tecnologia">
         </select><br>
         <span>FTE Totales: </span><input type="number" ng-model="fteTotales"><br>
         <span>Imagen del proyecto: </span><input type="file" ng-model="imagenProyecto"><br>
         <span>Existe certificado del cliente: </span><input type="radio" ng-model="certificado" value="si">Si<input type="radio" ng-model="certificado" value="no">No<br>
         <span>Registros de Pedido asociados a la referencia: </span><input ng-model="regPedidoAsociadoReferencia"><br>
-        <span>Responsable Comercial: </span><input ng-model="responsableComercial"><br>
-        <span>Resposable Técnico: </span><input ng-model="responsableTecnico"><br>
+        <span>Responsable Comercial: </span>
+        <select ng-model="responsableComercial" ng-options="comercial.nombre for comercial in catalogo.comercial">
+        </select><br>
+        <span>Resposable Técnico: </span>
+        <select ng-model="responsableTecnico" ng-options="tecnico.nombre for tecnico in catalogo.tecnico">
+        </select><br>
         <span>Código QR: </span><input ng-model="codigoQr"><br>
     </div>
         <div class="boton"><button type="button" ng-click="crear()">Crear Referencia</button>
