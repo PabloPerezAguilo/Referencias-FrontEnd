@@ -7,15 +7,11 @@ app.controller('controladorLogin', function(servicioRest, config, $scope, $http,
     
 	$scope.login = function () {
         
-        
        if($scope.user.name!="" && $scope.user.password!="" && $scope.user.name!=undefined && $scope.user.password!=undefined){
-           
-           login();
-           
+           login();   
        }else{
             $scope.error="Debe de completar los dos campos";
        }
-
     };
     
     $scope.intro = function (pressEvent){
@@ -24,11 +20,13 @@ app.controller('controladorLogin', function(servicioRest, config, $scope, $http,
             login();   
           }
     };
-   if(localStorage.getItem("name")!==null){
+    
+    //Comprobamos que el LocalStorage tenga datos
+    if(localStorage.getItem("name")!==null){
        console.log(localStorage.getItem("name"));
        $location.path("/bienvenida");
- 
-   }
+
+    }
     
     function login(){
     
@@ -47,12 +45,10 @@ app.controller('controladorLogin', function(servicioRest, config, $scope, $http,
                 //Mostramos el menú
                 $rootScope.menu = true;
             
-                
-            
                 $http.defaults.headers.common['Authorization'] = 'Basic ' + btoa($rootScope.usuarioP.name + ':' + $rootScope.usuarioP.password);
-
-                //Guardamos las credenciales
-                guardarEnLocalStorage();
+                
+                //Si el usuario ha pulsado recordar guardamos
+                comprobarRecordar();
 
 			})
 			.catch(function(err) {
@@ -73,13 +69,15 @@ app.controller('controladorLogin', function(servicioRest, config, $scope, $http,
     };
     
     
-    function guardarEnLocalStorage(){ 
-        localStorage.setItem("name", $rootScope.usuarioLS.name);
-        // Usamos el nick del usuario como secreto
-        localStorage.setItem("password", Aes.Ctr.encrypt($rootScope.usuarioLS.password, $rootScope.usuarioLS.name, 256));
-        localStorage.setItem("role", $rootScope.usuarioLS.role);
+    function comprobarRecordar(){ 
+
+        if($scope.recordar){
+            localStorage.setItem("name", $rootScope.usuarioLS.name);
+            // Usamos el nick del usuario como secreto
+            localStorage.setItem("password", Aes.Ctr.encrypt($rootScope.usuarioLS.password, $rootScope.usuarioLS.name, 256));
+            localStorage.setItem("role", $rootScope.usuarioLS.role);
+        }
     }
-    
     
 });
 
