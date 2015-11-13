@@ -308,10 +308,10 @@ ul {
 
 /*------------------------------ ESTILOS NUEVA REFERENCIA ---------------------------------*/
 #cajaNueva{
-    //line-height: 45px;
+    line-height: 45px;
     font-size: 15px;
-    margin-top: 15px;
-    margin-bottom: 15px;
+    //margin-top: 15px;
+    //margin-bottom: 15px;
 }
 #contenedorParrafos{
     font-size: 15px;
@@ -324,26 +324,23 @@ ul {
 }
 
 .para1 {
-    float: left;
+   // float: left;
     margin-left: 70px;
-    height: 2px;
+    //height: 2px;
  
 }
 
 .para2 {
-    float: right;
+   // float: right;
     margin-right: 70px;
-    height: 20px;
+    //height: 20px;
 }
 
 .contenedorBoton {
-    
     width:100%;
-    text-align: center;  
+    text-align: center;
+    bottom: 35px;
 }
-#inputdemoBasicUsage .md-datepicker-button {
-  width: 36px; }
-#inputdemoBasicUsage .md-datepicker-input-container {
-  margin-left: 2px; }
+
 
 

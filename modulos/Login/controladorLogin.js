@@ -53,7 +53,7 @@ app.controller('controladorLogin', function(servicioRest, config, $scope, $http,
 
 			})
 			.catch(function(err) {
-             //Tratamos el error
+             //Tratamos el error. fatal tratar este error: ERR_CONNECTION_REFUSED
                 console.log(err);
 
                 if(err=="Credenciales erróneas"){

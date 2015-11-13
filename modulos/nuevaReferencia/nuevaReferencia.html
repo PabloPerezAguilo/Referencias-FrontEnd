@@ -1,44 +1,140 @@
 <section>
     <h1 class="cabeceraPagina">NUEVA REFERENCIA</h1>
-    <div class="para1" id="cajaNueva">
-        <label>Cliente: </label>
-        <md-select ng-model="cliente">
-            <md-option ng-value="cliente.nombre" data-ng-repeat="cliente in catalogo.clientes">{{ cliente.nombre }}</md-option>
-        </md-select><br>
-        <label>Sociedad: </label>
-        <select ng-model="sociedad">
-            <md-option ng-value="sociedades.codigo" data-ng-repeat="sociedad in catalogo.sociedades">{{ sociedad.codigo }}</md-option>
-        </select><br>
-        <span>Sector Empresarial: </span>
-        <select ng-model="sectorEmpresarial">
-            <md-option ng-value="sectorempresarial.codigo" data-ng-repeat="sectorEmpresarial in catalogo.sectorempresarial">{{ sociedad.codigo }}</md-option>
-        </select><br>
-        <span>Tipo de proyecto: </span>
-        <select ng-model="tipoProyecto" ng-options="proyecto.codigo for proyecto in catalogo.proyecto">
-        </select><br>
-        <span>Fecha de inicio: <md-datepicker ng-model="fechaInicio" md-placeholder="Seleccione la fecha"></md-datepicker></span><br>
-        <span>Duración en meses: </span><input type="number" ng-model="duracionMeses"><br>
-        <span>Denominación: </span><input type="text" ng-model="denominacion"><br>
-        <span>Resumen del proyecto: </span><input type="text" ng-model="resumenProyecto"><br>
-        <span>Problemática del cliente: </span><input type="text" ng-model="problematicaCliente"><br>
+    <div class="contenedorParrafos">
+        
+        <div class="para1" id="cajaNueva">
+            <md-input-container flex>
+                <label>Cliente</label>
+                <md-select ng-model="cliente">
+                    <md-option ng-value="cliente.nombre" data-ng-repeat="cliente in catalogo.clientes">
+                        {{ cliente.nombre }}
+                    </md-option>
+                </md-select>
+            </md-input-container>
+            <br>
+            <md-input-container flex>
+                <label>Sociedad</label>
+                <md-select ng-model="sociedad">                       
+                    <md-option ng-value="sociedad.codigo" data-ng-repeat="sociedad in catalogo.sociedades">
+                        {{ sociedad.codigo }}
+                    </md-option>
+                </md-select>
+            </md-input-container>
+            <br>
+            <md-input-container flex>
+                <label>Sector Empresarial</label>
+                <md-select ng-model="sectorEmpresarial">
+                    <md-option ng-value="sectorEmpresarial.codigo" data-ng-repeat="sectorEmpresarial in catalogo.sectorempresarial">
+                        {{ sectorEmpresarial.codigo }}
+                    </md-option>
+              </md-select>
+            </md-input-container>
+            <br>
+            <md-input-container flex>
+                <label>Tipo de actividad</label>
+                <md-select ng-model="tipoActividad">
+                    <md-option ng-value="tipoActividad.codigo" data-ng-repeat="tipoActividad in catalogo.actividad">
+                    {{ tipoActividad.codigo }}
+                    </md-option>      
+                </md-select>
+            </md-input-container>
+            <br>
+            <md-input-container flex>
+                <label>Tipo de proyecto</label>
+                <md-select ng-model="tipoProyecto">
+                    <md-option ng-value="tipoProyecto.codigo" data-ng-repeat="tipoProyecto in catalogo.proyecto">
+                    {{ tipoProyecto.codigo }}
+                    </md-option>      
+                </md-select>
+            </md-input-container>
+            <br>
+            <md-datepicker ng-model="fechaInicio" md-placeholder="Fecha de inicio"></md-datepicker>
+            <br>
+            <md-input-container flex>
+                <label>Duración en meses</label>
+                <input type="number" ng-model="duracionMeses">
+            </md-input-container>
+            <br>
+            <md-input-container flex>
+                <label>Denominación</label>
+                <input type="text" ng-model="denominacion">
+            </md-input-container>
+            <br>
+            <md-input-container flex>
+                <label>Resumen proyecto</label>
+                <input type="text" ng-model="resumenProyecto">
+            </md-input-container>
+            <br>
+            <md-input-container flex>
+                <label>Problemática del cliente</label>
+                <input type="text" ng-model="problematicaCliente">
+            </md-input-container>
+        </div>
+
+        <div class="para2" id="cajaNueva">
+            <md-input-container flex>
+                <label>Solución GFI</label>
+                <input type="text" ng-model="solucionGfi">
+            </md-input-container>
+            <br>
+            <md-input-container flex>
+                <label>Tecnologías</label>
+                <md-select ng-model="tecnologias">
+                    <md-option ng-value="tecnologias.codigo" data-ng-repeat="tecnologias in catalogo.tecnologia">
+                    {{tecnologias.codigo}}
+                    </md-option>
+                </md-select>
+            </md-input-container>
+            <br>
+            <md-input-container flex>
+                <label>FTE Totales</label>
+                <input type="number" ng-model="fteTotales">
+            </md-input-container>
+            <br>   
+            <md-input-container flex>
+                <label>Imagen del proyecto(cat)</label>  
+            </md-input-container>
+            <br>
+            <!-- CUIDADO RADIO NO SE SI FUNCIONARÁ -->   
+            <md-input-container flex>
+                <label>Existe certificado del cliente</label>
+                <md-radio-group ng-model="certificado">
+                    <md-radio-button value="no" checked>No</md-radio-button>
+                    <md-radio-button value="si"> Sí </md-radio-button>
+                </md-radio-group>
+            </md-input-container>
+            <br>
+            <md-input-container flex>
+                <label>Registros de Pedido asociados a la referencia</label>
+                <input type="text" ng-model="regPedidoAsociadoReferencia">
+            </md-input-container>
+            <br>
+            <md-input-container flex="">
+                <label>Responsable Comercial</label>
+                <md-select ng-model="responsableComercial"> 
+                    <md-option ng-value="responsableComercial.nombre" data-ng-repeat="responsableComercial in catalogo.comercial">
+                        {{ responsableComercial.nombre }}
+                    </md-option>
+                </md-select>
+            </md-input-container>
+            <br>    
+            <md-input-container flex>
+                <label>Responsable Técnico</label>
+                <md-select ng-model="responsableTecnico">
+                    <md-option ng-value="responsableTecnico.nombre" data-ng-repeat="responsableTecnico in catalogo.tecnico">
+                        {{ responsableTecnico.nombre }}
+                    </md-option>
+                </md-select>
+            </md-input-container>  
+            <br>    
+            <md-input-container flex>
+                <label>Código Qr</label>
+                <input ng-model="codigoQr">
+            </md-input-container>
+            <br> 
+        </div>
     </div>
-    <div class="para2" id="cajaNueva">
-        <span>Solución GFI: </span><input type="text" ng-model="solucionGfi"><br>
-        <span>Tecnologías: </span>
-        <select ng-model="tecnologias" ng-options="tecnologia.codigo for tecnologia in catalogo.tecnologia">
-        </select><br>
-        <span>FTE Totales: </span><input type="number" ng-model="fteTotales"><br>
-        <span>Imagen del proyecto: </span><input type="file" ng-model="imagenProyecto"><br>
-        <span>Existe certificado del cliente: </span><input type="radio" ng-model="certificado" value="si">Si<input type="radio" ng-model="certificado" value="no">No<br>
-        <span>Registros de Pedido asociados a la referencia: </span><input ng-model="regPedidoAsociadoReferencia"><br>
-        <span>Responsable Comercial: </span>
-        <select ng-model="responsableComercial" ng-options="comercial.nombre for comercial in catalogo.comercial">
-        </select><br>
-        <span>Resposable Técnico: </span>
-        <select ng-model="responsableTecnico" ng-options="tecnico.nombre for tecnico in catalogo.tecnico">
-        </select><br>
-        <span>Código QR: </span><input ng-model="codigoQr"><br>
+    <div class="contenedorBoton">
+        <md-button class=botonesApp type="button" ng-click="crear()">ACEPTAR</md-button>
     </div>
-        <div class="boton"><button type="button" ng-click="crear()">Crear Referencia</button>
-            </div>
-</section>
+</section> 

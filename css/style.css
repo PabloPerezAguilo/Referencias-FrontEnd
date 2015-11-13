@@ -269,9 +269,8 @@ ul {
 
 /*------------------------------ ESTILOS NUEVA REFERENCIA ---------------------------------*/
 #cajaNueva {
-  font-size: 15px;
-  margin-top: 15px;
-  margin-bottom: 15px; }
+  line-height: 45px;
+  font-size: 15px; }
 
 #contenedorParrafos {
   font-size: 15px;
@@ -282,23 +281,14 @@ ul {
     margin-top: 40px;*/ }
 
 .para1 {
-  float: left;
-  margin-left: 70px;
-  height: 2px; }
+  margin-left: 70px; }
 
 .para2 {
-  float: right;
-  margin-right: 70px;
-  height: 20px; }
+  margin-right: 70px; }
 
 .contenedorBoton {
   width: 100%;
-  text-align: center; }
-
-#inputdemoBasicUsage .md-datepicker-button {
-  width: 36px; }
-
-#inputdemoBasicUsage .md-datepicker-input-container {
-  margin-left: 2px; }
+  text-align: center;
+  bottom: 35px; }
 
 /*# sourceMappingURL=style.css.map */
