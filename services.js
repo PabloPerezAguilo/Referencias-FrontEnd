@@ -1,4 +1,4 @@
-function ServicioREST($http, $q, $rootScope, config) {
+function ServicioREST($http, $q, $rootScope, config, $mdDialog) {
 	
 	var url = config.url;
 	
@@ -6,12 +6,31 @@ function ServicioREST($http, $q, $rootScope, config) {
 	function tratarError(data, status, defered) {
 		if (status === 404 || status === 0) {
 			defered.reject("Servicio no disponible");
-		} else if (data === undefined || data.message === undefined) {
+		}else if (data == null){
+            //$rootScope.error="";
+            popupError(null,"Error. Servidor no disponible")
+        } else if (data === undefined || data.message === undefined) {
 			defered.reject("Error: " + status);
 		} else {
 			defered.reject(data.message);
 		}
 	}
+    
+
+    
+    function popupError(ev,descripcion){    
+        
+        $mdDialog.show(
+            $mdDialog.alert()
+            .parent(angular.element(document.querySelector('#popupContainer')))
+            .clickOutsideToClose(true)
+            .title("")
+            .content(descripcion)
+            .ariaLabel('Alert Dialog Demo')
+            .ok('Aceptar')
+            .targetEvent(ev)
+        );
+    }
     /* ---------- SERVICIOS LOGIN ---------- */
     
     function postLogin(usuario) {
@@ -184,6 +203,7 @@ function ServicioREST($http, $q, $rootScope, config) {
 		getLDAP: getLDAP,
         getCatalogos: getCatalogos,
         postUsuario: postUsuario,
-        postLogin : postLogin
+        postLogin : postLogin,
+        popupError : popupError
 	}
 }
