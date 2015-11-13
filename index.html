@@ -31,11 +31,11 @@
                         <md-button ng-click="$mdOpenMenu()">Usuarios</md-button>
                         <md-menu-content>
                             <md-menu-item>
-                                <md-button ng-click="irA('alta')">Alta</md-button>
+                                <md-button><a class="textoHipervinculo" href="#/alta">Alta</a></md-button>
                             </md-menu-item>
                             <md-menu-divider></md-menu-divider>
                             <md-menu-item>
-                                <md-button ng-click="irA('eliminarUsu')">Eliminar</md-button>
+                                <md-button><a class="textoHipervinculo" href="#/alta">Eliminar</a></md-button>
                             </md-menu-item>             
                         </md-menu-content>
                     </md-menu>
@@ -44,22 +44,22 @@
                         <md-button ng-click="$mdOpenMenu()">Referencias</md-button>
                         <md-menu-content>
                             <md-menu-item>
-                                <md-button ng-click="irA('listar')">Listar</md-button>
+                                <md-button><a class="textoHipervinculo" href="#/nueva">Listar</a></md-button>
                             </md-menu-item>
                             <md-menu-item>
-                                <md-button ng-click="irA('nueva')">Nueva</md-button>
+                                <md-button><a class="textoHipervinculo" href="#/nueva">Nueva</a></md-button>
                             </md-menu-item>
                             <md-menu-item>
-                                <md-button ng-click="irA('modificar')">Modificar</md-button>
+                                <md-button><a class="textoHipervinculo" href="#/nueva">Modificar</a></md-button>
                             </md-menu-item>
                             <md-menu-item>
-                                <md-button ng-click="irA('eliminar')">Eliminar</md-button>
+                                <md-button><a class="textoHipervinculo" href="#/nueva">Eliminar</a></md-button>
                             </md-menu-item>
                         </md-menu-content>
                     </md-menu>
                     <md-menu-divider></md-menu-divider>  
                     <md-menu>
-                        <md-button ng-click="irA()">Salir</md-button>  
+                        <md-button ng-click="salir()">Salir</md-button>  
                         <md-menu-content></md-menu-content>
                     </md-menu>
                 </data> 
