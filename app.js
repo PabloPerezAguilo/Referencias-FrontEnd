@@ -13,7 +13,7 @@ app.run(function(servicioRest, $rootScope, $http, $location) {
     
     
     // Comprobamos si el usuario guardó información en el localStorage. Si es asi la cargamos
-	if (localStorage.getItem("name") != null) {
+	if (localStorage.getItem("name") !== null) {
                 $rootScope.usuarioLS = {
                     name: localStorage.getItem("name"),
                     password: Aes.Ctr.decrypt(localStorage.getItem("password"), localStorage.getItem("name"), 256),
@@ -68,6 +68,8 @@ $rootScope.irA = function(cadena) {
 }
     
 function limpiarLocalStorage() {
+    
+    $rootScope.usuarioLS="";
     // Limpiamos el localStorage
     localStorage.clear();
     localStorage.removeItem("name");
@@ -75,6 +77,7 @@ function limpiarLocalStorage() {
     localStorage.removeItem("role");
     // Limpiamos las cabeceras de autenticación
     $http.defaults.headers.common.Authorization = 'Basic ';
+    
 }
 
 // Redirige a la pagina de Login si no estas logeado

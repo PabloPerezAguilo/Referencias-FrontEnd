@@ -1,9 +1,9 @@
 <section>
     <h1 class="cabeceraPagina">NUEVA REFERENCIA</h1>
     <div class="contenedorParrafos">
-        
-        <div class="para1" id="cajaNueva">
-            <md-input-container flex>
+        <md-content md-theme="docs-dark" class="layout-padding" >
+        <div layout="column" class="para1" id="cajaNueva">
+            <md-input-container>
                 <label>Cliente</label>
                 <md-select ng-model="cliente">
                     <md-option ng-value="cliente.nombre" data-ng-repeat="cliente in catalogo.clientes">
@@ -12,7 +12,7 @@
                 </md-select>
             </md-input-container>
             <br>
-            <md-input-container flex>
+            <md-input-container>
                 <label>Sociedad</label>
                 <md-select ng-model="sociedad">                       
                     <md-option ng-value="sociedad.codigo" data-ng-repeat="sociedad in catalogo.sociedades">
@@ -48,7 +48,8 @@
                 </md-select>
             </md-input-container>
             <br>
-            <md-datepicker ng-model="fechaInicio" md-placeholder="Fecha de inicio"></md-datepicker>
+            
+            <md-datepicker ng-model="fechaInicio" md-placeholder="Fecha de Inicio"></md-datepicker>
             <br>
             <md-input-container flex>
                 <label>Duración en meses</label>
@@ -71,7 +72,7 @@
             </md-input-container>
         </div>
 
-        <div class="para2" id="cajaNueva">
+        <div layout="column" class="para2" id="cajaNueva">
             <md-input-container flex>
                 <label>Solución GFI</label>
                 <input type="text" ng-model="solucionGfi">
@@ -135,6 +136,7 @@
         </div>
     </div>
     <div class="contenedorBoton">
-        <md-button class=botonesApp type="button" ng-click="crear()">ACEPTAR</md-button>
-    </div>
+        <md-button class=botonesApp type="button" ng-click="crear()">Aceptar</md-button>
+        </div>
+        </md-content>
 </section> 

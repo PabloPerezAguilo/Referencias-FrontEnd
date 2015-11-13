@@ -272,8 +272,16 @@ ul {
   line-height: 45px;
   font-size: 15px; }
 
-#contenedorParrafos {
+md-content {
+  display: block;
+  position: relative;
+  overflow: auto; }
+
+#layout-padding {
   font-size: 15px;
+  width: 36px;
+  position: relative;
+  padding: 8px;
   /*  RECUADRO NARANJA
     border: solid 1px #ee941a;
     margin-left: 65px;
@@ -281,14 +289,20 @@ ul {
     margin-top: 40px;*/ }
 
 .para1 {
-  margin-left: 70px; }
+  float: left;
+  margin-left: 90px; }
 
 .para2 {
-  margin-right: 70px; }
+  float: right;
+  margin-right: 90px; }
 
 .contenedorBoton {
   width: 100%;
   text-align: center;
   bottom: 35px; }
+
+md-input-container {
+  padding: 1px;
+  position: relative; }
 
 /*# sourceMappingURL=style.css.map */

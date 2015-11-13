@@ -5,7 +5,7 @@ app.controller('controladorNuevaReferencia', function(servicioRest, config, $sco
             console.log("Catalogos Cargados");
         });
     /*$scope.catalogo = {"tecnologia": [{"codigo":"","descripcion":"","entidad":""},{"codigo":"","descripcion":"","entidad":""},{"codigo":"","descripcion":"","entidad":""}], "clientes": [{"nombre":"lele","siglas":"","publico":"","alias":"","imagen":""},{"nombre":"lili","siglas":"","publico":"","alias":"","imagen":""},{"nombre":"lolo","siglas":"","publico":"","alias":"","imagen":""}]};*/
-    $scope.fechaInicio = new Date();
+    //$scope.fechaInicio = new Date();
     $scope.certificado = 'no';
     $scope.crear = function () {
         var referencia = {"_id": 11,

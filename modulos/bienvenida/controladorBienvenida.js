@@ -2,4 +2,5 @@ app.controller('controladorBienvenida', function(servicioRest, config, $scope, $
     
     $scope.nombre=$rootScope.usuarioLS.name;
 
+    
 });
