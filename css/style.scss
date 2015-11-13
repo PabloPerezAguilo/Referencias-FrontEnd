@@ -104,6 +104,20 @@ footer #lineaFooter{
     font-family: verdana; 
 }
 
+.textoHipervinculo {
+    font-size:10;
+    font-family:verdana;
+    color:#7E6D1D;
+    text-decoration:none
+}
+
+.textoHipervinculo:hover {
+    font-size:10;
+    font-family:verdana;
+    color:#BFA62B;
+    text-decoration:none
+}
+
 /* --------------------------- ESTILOS BIENVENIDA ---------------------- */
 
 #bienvenida{

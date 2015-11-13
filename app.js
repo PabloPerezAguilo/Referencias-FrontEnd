@@ -39,32 +39,11 @@ app.run(function(servicioRest, $rootScope, $http, $location) {
 	};
     
     
-$rootScope.irA = function(cadena) {
-    switch(cadena) {
-        case 'nueva':
-            $location.path('/nueva')
-            break;
-        case 'listar':
-            $location.path('/listar')
-            break;
-        case 'modificar':
-            $location.path('/modificar')
-            break;
-        case 'eliminar':
-            $location.path('/eliminar')
-            break;
-        case 'alta':
-            $location.path('/alta')
-            break;
-        case 'eliminarUsu':
-            $location.path('/eliminarUsu')
-            break;
-        default:
-            limpiarLocalStorage();
-            $location.path('/');
-            // Ocultamos el menú
-            $rootScope.menu=false;
-    }
+$rootScope.salir = function() {
+    limpiarLocalStorage();
+    $location.path('/');
+    // Ocultamos el menú
+    $rootScope.menu=false;
 }
     
 function limpiarLocalStorage() {
