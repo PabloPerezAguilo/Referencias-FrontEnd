@@ -12,6 +12,8 @@ function ServicioREST($http, $q, $rootScope, config) {
 			defered.reject(data.message);
 		}
 	}
+    
+    
     /* ---------- SERVICIOS LOGIN ---------- */
     
     function postLogin(usuario) {

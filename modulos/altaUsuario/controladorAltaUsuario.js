@@ -1,15 +1,15 @@
 
 app.controller('controladorAltaUsuario', function(servicioRest, config, $scope, $http, $rootScope, $timeout, $q, $log,$mdDialog, $interval) {
  
-    $scope.title = "";
-    $scope.descripcion = "";
+   $scope.title = "";
+   $scope.descripcion = "";
     var self = this,  j= 0, counter = 0;
-    self.usua = [];
+    /*self.usua = [];*/
     $scope.mensaje='';
     $scope.activado = self.activated;
     
     
-    $scope.miUsuarioSeleccionado = null;
+   /* $scope.miUsuarioSeleccionado = null;
     servicioRest.getLDAP().then(
             function(response) {
                 $scope.usuarios = response;
@@ -26,11 +26,11 @@ app.controller('controladorAltaUsuario', function(servicioRest, config, $scope, 
             $scope.descripcion = "Ldap No cargado";
             $scope.mensaje='';
             showAlert();
-			});  
+			});  */
     
     $scope.crear = function () {
         console.log("guardando usuario en nuestra base de datos...");
-        $scope.usuario = {"name":$scope.item.nick, "role": $scope.role};
+        $scope.usuario = {"name":$scope.usuarios[$scope.posicionEnArray].nick, "role": $scope.role};
         console.log($scope.usuario);
         servicioRest.postUsuario($scope.usuario)
             .then(function(data) {   
@@ -48,7 +48,78 @@ app.controller('controladorAltaUsuario', function(servicioRest, config, $scope, 
     };
       
     /*Autocomplete*/ 
-    self.simulateQuery = false;
+    $scope.miUsuarioSeleccionado = null 
+    servicioRest
+		.getLDAP()
+		.then(function(response) {
+		$scope.usuarios = response;
+		cadenaUsuarios();
+		$scope.arrayDatos = cargarDatos();
+		console.log("Ldap Cargado");
+        $scope.activado = false;
+        toggleActivation();
+	})
+		.catch(function(err) {
+		 $scope.mensaje='error de cargar ldap';
+	});
+	
+	$scope.cadena = "";
+	self.pos = "";
+	self.querySearch = querySearch;
+	self.selectedItemChange = selectedItemChange;
+
+	// Busca el texto
+	function querySearch(text) {
+		var results = text ? $scope.arrayDatos.filter(filtrar(text)) : $scope.arrayDatos, deferred;
+		if (self.simulateQuery) {
+			deferred = $q.defer();
+			$timeout(function() {
+				deferred.resolve(results);
+			}, Math.random() * 1000, false);
+			return deferred.promise;
+		} else {
+			return results;
+		}
+	};
+
+	// Filtrar palabras según texto
+	function filtrar(texto) {
+		var lowercaseQuery = angular.lowercase(texto);
+		return function(state) {
+			$scope.texto = state.value.substring(state.value.indexOf("*"), 0);
+			return ($scope.texto.indexOf(lowercaseQuery) === 0 || $scope.texto.search(lowercaseQuery) > 0);
+		};
+	};
+
+	// Elemento seleccionado
+	function selectedItemChange(item) {
+		if (JSON.stringify(item) !== undefined) {
+			var pos = item.value.substring(item.value.length, item.value.indexOf("*") + 1);
+			$scope.posicionEnArray = pos;
+            console.log(item);
+		}
+	};
+
+	// Carga de datos inicial
+	function cargarDatos() {
+		// Convertimos los datos a una sola cadena
+		var allStates = $scope.cadena;
+		return allStates.split(/, +/g).map(function(state) {
+			return {
+				value: state.toLowerCase(),
+				display: state.substring(state.indexOf("*"), 0)
+			};
+		});
+	};
+
+	// Convertir a una sola cadena
+	function cadenaUsuarios() {
+		for (var i = 0; i < $scope.usuarios.length; i++) {
+			$scope.cadena += $scope.usuarios[i].usuario + ' (' + $scope.usuarios[i].nick + ') ' + '*' + i + ', ';
+		}
+	};
+	
+    /*self.simulateQuery = false;
     self.isDisabled    = false;  
     self.querySearch   = querySearch;
     self.selectedItemChange = selectedItemChange;
@@ -95,7 +166,7 @@ app.controller('controladorAltaUsuario', function(servicioRest, config, $scope, 
         return (item.value.indexOf(lowercaseQuery) === 0);
       };
 
-    }
+    }*/
     
     $scope.data = {
       group1 : 'Administrador',
