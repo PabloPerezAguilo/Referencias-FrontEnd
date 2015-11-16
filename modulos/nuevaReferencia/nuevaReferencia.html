@@ -1,8 +1,8 @@
 <section>
     <h1 class="cabeceraPagina">NUEVA REFERENCIA</h1>
-    <div class="contenedorParrafos">
-        <md-content md-theme="docs-dark" class="layout-padding" >
-        <div class="para1" id="cajaNueva">
+    <md-content md-theme="docs-dark" class="layout-padding" >
+    <div class="para1">
+            <div>
             <md-input-container>
                 <label>Cliente</label>
                 <md-select ng-model="cliente">
@@ -11,7 +11,6 @@
                     </md-option>
                 </md-select>
             </md-input-container>
-            <br>
             <md-input-container>
                 <label>Sociedad</label>
                 <md-select ng-model="sociedad">                       
@@ -20,7 +19,6 @@
                     </md-option>
                 </md-select>
             </md-input-container>
-            <br>
             <md-input-container flex>
                 <label>Sector Empresarial</label>
                 <md-select ng-model="sectorEmpresarial">
@@ -29,7 +27,6 @@
                     </md-option>
               </md-select>
             </md-input-container>
-            <br>
             <md-input-container flex>
                 <label>Tipo de actividad</label>
                 <md-select ng-model="tipoActividad">
@@ -38,7 +35,6 @@
                     </md-option>      
                 </md-select>
             </md-input-container>
-            <br>
             <md-input-container flex>
                 <label>Tipo de proyecto</label>
                 <md-select ng-model="tipoProyecto">
@@ -47,37 +43,27 @@
                     </md-option>      
                 </md-select>
             </md-input-container>
-            <br>
-            
             <md-datepicker ng-model="fechaInicio" md-placeholder="Fecha de Inicio"></md-datepicker>
-            <br>
             <md-input-container flex>
                 <label>Duración en meses</label>
                 <input type="number" ng-model="duracionMeses">
             </md-input-container>
-            <br>
             <md-input-container flex>
                 <label>Denominación</label>
                 <input type="text" ng-model="denominacion">
             </md-input-container>
-            <br>
             <md-input-container flex>
                 <label>Resumen proyecto</label>
                 <input type="text" ng-model="resumenProyecto">
             </md-input-container>
-            <br>
             <md-input-container flex>
                 <label>Problemática del cliente</label>
                 <input type="text" ng-model="problematicaCliente">
             </md-input-container>
-        </div>
-
-        <div  class="para2" id="cajaNueva">
             <md-input-container flex>
                 <label>Solución GFI</label>
                 <input type="text" ng-model="solucionGfi">
             </md-input-container>
-            <br>
             <md-input-container flex>
                 <label>Tecnologías</label>
                 <md-select ng-model="tecnologias">
@@ -86,17 +72,13 @@
                     </md-option>
                 </md-select>
             </md-input-container>
-            <br>
             <md-input-container flex>
                 <label>FTE Totales</label>
                 <input type="number" ng-model="fteTotales">
             </md-input-container>
-            <br>   
             <md-input-container flex>
                 <label>Imagen del proyecto(cat)</label>  
             </md-input-container>
-            <br>
-            <!-- CUIDADO RADIO NO SE SI FUNCIONARÁ -->   
             <md-input-container flex>
                 <label>Existe certificado del cliente</label>
                 <md-radio-group ng-model="certificado">
@@ -104,12 +86,10 @@
                     <md-radio-button value="si"> Sí </md-radio-button>
                 </md-radio-group>
             </md-input-container>
-            <br>
             <md-input-container flex>
                 <label>Registros de Pedido asociados a la referencia</label>
                 <input type="text" ng-model="regPedidoAsociadoReferencia">
             </md-input-container>
-            <br>
             <md-input-container flex="">
                 <label>Responsable Comercial</label>
                 <md-select ng-model="responsableComercial"> 
@@ -117,8 +97,7 @@
                         {{ responsableComercial.nombre }}
                     </md-option>
                 </md-select>
-            </md-input-container>
-            <br>    
+            </md-input-container>  
             <md-input-container flex>
                 <label>Responsable Técnico</label>
                 <md-select ng-model="responsableTecnico">
@@ -126,17 +105,31 @@
                         {{ responsableTecnico.nombre }}
                     </md-option>
                 </md-select>
-            </md-input-container>  
-            <br>    
+            </md-input-container>    
             <md-input-container flex>
                 <label>Código Qr</label>
                 <input ng-model="codigoQr">
             </md-input-container>
-            <br> 
+            </div>           
         </div>
-    </div>
     <div class="contenedorBoton">
         <md-button class=botonesApp type="button" ng-click="crear()">Aceptar</md-button>
         </div>
         </md-content>
-</section> 
+    
+    <!--<md-content class="layout-padding">
+        <form name="userForm" class="ng-pristine ng-valid ng-valid-required ng-valid-pattern ng-valid-md-maxlength">
+            <div class="layout-sm-column layout-row">
+                <label for="select_425" class>Cliente</label>
+                <md-input-container class="flex md-input-has-value">
+                    <md-select ng-model="cliente" class="ng-pristine ng-valid ng-touched" tabindex="0" aria-disabled="false" role="combobox" aria-expanded="false" id="select_425" aria-invalid="false" aria-label="Cliente">
+                        <md-select-value class="md-select-value" id="select_value_label_414">
+                            <span>
+                                prueba
+                            </span>
+                        <span class="md-select-icon" aria-hidden="true"></span></md-select-value></md-select>
+                </md-input-container>
+                    </div>
+        </form>
+    </md-content>-->
+</section>
