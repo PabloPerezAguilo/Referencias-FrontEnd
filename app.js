@@ -96,7 +96,7 @@ app.config(function($routeProvider) {
 	})
     .when('/alta', {
         templateUrl: 'modulos/altaUsuario/altaUsuario.html',
-        controller: 'controladorAltaUsuario'
+        controller: 'controladorAltaUsuario as ctrl'
     })
     .when('/nueva', {
         templateUrl: 'modulos/nuevaReferencia/nuevaReferencia.html',

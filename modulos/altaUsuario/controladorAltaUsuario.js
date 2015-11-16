@@ -1,29 +1,36 @@
 
-app.controller('controladorAltaUsuario', function(servicioRest, config, $scope, $http, $rootScope, $timeout, $q, $log,$mdDialog) {
+app.controller('controladorAltaUsuario', function(servicioRest, config, $scope, $http, $rootScope, $timeout, $q, $log,$mdDialog, $interval) {
  
-    $scope.title = "";
-    $scope.descripcion = "";
-    var self = this;
-    self.usua = [];
+   $scope.title = "";
+   $scope.descripcion = "";
+    var self = this,  j= 0, counter = 0;
+    /*self.usua = [];*/
     $scope.mensaje='';
+    $scope.activado = self.activated;
     
-    $scope.miUsuarioSeleccionado = null;
+    
+   /* $scope.miUsuarioSeleccionado = null;
     servicioRest.getLDAP().then(
             function(response) {
                 $scope.usuarios = response;
                 self.usua = response;
                 self.repos = loadAll();
                 console.log("Ldap Cargado");
-            });
-    $scope.ordenadoPor = "usuario";
-    
-    $scope.setValue = function (usuario) {
-        $scope.miUsuarioSeleccionado = usuario;
-    };
+                $scope.activado = false;
+                toggleActivation();
+                
+            }).catch(function(err) {
+            //Debemos tratar el error mostrando un mensaje
+				console.log("error");        
+            //$scope.title = "ADVERTENCIA";
+            $scope.descripcion = "Ldap No cargado";
+            $scope.mensaje='';
+            showAlert();
+			});  */
     
     $scope.crear = function () {
         console.log("guardando usuario en nuestra base de datos...");
-        $scope.usuario = {"name":$scope.item.nick, "role": $scope.role};
+        $scope.usuario = {"name":$scope.usuarios[$scope.posicionEnArray].nick, "role": $scope.role};
         console.log($scope.usuario);
         servicioRest.postUsuario($scope.usuario)
             .then(function(data) {   
@@ -33,34 +40,95 @@ app.controller('controladorAltaUsuario', function(servicioRest, config, $scope, 
         }).catch(function(err) {
             //Debemos tratar el error mostrando un mensaje
 				console.log("error");
-            	$scope.title = "ADVERTENCIA";
+            	//$scope.title = "ADVERTENCIA";
             $scope.descripcion = "Usuario ya existente";
             $scope.mensaje='';
             showAlert();
-			});
-        
+			});        
     };
       
-    /** añadido oscar*/
-    
-    
+    /*Autocomplete*/ 
+    $scope.miUsuarioSeleccionado = null 
+    servicioRest
+		.getLDAP()
+		.then(function(response) {
+		$scope.usuarios = response;
+		cadenaUsuarios();
+		$scope.arrayDatos = cargarDatos();
+		console.log("Ldap Cargado");
+        $scope.activado = false;
+        toggleActivation();
+	})
+		.catch(function(err) {
+		 $scope.mensaje='error de cargar ldap';
+	});
+	
+	$scope.cadena = "";
+	self.pos = "";
+	self.querySearch = querySearch;
+	self.selectedItemChange = selectedItemChange;
 
-    self.simulateQuery = false;
-    self.isDisabled    = false;
-    
-    //self.repos         = loadAll();
+	// Busca el texto
+	function querySearch(text) {
+		var results = text ? $scope.arrayDatos.filter(filtrar(text)) : $scope.arrayDatos, deferred;
+		if (self.simulateQuery) {
+			deferred = $q.defer();
+			$timeout(function() {
+				deferred.resolve(results);
+			}, Math.random() * 1000, false);
+			return deferred.promise;
+		} else {
+			return results;
+		}
+	};
+
+	// Filtrar palabras según texto
+	function filtrar(texto) {
+		var lowercaseQuery = angular.lowercase(texto);
+		return function(state) {
+			$scope.texto = state.value.substring(state.value.indexOf("*"), 0);
+			return ($scope.texto.indexOf(lowercaseQuery) === 0 || $scope.texto.search(lowercaseQuery) > 0);
+		};
+	};
+
+	// Elemento seleccionado
+	function selectedItemChange(item) {
+		if (JSON.stringify(item) !== undefined) {
+			var pos = item.value.substring(item.value.length, item.value.indexOf("*") + 1);
+			$scope.posicionEnArray = pos;
+            console.log(item);
+		}
+	};
+
+	// Carga de datos inicial
+	function cargarDatos() {
+		// Convertimos los datos a una sola cadena
+		var allStates = $scope.cadena;
+		return allStates.split(/, +/g).map(function(state) {
+			return {
+				value: state.toLowerCase(),
+				display: state.substring(state.indexOf("*"), 0)
+			};
+		});
+	};
+
+	// Convertir a una sola cadena
+	function cadenaUsuarios() {
+		for (var i = 0; i < $scope.usuarios.length; i++) {
+			$scope.cadena += $scope.usuarios[i].usuario + ' (' + $scope.usuarios[i].nick + ') ' + '*' + i + ', ';
+		}
+	};
+	
+    /*self.simulateQuery = false;
+    self.isDisabled    = false;  
     self.querySearch   = querySearch;
     self.selectedItemChange = selectedItemChange;
-    self.searchTextChange   = searchTextChange;
+    self.buscarenTexto   = buscarenTexto;
 
-    // ******************************
-    // Internal methods
-    // ******************************
+    
 
-    /**
-     * Search for repos... use $timeout to simulate
-     * remote dataservice call.
-     */
+    //Query que busca en repos con $timeout to simulate     
+     
     function querySearch (query) {
       var results = query ? self.repos.filter( createFilterFor(query) ) : self.repos,
           deferred;
@@ -72,30 +140,25 @@ app.controller('controladorAltaUsuario', function(servicioRest, config, $scope, 
         return results;
       }
     }
-
-    function searchTextChange(text) {
-      $log.info('Text changed to ' + text);
+    function buscarenTexto(text) {
+      $log.info('Texto seleccionado: ' + text);
     }
 
     function selectedItemChange(item) {
-      $log.info('Item changed to ' + JSON.stringify(item));
+      $log.info('Item seleccionado: ' + JSON.stringify(item));
         $scope.item = item;
     }
 
-    /**
-     * Build `components` list of key/value pairs
-     */
+    //construye los componentes de la lista en un valor.
     function loadAll() {
       var repos = self.usua;
       return repos.map( function (repo) {
-          repo.value = repo.usuario.toLowerCase();              
+          repo.value = repo.usuario.toLowerCase(),repo.nick.toLowerCase();              
         return repo;
       });
     }
-
-    /**
-     * Create filter function for a query string
-     */
+    
+    //creamos la funcion para el query
     function createFilterFor(query) {
       var lowercaseQuery = angular.lowercase(query);
 
@@ -103,7 +166,7 @@ app.controller('controladorAltaUsuario', function(servicioRest, config, $scope, 
         return (item.value.indexOf(lowercaseQuery) === 0);
       };
 
-    }
+    }*/
     
     $scope.data = {
       group1 : 'Administrador',
@@ -129,37 +192,55 @@ app.controller('controladorAltaUsuario', function(servicioRest, config, $scope, 
     //Alerta del dialogo//
     $scope.status = '  ';
 
-    /*$scope.showAlert = function(ev) {
-    // Appending dialog to document.body to cover sidenav in docs app
-    // Modal dialogs should fully cover application
-    // to prevent interaction outside of dialog
-    $mdDialog.show(
-      $mdDialog.alert()
-        .parent(angular.element(document.querySelector('#popupContainer')))
-        .clickOutsideToClose(true)
-        .title($scope.title)
-        .content($scope.descripcion)
-        .ariaLabel('Alert Dialog Demo')
-        .ok('Salir')
-        .targetEvent(ev)
-    );
-  };*/
-    
     function showAlert(ev){
         $mdDialog.show(
-      $mdDialog.alert()
-        .parent(angular.element(document.querySelector('#popupContainer')))
-        .clickOutsideToClose(true)
-        .title($scope.title)
-        .content($scope.descripcion)
-        .ariaLabel('Alert Dialog Demo')
-        .ok('Aceptar')
-        .targetEvent(ev)
+        $mdDialog.alert()
+            .parent(angular.element(document.querySelector('#popupContainer')))
+            .clickOutsideToClose(true)
+            .title($scope.title)
+            .content($scope.descripcion)
+            .ariaLabel('Alert Dialog Demo')
+            .ok('Aceptar')
+            .targetEvent(ev)
         );
     }
+    
+    
+    self.modes = [ ];
+    self.activated = true;
+    self.determinateValue = 100;
 
+      //Apaga o enciende el loader
+       
+    function toggleActivation() {
+          if ( !$scope.activated ) self.modes = [ ];
+          if (  $scope.activated ) j = counter = 0; 
+    }
+    self.toggleActivation = function() {
+          if ( !self.activated ) self.modes = [ ];
+          if (  self.activated ) j = counter = 0;
+      };
+
+      // Se mueve cada 100ms sin parar.
+      $interval(function() {
+
+        // Incrementa el moviento de loader
+
+        self.determinateValue += 1;
+        if (self.determinateValue > 100) {
+          self.determinateValue = 100;
+        }
+
+        // Incia la animación en 5
+
+        if ( (j < 5) && !self.modes[j] && self.activated ) {
+          self.modes[j] = 'indeterminate';
+        }
+        if ( counter++ % 4 == 0 ) j++;
+
+      }, 100, 0, true);
+    
  
-   
 });    
 	
    
