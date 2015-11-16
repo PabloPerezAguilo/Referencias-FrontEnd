@@ -124,7 +124,6 @@ footer #lineaFooter {
 .botonesApp {
   background-color: #ee941a;
   font-size: 13px;
-  color: #ececec;
   text-align: center; }
 
 /* --------------------------- ESTILOS LOGIN ----------------------------- */
@@ -301,18 +300,31 @@ md-content {
     margin-top: 40px;*/ }
 
 .para1 {
-  margin-left: 90px; }
-
-.para2 {
-  margin-right: 90px; }
+  margin-left: 110px;
+  margin-right: 110px; }
 
 .contenedorBoton {
-  width: 100%;
+  width: 95%;
   text-align: center;
-  bottom: 35px; }
+  bottom: 0px; }
 
 md-input-container {
   padding: 1px;
   position: relative; }
+
+.fixed-size {
+  width: 150px; }
+
+md-radio-button.md-default-theme.md-checked .md-off, md-radio-button.md-checked .md-off {
+  border-color: #ee941a; }
+
+md-radio-button.md-default-theme .md-on, md-radio-button .md-on {
+  background-color: #ee941a; }
+
+md-radio-button.md-default-theme.md-checked .md-ink-ripple, md-radio-button.md-checked .md-ink-ripple {
+  color: #ee941a; }
+
+md-icon.md-default-theme, md-icon {
+  color: #ee941a; }
 
 /*# sourceMappingURL=style.css.map */
