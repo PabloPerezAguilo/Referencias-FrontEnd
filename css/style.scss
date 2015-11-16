@@ -358,7 +358,8 @@ md-input-container{
     position: relative;
 }
 .fixed-size  {
-  width: 150px;
+    width: 200px;
+    height: 40px;
 }
 md-radio-button.md-default-theme.md-checked .md-off, md-radio-button.md-checked .md-off {
     border-color: #ee941a;
