@@ -1,9 +1,9 @@
-app.controller('controladorLogin', function(servicioRest, config, $scope, $http, $location, $rootScope) {
+app.controller('controladorLogin', function(servicioRest, config, $scope, $http, $location, $rootScope, $mdDialog) {
     $scope.user={        
         name:'',
         password:'' 
     };
-    $scope.error;
+    $rootScope.error;
     
 	$scope.login = function () {
         
@@ -52,15 +52,14 @@ app.controller('controladorLogin', function(servicioRest, config, $scope, $http,
 
 			})
 			.catch(function(err) {
-             //Tratamos el error. fatal tratar este error: ERR_CONNECTION_REFUSED
+             //Tratamos el error.
                 console.log(err);
-
                 if(err=="Credenciales erróneas"){
-                    $scope.error="Contraseña incorrecta.";
+                    $rootScope.error="Contraseña incorrecta.";
                     
                 }else if(err=="User not found in DB"){
-                    $scope.error="El usuario no está registrado.";
-                    $scope.user={        
+                    $rootScope.error="El usuario no está registrado.";
+                    $rootScope.user={        
                         name:'',
                         password:'' 
                     };
