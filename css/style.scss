@@ -44,12 +44,11 @@ header {
 }
 
 header #titulo {
-    color:#ececec;
-    font-size:50px;
-    float:left;
-    font-family:sans-serif;   
-    margin-left: 30px;
-    margin-top: 50px;
+  color: #ececec;
+  float: left;
+  margin-top: 20px;
+    margin-left: 440px;
+    width: 40px;
 }
 
 header #logo {
@@ -57,6 +56,12 @@ header #logo {
     float: right;
     margin-top: 25px;
     margin-right: 10px;  
+}
+
+header #usuarioLogueado{
+    font-size: 10px;
+    margin-top: 20px;
+    margin-right: 300px;
 }
 
 footer {
@@ -102,6 +107,7 @@ footer #lineaFooter{
     color:#ececec;
     margin-top: 130px;
     font-family: verdana; 
+    width: 100%;
 }
 
 .textoHipervinculo {
@@ -139,7 +145,8 @@ footer #lineaFooter{
     background-color: #ee941a;
     font-size: 13px;
    // color: #ececec;
-    text-align: center;    
+    text-align: center; 
+    margin-bottom: 50px;
 }
 
 /* --------------------------- ESTILOS LOGIN ----------------------------- */
@@ -357,6 +364,7 @@ md-input-container{
     padding: 1px;
     position: relative;
 }
+
 .fixed-size  {
     width: 200px;
     height: 40px;

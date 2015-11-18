@@ -1,6 +1,11 @@
 
-app.controller('controladorAltaUsuario', function(servicioRest, config, $scope, $http, $rootScope, $timeout, $q, $log,$mdDialog) {
+app.controller('controladorAltaUsuario', function(servicioRest, config, $scope, $http, $rootScope, $timeout, $q, $log,$mdDialog,$location) {
  
+    if($rootScope.usuarioLS.role !== "ROLE_ADMINISTRADOR"){
+         $location.path('/bienvenida');
+        
+    }
+    
     $scope.title = "";
     $scope.descripcion = "";
     var self = this;

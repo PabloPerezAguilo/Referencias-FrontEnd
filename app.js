@@ -44,6 +44,13 @@ $rootScope.salir = function() {
     $location.path('/');
     // Ocultamos el menú
     $rootScope.menu=false;
+    $rootScope.menuReferencias = false;
+    $rootScope.menuReferenciasNueva = false;
+    $rootScope.menuReferenciasGestion = false;
+    $rootScope.menuReferenciasListar = false;
+    $rootScope.menuUsuarios = false;
+    $rootScope.menuUsuariosAlta = false;
+    $rootScope.menuUsuariosGestion = false;
 }
     
 function limpiarLocalStorage() {
@@ -56,6 +63,7 @@ function limpiarLocalStorage() {
     localStorage.removeItem("role");
     // Limpiamos las cabeceras de autenticación
     $http.defaults.headers.common.Authorization = 'Basic ';
+    $rootScope.usuarioLS = undefined;
     
 }
 
@@ -74,11 +82,10 @@ app.config(function($routeProvider) {
 	$routeProvider
     .when('/', {
 		templateUrl: 'modulos/login/login.html',
-		controller: 'controladorLogin'
+        controller: 'controladorLogin'
 	})
     .when('/alta', {
-        templateUrl: 'modulos/altaUsuario/altaUsuario.html',
-        controller: 'controladorAltaUsuario'
+        templateUrl: 'modulos/altaUsuario/altaUsuario.html'
     })
     .when('/nueva', {
         templateUrl: 'modulos/nuevaReferencia/nuevaReferencia.html',

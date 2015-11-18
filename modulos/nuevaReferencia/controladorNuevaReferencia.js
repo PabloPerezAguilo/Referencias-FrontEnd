@@ -1,4 +1,8 @@
-app.controller('controladorNuevaReferencia', function(servicioRest, config, $scope, $http, $rootScope) {
+app.controller('controladorNuevaReferencia', function(servicioRest, config, $scope, $http, $rootScope,$location) {
+    if($rootScope.usuarioLS.role !== "ROLE_ADMINISTRADOR" && $rootScope.usuarioLS.role !== "ROLE_MANTENIMIENTO"){
+        console.log($rootScope.usuarioLS.role);
+         $location.path('/bienvenida');
+    }
     servicioRest.getCatalogos().then(
         function(response) {
             $scope.catalogo = response;
