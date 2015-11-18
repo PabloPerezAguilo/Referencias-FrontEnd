@@ -10,10 +10,21 @@ app.controller('controladorNuevaReferencia', function(servicioRest, config, $sco
         });
     /*$scope.catalogo = {"tecnologia": [{"codigo":"","descripcion":"","entidad":""},{"codigo":"","descripcion":"","entidad":""},{"codigo":"","descripcion":"","entidad":""}], "clientes": [{"nombre":"lele","siglas":"","publico":"","alias":"","imagen":""},{"nombre":"lili","siglas":"","publico":"","alias":"","imagen":""},{"nombre":"lolo","siglas":"","publico":"","alias":"","imagen":""}]};*/
     //$scope.fechaInicio = new Date();
+    /*$scope.readURL = function (input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                $('#img_prev')
+                .attr('src', e.target.result)
+                .width(150);     // ACA ESPECIFICAN QUE TAMANO DE ANCHO QUIEREN
+                .height(150);   //  ACA ESPECIFICAN QUE TAMANO DE ALTO QUIEREN
+            };
+        reader.readAsDataURL(input.files[0]);
+        }
+    }*/
     $scope.certificado = 'si';
     $scope.crear = function () {
-        var referencia = {"_id": 11,
-                          "cliente": $scope.cliente,
+        var referencia = {"cliente": $scope.cliente,
                           "sociedad": $scope.sociedad,
                           "sectorEmpresarial": $scope.sectorEmpresarial,
                           "tipoActividad": $scope.tipoActividad,
