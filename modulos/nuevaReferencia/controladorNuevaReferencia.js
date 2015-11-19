@@ -8,20 +8,38 @@ app.controller('controladorNuevaReferencia', function(servicioRest, config, $sco
             $scope.catalogo = response;
             console.log("Catalogos Cargados");
         });
-    /*$scope.catalogo = {"tecnologia": [{"codigo":"","descripcion":"","entidad":""},{"codigo":"","descripcion":"","entidad":""},{"codigo":"","descripcion":"","entidad":""}], "clientes": [{"nombre":"lele","siglas":"","publico":"","alias":"","imagen":""},{"nombre":"lili","siglas":"","publico":"","alias":"","imagen":""},{"nombre":"lolo","siglas":"","publico":"","alias":"","imagen":""}]};*/
-    //$scope.fechaInicio = new Date();
-    /*$scope.readURL = function (input) {
+ 
+    $scope.uploadFile = function (input) {
+        console.log("entra en el evento de upload");
         if (input.files && input.files[0]) {
             var reader = new FileReader();
             reader.onload = function (e) {
-                $('#img_prev')
-                .attr('src', e.target.result)
-                .width(150);     // ACA ESPECIFICAN QUE TAMANO DE ANCHO QUIEREN
-                .height(150);   //  ACA ESPECIFICAN QUE TAMANO DE ALTO QUIEREN
-            };
-        reader.readAsDataURL(input.files[0]);
+
+                //Sets the Old Image to new New Image
+                $('#photo-id').attr('src', e.target.result);
+
+                //Create a canvas and draw image on Client Side to get the byte[] equivalent
+                var canvas = document.createElement("canvas");
+                var imageElement = document.createElement("img");
+
+                imageElement.setAttribute('src', e.target.result);
+                canvas.width = 50;
+                canvas.height = 50;
+                var context = canvas.getContext("2d");
+                context.drawImage(imageElement, 0, 0);
+                $scope.base64Image = canvas.toDataURL("image/jpeg");
+
+                //Removes the Data Type Prefix 
+                //And set the view model to the new value
+                $scope.base64Image = $scope.base64Image.replace(/data:image\/jpeg;base64,/g, '');
+            }
+
+            //Renders Image on Page
+            reader.readAsDataURL(input.files[0]);
         }
-    }*/
+    };
+
+    
     $scope.certificado = 'si';
     $scope.crear = function () {
         var referencia = {"cliente": $scope.cliente,
@@ -35,7 +53,7 @@ app.controller('controladorNuevaReferencia', function(servicioRest, config, $sco
                           "problematicaCliente": $scope.problematicaCliente,
                           "solucionGfi": $scope.solucionGfi,
                           "fteTotales": $scope.fteTotales,
-                          "imagenProyecto": $scope.imagenProyecto,
+                          "imagenProyecto": $scope.base64Image,
                           "certificado": $scope.certificado,
                           "regPedidoAsociadoReferencia": [],
                           "responsableComercial": $scope.responsableComercial,
@@ -47,5 +65,8 @@ app.controller('controladorNuevaReferencia', function(servicioRest, config, $sco
                           "tecnologias": $scope.tecnologias
                           };
         servicioRest.postReferencia(referencia);
+        console.log("Referencia creada");
     }
+    
+    
 });

@@ -117,11 +117,10 @@
                         </md-option>
                     </md-select>
                 </md-input-container>
-                <!--<md-input-container title="Imagen del proyecto" class="fixed-size">-->
-                    <label>Imagen del proyecto(cat)</label>
-                    <input type='file' ng-click="readURL(this)"/>
-                    <img id="img_prev" src="#" alt="your image"/>
-                <!--</md-input-container>-->
+                <md-input-container title="Imagen del proyecto" >
+                    <input type="file" name="file" onchange="angular.element(this).scope().uploadFile(this)" id="photo-upload"/>
+                    <img ng-src="data:image/jpeg;base64,{{data.UserPhoto}}" id="photo-id" width="150" height="150"/>
+                </md-input-container>
                 <md-input-container title="Código QR" class="fixed-size">
                     <label>Código Qr</label>
                     <input ng-model="codigoQr">
