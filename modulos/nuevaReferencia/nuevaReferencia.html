@@ -117,18 +117,22 @@
                         </md-option>
                     </md-select>
                 </md-input-container>
-                <!--<md-input-container title="Imagen del proyecto" class="fixed-size">-->
+
+                <!--<md-input-container title="Imagen del proyecto" class="fixed-size">
                     <label>Imagen del proyecto(cat)</label>
                     <input type='file' ng-click="readURL(this)"/>
                     <img id="img_prev" src="#" alt="your image"/>
                 <!--</md-input-container>-->
-                    
-                <div>                
-                <md-input-container  title="Código QR" class="containerQR fixed-size">                
-                    <label>Código Qr</label>
-                    <input ng-model="codigoQr"/>
-                </md-input-container>    
-                <qr  text="codigoQr" version="3" error-correction-level="Q" size="60"></qr>
+                <md-input-container title="Imagen del proyecto" >
+                    <input type="file" name="file" onchange="angular.element(this).scope().uploadFile(this)" id="photo-upload"/>
+                    <img ng-src="data:image/jpeg;base64,{{data.UserPhoto}}" id="photo-id" width="150" height="150"/>
+                </md-input-container> 
+                <div>                         
+                    <md-input-container title="Código QR" class="fixed-size">
+                        <label>Código Qr</label>
+                        <input ng-model="codigoQr"/>
+                    </md-input-container>    
+                    <qr  text="codigoQr" version="3" error-correction-level="Q" size="60"></qr>
                 </div>     
                 <md-content class="contenedorBoton">
                     <md-button class=botonesApp type="button" ng-click="crear()">Aceptar</md-button>
