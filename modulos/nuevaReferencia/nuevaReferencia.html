@@ -122,14 +122,18 @@
                     <input type='file' ng-click="readURL(this)"/>
                     <img id="img_prev" src="#" alt="your image"/>
                 <!--</md-input-container>-->
-                <md-input-container title="Código QR" class="fixed-size">
+                    
+                <div>                
+                <md-input-container  title="Código QR" class="containerQR fixed-size">                
                     <label>Código Qr</label>
-                    <input ng-model="codigoQr">
-                </md-input-container>                        
-        <md-content class="contenedorBoton">
-            <md-button class=botonesApp type="button" ng-click="crear()">Aceptar</md-button>
-        </md-content>
-                </div>           
-            </div>
+                    <input ng-model="codigoQr"/>
+                </md-input-container>    
+                <qr  text="codigoQr" version="3" error-correction-level="Q" size="60"></qr>
+                </div>     
+                <md-content class="contenedorBoton">
+                    <md-button class=botonesApp type="button" ng-click="crear()">Aceptar</md-button>
+                </md-content>
+            </div>           
+        </div>
     </md-content>
 </section>

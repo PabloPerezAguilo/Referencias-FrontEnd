@@ -1,8 +1,10 @@
 app.controller('controladorNuevaReferencia', function(servicioRest, config, $scope, $http, $rootScope,$location) {
+    
     if($rootScope.usuarioLS.role !== "ROLE_ADMINISTRADOR" && $rootScope.usuarioLS.role !== "ROLE_MANTENIMIENTO"){
         console.log($rootScope.usuarioLS.role);
          $location.path('/bienvenida');
     }
+    
     servicioRest.getCatalogos().then(
         function(response) {
             $scope.catalogo = response;
@@ -22,6 +24,12 @@ app.controller('controladorNuevaReferencia', function(servicioRest, config, $sco
         reader.readAsDataURL(input.files[0]);
         }
     }*/
+    
+    $scope.codigoQr='';
+    /*if($scope.codigoQr==''){
+        $scope.qrCodeVisible="true";
+    }*/
+    
     $scope.certificado = 'si';
     $scope.crear = function () {
         var referencia = {"cliente": $scope.cliente,
@@ -48,4 +56,7 @@ app.controller('controladorNuevaReferencia', function(servicioRest, config, $sco
                           };
         servicioRest.postReferencia(referencia);
     }
+   
+    
+  
 });

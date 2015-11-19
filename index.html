@@ -23,21 +23,25 @@
 	</head>
 	<body>
 		<header>
-            <div id="titulo"><img id="namelogo" src="/sharon.png"/></div>
-            <img id="logo" src="/logo_gfi.png"/>
             
-            <div ng-show="menu" id="menu" layout layout-sm="column">
-                            <div id="usuarioLogueado" ng-show="descripcion">Usuario: {{usuarioD}} | Cargo: {{roleD}}</div>
+            <div id="logos">
+                <img id="logoSharon" src="/sharon.png"/>
+                <img id="logoGfi" src="/logo_gfi.png"/>
+            </div>
+                
+
+        </header>
+        <div ng-show="menu" id="menu" layout layout-sm="column">            
                 <data md-toolbar class="md-menu-toolbar">
                     <md-menu ng-show="menuUsuarios">
                         <md-button ng-click="$mdOpenMenu()">Usuarios</md-button>
                         <md-menu-content>
                             <md-menu-item ng-show="menuUsuariosAlta">
-                                <md-button><a class="textoHipervinculo" href="#/alta">Alta</a></md-button>
+                                <a class="textoHipervinculo" href="#/alta"><md-button>Alta</md-button></a>
                             </md-menu-item>
                             <md-menu-divider></md-menu-divider>
                             <md-menu-item ng-show="menuUsuariosGestion">
-                                <md-button><a class="textoHipervinculo" href="#/gestionusuario">Gestión</a></md-button>
+                                <a class="textoHipervinculo" href="#/gestionusuario"><md-button>Gestión</md-button></a>
                             </md-menu-item>             
                         </md-menu-content>
                     </md-menu>
@@ -46,13 +50,13 @@
                         <md-button ng-click="$mdOpenMenu()">Referencias</md-button>
                         <md-menu-content>
                             <md-menu-item ng-show="menuReferenciasListar">
-                                <md-button><a class="textoHipervinculo" href="#/listar">Listar</a></md-button>
+                                <a class="textoHipervinculo" href="#/listar"><md-button>Listar</md-button></a>
                             </md-menu-item>
                             <md-menu-item ng-show="menuReferenciasNueva">
-                                <md-button><a class="textoHipervinculo" href="#/nueva">Nueva</a></md-button>
+                                <a class="textoHipervinculo" href="#/nueva"><md-button>Nueva</md-button></a>
                             </md-menu-item>
                             <md-menu-item ng-show="menuReferenciasGestion">
-                                <md-button><a class="textoHipervinculo" href="#/gestionreferenncia">Gestión</a></md-button>
+                                <a class="textoHipervinculo" href="#/gestionreferenncia"><md-button>Gestión</a></md-button>
                             </md-menu-item>
                         </md-menu-content>
                     </md-menu>
@@ -61,11 +65,9 @@
                         <md-button ng-click="salir()">Salir</md-button>  
                         <md-menu-content></md-menu-content>
                     </md-menu>
-                </data> 
-
+                </data>
+            <div id="usuarioLogueado" ng-show="descripcion">Usuario: {{usuarioD}} | Cargo: {{roleD}}</div>
             </div>
-            
-        </header>
         
         <div ng-view>            
          
@@ -87,7 +89,8 @@
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.6/angular-messages.min.js"></script>
         <script src="https://cdn.gitcdn.xyz/cdn/angular/bower-material/v1.0.0-rc2/angular-material.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-material-icons/0.6.0/angular-material-icons.min.js"></script>
-       
+        
+ 
 
 		<!-- endbuild -->       
 		<!-- build:JS -->
@@ -100,6 +103,9 @@
         <script src="modulos/bienvenida/controladorBienvenida.js"></script>
 		<!-- endbuild -->
 		<script src="js/AES.min.js"></script>
+        <script type="text/javascript" src="js/qrcode.js"></script>
+        <script type="text/javascript" src="js/angular-qr.min.js"></script>
+       
 
 	</body>
 </html> 
