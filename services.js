@@ -193,24 +193,6 @@ function ServicioREST($http, $q, $rootScope, config, $mdDialog) {
 
 		return promise;
     }
-    
-    function postImagen(file){
-        var defered = $q.defer();
-		var promise = defered.promise;
-		$http({
-			method: 'POST',
-			url: url + '/imagen',
-			data: file
-		})
-		.success(function(data, status, headers, config) {
-			defered.resolve(data);
-		})
-		.error(function(data, status, headers, config) {
-			tratarError(data, status, defered);
-		});
-
-		return promise; 
-    }
 		
 	return {
 		getReferencias: getReferencias,
@@ -222,7 +204,6 @@ function ServicioREST($http, $q, $rootScope, config, $mdDialog) {
         getCatalogos: getCatalogos,
         postUsuario: postUsuario,
         postLogin : postLogin,
-        popupError : popupError,
-        postImagen : postImagen
+        popupError : popupError
 	}
 }

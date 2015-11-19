@@ -89,7 +89,7 @@ app.config(function($routeProvider) {
     })
     .when('/nueva', {
         templateUrl: 'modulos/nuevaReferencia/nuevaReferencia.html',
-        controller: 'controladorNuevaReferencia'
+        controller: 'controladorNuevaReferencia as ctrl'
     })
     .when('/bienvenida', {
         templateUrl: 'modulos/bienvenida/bienvenida.html',
