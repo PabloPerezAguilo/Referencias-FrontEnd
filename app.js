@@ -85,7 +85,8 @@ app.config(function($routeProvider) {
         controller: 'controladorLogin'
 	})
     .when('/alta', {
-        templateUrl: 'modulos/altaUsuario/altaUsuario.html'
+        templateUrl: 'modulos/altaUsuario/altaUsuario.html',
+        controller: 'controladorAltaUsuario as ctrl'
     })
     .when('/nueva', {
         templateUrl: 'modulos/nuevaReferencia/nuevaReferencia.html',

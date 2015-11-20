@@ -1,8 +1,10 @@
 app.controller('controladorNuevaReferencia', function(servicioRest, config, $scope, $http, $rootScope,$location,$mdDialog,$interval) {
+    
     if($rootScope.usuarioLS.role !== "ROLE_ADMINISTRADOR" && $rootScope.usuarioLS.role !== "ROLE_MANTENIMIENTO"){
         console.log($rootScope.usuarioLS.role);
          $location.path('/bienvenida');
     }
+    
     $scope.title = "";
     $scope.descripcion = "";
     var self = this, j= 0, counter = 0;
@@ -49,19 +51,7 @@ app.controller('controladorNuevaReferencia', function(servicioRest, config, $sco
             reader.readAsDataURL(input.files[0]);
         }
     }
-            console.log("bien");        
-            $scope.title = "ADVERTENCIA";
-            $scope.descripcion = "esto va muy bien";
-            $scope.mensaje='';
-            showAlert();
-            }).catch(function(err) {
-            //Debemos tratar el error mostrando un mensaje
-				console.log("error");        
-            $scope.title = "ADVERTENCIA";
-            $scope.descripcion = "Catalogos No cargado";
-            $scope.mensaje='';
-            showAlert();
-			});  
+            
         
     $scope.codigoQr='';
     /*if($scope.codigoQr==''){
@@ -69,7 +59,11 @@ app.controller('controladorNuevaReferencia', function(servicioRest, config, $sco
     }*/
 
     $scope.certificado = 'si';
-    $scope.crear = function () {
+    $scope.mensajeEstado='';
+    
+    
+    /*POR AHORA DUPLICO CÓDIGO MÁS ADELANTE FILTRAMOS LA LLAMADA!!!  */
+    $scope.crearBorrador = function () {
         var referencia = {"cliente": $scope.cliente,
                           "sociedad": $scope.sociedad,
                           "sectorEmpresarial": $scope.sectorEmpresarial,
@@ -94,7 +88,37 @@ app.controller('controladorNuevaReferencia', function(servicioRest, config, $sco
                           };
         servicioRest.postReferencia(referencia);
         console.log("Referencia creada");
-    }   
+        $scope.mensajeEstado='Referencia creada en modo borrador.';
+    }  
+    
+    $scope.crearPendiente = function () {
+        var referencia = {"cliente": $scope.cliente,
+                          "sociedad": $scope.sociedad,
+                          "sectorEmpresarial": $scope.sectorEmpresarial,
+                          "tipoActividad": $scope.tipoActividad,
+                          "tipoProyecto":$scope.tipoProyecto,
+                          "fechaInicio": $scope.fechaInicio,
+                          "denominacion": $scope.denominacion,
+                          "resumenProyecto": $scope.resumenProyecto,
+                          "problematicaCliente": $scope.problematicaCliente,
+                          "solucionGfi": $scope.solucionGfi,
+                          "fteTotales": $scope.fteTotales,
+                          "imagenProyecto": $scope.imagenProyecto,
+                          "certificado": $scope.certificado,
+                          "regPedidoAsociadoReferencia": [],
+                          "responsableComercial": $scope.responsableComercial,
+                          "responsableTecnico": $scope.responsableTecnico,
+                          "creadorReferencia": $rootScope.usuarioLS.name,
+                          "codigoQr": $scope.codigoQr,
+                          "estado": "pendiente",
+                          "duracionMeses": $scope.duracionMeses,
+                          "tecnologias": $scope.tecnologias
+                          };
+        servicioRest.postReferencia(referencia);
+        console.log("Referencia creada");
+        $scope.mensajeEstado='Referencia creada pendiente de validar.';    
+    } 
+    
     
     /*-------AUTOCOMPLETE--------*/
 	$scope.cadena = "";
@@ -111,6 +135,7 @@ app.controller('controladorNuevaReferencia', function(servicioRest, config, $sco
     self.cancel = function($event) {
       $mdDialog.cancel();
     };
+
     self.finish = function($event) {
       $mdDialog.hide();
     };
@@ -128,6 +153,7 @@ app.controller('controladorNuevaReferencia', function(servicioRest, config, $sco
 			return results;
 		}
 	};
+
     function querySearchT(text2) {
 		var resultado = text2 ? $scope.arrayDatos2.filter(filtrarT(text2)) : $scope.arrayDatos2, deferred;
 		if (self.simulateQuery) {
@@ -149,6 +175,7 @@ app.controller('controladorNuevaReferencia', function(servicioRest, config, $sco
 			return ($scope.texto.indexOf(lowercaseQuery) === 0 || $scope.texto.search(lowercaseQuery) > 0);
 		};
 	};
+
     function filtrarT(texto2) {
 		var lowercaseQuery = angular.lowercase(texto2);
 		return function(ro) {
@@ -165,6 +192,7 @@ app.controller('controladorNuevaReferencia', function(servicioRest, config, $sco
             console.log(item);
 		}
 	};
+
     function selectedItemChangeT(item2) {
 		if (JSON.stringify(item2) !== undefined) {
 			var posT = item2.value.substring(item2.value.length, item2.value.indexOf("*") + 1);
@@ -172,6 +200,7 @@ app.controller('controladorNuevaReferencia', function(servicioRest, config, $sco
             console.log(item2);
 		}
 	};
+
 
    // Carga de datos inicial
 	function cargarDatosClientes() {
@@ -184,6 +213,7 @@ app.controller('controladorNuevaReferencia', function(servicioRest, config, $sco
 			};
 		});
 	};
+
     function cargarDatosTecnologia() {
 		// Convertimos los datos a una sola cadena
 		var allStatesT = $scope.cadenaT;
@@ -194,30 +224,22 @@ app.controller('controladorNuevaReferencia', function(servicioRest, config, $sco
 			};
 		});
 	};
+
     // Convertir a una sola cadena
 	function cadenaClientes() {
 		for (var i = 0; i < $scope.catalogo.clientes.length; i++) {
 			$scope.cadena += $scope.catalogo.clientes[i].nombre + ' (' + $scope.catalogo.clientes[i].siglas + ') ' + '*' + i + ', ';
 		}
 	};
+
     function cadenaTecnologia() {
 		for (var p = 0; p < $scope.catalogo.tecnologia.length; p++) {
 			$scope.cadenaT += $scope.catalogo.tecnologia[p].codigo + ' (' + $scope.catalogo.tecnologia[p].descripcion + ') ' + '*' + p + ', ';
 		}
 	};		
 
-     $scope.status = '  ';
+  
 
-    function showAlert(ev){
-        $mdDialog.show(
-        $mdDialog.alert()
-            .parent(angular.element(document.querySelector('#popupContainer')))
-            .clickOutsideToClose(true)
-            .title($scope.title)
-            .content($scope.descripcion)
-            .ariaLabel('Alert Dialog Demo')
-            .ok('Aceptar')
-            .targetEvent(ev)
-        );
-    }  
+    
+
 });

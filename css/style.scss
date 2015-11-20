@@ -31,6 +31,7 @@ body {
     height: 31px;
     width: 100%;
     background-color:#ececec;
+    font-family: verdana;
 }
 
 /* ------------------------------- CABECERA Y PIE ---------------------- */
@@ -436,5 +437,15 @@ md-icon.md-default-theme, md-icon {
 }
 #cajon2{
     float:left;
+}
+#botonesCrear{
+    margin-left: 420px;
+}
+#mensajeEstado{  
+    font-family: verdana;
+    font-size: 12px;
+    color:#ee941a; 
+    text-align: center; 
+    font-weight: bold;
 }
 

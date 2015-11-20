@@ -1,83 +1,35 @@
-<!--section ng-controller="controladorAltaUsuario">
-    <h1>Introduzca el nombre del usuario que quiere dar de alta y el rol que desea asignarle</h1>
-    <div id="listaUsuarios">
-      <input type="text" id="cajaFiltro" placeholder="Buscar..." ng-model="filtro"/>
-      <select ng-model="ordenadoPor">
-        <option value="usuario">Por Nombre</option>
-        <option value="nick">Por Nick</option>
-        <option value="mail">Por e-mail</option>
-      </select>
-      <ul id="usuarios_ul">
-        <li type="radio" ng-repeat="usuario in usuarios | filter:filtro | orderBy: ordenadoPor" ng-click="setValue(usuario)">
-            Nombre: {{usuario.usuario}}<br/>
-            Nick: {{usuario.nick}}<br/>
-            Correo: {{usuario.mail}}
-        </li>
-        <hr>
-      </ul>
-        <br>
-      <span>Numero total de usuarios: {{usuarios.length}}</span>
-          <hr>
-          <span>Usuario seleccionado:</span>
-        <input type="text" ng-model="miUsuarioSeleccionado.usuario" />
-    </div>
-    <div id="listaRoles">
-        <p>Rol:</p>
-        <br>
-        <input type="radio" ng-model="role" value="administrador" checked>Administrador
-        <br>
-        <input type="radio" ng-model="role" value="mantenimiento">Mantenimiento
-        <br>
-        <input type="radio" ng-model="role" value="validador">Validador
-        <br>
-        <input type="radio" ng-model="role" value="consultor">Consulta
-     </div>
-        <button class="boton" type="button" ng-click="crear()" >Crear</button>
-</section-->
-
-<div ng-controller="controladorAltaUsuario as ctrl" layout="column"class="md-padding dialogdemoBasicUsage" id="popupContainer" ng-cloak="">
+<div layout="column"class="md-padding dialogdemoBasicUsage" id="popupContainer" ng-cloak="">
+     <h1 class="cabeceraPagina">ALTA DE USUARIO</h1>
   <md-content layout-padding layout="column">
     <form ng-submit="$event.preventDefault()">
       <p>Seleccione <small> USUARIO </small></p>
         <br>
-      <md-autocomplete
-          ng-model="miUsuarioSeleccionado"
-          ng-disabled="ctrl.isDisabled"
-          md-no-cache="ctrl.noCache"
-          md-selected-item="ctrl.selectedItem"
-          md-search-text-change="ctrl.searchTextChange(ctrl.searchText)"
-          md-search-text="ctrl.searchText"
-          md-selected-item-change="ctrl.selectedItemChange(item)"
-          md-items="item in ctrl.querySearch(ctrl.searchText)"
-          md-item-text="item.usuario"
-          md-min-length="3"
-          placeholder="Seleccione por nombre de usuario o nick"
-          md-menu-class="autocomplete-custom-template"
-           >
-        <md-item-template>
-          <span class="item-title">
-            <!--md-icon md-svg-icon="img/icons/octicon-repo.svg"></md-icon-->
-            <span> {{item.usuario}} </span> |
-          </span>
-          <span class="item-metadata">
-            <span class="item-metastat">
-              <strong>{{item.nick}}</strong>
-            </span>
-            <!--span class="item-metastat">
-              <strong>{{item.mail}}</strong> Mail
-            </span-->
-          </span>
-        </md-item-template>
-      </md-autocomplete>
+     <md-autocomplete pattern="[a-zA-Z]+"
+						 md-selected-item="ctrl.selectedItem"
+						 md-search-text-change="ctrl.searchTextChange(ctrl.searchText)"
+						 md-search-text="ctrl.searchText"
+						 md-selected-item-change="ctrl.selectedItemChange(item)"
+						 md-items="item in ctrl.querySearch(ctrl.searchText)"
+						 md-item-text="item.display"
+						 md-min-length="3"
+						 placeholder="Buscar usuario por nombre o nick"
+						 ng-disabled="permisoEscritura"
+						 ng-maxlength="13"
+						 class="fondoCuerpo margenBt20 sinBorde">
+			<md-item-template>
+				<span md-highlight-text="ctrl.searchText" md-highlight-flags="^i">{{item.display}}</span>
+			</md-item-template>
+		</md-autocomplete>
     </form>
   </md-content>
+    <div layout="row" layout-sm="column" layout-align="space-around">    
+    <md-progress-circular class="md-warn md-hue-3" md-mode="{{ctrl.modes[3]}}" md-diameter="70"></md-progress-circular>   
+    </div>
    <md-content layout-padding layout="column">
     <div class="radioButtondemoBasicUsage">
   <form ng-submit="submit()" ng-cloak="">
-    <p>Selected Value: <span class="radioValue">{{ role }}</span> </p>
-
-    <md-radio-group ng-model="role">
-
+    <p>Rol seleccionado: <span class="radioValue">{{ role }}</span> </p>
+      <md-radio-group ng-model="role">
       <md-radio-button value="administrador" class="md-primary" checked>Administrador</md-radio-button>
       <md-radio-button value="validador"> Validador </md-radio-button>
       <md-radio-button value="consultor"> Consultor </md-radio-button>
@@ -89,7 +41,6 @@
   </md-content>  
     <p>{{mensaje}}</p>
     <form class="dialog-demo-content" layout="row" layout-sm="column" layout-wrap="" layout-align=" center center">
-      <md-button class="md-raised" ng-click="crear()">CREAR USUARIO</md-button>   
+      <md-button class="botonesApp" ng-click="crear()">CREAR USUARIO</md-button>   
     </form>    
 </div>
-
