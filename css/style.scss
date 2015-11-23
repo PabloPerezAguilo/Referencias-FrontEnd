@@ -332,6 +332,13 @@ ul {
     left: 7px;
     font-size: 14px;
     opacity: 0.54; 
+    border-color: #ee941a;
+    
+    
+}
+
+label{
+    color: #ee941a; 
 }
 
 .autocompletedemoCustomTemplate .autocomplete-custom-template li {
@@ -448,4 +455,25 @@ md-icon.md-default-theme, md-icon {
     text-align: center; 
     font-weight: bold;
 }
+md-input-container.md-default-theme:not(.md-input-invalid).md-input-focused .md-input, md-input-container:not(.md-input-invalid).md-input-focused .md-input{
+    border-color: #ee941a;
+}
 
+md-input-container.md-default-theme:not(.md-input-invalid).md-input-has-value label, md-input-container:not(.md-input-invalid).md-input-has-value label{
+    color: #ee941a;    
+}
+
+md-input-container.md-default-theme:not(.md-input-invalid).md-input-focused label, md-input-container:not(.md-input-invalid).md-input-focused label {
+    color: #ee941a;
+}
+md-select:not([disabled]):focus .md-select-value {
+    border-bottom-color: #ee941a;
+    color: rgba(0,0,0,0.87);
+}
+md-input-container .md-char-counter {
+    font-size: 12px;
+    line-height: 14px;
+    overflow: hidden;
+    padding-top: 5px;
+    color: rgba(0,0,0,0.26);
+}
