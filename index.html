@@ -26,47 +26,12 @@
             
             <div id="logos">
                 <img id="logoSharon" src="/sharon.png"/>
-                <img id="logoGfi" src="/logo_gfi.png"/>
+                
             </div>
                 
 
         </header>
-        <div ng-show="menu" id="menu" layout layout-sm="column">            
-                <data md-toolbar class="md-menu-toolbar">
-                    <md-menu ng-show="menuUsuarios">
-                        <md-button ng-click="$mdOpenMenu()">Usuarios</md-button>
-                        <md-menu-content>
-                            <md-menu-item ng-show="menuUsuariosAlta">
-                                <a class="textoHipervinculo" href="#/alta"><md-button>Alta</md-button></a>
-                            </md-menu-item>
-                            <md-menu-divider></md-menu-divider>
-                            <md-menu-item ng-show="menuUsuariosGestion">
-                                <a class="textoHipervinculo" href="#/gestionusuario"><md-button>Gestión</md-button></a>
-                            </md-menu-item>             
-                        </md-menu-content>
-                    </md-menu>
-                    <md-menu-divider></md-menu-divider>  
-                    <md-menu ng-show="menuReferencias">
-                        <md-button ng-click="$mdOpenMenu()">Referencias</md-button>
-                        <md-menu-content>
-                            <md-menu-item ng-show="menuReferenciasListar">
-                                <a class="textoHipervinculo" href="#/listar"><md-button>Listar</md-button></a>
-                            </md-menu-item>
-                            <md-menu-item ng-show="menuReferenciasNueva">
-                                <a class="textoHipervinculo" href="#/nueva"><md-button>Nueva</md-button></a>
-                            </md-menu-item>
-                            <md-menu-item ng-show="menuReferenciasGestion">
-                                <a class="textoHipervinculo" href="#/gestionreferenncia"><md-button>Gestión</a></md-button>
-                            </md-menu-item>
-                        </md-menu-content>
-                    </md-menu>
-                    <md-menu-divider></md-menu-divider>  
-                    <md-menu>
-                        <md-button ng-click="salir()">Salir</md-button>  
-                        <md-menu-content></md-menu-content>
-                    </md-menu>
-                </data>
-            <div id="usuarioLogueado" ng-show="descripcion">Usuario: {{usuarioD}} | Cargo: {{roleD}}</div>
+        <div ng-show="menu" id="menu" layout layout-sm="column" ng-include="'./modulos/menu/menu.html'">            
             </div>
         
         <div ng-view>            
@@ -74,6 +39,7 @@
 		</div>
         
         <footer>
+            <img id="logoGfi" src="/logo_gfi.png"/>
              <nav>                
                 <a href="http://www.gfi.es">2015.Sharon.Agile</a>               
              </nav>       
