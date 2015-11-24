@@ -157,9 +157,7 @@
                     </md-select>
                 </md-input-container>
             </div>
-            <br>
-            <div class="contQr">                         
-                <md-input-container title="Código QR">
+            <br>                        
             <md-input-container title="Responsable comercial" class="fixed-size">
                 <label>Responsable Comercial</label>
                 <md-select ng-model="responsableComercial"> 
@@ -176,26 +174,23 @@
                     </md-option>
                 </md-select>
             </md-input-container>
-            <md-input-container title="Imagen del proyecto" >                  
-                <input class="md-raised md-primary" type="file" name="file" onchange="angular.element(this).scope().uploadFile(this)" id="photo-upload"/>    
-            </md-input-container> 
-            <img ng-src="data:image/jpeg;base64,{{data.UserPhoto}}" id="photo-id" width="150" height="150"/>         
-            <div>                         
-                <md-input-container title="Código QR" class="fixed-size">
-                    <label>Código Qr</label>
-                    <input ng-model="codigoQr"/>
-                </md-input-container>    
-                <qr  text="codigoQr" version="3" error-correction-level="Q" size="60"></qr>
-             </div>  
-            <div class="contImg">
-                <md-input-container title="Imagen del proyecto">                  
-                    <input type="file" name="file" onchange="angular.element(this).scope().uploadFile(this)" id="photo-upload"/>    
-                </md-input-container> 
-                <img ng-src="data:image/jpeg;base64,{{data.UserPhoto}}" id="photo-id" width="150" height="150"/>         
-                 
-            </div>    
-    </div>
-    <p id="mensajeEstado"> {{mensajeEstado}}</p>
+            <div layout="row" class="ImgQr">        
+                <div class="contQr">                         
+                    <md-input-container title="Código QR" class="fixed-size">
+                        <label>Código Qr</label>
+                        <input ng-model="codigoQr"/>
+                    </md-input-container>    
+                    <qr  text="codigoQr" version="3" error-correction-level="Q" size="60"></qr>
+                 </div>  
+                <div layout="row" class="contImg">
+                    <md-input-container title="Imagen del proyecto">                  
+                        <input type="file" name="file" onchange="angular.element(this).scope().uploadFile(this)" id="photo-upload"/>    
+                    </md-input-container> 
+                    <img ng-src="data:image/jpeg;base64,{{data.UserPhoto}}" id="photo-id" width="150" height="150"/>            
+                </div>
+            </div>
+  
+            <p id="mensajeEstado"> {{mensajeEstado}}</p>
             <md-content layout-align="center" id="botonesCrear">
                 <md-button class=botonesApp type="button" ng-click="crearBorrador()">Guardar (Borrador)</md-button>
                 <md-button class=botonesApp type="button" ng-click="crearPendiente()">Guardar (Pendiente)</md-button>

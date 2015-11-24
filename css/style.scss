@@ -43,7 +43,6 @@ header {
     background:#242424;
     box-shadow: 1px 1px 1px 1px #777;
 }
-
 header #logoSharon {
     max-width: 60%;
     min-width: 20%;
@@ -51,28 +50,6 @@ header #logoSharon {
     margin: auto;
     width: 400px; 
 }
-
-#usuarioLogueado{
-    font-size: 12px;
-    //margin-top: 20px;
-   // margin-right: 270px;
-    margin-left: 25px;
-    margin-top: 15px;
-    font-weight: bold;
-    text-shadow: 2px #777;
-}
-
-footer #logoGfi {
-    width: 5%;
-   // max-width: 10%;
-    min-width: 5%;
-    //margin-top: 0px;
-    float: left; 
-    margin-top: 5px;
-    margin-left: 9px;
-    top: 0;
-}
-
 footer {
     width:100%; 
     overflow:hidden; 
@@ -80,29 +57,31 @@ footer {
     position: fixed;  
     bottom: 0px;
     height: 7%;
-    clear:both; 
-    
+    clear:both;    
 }
-
+footer #logoGfi {
+    width: 5%;
+    min-width: 5%;
+    float: left;
+    margin-top: 7px;
+    margin-left: 9px;
+}
 footer nav a {
-    line-height:200px;
-    float:right;
-    display:inline-block;
-    color:#ececec;
-    padding:10px 20px;
-    line-height:normal;
-    font-size:13px;
-    font-weight:bold;
-    -webkit-transition:all 500ms ease;
-    -o-transition:all 500ms ease;
-    transition:all 500ms ease;
-}
-
+    line-height: 200px;
+    float: right;
+    display: inline-block;
+    color: #ececec;
+    padding: 20px 20px;
+    line-height: normal;
+    font-size: 11px;
+    -webkit-transition: all 500ms ease;
+    -o-transition: all 500ms ease;
+    transition: all 500ms ease; 
+    }
 footer nav a:hover {
     background:#ee941a;
     border-radius:50px;
 }
-
 footer #lineaFooter{
     box-shadow: 1px 1px 1px 1px #777;
     background:#ee941a;
@@ -113,35 +92,22 @@ footer #lineaFooter{
 }
 
 /* --------------------------- ESTILOS MENÚ ---------------------- */
-
 #menu{
-    /*position: relative;
-    color:#ececec;
-    margin-top: 130px;
-    display: block;
-     
-    //width: 50%;
-    width: 100%;*/
     font-family: verdana;
-    width:60%;
-    //min-width: 10%;
-    //max-width: 50%;
+    width:30%;
     height: auto;
     color:#242424;
     overflow:hidden; 
     background:#ee941a;
     border-radius: 0 0 20px 0 ;
-    box-shadow: 2px 2px 2px 2px #777;
-    
+    box-shadow: 2px 2px 2px 2px #777;  
 }
-
 .textoHipervinculo {
     font-size:10;
     font-family:verdana;
     color:#7E6D1D;
     text-decoration:none;
 }
-
 .textoHipervinculo:hover {
     font-size:10;
     font-family:verdana;
@@ -149,11 +115,13 @@ footer #lineaFooter{
     text-decoration:none;
     width:100%;    
 }
+.iconoLogout {
+  margin-left: 200%; }
 
-.iconoLogout{
-    
-    
-}
+.iconosMenu {
+  width: 10px;
+  height: 25px;
+  margin: auto; }
 
 /* --------------------------- ESTILOS BIENVENIDA ---------------------- */
 
@@ -180,6 +148,7 @@ footer #lineaFooter{
     text-align: center; 
     margin-bottom: 50px;
 }
+
 
 /* --------------------------- ESTILOS LOGIN ----------------------------- */
 
