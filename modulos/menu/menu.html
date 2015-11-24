@@ -1,0 +1,36 @@
+<data md-toolbar class="md-menu-toolbar">
+    <md-menu ng-show="menuUsuarios">
+        <md-button ng-click="$mdOpenMenu()">Usuarios</md-button>
+        <md-menu-content>
+            <md-menu-item ng-show="menuUsuariosAlta">
+                <a class="textoHipervinculo" href="#/alta"><md-button>Alta</md-button></a>
+            </md-menu-item>
+            <md-menu-divider></md-menu-divider>
+            <md-menu-item ng-show="menuUsuariosGestion">
+                <a class="textoHipervinculo" href="#/gestionusuario"><md-button>Gestión</md-button></a>
+            </md-menu-item>             
+        </md-menu-content>
+    </md-menu>
+    <md-menu-divider></md-menu-divider>  
+    <md-menu ng-show="menuReferencias">
+        <md-button ng-click="$mdOpenMenu()">Referencias</md-button>
+        <md-menu-content>
+            <md-menu-item ng-show="menuReferenciasListar">
+                <a class="textoHipervinculo" href="#/listar"><md-button>Listar</md-button></a>
+            </md-menu-item>
+            <md-menu-item ng-show="menuReferenciasNueva">
+                <a class="textoHipervinculo" href="#/nueva"><md-button>Nueva</md-button></a>
+            </md-menu-item>
+            <md-menu-item ng-show="menuReferenciasGestion">
+                <a class="textoHipervinculo" href="#/gestionreferenncia"><md-button>Gestión</a></md-button>
+            </md-menu-item>
+        </md-menu-content>
+    </md-menu>
+    <md-menu-divider></md-menu-divider> 
+    <md-menu>
+    </md-menu>
+</data>
+<div layout="row" class="iconosMenu">
+    <ng-md-icon title="Usuario logueado" class="iconoUser" icon="account_box" style="fill: #242424" size="25" ng-click="datosUsuarioLogueado()"></ng-md-icon>
+    <ng-md-icon title="Salir" class="iconoLogout" icon="logout" style="fill: #242424" size="25" ng-click="salir()"></ng-md-icon>
+</div>
