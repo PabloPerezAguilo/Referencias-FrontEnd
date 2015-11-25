@@ -1,10 +1,11 @@
 'use strict';
 
 var app = angular.module('ref', ['ngRoute','ngMaterial','ngMdIcons','ngMessages','ja.qr']);
-app.run(function(servicioRest, $rootScope, $http, $location) {
+app.run(function(servicioRest, $rootScope, $http, $location, $mdDialog) {
 
     
-   $rootScope.menu=false;
+    $rootScope.menu=false;   
+  
     
 	// Establecemos las cabeceras por defecto. Las cabecera Authorization se modificara cuando el usuario se loge
 	$http.defaults.headers.common['Accept'] = 'application/json, text/javascript';
@@ -38,42 +39,51 @@ app.run(function(servicioRest, $rootScope, $http, $location) {
                 });
 	};
     
-    
-$rootScope.salir = function() {
-    limpiarLocalStorage();
-    $location.path('/');
-    // Ocultamos el menú
-    $rootScope.menu=false;
-    $rootScope.menuReferencias = false;
-    $rootScope.menuReferenciasNueva = false;
-    $rootScope.menuReferenciasGestion = false;
-    $rootScope.menuReferenciasListar = false;
-    $rootScope.menuUsuarios = false;
-    $rootScope.menuUsuariosAlta = false;
-    $rootScope.menuUsuariosGestion = false;
-}
-    
-function limpiarLocalStorage() {
-    
-    $rootScope.usuarioLS="";
-    // Limpiamos el localStorage
-    localStorage.clear();
-    localStorage.removeItem("name");
-    localStorage.removeItem("password");
-    localStorage.removeItem("role");
-    // Limpiamos las cabeceras de autenticación
-    $http.defaults.headers.common.Authorization = 'Basic ';
-    $rootScope.usuarioLS = undefined;
-    
-}
 
-// Redirige a la pagina de Login si no estas logeado
-$rootScope.$on('$locationChangeStart', function(event, next, current) {
-
-    if ($rootScope.usuarioLS===undefined || $rootScope.usuarioLS === {}) {
+    $rootScope.datosUsuarioLogueado = function() {
+     
+        $mdDialog.show({
+         
+          templateUrl: 'modulos/dialogos/usuarioLogueado.html',
+          parent: angular.element(document.body),
+          clickOutsideToClose:true
+        })
+    };
+    
+    $rootScope.salir = function() {
+        limpiarLocalStorage();
         $location.path('/');
+        // Ocultamos el menú
+        $rootScope.menu=false;
+        $rootScope.menuReferencias = false;
+        $rootScope.menuReferenciasNueva = false;
+        $rootScope.menuReferenciasGestion = false;
+        $rootScope.menuReferenciasListar = false;
+        $rootScope.menuUsuarios = false;
+        $rootScope.menuUsuariosAlta = false;
+        $rootScope.menuUsuariosGestion = false;
     }
-});
+    
+    function limpiarLocalStorage() {
+
+        $rootScope.usuarioLS="";
+        // Limpiamos el localStorage
+        localStorage.clear();
+        localStorage.removeItem("name");
+        localStorage.removeItem("password");
+        localStorage.removeItem("role");
+        // Limpiamos las cabeceras de autenticación
+        $http.defaults.headers.common.Authorization = 'Basic ';
+        $rootScope.usuarioLS = undefined;
+    }
+
+    // Redirige a la pagina de Login si no estas logeado
+    $rootScope.$on('$locationChangeStart', function(event, next, current) {
+
+        if ($rootScope.usuarioLS===undefined || $rootScope.usuarioLS === {}) {
+            $location.path('/');
+        }
+    });
 
 });
 

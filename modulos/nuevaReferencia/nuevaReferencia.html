@@ -11,7 +11,7 @@
                         <md-autocomplete pattern="[a-zA-Z]+"
                             md-selected-item="ctrl.selectedItem"
                             md-search-text="ctrl.searchText"
-                            md-items="item in ctrl.querySearch(ctrl.searchText)"
+                            md-items="item in ctrl.querySearch(ctrl.searchText) | filter : cliente | limitTo : 8"
                             md-selected-item-change="ctrl.selectedItemChange(item)"
                             md-item-text="item.display"
                             md-min-length="3"
@@ -36,7 +36,7 @@
                         <md-autocomplete pattern="[a-zA-Z]+"
                             md-selected-item="ctrl.selectedItemt"
                             md-search-text="ctrl.searchTextt"
-                            md-items="item2 in ctrl.querySearchT(ctrl.searchTextt)"
+                            md-items="item2 in ctrl.querySearchT(ctrl.searchTextt) | filter : tecnologia | limitTo : 4"
                             md-selected-item-change="ctrl.selectedItemChangeT(item2)"
                             md-item-text="item2.display"
                             md-min-length="0"
@@ -158,29 +158,13 @@
                 </md-input-container>
             </div>
             <br>                        
-            <md-input-container title="Responsable comercial" class="fixed-size">
-                <label>Responsable Comercial</label>
-                <md-select ng-model="responsableComercial"> 
-                    <md-option ng-value="responsableComercial.nombre" data-ng-repeat="responsableComercial in catalogo.comercial">
-                        {{ responsableComercial.nombre }}
-                    </md-option>
-                </md-select>
-            </md-input-container>  
-            <md-input-container title="Responsable técnico" class="fixed-size">
-                <label>Responsable Técnico</label>
-                <md-select ng-model="responsableTecnico">
-                    <md-option ng-value="responsableTecnico.nombre" data-ng-repeat="responsableTecnico in catalogo.tecnico">
-                        {{ responsableTecnico.nombre }}
-                    </md-option>
-                </md-select>
-            </md-input-container>
             <div layout="row" class="ImgQr">        
                 <div class="contQr">                         
                     <md-input-container title="Código QR" class="fixed-size">
                         <label>Código Qr</label>
-                        <input ng-model="codigoQr"/>
+                        <input ng-model="codigoQr" ng-Change="QrChaged()"/>
                     </md-input-container>    
-                    <qr  text="codigoQr" version="3" error-correction-level="Q" size="60"></qr>
+                    <qr  ng-init="qrCodeVisible=False" text="codigoQr" version="3" error-correction-level="Q" size="50" ng-show="qrCodeVisible"></qr>
                  </div>  
                 <div layout="row" class="contImg">
                     <md-input-container title="Imagen del proyecto">                  
@@ -189,11 +173,12 @@
                     <img ng-src="data:image/jpeg;base64,{{data.UserPhoto}}" id="photo-id" width="150" height="150"/>            
                 </div>
             </div>
+            <br>
   
             <p id="mensajeEstado"> {{mensajeEstado}}</p>
             <md-content layout-align="center" id="botonesCrear">
                 <md-button class=botonesApp type="button" ng-click="crearBorrador()">Guardar (Borrador)</md-button>
-                <md-button class=botonesApp type="button" ng-click="crearPendiente()">Guardar (Pendiente)</md-button>
+                <md-button class=botonesApp type="button" ng-click="crearPendiente()">Terminar</md-button>
             </md-content>      
     </md-content>
 </section>
