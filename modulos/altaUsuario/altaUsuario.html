@@ -5,7 +5,6 @@
       <p>Seleccione <small> USUARIO </small></p>
         <br>
      <md-autocomplete pattern="[a-zA-Z]+"
-<<<<<<< HEAD
 						 md-selected-item="ctrl.selectedItem"
 						 md-search-text-change="ctrl.searchTextChange(ctrl.searchText)"
 						 md-search-text="ctrl.searchText"
@@ -17,24 +16,9 @@
 						 ng-disabled="permisoEscritura"
 						 ng-maxlength="13"
 						 class="fondoCuerpo margenBt20 sinBorde">
-=======
-                      md-selected-item="ctrl.selectedItem"
-                      md-search-text="ctrl.searchText"
-                      md-items="item in ctrl.querySearch(ctrl.searchText) | filter :usuario | limitTo : 8"
-                      md-selected-item-change="ctrl.selectedItemChange(item)"
-                      md-item-text="item.display"
-                      md-search-text-change="ctrl.searchTextChange(ctrl.searchText)"
-                      md-min-length="3"
-				      ng-disabled="permisoEscritura"
-                      ng-model="usuario"
-					  placeholder="Buscar usuario por nombre o nick">
->>>>>>> 711f8208409a94d8ef031d662b7a1a3e25be7f5a
 			<md-item-template>
 				<span md-highlight-text="ctrl.searchText" md-highlight-flags="^i">{{item.display}}</span>
 			</md-item-template>
-          <md-not-found>
-               No se encuenta "{{ctrl.searchText}}" en la lista.
-          </md-not-found>     
 		</md-autocomplete>
     </form>
   </md-content>

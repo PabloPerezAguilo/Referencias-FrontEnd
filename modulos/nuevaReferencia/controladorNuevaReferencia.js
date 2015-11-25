@@ -4,7 +4,7 @@ app.controller('controladorNuevaReferencia', function(servicioRest, config, $sco
         console.log($rootScope.usuarioLS.role);
          $location.path('/bienvenida');
     }
-   
+    
     $scope.title = "";
     $scope.descripcion = "";
     var self = this, j= 0, counter = 0;
@@ -16,8 +16,8 @@ app.controller('controladorNuevaReferencia', function(servicioRest, config, $sco
             cadenaTecnologia();
             console.log($scope.catalogo.clientes);
             
-            $scope.arraycliente = cargarDatosClientes(); 
-            $scope.arraytecnologia = cargarDatosTecnologia();
+            $scope.arrayDatos = cargarDatosClientes(); 
+            $scope.arrayDatos2 = cargarDatosTecnologia();
             console.log($scope.catalogo.tecnologia);
             console.log("Catalogos Cargados");
         });
@@ -153,7 +153,7 @@ app.controller('controladorNuevaReferencia', function(servicioRest, config, $sco
 
 	// Busca el texto
 	function querySearch(text) {
-		var results = text ? $scope.arraycliente.filter(filtrar(text)) : $scope.arraycliente, deferred;
+		var results = text ? $scope.arrayDatos.filter(filtrar(text)) : $scope.arrayDatos, deferred;
 		if (self.simulateQuery) {
 			deferred = $q.defer();
 			$timeout(function() {
@@ -166,7 +166,7 @@ app.controller('controladorNuevaReferencia', function(servicioRest, config, $sco
 	};
 
     function querySearchT(text2) {
-		var resultado = text2 ? $scope.arraytecnologia.filter(filtrarT(text2)) : $scope.arraytecnologia, deferred;
+		var resultado = text2 ? $scope.arrayDatos2.filter(filtrarT(text2)) : $scope.arrayDatos2, deferred;
 		if (self.simulateQuery) {
 			deferred = $q.defer();
 			$timeout(function() {
@@ -204,14 +204,11 @@ app.controller('controladorNuevaReferencia', function(servicioRest, config, $sco
 		}
 	};
 
-   function selectedItemChangeT(item2) {   
+    function selectedItemChangeT(item2) {
 		if (JSON.stringify(item2) !== undefined) {
 			var posT = item2.value.substring(item2.value.length, item2.value.indexOf("*") + 1);
-            console.log(posT);
-            console.log(item2.value.indexOf("*")+1);
 			$scope.posicionEnArray2 = posT;
-            //$scope.item2 += $scope.catalogo.tecnologia[posT].codigo;
-            //console.log(item2)
+            console.log(item2);
 		}
 	};
 

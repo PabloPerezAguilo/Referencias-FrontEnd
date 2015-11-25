@@ -17,8 +17,7 @@ time, mark, audio, video {
   border: 0;
   font-size: 100%;
   font: inherit;
-  vertical-align: baseline; 
-}
+  vertical-align: baseline; }
 
 /* HTML5 display-role reset for older browsers */
 article, aside, details, figcaption, figure,
@@ -32,22 +31,9 @@ body {
     height: 31px;
     width: 100%;
     background-color:#ececec;
-    font-family: verdana;    
+    font-family: verdana;
 }
- .md-virtual-repeat-container .md-virtual-repeat-scroller {
-    bottom: 0;
-    box-sizing: border-box;
-    left: 0;
-    margin: 0;
-    overflow-x: hidden;
-    overflow-y: hidden;
-    padding: 0;
-    position: absolute;
-    right: 0;
-    top: 0; }
-.md-virtual-repeat-container.md-orient-horizontal .md-virtual-repeat-scroller {
-  overflow-x: hidden;
-  overflow-y: hidden; }
+
 /* ------------------------------- CABECERA Y PIE ---------------------- */
 
 header {
@@ -272,13 +258,8 @@ footer #lineaFooter{
 li {
     list-style: none;
     background-color: rgba(0, 0, 0, 0.05);
-<<<<<<< HEAD
     background-image: linear-gradient( 90deg, #ee941a 10px, #EEE 10px, #EEE 11px, transparent 11px);
     padding: 10px 15px 10px 25px;
-=======
-    background-image: linear-gradient( 90deg, #EE941A 10px, #EEE 10px, #EEE 11px, transparent 11px);
-    padding: 0;
->>>>>>> 711f8208409a94d8ef031d662b7a1a3e25be7f5a
     border: 1px solid #CCC;
     box-shadow: inset 1px 1px 0 rgba(255, 255, 255, 0.5);
     margin-bottom: 5px;
@@ -292,10 +273,7 @@ ul {
     margin: 0 auto;
     padding: 0;
     max-height: 320px;
-<<<<<<< HEAD
     overflow-y: hidden;
-=======
->>>>>>> 711f8208409a94d8ef031d662b7a1a3e25be7f5a
     border: 1px solid rgba(0, 0, 0, 0.1);
     padding: 5px 5px 0 5px;
     border-left: none;
@@ -342,18 +320,7 @@ ul {
 label{
     color: #ee941a; 
 }
-.md-autocomplete-suggestions li {
-    font-size: 14px;
-    overflow: hidden;
-    padding: 0 15px;
-    line-height:30px;
-    height: 25px;
-    transition: background 0.15s linear;
-    margin: 0;
-    white-space: nowrap;
-    text-overflow: ellipsis; }
-.md-autocomplete-suggestions li:focus {
-      outline: none; }
+
 .autocompletedemoCustomTemplate .autocomplete-custom-template li {
     border-bottom: 1px solid #ccc;
     height: auto;
