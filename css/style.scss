@@ -1,0 +1,569 @@
+@charset "UTF-8";
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline; 
+}
+
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+    display: block; 
+}
+
+body {
+    line-height: 1;  
+    font-size: 17px;
+    height: 31px;
+    width: 100%;
+    background-color:#ececec;
+    font-family: verdana;    
+}
+ .md-virtual-repeat-container .md-virtual-repeat-scroller {
+    bottom: 0;
+    box-sizing: border-box;
+    left: 0;
+    margin: 0;
+    overflow-x: hidden;
+    overflow-y: hidden;
+    padding: 0;
+    position: absolute;
+    right: 0;
+    top: 0; }
+.md-virtual-repeat-container.md-orient-horizontal .md-virtual-repeat-scroller {
+  overflow-x: hidden;
+  overflow-y: hidden; }
+/* ------------------------------- CABECERA Y PIE ---------------------- */
+
+header {
+    width:auto;
+    height: 10%;
+    overflow:hidden; 
+    background:#242424;
+    box-shadow: 1px 1px 1px 1px #777;
+}
+header #logoSharon {
+    max-width: 60%;
+    min-width: 20%;
+    display: block;
+    margin: auto;
+    width: 400px; 
+}
+footer {
+    width:100%; 
+    overflow:hidden; 
+    background:#242424;
+    position: fixed;  
+    bottom: 0px;
+    height: 7%;
+    clear:both;    
+}
+footer #logoGfi {
+    width: 5%;
+    min-width: 5%;
+    float: left;
+    margin-top: 7px;
+    margin-left: 9px;
+}
+footer nav a {
+    line-height: 200px;
+    float: right;
+    display: inline-block;
+    color: #ececec;
+    padding: 20px 20px;
+    line-height: normal;
+    font-size: 11px;
+    -webkit-transition: all 500ms ease;
+    -o-transition: all 500ms ease;
+    transition: all 500ms ease; 
+    }
+footer nav a:hover {
+    background:#ee941a;
+    border-radius:50px;
+}
+footer #lineaFooter{
+    box-shadow: 1px 1px 1px 1px #777;
+    background:#ee941a;
+    bottom: 0px;
+    height:4px;
+    width:100%;
+    position: fixed;
+}
+
+/* --------------------------- ESTILOS MENÚ ---------------------- */
+#menu{
+    font-family: verdana;
+    width:30%;
+    height: auto;
+    color:#242424;
+    overflow:hidden; 
+    background:#ee941a;
+    border-radius: 0 0 20px 0 ;
+    box-shadow: 2px 2px 2px 2px #777;  
+}
+.textoHipervinculo {
+    font-size:10;
+    font-family:verdana;
+    color:#7E6D1D;
+    text-decoration:none;
+}
+.textoHipervinculo:hover {
+    font-size:10;
+    font-family:verdana;
+    color:#BFA62B;
+    text-decoration:none;
+    width:100%;    
+}
+.iconoLogout {
+  margin-left: 200%; }
+
+.iconosMenu {
+  width: 10px;
+  height: 25px;
+  margin: auto; }
+
+/* --------------------------- ESTILOS BIENVENIDA ---------------------- */
+
+#bienvenida{
+    text-align: center;
+    margin-top: 300px;   
+}
+
+/* --------------------------- ESTILOS COMUNES ----------------------------- */
+
+.cabeceraPagina {
+    margin-top: 40px;
+    margin-right: 25px;
+    text-align: right;
+    font-size: 25px;
+    height: 40px;
+    color: #ee941a;
+}
+
+.botonesApp{
+    background-color: #ee941a;
+    font-size: 13px;
+   // color: #ececec;
+    text-align: center; 
+    margin-bottom: 50px;
+}
+#dialogLogueado{
+    width: 90px;
+    height: 90px;
+    border-radius: 20px 20px 20px 20px;
+    box-shadow: 2px 2px 2px 2px #777; 
+    background-color: #ececec;
+    
+}
+
+
+/* --------------------------- ESTILOS LOGIN ----------------------------- */
+
+#contenedorLogin {
+	margin: 50px auto;
+    margin-top: 150px;
+	width: 400px;
+    font-family: sans-serif;
+    font-size: 15px;  
+}
+
+#contenedorLogin #superior {
+	background-color: #ececec;
+    color: #777;
+    margin-bottom: 14px;
+	-webkit-border-radius:20px 20px 0 0 ;
+    -moz-border-radius: 20px 20px 0 0;
+	border-radius:  20px 20px 0 0;
+	padding: 20px 26px;
+    box-shadow: 2px 2px 4px 2px #666;     
+}
+
+#contenedorLogin #superior #contenido{
+    margin-left: 20px;
+}
+
+#contenedorLogin #superior p{
+    text-align: center;
+    color: red;
+    font-size: 11px;
+}
+
+ #contenedorLogin #inferior {
+	background-color: #242424;
+	-webkit-border-radius: 0 0 20px 20px;
+	-moz-border-radius: 0 0 20px 20px;
+	border-radius: 0 0 20px 20px;
+	color: #fff;
+	font-size: 12px;
+	padding: 20px 26px;
+    box-shadow: 2px 2px 4px 2px #666; 
+}
+
+#inferior p{ 
+    margin-top: 15px;
+    float: right;
+   
+}
+
+#inferior #bt{ 
+    margin-top: 10px;
+    margin-left: 50px;
+    float: left; 
+}
+
+
+/* ---------------------------- ESTILOS ALTA USUARIOS ---------------------- */
+
+#listaUsuarios {
+    background: whitesmoke;
+    position: absolute;
+    left: 75%;
+    margin-left: -175px;
+    margin-top: 35px;
+    width: 350px;
+    padding: 15px;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+    box-shadow: inset 1px 1px 0 white;
+    max-height: 500px;
+}
+
+#listaRoles {
+    background: whitesmoke;
+    position: absolute;
+    left: 25%;
+    margin-left: -175px;
+    margin-top: 35px;
+    width: 350px;
+    padding: 15px;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+    box-shadow: inset 1px 1px 0 white;
+    max-height: 500px;
+}
+
+#cajaFiltro {
+    width: 100%;
+    box-sizing: border-box;
+    font-size: 19px;
+    padding: 5px;
+    font-family: calibri light;
+    margin-bottom: 10px;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-radius: 3px;
+    box-shadow: inset 1px 1px 0 rgba(0, 0, 0, 0.1);
+}
+
+li {
+    list-style: none;
+    background-color: rgba(0, 0, 0, 0.05);
+<<<<<<< HEAD
+    background-image: linear-gradient( 90deg, #ee941a 10px, #EEE 10px, #EEE 11px, transparent 11px);
+    padding: 10px 15px 10px 25px;
+=======
+    background-image: linear-gradient( 90deg, #EE941A 10px, #EEE 10px, #EEE 11px, transparent 11px);
+    padding: 0;
+>>>>>>> 711f8208409a94d8ef031d662b7a1a3e25be7f5a
+    border: 1px solid #CCC;
+    box-shadow: inset 1px 1px 0 rgba(255, 255, 255, 0.5);
+    margin-bottom: 5px;
+    width: 100%;
+    box-sizing: border-box;
+    cursor: pointer;
+    border-radius: 3px;
+}
+
+ul {
+    margin: 0 auto;
+    padding: 0;
+    max-height: 320px;
+<<<<<<< HEAD
+    overflow-y: hidden;
+=======
+>>>>>>> 711f8208409a94d8ef031d662b7a1a3e25be7f5a
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    padding: 5px 5px 0 5px;
+    border-left: none;
+    border-right: none;
+}
+
+#cajaFiltro:focus {
+    border: 2px solid #FAAAAA;
+    box-shadow: 0 0 10px rgba(255, 255, 0, 0.1);
+    outline: none;
+}
+
+.right {
+    float: right;
+}
+
+.radioButtondemoBasicUsage .radioValue {
+    margin-left: 5px;
+    color: #0f9d58;
+    font-weight: bold;
+    padding: 5px; 
+}
+
+.dialogdemoBasicUsage #popupContainer {
+    position: relative; 
+}
+
+.dialogdemoBasicUsage .footer, .dialogdemoBasicUsage .footer > code {
+    font-size: 0.8em;
+    margin-top: 50px; 
+}
+
+.buttondemoBasicUsage .label {
+    position: absolute;
+    bottom: 5px;
+    left: 7px;
+    font-size: 14px;
+    opacity: 0.54; 
+    border-color: #ee941a;
+    
+    
+}
+
+label{
+    color: #ee941a; 
+}
+.md-autocomplete-suggestions li {
+    font-size: 14px;
+    overflow: hidden;
+    padding: 0 15px;
+    line-height:30px;
+    height: 25px;
+    transition: background 0.15s linear;
+    margin: 0;
+    white-space: nowrap;
+    text-overflow: ellipsis; }
+.md-autocomplete-suggestions li:focus {
+      outline: none; }
+.autocompletedemoCustomTemplate .autocomplete-custom-template li {
+    border-bottom: 1px solid #ccc;
+    height: auto;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    white-space: normal; 
+}
+
+.autocompletedemoCustomTemplate .autocomplete-custom-template li:last-child {
+    border-bottom-width: 0; 
+}
+
+.autocompletedemoCustomTemplate .autocomplete-custom-template .item-title, .autocompletedemoCustomTemplate .autocomplete-custom-template .item-metadata {
+    display: block;
+    line-height: 2; 
+}
+
+.autocompletedemoCustomTemplate .autocomplete-custom-template .item-title md-icon {
+    height: 18px;
+    width: 18px; 
+}
+
+/*------------------------------ ESTILOS NUEVA REFERENCIA ---------------------------------*/
+#cajaNueva{
+    line-height: 45px;
+    font-size: 15px;
+}
+md-content{
+    display: block;
+    position: relative;
+    overflow: auto;    
+}
+#layout-padding{
+    font-size: 15px;
+    width: 36px;
+    position: relative;
+    padding: 8px; 
+}
+.para1 {
+    margin-left: 130px;
+    margin-right: 130px;
+    margin-bottom: 50px;
+}
+.contenedorBoton {
+    width:95%;
+    text-align: center;
+}
+md-input-container{
+    padding: 1px;
+    position: relative;
+}
+
+.fixed-size  {
+    width: 305px;
+    height: 40px;
+}
+.fixed-size-denominacion {
+    width: 920px;
+    height: 40px;
+}
+.fixed-size-resumen {
+    width: 460px;
+    height: 40px;
+}
+.fixed-size-solucion {
+    width: 920px;
+    height: 40px;
+}
+md-radio-button.md-default-theme.md-checked .md-off, md-radio-button.md-checked .md-off {
+    border-color: #ee941a;
+}
+md-radio-button.md-default-theme .md-on, md-radio-button .md-on {
+    background-color: #ee941a;
+}
+md-radio-button.md-default-theme.md-checked .md-ink-ripple, md-radio-button.md-checked .md-ink-ripple {
+    color: #ee941a;
+}
+md-icon.md-default-theme, md-icon {
+    color: #ee941a;
+}
+.md-default-theme .md-datepicker-open .md-datepicker-calendar-icon, .md-datepicker-open .md-datepicker-calendar-icon {
+    fill: #ee941a;
+}
+.md-default-theme .md-calendar-date.md-calendar-selected-date .md-calendar-date-selection-indicator, .md-calendar-date.md-calendar-selected-date .md-calendar-date-selection-indicator, .md-default-theme .md-calendar-date.md-focus.md-calendar-selected-date .md-calendar-date-selection-indicator, .md-calendar-date.md-focus.md-calendar-selected-date .md-calendar-date-selection-indicator {
+    background: #ee941a;
+    color: rgba(255,255,255,0.87);
+    border-color: transparent;  
+}
+.md-default-theme .md-calendar-date.md-calendar-date-today .md-calendar-date-selection-indicator, .md-calendar-date.md-calendar-date-today .md-calendar-date-selection-indicator {
+    border: 1px solid #ee941a;
+}
+.md-datepicker-input{
+    width: 230px;
+}
+#cajon1{
+    float:left;
+}
+#cajon2{
+    float:left;
+}
+#botonesCrear{
+    margin-left: 420px;
+}
+#mensajeEstado{  
+    font-family: verdana;
+    font-size: 12px;
+    color:#ee941a; 
+    text-align: center; 
+    font-weight: bold;
+}
+md-input-container.md-default-theme:not(.md-input-invalid).md-input-focused .md-input, md-input-container:not(.md-input-invalid).md-input-focused .md-input{
+    border-color: #ee941a;
+}
+.txtSimilarMD{
+    font-size: 13px; 
+    color:darkgray;
+}
+.selecTec {
+    margin-left: 1%;
+    width: 460px;
+    height: 40px;
+    float: right;
+}
+.selecCli{
+    float: left;
+    width: 460px;
+    height: 40px;
+}
+.contImg{
+    width: 460px;
+    height: 40px; 
+}
+.contQr{
+    width: 460px;
+    height: 40px;
+}
+.contTec{
+   width: 460px;
+    height: 40px; 
+}
+.contCom{
+    width: 470px;
+    height: 40px;
+}
+md-input-container.md-default-theme:not(.md-input-invalid).md-input-has-value label, md-input-container:not(.md-input-invalid).md-input-has-value label{
+    color: #ee941a;    
+}
+md-input-container.md-default-theme:not(.md-input-invalid).md-input-focused label, md-input-container:not(.md-input-invalid).md-input-focused label {
+    color: #ee941a;
+}
+md-select:not([disabled]):focus .md-select-value {
+    border-bottom-color: #ee941a;
+    color: rgba(0,0,0,0.87);
+}
+md-input-container .md-char-counter {
+    font-size: 12px;
+    line-height: 14px;
+    overflow: hidden;
+    padding-top: 5px;
+    color: rgba(0,0,0,0.26);
+}
+.md-datepicker-input-container.md-datepicker-focused {
+    border-bottom-color: #ee941a;
+}
+.md-autocomplete-suggestions li {
+    font-size: 14px;
+    overflow: hidden;
+    padding: 0 15px;
+    line-height:30px;
+    height: 25px;
+    transition: background 0.15s linear;
+    margin: 0;
+    white-space: nowrap;
+    text-overflow: ellipsis; 
+}
+.md-autocomplete-suggestions li:focus {
+      outline: none; 
+}
+.autocompletedemoCustomTemplate .autocomplete-custom-template li {
+    border-bottom: 1px solid #ccc;
+    height: auto;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    white-space: normal; 
+}
+.autocompletedemoCustomTemplate .autocomplete-custom-template li:last-child {
+    border-bottom-width: 0; 
+}
+
+.autocompletedemoCustomTemplate .autocomplete-custom-template .item-title, .autocompletedemoCustomTemplate .autocomplete-custom-template .item-metadata {
+    display: block;
+    line-height: 2; 
+}
+.autocompletedemoCustomTemplate .autocomplete-custom-template .item-title md-icon {
+    height: 18px;
+    width: 18px; 
+}
+.md-virtual-repeat-container .md-virtual-repeat-scroller {
+    bottom: 0;
+    box-sizing: border-box;
+    left: 0;
+    margin: 0;
+    overflow-x: hidden;
+    overflow-y: hidden;
+    padding: 0;
+    position: absolute;
+    right: 0;
+    top: 0; 
+}
+.md-virtual-repeat-container.md-orient-horizontal .md-virtual-repeat-scroller {
+  overflow-x: hidden;
+  overflow-y: hidden; 
+}

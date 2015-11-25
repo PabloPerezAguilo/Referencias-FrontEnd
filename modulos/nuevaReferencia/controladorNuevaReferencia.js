@@ -54,9 +54,19 @@ app.controller('controladorNuevaReferencia', function(servicioRest, config, $sco
             
         
     $scope.codigoQr='';
-    /*if($scope.codigoQr==''){
-        $scope.qrCodeVisible="true";
-    }*/
+ 
+     $scope.QrChaged = function(){
+         
+         if($scope.codigoQr!==''){
+            $scope.qrCodeVisible="true"; 
+             //Si lo borra que vuelva a ocultar el Qr
+         }else if($scope.codigoQr===''|| $scope.codigoQr===undefined || $scope.codigoQr===' ' || $scope.codigoQr===null){
+            $scope.qrCodeVisible="false";    
+         }
+   }
+   
+     
+
 
     $scope.certificado = 'si';
     $scope.mensajeEstado='';
@@ -64,6 +74,7 @@ app.controller('controladorNuevaReferencia', function(servicioRest, config, $sco
     
     /*POR AHORA DUPLICO CÓDIGO MÁS ADELANTE FILTRAMOS LA LLAMADA!!!  */
     $scope.crearBorrador = function () {
+        console.log($scope.codigoQr);
         var referencia = {"cliente": $scope.cliente,
                           "sociedad": $scope.sociedad,
                           "sectorEmpresarial": $scope.sectorEmpresarial,
