@@ -541,4 +541,39 @@ md-content md-option::before {
   border-radius: 3px 3px 3px 3px;
   border: none; }
 
+/*--------------------- ESTILOS DIALOGOS -------------------------*/
+md-dialog {
+  width: 400px;
+  height: 200px;
+  border-radius: 20px 20px 20px 20px; }
+
+md-dialog.md-default-theme, md-dialog {
+  border-radius: 20px 20px 20px 20px;
+  background-color: white; }
+
+md-dialog md-dialog-content {
+  height: 200px;
+  padding: 30px;
+  font-size: 13px; }
+
+md-dialog md-dialog-content .md-dialog-content-body {
+  width: 100%;
+  padding: 40px;
+  font-size: 15px; }
+
+md-toolbar:not(.md-menu-toolbar) {
+  background-color: #ee941a;
+  color: rgba(255, 255, 255, 0.87);
+  font-size: 15px;
+  padding: 25px; }
+
+.md-button.md-default-theme.md-primary, .md-button.md-primary {
+  color: #ee941a; }
+
+#dialogCabecera {
+  font-size: 13px; }
+
+#dialogContenido {
+  font-size: 12px; }
+
 /*# sourceMappingURL=style.css.map */
