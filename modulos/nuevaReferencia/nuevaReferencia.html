@@ -167,14 +167,14 @@
                     <qr  ng-init="qrCodeVisible=False" text="codigoQr" version="3" error-correction-level="Q" size="50" ng-show="qrCodeVisible"></qr>
                  </div>  
                 <div layout="row" class="contImg">
-                    <md-input-container title="Imagen del proyecto">                  
-                        <input type="file" name="file" onchange="angular.element(this).scope().uploadFile(this)" id="photo-upload"/>    
-                    </md-input-container> 
-                    <img ng-src="data:image/jpeg;base64,{{data.UserPhoto}}" id="photo-id" width="150" height="150"/>            
+                    <!--<md-input-container title="Imagen del proyecto">  -->                
+                    <input type="file" name="userfile" style="display:none;" id="botonFileReal" onchange="angular.element(this).scope().uploadFile(this)">
+                    <input type="button" class="botones" value="SUBIR ARCHIVO" onclick="document.getElementById('botonFileReal').click();" style="">
+                    <!--</md-input-container>--> 
+                    <img ng-src="data:image/jpeg;base64,{{data.UserPhoto}}" id="photo-id" width="150" height="150"/>          
                 </div>
             </div>
-            <br>
-  
+            <br> 
             <p id="mensajeEstado"> {{mensajeEstado}}</p>
             <md-content layout-align="center" id="botonesCrear">
                 <md-button class=botonesApp type="button" ng-click="crearBorrador()">Guardar (Borrador)</md-button>
