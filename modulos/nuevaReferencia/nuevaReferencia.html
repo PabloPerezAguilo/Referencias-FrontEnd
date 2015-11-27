@@ -170,6 +170,11 @@
                         <input type="file" ng-model="referencia.imagenProyecto" name="file" onchange="angular.element(this).scope().uploadFile(this)" id="photo-upload"/>    
                     </md-input-container> 
                     <img ng-src="data:image/jpeg;base64,{{data.UserPhoto}}" id="photo-id" width="150" height="150"/>            
+                    <!--<md-input-container title="Imagen del proyecto">  -->                
+                    <input type="file" name="userfile" style="display:none;" id="botonFileReal" onchange="angular.element(this).scope().uploadFile(this)">
+                    <input type="button" class="botones" value="SUBIR ARCHIVO" onclick="document.getElementById('botonFileReal').click();" style="">
+                    <!--</md-input-container>--> 
+                    <img ng-src="data:image/jpeg;base64,{{data.UserPhoto}}" id="photo-id" width="150" height="150"/>          
                 </div>
             </div>
             <br>

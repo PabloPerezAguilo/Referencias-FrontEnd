@@ -30,7 +30,7 @@ body {
     font-size: 17px;
     height: 31px;
     width: 100%;
-    background-color:#ececec;
+    background-color: #ececec;
     font-family: verdana;
 }
 
@@ -40,7 +40,7 @@ header {
     width:auto;
     height: 10%;
     overflow:hidden; 
-    background:#242424;
+    background: #242424;
     box-shadow: 1px 1px 1px 1px #777;
 }
 header #logoSharon {
@@ -53,7 +53,7 @@ header #logoSharon {
 footer {
     width:100%; 
     overflow:hidden; 
-    background:#242424;
+    background: #242424;
     position: fixed;  
     bottom: 0px;
     height: 7%;
@@ -79,12 +79,12 @@ footer nav a {
     transition: all 500ms ease; 
     }
 footer nav a:hover {
-    background:#ee941a;
+    background: #ee941a;
     border-radius:50px;
 }
 footer #lineaFooter{
     box-shadow: 1px 1px 1px 1px #777;
-    background:#ee941a;
+    background: #ee941a;
     bottom: 0px;
     height:4px;
     width:100%;
@@ -96,9 +96,9 @@ footer #lineaFooter{
     font-family: verdana;
     width:30%;
     height: auto;
-    color:#242424;
+    color: #242424;
     overflow:hidden; 
-    background:#ee941a;
+    background: #ee941a;
     border-radius: 0 0 20px 0 ;
     box-shadow: 2px 2px 2px 2px #777;  
 }
@@ -427,7 +427,7 @@ md-icon.md-default-theme, md-icon {
 #mensajeEstado{  
     font-family: verdana;
     font-size: 12px;
-    color:#ee941a; 
+    color: #ee941a; 
     text-align: center; 
     font-weight: bold;
 }
@@ -533,4 +533,91 @@ md-input-container .md-char-counter {
 .md-virtual-repeat-container.md-orient-horizontal .md-virtual-repeat-scroller {
   overflow-x: hidden;
   overflow-y: hidden; 
+}
+md-select-menu md-option[selected] {
+    color: #ee941a;
+}
+/*.fixed-size .md-input-has-value .md-input-focused{
+    color: #ee941a;
+}
+md-content:focus {
+    color: #ee941a;
+}
+md-content md-option:focus {
+    color: #ee941a;
+}
+md-content:hover {
+    color: #ee941a;
+}
+md-content md-option:hover {
+    color: #ee941a;
+}
+md-content:active {
+    color: #ee941a;
+}
+md-content md-option:active {
+    color: #ee941a;
+}
+md-content::before {
+    color: #ee941a;
+}
+md-content md-option::before {
+    color: #ee941a;
+}*/
+
+.botones {
+    font-size: 13px;
+    width: auto;
+    cursor: hand;
+    color: #242424;
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #ee941a;
+    border-radius:  3px 3px 3px 3px;
+    border: none;
+}
+.botones:hover {
+    font-size: 13px;
+    width: auto;
+    cursor: hand;
+    color: #242424;
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: lightgray;
+    border-radius:  3px 3px 3px 3px;
+    border: none;
+}
+
+/*--------------------- ESTILOS DIALOGOS -------------------------*/
+md-dialog {
+    width: 400px;
+    height: 200px;
+    border-radius: 20px 20px 20px 20px;
+}
+md-dialog.md-default-theme, md-dialog {
+    border-radius: 20px 20px 20px 20px;
+    background-color: rgb(255,255,255);
+}
+md-dialog md-dialog-content {
+    height: 200px;
+    padding: 30px;
+    font-size: 13px;
+}
+md-dialog md-dialog-content .md-dialog-content-body {
+    width: 100%;
+    padding: 40px;
+    font-size: 15px;
+}
+md-toolbar:not(.md-menu-toolbar) {
+    background-color: #ee941a;
+    color: rgba(255,255,255,0.87);
+    font-size: 15px;
+    padding: 25px;  
+}
+.md-button.md-default-theme.md-primary, .md-button.md-primary {
+    color: #ee941a;
+}
+#dialogCabecera {
+    font-size: 13px;
+}
+#dialogContenido{
+    font-size: 12px;
 }
