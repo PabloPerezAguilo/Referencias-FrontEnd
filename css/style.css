@@ -521,6 +521,9 @@ md-content::before {
 md-content md-option::before {
     color: #ee941a;
 }*/
+md-select-menu.md-default-theme md-option[selected]:focus, md-select-menu md-option[selected]:focus {
+  color: #ee941a; }
+
 .botones {
   font-size: 13px;
   width: auto;
