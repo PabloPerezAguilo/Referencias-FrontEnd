@@ -5,6 +5,8 @@ app.controller('controladorNuevaReferencia', function(servicioRest, config, $sco
          $location.path('/bienvenida');
     }
     
+ 
+    $scope.catalogo={};
     $scope.title = "";
     $scope.descripcion = "";
     var self = this, j= 0, counter = 0;
@@ -19,9 +21,30 @@ app.controller('controladorNuevaReferencia', function(servicioRest, config, $sco
             $scope.arrayDatos = cargarDatosClientes(); 
             $scope.arrayDatos2 = cargarDatosTecnologia();
             console.log($scope.catalogo.tecnologia);
+            console.log($scope.catalogo.sociedades);
             console.log("Catalogos Cargados");
+            $rootScope.sociedades = $scope.catalogo.sociedades;
+            
+     
         });
- 
+    
+    
+     /*var referenciaAux="";
+    
+     $scope.loadOptions=function(){
+         console.log($scope.sociedad);                  
+         referenciaAux = $scope.referencia;
+         $scope.referencia={};         
+         console.log("estamos dentro de la función");
+     }
+     $scope.closeOptions=function(){
+         if($scope.referencia==={})
+         {
+             $scope.referencia=referenciaAux;
+         }
+         console.log("estamos dentro de la función CLOSE");
+     }*/
+    
     $scope.uploadFile = function (input) {
         console.log("entra en el evento de upload");
         if (input.files && input.files[0]) {
@@ -65,68 +88,48 @@ app.controller('controladorNuevaReferencia', function(servicioRest, config, $sco
          }
    }
    
-     
-
-
     $scope.certificado = 'si';
     $scope.mensajeEstado='';
     
     
     /*POR AHORA DUPLICO CÓDIGO MÁS ADELANTE FILTRAMOS LA LLAMADA!!!  */
     $scope.crearBorrador = function () {
-        console.log($scope.codigoQr);
-        var referencia = {"cliente": $scope.cliente,
-                          "sociedad": $scope.sociedad,
-                          "sectorEmpresarial": $scope.sectorEmpresarial,
-                          "tipoActividad": $scope.tipoActividad,
-                          "tipoProyecto":$scope.tipoProyecto,
-                          "fechaInicio": $scope.fechaInicio,
-                          "denominacion": $scope.denominacion,
-                          "resumenProyecto": $scope.resumenProyecto,
-                          "problematicaCliente": $scope.problematicaCliente,
-                          "solucionGfi": $scope.solucionGfi,
-                          "fteTotales": $scope.fteTotales,
-                          "imagenProyecto": $scope.imagenProyecto,
-                          "certificado": $scope.certificado,
-                          "regPedidoAsociadoReferencia": [],
-                          "responsableComercial": $scope.responsableComercial,
-                          "responsableTecnico": $scope.responsableTecnico,
-                          "creadorReferencia": $rootScope.usuarioLS.name,
-                          "codigoQr": $scope.codigoQr,
-                          "estado": "borrador",
-                          "duracionMeses": $scope.duracionMeses,
-                          "tecnologias": $scope.tecnologias
-                          };
+        //var imagen = $scope.referencia.imagenProyecto.files[0];
+        var imagen = document.getElementById("botonFileReal").files[0];
+        var fileReader = new FileReader();
+        fileReader.readAsBinaryString(imagen);
+        fileReader.onloadend = function(e){
+            var objeto = e.target.result;
+            objeto = btoa(objeto);
+            $scope.referencia.imagenProyecto = objeto;
+            console.log($scope.referencia.imagenProyecto);
+        }
+        $scope.referencia.cliente = $scope.catalogo.clientes[$scope.posicionEnArray].nombre;
+        $scope.referencia.tecnologias = $scope.catalogo.tecnologia[$scope.posicionEnArray2].codigo;
+        $scope.referencia.creadorReferencia = $rootScope.usuarioLS.name;
+        $scope.referencia.estado = "borrador";
+        var referencia = $scope.referencia;
         servicioRest.postReferencia(referencia);
-        console.log("Referencia creada");
         $scope.mensajeEstado='Referencia creada en modo borrador.';
     }  
     
-    $scope.crearPendiente = function () {
-        var referencia = {"cliente": $scope.cliente,
-                          "sociedad": $scope.sociedad,
-                          "sectorEmpresarial": $scope.sectorEmpresarial,
-                          "tipoActividad": $scope.tipoActividad,
-                          "tipoProyecto":$scope.tipoProyecto,
-                          "fechaInicio": $scope.fechaInicio,
-                          "denominacion": $scope.denominacion,
-                          "resumenProyecto": $scope.resumenProyecto,
-                          "problematicaCliente": $scope.problematicaCliente,
-                          "solucionGfi": $scope.solucionGfi,
-                          "fteTotales": $scope.fteTotales,
-                          "imagenProyecto": $scope.imagenProyecto,
-                          "certificado": $scope.certificado,
-                          "regPedidoAsociadoReferencia": [],
-                          "responsableComercial": $scope.responsableComercial,
-                          "responsableTecnico": $scope.responsableTecnico,
-                          "creadorReferencia": $rootScope.usuarioLS.name,
-                          "codigoQr": $scope.codigoQr,
-                          "estado": "pendiente",
-                          "duracionMeses": $scope.duracionMeses,
-                          "tecnologias": $scope.tecnologias
-                          };
+    $scope.crearPendiente = function () {             
+        //var imagen = $scope.referencia.imagenProyecto.files[0];
+        var imagen = document.getElementById("botonFileReal").files[0];
+        var fileReader = new FileReader();
+        fileReader.readAsBinaryString(imagen);
+        fileReader.onloadend = function(e){
+            var objeto = e.target.result;
+            objeto = btoa(objeto);
+            $scope.referencia.imagenProyecto = objeto;
+            console.log($scope.referencia.imagenProyecto);
+        }
+        $scope.referencia.cliente = $scope.catalogo.clientes[$scope.posicionEnArray].nombre;
+        $scope.referencia.tecnologias = $scope.catalogo.tecnologia[$scope.posicionEnArray2].codigo;
+        $scope.referencia.creadorReferencia = $rootScope.usuarioLS.name;
+        $scope.referencia.estado = "pendiente";
+        var referencia = $scope.referencia; 
         servicioRest.postReferencia(referencia);
-        console.log("Referencia creada");
         $scope.mensajeEstado='Referencia creada pendiente de validar.';    
     } 
     
