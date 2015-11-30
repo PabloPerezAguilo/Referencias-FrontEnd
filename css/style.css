@@ -24,9 +24,10 @@ article, aside, details, figcaption, figure,
 footer, header, hgroup, menu, nav, section {
   display: block; }
 
+/*CSS Global Variables*/
 body {
   line-height: 1;
-  font-size: 17px;
+  font-size: 13px;
   height: 31px;
   width: 100%;
   background-color: #ececec;
@@ -67,7 +68,7 @@ footer nav a {
   line-height: 200px;
   float: right;
   display: inline-block;
-  color: #ececec;
+  color: #ee941a;
   padding: 20px 20px;
   line-height: normal;
   font-size: 11px;
@@ -89,25 +90,20 @@ footer #lineaFooter {
 
 /* --------------------------- ESTILOS MENÚ ---------------------- */
 #menu {
-  font-family: verdana;
   width: 30%;
   height: auto;
   color: #242424;
   overflow: hidden;
   background: #ee941a;
   border-radius: 0 0 20px 0;
-  box-shadow: 2px 2px 2px 2px #777; }
+  box-shadow: 1px 1px 1px 1px #777; }
 
 .textoHipervinculo {
-  font-size: 10;
-  font-family: verdana;
-  color: #7E6D1D;
+  color: #242424;
   text-decoration: none; }
 
 .textoHipervinculo:hover {
-  font-size: 10;
-  font-family: verdana;
-  color: #BFA62B;
+  color: #ee941a;
   text-decoration: none;
   width: 100%; }
 
@@ -136,8 +132,7 @@ footer #lineaFooter {
 .botonesApp {
   background-color: #ee941a;
   font-size: 13px;
-  text-align: center;
-  margin-bottom: 50px; }
+  text-align: center; }
 
 #dialogLogueado {
   width: 90px;
@@ -575,5 +570,31 @@ md-toolbar:not(.md-menu-toolbar) {
 
 #dialogContenido {
   font-size: 12px; }
+
+/*ESTILOS REFERENCIAS PENDIENTES*/
+#referenciasPendientes th, td {
+  border: none;
+  border-collapse: collapse;
+  padding: 5px; }
+
+#referenciasPendientes th {
+  background-color: #ee941a;
+  color: #ececec;
+  text-align: center;
+  font-weight: bold; }
+
+#referenciasPendientes {
+  margin: 0 auto;
+  width: 95%;
+  height: 2%;
+  overflow: hidden;
+  border: 1px solid black;
+  border-radius: 0px 0px 10px 10px; }
+
+#referenciasPendientes tr:nth-child(odd) {
+  background: #D8D8D8; }
+
+#selPendientes {
+  cursor: pointer; }
 
 /*# sourceMappingURL=style.css.map */

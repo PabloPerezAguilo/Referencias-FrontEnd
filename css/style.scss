@@ -1,3 +1,6 @@
+
+
+
 @charset "UTF-8";
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
@@ -25,14 +28,24 @@ footer, header, hgroup, menu, nav, section {
     display: block; 
 }
 
+/*CSS Global Variables*/
+$colorOscuro: #242424;
+$colorClaro: #ececec;
+$colorDetalles: #ee941a;
+$colorSombreado: #D8D8D8;
+
+
+
 body {
     line-height: 1;  
-    font-size: 17px;
+    font-size: 13px;
     height: 31px;
     width: 100%;
-    background-color: #ececec;
+    background-color: $colorClaro;
     font-family: verdana;
 }
+
+
 
 /* ------------------------------- CABECERA Y PIE ---------------------- */
 
@@ -40,7 +53,7 @@ header {
     width:auto;
     height: 10%;
     overflow:hidden; 
-    background: #242424;
+    background: $colorOscuro;
     box-shadow: 1px 1px 1px 1px #777;
 }
 header #logoSharon {
@@ -53,7 +66,7 @@ header #logoSharon {
 footer {
     width:100%; 
     overflow:hidden; 
-    background: #242424;
+    background: $colorOscuro;
     position: fixed;  
     bottom: 0px;
     height: 7%;
@@ -70,7 +83,7 @@ footer nav a {
     line-height: 200px;
     float: right;
     display: inline-block;
-    color: #ececec;
+    color: $colorDetalles;
     padding: 20px 20px;
     line-height: normal;
     font-size: 11px;
@@ -79,12 +92,12 @@ footer nav a {
     transition: all 500ms ease; 
     }
 footer nav a:hover {
-    background: #ee941a;
+    background: $colorDetalles;
     border-radius:50px;
 }
 footer #lineaFooter{
     box-shadow: 1px 1px 1px 1px #777;
-    background: #ee941a;
+    background: $colorDetalles;
     bottom: 0px;
     height:4px;
     width:100%;
@@ -93,35 +106,31 @@ footer #lineaFooter{
 
 /* --------------------------- ESTILOS MENÚ ---------------------- */
 #menu{
-    font-family: verdana;
     width:30%;
     height: auto;
-    color: #242424;
+    color: $colorOscuro;
     overflow:hidden; 
-    background: #ee941a;
+    background: $colorDetalles;
     border-radius: 0 0 20px 0 ;
-    box-shadow: 2px 2px 2px 2px #777;  
+    box-shadow: 1px 1px 1px 1px #777;  
 }
 .textoHipervinculo {
-    font-size:10;
-    font-family:verdana;
-    color:#7E6D1D;
+    color:$colorOscuro;
     text-decoration:none;
 }
 .textoHipervinculo:hover {
-    font-size:10;
-    font-family:verdana;
-    color:#BFA62B;
+    color:$colorDetalles;
     text-decoration:none;
     width:100%;    
 }
 .iconoLogout {
-  margin-left: 200%; }
-
+  margin-left: 200%; 
+}
 .iconosMenu {
   width: 10px;
   height: 25px;
-  margin: auto; }
+  margin: auto; 
+}
 
 /* --------------------------- ESTILOS BIENVENIDA ---------------------- */
 
@@ -142,18 +151,16 @@ footer #lineaFooter{
 }
 
 .botonesApp{
-    background-color: #ee941a;
+    background-color: $colorDetalles;
     font-size: 13px;
-   // color: #ececec;
     text-align: center; 
-    margin-bottom: 50px;
 }
 #dialogLogueado{
     width: 90px;
     height: 90px;
     border-radius: 20px 20px 20px 20px;
     box-shadow: 2px 2px 2px 2px #777; 
-    background-color: #ececec;
+    background-color: $colorClaro;
     
 }
 
@@ -169,7 +176,7 @@ footer #lineaFooter{
 }
 
 #contenedorLogin #superior {
-	background-color: #ececec;
+	background-color: $colorClaro;
     color: #777;
     margin-bottom: 14px;
 	-webkit-border-radius:20px 20px 0 0 ;
@@ -190,7 +197,7 @@ footer #lineaFooter{
 }
 
  #contenedorLogin #inferior {
-	background-color: #242424;
+	background-color: $colorOscuro;
 	-webkit-border-radius: 0 0 20px 20px;
 	-moz-border-radius: 0 0 20px 20px;
 	border-radius: 0 0 20px 20px;
@@ -258,7 +265,7 @@ footer #lineaFooter{
 li {
     list-style: none;
     background-color: rgba(0, 0, 0, 0.05);
-    background-image: linear-gradient( 90deg, #ee941a 10px, #EEE 10px, #EEE 11px, transparent 11px);
+    background-image: linear-gradient( 90deg, $colorDetalles 10px, #EEE 10px, #EEE 11px, transparent 11px);
     padding: 10px 15px 10px 25px;
     border: 1px solid #CCC;
     box-shadow: inset 1px 1px 0 rgba(255, 255, 255, 0.5);
@@ -312,13 +319,13 @@ ul {
     left: 7px;
     font-size: 14px;
     opacity: 0.54; 
-    border-color: #ee941a;
+    border-color: $colorDetalles;
     
     
 }
 
 label{
-    color: #ee941a; 
+    color: $colorDetalles; 
 }
 
 .autocompletedemoCustomTemplate .autocomplete-custom-template li {
@@ -390,27 +397,27 @@ md-input-container{
     height: 40px;
 }
 md-radio-button.md-default-theme.md-checked .md-off, md-radio-button.md-checked .md-off {
-    border-color: #ee941a;
+    border-color: $colorDetalles;
 }
 md-radio-button.md-default-theme .md-on, md-radio-button .md-on {
-    background-color: #ee941a;
+    background-color: $colorDetalles;
 }
 md-radio-button.md-default-theme.md-checked .md-ink-ripple, md-radio-button.md-checked .md-ink-ripple {
-    color: #ee941a;
+    color: $colorDetalles;
 }
 md-icon.md-default-theme, md-icon {
-    color: #ee941a;
+    color: $colorDetalles;
 }
 .md-default-theme .md-datepicker-open .md-datepicker-calendar-icon, .md-datepicker-open .md-datepicker-calendar-icon {
-    fill: #ee941a;
+    fill: $colorDetalles;
 }
 .md-default-theme .md-calendar-date.md-calendar-selected-date .md-calendar-date-selection-indicator, .md-calendar-date.md-calendar-selected-date .md-calendar-date-selection-indicator, .md-default-theme .md-calendar-date.md-focus.md-calendar-selected-date .md-calendar-date-selection-indicator, .md-calendar-date.md-focus.md-calendar-selected-date .md-calendar-date-selection-indicator {
-    background: #ee941a;
+    background: $colorDetalles;
     color: rgba(255,255,255,0.87);
     border-color: transparent;  
 }
 .md-default-theme .md-calendar-date.md-calendar-date-today .md-calendar-date-selection-indicator, .md-calendar-date.md-calendar-date-today .md-calendar-date-selection-indicator {
-    border: 1px solid #ee941a;
+    border: 1px solid $colorDetalles;
 }
 .md-datepicker-input{
     width: 230px;
@@ -427,12 +434,12 @@ md-icon.md-default-theme, md-icon {
 #mensajeEstado{  
     font-family: verdana;
     font-size: 12px;
-    color: #ee941a; 
+    color: $colorDetalles; 
     text-align: center; 
     font-weight: bold;
 }
 md-input-container.md-default-theme:not(.md-input-invalid).md-input-focused .md-input, md-input-container:not(.md-input-invalid).md-input-focused .md-input{
-    border-color: #ee941a;
+    border-color: $colorDetalles;
 }
 .txtSimilarMD{
     font-size: 13px; 
@@ -466,13 +473,13 @@ md-input-container.md-default-theme:not(.md-input-invalid).md-input-focused .md-
     height: 40px;
 }
 md-input-container.md-default-theme:not(.md-input-invalid).md-input-has-value label, md-input-container:not(.md-input-invalid).md-input-has-value label{
-    color: #ee941a;    
+    color: $colorDetalles;    
 }
 md-input-container.md-default-theme:not(.md-input-invalid).md-input-focused label, md-input-container:not(.md-input-invalid).md-input-focused label {
-    color: #ee941a;
+    color: $colorDetalles;
 }
 md-select:not([disabled]):focus .md-select-value {
-    border-bottom-color: #ee941a;
+    border-bottom-color: $colorDetalles;
     color: rgba(0,0,0,0.87);
 }
 md-input-container .md-char-counter {
@@ -483,7 +490,7 @@ md-input-container .md-char-counter {
     color: rgba(0,0,0,0.26);
 }
 .md-datepicker-input-container.md-datepicker-focused {
-    border-bottom-color: #ee941a;
+    border-bottom-color: $colorDetalles;
 }
 .md-autocomplete-suggestions li {
     font-size: 14px;
@@ -535,7 +542,7 @@ md-input-container .md-char-counter {
   overflow-y: hidden; 
 }
 md-select-menu md-option[selected] {
-    color: #ee941a;
+    color: $colorDetalles;
 }
 /*.fixed-size .md-input-has-value .md-input-focused{
     color: #ee941a;
@@ -569,9 +576,9 @@ md-content md-option::before {
     font-size: 13px;
     width: auto;
     cursor: hand;
-    color: #242424;
+    color: $colorOscuro;
     font-family: Arial, Helvetica, sans-serif;
-    background-color: #ee941a;
+    background-color: $colorDetalles;
     border-radius:  3px 3px 3px 3px;
     border: none;
 }
@@ -579,7 +586,7 @@ md-content md-option::before {
     font-size: 13px;
     width: auto;
     cursor: hand;
-    color: #242424;
+    color: $colorOscuro;
     font-family: Arial, Helvetica, sans-serif;
     background-color: lightgray;
     border-radius:  3px 3px 3px 3px;
@@ -607,17 +614,46 @@ md-dialog md-dialog-content .md-dialog-content-body {
     font-size: 15px;
 }
 md-toolbar:not(.md-menu-toolbar) {
-    background-color: #ee941a;
+    background-color: $colorDetalles;
     color: rgba(255,255,255,0.87);
     font-size: 15px;
     padding: 25px;  
 }
 .md-button.md-default-theme.md-primary, .md-button.md-primary {
-    color: #ee941a;
+    color: $colorDetalles;
 }
 #dialogCabecera {
     font-size: 13px;
 }
 #dialogContenido{
     font-size: 12px;
+}
+
+/*ESTILOS REFERENCIAS PENDIENTES*/
+#referenciasPendientes th, td{
+    border: none;
+    border-collapse: collapse;
+    padding: 5px;
+     
+}
+#referenciasPendientes th{
+    background-color: $colorDetalles;
+    color:$colorClaro;
+    text-align: center;
+    font-weight: bold;
+}
+#referenciasPendientes{
+    margin: 0 auto;
+    width:95%;
+     height: 2%;
+    overflow: hidden;
+    border: 1px solid black;
+    border-radius: 0px 0px 10px 10px;
+    
+}
+#referenciasPendientes tr:nth-child(odd) {
+    background: $colorSombreado;
+}
+#selPendientes{
+   cursor: pointer; 
 }

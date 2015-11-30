@@ -180,9 +180,21 @@
             <br>
   
             <p id="mensajeEstado"> {{mensajeEstado}}</p>
-            <md-content layout-align="center" id="botonesCrear">
+             <!-- SOLO SE VISUALIZARAN DEPENDIENDO DEL ROL, POR AHORA VISUALIZO TODOS -->
+            <!-- BOTONES ROL ADMINISTRADOR/MANTENIMIENTO -->
+            <md-content layout-align="center" id="botonesCrear" >
                 <md-button class=botonesApp type="button" ng-click="crearBorrador()">Guardar (Borrador)</md-button>
                 <md-button class=botonesApp type="button" ng-click="crearPendiente()">Terminar</md-button>
-            </md-content>      
+            </md-content>
+            <!-- BOTONES ROL CONSULTOR -->
+             <md-content layout-align="center" id="botonesConsultar" >
+                <md-button class=botonesApp type="button" ng-click="volverListarReferencia()">Salir</md-button>
+            </md-content> 
+            <!-- BOTONES ROL VALIDADOR -->
+             <md-content layout-align="center" id="botonesValidar" >
+                <md-button class=botonesApp type="button" ng-click="validarReferencia()">Validar</md-button>
+                <md-button class=botonesApp type="button" ng-click="rechazarReferencia()">Rechazar</md-button>
+                <md-button class=botonesApp type="button" ng-click="volverListaReferencias()">Cancelar</md-button> 
+            </md-content>        
     </md-content>
 </section>
