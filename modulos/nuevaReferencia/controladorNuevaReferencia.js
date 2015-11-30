@@ -93,15 +93,16 @@ app.controller('controladorNuevaReferencia', function(servicioRest, config, $sco
             var objeto = e.target.result;
             objeto = btoa(objeto);
             $scope.referencia.imagenProyecto = objeto;
+            console.log(objeto);
+            $scope.referencia.cliente = $scope.catalogo.clientes[$scope.posicionEnArray].nombre;
+            $scope.referencia.tecnologias = $scope.catalogo.tecnologia[$scope.posicionEnArray2].codigo;
+            $scope.referencia.creadorReferencia = $rootScope.usuarioLS.name;
+            $scope.referencia.estado = "borrador";
+            var referencia = $scope.referencia;
+            console.log(referencia);
+            servicioRest.postReferencia(referencia);
+            $scope.mensajeEstado='Referencia creada en modo borrador.';
         }
-        $scope.referencia.cliente = $scope.catalogo.clientes[$scope.posicionEnArray].nombre;
-        $scope.referencia.tecnologias = $scope.catalogo.tecnologia[$scope.posicionEnArray2].codigo;
-        $scope.referencia.creadorReferencia = $rootScope.usuarioLS.name;
-        $scope.referencia.estado = "borrador";
-        var referencia = $scope.referencia;
-        console.log(referencia);
-        servicioRest.postReferencia(referencia);
-        $scope.mensajeEstado='Referencia creada en modo borrador.';
     }  
     
     $scope.crearPendiente = function () {             
@@ -113,15 +114,17 @@ app.controller('controladorNuevaReferencia', function(servicioRest, config, $sco
             var objeto = e.target.result;
             objeto = btoa(objeto);
             $scope.referencia.imagenProyecto = objeto;
+            console.log(objeto);
+            $scope.referencia.cliente = $scope.catalogo.clientes[$scope.posicionEnArray].nombre;
+            $scope.referencia.tecnologias = $scope.catalogo.tecnologia[$scope.posicionEnArray2].codigo;
+            $scope.referencia.creadorReferencia = $rootScope.usuarioLS.name;
+            $scope.referencia.estado = "pendiente";
+            var referencia = $scope.referencia; 
+            console.log(referencia);
+            servicioRest.postReferencia(referencia);
+            $scope.mensajeEstado='Referencia creada pendiente de validar.';    
         }
-        $scope.referencia.cliente = $scope.catalogo.clientes[$scope.posicionEnArray].nombre;
-        $scope.referencia.tecnologias = $scope.catalogo.tecnologia[$scope.posicionEnArray2].codigo;
-        $scope.referencia.creadorReferencia = $rootScope.usuarioLS.name;
-        $scope.referencia.estado = "pendiente";
-        var referencia = $scope.referencia; 
-        console.log(referencia);
-        servicioRest.postReferencia(referencia);
-        $scope.mensajeEstado='Referencia creada pendiente de validar.';    
+        
     } 
     
     
