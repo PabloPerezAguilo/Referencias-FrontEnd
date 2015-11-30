@@ -375,7 +375,8 @@ md-icon.md-default-theme, md-icon {
   float: left; }
 
 #botonesCrear {
-  margin-left: 420px; }
+  margin-top: 150px;
+  text-align: center; }
 
 #mensajeEstado {
   font-family: verdana;
@@ -392,19 +393,20 @@ md-input-container.md-default-theme:not(.md-input-invalid).md-input-focused .md-
   color: darkgray; }
 
 .selecTec {
-  margin-left: 1%;
-  width: 460px;
-  height: 40px;
-  float: right; }
+  float: left;
+  width: 925px;
+  height: 60px; }
 
 .selecCli {
   float: left;
-  width: 460px;
-  height: 40px; }
+  width: 925px;
+  height: 60px; }
 
 .contImg {
   width: 460px;
-  height: 40px; }
+  height: 40px;
+  margin-left: 20px;
+  margin-bottom: 20px; }
 
 .contQr {
   width: 460px;
@@ -416,7 +418,15 @@ md-input-container.md-default-theme:not(.md-input-invalid).md-input-focused .md-
 
 .contCom {
   width: 470px;
-  height: 40px; }
+  height: 80px; }
+
+.ImgQr {
+  width: 920px;
+  height: 450px; }
+
+.contenedor-tecnologia {
+  margin-top: 40px;
+  margin-bottom: 100px; }
 
 md-input-container.md-default-theme:not(.md-input-invalid).md-input-has-value label, md-input-container:not(.md-input-invalid).md-input-has-value label {
   color: #ee941a; }
@@ -489,36 +499,15 @@ md-input-container .md-char-counter {
 md-select-menu md-option[selected] {
   color: #ee941a; }
 
-/*.fixed-size .md-input-has-value .md-input-focused{
-    color: #ee941a;
-}
-md-content:focus {
-    color: #ee941a;
-}
-md-content md-option:focus {
-    color: #ee941a;
-}
-md-content:hover {
-    color: #ee941a;
-}
-md-content md-option:hover {
-    color: #ee941a;
-}
-md-content:active {
-    color: #ee941a;
-}
-md-content md-option:active {
-    color: #ee941a;
-}
-md-content::before {
-    color: #ee941a;
-}
-md-content md-option::before {
-    color: #ee941a;
-}*/
+md-select-menu.md-default-theme md-option[selected]:focus, md-select-menu md-option[selected]:focus {
+  color: #ee941a; }
+
 .botones {
+  margin-left: 30px;
+  margin-bottom: 30px;
   font-size: 13px;
-  width: auto;
+  width: 250px;
+  height: 40px;
   cursor: hand;
   color: #242424;
   font-family: Arial, Helvetica, sans-serif;
@@ -527,14 +516,20 @@ md-content md-option::before {
   border: none; }
 
 .botones:hover {
+  margin-left: 30px;
+  margin-bottom: 30px;
   font-size: 13px;
-  width: auto;
+  width: 250px;
+  height: 40px;
   cursor: hand;
   color: #242424;
   font-family: Arial, Helvetica, sans-serif;
   background-color: lightgray;
   border-radius: 3px 3px 3px 3px;
   border: none; }
+
+.centrado-QR {
+  margin-left: 110px; }
 
 /*--------------------- ESTILOS DIALOGOS -------------------------*/
 md-dialog {
