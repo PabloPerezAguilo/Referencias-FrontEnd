@@ -22,23 +22,6 @@ app.controller('controladorNuevaReferencia', function(servicioRest, config, $sco
             $rootScope.sociedades = $scope.catalogo.sociedades;               
         });
     
-    
-     /*var referenciaAux="";
-    
-     $scope.loadOptions=function(){
-         console.log($scope.sociedad);                  
-         referenciaAux = $scope.referencia;
-         $scope.referencia={};         
-         console.log("estamos dentro de la función");
-     }
-     $scope.closeOptions=function(){
-         if($scope.referencia==={})
-         {
-             $scope.referencia=referenciaAux;
-         }
-         console.log("estamos dentro de la función CLOSE");
-     }*/
-    
     $scope.uploadFile = function (input) {
         if (input.files && input.files[0]) {
             var reader = new FileReader();

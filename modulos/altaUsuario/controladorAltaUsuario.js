@@ -10,7 +10,7 @@ app.controller('controladorAltaUsuario', function(servicioRest, config, $scope, 
     
     $scope.crear = function () {
         console.log("guardando usuario en nuestra base de datos...");
-        $scope.usuario = {"name":$scope.usuarios[$scope.posicionEnArray].nick, "role": $scope.role};
+        $scope.usuario = {"nick":$scope.usuarios[$scope.posicionEnArray].nick, "name":$scope.usuarios[$scope.posicionEnArray].usuario, "role": $scope.role};
         console.log($scope.usuario);
         servicioRest.postUsuario($scope.usuario)
             .then(function(data) {
