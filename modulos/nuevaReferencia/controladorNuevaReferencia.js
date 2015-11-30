@@ -1,7 +1,6 @@
 app.controller('controladorNuevaReferencia', function(servicioRest, config, $scope, $http, $rootScope,$location,$mdDialog,$interval) {
     
     if($rootScope.usuarioLS.role !== "ROLE_ADMINISTRADOR" && $rootScope.usuarioLS.role !== "ROLE_MANTENIMIENTO"){
-        console.log($rootScope.usuarioLS.role);
          $location.path('/bienvenida');
     }
     
@@ -10,22 +9,17 @@ app.controller('controladorNuevaReferencia', function(servicioRest, config, $sco
     $scope.title = "";
     $scope.descripcion = "";
     var self = this, j= 0, counter = 0;
-     $scope.activado = self.activated;
+    $scope.activado = self.activated;
     servicioRest.getCatalogos().then(
         function(response) {
             $scope.catalogo = response;
             cadenaClientes();
-            cadenaTecnologia();
-            console.log($scope.catalogo.clientes);
-            
+            cadenaTecnologia();         
+            $scope.arrayDatos = cargarDatosClientes(); 
             $scope.arrayDatos = cargarDatosClientes(); 
             $scope.arrayDatos2 = cargarDatosTecnologia();
-            console.log($scope.catalogo.tecnologia);
-            console.log($scope.catalogo.sociedades);
             console.log("Catalogos Cargados");
-            $rootScope.sociedades = $scope.catalogo.sociedades;
-            
-     
+            $rootScope.sociedades = $scope.catalogo.sociedades;               
         });
     
     
@@ -46,14 +40,11 @@ app.controller('controladorNuevaReferencia', function(servicioRest, config, $sco
      }*/
     
     $scope.uploadFile = function (input) {
-        console.log("entra en el evento de upload");
         if (input.files && input.files[0]) {
             var reader = new FileReader();
             reader.onload = function (e) {
-
                 //Sets the Old Image to new New Image
                 $('#photo-id').attr('src', e.target.result);
-
                 //Create a canvas and draw image on Client Side to get the byte[] equivalent
                 var canvas = document.createElement("canvas");
                 var imageElement = document.createElement("img");
@@ -102,13 +93,13 @@ app.controller('controladorNuevaReferencia', function(servicioRest, config, $sco
             var objeto = e.target.result;
             objeto = btoa(objeto);
             $scope.referencia.imagenProyecto = objeto;
-            console.log($scope.referencia.imagenProyecto);
         }
         $scope.referencia.cliente = $scope.catalogo.clientes[$scope.posicionEnArray].nombre;
         $scope.referencia.tecnologias = $scope.catalogo.tecnologia[$scope.posicionEnArray2].codigo;
         $scope.referencia.creadorReferencia = $rootScope.usuarioLS.name;
         $scope.referencia.estado = "borrador";
         var referencia = $scope.referencia;
+        console.log(referencia);
         servicioRest.postReferencia(referencia);
         $scope.mensajeEstado='Referencia creada en modo borrador.';
     }  
@@ -122,13 +113,13 @@ app.controller('controladorNuevaReferencia', function(servicioRest, config, $sco
             var objeto = e.target.result;
             objeto = btoa(objeto);
             $scope.referencia.imagenProyecto = objeto;
-            console.log($scope.referencia.imagenProyecto);
         }
         $scope.referencia.cliente = $scope.catalogo.clientes[$scope.posicionEnArray].nombre;
         $scope.referencia.tecnologias = $scope.catalogo.tecnologia[$scope.posicionEnArray2].codigo;
         $scope.referencia.creadorReferencia = $rootScope.usuarioLS.name;
         $scope.referencia.estado = "pendiente";
         var referencia = $scope.referencia; 
+        console.log(referencia);
         servicioRest.postReferencia(referencia);
         $scope.mensajeEstado='Referencia creada pendiente de validar.';    
     } 
@@ -203,7 +194,6 @@ app.controller('controladorNuevaReferencia', function(servicioRest, config, $sco
 		if (JSON.stringify(item) !== undefined) {
 			var pos = item.value.substring(item.value.length, item.value.indexOf("*") + 1);
 			$scope.posicionEnArray = pos;
-            console.log(item);
 		}
 	};
 
@@ -211,7 +201,6 @@ app.controller('controladorNuevaReferencia', function(servicioRest, config, $sco
 		if (JSON.stringify(item2) !== undefined) {
 			var posT = item2.value.substring(item2.value.length, item2.value.indexOf("*") + 1);
 			$scope.posicionEnArray2 = posT;
-            console.log(item2);
 		}
 	};
 

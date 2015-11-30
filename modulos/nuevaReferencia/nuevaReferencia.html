@@ -1,9 +1,8 @@
 <section>
     <h1 class="cabeceraPagina">NUEVA REFERENCIA</h1>
     <md-content class="layout-padding">
-        <div class="para1">
-            
-            <div layout="row" ng-cloak="">
+        <div class="para1">            
+            <div ng-cloak="">
                   <md-dialog-content class="selecCli">
                     <div class="md-dialog-content">
                       <form ng-submit="$event.preventDefault()">
@@ -27,32 +26,7 @@
                         </md-autocomplete>
                       </form>
                     </div>    
-                  </md-dialog-content> 
-
-                <md-dialog-content class="selecTec">
-                    <div class="md-dialog-content">
-                      <form ng-submit="$event.preventDefault()">
-                        <label class="txtSimilarMD">Tecnología</label>
-                        <md-autocomplete pattern="[a-zA-Z]+"
-                            md-selected-item="ctrl.selectedItemt"
-                            md-search-text="ctrl.searchTextt"
-                            md-items="item2 in ctrl.querySearchT(ctrl.searchTextt) | filter : tecnologia | limitTo : 4"
-                            md-selected-item-change="ctrl.selectedItemChangeT(item2)"
-                            md-item-text="item2.display"
-                            md-min-length="0"
-                            ng-model="referencia.tecnologia"
-                            ng-disabled="permisoEscritura"
-                            placeholder="Busque Tecnologías">
-                          <md-item-template>
-                            <span md-highlight-text="ctrl.searchTextt" md-highlight-flags="^i">{{item2.display}}</span>
-                          </md-item-template>
-                          <md-not-found>
-                            No se encuenta "{{ctrl.searchTextt}}" en la lista.
-                          </md-not-found>            
-                        </md-autocomplete>
-                      </form>
-                    </div>    
-                </md-dialog-content>  
+                  </md-dialog-content>
             </div>
             <br>
             <md-input-container title="Sociedad" class="fixed-size">
@@ -155,30 +129,55 @@
                         </md-option>
                     </md-select>
                 </md-input-container>
-            </div>
-            <br>                        
+            </div>                      
             <div layout="row" class="ImgQr">        
                 <div class="contQr">                         
+                        <input type="file" name="userfile" style="display:none;" ng-model="referencia.imagenProyecto" id="botonFileReal" onchange="angular.element(this).scope().uploadFile(this)">
+                        <input type="button" class="botones" value="SUBIR IMAGEN" onclick="document.getElementById('botonFileReal').click();" style="">
+                    <br><br><br><br>
                     <md-input-container title="Código QR" class="fixed-size">
                         <label>Código Qr</label>
                         <input ng-model="referencia.codigoQr" ng-Change="QrChaged()"/>
-                    </md-input-container>    
-                    <qr  ng-init="qrCodeVisible=False" text="codigoQr" version="3" error-correction-level="Q" size="50" ng-show="qrCodeVisible"></qr>
-                 </div>  
+                    </md-input-container>
+                    <br>
+                    <div class="centrado-QR">
+                        <qr ng-init="qrCodeVisible=False" text="codigoQr" version="3" error-correction-level="Q" size="100" ng-show="qrCodeVisible"></qr>
+                    </div>   
+                </div>  
                 <div layout="row" class="contImg">           
-                    <!--<md-input-container title="Imagen del proyecto">  -->                
-                    <input type="file" name="userfile" style="display:none;" ng-model="referencia.imagenProyecto" id="botonFileReal" onchange="angular.element(this).scope().uploadFile(this)">
-                    <input type="button" class="botones" value="SUBIR IMAGEN" onclick="document.getElementById('botonFileReal').click();" style="">
-                    <!--</md-input-container>--> 
-                    <img ng-src="data:image/jpeg;base64,{{data.UserPhoto}}" id="photo-id" width="150" height="150"/>          
+                    <img ng-src="data:image/jpeg;base64,{{data.UserPhoto}}" id="photo-id" width="450" height="450"/>          
                 </div>
             </div>
-            <br>
-  
-            <p id="mensajeEstado"> {{mensajeEstado}}</p>
+            <div class="contenedor-tecnologia">
+                <md-dialog-content class="selecTec">
+                    <div class="md-dialog-content">
+                        <form ng-submit="$event.preventDefault()">
+                            <label class="txtSimilarMD">Tecnología</label>
+                            <md-autocomplete pattern="[a-zA-Z]+"
+                                md-selected-item="ctrl.selectedItemt"
+                                md-search-text="ctrl.searchTextt"
+                                md-items="item2 in ctrl.querySearchT(ctrl.searchTextt) | filter : tecnologia | limitTo : 4"
+                                md-selected-item-change="ctrl.selectedItemChangeT(item2)"
+                                md-item-text="item2.display"
+                                md-min-length="0"
+                                ng-model="referencia.tecnologia"
+                                ng-disabled="permisoEscritura"
+                                placeholder="Busque Tecnologías">
+                            <md-item-template>
+                                <span md-highlight-text="ctrl.searchTextt" md-highlight-flags="^i">{{item2.display}}</span>
+                            </md-item-template>
+                            <md-not-found>
+                                No se encuenta "{{ctrl.searchTextt}}" en la lista.
+                            </md-not-found>            
+                            </md-autocomplete>
+                      </form>
+                    </div>    
+                </md-dialog-content>
+            </div>
             <md-content layout-align="center" id="botonesCrear">
                 <md-button class=botonesApp type="button" ng-click="crearBorrador()">Guardar (Borrador)</md-button>
                 <md-button class=botonesApp type="button" ng-click="crearPendiente()">Terminar</md-button>
-            </md-content>      
+            </md-content> 
+        </div>
     </md-content>
 </section>
