@@ -106,6 +106,23 @@ function ServicioREST($http, $q, $rootScope, config, $mdDialog) {
 		return promise;
 	}
     
+    function getReferenciasPendientes(){
+        
+        var defered = $q.defer();
+        var promise = defered.promise;
+        $http({
+            method: 'GET',
+            url: url + '/referencia/pendientes'
+        })
+        .success(function(data,status,headers,config){
+                 defered.resolve(data);
+         })
+        .error(function(data,status,headers,config){
+               tratarError(data,status,defered);
+               });
+        return promise;
+    }
+    
     function updateReferencia(nuevo) {
 		var defered = $q.defer();
 		var promise = defered.promise;
@@ -197,6 +214,7 @@ function ServicioREST($http, $q, $rootScope, config, $mdDialog) {
 	return {
 		getReferencias: getReferencias,
 		getReferencia: getReferencia,
+        getReferenciasPendientes: getReferenciasPendientes,
 		postReferencia: postReferencia,
         updateReferencia : updateReferencia,
         deleteReferencia : deleteReferencia,

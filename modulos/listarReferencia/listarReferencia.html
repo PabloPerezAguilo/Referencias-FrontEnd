@@ -1,3 +1,21 @@
 <div>
-LISTAR REFERENCIA
+    <p  class="cabeceraPagina">{{titulo}}</p>
+    <br>
+    
+    <!--<ul>
+        <li ng-repeat="referencia in referencias">{{referencia.cliente }} | {{referencia.denominacion}} | {{referencia.solucionGfi}}</li>
+    </ul>-->
+        <table id="referenciasPendientes">
+      <tr>
+        <th>CLIENTE</th>
+        <th>DENOMINACIÓN</th>		
+        <th>SOLUCIÓN GFI</th>
+      </tr>
+      <tr ng-repeat="referencia in referencias" ng-click="abrirReferenciaPendiente()" id="selPendientes">
+        <td>{{referencia.cliente }} </td>
+        <td>{{referencia.denominacion}}</td>		
+        <td>{{referencia.solucionGfi}}</td>
+      </tr>
+    </table>
+    
 </div>
