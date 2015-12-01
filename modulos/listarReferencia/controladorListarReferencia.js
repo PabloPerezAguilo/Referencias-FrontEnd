@@ -4,15 +4,18 @@ app.controller ('controladorListarReferencia', function (servicioRest, config, $
     
     $scope.titulo = 'REFERENCIAS PENDIENTES DE VALIDAR';
     
-    $scope.abrirReferenciaPendiente = 
     servicioRest.getReferenciasPendientes().then(
-        function (response) {
-            
+        function (response) {           
             $scope.referencias = response;
             /*if($scope.referencias){
             
-                }*/
-              
-            
+                }*/            
         });
+    
+    $scope.abrirReferenciaPendiente = function (index, referencia) {
+        //servicioRest.getReferencia(_id);
+        console.log(referencia[index]);
+        
+        $location.path('/nueva');    
+    }
 });

@@ -116,10 +116,10 @@ function ServicioREST($http, $q, $rootScope, config, $mdDialog) {
         })
         .success(function(data,status,headers,config){
                  defered.resolve(data);
-         })
+        })
         .error(function(data,status,headers,config){
                tratarError(data,status,defered);
-               });
+        });
         return promise;
     }
     
