@@ -1,13 +1,13 @@
 app.controller('controladorLogin', function(servicioRest, config, $scope, $http, $location, $rootScope, $mdDialog) {
     $scope.user={        
-        name:'',
+        nick:'',
         password:'' 
     };
     $rootScope.error;
     
 	$scope.login = function () {
         
-       if($scope.user.name!="" && $scope.user.password!="" && $scope.user.name!=undefined && $scope.user.password!=undefined){
+       if($scope.user.nick!="" && $scope.user.password!="" && $scope.user.nick!=undefined && $scope.user.password!=undefined){
            login();   
        }else{
             $scope.error="Debe de completar los dos campos";
@@ -22,8 +22,8 @@ app.controller('controladorLogin', function(servicioRest, config, $scope, $http,
     };
     
     //Comprobamos que el LocalStorage tenga datos
-    if(localStorage.getItem("name")!==null){
-       console.log(localStorage.getItem("name"));
+    if(localStorage.getItem("nick")!==null){
+       console.log(localStorage.getItem("nick"));
        $location.path("/bienvenida");
 
     }
@@ -35,9 +35,10 @@ app.controller('controladorLogin', function(servicioRest, config, $scope, $http,
                 $rootScope.usuarioP = $scope.user;
                 //Guardamos el usuario completo incluido el rol que nos devuelve
                 $rootScope.usuarioLS={
-                    name:$scope.user.name,
+                    nick:$scope.user.nick,
                     password:$scope.user.password,
-                    role:data.role   
+                    role:data.role,
+                    name:data.name
                 };
             
                 //Redireccionamos al usuario a la página de bienvenida
@@ -45,7 +46,7 @@ app.controller('controladorLogin', function(servicioRest, config, $scope, $http,
                 //Mostramos el menú
                 $rootScope.menu = true;
             
-                $http.defaults.headers.common['Authorization'] = 'Basic ' + btoa($rootScope.usuarioP.name + ':' + $rootScope.usuarioP.password);
+                $http.defaults.headers.common['Authorization'] = 'Basic ' + btoa($rootScope.usuarioP.nick + ':' + $rootScope.usuarioP.password);
                 
                 //Si el usuario ha pulsado recordar guardamos
                 comprobarRecordar();
@@ -60,7 +61,7 @@ app.controller('controladorLogin', function(servicioRest, config, $scope, $http,
                 }else if(err=="User not found in DB"){
                     $rootScope.error="El usuario no está registrado.";
                     $rootScope.user={        
-                        name:'',
+                        nick:'',
                         password:'' 
                     };
                 }
@@ -71,9 +72,9 @@ app.controller('controladorLogin', function(servicioRest, config, $scope, $http,
     function comprobarRecordar(){ 
 
         if($scope.recordar){
-            localStorage.setItem("name", $rootScope.usuarioLS.name);
+            localStorage.setItem("nick", $rootScope.usuarioLS.nick);
             // Usamos el nick del usuario como secreto
-            localStorage.setItem("password", Aes.Ctr.encrypt($rootScope.usuarioLS.password, $rootScope.usuarioLS.name, 256));
+            localStorage.setItem("password", Aes.Ctr.encrypt($rootScope.usuarioLS.password, $rootScope.usuarioLS.nick, 256));
             localStorage.setItem("role", $rootScope.usuarioLS.role);
         }
     }

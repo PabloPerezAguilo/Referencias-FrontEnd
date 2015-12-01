@@ -4,8 +4,10 @@ var app = angular.module('ref', ['ngRoute','ngMaterial','ngMdIcons','ngMessages'
 app.run(function(servicioRest, $rootScope, $http, $location, $mdDialog) {
 
     
-    $rootScope.menu=false;   
-  
+    $rootScope.menu=false;  
+    
+    // Opcion que determinará desde donde se accede a la pagina de nuevaReferencia para saber que cabecera y botones ponerle.
+    $rootScope.opcion = 'nueva';
     
 	// Establecemos las cabeceras por defecto. Las cabecera Authorization se modificara cuando el usuario se loge
 	$http.defaults.headers.common['Accept'] = 'application/json, text/javascript';

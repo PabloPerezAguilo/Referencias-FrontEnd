@@ -1,7 +1,6 @@
 app.controller('controladorUsuarioLogueado', function(servicioRest, config, $scope, $http, $location, $rootScope) {  
     
     $scope.nameUsu=$rootScope.usuarioLS.name;
-   // $scope.rolUsu=$rootScope.usuarioLS.role;//lo dejo para al menos mostrar el rol
     $scope.rolUsu='gfdgfd';
     
    /* debería de renombrarlo pero no lo hace */

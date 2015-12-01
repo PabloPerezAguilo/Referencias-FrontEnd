@@ -25,8 +25,6 @@ app.controller('controladorBienvenida', function(servicioRest, config, $scope, $
     }
     
     $rootScope.descripcion = true;
-    console.log($rootScope.usuarioLS.name);
-    console.log($rootScope.usuarioLS.role);
     $rootScope.usuarioD = $rootScope.usuarioLS.name;
     switch($rootScope.usuarioLS.role) {
     case "ROLE_ADMINISTRADOR":

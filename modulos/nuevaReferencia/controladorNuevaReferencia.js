@@ -4,7 +4,15 @@ app.controller('controladorNuevaReferencia', function(servicioRest, config, $sco
          $location.path('/bienvenida');
     }
     
- 
+    //Estos 2 IF determinan el titulo de la pagina nuevaReferencia
+    if (($rootScope.usuarioLS.role==="ROLE_ADMINISTRADOR" || $rootScope.usuarioLS.role==='"ROLE_MANTENIMIENTO') && $rootScope.opcion==='nueva'){
+        $scope.titulo = 'NUEVA REFERENCIA';
+    }
+    if ($rootScope.opcion==='validar'){
+        $scope.titulo = 'PENDIENTE DE VALIDACIÓN';   
+    }
+    
+    
     $scope.catalogo={};
     $scope.title = "";
     $scope.descripcion = "";
