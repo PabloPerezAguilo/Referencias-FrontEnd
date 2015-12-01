@@ -9,9 +9,9 @@ app.controller ('controladorListarReferencia', function (servicioRest, config, $
             $scope.referencias = response;
         });
     
-    $scope.abrirReferenciaPendiente = function (index, referencia) {        
-        console.log(referencia[index]);
+    $scope.abrirReferenciaPendiente = function (index, referencias) {        
+        console.log(referencias[index]);
+        $rootScope.referenciaCargada = referencias[index];
         $location.path('/nueva');
-        rellenarFormulario(index, referencia);
     }
 });
