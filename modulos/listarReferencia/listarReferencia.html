@@ -11,10 +11,10 @@
         <th>DENOMINACIÓN</th>		
         <th>SOLUCIÓN GFI</th>
       </tr>
-      <tr ng-repeat="referencia in referencias" id="selPendientes">
-        <td ng-click="abrirReferenciaPendiente($index, referencias)">{{referencia.cliente }} </td>
-        <td ng-click="abrirReferenciaPendiente($index, referencias)">{{referencia.denominacion}}</td>		
-        <td ng-click="abrirReferenciaPendiente($index, referencias)">{{referencia.solucionGfi}}</td>
+      <tr ng-repeat="referencia in referencias" ng-click="abrirReferenciaPendiente($index, referencias)" id="selPendientes">
+        <td>{{referencia.cliente }} </td>
+        <td>{{referencia.denominacion}}</td>		
+        <td>{{referencia.solucionGfi}}</td>
       </tr>
     </table>
     

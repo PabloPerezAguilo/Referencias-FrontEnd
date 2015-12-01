@@ -7,15 +7,11 @@ app.controller ('controladorListarReferencia', function (servicioRest, config, $
     servicioRest.getReferenciasPendientes().then(
         function (response) {           
             $scope.referencias = response;
-            /*if($scope.referencias){
-            
-                }*/            
         });
     
-    $scope.abrirReferenciaPendiente = function (index, referencias) {
-        //servicioRest.getReferencia(_id);
-        console.log(referencias[index]);
-        $rootScope.referenciaCargada = referencias[index];
-        $location.path('/nueva');    
+    $scope.abrirReferenciaPendiente = function (index, referencia) {        
+        console.log(referencia[index]);
+        $location.path('/nueva');
+        rellenarFormulario(index, referencia);
     }
 });
