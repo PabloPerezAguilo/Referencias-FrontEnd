@@ -12,10 +12,10 @@ app.controller ('controladorListarReferencia', function (servicioRest, config, $
                 }*/            
         });
     
-    $scope.abrirReferenciaPendiente = function (index, referencia) {
+    $scope.abrirReferenciaPendiente = function (index, referencias) {
         //servicioRest.getReferencia(_id);
-        console.log(referencia[index]);
-        
+        console.log(referencias[index]);
+        $rootScope.referenciaCargada = referencias[index];
         $location.path('/nueva');    
     }
 });

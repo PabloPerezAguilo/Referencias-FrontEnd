@@ -64,6 +64,7 @@ app.run(function(servicioRest, $rootScope, $http, $location, $mdDialog) {
         $rootScope.menuUsuarios = false;
         $rootScope.menuUsuariosAlta = false;
         $rootScope.menuUsuariosGestion = false;
+        $rootScope.referenciaCargada = null;
     }
     
     function limpiarLocalStorage() {

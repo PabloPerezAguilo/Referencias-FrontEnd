@@ -1,4 +1,14 @@
 app.controller('controladorNuevaReferencia', function(servicioRest, config, $scope, $http, $rootScope,$location,$mdDialog,$interval) {
+   
+    
+    if($rootScope.referenciaCargada !=null){
+        console.log($rootScope.referenciaCargada.denominacion);
+        console.log("traza16");
+        $scope.denominacion = $rootScope.referenciaCargada.denominacion;
+        console.log($scope.denominacion);
+        
+    }
+    //console.log(referencia[index]);
     
     if($rootScope.usuarioLS.role !== "ROLE_ADMINISTRADOR" && $rootScope.usuarioLS.role !== "ROLE_MANTENIMIENTO"){
          $location.path('/bienvenida');
@@ -152,6 +162,10 @@ app.controller('controladorNuevaReferencia', function(servicioRest, config, $sco
 			return results;
 		}
 	};
+    
+    function cargarReferencia(referencia) {
+		console.log(referencia);
+	};
 
     function querySearchT(text2) {
 		var resultado = text2 ? $scope.arrayDatos2.filter(filtrarT(text2)) : $scope.arrayDatos2, deferred;
@@ -235,7 +249,8 @@ app.controller('controladorNuevaReferencia', function(servicioRest, config, $sco
 		}
 	};		
 
-  
+   
+    
 
     
 
