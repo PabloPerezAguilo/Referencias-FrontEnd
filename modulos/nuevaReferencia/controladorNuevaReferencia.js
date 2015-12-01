@@ -13,6 +13,12 @@ app.controller('controladorNuevaReferencia', function(servicioRest, config, $sco
     }
     
     
+    //---------PRUEBA--------
+    
+
+    
+    //-----------------------
+    
     $scope.catalogo={};
     $scope.title = "";
     $scope.descripcion = "";
@@ -60,7 +66,7 @@ app.controller('controladorNuevaReferencia', function(servicioRest, config, $sco
         
     $scope.codigoQr='';
  
-     $scope.QrChaged = function(){
+    $scope.QrChaged = function(){
          
          if($scope.codigoQr!==''){
             $scope.qrCodeVisible="true"; 
@@ -68,7 +74,7 @@ app.controller('controladorNuevaReferencia', function(servicioRest, config, $sco
          }else if($scope.codigoQr===''|| $scope.codigoQr===undefined || $scope.codigoQr===' ' || $scope.codigoQr===null){
             $scope.qrCodeVisible="false";    
          }
-   }
+    }
    
     $scope.certificado = 'si';
     $scope.mensajeEstado='';

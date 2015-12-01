@@ -76,6 +76,7 @@ app.controller('controladorLogin', function(servicioRest, config, $scope, $http,
             // Usamos el nick del usuario como secreto
             localStorage.setItem("password", Aes.Ctr.encrypt($rootScope.usuarioLS.password, $rootScope.usuarioLS.nick, 256));
             localStorage.setItem("role", $rootScope.usuarioLS.role);
+            localStorage.setItem("name", $rootScope.usuarioLS.name);
         }
     }
     

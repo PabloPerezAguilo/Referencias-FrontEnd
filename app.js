@@ -16,11 +16,12 @@ app.run(function(servicioRest, $rootScope, $http, $location, $mdDialog) {
     
     
     // Comprobamos si el usuario guardó información en el localStorage. Si es asi la cargamos
-	if (localStorage.getItem("name") !== null) {
+	if (localStorage.getItem("nick") !== null) {
                 $rootScope.usuarioLS = {
-                    name: localStorage.getItem("name"),
-                    password: Aes.Ctr.decrypt(localStorage.getItem("password"), localStorage.getItem("name"), 256),
-                    role: localStorage.getItem("role")
+                    nick: localStorage.getItem("nick"),
+                    password: Aes.Ctr.decrypt(localStorage.getItem("password"), localStorage.getItem("nick"), 256),
+                    role: localStorage.getItem("role"),
+                    name: localStorage.getItem("name")
                 };
         
                 //volvemos a cargar el menú
