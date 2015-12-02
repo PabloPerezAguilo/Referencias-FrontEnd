@@ -32,18 +32,13 @@ $colorDetalles: #ee941a;
 $colorSombreado: #D8D8D8;
 
 
-
 body {
     line-height: 1;  
     font-size: 13px;
     height: 31px;
     width: 100%;
-    background-color: $colorClaro;
     font-family: verdana;
 }
-
-
-
 /* ------------------------------- CABECERA Y PIE ---------------------- */
 
 header {
@@ -67,7 +62,7 @@ footer {
     position: fixed;  
     bottom: 0px;
     height: 7%;
-    clear:both;    
+    clear:both;
 }
 footer #logoGfi {
     width: 5%;
@@ -146,7 +141,6 @@ footer #lineaFooter{
     height: 40px;
     color: #ee941a;
 }
-
 .botonesApp{
     background-color: $colorDetalles;
     font-size: 13px;
@@ -157,10 +151,13 @@ footer #lineaFooter{
     height: 90px;
     border-radius: 20px 20px 20px 20px;
     box-shadow: 2px 2px 2px 2px #777; 
-    background-color: $colorClaro;
-    
+    background-color: $colorClaro;  
 }
-
+.contenedorVistas{
+    margin-top: 1%;
+    overflow: auto;
+    height: 700px;
+}
 
 /* --------------------------- ESTILOS LOGIN ----------------------------- */
 
