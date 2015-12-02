@@ -33,7 +33,7 @@
                 <label>Sociedad</label>
                 <md-select ng-model="referencia.sociedad" ng-click="referencia.sociedad=''">                       
                     <md-option ng-value="sociedad.codigo" data-ng-repeat="sociedad in catalogo.sociedades" ng-selected="sociedad.codigo == referencia.sociedadSeleccionado ? true:false">
-                        {{ sociedad.codigo }}
+                        {{sociedad.descripcion}} ({{ sociedad.codigo }})
                     </md-option>
                 </md-select>
             </md-input-container>
@@ -41,7 +41,7 @@
                 <label>Sector Empresarial</label>
                 <md-select ng-model="referencia.sectorEmpresarial" ng-click="referencia.sectorEmpresarial=''">
                     <md-option ng-value="sectorEmpresarial.codigo" data-ng-repeat="sectorEmpresarial in catalogo.sectorempresarial" ng-selected="sectorEmpresarial.codigo == referencia.sectorEmpresarialSeleccionado ? true:false">
-                        {{ sectorEmpresarial.codigo }}
+                        {{sectorEmpresarial.descripcion}}  ({{ sectorEmpresarial.codigo }})
                     </md-option>
               </md-select>
             </md-input-container>
@@ -49,7 +49,7 @@
                 <label>Tipo de actividad</label>
                 <md-select ng-model="referencia.tipoActividad" ng-click="referencia.tipoActividad=''">
                     <md-option ng-value="tipoActividad.codigo" data-ng-repeat="tipoActividad in catalogo.actividad" ng-selected="tipoActividad.codigo == referencia.tipoActividadSeleccionado ? true:false">
-                    {{ tipoActividad.codigo }}
+                    {{ tipoActividad.descripcion }} ({{ tipoActividad.codigo }})
                     </md-option>      
                 </md-select>
             </md-input-container>
@@ -57,7 +57,7 @@
                 <label>Tipo de proyecto</label>
                 <md-select ng-model="referencia.tipoProyecto"  ng-click="referencia.tipoProyecto=''">
                     <md-option ng-value="tipoProyecto.codigo" data-ng-repeat="tipoProyecto in catalogo.proyecto" ng-selected="tipoProyecto.codigo == referencia.tipoProyectoSeleccionado ? true:false">
-                    {{ tipoProyecto.codigo }}
+                    {{ tipoProyecto.descripcion }} ({{ tipoProyecto.codigo }})
                     </md-option>      
                 </md-select>
             </md-input-container>
@@ -117,7 +117,7 @@
                     <label>Responsable Comercial</label>
                     <md-select ng-model="referencia.responsableComercial" ng-click="referencia.responsableComercial=''"> 
                         <md-option ng-value="responsableComercial.nombre" data-ng-repeat="responsableComercial in catalogo.comercial" ng-selected="responsableComercial.nombre == referencia.responsableComercialSeleccionado ? true:false">
-                            {{ responsableComercial.nombre }}
+                            {{ responsableComercial.nombre }} ({{ responsableComercial.login }})
                         </md-option>
                     </md-select>
                 </md-input-container>  
@@ -125,7 +125,7 @@
                     <label>Responsable Técnico</label>
                     <md-select ng-model="referencia.responsableTecnico"  ng-click="referencia.responsableTecnico=''">
                         <md-option ng-value="responsableTecnico.nombre" data-ng-repeat="responsableTecnico in catalogo.tecnico" ng-selected="responsableTecnico.nombre == referencia.responsableTecnicoSeleccionado ? true:false">
-                            {{ responsableTecnico.nombre }}
+                            {{ responsableTecnico.nombre }} ({{ responsableTecnico.login }})
                         </md-option>
                     </md-select>
                 </md-input-container>
@@ -141,7 +141,7 @@
                     </md-input-container>
                     <br>
                     <div class="centrado-QR">
-                        <qr ng-init="qrCodeVisible=False" text="codigoQr" version="3" error-correction-level="Q" size="100" ng-show="qrCodeVisible"></qr>
+                        <qr ng-init="qrCodeVisible=valorQr" text="codigoQr" version="3" error-correction-level="Q" size="100" ng-show="qrCodeVisible"></qr>
                     </div>   
                 </div>  
                 <div layout="row" class="contImg">           
