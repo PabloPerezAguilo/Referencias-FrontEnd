@@ -1,14 +1,32 @@
-app.controller('controladorNuevaReferencia', function(servicioRest, config, $scope, $http, $rootScope,$location,$mdDialog,$interval) {
+app.controller('controladorNuevaReferencia', function(servicioRest, config, $scope, $http, $rootScope,$location,$mdDialog,$interval){
    
-    
-    if($rootScope.referenciaCargada !=null){
-        console.log($rootScope.referenciaCargada.denominacion);
-        console.log("traza16");
-        $scope.denominacion = $rootScope.referenciaCargada.denominacion;
-        console.log($scope.denominacion);
+    // si venimos de listar referencias tendremos una referencia cargada en $rootScope para la comunicacion entre los controladores
+    if($rootScope.referenciaCargada != null){
+        // este codigo rellena la referencia con la informacion guardada en $rootScope
+        $scope.referencia = {};
+        $scope.referencia.responsableComercial = {};
+        console.log($rootScope.referenciaCargada);
+        
+        $scope.referencia.sociedadSeleccionado = $rootScope.referenciaCargada.sociedad;
+        $scope.referencia.sectorEmpresarialSeleccionado = $rootScope.referenciaCargada.sectorEmpresarial;
+        $scope.referencia.tipoActividadSeleccionado = $rootScope.referenciaCargada.tipoActividad;
+        $scope.referencia.tipoProyectoSeleccionado = $rootScope.referenciaCargada.tipoProyecto;
+        $scope.referencia.duracionMeses = $rootScope.referenciaCargada.duracionMeses;
+        
+        $scope.referencia.denominacion = $rootScope.referenciaCargada.denominacion;
+        $scope.referencia.resumenProyecto = $rootScope.referenciaCargada.resumenProyecto;
+        $scope.referencia.problematicaCliente = $rootScope.referenciaCargada.problematicaCliente;
+        $scope.referencia.solucionGfi = $rootScope.referenciaCargada.solucionGfi;
+        $scope.referencia.fteTotales =$rootScope.referenciaCargada.fteTotales;
+        $scope.referencia.regPedidoAsociadoReferencia = $rootScope.referenciaCargada.regPedidoAsociadoReferencia;
+        $scope.referencia.responsableComercialSeleccionado = $rootScope.referenciaCargada.responsableComercial;
+        $scope.referencia.responsableTecnicoSeleccionado = $rootScope.referenciaCargada.responsableTecnico;
+        
+        $scope.referencia.codigoQr = $rootScope.referenciaCargada.codigoQr;
+        recargarQR();
+        $rootScope.referenciaCargada = null;
         
     }
-    //console.log(referencia[index]);
     
     if($rootScope.usuarioLS.role !== "ROLE_ADMINISTRADOR" && $rootScope.usuarioLS.role !== "ROLE_MANTENIMIENTO"){
          $location.path('/bienvenida');
@@ -76,16 +94,23 @@ app.controller('controladorNuevaReferencia', function(servicioRest, config, $sco
         
     $scope.codigoQr='';
  
-    $scope.QrChaged = function(){
-         
-         if($scope.codigoQr!==''){
-            $scope.qrCodeVisible="true"; 
-             //Si lo borra que vuelva a ocultar el Qr
-         }else if($scope.codigoQr===''|| $scope.codigoQr===undefined || $scope.codigoQr===' ' || $scope.codigoQr===null){
-            $scope.qrCodeVisible="false";    
-         }
+    $scope.QrChaged = function (){
+       recargarQR();
     }
-   
+    
+   function recargarQR(){
+         console.log("ahora");
+        console.log($scope.referencia.codigoQr);
+         if($scope.referencia.codigoQr!=''){
+            console.log("primero");
+            $scope.qrCodeVisible=true; 
+             //Si lo borra que vuelva a ocultar el Qr
+         }else if($scope.referencia.codigoQr===''|| $scope.codigoQr===undefined || $scope.codigoQr===' ' || $scope.codigoQr===null){
+            $scope.qrCodeVisible=false; 
+             console.log("segundo");
+             console.log($scope.qrCodeVisible);
+         }
+   }
     $scope.certificado = 'si';
     $scope.mensajeEstado='';
     
@@ -169,9 +194,6 @@ app.controller('controladorNuevaReferencia', function(servicioRest, config, $sco
 		}
 	};
     
-    function cargarReferencia(referencia) {
-		console.log(referencia);
-	};
 
     function querySearchT(text2) {
 		var resultado = text2 ? $scope.arrayDatos2.filter(filtrarT(text2)) : $scope.arrayDatos2, deferred;

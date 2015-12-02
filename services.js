@@ -6,7 +6,9 @@ function ServicioREST($http, $q, $rootScope, config, $mdDialog) {
 	function tratarError(data, status, defered) {
 		if (status === 404 || status === 0) {
 			defered.reject("Servicio no disponible");
-		}else if (data == null){
+		//}else if(status === 400 ){ TODO tracear bien error ldap caido
+          //  defered.reject("Ldap no disponible");
+        }else if (data == null){
             //$rootScope.error="";
             popupError(null,"Error. Servidor no disponible")
         } else if (data === undefined || data.message === undefined) {
