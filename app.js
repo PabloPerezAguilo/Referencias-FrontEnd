@@ -106,6 +106,10 @@ app.config(function($routeProvider) {
         templateUrl: 'modulos/nuevaReferencia/nuevaReferencia.html',
         controller: 'controladorNuevaReferencia as ctrl'
     })
+    .when('/validarReferencia', {
+        templateUrl: 'modulos/nuevaReferencia/nuevaReferencia.html',
+        controller: 'controladorNuevaReferencia as ctrl'
+    })
     .when('/listarReferencia', {
         templateUrl: 'modulos/listarReferencia/listarReferencia.html',
         controller: 'controladorListarReferencia'
