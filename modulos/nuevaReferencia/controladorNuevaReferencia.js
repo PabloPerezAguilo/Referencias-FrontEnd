@@ -115,9 +115,9 @@ app.controller('controladorNuevaReferencia', function(servicioRest, config, $sco
     $scope.mensajeEstado='';
     
     
-    /*POR AHORA DUPLICO CÓDIGO MÁS ADELANTE FILTRAMOS LA LLAMADA!!!  */
-    $scope.crearBorrador = function () {
-        //var imagen = $scope.referencia.imagenProyecto.files[0];
+    /* Crear la referencia, puede tener estado: pendiente/borrador  */
+    $scope.crearReferencia = function (estado) {
+          
         var imagen = document.getElementById("botonFileReal").files[0];
         var fileReader = new FileReader();
         fileReader.readAsBinaryString(imagen);
@@ -129,35 +129,19 @@ app.controller('controladorNuevaReferencia', function(servicioRest, config, $sco
             $scope.referencia.cliente = $scope.catalogo.clientes[$scope.posicionEnArray].nombre;
             $scope.referencia.tecnologias = $scope.catalogo.tecnologia[$scope.posicionEnArray2].codigo;
             $scope.referencia.creadorReferencia = $rootScope.usuarioLS.name;
-            $scope.referencia.estado = "borrador";
-            var referencia = $scope.referencia;
-            console.log(referencia);
-            servicioRest.postReferencia(referencia);
-            $scope.mensajeEstado='Referencia creada en modo borrador.';
-        }
-    }  
-    
-    $scope.crearPendiente = function () {             
-        //var imagen = $scope.referencia.imagenProyecto.files[0];
-        var imagen = document.getElementById("botonFileReal").files[0];
-        var fileReader = new FileReader();
-        fileReader.readAsBinaryString(imagen);
-        fileReader.onloadend = function(e){
-            var objeto = e.target.result;
-            objeto = btoa(objeto);
-            $scope.referencia.imagenProyecto = objeto;
-            console.log(objeto);
-            $scope.referencia.cliente = $scope.catalogo.clientes[$scope.posicionEnArray].nombre;
-            $scope.referencia.tecnologias = $scope.catalogo.tecnologia[$scope.posicionEnArray2].codigo;
-            $scope.referencia.creadorReferencia = $rootScope.usuarioLS.name;
-            $scope.referencia.estado = "pendiente";
             var referencia = $scope.referencia; 
             console.log(referencia);
             servicioRest.postReferencia(referencia);
-            $scope.mensajeEstado='Referencia creada pendiente de validar.';    
-        }
-        
-    } 
+            
+            if(estado='pendiente'){
+                $scope.referencia.estado = "pendiente";
+                $scope.mensajeEstado='Referencia creada pendiente de validar.';       
+            }else if(estado='borrador'){
+                $scope.referencia.estado = "borrador";  
+                $scope.mensajeEstado='Referencia creada en modo borrador.';   
+            }
+        }  
+    }
     
     
     /*-------AUTOCOMPLETE--------*/
