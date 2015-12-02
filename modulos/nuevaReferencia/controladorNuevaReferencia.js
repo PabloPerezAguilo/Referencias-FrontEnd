@@ -21,11 +21,13 @@ app.controller('controladorNuevaReferencia', function(servicioRest, config, $sco
         $scope.referencia.regPedidoAsociadoReferencia = $rootScope.referenciaCargada.regPedidoAsociadoReferencia;
         $scope.referencia.responsableComercialSeleccionado = $rootScope.referenciaCargada.responsableComercial;
         $scope.referencia.responsableTecnicoSeleccionado = $rootScope.referenciaCargada.responsableTecnico;
-        
+        $scope.valorQr = true;
         $scope.referencia.codigoQr = $rootScope.referenciaCargada.codigoQr;
         recargarQR();
         $rootScope.referenciaCargada = null;
         
+    }else{
+        $scope.valorQr = false;
     }
     
     if($rootScope.usuarioLS.role !== "ROLE_ADMINISTRADOR" && $rootScope.usuarioLS.role !== "ROLE_MANTENIMIENTO"){
@@ -61,7 +63,6 @@ app.controller('controladorNuevaReferencia', function(servicioRest, config, $sco
             $scope.catalogo = response;
             cadenaClientes();
             cadenaTecnologia();         
-            $scope.arrayDatos = cargarDatosClientes(); 
             $scope.arrayDatos = cargarDatosClientes(); 
             $scope.arrayDatos2 = cargarDatosTecnologia();
             console.log("Catalogos Cargados");
@@ -107,7 +108,9 @@ app.controller('controladorNuevaReferencia', function(servicioRest, config, $sco
         console.log($scope.referencia.codigoQr);
          if($scope.referencia.codigoQr!=''){
             console.log("primero");
+            
             $scope.qrCodeVisible=true; 
+             console.log($scope.qrCodeVisible);
              //Si lo borra que vuelva a ocultar el Qr
          }else if($scope.referencia.codigoQr===''|| $scope.codigoQr===undefined || $scope.codigoQr===' ' || $scope.codigoQr===null){
             $scope.qrCodeVisible=false; 
@@ -215,6 +218,7 @@ app.controller('controladorNuevaReferencia', function(servicioRest, config, $sco
 
 	// Elemento seleccionado
 	function selectedItemChange(item) {
+        console.log(item);
 		if (JSON.stringify(item) !== undefined) {
 			var pos = item.value.substring(item.value.length, item.value.indexOf("*") + 1);
 			$scope.posicionEnArray = pos;

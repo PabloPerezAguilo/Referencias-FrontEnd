@@ -30,10 +30,10 @@ app.run(function(servicioRest, $rootScope, $http, $location, $mdDialog) {
                 //volvemos a cargar el menú
                 $rootScope.menu = true;
         
-                $http.defaults.headers.common['Authorization'] = 'Basic ' + btoa($rootScope.usuarioLS.name + ':' + $rootScope.usuarioLS.password);
+                $http.defaults.headers.common['Authorization'] = 'Basic ' + btoa($rootScope.usuarioLS.nick + ':' + $rootScope.usuarioLS.password);
 
                 // Hacemos la llamada al servicioRest pidiendole los datos del usuario
-                servicioRest.postLogin({name:$rootScope.usuarioLS.name,password: $rootScope.usuarioLS.password})
+                servicioRest.postLogin({nick:$rootScope.usuarioLS.nick ,password: $rootScope.usuarioLS.password})
                 .then(function(data) {
                     data.role=$rootScope.usuarioLS.role;
      
