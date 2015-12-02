@@ -7,7 +7,10 @@ app.run(function(servicioRest, $rootScope, $http, $location, $mdDialog) {
     $rootScope.menu=false;  
     
     // Opcion que determinará desde donde se accede a la pagina de nuevaReferencia para saber que cabecera y botones ponerle.
-    $rootScope.opcion = 'nueva';
+    $rootScope.actualizarTitulo = function(){
+        $rootScope.opcion = 'nueva'; 
+        console.log('titulo cambiado');
+    };
     
 	// Establecemos las cabeceras por defecto. Las cabecera Authorization se modificara cuando el usuario se loge
 	$http.defaults.headers.common['Accept'] = 'application/json, text/javascript';
@@ -43,6 +46,8 @@ app.run(function(servicioRest, $rootScope, $http, $location, $mdDialog) {
 	};
     
 
+    
+    
     $rootScope.datosUsuarioLogueado = function() {
      
         $mdDialog.show({
