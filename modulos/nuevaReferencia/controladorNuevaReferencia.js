@@ -11,17 +11,21 @@ app.controller('controladorNuevaReferencia', function(servicioRest, config, $sco
     //console.log(referencia[index]);
     
     if($rootScope.usuarioLS.role !== "ROLE_ADMINISTRADOR" && $rootScope.usuarioLS.role !== "ROLE_MANTENIMIENTO"){
-         $location.path('/bienvenida');
+        if($rootScope.usuarioLS.role == "ROLE_VALIDADOR" && $rootScope.referenciaCargada != null){
+               console.log("Validador leyendo referencia");
+        }else{
+             $location.path('/bienvenida');
+        }
+        
     }
-    
+
     //Estos 2 IF determinan el titulo de la pagina nuevaReferencia
-    if (($rootScope.usuarioLS.role==="ROLE_ADMINISTRADOR" || $rootScope.usuarioLS.role==='"ROLE_MANTENIMIENTO') && $rootScope.opcion==='nueva'){
+    if (($rootScope.usuarioLS.role==="ROLE_ADMINISTRADOR" || $rootScope.usuarioLS.role==='ROLE_MANTENIMIENTO') && $rootScope.opcion==='nueva'){
         $scope.titulo = 'NUEVA REFERENCIA';
     }
     if ($rootScope.opcion==='validar'){
         $scope.titulo = 'PENDIENTE DE VALIDACIÓN';   
     }
-    
     
     //---------PRUEBA--------
     

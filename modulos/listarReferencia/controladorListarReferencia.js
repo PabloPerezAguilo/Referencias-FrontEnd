@@ -2,7 +2,6 @@ app.controller ('controladorListarReferencia', function (servicioRest, config, $
     
     $rootScope.opcion = 'validar';
     
-    $scope.titulo = 'REFERENCIAS PENDIENTES DE VALIDAR';
     
     servicioRest.getReferenciasPendientes().then(
         function (response) {           
