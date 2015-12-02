@@ -113,7 +113,8 @@ footer #lineaFooter {
 .iconosMenu {
   width: 10px;
   height: 25px;
-  margin: auto; }
+  margin: auto;
+  cursor: pointer; }
 
 /* --------------------------- ESTILOS BIENVENIDA ---------------------- */
 #bienvenida {
