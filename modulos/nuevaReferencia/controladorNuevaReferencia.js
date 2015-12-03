@@ -1,7 +1,6 @@
 app.controller('controladorNuevaReferencia', function(servicioRest, config, $scope, $http, $rootScope,$location,$mdDialog,$interval){
     
-    /*PRUEBA AUTCOMPLETE*/
-    $scope.clienteCargado = "putamadre";
+    
     
     if($rootScope.usuarioLS.role !== "ROLE_ADMINISTRADOR" && $rootScope.usuarioLS.role !== "ROLE_MANTENIMIENTO"){
         if($rootScope.usuarioLS.role == "ROLE_VALIDADOR" && $rootScope.referenciaCargada != null){
@@ -266,10 +265,11 @@ app.controller('controladorNuevaReferencia', function(servicioRest, config, $sco
         $scope.referencia.responsableTecnicoSeleccionado = $rootScope.referenciaCargada.responsableTecnico;
         $scope.valorQr = true;
         $scope.referencia.codigoQr = $rootScope.referenciaCargada.codigoQr;
+        recargarQR()
         console.log($rootScope.clientes);
         console.log(querySearch($rootScope.referenciaCargada.cliente[0].display));
-        
-        recargarQR()
+        /*PRUEBA AUTCOMPLETE*/
+    $scope.clienteCargado = "pruebaCarga";
         /*Vaciamos referenciaCargada*/
         $rootScope.referenciaCargada = null;
     }
