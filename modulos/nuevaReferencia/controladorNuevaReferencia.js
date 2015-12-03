@@ -115,10 +115,10 @@ app.controller('controladorNuevaReferencia', function(servicioRest, config, $sco
             var referencia = $scope.referencia; 
             servicioRest.postReferencia(referencia);
             
-            if(estado='pendiente'){
+            if(estado==='pendiente'){
                 $scope.referencia.estado = "pendiente";
                 $scope.mensajeEstado='Referencia creada pendiente de validar.';       
-            }else if(estado='borrador'){
+            }else if(estado==='borrador'){
                 $scope.referencia.estado = "borrador";  
                 $scope.mensajeEstado='Referencia creada en modo borrador.';   
             }
