@@ -24,7 +24,6 @@ app.controller ('controladorListarReferencia', function (servicioRest, config, $
     
     $scope.abrirReferenciaPendiente = function (index, referencias) {        
         console.log(referencias[index]);
-    $scope.abrirReferenciaPendiente = function (index, referencias) {
         $rootScope.referenciaCargada = referencias[index];
         $location.path('/validarReferencia');
     }
