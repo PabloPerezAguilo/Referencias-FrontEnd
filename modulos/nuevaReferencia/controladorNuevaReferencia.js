@@ -1,34 +1,7 @@
 app.controller('controladorNuevaReferencia', function(servicioRest, config, $scope, $http, $rootScope,$location,$mdDialog,$interval){
-   
-    // si venimos de listar referencias tendremos una referencia cargada en $rootScope para la comunicacion entre los controladores
-    if($rootScope.referenciaCargada != null){
-        // este codigo rellena la referencia con la informacion guardada en $rootScope
-        $scope.referencia = {};
-        $scope.referencia.responsableComercial = {};
-        console.log($rootScope.referenciaCargada);
-        
-        $scope.referencia.sociedadSeleccionado = $rootScope.referenciaCargada.sociedad;
-        $scope.referencia.sectorEmpresarialSeleccionado = $rootScope.referenciaCargada.sectorEmpresarial;
-        $scope.referencia.tipoActividadSeleccionado = $rootScope.referenciaCargada.tipoActividad;
-        $scope.referencia.tipoProyectoSeleccionado = $rootScope.referenciaCargada.tipoProyecto;
-        $scope.referencia.duracionMeses = $rootScope.referenciaCargada.duracionMeses;
-        
-        $scope.referencia.denominacion = $rootScope.referenciaCargada.denominacion;
-        $scope.referencia.resumenProyecto = $rootScope.referenciaCargada.resumenProyecto;
-        $scope.referencia.problematicaCliente = $rootScope.referenciaCargada.problematicaCliente;
-        $scope.referencia.solucionGfi = $rootScope.referenciaCargada.solucionGfi;
-        $scope.referencia.fteTotales =$rootScope.referenciaCargada.fteTotales;
-        $scope.referencia.regPedidoAsociadoReferencia = $rootScope.referenciaCargada.regPedidoAsociadoReferencia;
-        $scope.referencia.responsableComercialSeleccionado = $rootScope.referenciaCargada.responsableComercial;
-        $scope.referencia.responsableTecnicoSeleccionado = $rootScope.referenciaCargada.responsableTecnico;
-        $scope.valorQr = true;
-        $scope.referencia.codigoQr = $rootScope.referenciaCargada.codigoQr;
-        recargarQR();
-        $rootScope.referenciaCargada = null;
-        
-    }else{
-        $scope.valorQr = false;
-    }
+    
+    /*PRUEBA AUTCOMPLETE*/
+    $scope.clienteCargado = "putamadre";
     
     if($rootScope.usuarioLS.role !== "ROLE_ADMINISTRADOR" && $rootScope.usuarioLS.role !== "ROLE_MANTENIMIENTO"){
         if($rootScope.usuarioLS.role == "ROLE_VALIDADOR" && $rootScope.referenciaCargada != null){
@@ -61,12 +34,23 @@ app.controller('controladorNuevaReferencia', function(servicioRest, config, $sco
     servicioRest.getCatalogos().then(
         function(response) {
             $scope.catalogo = response;
+            /*Modificacion Ruben para cargar autocomplete en listar*/
+            $rootScope.clientes = $scope.catalogo.clientes;
+            $rootScope.tecnologias = $scope.catalogo.tecnologias;
+            /*Modificacion Ruben para cargar autocomplete en listar*/
             cadenaClientes();
             cadenaTecnologia();         
             $scope.arrayDatos = cargarDatosClientes(); 
             $scope.arrayDatos2 = cargarDatosTecnologia();
             console.log("Catalogos Cargados");
-            $rootScope.sociedades = $scope.catalogo.sociedades;               
+            $rootScope.sociedades = $scope.catalogo.sociedades;
+            
+            // si venimos de listar referencias tendremos una referencia cargada en $rootScope para la comunicacion entre los controladores
+            if($rootScope.referenciaCargada != null){
+                cargarDatosValidarReferencia()
+            }else{
+                $scope.valorQr = false;
+            }
         });
     
     $scope.uploadFile = function (input) {
@@ -104,18 +88,11 @@ app.controller('controladorNuevaReferencia', function(servicioRest, config, $sco
     }
     
    function recargarQR(){
-         console.log("ahora");
-        console.log($scope.referencia.codigoQr);
          if($scope.referencia.codigoQr!=''){
-            console.log("primero");
-            
             $scope.qrCodeVisible=true; 
-             console.log($scope.qrCodeVisible);
              //Si lo borra que vuelva a ocultar el Qr
          }else if($scope.referencia.codigoQr===''|| $scope.codigoQr===undefined || $scope.codigoQr===' ' || $scope.codigoQr===null){
             $scope.qrCodeVisible=false; 
-             console.log("segundo");
-             console.log($scope.qrCodeVisible);
          }
    }
     $scope.certificado = 'si';
@@ -132,12 +109,10 @@ app.controller('controladorNuevaReferencia', function(servicioRest, config, $sco
             var objeto = e.target.result;
             objeto = btoa(objeto);
             $scope.referencia.imagenProyecto = objeto;
-            console.log(objeto);
             $scope.referencia.cliente = $scope.catalogo.clientes[$scope.posicionEnArray].nombre;
             $scope.referencia.tecnologias = $scope.catalogo.tecnologia[$scope.posicionEnArray2].codigo;
             $scope.referencia.creadorReferencia = $rootScope.usuarioLS.name;
             var referencia = $scope.referencia; 
-            console.log(referencia);
             servicioRest.postReferencia(referencia);
             
             if(estado='pendiente'){
@@ -218,7 +193,6 @@ app.controller('controladorNuevaReferencia', function(servicioRest, config, $sco
 
 	// Elemento seleccionado
 	function selectedItemChange(item) {
-        console.log(item);
 		if (JSON.stringify(item) !== undefined) {
 			var pos = item.value.substring(item.value.length, item.value.indexOf("*") + 1);
 			$scope.posicionEnArray = pos;
@@ -269,9 +243,36 @@ app.controller('controladorNuevaReferencia', function(servicioRest, config, $sco
 		}
 	};		
 
-   
-    
+   /*Cargar datos en validarReferencia*/
+    function cargarDatosValidarReferencia(){
+        // este codigo rellena la referencia con la informacion guardada en $rootScope
+        $scope.referencia = {};
+        $scope.referencia.responsableComercial = {};
+        console.log($rootScope.referenciaCargada);
 
-    
+        $scope.referencia.sociedadSeleccionado = $rootScope.referenciaCargada.sociedad;
+        $scope.referencia.sectorEmpresarialSeleccionado = $rootScope.referenciaCargada.sectorEmpresarial;
+        $scope.referencia.tipoActividadSeleccionado = $rootScope.referenciaCargada.tipoActividad;
+        $scope.referencia.tipoProyectoSeleccionado = $rootScope.referenciaCargada.tipoProyecto;
+        $scope.referencia.duracionMeses = $rootScope.referenciaCargada.duracionMeses;
 
+        $scope.referencia.denominacion = $rootScope.referenciaCargada.denominacion;
+        $scope.referencia.resumenProyecto = $rootScope.referenciaCargada.resumenProyecto;
+        $scope.referencia.problematicaCliente = $rootScope.referenciaCargada.problematicaCliente;
+        $scope.referencia.solucionGfi = $rootScope.referenciaCargada.solucionGfi;
+        $scope.referencia.fteTotales =$rootScope.referenciaCargada.fteTotales;
+        $scope.referencia.regPedidoAsociadoReferencia = $rootScope.referenciaCargada.regPedidoAsociadoReferencia;
+        $scope.referencia.responsableComercialSeleccionado = $rootScope.referenciaCargada.responsableComercial;
+        $scope.referencia.responsableTecnicoSeleccionado = $rootScope.referenciaCargada.responsableTecnico;
+        $scope.valorQr = true;
+        $scope.referencia.codigoQr = $rootScope.referenciaCargada.codigoQr;
+        console.log($rootScope.clientes);
+        console.log(querySearch($rootScope.referenciaCargada.cliente[0].display));
+        
+        recargarQR()
+        /*Vaciamos referenciaCargada*/
+        $rootScope.referenciaCargada = null;
+    }
+
+    /*Cargar datos en validarReferencia*/
 });

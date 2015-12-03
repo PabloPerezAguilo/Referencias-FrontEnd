@@ -16,7 +16,8 @@
                             md-min-length="3"
                             ng-model="referencia.cliente"
                             ng-disabled="permisoEscritura"
-                            placeholder="Busque por cliente o siglas.">
+                            placeholder="Busque por cliente o siglas."
+                             ng-init="ctrl.searchText=clienteCargado">
                           <md-item-template>
                             <span md-highlight-text="ctrl.searchText" md-highlight-flags="^i">{{item.display}}</span>
                           </md-item-template>
