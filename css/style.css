@@ -233,8 +233,6 @@ li {
   list-style: none;
   background-color: rgba(0, 0, 0, 0.05);
   background-image: linear-gradient(90deg, #ee941a 10px, #EEE 10px, #EEE 11px, transparent 11px);
-  padding: 10px 15px 10px 25px;
-  border: 1px solid #CCC;
   box-shadow: inset 1px 1px 0 rgba(255, 255, 255, 0.5);
   margin-bottom: 5px;
   width: 100%;
@@ -247,7 +245,6 @@ ul {
   padding: 0;
   max-height: 320px;
   overflow-y: hidden;
-  border: 1px solid rgba(0, 0, 0, 0.1);
   padding: 5px 5px 0 5px;
   border-left: none;
   border-right: none; }
@@ -596,5 +593,23 @@ md-toolbar:not(.md-menu-toolbar) {
 
 #selPendientes {
   cursor: pointer; }
+
+.contenedorPaginacion {
+  text-align: center;
+  position: fixed;
+  bottom: 100px;
+  width: 100%; }
+
+.pagination > li > a {
+  color: #242424; }
+
+.pagination > .active > a, .pagination > .active > span, .pagination > .active > a:hover, .pagination > .active > span:hover, .pagination > .active > a:focus, .pagination > .active > span:focus {
+  background-color: #ee941a;
+  border-color: #ee941a; }
+
+.pagination > li > a:hover, .pagination > li > span:hover, .pagination > li > a:focus, .pagination > li > span:focus {
+  color: #242424;
+  background-color: #eee;
+  border-color: #ddd; }
 
 /*# sourceMappingURL=style.css.map */
