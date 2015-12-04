@@ -6,7 +6,10 @@ app.controller('controladorNuevaReferencia', function(servicioRest, config, $sco
     if($rootScope.referenciaCargada != null){
          $scope.clienteCargado = $rootScope.referenciaCargada.cliente;
          $scope.tecnologiaCargada = $rootScope.referenciaCargada.tecnologias;
-         console.log($rootScope.referenciaCargada.fechaInicio);
+         $scope.UserPhoto = $rootScope.referenciaCargada.imagenProyecto;
+     }else{
+         /*Vaciamos referenciaCargada*/
+                $rootScope.referenciaCargada = null;
      }
     
     
@@ -324,6 +327,8 @@ app.controller('controladorNuevaReferencia', function(servicioRest, config, $sco
         $scope.valorQr = true;
         $scope.referencia.codigoQr = $rootScope.referenciaCargada.codigoQr;
         recargarQR();
+        
+        
         
         /*PRUEBA AUTCOMPLETE*/
         $scope.clienteCargado = "pruebaCarga";
