@@ -25,12 +25,20 @@ footer, header, hgroup, menu, nav, section {
   display: block; }
 
 /*CSS Global Variables*/
+/*medias querys*/
+@media screen and (max-width: 700px) {
+  .contenedorVistas {
+    width: 80%; }
+  .botonesCrear {
+    margin-bottom: 50px; } }
+
 body {
   line-height: 1;
   font-size: 13px;
   height: 31px;
   width: 100%;
-  font-family: verdana; }
+  font-family: verdana;
+  overflow: hidden; }
 
 /* ------------------------------- CABECERA Y PIE ---------------------- */
 header {

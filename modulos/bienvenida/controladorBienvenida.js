@@ -40,7 +40,7 @@ app.controller('controladorBienvenida', function(servicioRest, config, $scope, $
         $rootScope.roleD = "Consultor";
         break;
     default:
-        servicioRest.popupError(null,"Rol incorrecto")
+        servicioRest.popupInfo(null,"Rol incorrecto")
         $location.path('/');
         
     }

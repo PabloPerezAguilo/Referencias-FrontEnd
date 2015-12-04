@@ -20,7 +20,7 @@ function ServicioREST($http, $q, $rootScope, config, $mdDialog) {
     
 
     
-    function popupError(ev,descripcion){    
+    function popupInfo(ev,descripcion){    
         
         $mdDialog.show(
             $mdDialog.alert()
@@ -224,6 +224,6 @@ function ServicioREST($http, $q, $rootScope, config, $mdDialog) {
         getCatalogos: getCatalogos,
         postUsuario: postUsuario,
         postLogin : postLogin,
-        popupError : popupError
+        popupInfo : popupInfo
 	}
 }

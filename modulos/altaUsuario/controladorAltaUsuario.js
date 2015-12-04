@@ -16,7 +16,7 @@ app.controller('controladorAltaUsuario', function(servicioRest, config, $scope, 
             .then(function(data) {
              $scope.mensaje='Usuario creado con éxito';
         }).catch(function(err) {
-            servicioRest.popupError('Usuario ya existente');
+            servicioRest.popupInfo('Usuario ya existente');
 			});        
     };
       

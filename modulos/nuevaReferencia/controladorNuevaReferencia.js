@@ -16,15 +16,12 @@ app.controller('controladorNuevaReferencia', function(servicioRest, config, $sco
         $scope.titulo = 'NUEVA REFERENCIA';
     }
     if ($rootScope.opcion==='validar'){
-        $scope.titulo = 'PENDIENTE DE VALIDACIÓN';   
+        $scope.titulo = 'PENDIENTE DE VALIDACIÓN'; 
+        
     }
     
-    //---------PRUEBA--------
-    
-
-    
-    //-----------------------
-    
+  
+    /* CARGA DE CATALOGOS */
     $scope.catalogo={};
     $scope.title = "";
     $scope.descripcion = "";
@@ -79,9 +76,8 @@ app.controller('controladorNuevaReferencia', function(servicioRest, config, $sco
         }
     }
             
-        
+    /* MOSTRAR QR CUANDO COMPLETA EL CAMPO*/    
     $scope.codigoQr='';
- 
     $scope.QrChaged = function (){
        recargarQR();
     }
@@ -123,7 +119,27 @@ app.controller('controladorNuevaReferencia', function(servicioRest, config, $sco
             }
         }  
     }
+
+    /* ------------------------ VALIDAR UNA REFERENCIA ------------------------------- */
     
+    $scope.validarReferencia = function () {
+        console.log($rootScope.referenciaCargada);
+        $rootScope.referenciaCargada.estado='validada';
+
+        //cambiamos el estado de la referencia a 'validada'
+        servicioRest.updateReferencia($rootScope.referenciaCargada)
+            .then(function(data) {
+                servicioRest.popupInfo('', "Referencia validada con éxito.");
+                 //Redireccionamos al usuario a la ventana de listar Referencias Pendientes de Validar
+                $location.path('/listarReferencia');
+                console.log("Referencia validada");
+                /*Vaciamos referenciaCargada*/
+                $rootScope.referenciaCargada = null;
+            }).catch(function(err) {
+                servicioRest.popupInfo('',"Error al validar la referencia.");
+                console.log("Error al validar la referencia");
+            });  
+    }
     
     /*-------AUTOCOMPLETE--------*/
 	$scope.cadena = "";
@@ -270,9 +286,9 @@ app.controller('controladorNuevaReferencia', function(servicioRest, config, $sco
         console.log(querySearch($rootScope.referenciaCargada.cliente[0].display));
         /*PRUEBA AUTCOMPLETE*/
     $scope.clienteCargado = "pruebaCarga";
-        /*Vaciamos referenciaCargada*/
-        $rootScope.referenciaCargada = null;
+        
     }
 
-    /*Cargar datos en validarReferencia*/
+  
 });
+
