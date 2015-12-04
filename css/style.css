@@ -25,24 +25,33 @@ footer, header, hgroup, menu, nav, section {
   display: block; }
 
 /*CSS Global Variables*/
+/*medias querys*/
+@media screen and (max-width: 700px) {
+  .contenedorVistas {
+    width: 80%; }
+  .botonesCrear {
+    margin-bottom: 50px; } }
+
 body {
   line-height: 1;
   font-size: 13px;
   height: 31px;
   width: 100%;
-  font-family: verdana; }
+  font-family: verdana;
+  overflow: hidden; }
 
 /* ------------------------------- CABECERA Y PIE ---------------------- */
 header {
   width: auto;
+  min-width: 20%;
   height: 10%;
   overflow: hidden;
   background: #242424;
   box-shadow: 1px 1px 1px 1px #777; }
 
 header #logoSharon {
-  max-width: 60%;
-  min-width: 20%;
+  max-width: 30%;
+  min-width: 2%;
   display: block;
   margin: auto;
   width: 400px; }
@@ -141,7 +150,7 @@ footer #lineaFooter {
   background-color: #ececec; }
 
 .contenedorVistas {
-  margin-top: 1%;
+  margin-top: 0.2%;
   overflow: auto;
   height: 700px; }
 
@@ -232,8 +241,6 @@ li {
   list-style: none;
   background-color: rgba(0, 0, 0, 0.05);
   background-image: linear-gradient(90deg, #ee941a 10px, #EEE 10px, #EEE 11px, transparent 11px);
-  padding: 10px 15px 10px 25px;
-  border: 1px solid #CCC;
   box-shadow: inset 1px 1px 0 rgba(255, 255, 255, 0.5);
   margin-bottom: 5px;
   width: 100%;
@@ -246,7 +253,6 @@ ul {
   padding: 0;
   max-height: 320px;
   overflow-y: hidden;
-  border: 1px solid rgba(0, 0, 0, 0.1);
   padding: 5px 5px 0 5px;
   border-left: none;
   border-right: none; }
@@ -378,7 +384,7 @@ md-icon.md-default-theme, md-icon {
 #cajon2 {
   float: left; }
 
-#botonesCrear {
+.botonesCrear {
   margin-top: 10px;
   text-align: center; }
 
@@ -538,7 +544,8 @@ md-select-menu.md-default-theme md-option[selected]:focus, md-select-menu md-opt
 /*--------------------- ESTILOS DIALOGOS -------------------------*/
 md-dialog {
   width: 400px;
-  height: 200px;
+  height: 220px;
+  overflow: hidden;
   border-radius: 20px 20px 20px 20px; }
 
 md-dialog.md-default-theme, md-dialog {
@@ -595,5 +602,23 @@ md-toolbar:not(.md-menu-toolbar) {
 
 #selPendientes {
   cursor: pointer; }
+
+.contenedorPaginacion {
+  text-align: center;
+  position: fixed;
+  bottom: 100px;
+  width: 100%; }
+
+.pagination > li > a {
+  color: #242424; }
+
+.pagination > .active > a, .pagination > .active > span, .pagination > .active > a:hover, .pagination > .active > span:hover, .pagination > .active > a:focus, .pagination > .active > span:focus {
+  background-color: #ee941a;
+  border-color: #ee941a; }
+
+.pagination > li > a:hover, .pagination > li > span:hover, .pagination > li > a:focus, .pagination > li > span:focus {
+  color: #242424;
+  background-color: #eee;
+  border-color: #ddd; }
 
 /*# sourceMappingURL=style.css.map */

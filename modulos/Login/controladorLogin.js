@@ -29,7 +29,7 @@ app.controller('controladorLogin', function(servicioRest, config, $scope, $http,
     }
     
     function login(){
-    
+        $rootScope.error = "";
         servicioRest.postLogin($scope.user)
 			.then(function(data) {
                 $rootScope.usuarioP = $scope.user;

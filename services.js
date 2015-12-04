@@ -10,7 +10,7 @@ function ServicioREST($http, $q, $rootScope, config, $mdDialog) {
           //  defered.reject("Ldap no disponible");
         }else if (data == null){
             //$rootScope.error="";
-            popupError(null,"Error. Servidor no disponible")
+            popupInfo(null,"Error. Servidor no disponible")
         } else if (data === undefined || data.message === undefined) {
 			defered.reject("Error: " + status);
 		} else {
@@ -20,7 +20,7 @@ function ServicioREST($http, $q, $rootScope, config, $mdDialog) {
     
 
     
-    function popupError(ev,descripcion){    
+    function popupInfo(ev,descripcion){    
         
         $mdDialog.show(
             $mdDialog.alert()
@@ -224,6 +224,6 @@ function ServicioREST($http, $q, $rootScope, config, $mdDialog) {
         getCatalogos: getCatalogos,
         postUsuario: postUsuario,
         postLogin : postLogin,
-        popupError : popupError
+        popupInfo : popupInfo
 	}
 }
