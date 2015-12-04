@@ -1,21 +1,22 @@
 <div>
     <p  class="cabeceraPagina">{{titulo}}</p>
     <br>
-    
-    <!--<ul>
-        <li ng-repeat="referencia in referencias">{{referencia.cliente }} | {{referencia.denominacion}} | {{referencia.solucionGfi}}</li>
-    </ul>-->
-        <table id="referenciasPendientes">
+    <table id="referenciasPendientes">
       <tr>
         <th>CLIENTE</th>
         <th>DENOMINACIÓN</th>		
         <th>SOLUCIÓN GFI</th>
       </tr>
-      <tr ng-repeat="referencia in referencias" ng-click="abrirReferenciaPendiente($index, referencias)" id="selPendientes">
-        <td>{{referencia.cliente }} </td>
-        <td>{{referencia.denominacion}}</td>		
-        <td>{{referencia.solucionGfi}}</td>
+      <tr ng-repeat="referencia in referencias | filter: paginate" ng-click="abrirReferenciaPendiente($index, referencias)" id="selPendientes">
+        <td id="prueba">{{referencia.cliente }} </td>
+        <td id="prueba">{{referencia.denominacion}}</td>		
+        <td id="prueba">{{referencia.solucionGfi}}</td>
       </tr>
     </table>
-    
+    <div class="contenedorPaginacion">
+        <pagination total-items="totalItems" ng-model="currentPage"
+        max-size="5" boundary-links="true"
+        items-per-page="numPerPage" class="pagination-sm">
+        </pagination>
+    </div>
 </div>

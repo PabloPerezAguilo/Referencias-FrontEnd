@@ -1,5 +1,10 @@
 app.controller('controladorNuevaReferencia', function(servicioRest, config, $scope, $http, $rootScope,$location,$mdDialog,$interval){
-    
+     if($rootScope.referenciaCargada != null){
+         $scope.clienteCargado = $rootScope.referenciaCargada.cliente;
+         $scope.tecnologiaCargada = $rootScope.referenciaCargada.tecnologias;
+         console.log($rootScope.referenciaCargada.fechaInicio);
+         
+     }
     
     
     if($rootScope.usuarioLS.role !== "ROLE_ADMINISTRADOR" && $rootScope.usuarioLS.role !== "ROLE_MANTENIMIENTO"){
@@ -43,7 +48,8 @@ app.controller('controladorNuevaReferencia', function(servicioRest, config, $sco
             
             // si venimos de listar referencias tendremos una referencia cargada en $rootScope para la comunicacion entre los controladores
             if($rootScope.referenciaCargada != null){
-                cargarDatosValidarReferencia()
+                
+                cargarDatosValidarReferencia();
             }else{
                 $scope.valorQr = false;
             }
@@ -264,7 +270,7 @@ app.controller('controladorNuevaReferencia', function(servicioRest, config, $sco
         $scope.referencia = {};
         $scope.referencia.responsableComercial = {};
         console.log($rootScope.referenciaCargada);
-
+        
         $scope.referencia.sociedadSeleccionado = $rootScope.referenciaCargada.sociedad;
         $scope.referencia.sectorEmpresarialSeleccionado = $rootScope.referenciaCargada.sectorEmpresarial;
         $scope.referencia.tipoActividadSeleccionado = $rootScope.referenciaCargada.tipoActividad;
@@ -281,12 +287,10 @@ app.controller('controladorNuevaReferencia', function(servicioRest, config, $sco
         $scope.referencia.responsableTecnicoSeleccionado = $rootScope.referenciaCargada.responsableTecnico;
         $scope.valorQr = true;
         $scope.referencia.codigoQr = $rootScope.referenciaCargada.codigoQr;
-        recargarQR()
-        console.log($rootScope.clientes);
-        console.log(querySearch($rootScope.referenciaCargada.cliente[0].display));
-        /*PRUEBA AUTCOMPLETE*/
-    $scope.clienteCargado = "pruebaCarga";
+        recargarQR();
         
+        /*PRUEBA AUTCOMPLETE*/
+        $scope.clienteCargado = "pruebaCarga";
     }
 
   
