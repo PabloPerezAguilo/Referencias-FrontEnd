@@ -1,4 +1,6 @@
-app.controller('controladorNuevaReferencia', function(servicioRest, config, $scope, $http, $rootScope,$location,$mdDialog,$interval){
+
+app.controller('controladorNuevaReferencia', function(servicioRest, config, $scope, $http, $rootScope,$location,$mdDialog,$interval,$timeout){
+  
    
     //mostramos los botones de crear referencia 
     $scope.mostrarBtCrear=true;
@@ -9,6 +11,10 @@ app.controller('controladorNuevaReferencia', function(servicioRest, config, $sco
          $scope.tecnologiaCargada = $rootScope.referenciaCargada.tecnologias;
          console.log($rootScope.referenciaCargada.fechaInicio);
         $scope.fechaInicio = new Date($rootScope.referenciaCargada.fechaInicio);
+         $scope.UserPhoto = $rootScope.referenciaCargada.imagenProyecto;
+     }else{
+         /*Vaciamos referenciaCargada*/
+                $rootScope.referenciaCargada = null;
      }
     
     
@@ -43,6 +49,9 @@ app.controller('controladorNuevaReferencia', function(servicioRest, config, $sco
  
     }
     
+    //---------PRUEBA--------
+  
+ 
 
     /* ----------------------- CARGA DE CATALOGOS ------------------------*/
     $scope.catalogo={};
@@ -119,19 +128,25 @@ app.controller('controladorNuevaReferencia', function(servicioRest, config, $sco
     
     /* CREAR la referencia, puede tener estado: pendiente/borrador  */
     $scope.crearReferencia = function (estado) {
-          
-        var imagen = document.getElementById("botonFileReal").files[0];
-        var fileReader = new FileReader();
-        fileReader.readAsBinaryString(imagen);
-        fileReader.onloadend = function(e){
-            var objeto = e.target.result;
-            objeto = btoa(objeto);
-            $scope.referencia.imagenProyecto = objeto;
-            $scope.referencia.cliente = $scope.catalogo.clientes[$scope.posicionEnArray].nombre;
-            $scope.referencia.tecnologias = $scope.catalogo.tecnologia[$scope.posicionEnArray2].codigo;
-            $scope.referencia.creadorReferencia = $rootScope.usuarioLS.name;
-            var referencia = $scope.referencia; 
-            servicioRest.postReferencia(referencia);
+        if(document.getElementById("botonFileReal").files[0]==null){
+                $scope.mensajeEstado = 'Imagen no cargada';
+            }else{
+                 var imagen = document.getElementById("botonFileReal").files[0];
+                var fileReader = new FileReader();
+                fileReader.readAsBinaryString(imagen);
+                fileReader.onloadend = function(e){
+                var objeto = e.target.result;
+                objeto = btoa(objeto);
+                $scope.referencia.imagenProyecto = objeto;
+                console.log(objeto);
+                $scope.referencia.cliente = $scope.catalogo.clientes[$scope.posicionEnArray].nombre;
+                $scope.referencia.tecnologias = $scope.catalogo.tecnologia[$scope.posicionEnArray2].codigo;
+                $scope.referencia.creadorReferencia = $rootScope.usuarioLS.name;
+                var referencia = $scope.referencia; 
+                console.log(referencia);
+                servicioRest.postReferencia(referencia);
+            }
+       
             
             if(estado==='pendiente'){
                 $scope.referencia.estado = "pendiente";
@@ -326,6 +341,8 @@ app.controller('controladorNuevaReferencia', function(servicioRest, config, $sco
         $scope.valorQr = true;
         $scope.referencia.codigoQr = $rootScope.referenciaCargada.codigoQr;
         recargarQR();
+        
+        
         
         /*PRUEBA AUTCOMPLETE*/
         $scope.clienteCargado = "pruebaCarga";
