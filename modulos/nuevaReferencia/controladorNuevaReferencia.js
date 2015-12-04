@@ -1,4 +1,6 @@
-app.controller('controladorNuevaReferencia', function(servicioRest, config, $scope, $http, $rootScope,$location,$mdDialog,$interval){
+
+app.controller('controladorNuevaReferencia', function(servicioRest, config, $scope, $http, $rootScope,$location,$mdDialog,$interval,$timeout){
+  
    
     //mostramos los botones de crear referencia 
     $scope.mostrarBtCrear=true;
@@ -6,7 +8,10 @@ app.controller('controladorNuevaReferencia', function(servicioRest, config, $sco
     if($rootScope.referenciaCargada != null){
          $scope.clienteCargado = $rootScope.referenciaCargada.cliente;
          $scope.tecnologiaCargada = $rootScope.referenciaCargada.tecnologias;
-         console.log($rootScope.referenciaCargada.fechaInicio);
+         $scope.UserPhoto = $rootScope.referenciaCargada.imagenProyecto;
+     }else{
+         /*Vaciamos referenciaCargada*/
+                $rootScope.referenciaCargada = null;
      }
     
     
@@ -23,10 +28,12 @@ app.controller('controladorNuevaReferencia', function(servicioRest, config, $sco
             //podrá modificar (Borrador/Terminar) validar (Rechazar/Aceptar)
             $scope.mostrarBtValidar=true;
             $scope.mostrarBtCrear=true;
-        }else{
+        }else if($rootScope.usuarioLS.role == "ROLE_ADMINISTRADOR" && $rootScope.referenciaCargada == null){
+             $scope.mostrarBtCrear=true;
+            
+        } else{
              $location.path('/bienvenida');
-        }
-        
+        } 
     }
 
     //Estos 2 IF determinan el titulo de la pagina nuevaReferencia
@@ -39,8 +46,11 @@ app.controller('controladorNuevaReferencia', function(servicioRest, config, $sco
  
     }
     
+    //---------PRUEBA--------
+  
+ 
 
-    /* CARGA DE CATALOGOS */
+    /* ----------------------- CARGA DE CATALOGOS ------------------------*/
     $scope.catalogo={};
     $scope.title = "";
     $scope.descripcion = "";
@@ -115,19 +125,25 @@ app.controller('controladorNuevaReferencia', function(servicioRest, config, $sco
     
     /* CREAR la referencia, puede tener estado: pendiente/borrador  */
     $scope.crearReferencia = function (estado) {
-          
-        var imagen = document.getElementById("botonFileReal").files[0];
-        var fileReader = new FileReader();
-        fileReader.readAsBinaryString(imagen);
-        fileReader.onloadend = function(e){
-            var objeto = e.target.result;
-            objeto = btoa(objeto);
-            $scope.referencia.imagenProyecto = objeto;
-            $scope.referencia.cliente = $scope.catalogo.clientes[$scope.posicionEnArray].nombre;
-            $scope.referencia.tecnologias = $scope.catalogo.tecnologia[$scope.posicionEnArray2].codigo;
-            $scope.referencia.creadorReferencia = $rootScope.usuarioLS.name;
-            var referencia = $scope.referencia; 
-            servicioRest.postReferencia(referencia);
+        if(document.getElementById("botonFileReal").files[0]==null){
+                $scope.mensajeEstado = 'Imagen no cargada';
+            }else{
+                 var imagen = document.getElementById("botonFileReal").files[0];
+                var fileReader = new FileReader();
+                fileReader.readAsBinaryString(imagen);
+                fileReader.onloadend = function(e){
+                var objeto = e.target.result;
+                objeto = btoa(objeto);
+                $scope.referencia.imagenProyecto = objeto;
+                console.log(objeto);
+                $scope.referencia.cliente = $scope.catalogo.clientes[$scope.posicionEnArray].nombre;
+                $scope.referencia.tecnologias = $scope.catalogo.tecnologia[$scope.posicionEnArray2].codigo;
+                $scope.referencia.creadorReferencia = $rootScope.usuarioLS.name;
+                var referencia = $scope.referencia; 
+                console.log(referencia);
+                servicioRest.postReferencia(referencia);
+            }
+       
             
             if(estado==='pendiente'){
                 $scope.referencia.estado = "pendiente";
@@ -181,7 +197,7 @@ app.controller('controladorNuevaReferencia', function(servicioRest, config, $sco
             });  
     }
     
-    /*-------AUTOCOMPLETE--------*/
+    /*-----------------------  AUTOCOMPLETE ----------------------- */
 	$scope.cadena = "";
     $scope.cadenaT = "";
 	self.pos = "";
@@ -298,7 +314,7 @@ app.controller('controladorNuevaReferencia', function(servicioRest, config, $sco
 		}
 	};		
 
-   /*Cargar datos en validarReferencia*/
+   /*-----------------------  Cargar datos en validarReferencia ----------------------- */
     function cargarDatosValidarReferencia(){
         // este codigo rellena la referencia con la informacion guardada en $rootScope
         $scope.referencia = {};
@@ -322,6 +338,8 @@ app.controller('controladorNuevaReferencia', function(servicioRest, config, $sco
         $scope.valorQr = true;
         $scope.referencia.codigoQr = $rootScope.referenciaCargada.codigoQr;
         recargarQR();
+        
+        
         
         /*PRUEBA AUTCOMPLETE*/
         $scope.clienteCargado = "pruebaCarga";
