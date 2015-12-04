@@ -30,25 +30,25 @@
                   </md-dialog-content>
             </div>
             <br>
-            <md-input-container title="Sociedad" class="fixed-size">
+            <md-input-container title="Sociedad" class="fixed-size" ng-disabled="mostrarBtValidar===true">
                 <label>Sociedad</label>
-                <md-select ng-model="referencia.sociedad" ng-click="referencia.sociedad=''">                       
-                    <md-option ng-value="sociedad.codigo" data-ng-repeat="sociedad in catalogo.sociedades" ng-selected="sociedad.codigo == referencia.sociedadSeleccionado ? true:false">
+                <md-select ng-model="referencia.sociedad" ng-click="referencia.sociedad=''" ng-disabled="mostrarBtValidar===true">                       
+                    <md-option ng-value="sociedad.codigo" data-ng-repeat="sociedad in catalogo.sociedades" ng-selected="sociedad.codigo == referencia.sociedadSeleccionado ? true:false" ng-disabled="mostrarBtValidar===true">
                         {{sociedad.descripcion}} ({{ sociedad.codigo }})
                     </md-option>
                 </md-select>
             </md-input-container>
-            <md-input-container title="Sector Empresarial" class="fixed-size">
+            <md-input-container title="Sector Empresarial" class="fixed-size" ng-disabled="mostrarBtValidar===true">
                 <label>Sector Empresarial</label>
-                <md-select ng-model="referencia.sectorEmpresarial" ng-click="referencia.sectorEmpresarial=''">
-                    <md-option ng-value="sectorEmpresarial.codigo" data-ng-repeat="sectorEmpresarial in catalogo.sectorempresarial" ng-selected="sectorEmpresarial.codigo == referencia.sectorEmpresarialSeleccionado ? true:false">
+                <md-select ng-model="referencia.sectorEmpresarial" ng-click="referencia.sectorEmpresarial=''" ng-disabled="mostrarBtValidar===true">
+                    <md-option ng-value="sectorEmpresarial.codigo" data-ng-repeat="sectorEmpresarial in catalogo.sectorempresarial" ng-selected="sectorEmpresarial.codigo == referencia.sectorEmpresarialSeleccionado ? true:false" ng-disabled="mostrarBtValidar===true">
                         {{sectorEmpresarial.descripcion}}  ({{ sectorEmpresarial.codigo }})
                     </md-option>
               </md-select>
             </md-input-container>
-            <md-input-container title="Tipo de actividad" class="fixed-size">
+            <md-input-container title="Tipo de actividad" class="fixed-size" ng-disabled="mostrarBtValidar===true">
                 <label>Tipo de actividad</label>
-                <md-select ng-model="referencia.tipoActividad" ng-click="referencia.tipoActividad=''">
+                <md-select ng-model="referencia.tipoActividad" ng-click="referencia.tipoActividad=''" ng-disabled="mostrarBtValidar===true">
                     <md-option ng-value="tipoActividad.codigo" data-ng-repeat="tipoActividad in catalogo.actividad" ng-selected="tipoActividad.codigo == referencia.tipoActividadSeleccionado ? true:false">
                     {{ tipoActividad.descripcion }} ({{ tipoActividad.codigo }})
                     </md-option>      
@@ -62,7 +62,7 @@
                     </md-option>      
                 </md-select>
             </md-input-container>
-            <md-datepicker ng-model="referencia.fechaInicio" md-placeholder="Fecha de Inicio" class="ng-untouched ng-valid ng-isolate-scope ng-dirty ng-valid-parse" tabindex="-1" aria-invalid="false" >
+            <md-datepicker ng-model="fechaInicio" md-placeholder="Fecha de Inicio" class="ng-untouched ng-valid ng-isolate-scope ng-dirty ng-valid-parse" tabindex="-1" aria-invalid="false" ng-disabled="mostrarBtValidar===true">
                 <button class="md-datepicker-button md-icon-button md-button md-ink-ripple" type="button" ng-transclude="" tabindex="-1" aria-hidden="true" ng-click="ctrl.openCalendarPane($event)">
                     <md-icon class="md-datepicker-calendar-icon ng-scope ng-isolate-scope" md-svg-icon="md-calendar" aria-label="md-calendar" role="img"><svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 24 24" fit="" preserveAspectRatio="xMidYMid meet" style="pointer-events: none; display: block;"><path d="M19 3h-1V1h-2v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8h14v11zM7 10h5v5H7z"></path></svg>
                     </md-icon>
@@ -73,45 +73,45 @@
                     </button>
                 </div>
             </md-datepicker>
-            <md-input-container title="Duración en meses" class="fixed-size">
+            <md-input-container title="Duración en meses" class="fixed-size" ng-disabled="mostrarBtValidar===true">
                 <label>Duración en meses</label>
-                <input type="number" min="1" ng-model="referencia.duracionMeses">
+                <input type="number" min="1" ng-model="referencia.duracionMeses" ng-disabled="mostrarBtValidar===true">
             </md-input-container>
-            <md-input-container title="Denominación" class="fixed-size-denominacion" >
+            <md-input-container title="Denominación" class="fixed-size-denominacion" ng-disabled="mostrarBtValidar===true">
                 <label>Denominación</label>
-                <textarea type="text" ng-model="referencia.denominacion" max="100" md-maxlength="100" rows="2"></textarea>
+                <textarea type="text" ng-model="referencia.denominacion" ng-disabled="mostrarBtValidar===true" max="100" md-maxlength="100" rows="2"></textarea>
             </md-input-container>
             <div id="cajon1">
                 <md-input-container title="Resumen del proyecto" class="fixed-size-resumen">
                     <label>Resumen proyecto</label>
-                    <textarea ng-model="referencia.resumenProyecto" max="300" md-maxlength="300" rows="5"></textarea>
+                    <textarea ng-model="referencia.resumenProyecto" ng-disabled="mostrarBtValidar===true" max="300" md-maxlength="300" rows="5"></textarea>
                 </md-input-container>
             </div>
             <div id="cajon2">
             <md-input-container title="Problemática del cliente" class="fixed-size-resumen">
                 <label>Problemática del cliente</label>
-                <textarea ng-model="referencia.problematicaCliente" max="300" md-maxlength="300" rows="5"></textarea>
+                <textarea ng-model="referencia.problematicaCliente" ng-disabled="mostrarBtValidar===true" ng-disabled="mostrarBtValidar===true" max="300" md-maxlength="300" rows="5"></textarea>
             </md-input-container>
             </div>
             <md-input-container title="Solución GFI" class="fixed-size-solucion">
                 <label>Solución GFI</label>
-                <textarea type="text" ng-model="referencia.solucionGfi" max="500" md-maxlength="500" rows="6"></textarea>
+                <textarea type="text" ng-model="referencia.solucionGfi" ng-disabled="mostrarBtValidar===true" max="500" md-maxlength="500" rows="6"></textarea>
             </md-input-container>
               
             <md-input-container title="FTE Totales" class="fixed-size">
                 <label>FTE Totales</label>
-                <input type="number" min="1" ng-model="referencia.fteTotales">
+                <input type="number" min="1" ng-model="referencia.fteTotales" ng-disabled="mostrarBtValidar===true">
             </md-input-container>
-            <md-input-container title="Existe certificado del cliente" class="fixed-size">
-                <md-radio-group ng-model="referencia.certificado">
+            <md-input-container title="Existe certificado del cliente" class="fixed-size" ng-disabled="mostrarBtValidar===true">
+                <md-radio-group ng-model="referencia.certificado" ng-disabled="mostrarBtValidar===true">
                 <label>¿Existe certificado del cliente?</label><br>
-                    <md-radio-button style="margin-bottom: -35px" value="si" ng-checked="true">Si</md-radio-button>
-                    <md-radio-button style="margin-left: 80px" value="no">No</md-radio-button>
+                    <md-radio-button style="margin-bottom: -35px" value="si" ng-checked="true" ng-disabled="mostrarBtValidar===true">Si</md-radio-button>
+                    <md-radio-button style="margin-left: 80px" value="no" ng-disabled="mostrarBtValidar===true">No</md-radio-button>
                 </md-radio-group>
             </md-input-container>
             <md-input-container title="Registros de pedido asociados a la referencia" class="fixed-size">
                 <label>Registros de pedido asociados a la referencia</label>
-                <input type="text" ng-model="referencia.regPedidoAsociadoReferencia">
+                <input type="text" ng-model="referencia.regPedidoAsociadoReferencia" ng-disabled="mostrarBtValidar===true">
             </md-input-container>
             <div layout="row">
                 <md-input-container title="Responsable comercial" class="contCom" >
@@ -133,12 +133,12 @@
             </div>                      
             <div layout="row" class="ImgQr">        
                 <div class="contQr">                         
-                        <input type="file" name="userfile" style="display:none;" ng-model="referencia.imagenProyecto" id="botonFileReal" onchange="angular.element(this).scope().uploadFile(this)">
-                        <input type="button" class="botones" value="SUBIR IMAGEN" onclick="document.getElementById('botonFileReal').click();" style="">
+                        <input type="file" name="userfile" style="display:none;" ng-model="referencia.imagenProyecto" id="botonFileReal" onchange="angular.element(this).scope().uploadFile(this)" ng-disabled="mostrarBtValidar===true">
+                        <input type="button" class="botones" value="SUBIR IMAGEN" onclick="document.getElementById('botonFileReal').click();" style="" ng-disabled="mostrarBtValidar===true">
                     <br><br><br><br>
                     <md-input-container title="Código QR" class="fixed-size">
                         <label>Código Qr</label>
-                        <input ng-model="referencia.codigoQr" ng-Change="QrChaged()"/>
+                        <input ng-model="referencia.codigoQr" ng-Change="QrChaged()" ng-disabled="mostrarBtValidar===true"/>
                     </md-input-container>
                     <br>
                     <div class="centrado-QR">

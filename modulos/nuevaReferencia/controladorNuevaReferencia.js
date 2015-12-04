@@ -3,10 +3,12 @@ app.controller('controladorNuevaReferencia', function(servicioRest, config, $sco
     //mostramos los botones de crear referencia 
     $scope.mostrarBtCrear=true;
     
-    if($rootScope.referenciaCargada != null){
+    
+    if($rootScope.referenciaCargada != null && $rootScope.opcion === 'validar'){
          $scope.clienteCargado = $rootScope.referenciaCargada.cliente;
          $scope.tecnologiaCargada = $rootScope.referenciaCargada.tecnologias;
          console.log($rootScope.referenciaCargada.fechaInicio);
+        $scope.fechaInicio = new Date($rootScope.referenciaCargada.fechaInicio);
      }
     
     
