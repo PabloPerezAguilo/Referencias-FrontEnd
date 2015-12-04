@@ -23,10 +23,12 @@ app.controller('controladorNuevaReferencia', function(servicioRest, config, $sco
             //podrá modificar (Borrador/Terminar) validar (Rechazar/Aceptar)
             $scope.mostrarBtValidar=true;
             $scope.mostrarBtCrear=true;
-        }else{
+        }else if($rootScope.usuarioLS.role == "ROLE_ADMINISTRADOR" && $rootScope.referenciaCargada == null){
+             $scope.mostrarBtCrear=true;
+            
+        } else{
              $location.path('/bienvenida');
-        }
-        
+        } 
     }
 
     //Estos 2 IF determinan el titulo de la pagina nuevaReferencia
@@ -40,7 +42,7 @@ app.controller('controladorNuevaReferencia', function(servicioRest, config, $sco
     }
     
 
-    /* CARGA DE CATALOGOS */
+    /* ----------------------- CARGA DE CATALOGOS ------------------------*/
     $scope.catalogo={};
     $scope.title = "";
     $scope.descripcion = "";
@@ -181,7 +183,7 @@ app.controller('controladorNuevaReferencia', function(servicioRest, config, $sco
             });  
     }
     
-    /*-------AUTOCOMPLETE--------*/
+    /*-----------------------  AUTOCOMPLETE ----------------------- */
 	$scope.cadena = "";
     $scope.cadenaT = "";
 	self.pos = "";
@@ -298,7 +300,7 @@ app.controller('controladorNuevaReferencia', function(servicioRest, config, $sco
 		}
 	};		
 
-   /*Cargar datos en validarReferencia*/
+   /*-----------------------  Cargar datos en validarReferencia ----------------------- */
     function cargarDatosValidarReferencia(){
         // este codigo rellena la referencia con la informacion guardada en $rootScope
         $scope.referencia = {};
