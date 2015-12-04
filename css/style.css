@@ -384,7 +384,7 @@ md-icon.md-default-theme, md-icon {
 #cajon2 {
   float: left; }
 
-#botonesCrear {
+.botonesCrear {
   margin-top: 10px;
   text-align: center; }
 
@@ -544,7 +544,8 @@ md-select-menu.md-default-theme md-option[selected]:focus, md-select-menu md-opt
 /*--------------------- ESTILOS DIALOGOS -------------------------*/
 md-dialog {
   width: 400px;
-  height: 200px;
+  height: 220px;
+  overflow: hidden;
   border-radius: 20px 20px 20px 20px; }
 
 md-dialog.md-default-theme, md-dialog {

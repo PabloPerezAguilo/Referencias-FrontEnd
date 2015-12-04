@@ -1,15 +1,28 @@
 app.controller('controladorNuevaReferencia', function(servicioRest, config, $scope, $http, $rootScope,$location,$mdDialog,$interval){
-     if($rootScope.referenciaCargada != null){
+   
+    //mostramos los botones de crear referencia 
+    $scope.mostrarBtCrear=true;
+    
+    if($rootScope.referenciaCargada != null){
          $scope.clienteCargado = $rootScope.referenciaCargada.cliente;
          $scope.tecnologiaCargada = $rootScope.referenciaCargada.tecnologias;
          console.log($rootScope.referenciaCargada.fechaInicio);
-         
      }
     
     
-    if($rootScope.usuarioLS.role !== "ROLE_ADMINISTRADOR" && $rootScope.usuarioLS.role !== "ROLE_MANTENIMIENTO"){
+    if($rootScope.usuarioLS.role !== "ROLE_MANTENIMIENTO"){
         if($rootScope.usuarioLS.role == "ROLE_VALIDADOR" && $rootScope.referenciaCargada != null){
-               console.log("Validador leyendo referencia");
+            console.log("Validador leyendo referencia pendiente de validar");
+            //Solo podrá validar o rechazar la referencia
+            $scope.mostrarBtValidar=true;
+            $scope.mostrarBtCrear=false;
+            console.log("Botones validar--->"+$scope.mostrarBtValidar);
+            
+        }else if($rootScope.usuarioLS.role == "ROLE_ADMINISTRADOR" && $rootScope.referenciaCargada != null){
+            console.log("Administrador leyendo referencia pendiente de validar");
+            //podrá modificar (Borrador/Terminar) validar (Rechazar/Aceptar)
+            $scope.mostrarBtValidar=true;
+            $scope.mostrarBtCrear=true;
         }else{
              $location.path('/bienvenida');
         }
@@ -19,13 +32,14 @@ app.controller('controladorNuevaReferencia', function(servicioRest, config, $sco
     //Estos 2 IF determinan el titulo de la pagina nuevaReferencia
     if (($rootScope.usuarioLS.role==="ROLE_ADMINISTRADOR" || $rootScope.usuarioLS.role==='ROLE_MANTENIMIENTO') && $rootScope.opcion==='nueva'){
         $scope.titulo = 'NUEVA REFERENCIA';
+      
     }
     if ($rootScope.opcion==='validar'){
-        $scope.titulo = 'PENDIENTE DE VALIDACIÓN'; 
-        
+        $scope.titulo = 'PENDIENTE DE VALIDACIÓN';
+ 
     }
     
-  
+
     /* CARGA DE CATALOGOS */
     $scope.catalogo={};
     $scope.title = "";
@@ -82,12 +96,11 @@ app.controller('controladorNuevaReferencia', function(servicioRest, config, $sco
         }
     }
             
-    /* MOSTRAR QR CUANDO COMPLETA EL CAMPO*/    
+    /* ---------------  MOSTRAR QR CUANDO COMPLETA EL CAMPO  --------------*/    
     $scope.codigoQr='';
     $scope.QrChaged = function (){
        recargarQR();
     }
-    
    function recargarQR(){
          if($scope.referencia.codigoQr!=''){
             $scope.qrCodeVisible=true; 
@@ -100,7 +113,7 @@ app.controller('controladorNuevaReferencia', function(servicioRest, config, $sco
     $scope.mensajeEstado='';
     
     
-    /* Crear la referencia, puede tener estado: pendiente/borrador  */
+    /* CREAR la referencia, puede tener estado: pendiente/borrador  */
     $scope.crearReferencia = function (estado) {
           
         var imagen = document.getElementById("botonFileReal").files[0];
@@ -144,6 +157,27 @@ app.controller('controladorNuevaReferencia', function(servicioRest, config, $sco
             }).catch(function(err) {
                 servicioRest.popupInfo('',"Error al validar la referencia.");
                 console.log("Error al validar la referencia");
+            });  
+    }
+    
+    /* ------------------------ RECHAZAR UNA REFERENCIA ------------------------------- */
+    
+    $scope.rechazarReferencia = function () {
+        console.log($rootScope.referenciaCargada);
+        $rootScope.referenciaCargada.estado='borrador';
+
+        //cambiamos el estado de la referencia a 'borrador'
+        servicioRest.updateReferencia($rootScope.referenciaCargada)
+            .then(function(data) {
+                servicioRest.popupInfo('', "Referencia rechazada, se avisará al responsable.");
+                //Redireccionamos al usuario a la ventana de listar Referencias Pendientes de Validar
+                $location.path('/listarReferencia');
+                console.log("Referencia rechazada");
+                /*Vaciamos referenciaCargada*/
+                $rootScope.referenciaCargada = null;
+            }).catch(function(err) {
+                servicioRest.popupInfo('',"Error al rechazar la referencia.");
+                console.log("Error al rechazar la referencia");
             });  
     }
     

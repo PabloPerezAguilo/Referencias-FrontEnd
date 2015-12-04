@@ -178,16 +178,18 @@
                 </md-dialog-content>
             </div>
             <p id="mensajeEstado"> {{mensajeEstado}}</p>
-            <!-- BOTONES ROL ADMINISTRADOR/MANTENIMIENTO -->
-            <md-content layout-align="center" id="botonesCrear" >
-                <md-button class=botonesApp type="button"  ng-click="crearReferencia('borrador')">Guardar (Borrador)</md-button>
-                <md-button class=botonesApp type="button"  ng-click="crearReferencia('pendiente')">Terminar</md-button>
-            </md-content>
-             <!-- BOTONES ROL VALIDADOR -->
-            <md-content layout-align="center" id="botonesValidar" >
-                <md-button class=botonesApp type="button"  ng-click="rechazarReferencia()">Rechazar</md-button>
-                <md-button class=botonesApp type="button"  ng-click="validarReferencia()">Validar</md-button>
-            </md-content>
+           
+            
+            <div class="botonesCrear" layout-align="center">
+          
+             <!-- BOTONES ROL ADMINISTRADOR/MANTENIMIENTO -->
+                <md-button ng-show="mostrarBtCrear" class=botonesApp type="button"  ng-click="crearReferencia('borrador')">Guardar (Borrador)</md-button>
+                <md-button ng-show="mostrarBtCrear" class=botonesApp type="button"  ng-click="crearReferencia('pendiente')">Terminar</md-button>
+            <!-- BOTONES ROL VALIDADOR -->
+                    <md-button ng-show="mostrarBtValidar" class=botonesApp type="button"  ng-click="rechazarReferencia()">Rechazar</md-button>
+                    <md-button ng-show="mostrarBtValidar" class=botonesApp type="button"  ng-click="validarReferencia()">Validar</md-button>
+               
+            </div> 
         </div>
     </md-content>
 </section>
