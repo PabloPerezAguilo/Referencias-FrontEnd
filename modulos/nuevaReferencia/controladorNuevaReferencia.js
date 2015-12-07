@@ -7,14 +7,14 @@ app.controller('controladorNuevaReferencia', function(servicioRest, config, $sco
     
     
     if($rootScope.referenciaCargada != null && $rootScope.opcion === 'validar'){
-         $scope.clienteCargado = $rootScope.referenciaCargada.cliente;
-         $scope.tecnologiaCargada = $rootScope.referenciaCargada.tecnologias;
-         console.log($rootScope.referenciaCargada.fechaInicio);
+        $scope.clienteCargado = $rootScope.referenciaCargada.cliente;
+        $scope.tecnologiaCargada = $rootScope.referenciaCargada.tecnologias;
+        console.log($rootScope.referenciaCargada.fechaInicio);
         $scope.fechaInicio = new Date($rootScope.referenciaCargada.fechaInicio);
-         $scope.UserPhoto = $rootScope.referenciaCargada.imagenProyecto;
-     }else{
+        $scope.UserPhoto = $rootScope.referenciaCargada.imagenProyecto;
+    }else{
          /*Vaciamos referenciaCargada*/
-                $rootScope.referenciaCargada = null;
+        $rootScope.referenciaCargada = null;
      }
     
     
@@ -34,7 +34,7 @@ app.controller('controladorNuevaReferencia', function(servicioRest, config, $sco
         }else if($rootScope.usuarioLS.role == "ROLE_ADMINISTRADOR" && $rootScope.referenciaCargada == null){
              $scope.mostrarBtCrear=true;
             
-        } else{
+        }else{
              $location.path('/bienvenida');
         } 
     }
@@ -142,6 +142,7 @@ app.controller('controladorNuevaReferencia', function(servicioRest, config, $sco
                 $scope.referencia.cliente = $scope.catalogo.clientes[$scope.posicionEnArray].nombre;
                 $scope.referencia.tecnologias = $scope.catalogo.tecnologia[$scope.posicionEnArray2].codigo;
                 $scope.referencia.creadorReferencia = $rootScope.usuarioLS.name;
+                $scope.referencia.fechaInicio = $scope.fechaInicio;
                 var referencia = $scope.referencia; 
                 console.log(referencia);
                 servicioRest.postReferencia(referencia);
