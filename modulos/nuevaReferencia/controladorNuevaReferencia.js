@@ -128,25 +128,35 @@ app.controller('controladorNuevaReferencia', function(servicioRest, config, $sco
     
     /* CREAR la referencia, puede tener estado: pendiente/borrador  */
     $scope.crearReferencia = function (estado) {
-        if(document.getElementById("botonFileReal").files[0]==null){
+        $scope.referencia = {};
+        if(document.getElementById("botonFileReal").files[0]==null && estado =="pendiente"){
                 $scope.mensajeEstado = 'Imagen no cargada';
             }else{
-                 var imagen = document.getElementById("botonFileReal").files[0];
-                var fileReader = new FileReader();
-                fileReader.readAsBinaryString(imagen);
-                fileReader.onloadend = function(e){
-                var objeto = e.target.result;
-                objeto = btoa(objeto);
-                $scope.referencia.imagenProyecto = objeto;
-                console.log(objeto);
-                $scope.referencia.cliente = $scope.catalogo.clientes[$scope.posicionEnArray].nombre;
-                $scope.referencia.tecnologias = $scope.catalogo.tecnologia[$scope.posicionEnArray2].codigo;
+                
+                console.log($scope.referencia.cliente = $scope.catalogo.clientes[$scope.posicionEnArray]);
+                if($scope.referencia.cliente = $scope.catalogo.clientes[$scope.posicionEnArray] !=undefined){
+                    $scope.referencia.cliente = $scope.catalogo.clientes[$scope.posicionEnArray].nombre;
+                }
+                if($scope.referencia.tecnologias = $scope.catalogo.tecnologia[$scope.posicionEnArray2] !=undefined){
+                    $scope.referencia.tecnologias = $scope.catalogo.tecnologia[$scope.posicionEnArray2].codigo;
+                }
+                
                 $scope.referencia.creadorReferencia = $rootScope.usuarioLS.name;
-                $scope.referencia.fechaInicio = $scope.fechaInicio;
+                var imagen = document.getElementById("botonFileReal").files[0];
+                var fileReader = new FileReader();
+                if(imagen != null){
+                    fileReader.readAsBinaryString(imagen);
+                    fileReader.onloadend = function(e){
+                        var objeto = e.target.result;
+                        objeto = btoa(objeto);
+                        $scope.referencia.imagenProyecto = objeto;
+                        console.log(objeto);
+                        }
+                           
+                }
                 var referencia = $scope.referencia; 
                 console.log(referencia);
                 servicioRest.postReferencia(referencia);
-            }
        
             
             if(estado==='pendiente'){
