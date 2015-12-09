@@ -76,6 +76,7 @@ app.controller('controladorNuevaReferencia', function(servicioRest, config, $sco
             // si venimos de listar referencias tendremos una referencia cargada en $rootScope para la comunicacion entre los controladores
             if($rootScope.referenciaCargada != null){
                 
+                
                 cargarDatosValidarReferencia();
             }else{
                 $scope.valorQr = false;
@@ -112,7 +113,9 @@ app.controller('controladorNuevaReferencia', function(servicioRest, config, $sco
     /* ---------------  MOSTRAR QR CUANDO COMPLETA EL CAMPO  --------------*/    
     $scope.codigoQr='';
     $scope.QrChaged = function (){
+        //console.log($scope.referencia.codigoQr);
        recargarQR();
+       // console.log("traza");
     }
    function recargarQR(){
          if($scope.referencia.codigoQr!=''){
@@ -128,12 +131,11 @@ app.controller('controladorNuevaReferencia', function(servicioRest, config, $sco
     
     /* CREAR la referencia, puede tener estado: pendiente/borrador  */
     $scope.crearReferencia = function (estado) {
-        $scope.referencia = {};
+        //$scope.referencia = {};
         if(document.getElementById("botonFileReal").files[0]==null && estado =="pendiente"){
                 $scope.mensajeEstado = 'Imagen no cargada';
             }else{
                 
-                console.log($scope.referencia.cliente = $scope.catalogo.clientes[$scope.posicionEnArray]);
                 if($scope.referencia.cliente = $scope.catalogo.clientes[$scope.posicionEnArray] !=undefined){
                     $scope.referencia.cliente = $scope.catalogo.clientes[$scope.posicionEnArray].nombre;
                 }
