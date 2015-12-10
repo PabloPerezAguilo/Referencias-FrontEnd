@@ -163,11 +163,11 @@ app.controller('controladorNuevaReferencia', function(servicioRest, config, $sco
                         $scope.referencia.imagenProyecto = objeto;
                         console.log(objeto);
                         var referencia = $scope.referencia; 
-                    console.log(referencia);
+                        console.log(referencia);
             
-                    if(estado==='pendiente'){
-                        $scope.referencia.estado = "pendiente";
-                        $scope.mensajeEstado='Referencia creada pendiente de validar.';       
+                        if(estado==='pendiente'){
+                            $scope.referencia.estado = "pendiente";
+                            $scope.mensajeEstado='Referencia creada pendiente de validar.';       
                     }else if(estado==='borrador'){
                         $scope.referencia.estado = "borrador";  
                         $scope.mensajeEstado='Referencia creada en modo borrador.';   
