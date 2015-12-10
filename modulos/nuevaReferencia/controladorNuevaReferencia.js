@@ -1,7 +1,9 @@
 
 app.controller('controladorNuevaReferencia', function(servicioRest, config, $scope, $http, $rootScope,$location,$mdDialog,$interval,$timeout){
-  
-   
+      
+    //Esta variable nos dice si se muestran habilitados o deshabilitados los campos del formulario
+    $scope.habilitarForm=false;
+    
     //mostramos los botones de crear referencia 
     $scope.mostrarBtCrear=true;
 
@@ -15,7 +17,6 @@ app.controller('controladorNuevaReferencia', function(servicioRest, config, $sco
     if($rootScope.referenciaCargada != null && $rootScope.opcion === 'validar'){
         $scope.clienteCargado = $rootScope.referenciaCargada.cliente;
         $scope.tecnologiaCargada = $rootScope.referenciaCargada.tecnologias;
-        console.log($rootScope.referenciaCargada.fechaInicio);
         $scope.fechaInicio = new Date($rootScope.referenciaCargada.fechaInicio);
         $scope.UserPhoto = $rootScope.referenciaCargada.imagenProyecto;
     }else{
@@ -26,11 +27,11 @@ app.controller('controladorNuevaReferencia', function(servicioRest, config, $sco
     
     if($rootScope.usuarioLS.role !== "ROLE_MANTENIMIENTO"){
         if($rootScope.usuarioLS.role == "ROLE_VALIDADOR" && $rootScope.referenciaCargada != null){
-            console.log("Validador leyendo referencia pendiente de validar");
+            //el validador verá los campos de la referencia 'disabled'
+            $scope.habilitarForm=true;
             //Solo podrá validar o rechazar la referencia
             $scope.mostrarBtValidar=true;
             $scope.mostrarBtCrear=false;
-            console.log("Botones validar--->"+$scope.mostrarBtValidar);
             
         }else if($rootScope.usuarioLS.role == "ROLE_ADMINISTRADOR" && $rootScope.referenciaCargada != null){
             console.log("Administrador leyendo referencia pendiente de validar");
@@ -80,9 +81,7 @@ app.controller('controladorNuevaReferencia', function(servicioRest, config, $sco
             $rootScope.sociedades = $scope.catalogo.sociedades;
             
             // si venimos de listar referencias tendremos una referencia cargada en $rootScope para la comunicacion entre los controladores
-            if($rootScope.referenciaCargada != null){
-                
-                
+            if($rootScope.referenciaCargada != null){               
                 cargarDatosValidarReferencia();
             }else{
                 $scope.valorQr = false;
@@ -378,19 +377,17 @@ app.controller('controladorNuevaReferencia', function(servicioRest, config, $sco
         // este codigo rellena la referencia con la informacion guardada en $rootScope
         $scope.referencia = {};
         $scope.referencia.responsableComercial = {};
-        console.log($rootScope.referenciaCargada);
-        
         $scope.referencia.sociedadSeleccionado = $rootScope.referenciaCargada.sociedad;
         $scope.referencia.sectorEmpresarialSeleccionado = $rootScope.referenciaCargada.sectorEmpresarial;
         $scope.referencia.tipoActividadSeleccionado = $rootScope.referenciaCargada.tipoActividad;
         $scope.referencia.tipoProyectoSeleccionado = $rootScope.referenciaCargada.tipoProyecto;
         $scope.referencia.duracionMeses = $rootScope.referenciaCargada.duracionMeses;
-
         $scope.referencia.denominacion = $rootScope.referenciaCargada.denominacion;
         $scope.referencia.resumenProyecto = $rootScope.referenciaCargada.resumenProyecto;
         $scope.referencia.problematicaCliente = $rootScope.referenciaCargada.problematicaCliente;
         $scope.referencia.solucionGfi = $rootScope.referenciaCargada.solucionGfi;
         $scope.referencia.fteTotales =$rootScope.referenciaCargada.fteTotales;
+        $scope.referencia.certificado = $rootScope.referenciaCargada.certificado;
         $scope.referencia.regPedidoAsociadoReferencia = $rootScope.referenciaCargada.regPedidoAsociadoReferencia;
         $scope.referencia.responsableComercialSeleccionado = $rootScope.referenciaCargada.responsableComercial;
         $scope.referencia.responsableTecnicoSeleccionado = $rootScope.referenciaCargada.responsableTecnico;
