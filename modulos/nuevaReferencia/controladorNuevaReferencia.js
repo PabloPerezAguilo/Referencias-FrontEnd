@@ -56,9 +56,19 @@ app.controller('controladorNuevaReferencia', function(servicioRest, config, $sco
  
     }
     
-    //---------PRUEBA--------
+    //---------AYUDA DE LA PAGINA--------
   
- 
+    $scope.introOptions = config.introOptions;
+    $scope.introOptions.steps = [
+            {
+                element: '.txtSimilarMD',
+                intro: 'blablabla'
+            },
+            {
+                element: '#step2',
+                intro: 'blablebli'
+            }
+            ];
 
     /* ----------------------- CARGA DE CATALOGOS ------------------------*/
     $scope.catalogo={};
