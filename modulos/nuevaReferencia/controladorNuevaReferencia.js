@@ -5,7 +5,6 @@ app.controller('controladorNuevaReferencia', function(servicioRest, config, $sco
     //mostramos los botones de crear referencia 
     $scope.mostrarBtCrear=true;
     
-    
     if($rootScope.referenciaCargada != null && $rootScope.opcion === 'validar'){
         $scope.clienteCargado = $rootScope.referenciaCargada.cliente;
         $scope.tecnologiaCargada = $rootScope.referenciaCargada.tecnologias;
@@ -144,6 +143,8 @@ app.controller('controladorNuevaReferencia', function(servicioRest, config, $sco
                 }
                 
                 $scope.referencia.creadorReferencia = $rootScope.usuarioLS.name;
+                $scope.referencia.fechaInicio = $scope.fechaInicio;
+                
                 var imagen = document.getElementById("botonFileReal").files[0];
                 var fileReader = new FileReader();
                 if(imagen != null){
@@ -153,23 +154,58 @@ app.controller('controladorNuevaReferencia', function(servicioRest, config, $sco
                         objeto = btoa(objeto);
                         $scope.referencia.imagenProyecto = objeto;
                         console.log(objeto);
-                        }
-                           
-                }
-                var referencia = $scope.referencia; 
-                console.log(referencia);
-                servicioRest.postReferencia(referencia);
-       
+                       
+                    
+                        var referencia = $scope.referencia; 
+                        console.log(referencia);
             
-            if(estado==='pendiente'){
-                $scope.referencia.estado = "pendiente";
-                $scope.mensajeEstado='Referencia creada pendiente de validar.';       
-            }else if(estado==='borrador'){
-                $scope.referencia.estado = "borrador";  
-                $scope.mensajeEstado='Referencia creada en modo borrador.';   
-            }
+                        if(estado==='pendiente'){
+                            $scope.referencia.estado = "pendiente";
+                            $scope.mensajeEstado='Referencia creada pendiente de validar.';       
+                        }else if(estado==='borrador'){
+                            $scope.referencia.estado = "borrador";  
+                            $scope.mensajeEstado='Referencia creada en modo borrador.';   
+                            }
+                        servicioRest.postReferencia(referencia);
+                     }
+                           
+                }else{
+                    
+                    var referencia = $scope.referencia; 
+                    console.log(referencia);
+            
+                    if(estado==='pendiente'){
+                        $scope.referencia.estado = "pendiente";
+                         $scope.mensajeEstado='Referencia creada pendiente de validar.';       
+                    }else if(estado==='borrador'){
+                        $scope.referencia.estado = "borrador";  
+                        $scope.mensajeEstado='Referencia creada en modo borrador.';   
+                     }
+                    servicioRest.postReferencia(referencia);
+                    
+                    
+                }
+               
         }  
     }
+    
+    /**/
+    /*$scope.limpiarCampoNoDisabled=function(texto) {
+        
+        if($rootScope.opcion === 'validar'){
+            //nada
+        }else{
+            console.log(this.texto);
+            switch(texto){
+                case 'sociedad':
+                    $scope.referencia.sociedad = "";
+                    break;
+                default:
+            }
+            
+        }
+    }*/
+    /**/
 
     /* ------------------------ VALIDAR UNA REFERENCIA ------------------------------- */
     
