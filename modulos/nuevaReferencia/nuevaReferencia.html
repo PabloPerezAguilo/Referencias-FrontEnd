@@ -17,7 +17,7 @@
                             md-min-length="3"
                             ng-model="referencia.cliente"
                             name="cliente"
-                            ng-disabled="permisoEscritura"
+                            ng-disabled="habilitarForm===true"
                             placeholder="Busque por cliente o siglas."
                             ng-required
                             ng-init="ctrl.searchText=clienteCargado"
@@ -147,7 +147,7 @@
             <div id="cajon2">
             <md-input-container title="Problemática del cliente" class="fixed-size-resumen">
                 <label>Problemática del cliente</label>
-                <textarea name="ProblemaCliente" ng-model="referencia.problematicaCliente" ng-disabled="mostrarBtValidar===true" max="300" md-maxlength="300" rows="5" ng-required="true"tabindex="10">
+                <textarea name="ProblemaCliente" ng-model="referencia.problematicaCliente" ng-disabled="mostrarBtValidar===true" max="300" md-maxlength="300" rows="5" ng-required="true" tabindex="10">
                 </textarea>
                 <div ng-messages ="useForm.ProblemaCliente.$error">         
                     <div ng-message ="required"> * </div>
@@ -177,8 +177,8 @@
             <md-input-container title="Existe certificado del cliente" class="fixed-size">
                 <md-radio-group name="certificado" ng-model="referencia.certificado" ng-disabled="mostrarBtValidar===true" ng-required="true" tabindex="13">                  
                 <label>¿Existe certificado del cliente?</label><br>
-                    <md-radio-button style="margin-bottom: -35px" value="si" ng-checked="true" ng-disabled="mostrarBtValidar===true">Si</md-radio-button>
-                    <md-radio-button style="margin-left: 80px" value="no" ng-disabled="mostrarBtValidar===true">No</md-radio-button>
+                    <md-radio-button style="margin-bottom: -35px" value="si" ng-checked="true" ng-disabled="habilitarForm===true">Si</md-radio-button>
+                    <md-radio-button style="margin-left: 80px" value="no" ng-disabled="habilitarForm===true">No</md-radio-button>
                 </md-radio-group>
                 <div ng-messages ="useForm.certificado.$error">         
                     <div ng-message ="required"> * </div>
@@ -189,6 +189,7 @@
             <md-input-container title="Registros de pedido asociados a la referencia" class="fixed-size">
                 <label>Registros de pedido asociados a la referencia</label>
                 <input name="registroPedido" type="text" ng-disabled="mostrarBtValidar===true" ng-model="referencia.regPedidoAsociadoReferencia" tabindex="14"/> <!--ng-required="true"-->
+
                 <!--<div ng-messages ="useForm.registroPedido.$error">         
                     <div ng-message ="required"> * </div>
                 </div>-->
@@ -199,7 +200,9 @@
                 <!--Responsable comercial-->
                 <md-input-container title="Responsable comercial" class="contCom" >
                     <label>Responsable Comercial</label>
+
                     <md-select name="rblecomercial" ng-model="referencia.responsableComercial" ng-disabled="mostrarBtValidar===true" required tabindex="15"> 
+
                         <md-option ng-value="responsableComercial.nombre" data-ng-repeat="responsableComercial in catalogo.comercial" ng-selected="responsableComercial.nombre == referencia.responsableComercialSeleccionado ? true:false">
                             {{ responsableComercial.nombre }} ({{ responsableComercial.login }})
                         </md-option>
@@ -259,7 +262,7 @@
                                 md-min-length="2"
                                 ng-model="referencia.tecnologia"
                                 name="tecnologia"
-                                ng-disabled="permisoEscritura"
+                                ng-disabled="habilitarForm===true"
                                 placeholder="Busque Tecnologías"
                                 ng-required
                                 ng-init="ctrl.searchTextt=tecnologiaCargada"
