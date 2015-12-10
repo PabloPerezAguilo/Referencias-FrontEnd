@@ -4,6 +4,13 @@ app.controller('controladorNuevaReferencia', function(servicioRest, config, $sco
    
     //mostramos los botones de crear referencia 
     $scope.mostrarBtCrear=true;
+
+    //Como no conocemos los datos que tendrá la refrencia pero queremos poner valores por defecto,
+    //la asignamos un objeto vacío al que le metemos los valores por defecto
+
+    $scope.referencia={}
+    $scope.referencia.certificado='si';
+
     
     if($rootScope.referenciaCargada != null && $rootScope.opcion === 'validar'){
         $scope.clienteCargado = $rootScope.referenciaCargada.cliente;
