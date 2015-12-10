@@ -130,15 +130,15 @@ app.controller('controladorNuevaReferencia', function(servicioRest, config, $sco
     
     /* CREAR la referencia, puede tener estado: pendiente/borrador  */
     $scope.crearReferencia = function (estado) {
-        //$scope.referencia = {};
+        $scope.referencia = {};
         if(document.getElementById("botonFileReal").files[0]==null && estado =="pendiente"){
                 $scope.mensajeEstado = 'Imagen no cargada';
             }else{
                 
-                if($scope.referencia.cliente = $scope.catalogo.clientes[$scope.posicionEnArray] !=undefined){
+                if($scope.catalogo.clientes[$scope.posicionEnArray] !=undefined){
                     $scope.referencia.cliente = $scope.catalogo.clientes[$scope.posicionEnArray].nombre;
                 }
-                if($scope.referencia.tecnologias = $scope.catalogo.tecnologia[$scope.posicionEnArray2] !=undefined){
+                if($scope.catalogo.tecnologia[$scope.posicionEnArray2] !=undefined){
                     $scope.referencia.tecnologias = $scope.catalogo.tecnologia[$scope.posicionEnArray2].codigo;
                 }
                 
@@ -147,44 +147,35 @@ app.controller('controladorNuevaReferencia', function(servicioRest, config, $sco
                 
                 var imagen = document.getElementById("botonFileReal").files[0];
                 var fileReader = new FileReader();
-                if(imagen != null){
+                console.log(imagen);
+                if(imagen != undefined){
                     fileReader.readAsBinaryString(imagen);
                     fileReader.onloadend = function(e){
                         var objeto = e.target.result;
                         objeto = btoa(objeto);
                         $scope.referencia.imagenProyecto = objeto;
                         console.log(objeto);
-                       
-                    
                         var referencia = $scope.referencia; 
-                        console.log(referencia);
-            
-                        if(estado==='pendiente'){
-                            $scope.referencia.estado = "pendiente";
-                            $scope.mensajeEstado='Referencia creada pendiente de validar.';       
-                        }else if(estado==='borrador'){
-                            $scope.referencia.estado = "borrador";  
-                            $scope.mensajeEstado='Referencia creada en modo borrador.';   
-                            }
-                        servicioRest.postReferencia(referencia);
-                     }
-                           
-                }else{
-                    
-                    var referencia = $scope.referencia; 
                     console.log(referencia);
             
                     if(estado==='pendiente'){
                         $scope.referencia.estado = "pendiente";
-                         $scope.mensajeEstado='Referencia creada pendiente de validar.';       
+                        $scope.mensajeEstado='Referencia creada pendiente de validar.';       
                     }else if(estado==='borrador'){
                         $scope.referencia.estado = "borrador";  
                         $scope.mensajeEstado='Referencia creada en modo borrador.';   
-                     }
+                    }
                     servicioRest.postReferencia(referencia);
+                           
+                    }
+                }else{
                     
-                    
-                }
+                    var referencia = $scope.referencia; 
+                    console.log(referencia);
+                    $scope.referencia.estado = "borrador";  
+                    $scope.mensajeEstado='Referencia creada en modo borrador.';   
+                    servicioRest.postReferencia(referencia);
+                }                   
                
         }  
     }
