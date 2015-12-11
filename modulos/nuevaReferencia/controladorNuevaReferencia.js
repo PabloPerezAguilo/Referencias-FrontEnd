@@ -11,7 +11,7 @@ app.controller('controladorNuevaReferencia', function(servicioRest, config, $sco
     //la asignamos un objeto vacío al que le metemos los valores por defecto
 
     $scope.referencia={}
-    //$scope.referencia.certificado='si';
+    $scope.referencia.certificado='si';
 
     
     if($rootScope.referenciaCargada != null && $rootScope.opcion === 'validar'){
@@ -154,11 +154,19 @@ app.controller('controladorNuevaReferencia', function(servicioRest, config, $sco
                 $scope.mensajeEstado = 'Imagen no cargada';
         }else{
 
-            if($scope.referencia.cliente = $scope.catalogo.clientes[$scope.posicionEnArray] !=undefined){
+            /*if($scope.referencia.cliente = $scope.catalogo.clientes[$scope.posicionEnArray] !=undefined){
                 $scope.referencia.cliente = $scope.catalogo.clientes[$scope.posicionEnArray].nombre;
             }
             if($scope.referencia.tecnologias = $scope.catalogo.tecnologia[$scope.posicionEnArray2] !=undefined){
                 $scope.referencia.tecnologias = $scope.catalogo.tecnologia[$scope.posicionEnArray2].codigo;
+            }*/
+            
+            try{
+                 $scope.referencia.cliente = $scope.catalogo.clientes[$scope.posicionEnArray].nombre;
+                $scope.referencia.tecnologias = $scope.catalogo.tecnologia[$scope.posicionEnArray2].codigo;
+                
+            }catch(error){
+                $scope.mensajeEstado='Cliente y/o tecnología inválido';
             }
 
             $scope.referencia.creadorReferencia = $rootScope.usuarioLS.name;
@@ -200,9 +208,16 @@ app.controller('controladorNuevaReferencia', function(servicioRest, config, $sco
                     $scope.referencia.estado = "borrador";  
                     $scope.mensajeEstado='Referencia creada en modo borrador.';   
                  }
-                servicioRest.postReferencia(referencia);
+                servicioRest.postReferencia(referencia)
+                .then(function(){
+                    console.log('consulta realizada con éxito');
+                })
+                .catch(function(err){
+                    console.error('Error en la llamada al servicio REST');
+                });
             }           
-        }  
+        }
+        servicioRest.popupInfo('Esto devería ser un evento' , $scope.mensajeEstado);
     }
     
     /**/

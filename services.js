@@ -21,7 +21,6 @@ function ServicioREST($http, $q, $rootScope, config, $mdDialog) {
 
     
     function popupInfo(ev,descripcion){    
-        
         $mdDialog.show(
             $mdDialog.alert()
             .parent(angular.element(document.querySelector('#popupContainer')))
