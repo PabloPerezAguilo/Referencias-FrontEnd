@@ -11,7 +11,7 @@ app.controller('controladorAltaUsuario', function(servicioRest, config, $scope, 
     $scope.activado = self.activated;
     
     
-    $scope.crear = function () {
+    $scope.crear = function (evento) {
         console.log("guardando usuario en nuestra base de datos...");
         $scope.usuario = {"nick":$scope.usuarios[$scope.posicionEnArray].nick, "name":$scope.usuarios[$scope.posicionEnArray].usuario, "role": $scope.role};
         console.log($scope.usuario);
@@ -19,7 +19,7 @@ app.controller('controladorAltaUsuario', function(servicioRest, config, $scope, 
             .then(function(data) {
              $scope.mensaje='Usuario creado con éxito';
         }).catch(function(err) {
-            servicioRest.popupInfo('Usuario ya existente');
+            servicioRest.popupInfo(evento, 'Usuario ya existente');
 			});        
     };
       

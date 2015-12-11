@@ -80,9 +80,17 @@
                          <div ng-message="required"> * </div>
                     </div> 
             </md-input-container>
-            <md-datepicker ng-model="fechaInicio" md-placeholder="Fecha de Inicio" class="ng-untouched ng-valid ng-isolate-scope ng-dirty ng-valid-parse" tabindex="-1" aria-invalid="false" ng-disabled="habilitarForm===true" ng-required="true">
-                <button class="md-datepicker-button md-icon-button md-button md-ink-ripple" type="button" ng-transclude="" tabindex="-1" aria-hidden="true" ng-click="ctrl.openCalendarPane($event)">
-                    <md-icon class="md-datepicker-calendar-icon ng-scope ng-isolate-scope" md-svg-icon="md-calendar" aria-label="md-calendar" role="img"><svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 24 24" fit="" preserveAspectRatio="xMidYMid meet" style="pointer-events: none; display: block;"><path d="M19 3h-1V1h-2v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8h14v11zM7 10h5v5H7z"></path></svg>
+
+            <!--    Fecha inicio-->
+            <!--el datepicker no se podrá rellenar con el tabulador. Sólo se podrá remarcar el elemento-->
+            <md-datepicker ng-model="fechaInicio" md-placeholder="Fecha de Inicio" class="ng-untouched ng-valid ng-isolate-scope ng-dirty ng-valid-parse" aria-invalid="false" ng-disabled="mostrarBtValidar===true" ng-required="true" tabindex="6">
+                <button class="md-datepicker-button md-icon-button md-button md-ink-ripple" type="button" ng-transclude="" aria-hidden="true" ng-click="ctrl.openCalendarPane($event)">
+                    <md-icon class="md-datepicker-calendar-icon ng-scope ng-isolate-scope" md-svg-icon="md-calendar" aria-label="md-calendar" role="img">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 24 24" fit="" preserveAspectRatio="xMidYMid meet" style="pointer-events: none; display: block;">
+                            <path d="M19 3h-1V1h-2v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8h14v11zM7 10h5v5H7z">
+                            </path>
+                        </svg>
+
                     </md-icon>
                     <div class="md-ripple-container"></div>
                 </button>
