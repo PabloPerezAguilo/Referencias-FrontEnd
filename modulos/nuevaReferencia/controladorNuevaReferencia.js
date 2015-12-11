@@ -140,20 +140,25 @@ app.controller('controladorNuevaReferencia', function(servicioRest, config, $sco
         if($scope.referencia==null){
             $scope.referencia = {};
         }
+
+
+
         if(document.getElementById("botonFileReal").files[0]==null && estado =="pendiente"){
-                $scope.mensajeEstado = 'Imagen no cargada';
-            }else{
-                
-                if($scope.catalogo.clientes[$scope.posicionEnArray] !=undefined){
+            $scope.mensajeEstado = 'Imagen no cargada';
+        }else{
+            try{
+                //if($scope.catalogo.clientes[$scope.posicionEnArray] !=undefined){
+                  //  console.log('posicion catalogo clientes NO undefined');
                     $scope.referencia.cliente = $scope.catalogo.clientes[$scope.posicionEnArray].nombre;
-                }
-                if($scope.catalogo.tecnologia[$scope.posicionEnArray2] !=undefined){
+                //}
+                //if($scope.catalogo.tecnologia[$scope.posicionEnArray2] !=undefined){
+                  //  console.log('posicion catalogo tecnologías NO undefined');
                     $scope.referencia.tecnologias = $scope.catalogo.tecnologia[$scope.posicionEnArray2].codigo;
-                }
-                
+                //}
+
                 $scope.referencia.creadorReferencia = $rootScope.usuarioLS.name;
                 $scope.referencia.fechaInicio = $scope.fechaInicio;
-                
+
                 var imagen = document.getElementById("botonFileReal").files[0];
                 var fileReader = new FileReader();
                 console.log(imagen);
@@ -162,11 +167,12 @@ app.controller('controladorNuevaReferencia', function(servicioRest, config, $sco
                     fileReader.onloadend = function(e){
                         var objeto = e.target.result;
                         objeto = btoa(objeto);
+                        console.log($scope.referencia);
                         $scope.referencia.imagenProyecto = objeto;
-                        console.log(objeto);
+                        //console.log(objeto);
                         var referencia = $scope.referencia; 
                         console.log(referencia);
-            
+
                         if(estado==='pendiente'){
                             $scope.referencia.estado = "pendiente";
                             $scope.mensajeEstado='Referencia creada pendiente de validar.';       
@@ -185,7 +191,12 @@ app.controller('controladorNuevaReferencia', function(servicioRest, config, $sco
                     $scope.mensajeEstado='Referencia creada en modo borrador.';   
                     servicioRest.postReferencia(referencia);
                 }                   
-               
+            }
+            catch(error){
+                $scope.mensajeEstado='Tecnologías y/o clientes incorrectos';   
+                console.error(error);
+                $scope.posicionEnArray2=undefined;
+            }    
         }  
     }
     

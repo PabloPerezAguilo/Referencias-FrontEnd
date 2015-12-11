@@ -91,6 +91,7 @@
             </md-input-container>
 
             <!--    Fecha inicio-->
+            <!--el datepicker no se podrá rellenar con el tabulador. Sólo se podrá remarcar el elemento-->
             <md-datepicker ng-model="fechaInicio" md-placeholder="Fecha de Inicio" class="ng-untouched ng-valid ng-isolate-scope ng-dirty ng-valid-parse" aria-invalid="false" ng-disabled="mostrarBtValidar===true" ng-required="true" tabindex="6">
                 <button class="md-datepicker-button md-icon-button md-button md-ink-ripple" type="button" ng-transclude="" aria-hidden="true" ng-click="ctrl.openCalendarPane($event)">
                     <md-icon class="md-datepicker-calendar-icon ng-scope ng-isolate-scope" md-svg-icon="md-calendar" aria-label="md-calendar" role="img">
