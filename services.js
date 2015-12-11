@@ -213,29 +213,33 @@ function ServicioREST($http, $q, $rootScope, config, $mdDialog) {
 		return promise;
     }
     
-    function cargarMenu(){
-        
-        if( $rootScope.usuarioLS.role === "ROLE_ADMINISTRADOR"){
-            $rootScope.menuUsuarios = true;
-            $rootScope.menuUsuariosAlta = true;
-            $rootScope.menuUsuariosGestion = true;
-            $rootScope.menuReferencias = true;
-            $rootScope.menuReferenciasGestion = true;
-            $rootScope.menuReferenciasNueva = true;
-            $rootScope.menuReferenciasListar = true;
-        }else if($rootScope.usuarioLS.role === "ROLE_VALIDADOR"){
-            $rootScope.menuReferencias = true;
-            $rootScope.menuReferenciasGestion = true;
-            $rootScope.menuReferenciasListar = true;
-        }else if($rootScope.usuarioLS.role === "ROLE_CONSULTOR"){
-            $rootScope.menuReferencias = true;
-            $rootScope.menuReferenciasListar = true;
-        }else if($rootScope.usuarioLS.role === "ROLE_MANTENIMIENTO"){ 
-            $rootScope.menuReferencias = true;
-            $rootScope.menuReferenciasGestion = true;
-            $rootScope.menuReferenciasListar = true;
-            $rootScope.menuReferenciasNueva = true;
+    function cargarMenu(prueba){
+        if(localStorage.getItem("role") !== null || prueba === 1){
+            if( $rootScope.usuarioLS.role === "ROLE_ADMINISTRADOR"){
+                $rootScope.menuUsuarios = true;
+                $rootScope.menuUsuariosAlta = true;
+                $rootScope.menuUsuariosGestion = true;
+                $rootScope.menuReferencias = true;
+                $rootScope.menuReferenciasGestion = true;
+                $rootScope.menuReferenciasNueva = true;
+                $rootScope.menuReferenciasListar = true;
+            }else if($rootScope.usuarioLS.role === "ROLE_VALIDADOR"){
+                $rootScope.menuReferencias = true;
+                $rootScope.menuReferenciasGestion = true;
+                $rootScope.menuReferenciasListar = true;
+            }else if($rootScope.usuarioLS.role === "ROLE_CONSULTOR"){
+                $rootScope.menuReferencias = true;
+                $rootScope.menuReferenciasListar = true;
+            }else if($rootScope.usuarioLS.role === "ROLE_MANTENIMIENTO"){ 
+                $rootScope.menuReferencias = true;
+                $rootScope.menuReferenciasGestion = true;
+                $rootScope.menuReferenciasListar = true;
+                $rootScope.menuReferenciasNueva = true;
+            }
+        }else{
+            console.log("No hay credenciales de usuario. No se hace recarga de contexto.")
         }
+            
     }
 	
 		

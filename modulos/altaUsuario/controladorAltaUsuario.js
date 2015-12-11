@@ -2,7 +2,7 @@
 app.controller('controladorAltaUsuario', function(servicioRest, config, $scope, $http, $rootScope, $timeout, $q, $log,$mdDialog, $interval) {
  
     // esta funcion permite cargar el menu cuando hemos recargado la pagina
-    servicioRest.cargarMenu();
+    //servicioRest.cargarMenu();
     
    $scope.title = "";
    $scope.descripcion = "";

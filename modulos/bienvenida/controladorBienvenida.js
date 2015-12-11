@@ -3,7 +3,7 @@ app.controller('controladorBienvenida', function(servicioRest, config, $scope, $
     $scope.nombre=$rootScope.usuarioLS.name;
 
     // cargamos menu segun role
-    servicioRest.cargarMenu();
+    servicioRest.cargarMenu(1);
     
     $rootScope.descripcion = true;
     $rootScope.usuarioD = $rootScope.usuarioLS.name;
