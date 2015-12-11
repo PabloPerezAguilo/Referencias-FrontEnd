@@ -1,5 +1,8 @@
 
 app.controller('controladorNuevaReferencia', function(servicioRest, config, $scope, $http, $rootScope,$location,$mdDialog,$interval,$timeout){
+    
+    // esta funcion permite cargar el menu cuando hemos recargado la pagina
+    //servicioRest.cargarMenu();
       
     //Habilitar/deshabilitar los campos del formulario
     $scope.habilitarForm=false;

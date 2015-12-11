@@ -2,27 +2,8 @@ app.controller('controladorBienvenida', function(servicioRest, config, $scope, $
     
     $scope.nombre=$rootScope.usuarioLS.name;
 
-        if( $rootScope.usuarioLS.role === "ROLE_ADMINISTRADOR"){
-        $rootScope.menuUsuarios = true;
-        $rootScope.menuUsuariosAlta = true;
-        $rootScope.menuUsuariosGestion = true;
-        $rootScope.menuReferencias = true;
-        $rootScope.menuReferenciasGestion = true;
-        $rootScope.menuReferenciasNueva = true;
-        $rootScope.menuReferenciasListar = true;
-    }else if($rootScope.usuarioLS.role === "ROLE_VALIDADOR"){
-        $rootScope.menuReferencias = true;
-        $rootScope.menuReferenciasGestion = true;
-        $rootScope.menuReferenciasListar = true;
-    }else if($rootScope.usuarioLS.role === "ROLE_CONSULTOR"){
-        $rootScope.menuReferencias = true;
-        $rootScope.menuReferenciasListar = true;
-    }else if($rootScope.usuarioLS.role === "ROLE_MANTENIMIENTO"){ 
-        $rootScope.menuReferencias = true;
-        $rootScope.menuReferenciasGestion = true;
-        $rootScope.menuReferenciasListar = true;
-        $rootScope.menuReferenciasNueva = true;
-    }
+    // cargamos menu segun role
+    servicioRest.cargarMenu(1);
     
     $rootScope.descripcion = true;
     $rootScope.usuarioD = $rootScope.usuarioLS.name;
