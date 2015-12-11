@@ -1,7 +1,9 @@
 
 app.controller('controladorNuevaReferencia', function(servicioRest, config, $scope, $http, $rootScope,$location,$mdDialog,$interval,$timeout){
-  
-   
+      
+    //Habilitar/deshabilitar los campos del formulario
+    $scope.habilitarForm=false;
+    
     //mostramos los botones de crear referencia 
     $scope.mostrarBtCrear=true;
 
@@ -9,13 +11,12 @@ app.controller('controladorNuevaReferencia', function(servicioRest, config, $sco
     //la asignamos un objeto vacío al que le metemos los valores por defecto
 
     $scope.referencia={}
-    $scope.referencia.certificado='si';
+    //$scope.referencia.certificado='si';
 
     
     if($rootScope.referenciaCargada != null && $rootScope.opcion === 'validar'){
         $scope.clienteCargado = $rootScope.referenciaCargada.cliente;
         $scope.tecnologiaCargada = $rootScope.referenciaCargada.tecnologias;
-        console.log($rootScope.referenciaCargada.fechaInicio);
         $scope.fechaInicio = new Date($rootScope.referenciaCargada.fechaInicio);
         $scope.UserPhoto = $rootScope.referenciaCargada.imagenProyecto;
     }else{
@@ -26,11 +27,11 @@ app.controller('controladorNuevaReferencia', function(servicioRest, config, $sco
     
     if($rootScope.usuarioLS.role !== "ROLE_MANTENIMIENTO"){
         if($rootScope.usuarioLS.role == "ROLE_VALIDADOR" && $rootScope.referenciaCargada != null){
-            console.log("Validador leyendo referencia pendiente de validar");
+            //el validador verá los campos de la referencia 'disabled'
+            $scope.habilitarForm=true;
             //Solo podrá validar o rechazar la referencia
             $scope.mostrarBtValidar=true;
             $scope.mostrarBtCrear=false;
-            console.log("Botones validar--->"+$scope.mostrarBtValidar);
             
         }else if($rootScope.usuarioLS.role == "ROLE_ADMINISTRADOR" && $rootScope.referenciaCargada != null){
             console.log("Administrador leyendo referencia pendiente de validar");
@@ -55,9 +56,19 @@ app.controller('controladorNuevaReferencia', function(servicioRest, config, $sco
  
     }
     
-    //---------PRUEBA--------
+    //---------AYUDA DE LA PAGINA--------
   
- 
+    $scope.introOptions = config.introOptions;
+    $scope.introOptions.steps = [
+            {
+                element: '.txtSimilarMD',
+                intro: 'blablabla'
+            },
+            {
+                element: '#step2',
+                intro: 'blablebli'
+            }
+            ];
 
     /* ----------------------- CARGA DE CATALOGOS ------------------------*/
     $scope.catalogo={};
@@ -80,9 +91,7 @@ app.controller('controladorNuevaReferencia', function(servicioRest, config, $sco
             $rootScope.sociedades = $scope.catalogo.sociedades;
             
             // si venimos de listar referencias tendremos una referencia cargada en $rootScope para la comunicacion entre los controladores
-            if($rootScope.referenciaCargada != null){
-                
-                
+            if($rootScope.referenciaCargada != null){               
                 cargarDatosValidarReferencia();
             }else{
                 $scope.valorQr = false;
@@ -125,7 +134,9 @@ app.controller('controladorNuevaReferencia', function(servicioRest, config, $sco
     }
    function recargarQR(){
          if($scope.referencia.codigoQr!=''){
-            $scope.qrCodeVisible=true; 
+             $scope.codigoQr = $scope.referencia.codigoQr;
+             $scope.qrCodeVisible=true; 
+             
              //Si lo borra que vuelva a ocultar el Qr
          }else if($scope.referencia.codigoQr===''|| $scope.codigoQr===undefined || $scope.codigoQr===' ' || $scope.codigoQr===null){
             $scope.qrCodeVisible=false; 
@@ -137,66 +148,60 @@ app.controller('controladorNuevaReferencia', function(servicioRest, config, $sco
     
     /* CREAR la referencia, puede tener estado: pendiente/borrador  */
     $scope.crearReferencia = function (estado) {
-        if($scope.referencia==null){
-            $scope.referencia = {};
-        }
 
-
-
+        //$scope.referencia = {};
         if(document.getElementById("botonFileReal").files[0]==null && estado =="pendiente"){
-            $scope.mensajeEstado = 'Imagen no cargada';
+                $scope.mensajeEstado = 'Imagen no cargada';
         }else{
-            try{
-                //if($scope.catalogo.clientes[$scope.posicionEnArray] !=undefined){
-                  //  console.log('posicion catalogo clientes NO undefined');
-                    $scope.referencia.cliente = $scope.catalogo.clientes[$scope.posicionEnArray].nombre;
-                //}
-                //if($scope.catalogo.tecnologia[$scope.posicionEnArray2] !=undefined){
-                  //  console.log('posicion catalogo tecnologías NO undefined');
-                    $scope.referencia.tecnologias = $scope.catalogo.tecnologia[$scope.posicionEnArray2].codigo;
-                //}
 
-                $scope.referencia.creadorReferencia = $rootScope.usuarioLS.name;
-                $scope.referencia.fechaInicio = $scope.fechaInicio;
+            if($scope.referencia.cliente = $scope.catalogo.clientes[$scope.posicionEnArray] !=undefined){
+                $scope.referencia.cliente = $scope.catalogo.clientes[$scope.posicionEnArray].nombre;
+            }
+            if($scope.referencia.tecnologias = $scope.catalogo.tecnologia[$scope.posicionEnArray2] !=undefined){
+                $scope.referencia.tecnologias = $scope.catalogo.tecnologia[$scope.posicionEnArray2].codigo;
+            }
 
-                var imagen = document.getElementById("botonFileReal").files[0];
-                var fileReader = new FileReader();
-                console.log(imagen);
-                if(imagen != undefined){
-                    fileReader.readAsBinaryString(imagen);
-                    fileReader.onloadend = function(e){
-                        var objeto = e.target.result;
-                        objeto = btoa(objeto);
-                        console.log($scope.referencia);
-                        $scope.referencia.imagenProyecto = objeto;
-                        //console.log(objeto);
-                        var referencia = $scope.referencia; 
-                        console.log(referencia);
+            $scope.referencia.creadorReferencia = $rootScope.usuarioLS.name;
+            $scope.referencia.fechaInicio = $scope.fechaInicio;
 
-                        if(estado==='pendiente'){
-                            $scope.referencia.estado = "pendiente";
-                            $scope.mensajeEstado='Referencia creada pendiente de validar.';       
+            var imagen = document.getElementById("botonFileReal").files[0];
+            var fileReader = new FileReader();
+            if(imagen != null){
+                fileReader.readAsBinaryString(imagen);
+                fileReader.onloadend = function(e){
+                    var objeto = e.target.result;
+                    objeto = btoa(objeto);
+                    console.log($scope.referencia);
+                    $scope.referencia.imagenProyecto = objeto;
+                    console.log(objeto);
+
+                    var referencia = $scope.referencia; 
+                    console.log(referencia);
+
+                    if(estado==='pendiente'){
+                        $scope.referencia.estado = "pendiente";
+                        $scope.mensajeEstado='Referencia creada pendiente de validar.';       
                     }else if(estado==='borrador'){
                         $scope.referencia.estado = "borrador";  
                         $scope.mensajeEstado='Referencia creada en modo borrador.';   
-                    }
+                        }
                     servicioRest.postReferencia(referencia);
-                           
-                    }
-                }else{
-                    
-                    var referencia = $scope.referencia; 
-                    console.log(referencia);
+                 }
+
+            }else{
+
+                var referencia = $scope.referencia; 
+                console.log(referencia);
+
+                if(estado==='pendiente'){
+                    $scope.referencia.estado = "pendiente";
+                     $scope.mensajeEstado='Referencia creada pendiente de validar.';       
+                }else if(estado==='borrador'){
                     $scope.referencia.estado = "borrador";  
                     $scope.mensajeEstado='Referencia creada en modo borrador.';   
-                    servicioRest.postReferencia(referencia);
-                }                   
-            }
-            catch(error){
-                $scope.mensajeEstado='Tecnologías y/o clientes incorrectos';   
-                console.error(error);
-                $scope.posicionEnArray2=undefined;
-            }    
+                 }
+                servicioRest.postReferencia(referencia);
+            }           
         }  
     }
     
@@ -382,19 +387,17 @@ app.controller('controladorNuevaReferencia', function(servicioRest, config, $sco
         // este codigo rellena la referencia con la informacion guardada en $rootScope
         $scope.referencia = {};
         $scope.referencia.responsableComercial = {};
-        console.log($rootScope.referenciaCargada);
-        
         $scope.referencia.sociedadSeleccionado = $rootScope.referenciaCargada.sociedad;
         $scope.referencia.sectorEmpresarialSeleccionado = $rootScope.referenciaCargada.sectorEmpresarial;
         $scope.referencia.tipoActividadSeleccionado = $rootScope.referenciaCargada.tipoActividad;
         $scope.referencia.tipoProyectoSeleccionado = $rootScope.referenciaCargada.tipoProyecto;
         $scope.referencia.duracionMeses = $rootScope.referenciaCargada.duracionMeses;
-
         $scope.referencia.denominacion = $rootScope.referenciaCargada.denominacion;
         $scope.referencia.resumenProyecto = $rootScope.referenciaCargada.resumenProyecto;
         $scope.referencia.problematicaCliente = $rootScope.referenciaCargada.problematicaCliente;
         $scope.referencia.solucionGfi = $rootScope.referenciaCargada.solucionGfi;
         $scope.referencia.fteTotales =$rootScope.referenciaCargada.fteTotales;
+        $scope.referencia.certificado = $rootScope.referenciaCargada.certificado;
         $scope.referencia.regPedidoAsociadoReferencia = $rootScope.referenciaCargada.regPedidoAsociadoReferencia;
         $scope.referencia.responsableComercialSeleccionado = $rootScope.referenciaCargada.responsableComercial;
         $scope.referencia.responsableTecnicoSeleccionado = $rootScope.referenciaCargada.responsableTecnico;
