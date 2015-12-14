@@ -280,7 +280,17 @@
                     </div> 
                 </md-dialog-content>
             </div>
-            <p id="mensajeEstado"> {{mensajeEstado}}</p>
+            
+            <!--    Lista de errores de validación-->
+            <div ng-repeat="error in errores" ng-show="useForm.$invalid">
+                HELLO papayena
+                <p class="mensajeError">{{error}}</p>
+            </div>
+
+            <!--    Resultado de la operación-->
+            <p id="mensajeEstado
+
+            "></p>
             <button ng-click="lanzarAyuda();">Demo</button>
             
             <div class="botonesCrear" layout-align="center">

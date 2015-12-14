@@ -15,6 +15,7 @@ app.controller('controladorNuevaReferencia', function(servicioRest, config, $sco
 
     $scope.referencia={}
     $scope.referencia.certificado='si';
+    $scope.errores=[];
 
     
     if($rootScope.referenciaCargada != null && $rootScope.opcion === 'validar'){
@@ -165,7 +166,7 @@ app.controller('controladorNuevaReferencia', function(servicioRest, config, $sco
             }*/
             
             try{
-                 $scope.referencia.cliente = $scope.catalogo.clientes[$scope.posicionEnArray].nombre;
+                $scope.referencia.cliente = $scope.catalogo.clientes[$scope.posicionEnArray].nombre;
                 $scope.referencia.tecnologias = $scope.catalogo.tecnologia[$scope.posicionEnArray2].codigo;
                 
             }catch(error){
@@ -220,7 +221,6 @@ app.controller('controladorNuevaReferencia', function(servicioRest, config, $sco
                 });
             }           
         }
-        servicioRest.popupInfo('Esto devería ser un evento' , $scope.mensajeEstado);
     }
     
     /**/
