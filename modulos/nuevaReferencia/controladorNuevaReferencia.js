@@ -65,11 +65,75 @@ app.controller('controladorNuevaReferencia', function(servicioRest, config, $sco
     $scope.introOptions = config.introOptions;
     $scope.introOptions.steps = [
             {
-                element: '.txtSimilarMD',
-                intro: 'blablabla'
+                element: '.md-dialog-content',
+                intro: 'Debe seleccionar un cliente valido de la lista disponible. La lista se mostrara a partir de la tercera letra escrita. <br/> Para guardar en borrador no sera necesario la validez de este cliente, pero si escribe algo invalido en este campo,  al guarda como borrador el cliente se guardara vacio como si no hubiera escrito nada.'
             },
             {
-                element: '#step2',
+                element: '#sociedad',
+                intro: 'Seleccione una sociedad de la lista disponible, si no encuentra la que busca consulte con su gerente'
+            },
+            {
+                element: '#sectorEmpresarial',
+                intro: 'Seleccione un Sector empresarial de la lista disponible, si no encuentra el que busca consulte con su gerente'
+            },
+            {
+                element: '#actividad',
+                intro: 'Seleccione una actividad de la lista disponible, si no encuentra la que busca consulte con su gerente'
+            },
+            {
+                element: '#tipoProyecto',
+                intro: 'Seleccione un tipo de proyecto de la lista disponible, si no encuentra el que busca consulte con su gerente'
+            },
+            {
+                element: '#fecha',
+                intro: 'Seleccione una fecha o escribala con el siguiente formato MM/DD/AAAA'
+            },
+            {
+                element: '#duracion',
+                intro: 'Seleccione una actividad de la lista disponible, si no encuentra la que busca consulte con su gerente'
+            },
+            {
+                element: '#denominacion',
+                intro: 'Seleccione una actividad de la lista disponible, si no encuentra la que busca consulte con su gerente'
+            }, 
+            {
+                element: '#resumen',
+                intro: 'Seleccione una actividad de la lista disponible, si no encuentra la que busca consulte con su gerente'
+            },
+            {
+                element: '#problematica',
+                intro: 'Seleccione una actividad de la lista disponible, si no encuentra la que busca consulte con su gerente'
+            },
+            {
+                element: '#solucion',
+                intro: 'Seleccione una actividad de la lista disponible, si no encuentra la que busca consulte con su gerente'
+            },
+            {
+                element: '#fte',
+                intro: 'Seleccione una actividad de la lista disponible, si no encuentra la que busca consulte con su gerente'
+            },
+            {
+                element: '#certificado',
+                intro: 'Seleccione una actividad de la lista disponible, si no encuentra la que busca consulte con su gerente'
+            },
+            {
+                element: '#comercial',
+                intro: 'Seleccione una actividad de la lista disponible, si no encuentra la que busca consulte con su gerente'
+            },
+            {
+                element: '#tecnico',
+                intro: 'Seleccione una actividad de la lista disponible, si no encuentra la que busca consulte con su gerente'
+            },
+            {
+                element: '#imagen',
+                intro: 'Seleccione una actividad de la lista disponible, si no encuentra la que busca consulte con su gerente'
+            },
+            {
+                element: '#qr',
+                intro: 'Seleccione una actividad de la lista disponible, si no encuentra la que busca consulte con su gerente'
+            },
+            {
+                element: '#prueba',
                 intro: 'blablebli'
             }
             ];
