@@ -14,9 +14,45 @@ app.controller('controladorNuevaReferencia', function(servicioRest, config, $sco
     //la asignamos un objeto vacío al que le metemos los valores por defecto
 
     $scope.referencia={}
+    
+    //inicializamos el valor del certificado a 'si' para que salga esa opción seleccionada por defecto
     $scope.referencia.certificado='si';
-    $scope.errores=[];
+    
+    //Array asociativo con todos los mensajes errores de validación en la entrada de datos a través de los campos
+    $scope.errores={};
+    //Le metemos los valores usando como clave el atributo 'name' del elemente html que lo recoge
+    //$scope.errores['cliente']="Cliente inválido";
+    $scope.errores['sociedad']="Se debe seleccionar una sociedad";
+    $scope.errores['SectorEmp']="Se debe seleccionar un sector empresarial";
+    $scope.errores['tActividad']="Se debe seleccionar un tipo de actividad";
+    $scope.errores['tProyecto']="Se debe seleccionar un tipo de proyecto";
 
+    //$scope.errores['fecha']="Se debe seleccionar una fecha de inicio";
+
+    $scope.errores['duracion']="Se debe seleccionar una duración en meses mínima de 1 mes";
+    $scope.errores['denominacion']="El campo denominación no puede estar vacío";
+
+    $scope.errores['Rproyecto']="El campo resumen del proyecto no puede estar vacío";
+    $scope.errores['ProblemaCliente']="El campo problemática del cliente no puede estar vacío";
+
+    $scope.errores['solGFI']="El campo Solución GFI no puede estar vacío";
+    
+    $scope.errores['fteTotal']="Se debe seleccionar una cantidad de FTE totales mínima de 1 FTE";
+
+    $scope.errores['registroPedido']="El campo de registros asociados no puede estar vacío";
+
+    $scope.errores['rbleComercial']="Se debe seleccionar un responsable comercial";
+
+    $scope.errores['rbleTecnico']="Se debe seleccionar un responsable técnico";
+
+    $scope.errores['userfile']="Se debe subir una imágen";
+    //$scope.errores['tecnologia']="Tecnología inválida";
+    
+    
+    //Esta función debería estar en utils o algo parecido
+    $scope.isEmptyObject= function(objeto){
+        return angular.equals( {} , objeto );
+    };
     
     if($rootScope.referenciaCargada != null && $rootScope.opcion === 'validar'){
         $scope.clienteCargado = $rootScope.referenciaCargada.cliente;
@@ -287,24 +323,7 @@ app.controller('controladorNuevaReferencia', function(servicioRest, config, $sco
         }
     }
     
-    /**/
-    /*$scope.limpiarCampoNoDisabled=function(texto) {
-        
-        if($rootScope.opcion === 'validar'){
-            //nada
-        }else{
-            console.log(this.texto);
-            switch(texto){
-                case 'sociedad':
-                    $scope.referencia.sociedad = "";
-                    break;
-                default:
-            }
-            
-        }
-    }*/
-    /**/
-
+    
     /* ------------------------ VALIDAR UNA REFERENCIA ------------------------------- */
     
     $scope.validarReferencia = function () {
