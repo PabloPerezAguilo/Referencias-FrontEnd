@@ -6,7 +6,7 @@
                   <md-dialog-content class="selecCli">
                     <div class="md-dialog-content">
                       <form ng-submit="$event.preventDefault()">
-                        <label class="txtSimilarMD">Cliente</label>
+                        <label class="txtSimilarMD">Cliente *</label>
                         <md-autocomplete flex required
                             pattern="[a-zA-Z]+"
                             md-selected-item="ctrl.selectedItem"
@@ -38,58 +38,46 @@
             </div>
             <br><!--    CLIENTE-->
             <md-input-container title="Sociedad" class="fixed-size">
-                <label>Sociedad</label>
+                <label>Sociedad *</label>
                 <md-select name="sociedad" tabindex="2" ng-model="referencia.sociedad" ng-required="true" ng-disabled="mostrarBtValidar===true"> <!--ng-click="limpiarCampoNoDisabled('sociedad')"--> 
                     <md-option ng-value="sociedad.codigo" data-ng-repeat="sociedad in catalogo.sociedades" ng-selected="sociedad.codigo == referencia.sociedadSeleccionado ? true:false" >
                         {{sociedad.descripcion}} ({{ sociedad.codigo }})
                     </md-option>
                 </md-select>
-                <div ng-messages ="useForm.sociedad.$error">         
-                         <div ng-message="required"> * </div>
-                    </div> 
             </md-input-container>
 
             <!--   SECTOR-->
             <md-input-container title="Sector Empresarial" class="fixed-size" >
-                <label>Sector Empresarial</label>
+                <label>Sector Empresarial *</label>
                 <md-select name="SectorEmp" ng-model="referencia.sectorEmpresarial"  ng-required="true" ng-disabled="mostrarBtValidar===true" tabindex="3">
                     <md-option ng-value="sectorEmpresarial.codigo" data-ng-repeat="sectorEmpresarial in catalogo.sectorempresarial" ng-selected="sectorEmpresarial.codigo == referencia.sectorEmpresarialSeleccionado ? true:false">
                         {{sectorEmpresarial.descripcion}}  ({{ sectorEmpresarial.codigo }})
                     </md-option>
               </md-select>
-                 <div ng-messages ="useForm.SectorEmp.$error">         
-                    <div ng-message="required"> * </div>
-                 </div> 
             </md-input-container>
 
             <!--    Tipo de actividad-->
             <md-input-container title="Tipo de actividad" class="fixed-size">
-                <label>Tipo de actividad</label>
+                <label>Tipo de actividad *</label>
                 <md-select name="tActividad" ng-model="referencia.tipoActividad" ng-required="true" ng-disabled="mostrarBtValidar===true" tabindex="4">
                     <md-option ng-value="tipoActividad.codigo" data-ng-repeat="tipoActividad in catalogo.actividad" ng-selected="tipoActividad.codigo == referencia.tipoActividadSeleccionado ? true:false">
                     {{ tipoActividad.descripcion }} ({{ tipoActividad.codigo }})
                     </md-option>      
                 </md-select>
-                 <div ng-messages ="useForm.tActividad.$error">         
-                         <div ng-message="required"> * </div>
-                    </div> 
             </md-input-container>
 
             <!--    Tipo de proyecto-->
             <md-input-container title="Tipo de proyecto" class="fixed-size">
-                <label>Tipo de proyecto</label>
+                <label>Tipo de proyecto *</label>
                 <md-select name="tProyecto" ng-model="referencia.tipoProyecto" ng-required="true" ng-disabled="mostrarBtValidar===true" tabindex="5">
                     <md-option ng-value="tipoProyecto.codigo" data-ng-repeat="tipoProyecto in catalogo.proyecto" ng-selected="tipoProyecto.codigo == referencia.tipoProyectoSeleccionado ? true:false">
                     {{ tipoProyecto.descripcion }} ({{ tipoProyecto.codigo }})
                     </md-option>      
                 </md-select>
-                 <div ng-messages ="useForm.tProyecto.$error">         
-                         <div ng-message="required"> * </div>
-                    </div> 
             </md-input-container>
 
             <!--    Fecha inicio-->
-            <md-datepicker ng-model="fechaInicio" md-placeholder="Fecha de Inicio" class="ng-untouched ng-valid ng-isolate-scope ng-dirty ng-valid-parse" aria-invalid="false" ng-disabled="mostrarBtValidar===true" ng-required="true" tabindex="6">
+            <md-datepicker ng-model="fechaInicio" md-placeholder="Fecha de Inicio *" class="ng-untouched ng-valid ng-isolate-scope ng-dirty ng-valid-parse" aria-invalid="false" ng-disabled="mostrarBtValidar===true" ng-required="true" tabindex="6">
                 <button class="md-datepicker-button md-icon-button md-button md-ink-ripple" type="button" ng-transclude="" aria-hidden="true" ng-click="ctrl.openCalendarPane($event)">
                     <md-icon class="md-datepicker-calendar-icon ng-scope ng-isolate-scope" md-svg-icon="md-calendar" aria-label="md-calendar" role="img">
                         <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 24 24" fit="" preserveAspectRatio="xMidYMid meet" style="pointer-events: none; display: block;">
@@ -115,89 +103,64 @@
 
             <!--    Duración-->         
             <md-input-container title="Duración en meses" class="fixed-size">
-                <label>Duración en meses</label>
+                <label>Duración en meses *</label>
                 <input name="duracion" type="number" min="1" ng-model="referencia.duracionMeses" ng-disabled="mostrarBtValidar===true" ng-required="true"tabindex="7"/>
-                 <div ng-messages ="useForm.duracion.$error">         
-                    <div ng-message ="required"> * </div>
-                </div> 
             </md-input-container>
 
             <!-- Denominación-->
             <md-input-container title="Denominación" class="fixed-size-denominacion" ng-disabled="mostrarBtValidar===true">
-                <label>Denominación</label>
+                <label>Denominación *</label>
                 <textarea name="denominacion" type="text" ng-model="referencia.denominacion" ng-disabled="mostrarBtValidar===true"  max="100" md-maxlength="100" rows="2" ng-required="true"tabindex="8"></textarea>
-                <div ng-messages ="useForm.denominacion.$error">         
-                        <div ng-message ="required"> * </div>
-                </div> 
             </md-input-container>
 
             <!-- Resumen del proyecto-->
             <div id="cajon1">
                 <md-input-container title="Resumen del proyecto" class="fixed-size-resumen">
-                    <label>Resumen proyecto</label>
+                    <label>Resumen proyecto *</label>
                     <textarea name="Rproyecto" ng-model="referencia.resumenProyecto" ng-disabled="mostrarBtValidar===true" max="300" md-maxlength="300" rows="5" ng-required="true" tabindex="9"></textarea>
-                    <div ng-messages="useForm.Rproyecto.$error">         
-                        <div ng-message ="required"> * </div>
-                    </div> 
                 </md-input-container>
             </div>
             <!--Problemática del cliente-->
             <div id="cajon2">
             <md-input-container title="Problemática del cliente" class="fixed-size-resumen">
-                <label>Problemática del cliente</label>
+                <label>Problemática del cliente *</label>
                 <textarea name="ProblemaCliente" ng-model="referencia.problematicaCliente" ng-disabled="mostrarBtValidar===true" max="300" md-maxlength="300" rows="5" ng-required="true" tabindex="10">
                 </textarea>
-                <div ng-messages ="useForm.ProblemaCliente.$error">         
-                    <div ng-message ="required"> * </div>
-                </div>
             </md-input-container>
             </div>
 
             <!--    Solución-->
             <md-input-container title="Solución GFI" class="fixed-size-solucion">
-                <label>Solución GFI</label>
+                <label>Solución GFI *</label>
                 <textarea type="text" ng-model="referencia.solucionGfi" ng-disabled="mostrarBtValidar===true" max="500" md-maxlength="500" rows="6" ng-required="true" tabindex="11"></textarea>
-                <div ng-messages ="useForm.soluciongfi.$error">         
-                    <div ng-message ="required"> * </div>
-                </div>
             </md-input-container>
 
             <!--    FTE totales-->       
             <md-input-container title="FTE Totales" class="fixed-size">
-                <label>FTE Totales</label>
+                <label>FTE Totales *</label>
                 <input name="ftetotal" type="number" min="1" ng-model="referencia.fteTotales" ng-disabled="mostrarBtValidar===true" ng-required="true" tabindex="12"/>
-                <div ng-messages ="useForm.ftetotal.$error">         
-                    <div ng-message ="required"> * </div>
-                </div>
             </md-input-container>
 
             <!--    Certificado-->
             <md-input-container title="Existe certificado del cliente" class="fixed-size">
                 <md-radio-group name="certificado" ng-model="referencia.certificado" ng-disabled="mostrarBtValidar===true" ng-required="true" tabindex="13">                  
-                <label>¿Existe certificado del cliente?</label><br>
+                <label>¿Existe certificado del cliente? *</label><br>
                     <md-radio-button style="margin-bottom: -35px" value="si" ng-checked="true" ng-disabled="habilitarForm===true">Si</md-radio-button>
                     <md-radio-button style="margin-left: 80px" value="no" ng-disabled="habilitarForm===true">No</md-radio-button>
                 </md-radio-group>
-                <div ng-messages ="useForm.certificado.$error">         
-                    <div ng-message ="required"> * </div>
-                </div>
             </md-input-container>
 
             <!--Registros-->
             <md-input-container title="Registros de pedido asociados a la referencia" class="fixed-size">
-                <label>Registros de pedido asociados a la referencia</label>
+                <label>Registros de pedido asociados a la referencia *</label>
                 <input name="registroPedido" type="text" ng-disabled="mostrarBtValidar===true" ng-model="referencia.regPedidoAsociadoReferencia" tabindex="14"/> <!--ng-required="true"-->
-
-                <!--<div ng-messages ="useForm.registroPedido.$error">         
-                    <div ng-message ="required"> * </div>
-                </div>-->
             </md-input-container>
 
-            <!--    Responsables-->
+            <!--Responsables-->
             <div layout="row">
                 <!--Responsable comercial-->
                 <md-input-container title="Responsable comercial" class="contCom" >
-                    <label>Responsable Comercial</label>
+                    <label>Responsable Comercial *</label>
 
                     <md-select name="rblecomercial" ng-model="referencia.responsableComercial" ng-disabled="mostrarBtValidar===true" required tabindex="15"> 
 
@@ -205,22 +168,16 @@
                             {{ responsableComercial.nombre }} ({{ responsableComercial.login }})
                         </md-option>
                     </md-select>
-                    <div ng-messages ="useForm.rblecomercial.$error">         
-                        <div ng-message ="required"> * </div>
-                    </div>
                 </md-input-container> 
 
                 <!--    Responsable Técnico--> 
                 <md-input-container title="Responsable técnico" class="contTec" md-on-open="loadOptions()" md-on-close="closeOptions()">
-                    <label>Responsable Técnico</label>
+                    <label>Responsable Técnico *</label>
                     <md-select name="rbletecnico" ng-model="referencia.responsableTecnico" ng-disabled="mostrarBtValidar===true" required tabindex="16">
                         <md-option ng-value="responsableTecnico.nombre" data-ng-repeat="responsableTecnico in catalogo.tecnico" ng-selected="responsableTecnico.nombre == referencia.responsableTecnicoSeleccionado ? true:false">
                             {{ responsableTecnico.nombre }} ({{ responsableTecnico.login }})
                         </md-option>
                     </md-select>
-                    <div ng-messages ="useForm.rbletecnico.$error">         
-                    <div ng-message ="required"> * </div>
-                </div>
                 </md-input-container>
             </div>
 
@@ -229,7 +186,7 @@
                 <!--Código QR-->      
                 <div class="contQr">                         
                         <input type="file" name="userfile" style="display:none;" ng-model="referencia.imagenProyecto" id="botonFileReal" onchange="angular.element(this).scope().uploadFile(this)" ng-disabled="mostrarBtValidar===true" ng-required  >
-                        <input type="button" class="botones" value="SUBIR IMAGEN" onclick="document.getElementById('botonFileReal').click();" style="" ng-disabled="mostrarBtValidar===true" tabindex="17">
+                        <input type="button" class="botones" value="SUBIR IMAGEN *" onclick="document.getElementById('botonFileReal').click();" style="" ng-disabled="mostrarBtValidar===true" tabindex="17">
                     <br><br><br><br>
                     <md-input-container title="Código QR" class="fixed-size">
                         <label>Código Qr</label>
@@ -251,7 +208,7 @@
                 <md-dialog-content class="selecTec">
                     <div class="md-dialog-content">
                         <form ng-submit="$event.preventDefault()">
-                            <label class="txtSimilarMD">Tecnología</label>
+                            <label class="txtSimilarMD">Tecnología *</label>
                             <md-autocomplete pattern="[a-zA-Z]+"
                                 md-selected-item="ctrl.selectedItemt"
                                 md-search-text="ctrl.searchTextt"
