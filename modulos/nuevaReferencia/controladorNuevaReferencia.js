@@ -5,7 +5,7 @@ app.controller('controladorNuevaReferencia', function(servicioRest, config, $sco
     //servicioRest.cargarMenu();
       
     //Habilitar/deshabilitar los campos del formulario
-    $scope.habilitarForm=false;
+    $scope.deshabilitarForm=false;
     
     //mostramos los botones de crear referencia 
     $scope.mostrarBtCrear=true;
@@ -68,7 +68,7 @@ app.controller('controladorNuevaReferencia', function(servicioRest, config, $sco
     if($rootScope.usuarioLS.role !== "ROLE_MANTENIMIENTO"){
         if($rootScope.usuarioLS.role == "ROLE_VALIDADOR" && $rootScope.referenciaCargada != null){
             //el validador verá los campos de la referencia 'disabled'
-            $scope.habilitarForm=true;
+            $scope.deshabilitarForm=true;
             //Solo podrá validar o rechazar la referencia
             $scope.mostrarBtValidar=true;
             $scope.mostrarBtCrear=false;
@@ -185,7 +185,7 @@ app.controller('controladorNuevaReferencia', function(servicioRest, config, $sco
             $scope.catalogo = response;
             /*Modificacion Ruben para cargar autocomplete en listar*/
             $rootScope.clientes = $scope.catalogo.clientes;
-            $rootScope.tecnologias = $scope.catalogo.tecnologias;
+            $rootScope.tecnologias = $scope.catalogo.tecnologia;
             /*Modificacion Ruben para cargar autocomplete en listar*/
             cadenaClientes();
             cadenaTecnologia();         
@@ -257,20 +257,15 @@ app.controller('controladorNuevaReferencia', function(servicioRest, config, $sco
         if(document.getElementById("botonFileReal").files[0]==null && estado =="pendiente"){
                 $scope.mensajeEstado = 'Imagen no cargada';
         }else{
-
-            /*if($scope.referencia.cliente = $scope.catalogo.clientes[$scope.posicionEnArray] !=undefined){
+			//para saber si el cliente introducido EXISTE en el catalogo de clientes
+			var indiceCliente = $rootScope.clientes.indexOf($scope.catalogo.clientes[$scope.posicionEnArray]);
+            if(indiceCliente !== -1){
                 $scope.referencia.cliente = $scope.catalogo.clientes[$scope.posicionEnArray].nombre;
             }
-            if($scope.referencia.tecnologias = $scope.catalogo.tecnologia[$scope.posicionEnArray2] !=undefined){
+			//para saber si la tecnologia introducida EXISTE en el catalogo de tecnologías
+			var indiceTecnologia = $rootScope.tecnologias.indexOf($scope.catalogo.tecnologia[$scope.posicionEnArray2]);
+            if(indiceTecnologia !== -1){
                 $scope.referencia.tecnologias = $scope.catalogo.tecnologia[$scope.posicionEnArray2].codigo;
-            }*/
-            
-            try{
-                $scope.referencia.cliente = $scope.catalogo.clientes[$scope.posicionEnArray].nombre;
-                $scope.referencia.tecnologias = $scope.catalogo.tecnologia[$scope.posicionEnArray2].codigo;
-                
-            }catch(error){
-                $scope.mensajeEstado='Cliente y/o tecnología inválido';
             }
 
             $scope.referencia.creadorReferencia = $rootScope.usuarioLS.name;
@@ -283,21 +278,28 @@ app.controller('controladorNuevaReferencia', function(servicioRest, config, $sco
                 fileReader.onloadend = function(e){
                     var objeto = e.target.result;
                     objeto = btoa(objeto);
-                    console.log($scope.referencia);
                     $scope.referencia.imagenProyecto = objeto;
-                    console.log(objeto);
 
                     var referencia = $scope.referencia; 
-                    console.log(referencia);
 
                     if(estado==='pendiente'){
                         $scope.referencia.estado = "pendiente";
                         $scope.mensajeEstado='Referencia creada pendiente de validar.';       
                     }else if(estado==='borrador'){
-                        $scope.referencia.estado = "borrador";  
-                        $scope.mensajeEstado='Referencia creada en modo borrador.';   
+                        	$scope.referencia.estado = "borrador";  
+                        	$scope.mensajeEstado='Referencia creada en modo borrador.';   
                         }
-                    servicioRest.postReferencia(referencia);
+					
+					if (indiceCliente === -1 ){
+						$scope.mensajeEstado='cliente MAL seleccionado';
+					}
+					if (indiceTecnologia === -1){
+						$scope.mensajeEstado='tecnología MAL seleccionada';
+					}
+					if (indiceCliente !== -1 && indiceTecnologia !== -1){
+                    	servicioRest.postReferencia(referencia);
+						console.log('referencia guardada');
+					}
                  }
 
             }else{
