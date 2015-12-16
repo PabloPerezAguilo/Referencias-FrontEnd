@@ -207,7 +207,7 @@ app.controller('controladorNuevaReferencia', function(servicioRest, config, $sco
             var reader = new FileReader();
             reader.onload = function (e) {
                 //Sets the Old Image to new New Image
-                $('#photo-id').attr('src', e.target.result);
+                document.getElementById("photo-id").src=e.target.result;
                 //Create a canvas and draw image on Client Side to get the byte[] equivalent
                 var canvas = document.createElement("canvas");
                 var imageElement = document.createElement("img");
@@ -252,8 +252,44 @@ app.controller('controladorNuevaReferencia', function(servicioRest, config, $sco
     
     /* CREAR la referencia, puede tener estado: pendiente/borrador  */
     $scope.crearReferencia = function (estado) {
-
-        //$scope.referencia = {};
+        
+        if ((estado==="pendiente" && validarCampos()) || estado==="borrador")
+        {
+            // Crea/Guarda una referencia dependiendo de su estado
+            var indiceCliente = $rootScope.clientes.indexOf($scope.catalogo.clientes[$scope.posicionEnArray]);
+            $scope.referencia.cliente = $scope.catalogo.clientes[$scope.posicionEnArray].nombre;       
+            var indiceTecnologia = $rootScope.tecnologias.indexOf($scope.catalogo.tecnologia[$scope.posicionEnArray2]);
+            $scope.referencia.tecnologias = $scope.catalogo.tecnologia[$scope.posicionEnArray2].codigo;              
+            $scope.referencia.creadorReferencia = $rootScope.usuarioLS.name;
+            $scope.referencia.fechaInicio = $scope.fechaInicio;
+            var imagen = document.getElementById("botonFileReal").files[0];
+            var fileReader = new FileReader();
+            fileReader.readAsBinaryString(imagen);
+            fileReader.onloadend = function(e)
+            {
+                var objeto = e.target.result;
+                objeto = btoa(objeto);
+                $scope.referencia.imagenProyecto = objeto;
+                var referencia = $scope.referencia;
+                $scope.referencia.estado = estado; 
+                if(estado==="pendiente")
+                {
+                    $scope.mensajeEstado='Referencia creada pendiente de validar.'; 
+                }
+                else if(estado==="borrador")
+                {
+                    $scope.mensajeEstado='Referencia creada en modo borrador.'; 
+                }
+                  
+                servicioRest.postReferencia(referencia);
+                console.log('referencia guardada');
+             }
+        }   
+        
+        
+        
+        
+        /*//$scope.referencia = {};
         if(document.getElementById("botonFileReal").files[0]==null && estado =="pendiente"){
                 $scope.mensajeEstado = 'Imagen no cargada';
         }else{
@@ -322,7 +358,7 @@ app.controller('controladorNuevaReferencia', function(servicioRest, config, $sco
                     console.error('Error en la llamada al servicio REST');
                 });
             }           
-        }
+        }*/
     }
     
     
