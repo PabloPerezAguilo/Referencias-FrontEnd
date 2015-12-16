@@ -57,8 +57,6 @@ app.controller('controladorNuevaReferencia', function(servicioRest, config, $sco
     var erroresCometidos=Object.keys(erroresTotales);
     //--------------
     $scope.actualizaErrores=function(elem, error){
-        console.log(elem);
-        console.log(error);
         var index = erroresCometidos.indexOf(elem);
         if($scope.isEmptyObject(error)){      
             if (index >= 0) {
@@ -70,8 +68,6 @@ app.controller('controladorNuevaReferencia', function(servicioRest, config, $sco
                 erroresCometidos.push(elem);
             }
         }
-        console.log("erroresTotales: "+Object.keys(erroresTotales));
-        console.log("erroresCometidos: "+erroresCometidos);
     };
     
     if($rootScope.referenciaCargada != null && $rootScope.opcion === 'validar'){
@@ -290,11 +286,16 @@ app.controller('controladorNuevaReferencia', function(servicioRest, config, $sco
         return result;
     }
     
+    function validarCampos(){
+        return 0===erroresCometidos.length && undefined!=$scope.posicionEnArray && undefined!=$scope.posicionEnArray2;
+    }
+    
     /* CREAR la referencia, puede tener estado: pendiente/borrador  */
     $scope.crearReferencia = function (estado) {
         
         if ((estado==="pendiente" && validarCampos()) || estado==="borrador")
         {
+            console.log('bien');
             // Crea/Guarda una referencia dependiendo de su estado
             var indiceCliente = $rootScope.clientes.indexOf($scope.catalogo.clientes[$scope.posicionEnArray]);
             $scope.referencia.cliente = $scope.catalogo.clientes[$scope.posicionEnArray].nombre;       
@@ -324,7 +325,11 @@ app.controller('controladorNuevaReferencia', function(servicioRest, config, $sco
                 servicioRest.postReferencia(referencia);
                 console.log('referencia guardada');
              }
-        }   
+        }
+        else{
+            console.log('mal');
+            servicioRest.popupInfo('ESTO DEBERÏA SER UN EVENTO',listarErrores());
+        }
         
         
         
