@@ -19,39 +19,59 @@ app.controller('controladorNuevaReferencia', function(servicioRest, config, $sco
     $scope.referencia.certificado='si';
     
     //Array asociativo con todos los mensajes errores de validación en la entrada de datos a través de los campos
-    $scope.errores={};
+    $scope.erroresTotales={};
     //Le metemos los valores usando como clave el atributo 'name' del elemente html que lo recoge
-    //$scope.errores['cliente']="Cliente inválido";
-    $scope.errores['sociedad']="Se debe seleccionar una sociedad";
-    $scope.errores['SectorEmp']="Se debe seleccionar un sector empresarial";
-    $scope.errores['tActividad']="Se debe seleccionar un tipo de actividad";
-    $scope.errores['tProyecto']="Se debe seleccionar un tipo de proyecto";
+    //$scope.erroresTotales['cliente']="Cliente inválido";
+    $scope.erroresTotales['sociedad']="Se debe seleccionar una sociedad";
+    $scope.erroresTotales['SectorEmp']="Se debe seleccionar un sector empresarial";
+    $scope.erroresTotales['tActividad']="Se debe seleccionar un tipo de actividad";
+    $scope.erroresTotales['tProyecto']="Se debe seleccionar un tipo de proyecto";
 
-    //$scope.errores['fecha']="Se debe seleccionar una fecha de inicio";
+    //$scope.erroresTotales['fecha']="Se debe seleccionar una fecha de inicio";
 
-    $scope.errores['duracion']="Se debe seleccionar una duración en meses mínima de 1 mes";
-    $scope.errores['denominacion']="El campo denominación no puede estar vacío";
+    $scope.erroresTotales['duracion']="Se debe seleccionar una duración en meses mínima de 1 mes";
+    $scope.erroresTotales['denominacion']="El campo denominación no puede estar vacío";
 
-    $scope.errores['Rproyecto']="El campo resumen del proyecto no puede estar vacío";
-    $scope.errores['ProblemaCliente']="El campo problemática del cliente no puede estar vacío";
+    $scope.erroresTotales['Rproyecto']="El campo resumen del proyecto no puede estar vacío";
+    $scope.erroresTotales['ProblemaCliente']="El campo problemática del cliente no puede estar vacío";
 
-    $scope.errores['solGFI']="El campo Solución GFI no puede estar vacío";
+    $scope.erroresTotales['solGFI']="El campo Solución GFI no puede estar vacío";
     
-    $scope.errores['fteTotal']="Se debe seleccionar una cantidad de FTE totales mínima de 1 FTE";
+    $scope.erroresTotales['fteTotal']="Se debe seleccionar una cantidad de FTE totales mínima de 1 FTE";
 
-    $scope.errores['registroPedido']="El campo de registros asociados no puede estar vacío";
+    //$scope.errores['registroPedido']="El campo de registros asociados no puede estar vacío";
 
-    $scope.errores['rbleComercial']="Se debe seleccionar un responsable comercial";
+    $scope.erroresTotales['rbleComercial']="Se debe seleccionar un responsable comercial";
 
-    $scope.errores['rbleTecnico']="Se debe seleccionar un responsable técnico";
+    $scope.erroresTotales['rbleTecnico']="Se debe seleccionar un responsable técnico";
 
-    $scope.errores['userfile']="Se debe subir una imágen";
-    //$scope.errores['tecnologia']="Tecnología inválida";
+    $scope.erroresTotales['userfile']="Se debe subir una imágen";
+    //$scope.erroresTotales['tecnologia']="Tecnología inválida";
     
     
     //Esta función debería estar en utils o algo parecido
     $scope.isEmptyObject= function(objeto){
         return angular.equals( {} , objeto );
+    };
+    
+    var erroresCometidos=Object.keys($scope.erroresTotales);
+    //--------------
+    $scope.actualizaErrores=function(elem, error){
+        console.log(elem);
+        console.log(error);
+        var index = erroresCometidos.indexOf(elem);
+        if($scope.isEmptyObject(error)){      
+            if (index >= 0) {
+                erroresCometidos.splice(index, 1);
+            }
+        }
+        else{
+            if (index < 0) {
+                erroresCometidos.push(elem);
+            }
+        }
+        console.log("erroresTotales: "+Object.keys($scope.erroresTotales));
+        console.log("erroresCometidos: "+erroresCometidos);
     };
     
     if($rootScope.referenciaCargada != null && $rootScope.opcion === 'validar'){
@@ -143,7 +163,7 @@ app.controller('controladorNuevaReferencia', function(servicioRest, config, $sco
             var reader = new FileReader();
             reader.onload = function (e) {
                 //Sets the Old Image to new New Image
-                $('#photo-id').attr('src', e.target.result);
+                document.getElementById('photo-id').src= e.target.result;
                 //Create a canvas and draw image on Client Side to get the byte[] equivalent
                 var canvas = document.createElement("canvas");
                 var imageElement = document.createElement("img");
@@ -193,13 +213,6 @@ app.controller('controladorNuevaReferencia', function(servicioRest, config, $sco
         if(document.getElementById("botonFileReal").files[0]==null && estado =="pendiente"){
                 $scope.mensajeEstado = 'Imagen no cargada';
         }else{
-
-            /*if($scope.referencia.cliente = $scope.catalogo.clientes[$scope.posicionEnArray] !=undefined){
-                $scope.referencia.cliente = $scope.catalogo.clientes[$scope.posicionEnArray].nombre;
-            }
-            if($scope.referencia.tecnologias = $scope.catalogo.tecnologia[$scope.posicionEnArray2] !=undefined){
-                $scope.referencia.tecnologias = $scope.catalogo.tecnologia[$scope.posicionEnArray2].codigo;
-            }*/
             
             try{
                 $scope.referencia.cliente = $scope.catalogo.clientes[$scope.posicionEnArray].nombre;
