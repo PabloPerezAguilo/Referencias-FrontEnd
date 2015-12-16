@@ -5,7 +5,7 @@ app.controller('controladorNuevaReferencia', function(servicioRest, config, $sco
     //servicioRest.cargarMenu();
       
     //Habilitar/deshabilitar los campos del formulario
-    $scope.habilitarForm=false;
+    $scope.deshabilitarForm=false;
     
     //mostramos los botones de crear referencia 
     $scope.mostrarBtCrear=true;
@@ -88,7 +88,7 @@ app.controller('controladorNuevaReferencia', function(servicioRest, config, $sco
     if($rootScope.usuarioLS.role !== "ROLE_MANTENIMIENTO"){
         if($rootScope.usuarioLS.role == "ROLE_VALIDADOR" && $rootScope.referenciaCargada != null){
             //el validador verá los campos de la referencia 'disabled'
-            $scope.habilitarForm=true;
+            $scope.deshabilitarForm=true;
             //Solo podrá validar o rechazar la referencia
             $scope.mostrarBtValidar=true;
             $scope.mostrarBtCrear=false;
@@ -121,11 +121,75 @@ app.controller('controladorNuevaReferencia', function(servicioRest, config, $sco
     $scope.introOptions = config.introOptions;
     $scope.introOptions.steps = [
             {
-                element: '.txtSimilarMD',
-                intro: 'blablabla'
+                element: '.md-dialog-content',
+                intro: 'Debe seleccionar un cliente valido de la lista disponible. La lista se mostrara a partir de la tercera letra escrita. <br/> Para guardar en borrador no sera necesario la validez de este cliente, pero si escribe algo invalido en este campo,  al guarda como borrador el cliente se guardara vacio como si no hubiera escrito nada.'
             },
             {
-                element: '#step2',
+                element: '#sociedad',
+                intro: 'Seleccione una sociedad de la lista disponible, si no encuentra la que busca consulte con su gerente'
+            },
+            {
+                element: '#sectorEmpresarial',
+                intro: 'Seleccione un Sector empresarial de la lista disponible, si no encuentra el que busca consulte con su gerente'
+            },
+            {
+                element: '#actividad',
+                intro: 'Seleccione una actividad de la lista disponible, si no encuentra la que busca consulte con su gerente'
+            },
+            {
+                element: '#tipoProyecto',
+                intro: 'Seleccione un tipo de proyecto de la lista disponible, si no encuentra el que busca consulte con su gerente'
+            },
+            {
+                element: '#fecha',
+                intro: 'Seleccione una fecha o escribala con el siguiente formato MM/DD/AAAA'
+            },
+            {
+                element: '#duracion',
+                intro: 'Seleccione una actividad de la lista disponible, si no encuentra la que busca consulte con su gerente'
+            },
+            {
+                element: '#denominacion',
+                intro: 'Seleccione una actividad de la lista disponible, si no encuentra la que busca consulte con su gerente'
+            }, 
+            {
+                element: '#resumen',
+                intro: 'Seleccione una actividad de la lista disponible, si no encuentra la que busca consulte con su gerente'
+            },
+            {
+                element: '#problematica',
+                intro: 'Seleccione una actividad de la lista disponible, si no encuentra la que busca consulte con su gerente'
+            },
+            {
+                element: '#solucion',
+                intro: 'Seleccione una actividad de la lista disponible, si no encuentra la que busca consulte con su gerente'
+            },
+            {
+                element: '#fte',
+                intro: 'Seleccione una actividad de la lista disponible, si no encuentra la que busca consulte con su gerente'
+            },
+            {
+                element: '#certificado',
+                intro: 'Seleccione una actividad de la lista disponible, si no encuentra la que busca consulte con su gerente'
+            },
+            {
+                element: '#comercial',
+                intro: 'Seleccione una actividad de la lista disponible, si no encuentra la que busca consulte con su gerente'
+            },
+            {
+                element: '#tecnico',
+                intro: 'Seleccione una actividad de la lista disponible, si no encuentra la que busca consulte con su gerente'
+            },
+            {
+                element: '#imagen',
+                intro: 'Seleccione una actividad de la lista disponible, si no encuentra la que busca consulte con su gerente'
+            },
+            {
+                element: '#qr',
+                intro: 'Seleccione una actividad de la lista disponible, si no encuentra la que busca consulte con su gerente'
+            },
+            {
+                element: '#prueba',
                 intro: 'blablebli'
             }
             ];
@@ -141,7 +205,7 @@ app.controller('controladorNuevaReferencia', function(servicioRest, config, $sco
             $scope.catalogo = response;
             /*Modificacion Ruben para cargar autocomplete en listar*/
             $rootScope.clientes = $scope.catalogo.clientes;
-            $rootScope.tecnologias = $scope.catalogo.tecnologias;
+            $rootScope.tecnologias = $scope.catalogo.tecnologia;
             /*Modificacion Ruben para cargar autocomplete en listar*/
             cadenaClientes();
             cadenaTecnologia();         
@@ -214,12 +278,15 @@ app.controller('controladorNuevaReferencia', function(servicioRest, config, $sco
                 $scope.mensajeEstado = 'Imagen no cargada';
         }else{
             
-            try{
+			//para saber si el cliente introducido EXISTE en el catalogo de clientes
+			var indiceCliente = $rootScope.clientes.indexOf($scope.catalogo.clientes[$scope.posicionEnArray]);
+            if(indiceCliente !== -1){
                 $scope.referencia.cliente = $scope.catalogo.clientes[$scope.posicionEnArray].nombre;
+            }
+			//para saber si la tecnologia introducida EXISTE en el catalogo de tecnologías
+			var indiceTecnologia = $rootScope.tecnologias.indexOf($scope.catalogo.tecnologia[$scope.posicionEnArray2]);
+            if(indiceTecnologia !== -1){
                 $scope.referencia.tecnologias = $scope.catalogo.tecnologia[$scope.posicionEnArray2].codigo;
-                
-            }catch(error){
-                $scope.mensajeEstado='Cliente y/o tecnología inválido';
             }
 
             $scope.referencia.creadorReferencia = $rootScope.usuarioLS.name;
@@ -232,21 +299,28 @@ app.controller('controladorNuevaReferencia', function(servicioRest, config, $sco
                 fileReader.onloadend = function(e){
                     var objeto = e.target.result;
                     objeto = btoa(objeto);
-                    console.log($scope.referencia);
                     $scope.referencia.imagenProyecto = objeto;
-                    console.log(objeto);
 
                     var referencia = $scope.referencia; 
-                    console.log(referencia);
 
                     if(estado==='pendiente'){
                         $scope.referencia.estado = "pendiente";
                         $scope.mensajeEstado='Referencia creada pendiente de validar.';       
                     }else if(estado==='borrador'){
-                        $scope.referencia.estado = "borrador";  
-                        $scope.mensajeEstado='Referencia creada en modo borrador.';   
+                        	$scope.referencia.estado = "borrador";  
+                        	$scope.mensajeEstado='Referencia creada en modo borrador.';   
                         }
-                    servicioRest.postReferencia(referencia);
+					
+					if (indiceCliente === -1 ){
+						$scope.mensajeEstado='cliente MAL seleccionado';
+					}
+					if (indiceTecnologia === -1){
+						$scope.mensajeEstado='tecnología MAL seleccionada';
+					}
+					if (indiceCliente !== -1 && indiceTecnologia !== -1){
+                    	servicioRest.postReferencia(referencia);
+						console.log('referencia guardada');
+					}
                  }
 
             }else{
