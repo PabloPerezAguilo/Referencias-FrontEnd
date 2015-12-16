@@ -19,34 +19,34 @@ app.controller('controladorNuevaReferencia', function(servicioRest, config, $sco
     $scope.referencia.certificado='si';
     
     //Array asociativo con todos los mensajes errores de validación en la entrada de datos a través de los campos
-    $scope.erroresTotales={};
+    erroresTotales={};
     //Le metemos los valores usando como clave el atributo 'name' del elemente html que lo recoge
-    //$scope.erroresTotales['cliente']="Cliente inválido";
-    $scope.erroresTotales['sociedad']="Se debe seleccionar una sociedad";
-    $scope.erroresTotales['SectorEmp']="Se debe seleccionar un sector empresarial";
-    $scope.erroresTotales['tActividad']="Se debe seleccionar un tipo de actividad";
-    $scope.erroresTotales['tProyecto']="Se debe seleccionar un tipo de proyecto";
+    erroresTotales['cliente']="Cliente inválido";
+    erroresTotales['sociedad']="Se debe seleccionar una sociedad";
+    erroresTotales['SectorEmp']="Se debe seleccionar un sector empresarial";
+    erroresTotales['tActividad']="Se debe seleccionar un tipo de actividad";
+    erroresTotales['tProyecto']="Se debe seleccionar un tipo de proyecto";
 
-    //$scope.erroresTotales['fecha']="Se debe seleccionar una fecha de inicio";
+    //erroresTotales['fecha']="Se debe seleccionar una fecha de inicio";
 
-    $scope.erroresTotales['duracion']="Se debe seleccionar una duración en meses mínima de 1 mes";
-    $scope.erroresTotales['denominacion']="El campo denominación no puede estar vacío";
+    erroresTotales['duracion']="Se debe seleccionar una duración en meses mínima de 1 mes";
+    erroresTotales['denominacion']="El campo denominación no puede estar vacío";
 
-    $scope.erroresTotales['Rproyecto']="El campo resumen del proyecto no puede estar vacío";
-    $scope.erroresTotales['ProblemaCliente']="El campo problemática del cliente no puede estar vacío";
+    erroresTotales['Rproyecto']="El campo resumen del proyecto no puede estar vacío";
+    erroresTotales['ProblemaCliente']="El campo problemática del cliente no puede estar vacío";
 
-    $scope.erroresTotales['solGFI']="El campo Solución GFI no puede estar vacío";
+    erroresTotales['solGFI']="El campo Solución GFI no puede estar vacío";
     
-    $scope.erroresTotales['fteTotal']="Se debe seleccionar una cantidad de FTE totales mínima de 1 FTE";
+    erroresTotales['fteTotal']="Se debe seleccionar una cantidad de FTE totales mínima de 1 FTE";
 
     //$scope.errores['registroPedido']="El campo de registros asociados no puede estar vacío";
 
-    $scope.erroresTotales['rbleComercial']="Se debe seleccionar un responsable comercial";
+    erroresTotales['rbleComercial']="Se debe seleccionar un responsable comercial";
 
-    $scope.erroresTotales['rbleTecnico']="Se debe seleccionar un responsable técnico";
+    erroresTotales['rbleTecnico']="Se debe seleccionar un responsable técnico";
 
-    $scope.erroresTotales['userfile']="Se debe subir una imágen";
-    //$scope.erroresTotales['tecnologia']="Tecnología inválida";
+    erroresTotales['userfile']="Se debe subir una imágen";
+    erroresTotales['tecnologia']="Tecnología inválida";
     
     
     //Esta función debería estar en utils o algo parecido
@@ -54,7 +54,7 @@ app.controller('controladorNuevaReferencia', function(servicioRest, config, $sco
         return angular.equals( {} , objeto );
     };
     
-    var erroresCometidos=Object.keys($scope.erroresTotales);
+    var erroresCometidos=Object.keys(erroresTotales);
     //--------------
     $scope.actualizaErrores=function(elem, error){
         console.log(elem);
@@ -70,7 +70,7 @@ app.controller('controladorNuevaReferencia', function(servicioRest, config, $sco
                 erroresCometidos.push(elem);
             }
         }
-        console.log("erroresTotales: "+Object.keys($scope.erroresTotales));
+        console.log("erroresTotales: "+Object.keys(erroresTotales));
         console.log("erroresCometidos: "+erroresCometidos);
     };
     
@@ -269,11 +269,31 @@ app.controller('controladorNuevaReferencia', function(servicioRest, config, $sco
     $scope.certificado = 'si';
     $scope.mensajeEstado='';
     
+    function listarErrores(){
+        if(undefined==$scope.posicionEnArray){
+            console.log('cliente erroneo');
+            erroresCometidos.push('cliente');
+        }
+        
+        if(undefined==$scope.posicionEnArray2){
+            console.log('tecnologia erronea');
+            erroresCometidos.push('tecnologia');
+        }
+        
+        var result="Errores en la entrada de datos"
+        for (var i=0;i<erroresCometidos.length; i++){
+            result+='\n\t'+erroresTotales[erroresCometidos[i]];
+        }
+        
+        console.log(result);
+        return result;
+    }
     
     /* CREAR la referencia, puede tener estado: pendiente/borrador  */
     $scope.crearReferencia = function (estado) {
 
         //$scope.referencia = {};
+        $scope.referencia.estado=  estado;
         if(document.getElementById("botonFileReal").files[0]==null && estado =="pendiente"){
                 $scope.mensajeEstado = 'Imagen no cargada';
         }else{
@@ -304,10 +324,8 @@ app.controller('controladorNuevaReferencia', function(servicioRest, config, $sco
                     var referencia = $scope.referencia; 
 
                     if(estado==='pendiente'){
-                        $scope.referencia.estado = "pendiente";
                         $scope.mensajeEstado='Referencia creada pendiente de validar.';       
                     }else if(estado==='borrador'){
-                        	$scope.referencia.estado = "borrador";  
                         	$scope.mensajeEstado='Referencia creada en modo borrador.';   
                         }
 					
@@ -317,7 +335,11 @@ app.controller('controladorNuevaReferencia', function(servicioRest, config, $sco
 					if (indiceTecnologia === -1){
 						$scope.mensajeEstado='tecnología MAL seleccionada';
 					}
-					if (indiceCliente !== -1 && indiceTecnologia !== -1){
+					
+                    if(0!==erroresCometidos.length){
+                        servicioRest.popupInfo('ESTO DEBERÏA SER UN EVENTO', listarErrores());                        
+                    }
+                    else if (indiceCliente !== -1 && indiceTecnologia !== -1){
                     	servicioRest.postReferencia(referencia);
 						console.log('referencia guardada');
 					}
@@ -329,12 +351,10 @@ app.controller('controladorNuevaReferencia', function(servicioRest, config, $sco
                 console.log(referencia);
 
                 if(estado==='pendiente'){
-                    $scope.referencia.estado = "pendiente";
-                     $scope.mensajeEstado='Referencia creada pendiente de validar.';       
+                    $scope.mensajeEstado='Referencia creada pendiente de validar.';       
                 }else if(estado==='borrador'){
-                    $scope.referencia.estado = "borrador";  
                     $scope.mensajeEstado='Referencia creada en modo borrador.';   
-                 }
+                }
                 servicioRest.postReferencia(referencia)
                 .then(function(){
                     console.log('consulta realizada con éxito');
