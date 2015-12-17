@@ -125,7 +125,7 @@
                     </button>
                 </div>
             </md-datepicker>
-            {{fechaInicio}}
+            
             <!--    Duración-->         
             <md-input-container title="Duración en meses" class="fixed-size" id="Duracion">
                 <label>Duración en meses *</label>
@@ -334,15 +334,6 @@
                       </form>
                     </div>
                 </md-dialog-content>
-            </div>
-                
-            <!--    Lista de errores de validación-->
-            <div ng-show="useForm.$invalid">
-                Errores en la entrada de datos
-                <p ng-repeat="(fuente, mens_error) in errores" 
-                   ng-show="!isEmptyObject(useForm[fuente].$error)" class="mensajeError">
-                    {{mens_error}}
-                </p>
             </div>
 
             <!--    Resultado de la operación-->
