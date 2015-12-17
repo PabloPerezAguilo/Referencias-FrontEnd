@@ -1,3 +1,4 @@
+
 <form name="useForm" >
     <h1 class="cabeceraPagina">{{titulo}}</h1>
     <md-content class="layout-padding">
@@ -59,7 +60,7 @@
                 <md-select name="SectorEmp"
                            ng-model="referencia.sectorEmpresarial"  
                            ng-required="true" 
-                           disabled="deshabilitarForm===true" 
+                           ng-disabled="deshabilitarForm===true" 
                            tabindex="3"
                            ng-blur="actualizaErrores('SectorEmp', useForm.SectorEmp.$error)">
                     <md-option ng-value="sectorEmpresarial.codigo" data-ng-repeat="sectorEmpresarial in catalogo.sectorempresarial" ng-selected="sectorEmpresarial.codigo == referencia.sectorEmpresarialSeleccionado ? true:false">
@@ -124,7 +125,7 @@
                     </button>
                 </div>
             </md-datepicker>
-                
+            
             <!--    Duración-->         
             <md-input-container title="Duración en meses" class="fixed-size" id="Duracion">
                 <label>Duración en meses *</label>
@@ -309,7 +310,7 @@
                     <div class="md-dialog-content">
                         <form ng-submit="$event.preventDefault()">
                             <label class="txtSimilarMD">Tecnología *</label>
-                            <md-autocomplete pattern="[a-zA-Z]+"
+                            <md-autocomplete pattern="[a-zA-Z ]+"
                                 md-selected-item="ctrl.selectedItemt"
                                 md-search-text="ctrl.searchTextt"
                                 md-items="item2 in ctrl.querySearchT(ctrl.searchTextt) | filter : tecnologia | limitTo : 4"
@@ -334,27 +335,18 @@
                     </div>
                 </md-dialog-content>
             </div>
-                
-            <!--    Lista de errores de validación-->
-            <div ng-show="useForm.$invalid">
-                Errores en la entrada de datos
-                <p ng-repeat="(fuente, mens_error) in errores" 
-                   ng-show="!isEmptyObject(useForm[fuente].$error)" class="mensajeError">
-                    {{mens_error}}
-                </p>
-            </div>
 
             <!--    Resultado de la operación-->
             <p id="mensajeEstado" >{{mensajeEstado}}</p>
                 
                 
-            <button ng-click="lanzarAyuda();">Demo</button>
+            <button ng-click="lanzarAyuda(); prueba=false"  >Demo</button>
             
             <div class="botonesCrear" layout-align="center">
           
              <!-- BOTONES ROL ADMINISTRADOR/MANTENIMIENTO -->
-                <md-button ng-show="mostrarBtCrear" class=botonesApp type="button"  ng-click="crearReferencia('borrador')" tabindex="20">Guardar (Borrador)</md-button>
-                <md-button ng-show="mostrarBtCrear" class=botonesApp type="button"  ng-click="crearReferencia('pendiente')" tabindex="21">Terminar</md-button>
+                <md-button ng-show="mostrarBtCrear" class=botonesApp type="button"  ng-click="crearReferencia('borrador', $event)" tabindex="20">Guardar (Borrador)</md-button>
+                <md-button ng-show="mostrarBtCrear" class=botonesApp type="button"  ng-click="crearReferencia('pendiente', $event)" tabindex="21">Terminar</md-button>
             <!-- BOTONES ROL VALIDADOR -->
                 <md-button ng-show="mostrarBtValidar" class=botonesApp type="button"  ng-click="rechazarReferencia()" tabindex="22">Rechazar</md-button>
                 <md-button ng-show="mostrarBtValidar" class=botonesApp type="button"  ng-click="validarReferencia()" tabindex="23">Validar</md-button>

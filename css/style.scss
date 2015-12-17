@@ -172,6 +172,11 @@ footer #lineaFooter{
     overflow: auto;
     height: 700px;
 }
+.contenedorVistasAyuda{
+    margin-top: 0.2%;
+    overflow: initial;
+    height: 700px;
+}
 
 /* --------------------------- ESTILOS LOGIN ----------------------------- */
 
@@ -594,10 +599,11 @@ md-select-menu.md-default-theme md-option[selected]:focus, md-select-menu md-opt
 .centrado-QR {
     margin-left: 110px;
 }
+/*
 .md-virtual-repeat-container.md-autocomplete-suggestions-container.md-whiteframe-z1.md-virtual-repeat-container {
 	height: 26px;
 }
-/*.md-virtual-repeat-scroller {
+.md-virtual-repeat-scroller {
 	min-height: 26px;
 }
 .md-virtual-repeat-container.md-autocomplete-suggestions-container {

@@ -1,6 +1,13 @@
 
 app.controller('controladorNuevaReferencia', function(servicioRest, config, $scope, $http, $rootScope,$location,$mdDialog,$interval,$timeout){
     
+    
+    $scope.prueba33=function(){
+        
+        $scope.prueba=true;
+        console.log("puto");
+        
+    };
     // esta funcion permite cargar el menu cuando hemos recargado la pagina
     //servicioRest.cargarMenu();
       
@@ -27,7 +34,7 @@ app.controller('controladorNuevaReferencia', function(servicioRest, config, $sco
     erroresTotales['tActividad']="Se debe seleccionar un tipo de actividad";
     erroresTotales['tProyecto']="Se debe seleccionar un tipo de proyecto";
 
-    //erroresTotales['fecha']="Se debe seleccionar una fecha de inicio";
+    erroresTotales['fecha']="Se debe seleccionar una fecha de inicio";
 
     erroresTotales['duracion']="Se debe seleccionar una duración en meses mínima de 1 mes";
     erroresTotales['denominacion']="El campo denominación no puede estar vacío";
@@ -267,32 +274,46 @@ app.controller('controladorNuevaReferencia', function(servicioRest, config, $sco
     $scope.mensajeEstado='';
     
     function listarErrores(){
-        if(undefined==$scope.posicionEnArray){
-            console.log('cliente erroneo');
-            erroresCometidos.push('cliente');
-        }
-        
-        if(undefined==$scope.posicionEnArray2){
-            console.log('tecnologia erronea');
-            erroresCometidos.push('tecnologia');
-        }
-        
-        var result="Errores en la entrada de datos"
+
+        var result="<h1>Errores en la entrada de datos</h1><br>"
         for (var i=0;i<erroresCometidos.length; i++){
-            result+='\n\t'+erroresTotales[erroresCometidos[i]];
+            result+='<p>'+erroresTotales[erroresCometidos[i]]+'</p>';
         }
         
-        console.log(result);
         return result;
     }
     
     function validarCampos(){
-        return 0===erroresCometidos.length && undefined!=$scope.posicionEnArray && undefined!=$scope.posicionEnArray2;
+        compruebaCliente();
+        compruebaTecnologia();
+        compruebaFecha();
+        return 0===erroresCometidos.length && undefined!=$scope.posicionEnArray && undefined!=$scope.posicionEnArray2;    
     }
     
+    function compruebaCliente(){
+        if(undefined!=$scope.posicionEnArray){
+            erroresCometidos.splice(erroresCometidos.indexOf('cliente'), 1);
+        }
+    }
+    
+    function compruebaTecnologia(){
+        if(undefined!=$scope.posicionEnArray2){
+            erroresCometidos.splice(erroresCometidos.indexOf('tecnologia'), 1);
+        }
+    }
+    
+    function compruebaFecha(){
+        console.log(erroresCometidos);
+        if(undefined!=$scope.fechaInicio){
+            erroresCometidos.splice(erroresCometidos.indexOf('fecha'), 1);
+        }
+    }
+    
+    
     /* CREAR la referencia, puede tener estado: pendiente/borrador  */
-    $scope.crearReferencia = function (estado) {
-        
+    $scope.crearReferencia = function (estado, event) {
+        console.log('FECHA'+$scope.fechaInicio);
+        console.log('TIPO: '+typeof $scope.fechaInicio);
         if ((estado==="pendiente" && validarCampos()) || estado==="borrador")
         {
             // Crea/Guarda una referencia dependiendo de su estado
@@ -304,8 +325,8 @@ app.controller('controladorNuevaReferencia', function(servicioRest, config, $sco
             $scope.referencia.creadorReferencia = $rootScope.usuarioLS.name;
             $scope.referencia.fechaInicio = $scope.fechaInicio;
             var fileReader = new FileReader();
-            if(undefined!=document.getElementById("botonFileReal").files[0])
-            {
+            if(undefined!=document.getElementById("botonFileReal").files[0]){
+                
                 var imagen = document.getElementById("botonFileReal").files[0];
                 fileReader.readAsBinaryString(imagen);
                 fileReader.onloadend = function(e)
@@ -327,8 +348,7 @@ app.controller('controladorNuevaReferencia', function(servicioRest, config, $sco
                     servicioRest.postReferencia(referencia);
                     console.log('referencia guardada');
                  }
-            }
-            else
+            }else
             {
                     var referencia = $scope.referencia;
                     $scope.referencia.estado = estado; 
@@ -345,11 +365,8 @@ app.controller('controladorNuevaReferencia', function(servicioRest, config, $sco
                     console.log('referencia guardada');
             }
             
-        }
-        else
-        {
-            //comprobar si los campos tecno y cliente estan vacios
-            servicioRest.popupInfo('ESTO DEBERÏA SER UN EVENTO',listarErrores());
+        }else{
+            servicioRest.popupInfo(event,listarErrores());
         }
                 
         
