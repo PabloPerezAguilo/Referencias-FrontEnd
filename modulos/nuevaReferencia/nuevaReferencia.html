@@ -1,3 +1,4 @@
+
 <form name="useForm" >
     <h1 class="cabeceraPagina">{{titulo}}</h1>
     <md-content class="layout-padding">
@@ -124,7 +125,7 @@
                     </button>
                 </div>
             </md-datepicker>
-                
+            {{fechaInicio}}
             <!--    Duración-->         
             <md-input-container title="Duración en meses" class="fixed-size" id="Duracion">
                 <label>Duración en meses *</label>
@@ -309,7 +310,7 @@
                     <div class="md-dialog-content">
                         <form ng-submit="$event.preventDefault()">
                             <label class="txtSimilarMD">Tecnología *</label>
-                            <md-autocomplete pattern="[a-zA-Z]+"
+                            <md-autocomplete pattern="[a-zA-Z ]+"
                                 md-selected-item="ctrl.selectedItemt"
                                 md-search-text="ctrl.searchTextt"
                                 md-items="item2 in ctrl.querySearchT(ctrl.searchTextt) | filter : tecnologia | limitTo : 4"
@@ -353,8 +354,8 @@
             <div class="botonesCrear" layout-align="center">
           
              <!-- BOTONES ROL ADMINISTRADOR/MANTENIMIENTO -->
-                <md-button ng-show="mostrarBtCrear" class=botonesApp type="button"  ng-click="crearReferencia('borrador')" tabindex="20">Guardar (Borrador)</md-button>
-                <md-button ng-show="mostrarBtCrear" class=botonesApp type="button"  ng-click="crearReferencia('pendiente')" tabindex="21">Terminar</md-button>
+                <md-button ng-show="mostrarBtCrear" class=botonesApp type="button"  ng-click="crearReferencia('borrador', $event)" tabindex="20">Guardar (Borrador)</md-button>
+                <md-button ng-show="mostrarBtCrear" class=botonesApp type="button"  ng-click="crearReferencia('pendiente', $event)" tabindex="21">Terminar</md-button>
             <!-- BOTONES ROL VALIDADOR -->
                 <md-button ng-show="mostrarBtValidar" class=botonesApp type="button"  ng-click="rechazarReferencia()" tabindex="22">Rechazar</md-button>
                 <md-button ng-show="mostrarBtValidar" class=botonesApp type="button"  ng-click="validarReferencia()" tabindex="23">Validar</md-button>
