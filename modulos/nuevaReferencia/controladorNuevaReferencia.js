@@ -267,14 +267,14 @@ app.controller('controladorNuevaReferencia', function(servicioRest, config, $sco
     $scope.mensajeEstado='';
     
     function listarErrores(){
-        if(undefined==$scope.posicionEnArray){
+        if(undefined!=$scope.posicionEnArray){
             console.log('cliente erroneo');
-            erroresCometidos.push('cliente');
+            erroresCometidos.splice('cliente', 1);
         }
         
-        if(undefined==$scope.posicionEnArray2){
+        if(undefined!=$scope.posicionEnArray2){
             console.log('tecnologia erronea');
-            erroresCometidos.push('tecnologia');
+            erroresCometidos.splice('tecnologia', 1);
         }
         
         var result="Errores en la entrada de datos"

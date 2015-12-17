@@ -59,7 +59,7 @@
                 <md-select name="SectorEmp"
                            ng-model="referencia.sectorEmpresarial"  
                            ng-required="true" 
-                           disabled="deshabilitarForm===true" 
+                           ng-disabled="deshabilitarForm===true" 
                            tabindex="3"
                            ng-blur="actualizaErrores('SectorEmp', useForm.SectorEmp.$error)">
                     <md-option ng-value="sectorEmpresarial.codigo" data-ng-repeat="sectorEmpresarial in catalogo.sectorempresarial" ng-selected="sectorEmpresarial.codigo == referencia.sectorEmpresarialSeleccionado ? true:false">
