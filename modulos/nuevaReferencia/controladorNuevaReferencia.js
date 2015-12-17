@@ -295,7 +295,6 @@ app.controller('controladorNuevaReferencia', function(servicioRest, config, $sco
         
         if ((estado==="pendiente" && validarCampos()) || estado==="borrador")
         {
-            console.log('bien');
             // Crea/Guarda una referencia dependiendo de su estado
             var indiceCliente = $rootScope.clientes.indexOf($scope.catalogo.clientes[$scope.posicionEnArray]);
             $scope.referencia.cliente = $scope.catalogo.clientes[$scope.posicionEnArray].nombre;       
@@ -327,11 +326,9 @@ app.controller('controladorNuevaReferencia', function(servicioRest, config, $sco
              }
         }
         else{
-            console.log('mal');
             servicioRest.popupInfo('ESTO DEBERÏA SER UN EVENTO',listarErrores());
         }
-        
-        
+                
         
         
         /*//$scope.referencia = {};
