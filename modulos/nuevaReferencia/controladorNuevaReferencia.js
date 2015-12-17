@@ -283,32 +283,25 @@ app.controller('controladorNuevaReferencia', function(servicioRest, config, $sco
         return result;
     }
     
+
     function validarCampos(){
-        compruebaCliente();
-        compruebaTecnologia();
-        compruebaFecha();
-        return 0===erroresCometidos.length && undefined!=$scope.posicionEnArray && undefined!=$scope.posicionEnArray2;    
+        //Como los siguientes campos no los validar automñaticamente, los evaluamos aquí y actualizamos el array de errores
+        compruebaCampo($scope.posicionEnArray, 'cliente');
+        compruebaCampo($scope.posicionEnArray2, 'tecnologia');
+        compruebaCampo($scope.fechaInicio, 'fecha');
+        
+        //Los campos serán válidos cuando no tengamos errorres en los campos obligatorios. Por lo que comparamos con la longitud del array de errores
+        return 0===erroresCometidos.length;    
     }
     
-    function compruebaCliente(){
-        if(undefined!=$scope.posicionEnArray){
-            erroresCometidos.splice(erroresCometidos.indexOf('cliente'), 1);
+    function compruebaCampo(campo, id_error){
+        if(undefined!=campo){
+            erroresCometidos.splice(erroresCometidos.indexOf(id_error), 1);
+
         }
+            
     }
-    
-    function compruebaTecnologia(){
-        if(undefined!=$scope.posicionEnArray2){
-            erroresCometidos.splice(erroresCometidos.indexOf('tecnologia'), 1);
-        }
-    }
-    
-    function compruebaFecha(){
-        console.log(erroresCometidos);
-        if(undefined!=$scope.fechaInicio){
-            erroresCometidos.splice(erroresCometidos.indexOf('fecha'), 1);
-        }
-    }
-    
+
     
     /* CREAR la referencia, puede tener estado: pendiente/borrador  */
     $scope.crearReferencia = function (estado, event) {
