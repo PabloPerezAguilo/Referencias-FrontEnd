@@ -39,7 +39,14 @@
             <!--    SOCIEDAD-->
             <md-input-container title="Sociedad" class="fixed-size" id="sociedad">
                 <label>Sociedad *</label>
-                <md-select name="sociedad" tabindex="2" ng-model="referencia.sociedad" ng-required="true" ng-disabled="deshabilitarForm===true" id="sociedad" ng-blur="console.log(this)">
+                <md-select name="sociedad"
+                           tabindex="2"
+                           ng-model="referencia.sociedad"
+                           ng-required="true"
+                           ng-disabled="deshabilitarForm===true"
+                           id="sociedad"  
+                           ng-blur="actualizaErrores('sociedad', useForm.sociedad.$error)">
+
                     <md-option ng-value="sociedad.codigo" data-ng-repeat="sociedad in catalogo.sociedades" ng-selected="sociedad.codigo == referencia.sociedadSeleccionado ? true:false" >
                         {{sociedad.descripcion}} ({{ sociedad.codigo }})
                     </md-option>
@@ -49,7 +56,12 @@
             <!--   SECTOR-->
             <md-input-container title="Sector Empresarial" class="fixed-size" id="sectorEmpresarial">
                 <label>Sector Empresarial *</label>
-                <md-select name="SectorEmp" ng-model="referencia.sectorEmpresarial"  ng-required="true" ng-disabled="deshabilitarForm===true" tabindex="3">
+                <md-select name="SectorEmp"
+                           ng-model="referencia.sectorEmpresarial"  
+                           ng-required="true" 
+                           disabled="deshabilitarForm===true" 
+                           tabindex="3"
+                           ng-blur="actualizaErrores('SectorEmp', useForm.SectorEmp.$error)">
                     <md-option ng-value="sectorEmpresarial.codigo" data-ng-repeat="sectorEmpresarial in catalogo.sectorempresarial" ng-selected="sectorEmpresarial.codigo == referencia.sectorEmpresarialSeleccionado ? true:false">
                         {{sectorEmpresarial.descripcion}}  ({{ sectorEmpresarial.codigo }})
                     </md-option>
@@ -59,7 +71,13 @@
             <!--    Tipo de actividad-->
             <md-input-container title="Tipo de actividad" class="fixed-size" id="actividad">
                 <label>Tipo de actividad *</label>
-                <md-select name="tActividad" ng-model="referencia.tipoActividad" ng-required="true" ng-disabled="deshabilitarForm===true" tabindex="4">
+                <md-select
+                           name="tActividad"
+                           ng-model="referencia.tipoActividad"
+                           ng-required="true"
+                           ng-disabled="deshabilitarForm===true"
+                           tabindex="4"
+                           ng-blur="actualizaErrores('tActividad', useForm.tActividad.$error)">
                     <md-option ng-value="tipoActividad.codigo" data-ng-repeat="tipoActividad in catalogo.actividad" ng-selected="tipoActividad.codigo == referencia.tipoActividadSeleccionado ? true:false">
                     {{ tipoActividad.descripcion }} ({{ tipoActividad.codigo }})
                     </md-option>      
@@ -69,7 +87,13 @@
             <!--    Tipo de proyecto-->
             <md-input-container title="Tipo de proyecto" class="fixed-size" id="tipoProyecto">
                 <label>Tipo de proyecto *</label>
-                <md-select name="tProyecto" ng-model="referencia.tipoProyecto" ng-required="true" ng-disabled="deshabilitarForm===true" tabindex="5">
+                <md-select
+                           name="tProyecto"
+                           ng-model="referencia.tipoProyecto"
+                           ng-required="true"
+                           ng-disabled="deshabilitarForm===true"
+                           tabindex="5"
+                           ng-blur="actualizaErrores('tProyecto', useForm.tProyecto.$error)">
                     <md-option ng-value="tipoProyecto.codigo" data-ng-repeat="tipoProyecto in catalogo.proyecto" ng-selected="tipoProyecto.codigo == referencia.tipoProyectoSeleccionado ? true:false">
                     {{ tipoProyecto.descripcion }} ({{ tipoProyecto.codigo }})
                     </md-option>      
@@ -104,27 +128,54 @@
             <!--    Duración-->         
             <md-input-container title="Duración en meses" class="fixed-size" id="Duracion">
                 <label>Duración en meses *</label>
-                <input name="duracion" type="number" min="1" ng-model="referencia.duracionMeses" ng-disabled="deshabilitarForm===true" ng-required="true"tabindex="7"/>
+                <input name="duracion" type="number" min="1" ng-model="referencia.duracionMeses" ng-disabled="deshabilitarForm===true" ng-required="true"tabindex="7" ng-blur="actualizaErrores('duracion', useForm.duracion.$error)"/>
+
             </md-input-container>
 
             <!-- Denominación-->
             <md-input-container title="Denominación" class="fixed-size-denominacion" ng-disabled="mostrarBtValidar===true" id="denominacion">
                 <label>Denominación *</label>
-                <textarea name="denominacion" type="text" ng-model="referencia.denominacion" ng-disabled="deshabilitarForm===true"  max="100" md-maxlength="100" rows="2" ng-required="true"tabindex="8"></textarea>
+                <textarea name="denominacion"
+                          type="text"
+                          ng-model="referencia.denominacion"
+                          ng-disabled="deshabilitarForm===true" 
+                          max="100"
+                          md-maxlength="100"
+                          rows="2"
+                          ng-required="true"tabindex="8"
+                          ng-blur="actualizaErrores('denominacion', useForm.denominacion.$error)">
+                </textarea>
             </md-input-container>
 
             <!-- Resumen del proyecto-->
             <div id="cajon1">
                 <md-input-container title="Resumen del proyecto" class="fixed-size-resumen" id="Resumen">
                     <label>Resumen proyecto *</label>
-                    <textarea name="Rproyecto" ng-model="referencia.resumenProyecto" ng-disabled="deshabilitarForm===true" max="300" md-maxlength="300" rows="5" ng-required="true" tabindex="9"></textarea>
+                    <textarea name="Rproyecto"
+                              ng-model="referencia.resumenProyecto"
+                              ng-disabled="deshabilitarForm===true"
+                              max="300"
+                              md-maxlength="300"
+                              rows="5"
+                              ng-required="true"
+                              tabindex="9"
+                              ng-blur="actualizaErrores('Rproyecto', useForm.Rproyecto.$error)">
+                    </textarea>
                 </md-input-container>
             </div>
             <!--Problemática del cliente-->
             <div id="cajon2">
             <md-input-container title="Problemática del cliente" class="fixed-size-resumen" id="Problematica">
                 <label>Problemática del cliente *</label>
-                <textarea name="ProblemaCliente" ng-model="referencia.problematicaCliente" ng-disabled="deshabilitarForm===true" max="300" md-maxlength="300" rows="5" ng-required="true" tabindex="10">
+                <textarea name="ProblemaCliente"
+                          ng-model="referencia.problematicaCliente"
+                          ng-disabled="deshabilitarForm===true"
+                          max="300"
+                          md-maxlength="300"
+                          rows="5"
+                          ng-required="true"
+                          tabindex="10"
+                          ng-blur="actualizaErrores('ProblemaCliente', useForm.ProblemaCliente.$error)">
                 </textarea>
             </md-input-container>
             </div>
@@ -132,18 +183,41 @@
             <!--    Solución-->
             <md-input-container title="Solución GFI" class="fixed-size-solucion" id="solucion">
                 <label>Solución GFI *</label>
-                <textarea name="solGFI" type="text" ng-model="referencia.solucionGfi" ng-disabled="deshabilitarForm===true" max="500" md-maxlength="500" rows="6" ng-required="true" tabindex="11"></textarea>
+                <textarea name="solGFI"
+                          type="text"
+                          ng-model="referencia.solucionGfi"
+                          ng-disabled="deshabilitarForm===true"
+                          max="500"
+                          md-maxlength="500"
+                          rows="6"
+                          ng-required="true"
+                          tabindex="11"
+                          ng-blur="actualizaErrores('solGFI', useForm.solGFI.$error)">
+                </textarea>
             </md-input-container>
 
             <!--    FTE totales-->       
             <md-input-container title="FTE Totales" class="fixed-size" id="fte">
                 <label>FTE Totales *</label>
-                <input name="fteTotal" type="number" min="1" ng-model="referencia.fteTotales" ng-disabled="deshabilitarForm===true" ng-required="true" tabindex="12"/>
+                <input name="fteTotal"
+                       type="number"
+                       min="1"
+                       ng-model="referencia.fteTotales"
+                       ng-disabled="deshabilitarForm===true"
+                       ng-required="true"
+                       tabindex="12"
+                       ng-blur="actualizaErrores('fteTotal', useForm.fteTotal.$error)"/>
             </md-input-container>
 
             <!--    Certificado-->
-            <md-input-container title="Existe certificado del cliente" class="fixed-size" id="certificado">
-                <md-radio-group name="certificado" ng-model="referencia.certificado" ng-disabled="deshabilitarForm===true" ng-required="true" tabindex="13">                  
+            <md-input-container title="Existe certificado del cliente" class="fixed-size">
+                <md-radio-group name="certificado"
+                                ng-model="referencia.certificado"
+                                ng-disabled="deshabilitarForm===true"
+                                ng-required="true"
+                                tabindex="13"
+                                ng-blur="actualizaErrores('certificado', useForm.certificado.$error)">                  
+
                 <label>¿Existe certificado del cliente? *</label><br>
                     <md-radio-button style="margin-bottom: -35px" value="si" ng-checked="true" ng-disabled="deshabilitarForm===true">Si</md-radio-button>
                     <md-radio-button style="margin-left: 80px" value="no" ng-disabled="deshabilitarForm===true">No</md-radio-button>
@@ -162,7 +236,12 @@
                 <md-input-container title="Responsable comercial" class="contCom" id="comercial">
                     <label>Responsable Comercial *</label>
 
-                    <md-select name="rbleComercial" ng-model="referencia.responsableComercial" ng-disabled="deshabilitarForm===true" required tabindex="15"> 
+                    <md-select name="rbleComercial"
+                               ng-model="referencia.responsableComercial"
+                               ng-disabled="deshabilitarForm===true"
+                               required
+                               tabindex="15"
+                               ng-blur="actualizaErrores('rbleComercial', useForm.rbleComercial.$error)"> 
 
                         <md-option ng-value="responsableComercial.nombre" data-ng-repeat="responsableComercial in catalogo.comercial" ng-selected="responsableComercial.nombre == referencia.responsableComercialSeleccionado ? true:false">
                             {{ responsableComercial.nombre }} ({{ responsableComercial.login }})
@@ -173,7 +252,12 @@
                 <!--    Responsable Técnico--> 
                 <md-input-container title="Responsable técnico" class="contTec" id="Tecnico">
                     <label>Responsable Técnico *</label>
-                    <md-select name="rbleTecnico" ng-model="referencia.responsableTecnico" ng-disabled="deshabilitarForm===true" required tabindex="16">
+                    <md-select name="rbleTecnico"
+                               ng-model="referencia.responsableTecnico"
+                               ng-disabled="deshabilitarForm===true"
+                               required
+                               tabindex="16"
+                               ng-blur="actualizaErrores('rbleTecnico', useForm.rbleTecnico.$error)">
                         <md-option ng-value="responsableTecnico.nombre" data-ng-repeat="responsableTecnico in catalogo.tecnico" ng-selected="responsableTecnico.nombre == referencia.responsableTecnicoSeleccionado ? true:false">
                             {{ responsableTecnico.nombre }} ({{ responsableTecnico.login }})
                         </md-option>
@@ -185,8 +269,22 @@
             <div layout="row" class="ImgQr">          
                 <div class="contQr">
                     <!--Imagen-->
-                    <input type="file" accept="image/*" name="userfile" style="display:none;" ng-model="referencia.imagenProyecto" id="botonFileReal" onchange="angular.element(this).scope().uploadFile(this)" ng-disabled="deshabilitarForm===true" ng-required  >
-                    <input type="button" class="botones" value="SUBIR IMAGEN *" onclick="document.getElementById('botonFileReal').click();" style="" ng-disabled="deshabilitarForm===true" tabindex="17">
+                    <input type="file"
+                           name="userfile"
+                           style="display:none;"
+                           ng-model="referencia.imagenProyecto"
+                           id="botonFileReal"
+                           onchange="angular.element(this).scope().uploadFile(this)"
+                           ng-disabled="deshabilitarForm===true"
+                           ng-required>
+                    <input type="button"
+                           class="botones"
+                           value="SUBIR IMAGEN *"
+                           onclick="document.getElementById('botonFileReal').click();"
+                           style=""
+                           ng-disabled="deshabilitarForm===true"
+                           tabindex="17"
+                           ng-blur="actualizaErrores('userfile', useForm.userfile.$error)"/>
                     
                     <br><br><br><br>
                     <!--Código QR--> 
