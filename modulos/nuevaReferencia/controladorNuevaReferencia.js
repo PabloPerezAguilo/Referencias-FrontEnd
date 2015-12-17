@@ -285,7 +285,7 @@ app.controller('controladorNuevaReferencia', function(servicioRest, config, $sco
                 console.log('referencia guardada');
              }
         }   
-        
+        //comprobar si los campos cliente y tecnologia estan vacios para cuando se guarden en borrador
         
         
         
