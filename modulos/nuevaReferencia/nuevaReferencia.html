@@ -102,7 +102,8 @@
             </md-input-container>
 
             <!--    Fecha inicio-->
-            <md-datepicker id="fecha" ng-model="fechaInicio" md-placeholder="Fecha de Inicio *" class="ng-untouched ng-valid ng-isolate-scope ng-dirty ng-valid-parse" aria-invalid="false" ng-disabled="deshabilitarForm===true" ng-required="true" tabindex="6">
+            <md-datepicker id="fecha" ng-model="fechaInicio" md-placeholder="Fecha de Inicio *" ng-readonly="true"></md-datepicker>
+            <!--md-datepicker id="fecha" ng-model="fechaInicio" md-placeholder="Fecha de Inicio *" class="ng-untouched ng-valid ng-isolate-scope ng-dirty ng-valid-parse" aria-invalid="false" ng-disabled="deshabilitarForm===true" ng-required="true" tabindex="6">
                 <button class="md-datepicker-button md-icon-button md-button md-ink-ripple" type="button" ng-transclude="" aria-hidden="true" ng-click="ctrl.openCalendarPane($event)">
                     <md-icon class="md-datepicker-calendar-icon ng-scope ng-isolate-scope" md-svg-icon="md-calendar" aria-label="md-calendar" role="img">
                         <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 24 24" fit="" preserveAspectRatio="xMidYMid meet" style="pointer-events: none; display: block;">
@@ -124,7 +125,7 @@
                         </div>
                     </button>
                 </div>
-            </md-datepicker>
+            </md-datepicker-->
             
             <!--    Duración-->         
             <md-input-container title="Duración en meses" class="fixed-size" id="Duracion">

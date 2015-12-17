@@ -312,6 +312,7 @@ app.controller('controladorNuevaReferencia', function(servicioRest, config, $sco
     
     /* CREAR la referencia, puede tener estado: pendiente/borrador  */
     $scope.crearReferencia = function (estado, event) {
+        console.log($scope.fechaInicio.getDate());
         console.log('FECHA'+$scope.fechaInicio);
         console.log('TIPO: '+typeof $scope.fechaInicio);
         if ((estado==="pendiente" && validarCampos()) || estado==="borrador")
