@@ -296,36 +296,59 @@ app.controller('controladorNuevaReferencia', function(servicioRest, config, $sco
         if ((estado==="pendiente" && validarCampos()) || estado==="borrador")
         {
             // Crea/Guarda una referencia dependiendo de su estado
-            var indiceCliente = $rootScope.clientes.indexOf($scope.catalogo.clientes[$scope.posicionEnArray]);
-            $scope.referencia.cliente = $scope.catalogo.clientes[$scope.posicionEnArray].nombre;       
+            if(undefined!=$scope.posicionEnArray)
+                $scope.referencia.cliente = $scope.catalogo.clientes[$scope.posicionEnArray].nombre;       
             var indiceTecnologia = $rootScope.tecnologias.indexOf($scope.catalogo.tecnologia[$scope.posicionEnArray2]);
-            $scope.referencia.tecnologias = $scope.catalogo.tecnologia[$scope.posicionEnArray2].codigo;              
+            if(undefined!=$scope.posicionEnArray2)
+                $scope.referencia.tecnologias = $scope.catalogo.tecnologia[$scope.posicionEnArray2].codigo;              
             $scope.referencia.creadorReferencia = $rootScope.usuarioLS.name;
             $scope.referencia.fechaInicio = $scope.fechaInicio;
-            var imagen = document.getElementById("botonFileReal").files[0];
             var fileReader = new FileReader();
-            fileReader.readAsBinaryString(imagen);
-            fileReader.onloadend = function(e)
+            if(undefined!=document.getElementById("botonFileReal").files[0])
             {
-                var objeto = e.target.result;
-                objeto = btoa(objeto);
-                $scope.referencia.imagenProyecto = objeto;
-                var referencia = $scope.referencia;
-                $scope.referencia.estado = estado; 
-                if(estado==="pendiente")
+                var imagen = document.getElementById("botonFileReal").files[0];
+                fileReader.readAsBinaryString(imagen);
+                fileReader.onloadend = function(e)
                 {
-                    $scope.mensajeEstado='Referencia creada pendiente de validar.'; 
-                }
-                else if(estado==="borrador")
-                {
-                    $scope.mensajeEstado='Referencia creada en modo borrador.'; 
-                }
-                  
-                servicioRest.postReferencia(referencia);
-                console.log('referencia guardada');
-             }
+                    var objeto = e.target.result;
+                    objeto = btoa(objeto);
+                    $scope.referencia.imagenProyecto = objeto;
+                    var referencia = $scope.referencia;
+                    $scope.referencia.estado = estado; 
+                    if(estado==="pendiente")
+                    {
+                        $scope.mensajeEstado='Referencia creada pendiente de validar.'; 
+                    }
+                    else if(estado==="borrador")
+                    {
+                        $scope.mensajeEstado='Referencia creada en modo borrador.'; 
+                    }
+
+                    servicioRest.postReferencia(referencia);
+                    console.log('referencia guardada');
+                 }
+            }
+            else
+            {
+                    var referencia = $scope.referencia;
+                    $scope.referencia.estado = estado; 
+                    if(estado==="pendiente")
+                    {
+                        $scope.mensajeEstado='Referencia creada pendiente de validar.'; 
+                    }
+                    else if(estado==="borrador")
+                    {
+                        $scope.mensajeEstado='Referencia creada en modo borrador.'; 
+                    }
+
+                    servicioRest.postReferencia(referencia);
+                    console.log('referencia guardada');
+            }
+            
         }
-        else{
+        else
+        {
+            //comprobar si los campos tecno y cliente estan vacios
             servicioRest.popupInfo('ESTO DEBERÏA SER UN EVENTO',listarErrores());
         }
                 
