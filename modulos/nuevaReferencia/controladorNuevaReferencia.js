@@ -2,12 +2,19 @@
 app.controller('controladorNuevaReferencia', function(servicioRest, config, $scope, $http, $rootScope,$location,$mdDialog,$interval,$timeout){
     
     
-    $scope.prueba33=function(){
+    $scope.ayuda = function(){
+      $scope.scroll=false
+      $scope.lanzarAyuda();
         
-        $scope.prueba=true;
+    };
+    
+    $scope.activarScroll=function(){
+        
+        $scope.scroll=true;
         console.log("puto");
         
     };
+    
     // esta funcion permite cargar el menu cuando hemos recargado la pagina
     //servicioRest.cargarMenu();
       

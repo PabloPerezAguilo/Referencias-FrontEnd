@@ -13,7 +13,10 @@
         <link rel="stylesheet" type="text/css" href="css/introjs.css"/>
         <link rel="stylesheet" href="https://cdn.gitcdn.xyz/cdn/angular/bower-material/v1.0.0-rc2/angular-material.css"/>
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,400italic"/>
-		<!-- endbuild -->
+		 <!--BOOTSTRAP SE USA ALGUNA VEZ EN EL PROYECTO?-->
+        <link data-require="bootstrap-css@*" data-semver="3.3.1" rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css"/>
+        <!--BOOTSTRAP SE USA ALGUNA VEZ EN EL PROYECTO?-->
+        <!-- endbuild -->
         
 		<!-- AQUI IRAN LOS CSS NUESTROS QUE NO TENGAN CDN-->
 		<link rel="stylesheet" href="css/style.css" />
@@ -25,7 +28,7 @@
         </header>
         <div ng-show="menu" id="menu" layout layout-sm="column" ng-include="'./modulos/menu/menu.html'"></div>
         
-        <div ng-init="prueba=true" ng-view ng-intro-options="introOptions" ng-intro-method="lanzarAyuda" ng-class="{'contenedorVistas': prueba}" ng-intro-onexit="prueba33">            
+        <div ng-init="scroll=true" ng-view ng-intro-options="introOptions" ng-intro-method="lanzarAyuda" ng-class="{'contenedorVistas': scroll}" ng-intro-onexit="activarScroll" ng-intro-oncomplete="activarScroll" >            
 		</div>
         
         <footer>
@@ -49,6 +52,9 @@
         <script type="text/javascript" src="js/qrcode.js"></script>
         <script type="text/javascript" src="js/angular-qr.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.6/moment.js"></script>
+        <!--BOOTSTRAP Se usa para los estilos y la paginacion de listar referencias-->
+        <script data-require="ui-bootstrap@0.13.0" data-semver="0.13.0" src="http://angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.13.0.min.js"></script>    
+        <script src="http://angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.11.0.js"></script>
 		<!-- endbuild -->       
         
 		<!-- build:JS -->
