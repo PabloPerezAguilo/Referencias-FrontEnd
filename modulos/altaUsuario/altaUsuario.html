@@ -2,8 +2,9 @@
      <h1 class="cabeceraPagina">ALTA DE USUARIO</h1>
   <md-content layout-padding layout="column">
     <form ng-submit="$event.preventDefault()">
-      <p>Seleccione <small> USUARIO </small></p>
+      <p>Seleccione USUARIO</p>
         <br>
+    <div id="usuario">
      <md-autocomplete pattern="[a-zA-Z]+"
 						 md-selected-item="ctrl.selectedItem"
 						 md-search-text-change="ctrl.searchTextChange(ctrl.searchText)"
@@ -20,6 +21,7 @@
 				<span md-highlight-text="ctrl.searchText" md-highlight-flags="^i">{{item.display}}</span>
 			</md-item-template>
 		</md-autocomplete>
+    </div>
     </form>
   </md-content>
     <div layout="row" layout-sm="column" layout-align="space-around">    
@@ -29,18 +31,21 @@
     <div class="radioButtondemoBasicUsage">
   <form ng-submit="submit()" ng-cloak="">
     <p>Seleccione ROL <!--span class="radioValue">{{ role }}</span--> </p>
+    <div id="rol">
       <md-radio-group ng-model="role">
       <md-radio-button value="administrador" checked>Administrador</md-radio-button>
       <md-radio-button value="validador"> Validador </md-radio-button>
       <md-radio-button value="consultor"> Consultor </md-radio-button>
       <md-radio-button value="mantenimiento"> Mantenimiento </md-radio-button>    
-    </md-radio-group>
+      </md-radio-group>
+    </div>
 
   </form>
 </div>
   </md-content>  
     <p>{{mensaje}}</p>
     <form class="dialog-demo-content" layout="row" layout-sm="column" layout-wrap="" layout-align=" center center">
-      <md-button class="botonesApp" ng-click="crear($event)">CREAR USUARIO</md-button>   
-    </form>    
+      <md-button id="crear" class="botonesApp" ng-click="crear($event)">CREAR USUARIO</md-button>   
+    </form> 
 </div>
+<button ng-click="lanzarAyuda();"  >Demo</button>
