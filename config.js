@@ -11,6 +11,7 @@ app.constant('config', {
         doneLabel: 'Fin'
     }
 });
+//Configuracion necesaria para la fecha del DatePicker
 app.config(function($mdDateLocaleProvider) {
   $mdDateLocaleProvider.formatDate = function(date) {
     return date ? moment(date).format('D/M/YYYY') : '';

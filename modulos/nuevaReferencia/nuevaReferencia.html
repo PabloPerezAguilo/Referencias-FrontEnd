@@ -30,10 +30,11 @@
                       </div>
                 </md-dialog-content>
             </div>
-            
             <br>     
+
             <!--    SOCIEDAD-->
-            <md-input-container title="Sociedad" class="fixed-size" id="sociedad">
+            <div id="sociedad" class="inBlock anchoAlturaCR">
+            <md-input-container title="Sociedad" class="fixed-size" >
                 <label>Sociedad *</label>
                 <md-select name="sociedad"
                            tabindex="2"
@@ -48,9 +49,11 @@
                     </md-option>
                 </md-select>
             </md-input-container>
-
+            </div>
+            
             <!--   SECTOR-->
-            <md-input-container title="Sector Empresarial" class="fixed-size" id="sectorEmpresarial">
+            <div id="sectorEmpresarial" class="inBlock anchoAlturaCR">
+            <md-input-container title="Sector Empresarial" class="fixed-size" >
                 <label>Sector Empresarial *</label>
                 <md-select name="SectorEmp"
                            ng-model="referencia.sectorEmpresarial"  
@@ -63,9 +66,11 @@
                     </md-option>
               </md-select>
             </md-input-container>
+            </div>
 
             <!--    Tipo de actividad-->
-            <md-input-container title="Tipo de actividad" class="fixed-size" id="actividad">
+            <div id="actividad" class="inBlock anchoAlturaCR">
+            <md-input-container title="Tipo de actividad" class="fixed-size" >
                 <label>Tipo de actividad *</label>
                 <md-select
                            name="tActividad"
@@ -79,9 +84,11 @@
                     </md-option>      
                 </md-select>
             </md-input-container>
+            </div>
 
             <!--    Tipo de proyecto-->
-            <md-input-container title="Tipo de proyecto" class="fixed-size" id="tipoProyecto">
+            <div id="tipoProyecto" class="inBlock anchoAlturaCR" >
+            <md-input-container title="Tipo de proyecto" class="fixed-size" >
                 <label>Tipo de proyecto *</label>
                 <md-select
                            name="tProyecto"
@@ -95,19 +102,25 @@
                     </md-option>      
                 </md-select>
             </md-input-container>
-
+            </div>
             <!--    Fecha inicio-->
-            <md-datepicker id="fecha" ng-model="fechaInicio" md-placeholder="Fecha de Inicio *" ng-readonly="true"></md-datepicker> 
-            
-            <!--    Duración-->         
-            <md-input-container title="Duración en meses" class="fixed-size" id="Duracion">
+
+            <div id="fecha" class="inBlock anchoAlturaCR" >
+            <!--Fecha inicio, Usa la libreria Moment.js-->
+            <md-datepicker ng-model="fechaInicio" md-placeholder="Fecha de Inicio *" ></md-datepicker>
+            </div>
+            <!--    Duración-->    
+            <div id="Duracion" class="inBlock anchoAlturaCR" >
+            <md-input-container title="Duración en meses" class="fixed-size" >
                 <label>Duración en meses *</label>
                 <input name="duracion" type="number" min="1" ng-model="referencia.duracionMeses" ng-disabled="deshabilitarForm" ng-required="true"tabindex="7" ng-blur="actualizaErrores('duracion', useForm.duracion.$error)"/>
 
             </md-input-container>
+            </div>
 
             <!-- Denominación-->
-            <md-input-container title="Denominación" class="fixed-size-denominacion" ng-disabled="mostrarBtValidar===true" id="denominacion">
+            <div id="denominacion" class="inBlock anchoAlturaCR"> 
+            <md-input-container title="Denominación" class="fixed-size-denominacion" ng-disabled="mostrarBtValidar===true" >
                 <label>Denominación *</label>
                 <textarea name="denominacion"
                           type="text"
@@ -120,10 +133,11 @@
                           ng-blur="actualizaErrores('denominacion', useForm.denominacion.$error)">
                 </textarea>
             </md-input-container>
+            </div>
 
             <!-- Resumen del proyecto-->
-            <div id="cajon1">
-                <md-input-container title="Resumen del proyecto" class="fixed-size-resumen" id="Resumen">
+            <div id="resumen" class="inBlock anchoAlturaCR">
+                <md-input-container title="Resumen del proyecto" class="fixed-size-resumen">
                     <label>Resumen proyecto *</label>
                     <textarea name="Rproyecto"
                               ng-model="referencia.resumenProyecto"
@@ -137,9 +151,9 @@
                     </textarea>
                 </md-input-container>
             </div>
-            <!--Problemática del cliente-->
-            <div id="cajon2">
-            <md-input-container title="Problemática del cliente" class="fixed-size-resumen" id="Problematica">
+            <!--Problemática del cliente AQUIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII-->
+            <div id="problematica" class="inBlock anchoAlturaCR">
+            <md-input-container title="Problemática del cliente" class="fixed-size-resumen">
                 <label>Problemática del cliente *</label>
                 <textarea name="ProblemaCliente"
                           ng-model="referencia.problematicaCliente"
@@ -155,7 +169,8 @@
             </div>
 
             <!--    Solución-->
-            <md-input-container title="Solución GFI" class="fixed-size-solucion" id="solucion">
+            <div id="solucion" class="inBlock anchoAlturaCR">
+            <md-input-container title="Solución GFI" class="fixed-size-solucion" >
                 <label>Solución GFI *</label>
                 <textarea name="solGFI"
                           type="text"
@@ -169,9 +184,11 @@
                           ng-blur="actualizaErrores('solGFI', useForm.solGFI.$error)">
                 </textarea>
             </md-input-container>
+            </div>
 
-            <!--    FTE totales-->       
-            <md-input-container title="FTE Totales" class="fixed-size" id="fte">
+            <!--    FTE totales-->   
+            <div id="fte" class="inBlock anchoAlturaCR">
+            <md-input-container title="FTE Totales" class="fixed-size" >
                 <label>FTE Totales *</label>
                 <input name="fteTotal"
                        type="number"
@@ -182,32 +199,36 @@
                        tabindex="12"
                        ng-blur="actualizaErrores('fteTotal', useForm.fteTotal.$error)"/>
             </md-input-container>
+            </div>
 
             <!--    Certificado-->
-            <md-input-container title="Existe certificado del cliente" class="fixed-size">
+            <div id="certificado" class="inBlock anchoAlturaCR">
+            <md-input-container  title="Existe certificado del cliente" class="fixed-size">
+                <label class="labelCertificado">¿Existe certificado del cliente? *</label>
                 <md-radio-group name="certificado"
                                 ng-model="referencia.certificado"
                                 ng-disabled="deshabilitarForm"
                                 ng-required="true"
                                 tabindex="13"
                                 ng-blur="actualizaErrores('certificado', useForm.certificado.$error)">                  
-
-                <label>¿Existe certificado del cliente? *</label><br>
-                    <md-radio-button style="margin-bottom: -35px" value="si" ng-checked="true" ng-disabled="deshabilitarForm">Si</md-radio-button>
-                    <md-radio-button style="margin-left: 80px" value="no" ng-disabled="deshabilitarForm">No</md-radio-button>
+                    <md-radio-button class="inBlock radioCertificado" value="si" ng-checked="true" ng-disabled="deshabilitarForm===true">Si</md-radio-button>
+                    <md-radio-button class="inBlock radioCertificado" value="no" ng-disabled="deshabilitarForm===true">No</md-radio-button>
                 </md-radio-group>
             </md-input-container>
-
+            </div>
             <!--Registros-->
+            <div id="registrosPedido" class="inBlock anchoAlturaCR">
             <md-input-container title="Registros de pedido asociados a la referencia" class="fixed-size">
                 <label>Registros de pedido asociados a la referencia *</label>
                 <input name="registroPedido" type="text" ng-disabled="deshabilitarForm" ng-model="referencia.regPedidoAsociadoReferencia" tabindex="14"/> <!--ng-required="true"-->
             </md-input-container>
+            </div>
 
             <!--Responsables-->
             <div layout="row">
                 <!--Responsable comercial-->
-                <md-input-container title="Responsable comercial" class="contCom" id="comercial">
+                <div id="Comercial" class="inBlock anchoAlturaCR">
+                <md-input-container title="Responsable comercial" class="contCom">
                     <label>Responsable Comercial *</label>
 
                     <md-select name="rbleComercial"
@@ -222,9 +243,11 @@
                         </md-option>
                     </md-select>
                 </md-input-container> 
+                </div>
 
                 <!--    Responsable Técnico--> 
-                <md-input-container title="Responsable técnico" class="contTec" id="Tecnico">
+                <div id="Tecnico" class="inBlock anchoAlturaCR">
+                <md-input-container title="Responsable técnico" class="contTec" >
                     <label>Responsable Técnico *</label>
                     <md-select name="rbleTecnico"
                                ng-model="referencia.responsableTecnico"
@@ -237,11 +260,12 @@
                         </md-option>
                     </md-select>
                 </md-input-container>
+                </div>
             </div>
 
             <!--    Código QR e imagen-->                  
             <div layout="row" class="ImgQr">          
-                <div class="contQr">
+                <div class="contQr" >
                     <!--Imagen-->
                     <input type="file"
                            name="userfile"
@@ -251,7 +275,8 @@
                            onchange="angular.element(this).scope().uploadFile(this)"
                            ng-disabled="deshabilitarForm"
                            ng-required>
-                    <input type="button"
+                    <input id="imagen"
+                           type="button"
                            class="botones"
                            value="SUBIR IMAGEN *"
                            onclick="document.getElementById('botonFileReal').click();"
@@ -262,7 +287,7 @@
                     
                     <br><br><br><br>
                     <!--Código QR--> 
-                    <md-input-container title="Código QR" class="fixed-size">
+                    <md-input-container id="qrCode" title="Código QR" class="fixed-size">
                         <label>Código Qr</label>
                         <input ng-model="referencia.codigoQr" ng-Change="QrChaged()" ng-disabled="deshabilitarForm" tabindex="18"/>
                     </md-input-container>
@@ -310,7 +335,7 @@
             <p id="mensajeEstado" >{{mensajeEstado}}</p>
                 
                 
-            <button ng-click="lanzarAyuda(); prueba=false"  >Demo</button>
+            <button ng-click="ayuda();"  >Demo</button>
             
             <div class="botonesCrear" layout-align="center">
           

@@ -16,12 +16,19 @@ app.controller('controladorNuevaReferencia', function(servicioRest, config, $sco
     };;
     
     
-    $scope.prueba33=function(){
+    $scope.ayuda = function(){
+      $scope.scroll=false
+      $scope.lanzarAyuda();
         
-        $scope.prueba=true;
+    };
+    
+    $scope.activarScroll=function(){
+        
+        $scope.scroll=true;
         console.log("puto");
         
     };
+    
     // esta funcion permite cargar el menu cuando hemos recargado la pagina
     //servicioRest.cargarMenu();
       
@@ -140,55 +147,51 @@ app.controller('controladorNuevaReferencia', function(servicioRest, config, $sco
             },
             {
                 element: '#fecha',
-                intro: 'Seleccione una fecha o escribala con el siguiente formato MM/DD/AAAA'
+                intro: 'Seleccione una fecha o escribala con el siguiente formato DD/MM/AAAA'
             },
             {
                 element: '#duracion',
-                intro: 'Seleccione una actividad de la lista disponible, si no encuentra la que busca consulte con su gerente'
+                intro: 'Este campo debe rellenarse con la duracion del proyeccto en meses con un minimo de un mes'
             },
             {
                 element: '#denominacion',
-                intro: 'Seleccione una actividad de la lista disponible, si no encuentra la que busca consulte con su gerente'
+                intro: 'Escriba aqui un nombre que identifique y defina el proyecto'
             }, 
             {
                 element: '#resumen',
-                intro: 'Seleccione una actividad de la lista disponible, si no encuentra la que busca consulte con su gerente'
+                intro: 'En este campo debe escribirse un resumen del alcance del proyecto'
             },
             {
                 element: '#problematica',
-                intro: 'Seleccione una actividad de la lista disponible, si no encuentra la que busca consulte con su gerente'
+                intro: 'Debe rellenar este campo con una definicion detallada del problema que tiene el cliente'
             },
             {
                 element: '#solucion',
-                intro: 'Seleccione una actividad de la lista disponible, si no encuentra la que busca consulte con su gerente'
+                intro: 'Debe rellenar este campo con la solucion optada por GFI para solucionar la problematica del cliente'
             },
             {
                 element: '#fte',
-                intro: 'Seleccione una actividad de la lista disponible, si no encuentra la que busca consulte con su gerente'
+                intro: 'Numero de horas empleadas en el proyecto con un minimo de 1'
             },
             {
                 element: '#certificado',
-                intro: 'Seleccione una actividad de la lista disponible, si no encuentra la que busca consulte con su gerente'
+                intro: 'Seleccione si el proyecto tiene un certificado'
             },
             {
                 element: '#comercial',
-                intro: 'Seleccione una actividad de la lista disponible, si no encuentra la que busca consulte con su gerente'
+                intro: 'Gerente encargado de la parte comercial del proyecto'
             },
             {
                 element: '#tecnico',
-                intro: 'Seleccione una actividad de la lista disponible, si no encuentra la que busca consulte con su gerente'
+                intro: 'Gerente encargado de la parte tecnica del proyecto'
             },
             {
                 element: '#imagen',
-                intro: 'Seleccione una actividad de la lista disponible, si no encuentra la que busca consulte con su gerente'
+                intro: 'Debe pulsar aqui para subir una imagen del proyecto'
             },
             {
-                element: '#qr',
-                intro: 'Seleccione una actividad de la lista disponible, si no encuentra la que busca consulte con su gerente'
-            },
-            {
-                element: '#prueba',
-                intro: 'blablebli'
+                element: '#qrCode',
+                intro: 'En este campo se añadira una url para ponerla en el proyecto como un codigo QR'
             }
             ];
 
