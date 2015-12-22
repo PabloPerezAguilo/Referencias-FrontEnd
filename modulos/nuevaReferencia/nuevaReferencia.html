@@ -31,42 +31,6 @@
                 </md-dialog-content>
             </div>
             
-            
-<!----------------------------------------------------------------------------------------------------------------------------------->
-            <!--<div class="control-group" ng-class="{true: 'error'}[submitted && form.email.$invalid]">
-                  <md-dialog-content class="selecCli">
-                    <div class="md-dialog-content">
-                      <form ng-submit="$event.preventDefault()">
-                        <label class="txtSimilarMD">Cliente *</label>
-                        <md-autocomplete flex required
-                            pattern="[a-zA-Z]+"
-                            md-selected-item="ctrl.selectedItem"
-                            md-search-text="ctrl.searchText" 
-                            md-items="item in ctrl.querySearchT(ctrl.searchText, 'cliente')| filter : cliente | limitTo : 8"
-                            md-selected-item-change="ctrl.selectedItemChange(item)"
-                            md-item-text="item.display"
-                            md-min-length="3"
-                            ng-model="referencia.cliente"
-                            name="cliente"
-                            ng-disabled="deshabilitarForm"
-                            placeholder="Busque por cliente o siglas."
-                            ng-required
-                            ng-init="ctrl.searchText=clienteCargado"
-                            tabindex="1">
-                          <md-item-template>
-                            <span md-highlight-text="ctrl.searchText" md-highlight-flags="^i">{{item.display}}</span>
-                          </md-item-template>
-                          <md-not-found>
-                            No se encuenta "{{ctrl.searchText}}" en la lista.
-                          </md-not-found>            
-                        </md-autocomplete>
-                      </form>
-                    </div> 
-                  </md-dialog-content>
-            </div> -->
-<!----------------------------------------------------------------------------------------------------------------------------------->
-
-            
             <br>     
             <!--    SOCIEDAD-->
             <md-input-container title="Sociedad" class="fixed-size" id="sociedad">
@@ -341,36 +305,7 @@
                     </div>
                 </md-dialog-content>
             </div>
-            <!--<div class="contenedor-tecnologia">
-                <md-dialog-content class="selecTec" id="tecnologia">
-                    <div class="md-dialog-content">
-                        <form ng-submit="$event.preventDefault()">
-                            <label class="txtSimilarMD">Tecnología *</label>
-                            <md-autocomplete
-                                md-selected-item="ctrl.selectedItemt"
-                                md-search-text="ctrl.searchTextt"
-                                md-items="item2 in ctrl.querySearchT(ctrl.searchTextt, 'tecnologia') | filter : tecnologia | limitTo : 4"
-                                md-selected-item-change="ctrl.selectedItemChangeT(item2)"
-                                md-item-text="item2.display"
-                                md-min-length="2"
-                                
-                                name="tecnologia"
-                                ng-disabled="deshabilitarForm"
-                                placeholder="Busque Tecnologías"
-                                ng-required
-                                ng-init="ctrl.searchTextt=tecnologiaCargada"
-                                tabindex="19">
-                            <md-item-template>
-                                <span md-highlight-text="ctrl.searchTextt" md-highlight-flags="^i">{{item2.display}}</span>
-                            </md-item-template>
-                            <md-not-found>
-                                No se encuenta "{{ctrl.searchTextt}}" en la lista.
-                            </md-not-found>            
-                            </md-autocomplete>
-                      </form>
-                    </div>
-                </md-dialog-content>
-            </div>-->
+
             <!--    Resultado de la operación-->
             <p id="mensajeEstado" >{{mensajeEstado}}</p>
                 
