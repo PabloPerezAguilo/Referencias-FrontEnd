@@ -364,8 +364,24 @@ label{
 }
 
 /*------------------------------ ESTILOS NUEVA REFERENCIA ---------------------------------*/
+
+.radioCertificado{
+    margin:0;
+}
+.labelCertificado{
+    
+    position: relative;
+    display :block;
+    transform:inherit !important;
+    bottom:0;
+}
+
+.inBlock{
+    display: inline-block;
+}
+
 #cajaNueva{
-    line-height: 45px;
+    line-height:45px;
     font-size: 15px;
 }
 md-content{
@@ -435,10 +451,10 @@ md-icon.md-default-theme, md-icon {
 .md-datepicker-input{
     width: 230px;
 }
-#cajon1{
+#resumen{
     float:left;
 }
-#cajon2{
+#problematica{
     float:left;
 }
 .botonesCrear{
