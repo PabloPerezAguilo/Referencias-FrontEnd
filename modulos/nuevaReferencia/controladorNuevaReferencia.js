@@ -1,5 +1,19 @@
+app.controller('controladorNuevaReferencia', function(servicioRest, config, $scope, $http,$log, $rootScope,$location,$mdDialog,$interval,$timeout){
+    
+    //--------------------- Objetos del controlador (clientes y tecnologias)
+    var self = this;
 
-app.controller('controladorNuevaReferencia', function(servicioRest, config, $scope, $http, $rootScope,$location,$mdDialog,$interval,$timeout){
+    // list of `state` value/display objects
+    self.clientes={
+        lista:[],
+        texto:'',
+        elemSelecionado:{}
+    };
+    self.tecnologias={
+        lista:[],
+        texto:'',
+        elemSelecionado:{}
+    };;
     
     
     $scope.ayuda = function(){
@@ -32,7 +46,8 @@ app.controller('controladorNuevaReferencia', function(servicioRest, config, $sco
     //inicializamos el valor del certificado a 'si' para que salga esa opción seleccionada por defecto
     $scope.referencia.certificado='si';
     
-    //Array asociativo con todos los mensajes errores de validación en la entrada de datos a través de los campos
+    //Objeto con todos los mensajes errores de validación en la entrada de datos a través de los campos
+    //Se guardan en un objeto porque JS no acepta arrays asociativos
     erroresTotales={};
     //Le metemos los valores usando como clave el atributo 'name' del elemente html que lo recoge
     erroresTotales['cliente']="Cliente inválido";
@@ -63,26 +78,6 @@ app.controller('controladorNuevaReferencia', function(servicioRest, config, $sco
     erroresTotales['tecnologia']="Tecnología inválida";
     
     
-    //Esta función debería estar en utils o algo parecido
-    $scope.isEmptyObject= function(objeto){
-        return angular.equals( {} , objeto );
-    };
-    
-    var erroresCometidos=Object.keys(erroresTotales);
-    //--------------
-    $scope.actualizaErrores=function(elem, error){
-        var index = erroresCometidos.indexOf(elem);
-        if($scope.isEmptyObject(error)){      
-            if (index >= 0) {
-                erroresCometidos.splice(index, 1);
-            }
-        }
-        else{
-            if (index < 0) {
-                erroresCometidos.push(elem);
-            }
-        }
-    };
     
     if($rootScope.referenciaCargada != null && $rootScope.opcion === 'validar'){
         $scope.clienteCargado = $rootScope.referenciaCargada.cliente;
@@ -152,55 +147,51 @@ app.controller('controladorNuevaReferencia', function(servicioRest, config, $sco
             },
             {
                 element: '#fecha',
-                intro: 'Seleccione una fecha o escribala con el siguiente formato MM/DD/AAAA'
+                intro: 'Seleccione una fecha o escribala con el siguiente formato DD/MM/AAAA'
             },
             {
                 element: '#duracion',
-                intro: 'Seleccione una actividad de la lista disponible, si no encuentra la que busca consulte con su gerente'
+                intro: 'Este campo debe rellenarse con la duracion del proyeccto en meses con un minimo de un mes'
             },
             {
                 element: '#denominacion',
-                intro: 'Seleccione una actividad de la lista disponible, si no encuentra la que busca consulte con su gerente'
+                intro: 'Escriba aqui un nombre que identifique y defina el proyecto'
             }, 
             {
                 element: '#resumen',
-                intro: 'Seleccione una actividad de la lista disponible, si no encuentra la que busca consulte con su gerente'
+                intro: 'En este campo debe escribirse un resumen del alcance del proyecto'
             },
             {
                 element: '#problematica',
-                intro: 'Seleccione una actividad de la lista disponible, si no encuentra la que busca consulte con su gerente'
+                intro: 'Debe rellenar este campo con una definicion detallada del problema que tiene el cliente'
             },
             {
                 element: '#solucion',
-                intro: 'Seleccione una actividad de la lista disponible, si no encuentra la que busca consulte con su gerente'
+                intro: 'Debe rellenar este campo con la solucion optada por GFI para solucionar la problematica del cliente'
             },
             {
                 element: '#fte',
-                intro: 'Seleccione una actividad de la lista disponible, si no encuentra la que busca consulte con su gerente'
+                intro: 'Numero de horas empleadas en el proyecto con un minimo de 1'
             },
             {
                 element: '#certificado',
-                intro: 'Seleccione una actividad de la lista disponible, si no encuentra la que busca consulte con su gerente'
+                intro: 'Seleccione si el proyecto tiene un certificado'
             },
             {
                 element: '#comercial',
-                intro: 'Seleccione una actividad de la lista disponible, si no encuentra la que busca consulte con su gerente'
+                intro: 'Gerente encargado de la parte comercial del proyecto'
             },
             {
                 element: '#tecnico',
-                intro: 'Seleccione una actividad de la lista disponible, si no encuentra la que busca consulte con su gerente'
+                intro: 'Gerente encargado de la parte tecnica del proyecto'
             },
             {
                 element: '#imagen',
-                intro: 'Seleccione una actividad de la lista disponible, si no encuentra la que busca consulte con su gerente'
+                intro: 'Debe pulsar aqui para subir una imagen del proyecto'
             },
             {
-                element: '#qr',
-                intro: 'Seleccione una actividad de la lista disponible, si no encuentra la que busca consulte con su gerente'
-            },
-            {
-                element: '#prueba',
-                intro: 'blablebli'
+                element: '#qrCode',
+                intro: 'En este campo se añadira una url para ponerla en el proyecto como un codigo QR'
             }
             ];
 
@@ -217,10 +208,12 @@ app.controller('controladorNuevaReferencia', function(servicioRest, config, $sco
             $rootScope.clientes = $scope.catalogo.clientes;
             $rootScope.tecnologias = $scope.catalogo.tecnologia;
             /*Modificacion Ruben para cargar autocomplete en listar*/
-            cadenaClientes();
-            cadenaTecnologia();         
-            $scope.arrayDatos = cargarDatosClientes(); 
-            $scope.arrayDatos2 = cargarDatosTecnologia();
+            //cadenaClientes();
+            //cadenaTecnologia();         
+            $scope.datosClientes = cargarDatosClientes();
+            $scope.dsatosTecnologias = cargarDatosTecnologias();
+            
+            
             console.log("Catalogos Cargados");
             $rootScope.sociedades = $scope.catalogo.sociedades;
             
@@ -231,6 +224,95 @@ app.controller('controladorNuevaReferencia', function(servicioRest, config, $sco
                 $scope.valorQr = false;
             }
         });
+    
+    
+    
+    
+    /*-----------------------  AUTOCOMPLETE ----------------------- */
+
+    self.filtrar   = filtrar;
+    self.selectedItemChange = selectedItemChange;
+
+    // ******************************
+    // Internal methods
+    // ******************************
+
+    /**
+     * Search for states... use $timeout to simulate
+     * remote dataservice call.
+     */
+    function filtrar (query, campo) {
+        var resultado;
+        var array;
+        if(campo==='cliente'){
+            
+            array=self.clientes.lista;
+            $scope.posicionEnArray=undefined;
+        }
+        else if (campo==='tecnologia'){
+            array=self.tecnologias.lista;
+            $scope.posicionEnArray2=undefined;
+        }
+        
+        if(query!==""){
+            resultado=array.filter(creaFiltro(query));
+        }else{
+            resultado=array;
+            var deferred;
+        }
+        return resultado;
+    }
+
+    function selectedItemChange(item, campo) {
+        if(campo==='cliente'){
+            $scope.posicionEnArray=self.clientes.lista.indexOf(item);
+            console.log('Cliente: '+$scope.posicionEnArray);
+        }else if(campo==='tecnologia'){
+            $scope.posicionEnArray2=self.tecnologias.lista.indexOf(item);
+            console.log('Tecnología: '+$scope.posicionEnArray2);
+        }
+    }
+    /**
+     * Build `states` list of key/value pairs
+     */
+    function cargarDatosClientes() {
+        var  result= $rootScope.clientes.map( function (cliente) {
+            return {
+                value: cliente.nombre,
+                display: cliente.nombre+' ('+cliente.siglas+')'
+            };
+        });
+        //cargamos los datos en el autocomplete a través del controlador
+        self.clientes.lista=result;
+        return result;            
+    }
+    
+    function cargarDatosTecnologias() {
+        var  result= $rootScope.tecnologias.map( function (tec) {
+            return {
+                value: tec.descripcion,
+                display: tec.descripcion+' ('+tec.codigo+')'
+            };
+        });
+        //cargamos los datos en el autocomplete a través del controlador
+        self.tecnologias.lista=result;
+        return result;            
+    }
+
+    /**
+     * Create filter function for a query string
+     */
+    function creaFiltro(query) {
+        var lowercaseQuery = angular.lowercase(query);
+
+        return function filterFn(state) {
+            return (state.display.toLowerCase().indexOf(lowercaseQuery) !==-1);
+        };
+
+    }
+ 
+    
+    //-----------------------------------------------CREACIÓN---------------------------------------------------------------------
     
     $scope.uploadFile = function (input) {
         if (input.files && input.files[0]) {
@@ -263,9 +345,7 @@ app.controller('controladorNuevaReferencia', function(servicioRest, config, $sco
     /* ---------------  MOSTRAR QR CUANDO COMPLETA EL CAMPO  --------------*/    
     $scope.codigoQr='';
     $scope.QrChaged = function (){
-        //console.log($scope.referencia.codigoQr);
        recargarQR();
-       // console.log("traza");
     }
    function recargarQR(){
          if($scope.referencia.codigoQr!=''){
@@ -280,13 +360,42 @@ app.controller('controladorNuevaReferencia', function(servicioRest, config, $sco
     $scope.certificado = 'si';
     $scope.mensajeEstado='';
     
+    
+//--------------- Sección de validación de campos en nueva referencia --------------------------------------------
+    
+    //Esta función debería estar en utils o algo parecido. determina si el objeto está vacío.
+    function isEmptyObject (objeto){
+        return angular.equals( {} , objeto );
+    };
+    
+    //Por defecto, todos los campos están mal. Así que asignamos todos los errores al array
+    var erroresCometidos=Object.keys(erroresTotales);
+    
+    //actualizamos la ista de errores
+    $scope.actualizaErrores=function(elem, error){
+        var indice = erroresCometidos.indexOf(elem);
+        
+        if(isEmptyObject(error)){//<-- Si el campo está mal
+            //Si el error segue en la lista, lo eliminamos  
+            if (indice >= 0) {
+                erroresCometidos.splice(indice, 1);
+            }
+        }
+        else{ //<-- Si el campo está bien
+            //Si el error había sido eliminado de la lista, lo insertamos
+            if (indice < 0) {
+                erroresCometidos.push(elem);
+            }
+        }
+    };
+    
     function listarErrores(){
-
+        
+        console.log(erroresCometidos);
         var result="<h1>Errores en la entrada de datos</h1><br>"
         for (var i=0;i<erroresCometidos.length; i++){
             result+='<p>'+erroresTotales[erroresCometidos[i]]+'</p>';
         }
-        
         return result;
     }
     
@@ -310,14 +419,27 @@ app.controller('controladorNuevaReferencia', function(servicioRest, config, $sco
     }
     
     function compruebaCampo(campo, id_error){
-        if(undefined!=campo){
-            erroresCometidos.splice(erroresCometidos.indexOf(id_error), 1);
-
+        
+        var indice=erroresCometidos.indexOf(id_error)
+        //las posiciones en los arrays serán -1 en caso de que no haya error y la fecha será undefined o null
+        if(undefined!=campo && -1!==campo){//<-- Si el campo está bien
+            //Si el error había sido eliminado de la lista, lo insertamos
+            console.log('BIEN: '+id_error+' , '+campo);
+            if (indice >= 0) {
+                erroresCometidos.splice(indice, 1);
+            }
+        }
+        else{ //<-- Si el campo está mal
+            //Si el error sigue en la lista, lo eliminamos
+            console.log('MAL: '+id_error+' , '+campo);
+            if (indice < 0) {
+                erroresCometidos.push(id_error);
+            }
         }
             
     }
 
-    
+ //--------------------------------------------------------------------------------------------------------------------------   
     /* CREAR la referencia, puede tener estado: pendiente/borrador  */
     $scope.crearReferencia = function (estado, event) {
         //console.log($scope.fechaInicio.getDate());
@@ -387,79 +509,7 @@ app.controller('controladorNuevaReferencia', function(servicioRest, config, $sco
             servicioRest.popupInfo(event,listarErrores());
         }
                 
-        
-        
-        /*//$scope.referencia = {};
-        if(document.getElementById("botonFileReal").files[0]==null && estado =="pendiente"){
-                $scope.mensajeEstado = 'Imagen no cargada';
-        }else{
-            
-			//para saber si el cliente introducido EXISTE en el catalogo de clientes
-			var indiceCliente = $rootScope.clientes.indexOf($scope.catalogo.clientes[$scope.posicionEnArray]);
-            if(indiceCliente !== -1){
-                $scope.referencia.cliente = $scope.catalogo.clientes[$scope.posicionEnArray].nombre;
-            }
-			//para saber si la tecnologia introducida EXISTE en el catalogo de tecnologías
-			var indiceTecnologia = $rootScope.tecnologias.indexOf($scope.catalogo.tecnologia[$scope.posicionEnArray2]);
-            if(indiceTecnologia !== -1){
-                $scope.referencia.tecnologias = $scope.catalogo.tecnologia[$scope.posicionEnArray2].codigo;
-            }
 
-            $scope.referencia.creadorReferencia = $rootScope.usuarioLS.name;
-            $scope.referencia.fechaInicio = $scope.fechaInicio;
-
-            var imagen = document.getElementById("botonFileReal").files[0];
-            var fileReader = new FileReader();
-            if(imagen != null){
-                fileReader.readAsBinaryString(imagen);
-                fileReader.onloadend = function(e){
-                    var objeto = e.target.result;
-                    objeto = btoa(objeto);
-                    $scope.referencia.imagenProyecto = objeto;
-
-                    var referencia = $scope.referencia; 
-
-                    if(estado==='pendiente'){
-                        $scope.mensajeEstado='Referencia creada pendiente de validar.';       
-                    }else if(estado==='borrador'){
-                        	$scope.mensajeEstado='Referencia creada en modo borrador.';   
-                        }
-					
-					if (indiceCliente === -1 ){
-						$scope.mensajeEstado='cliente MAL seleccionado';
-					}
-					if (indiceTecnologia === -1){
-						$scope.mensajeEstado='tecnología MAL seleccionada';
-					}
-					
-                    if(0!==erroresCometidos.length){
-                        servicioRest.popupInfo('ESTO DEBERÏA SER UN EVENTO', listarErrores());                        
-                    }
-                    else if (indiceCliente !== -1 && indiceTecnologia !== -1){
-                    	servicioRest.postReferencia(referencia);
-						console.log('referencia guardada');
-					}
-                 }
-
-            }else{
-
-                var referencia = $scope.referencia; 
-                console.log(referencia);
-
-                if(estado==='pendiente'){
-                    $scope.mensajeEstado='Referencia creada pendiente de validar.';       
-                }else if(estado==='borrador'){
-                    $scope.mensajeEstado='Referencia creada en modo borrador.';   
-                }
-                servicioRest.postReferencia(referencia)
-                .then(function(){
-                    console.log('consulta realizada con éxito');
-                })
-                .catch(function(err){
-                    console.error('Error en la llamada al servicio REST');
-                });
-            }           
-        }*/
     }
     
     
@@ -505,122 +555,7 @@ app.controller('controladorNuevaReferencia', function(servicioRest, config, $sco
             });  
     }
     
-    /*-----------------------  AUTOCOMPLETE ----------------------- */
-	$scope.cadena = "";
-    $scope.cadenaT = "";
-	self.pos = "";
-    self.posT = "";
-	self.querySearch = querySearch;
-	self.selectedItemChange = selectedItemChange;
-    self.querySearchT = querySearchT;
-	self.selectedItemChangeT = selectedItemChangeT;
     
-  // lista de `state` valor/display objeto
-   
-    self.cancel = function($event) {
-      $mdDialog.cancel();
-    };
-
-    self.finish = function($event) {
-      $mdDialog.hide();
-    };
-
-	// Busca el texto
-	function querySearch(text) {
-		var results = text ? $scope.arrayDatos.filter(filtrar(text)) : $scope.arrayDatos, deferred;
-		if (self.simulateQuery) {
-			deferred = $q.defer();
-			$timeout(function() {
-				deferred.resolve(results);
-			}, Math.random() * 1000, false);
-			return deferred.promise;
-		} else {
-			return results;
-		}
-	};
-    
-
-    function querySearchT(text2) {
-		var resultado = text2 ? $scope.arrayDatos2.filter(filtrarT(text2)) : $scope.arrayDatos2, deferred;
-		if (self.simulateQuery) {
-			deferred = $q.defer();
-			$timeout(function() {
-				deferred.resolve(resultado);
-			}, Math.random() * 1000, false);
-			return deferred.promise;
-		} else {
-			return resultado;
-		}
-	};
-
-	// Filtrar palabras según texto
-	function filtrar(texto) {
-		var lowercaseQuery = angular.lowercase(texto);
-		return function(state) {
-			$scope.texto = state.value.substring(state.value.indexOf("*"), 0);
-			return ($scope.texto.indexOf(lowercaseQuery) === 0 || $scope.texto.search(lowercaseQuery) > 0);
-		};
-	};
-
-    function filtrarT(texto2) {
-		var lowercaseQuery = angular.lowercase(texto2);
-		return function(ro) {
-			$scope.texto2 = ro.value.substring(ro.value.indexOf("*"), 0);
-			return ($scope.texto2.indexOf(lowercaseQuery) === 0 || $scope.texto2.search(lowercaseQuery) > 0);
-		};
-	};
-
-	// Elemento seleccionado
-	function selectedItemChange(item) {
-		if (JSON.stringify(item) !== undefined) {
-			var pos = item.value.substring(item.value.length, item.value.indexOf("*") + 1);
-			$scope.posicionEnArray = pos;
-		}
-	};
-
-    function selectedItemChangeT(item2) {
-		if (JSON.stringify(item2) !== undefined) {
-			var posT = item2.value.substring(item2.value.length, item2.value.indexOf("*") + 1);
-			$scope.posicionEnArray2 = posT;
-		}
-	};
-
-
-   // Carga de datos inicial
-	function cargarDatosClientes() {
-		// Convertimos los datos a una sola cadena
-		var allStates = $scope.cadena;
-		return allStates.split(/, +/g).map(function(state) {
-			return {
-				value: state.toLowerCase(),
-				display: state.substring(state.indexOf("*"), 0)
-			};
-		});
-	};
-
-    function cargarDatosTecnologia() {
-		// Convertimos los datos a una sola cadena
-		var allStatesT = $scope.cadenaT;
-		return allStatesT.split(/, +/g).map(function(ro) {
-			return {
-				value: ro.toLowerCase(),
-				display: ro.substring(ro.indexOf("*"), 0)
-			};
-		});
-	};
-
-    // Convertir a una sola cadena
-	function cadenaClientes() {
-		for (var i = 0; i < $scope.catalogo.clientes.length; i++) {
-			$scope.cadena += $scope.catalogo.clientes[i].nombre + ' (' + $scope.catalogo.clientes[i].siglas + ') ' + '*' + i + ', ';
-		}
-	};
-
-    function cadenaTecnologia() {
-		for (var p = 0; p < $scope.catalogo.tecnologia.length; p++) {
-			$scope.cadenaT += $scope.catalogo.tecnologia[p].codigo + ' (' + $scope.catalogo.tecnologia[p].descripcion + ') ' + '*' + p + ', ';
-		}
-	};		
 
    /*-----------------------  Cargar datos en validarReferencia ----------------------- */
     function cargarDatosValidarReferencia(){

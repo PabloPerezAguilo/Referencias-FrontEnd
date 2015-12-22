@@ -27,10 +27,8 @@
             <img id="logoSharon" src="/sharon.png"/>
         </header>
         <div ng-show="menu" id="menu" layout layout-sm="column" ng-include="'./modulos/menu/menu.html'"></div>
-        
         <div ng-init="scroll=true" ng-view ng-intro-options="introOptions" ng-intro-method="lanzarAyuda" ng-class="{'contenedorVistas': scroll}" ng-intro-onexit="activarScroll" ng-intro-oncomplete="activarScroll" >            
 		</div>
-        
         <footer>
             <img id="logoGfi" src="/logo_gfi.png"/>
              <nav>                
