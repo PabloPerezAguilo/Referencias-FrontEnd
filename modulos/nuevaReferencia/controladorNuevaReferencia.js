@@ -15,18 +15,8 @@ app.controller('controladorNuevaReferencia', function(servicioRest, config, $sco
         elemSelecionado:{}
     };
     
-    
-    $scope.ayuda = function(){
-      $scope.scroll=false
-      $scope.lanzarAyuda();
-        
-    };
-    
-    $scope.activarScroll=function(){
-        
-        $scope.scroll=true;
-        console.log("puto");
-        
+    $scope.activarScroll=function(){     
+        $scope.scroll=true;     
     };
     
     // esta funcion permite cargar el menu cuando hemos recargado la pagina
@@ -123,6 +113,12 @@ app.controller('controladorNuevaReferencia', function(servicioRest, config, $sco
     
     //---------AYUDA DE LA PAGINA--------
   
+    $scope.ayuda = function(){
+      $scope.scroll=false
+      $scope.lanzarAyuda();
+        
+    };
+    
     $scope.introOptions = config.introOptions;
     $scope.introOptions.steps = [
             {
@@ -131,67 +127,79 @@ app.controller('controladorNuevaReferencia', function(servicioRest, config, $sco
             },
             {
                 element: '#sociedad',
-                intro: 'Seleccione una sociedad de la lista disponible, si no encuentra la que busca consulte con su gerente'
+                intro: 'Seleccione una sociedad de la lista disponible, si no encuentra la que busca consulte con su gerente.'
             },
             {
                 element: '#sectorEmpresarial',
-                intro: 'Seleccione un Sector empresarial de la lista disponible, si no encuentra el que busca consulte con su gerente'
+                intro: 'Seleccione un Sector empresarial de la lista disponible, si no encuentra el que busca consulte con su gerente.'
             },
             {
                 element: '#actividad',
-                intro: 'Seleccione una actividad de la lista disponible, si no encuentra la que busca consulte con su gerente'
+                intro: 'Seleccione una actividad de la lista disponible, si no encuentra la que busca consulte con su gerente.'
             },
             {
                 element: '#tipoProyecto',
-                intro: 'Seleccione un tipo de proyecto de la lista disponible, si no encuentra el que busca consulte con su gerente'
+                intro: 'Seleccione un tipo de proyecto de la lista disponible, si no encuentra el que busca consulte con su gerente.'
             },
             {
                 element: '#fecha',
-                intro: 'Seleccione una fecha o escribala con el siguiente formato DD/MM/AAAA'
+                intro: 'Seleccione una fecha o escribala con el siguiente formato DD/MM/AAAA.'
             },
             {
                 element: '#duracion',
-                intro: 'Este campo debe rellenarse con la duracion del proyeccto en meses con un minimo de un mes'
+                intro: 'Este campo debe rellenarse con la duracion del proyeccto en meses con un minimo de un mes.'
             },
             {
                 element: '#denominacion',
-                intro: 'Escriba aqui un nombre que identifique y defina el proyecto'
+                intro: 'Escriba aqui un nombre que identifique y defina el proyecto.'
             }, 
             {
                 element: '#resumen',
-                intro: 'En este campo debe escribirse un resumen del alcance del proyecto'
+                intro: 'En este campo debe escribirse un resumen del alcance del proyecto.'
             },
             {
                 element: '#problematica',
-                intro: 'Debe rellenar este campo con una definicion detallada del problema que tiene el cliente'
+                intro: 'Debe rellenar este campo con una definicion detallada del problema que tiene el cliente.'
             },
             {
                 element: '#solucion',
-                intro: 'Debe rellenar este campo con la solucion optada por GFI para solucionar la problematica del cliente'
+                intro: 'Debe rellenar este campo con la solucion optada por GFI para solucionar la problematica del cliente.'
             },
             {
                 element: '#fte',
-                intro: 'Numero de horas empleadas en el proyecto con un minimo de 1'
+                intro: 'Numero de horas empleadas en el proyecto con un minimo de 1.'
             },
             {
                 element: '#certificado',
-                intro: 'Seleccione si el proyecto tiene un certificado'
+                intro: 'Seleccione si el proyecto tiene un certificado.'
             },
             {
                 element: '#comercial',
-                intro: 'Gerente encargado de la parte comercial del proyecto'
+                intro: 'Gerente encargado de la parte comercial del proyecto.'
             },
             {
                 element: '#tecnico',
-                intro: 'Gerente encargado de la parte tecnica del proyecto'
+                intro: 'Gerente encargado de la parte tecnica del proyecto.'
             },
             {
                 element: '#imagen',
-                intro: 'Debe pulsar aqui para subir una imagen del proyecto'
+                intro: 'Debe pulsar aqui para subir una imagen del proyecto.'
             },
             {
                 element: '#qrCode',
-                intro: 'En este campo se añadira una url para ponerla en el proyecto como un codigo QR'
+                intro: 'En este campo se añadira una url para ponerla en el proyecto como un codigo QR.'
+            },
+            {
+                element: '#tecnologias',
+                intro: 'Debe seleccionar una tecnologia valida de la lista disponible. La lista se mostrara a partir de la segunda letra escrita. <br/> Para guardar en borrador no sera necesario la validez de este cliente, pero si escribe algo invalido en este campo,  al guarda como borrador el cliente se guardara vacio como si no hubiera escrito nada.'
+            },
+            {
+                element: '#borrador',
+                intro: 'Al pulsar en este boton guarda la referencia en estado borrador, lo que implica que no todos los campos tienen que star rellenos y los campos invalidos simplemente no se guardaran.'
+            },
+            {
+                element: '#terminar',
+                intro: 'Si pulsa en terminar, debera tener todos los campos obligatorios (aquellos que tienen asteriscos) rellenos y de forma correcta, si esto no es asi saltara un mensaje que le indicara los errores para que pueda solucionarlos, cuando todo este correcto podra guardar la referencia para que la validen.'
             }
             ];
 

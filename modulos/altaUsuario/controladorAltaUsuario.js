@@ -156,6 +156,25 @@ app.controller('controladorAltaUsuario', function(servicioRest, config, $scope, 
 
       }, 100, 0, true);
     
+    
+    /* ayuda de nuevo usuario*/
+    $scope.introOptions = config.introOptions;
+    $scope.introOptions.steps = [
+            {
+                element: '#usuario',
+                intro: 'Debe seleccionar un usuario valido de la lista disponible. La lista se mostrara a partir de la tercera letra escrita. Si esta lista no aparece espere a que se carge la base de datos, esta estara completamente cargada cuando la imagen de debajo desaparezca '
+            },
+            {
+                element: '#rol',
+                intro: 'Debe escoger un rol para asignar al usuario seleccionado..'
+            },
+            {
+                element: '#crear',
+                intro: 'Al pulsar en este boton guarda el usuario seleccionado con el rol asignado en nuestra aplicacion.'
+            }
+            ];
+
+    
  
 });    
 	
