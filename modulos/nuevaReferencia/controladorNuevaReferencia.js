@@ -376,7 +376,15 @@ app.controller('controladorNuevaReferencia', function(servicioRest, config, $sco
         return result;
     }
     
-
+    $scope.forzarBlur = function () {
+        console.log("sg");
+        //$scope.fechaInicio.focus();
+    }
+    
+    $scope.comprobarFecha = function () {
+        console.log($scope.fechaInicio);
+    }
+    
     function validarCampos(){
         //Como los siguientes campos no los validar automñaticamente, los evaluamos aquí y actualizamos el array de errores
         compruebaCampo($scope.posicionEnArray, 'cliente');
@@ -411,18 +419,29 @@ app.controller('controladorNuevaReferencia', function(servicioRest, config, $sco
  //--------------------------------------------------------------------------------------------------------------------------   
     /* CREAR la referencia, puede tener estado: pendiente/borrador  */
     $scope.crearReferencia = function (estado, event) {
-        
-        
+        //console.log($scope.fechaInicio.getDate());
+        console.log('FECHA'+$scope.fechaInicio);
+        console.log('prueba'+$scope.referencia.duracionMeses);
+        console.log('TIPO: '+typeof $scope.fechaInicio);
         if ((estado==="pendiente" && validarCampos()) || estado==="borrador")
         {
             // Crea/Guarda una referencia dependiendo de su estado
-            if(undefined!=$scope.posicionEnArray)
-                $scope.referencia.cliente = $scope.catalogo.clientes[$scope.posicionEnArray].nombre;       
-            if(undefined!=$scope.posicionEnArray2)
-                $scope.referencia.tecnologias = $scope.catalogo.tecnologia[$scope.posicionEnArray2].codigo;              
+            if(undefined!=$scope.posicionEnArray){
+                $scope.referencia.cliente = $scope.catalogo.clientes[$scope.posicionEnArray].nombre;
+            }
+                      
+            var indiceTecnologia = $rootScope.tecnologias.indexOf($scope.catalogo.tecnologia[$scope.posicionEnArray2]);
+            if(undefined!=$scope.posicionEnArray2){
+                $scope.referencia.tecnologias = $scope.catalogo.tecnologia[$scope.posicionEnArray2].codigo;
+            }
+                
+            if(undefined!=$scope.fechaInicio){
+                $scope.referencia.fechaInicio = $scope.fechaInicio;
+            }
+                
             $scope.referencia.creadorReferencia = $rootScope.usuarioLS.name;
-            $scope.referencia.fechaInicio = $scope.fechaInicio;
             var fileReader = new FileReader();
+            
             if(undefined!=document.getElementById("botonFileReal").files[0]){
                 
                 var imagen = document.getElementById("botonFileReal").files[0];
