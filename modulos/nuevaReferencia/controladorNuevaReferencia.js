@@ -207,9 +207,7 @@ app.controller('controladorNuevaReferencia', function(servicioRest, config, $sco
             /*Modificacion Ruben para cargar autocomplete en listar*/
             $rootScope.clientes = $scope.catalogo.clientes;
             $rootScope.tecnologias = $scope.catalogo.tecnologia;
-            /*Modificacion Ruben para cargar autocomplete en listar*/
-            //cadenaClientes();
-            //cadenaTecnologia();         
+       
             cargarDatosClientes();
             cargarDatosTecnologias();
             
@@ -538,6 +536,9 @@ app.controller('controladorNuevaReferencia', function(servicioRest, config, $sco
     function cargarDatosValidarReferencia(){
         // este codigo rellena la referencia con la informacion guardada en $rootScope
         $scope.referencia = {};
+        console.log('HOLA: '+$rootScope.referenciaCargada.cliente);
+        $scope.referencia.cliente=$rootScope.referenciaCargada.cliente;
+        $scope.referencia.tecnologias=$rootScope.referenciaCargada.tecnologias;
         $scope.referencia.responsableComercial = {};
         $scope.referencia.sociedadSeleccionado = $rootScope.referenciaCargada.sociedad;
         $scope.referencia.sectorEmpresarialSeleccionado = $rootScope.referenciaCargada.sectorEmpresarial;
