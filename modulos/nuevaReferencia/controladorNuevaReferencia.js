@@ -490,11 +490,24 @@ app.controller('controladorNuevaReferencia', function(servicioRest, config, $sco
             
         }else{
             servicioRest.popupInfo(event,listarErrores());
+            //errores(event,listarErrores());
         }
                 
 
     }
     
+    errores = function(ev, listaErr) {
+        $mdDialog.show({
+            locals: {
+                listaErrores: listaErr
+            },
+            controller: 'controladorErroresReferencia',
+            templateUrl: 'modulos/dialogos/erroresReferencia.html',
+            parent: angular.element(document.body),
+            targetEvent: ev,
+            clickOutsideToClose: true
+        })
+    };
     
     /* ------------------------ VALIDAR UNA REFERENCIA ------------------------------- */
     
