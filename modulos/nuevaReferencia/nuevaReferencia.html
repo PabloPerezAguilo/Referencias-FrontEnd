@@ -11,8 +11,7 @@
                         <md-autocomplete name='cliente'
                                          tabindex='1'
                                          ng-disabled="deshabilitarForm"
-                                         md-no-cache="ctrl.noCache"
-                                         md-selected-item="ctrl.clientes.elemSeleccionado"
+                                            md-selected-item="ctrl.clientes.elemSeleccionado"
                                          md-search-text="ctrl.clientes.texto"
                                          md-selected-item-change="ctrl.selectedItemChange(item, 'cliente')"
                                          md-items="item in ctrl.filtrar(ctrl.clientes.texto, 'cliente') | limitTo : 8"
@@ -311,7 +310,6 @@
                         <md-autocomplete name='tecnologia'
                                          tabindex='19'
                                          ng-disabled="deshabilitarForm"
-                                         md-no-cache="ctrl.noCache"
                                          md-selected-item="ctrl.tecnologias.elemSeleccionado"
                                          md-search-text="ctrl.tecnologias.texto"
                                          md-selected-item-change="ctrl.selectedItemChange(item, 'tecnologia')"

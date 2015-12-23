@@ -13,7 +13,7 @@ app.controller('controladorNuevaReferencia', function(servicioRest, config, $sco
         lista:[],
         texto:'',
         elemSelecionado:{}
-    };;
+    };
     
     $scope.activarScroll=function(){     
         $scope.scroll=true;     
@@ -218,8 +218,8 @@ app.controller('controladorNuevaReferencia', function(servicioRest, config, $sco
             /*Modificacion Ruben para cargar autocomplete en listar*/
             //cadenaClientes();
             //cadenaTecnologia();         
-            $scope.datosClientes = cargarDatosClientes();
-            $scope.dsatosTecnologias = cargarDatosTecnologias();
+            cargarDatosClientes();
+            cargarDatosTecnologias();
             
             
             console.log("Catalogos Cargados");
@@ -238,18 +238,9 @@ app.controller('controladorNuevaReferencia', function(servicioRest, config, $sco
     
     /*-----------------------  AUTOCOMPLETE ----------------------- */
 
-    self.filtrar   = filtrar;
-    self.selectedItemChange = selectedItemChange;
+    
 
-    // ******************************
-    // Internal methods
-    // ******************************
-
-    /**
-     * Search for states... use $timeout to simulate
-     * remote dataservice call.
-     */
-    function filtrar (query, campo) {
+    self.filtrar =function (texto, campo) {
         var resultado;
         var array;
         if(campo==='cliente'){
@@ -262,16 +253,19 @@ app.controller('controladorNuevaReferencia', function(servicioRest, config, $sco
             $scope.posicionEnArray2=undefined;
         }
         
-        if(query!==""){
-            resultado=array.filter(creaFiltro(query));
+        if(texto!==""){
+            //fil
+            resultado=array.filter(function (cliente) {
+                return (cliente.display.toLowerCase().indexOf(texto.toLowerCase()) !==-1);
+            });
         }else{
             resultado=array;
-            var deferred;
         }
         return resultado;
     }
-
-    function selectedItemChange(item, campo) {
+    
+    
+    self.selectedItemChange=function (item, campo) {
         if(campo==='cliente'){
             $scope.posicionEnArray=self.clientes.lista.indexOf(item);
             console.log('Cliente: '+$scope.posicionEnArray);
@@ -280,44 +274,27 @@ app.controller('controladorNuevaReferencia', function(servicioRest, config, $sco
             console.log('Tecnología: '+$scope.posicionEnArray2);
         }
     }
-    /**
-     * Build `states` list of key/value pairs
-     */
+
     function cargarDatosClientes() {
-        var  result= $rootScope.clientes.map( function (cliente) {
+         self.clientes.lista= $rootScope.clientes.map( function (cliente) {
             return {
                 value: cliente.nombre,
                 display: cliente.nombre+' ('+cliente.siglas+')'
             };
         });
-        //cargamos los datos en el autocomplete a través del controlador
-        self.clientes.lista=result;
-        return result;            
+        //cargamos los datos en el autocomplete a través del controlador          
     }
     
     function cargarDatosTecnologias() {
-        var  result= $rootScope.tecnologias.map( function (tec) {
+        self.tecnologias.lista= $rootScope.tecnologias.map( function (tec) {
             return {
                 value: tec.descripcion,
                 display: tec.descripcion+' ('+tec.codigo+')'
             };
         });
-        //cargamos los datos en el autocomplete a través del controlador
-        self.tecnologias.lista=result;
-        return result;            
+        //cargamos los datos en el autocomplete a través del controlador          
     }
 
-    /**
-     * Create filter function for a query string
-     */
-    function creaFiltro(query) {
-        var lowercaseQuery = angular.lowercase(query);
-
-        return function filterFn(state) {
-            return (state.display.toLowerCase().indexOf(lowercaseQuery) !==-1);
-        };
-
-    }
  
     
     //-----------------------------------------------CREACIÓN---------------------------------------------------------------------
