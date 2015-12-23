@@ -11,8 +11,7 @@
                         <md-autocomplete name='cliente'
                                          tabindex='1'
                                          ng-disabled="deshabilitarForm"
-                                         md-no-cache="ctrl.noCache"
-                                         md-selected-item="ctrl.clientes.elemSeleccionado"
+                                            md-selected-item="ctrl.clientes.elemSeleccionado"
                                          md-search-text="ctrl.clientes.texto"
                                          md-selected-item-change="ctrl.selectedItemChange(item, 'cliente')"
                                          md-items="item in ctrl.filtrar(ctrl.clientes.texto, 'cliente') | limitTo : 8"
@@ -307,11 +306,10 @@
             <!--Tecnología-->
             <div class="contenedor-tecnologia">
                 <md-dialog-content class="selecTec" id="tecnologia">
-                    <div class="md-dialog-content">
+                    <div class="md-dialog-content"  id="tecnologias">
                         <md-autocomplete name='tecnologia'
                                          tabindex='19'
                                          ng-disabled="deshabilitarForm"
-                                         md-no-cache="ctrl.noCache"
                                          md-selected-item="ctrl.tecnologias.elemSeleccionado"
                                          md-search-text="ctrl.tecnologias.texto"
                                          md-selected-item-change="ctrl.selectedItemChange(item, 'tecnologia')"
@@ -340,8 +338,8 @@
             <div class="botonesCrear" layout-align="center">
           
              <!-- BOTONES ROL ADMINISTRADOR/MANTENIMIENTO -->
-                <md-button ng-show="mostrarBtCrear" class=botonesApp type="button"  ng-click="crearReferencia('borrador', $event)" tabindex="20">Guardar (Borrador)</md-button>
-                <md-button ng-show="mostrarBtCrear" class=botonesApp type="button"  ng-click="crearReferencia('pendiente', $event)" tabindex="21">Terminar</md-button>
+                <md-button id="borrador" ng-show="mostrarBtCrear" class=botonesApp type="button"  ng-click="crearReferencia('borrador', $event)" tabindex="20">Guardar (Borrador)</md-button>
+                <md-button id="terminar" ng-show="mostrarBtCrear" class=botonesApp type="button"  ng-click="crearReferencia('pendiente', $event)" tabindex="21">Terminar</md-button>
             <!-- BOTONES ROL VALIDADOR -->
                 <md-button ng-show="mostrarBtValidar" class=botonesApp type="button"  ng-click="rechazarReferencia()" tabindex="22">Rechazar</md-button>
                 <md-button ng-show="mostrarBtValidar" class=botonesApp type="button"  ng-click="validarReferencia()" tabindex="23">Validar</md-button>

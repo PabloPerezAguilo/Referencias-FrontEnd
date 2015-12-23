@@ -12,15 +12,33 @@ app.controller('controladorAltaUsuario', function(servicioRest, config, $scope, 
     
     
     $scope.crear = function (evento) {
-        console.log("guardando usuario en nuestra base de datos...");
-        $scope.usuario = {"nick":$scope.usuarios[$scope.posicionEnArray].nick, "name":$scope.usuarios[$scope.posicionEnArray].usuario, "role": $scope.role};
-        console.log($scope.usuario);
-        servicioRest.postUsuario($scope.usuario)
+        var mensaje='';
+        if($scope.posicionEnArray!==-1 && $scope.posicionEnArray!=undefined && $scope.role!=undefined){
+
+            $scope.usuario = {
+                "nick":$scope.usuarios[$scope.posicionEnArray].nick,
+                "name":$scope.usuarios[$scope.posicionEnArray].usuario,
+                "role":$scope.role
+            };
+            servicioRest.postUsuario($scope.usuario)
             .then(function(data) {
-             $scope.mensaje='Usuario creado con éxito';
-        }).catch(function(err) {
-            servicioRest.popupInfo(evento, 'Usuario ya existente');
-			});        
+                $scope.mensaje='Usuario creado con éxito';
+                servicioRest.popupInfo(evento,'Usuario creado con éxito');
+            })
+            .catch(function(err) {
+                servicioRest.popupInfo(evento,'Usuario ya existente');
+            });
+        }else{
+            if($scope.posicionEnArray===-1|| $scope.posicionEnArray==undefined){
+                mensaje+='<br/>Usuario inválido';
+            }
+            if($scope.role==undefined){
+                mensaje+='<br/>Rol inválido';
+            }
+            servicioRest.popupInfo(evento, mensaje);
+        }
+        
+        
     };
       
     /*Autocomplete*/ 
@@ -29,7 +47,7 @@ app.controller('controladorAltaUsuario', function(servicioRest, config, $scope, 
 		.getLDAP()
 		.then(function(response) {
 		$scope.usuarios = response;
-		cadenaUsuarios();
+        console.log(response);
 		$scope.arrayDatos = cargarDatos();
 		console.log("Ldap Cargado");
         $scope.activado = false;
@@ -39,61 +57,44 @@ app.controller('controladorAltaUsuario', function(servicioRest, config, $scope, 
 		 $scope.mensaje='error de cargar ldap';
 	});
 	
-	$scope.cadena = "";
 	self.pos = "";
 	self.querySearch = querySearch;
 	self.selectedItemChange = selectedItemChange;
 
 	// Busca el texto
 	function querySearch(text) {
-		var results = text ? $scope.arrayDatos.filter(filtrar(text)) : $scope.arrayDatos, deferred;
-		if (self.simulateQuery) {
-			deferred = $q.defer();
-			$timeout(function() {
-				deferred.resolve(results);
-			}, Math.random() * 1000, false);
-			return deferred.promise;
-		} else {
-			return results;
-		}
-	};
-
-	// Filtrar palabras según texto
-	function filtrar(texto) {
-		var lowercaseQuery = angular.lowercase(texto);
-		return function(state) {
-			$scope.texto = state.value.substring(state.value.indexOf("*"), 0);
-			return ($scope.texto.indexOf(lowercaseQuery) === 0 || $scope.texto.search(lowercaseQuery) > 0);
-		};
+        var results;
+        $scope.posicionEnArray= undefined;
+        if(''!==text){
+            results=$scope.arrayDatos.filter(function(usuario) {
+                return  -1!==usuario.display.toLowerCase().indexOf(text.toLowerCase()) ||
+                        -1!==usuario.mail.toLowerCase().indexOf(text.toLowerCase());
+            });
+        }else{
+            results= $scope.arrayDatos;
+        }
+        console.log('QUERY: '+$scope.posicionEnArray);
+        return results;
 	};
 
 	// Elemento seleccionado
 	function selectedItemChange(item) {
-		if (JSON.stringify(item) !== undefined) {
-			var pos = item.value.substring(item.value.length, item.value.indexOf("*") + 1);
-			$scope.posicionEnArray = pos;
-            console.log(item);
-		}
+        $scope.posicionEnArray = $scope.arrayDatos.indexOf(item);
+        console.log('ITEM: '+$scope.posicionEnArray);
 	};
 
 	// Carga de datos inicial
 	function cargarDatos() {
 		// Convertimos los datos a una sola cadena
-		var allStates = $scope.cadena;
-		return allStates.split(/, +/g).map(function(state) {
+		return $scope.usuarios.map(function(usuario) {
 			return {
-				value: state.toLowerCase(),
-				display: state.substring(state.indexOf("*"), 0)
+				value: usuario.usuario,
+                mail: usuario.mail,
+				display: usuario.usuario+' ('+usuario.nick+')'
 			};
 		});
 	};
 
-	// Convertir a una sola cadena
-	function cadenaUsuarios() {
-		for (var i = 0; i < $scope.usuarios.length; i++) {
-			$scope.cadena += $scope.usuarios[i].usuario + ' (' + $scope.usuarios[i].nick + ') ' + '*' + i + ', ';
-		}
-	};
 	
     
     $scope.data = {
@@ -154,6 +155,25 @@ app.controller('controladorAltaUsuario', function(servicioRest, config, $scope, 
         if ( counter++ % 4 == 0 ) j++;
 
       }, 100, 0, true);
+    
+    
+    /* ayuda de nuevo usuario*/
+    $scope.introOptions = config.introOptions;
+    $scope.introOptions.steps = [
+            {
+                element: '#usuario',
+                intro: 'Debe seleccionar un usuario valido de la lista disponible. La lista se mostrara a partir de la tercera letra escrita. Si esta lista no aparece espere a que se carge la base de datos, esta estara completamente cargada cuando la imagen de debajo desaparezca '
+            },
+            {
+                element: '#rol',
+                intro: 'Debe escoger un rol para asignar al usuario seleccionado..'
+            },
+            {
+                element: '#crear',
+                intro: 'Al pulsar en este boton guarda el usuario seleccionado con el rol asignado en nuestra aplicacion.'
+            }
+            ];
+
     
  
 });    
