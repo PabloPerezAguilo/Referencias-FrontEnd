@@ -203,9 +203,7 @@ app.controller('controladorNuevaReferencia', function(servicioRest, config, $sco
             }
             ];
 
-    setTimeout(function(){ 
-        $rootScope.lanzarAyuda=$scope.ayuda;
-    }, 1000);
+    servicioRest.actualizaAyuda($scope.ayuda);
     
     /* ----------------------- CARGA DE CATALOGOS ------------------------*/
     $scope.catalogo={};
@@ -216,7 +214,6 @@ app.controller('controladorNuevaReferencia', function(servicioRest, config, $sco
     servicioRest.getCatalogos().then(
         function(response) {
             $scope.catalogo = response;
-            /*Modificacion Ruben para cargar autocomplete en listar*/
             $rootScope.clientes = $scope.catalogo.clientes;
             $rootScope.tecnologias = $scope.catalogo.tecnologia;
        
@@ -426,14 +423,13 @@ app.controller('controladorNuevaReferencia', function(servicioRest, config, $sco
     
     //función para vaciar los campos una vez se cree la referencia
     function limpiarCampos(){
+        //iniciamos la referencia a un objeto vacío y los textos que no aprarecen en ell a string vacío
         $scope.referencia={};
-        $scope.referencia.denominacion='';
         self.clientes.texto='';
         self.tecnologias.texto='';
         erroresCometidos=Object.keys(erroresTotales);
-        //$location.reload();
     }
-    
+    //por reutilización se llamará a esta función cuando se quiera mandar la refrencia a crear al back
     function enviarReferencia(referencia, mensajeEstado){
         servicioRest.postReferencia(referencia)
         .then(function(data){

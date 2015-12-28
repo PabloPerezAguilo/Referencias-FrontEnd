@@ -240,7 +240,12 @@ function ServicioREST($http, $q, $rootScope, config, $mdDialog) {
         }
             
     }
-	
+	//---------Unificación de la actualización de la ayuda
+    function actualizaAyuda(funcAyuda){
+        setTimeout(function(){ 
+            $rootScope.lanzarAyuda=funcAyuda;
+        }, 1000);
+    }
 		
 	return {
 		getReferencias: getReferencias,
@@ -254,6 +259,7 @@ function ServicioREST($http, $q, $rootScope, config, $mdDialog) {
         postUsuario: postUsuario,
         postLogin : postLogin,
         popupInfo : popupInfo,
-        cargarMenu : cargarMenu
+        cargarMenu : cargarMenu,
+        actualizaAyuda : actualizaAyuda
 	}
 }
