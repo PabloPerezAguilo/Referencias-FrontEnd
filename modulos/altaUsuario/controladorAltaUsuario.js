@@ -46,16 +46,16 @@ app.controller('controladorAltaUsuario', function(servicioRest, config, $scope, 
     servicioRest
 		.getLDAP()
 		.then(function(response) {
-		$scope.usuarios = response;
-        console.log(response);
-		$scope.arrayDatos = cargarDatos();
-		console.log("Ldap Cargado");
-        $scope.activado = false;
-        toggleActivation();
-	})
+            $scope.usuarios = response;
+            console.log(response);
+            $scope.arrayDatos = cargarDatos();
+            console.log("Ldap Cargado");
+            $scope.activado = false;
+            toggleActivation();
+        })
 		.catch(function(err) {
-		 $scope.mensaje='error de cargar ldap';
-	});
+             $scope.mensaje='error de cargar ldap';
+        });
 	
 	self.pos = "";
 	self.querySearch = querySearch;

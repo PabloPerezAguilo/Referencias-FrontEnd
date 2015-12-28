@@ -461,14 +461,20 @@ app.controller('controladorNuevaReferencia', function(servicioRest, config, $sco
                     $scope.referencia.estado = estado; 
                     if(estado==="pendiente")
                     {
-                        $scope.mensajeEstado='Referencia creada pendiente de validar.'; 
+                        mensajeEstado='Referencia creada pendiente de validar.'; 
                     }
                     else if(estado==="borrador")
                     {
-                        $scope.mensajeEstado='Referencia creada en modo borrador.'; 
+                        mensajeEstado='Referencia creada en modo borrador.'; 
                     }
 
-                    servicioRest.postReferencia(referencia);
+                    servicioRest.postReferencia(referencia)
+                    .then(function(data){
+                        servicioRest.popupInfo(event, mensajeEstado);
+                    })
+                    .catch(function(data){
+                        servicioRest.popupInfo(event, 'Error al crear la referencia');
+                    });
                     console.log('referencia guardada');
                  }
             }else
@@ -484,8 +490,13 @@ app.controller('controladorNuevaReferencia', function(servicioRest, config, $sco
                         $scope.mensajeEstado='Referencia creada en modo borrador.'; 
                     }
 
-                    servicioRest.postReferencia(referencia);
-                    console.log('referencia guardada');
+                    servicioRest.postReferencia(referencia)
+                    .then(function(data){
+                        servicioRest.popupInfo(event, $scope.mensajeEstado);
+                    })
+                    .catch(function(data){
+                        servicioRest.popupInfo(event, 'Error al crear la referencia');
+                    });
             }
             
         }else{
@@ -557,32 +568,18 @@ app.controller('controladorNuevaReferencia', function(servicioRest, config, $sco
     function cargarDatosValidarReferencia(){
         // este codigo rellena la referencia con la informacion guardada en $rootScope
         $scope.referencia = {};
-        console.log('HOLA: '+$rootScope.referenciaCargada.cliente);
-        $scope.referencia.cliente=$rootScope.referenciaCargada.cliente;
-        $scope.referencia.tecnologias=$rootScope.referenciaCargada.tecnologias;
+        $scope.referencia=$rootScope.referenciaCargada;
         $scope.referencia.responsableComercial = {};
         $scope.referencia.sociedadSeleccionado = $rootScope.referenciaCargada.sociedad;
         $scope.referencia.sectorEmpresarialSeleccionado = $rootScope.referenciaCargada.sectorEmpresarial;
         $scope.referencia.tipoActividadSeleccionado = $rootScope.referenciaCargada.tipoActividad;
         $scope.referencia.tipoProyectoSeleccionado = $rootScope.referenciaCargada.tipoProyecto;
-        $scope.referencia.duracionMeses = $rootScope.referenciaCargada.duracionMeses;
-        $scope.referencia.denominacion = $rootScope.referenciaCargada.denominacion;
-        $scope.referencia.resumenProyecto = $rootScope.referenciaCargada.resumenProyecto;
-        $scope.referencia.problematicaCliente = $rootScope.referenciaCargada.problematicaCliente;
-        $scope.referencia.solucionGfi = $rootScope.referenciaCargada.solucionGfi;
-        $scope.referencia.fteTotales =$rootScope.referenciaCargada.fteTotales;
-        $scope.referencia.certificado = $rootScope.referenciaCargada.certificado;
         $scope.referencia.regPedidoAsociadoReferencia = $rootScope.referenciaCargada.regPedidoAsociadoReferencia;
         $scope.referencia.responsableComercialSeleccionado = $rootScope.referenciaCargada.responsableComercial;
         $scope.referencia.responsableTecnicoSeleccionado = $rootScope.referenciaCargada.responsableTecnico;
         $scope.valorQr = true;
         $scope.referencia.codigoQr = $rootScope.referenciaCargada.codigoQr;
         recargarQR();
-        
-        
-        
-        /*PRUEBA AUTCOMPLETE*/
-        $scope.clienteCargado = "pruebaCarga";
     }
 
   
