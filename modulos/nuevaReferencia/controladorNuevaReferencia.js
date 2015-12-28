@@ -537,22 +537,41 @@ app.controller('controladorNuevaReferencia', function(servicioRest, config, $sco
     $scope.rechazarReferencia = function () {
         console.log($rootScope.referenciaCargada);
         $rootScope.referenciaCargada.estado='borrador';
-
+        
+        rechazarRefPopUp(event)
+        
         //cambiamos el estado de la referencia a 'borrador'
-        servicioRest.updateReferencia($rootScope.referenciaCargada)
-            .then(function(data) {
-                servicioRest.popupInfo('', "Referencia rechazada, se avisará al responsable.");
-                //Redireccionamos al usuario a la ventana de listar Referencias Pendientes de Validar
-                $location.path('/listarReferencia');
-                console.log("Referencia rechazada");
-                /*Vaciamos referenciaCargada*/
-                $rootScope.referenciaCargada = null;
-            }).catch(function(err) {
-                servicioRest.popupInfo('',"Error al rechazar la referencia.");
-                console.log("Error al rechazar la referencia");
-            });  
+        
     }
     
+    rechazarRefPopUp = function(ev) {
+        $mdDialog.show({
+            controller: 'controladorRechazarReferencia',
+            templateUrl: 'modulos/popUp/rechazarReferencia.html',
+            parent: angular.element(document.body),
+            targetEvent: ev,
+            clickOutsideToClose: true
+        })
+        .then(function(razonRechazo) {
+            console.log(razonRechazo);
+                servicioRest.updateReferencia($rootScope.referenciaCargada)
+                .then(function(data) {
+                    servicioRest.popupInfo('', "Referencia rechazada, se avisará al responsable.");
+                    //Redireccionamos al usuario a la ventana de listar Referencias Pendientes de Validar
+                    $location.path('/listarReferencia');
+                    console.log("Referencia rechazada");
+                    /*Vaciamos referenciaCargada*/
+                    $rootScope.referenciaCargada = null;
+                }).catch(function(err) {
+                    servicioRest.popupInfo('',"Error al rechazar la referencia.");
+                    console.log("Error al rechazar la referencia");
+                });  
+            })/*
+        .catch(function(err) {
+                servicioRest.popupInfo('',"Error al rechazar la referencia.");
+                console.log("Error al rechazar la referencia");
+            })*/;
+    };
     
 
    /*-----------------------  Cargar datos en validarReferencia ----------------------- */

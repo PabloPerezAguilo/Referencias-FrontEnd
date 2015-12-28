@@ -574,7 +574,20 @@ md-select-menu.md-default-theme md-option[selected]:focus, md-select-menu md-opt
 .md-virtual-repeat-container.md-autocomplete-suggestions-container {
 	min-height: 26px;
 }*/
-/*--------------------- ESTILOS DIALOGOS -------------------------*/
+/*--------------------- ESTILOS POPUPS -------------------------*/
+#rejectDialog {
+  margin: auto;
+  min-width: 700px;
+  min-height: 300px;
+  max-height: 700px; }
+
+#textoRechazar {
+  display: block; }
+
+.botonesRechazar {
+  display: inline-block;
+  margin-left: 33%; }
+
 md-dialog {
   width: 400px;
   height: 220px;
