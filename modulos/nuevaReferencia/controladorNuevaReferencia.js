@@ -2,7 +2,6 @@ app.controller('controladorNuevaReferencia', function(servicioRest, config, $sco
     
     //--------------------- Objetos del controlador (clientes y tecnologias)
     var self = this;
-$scope.algo=true;
     // list of `state` value/display objects
     self.clientes={
         lista:[],
