@@ -34,7 +34,7 @@
             <br>     
 
             <!--    SOCIEDAD-->
-            <div id="sociedad" class="inBlock anchoAlturaCR">
+            <div id="sociedad" class="inBlock">
             <md-input-container title="Sociedad" class="fixed-size" >
                 <label>Sociedad *</label>
                 <md-select name="sociedad"
@@ -53,7 +53,7 @@
             </div>
             
             <!--   SECTOR-->
-            <div id="sectorEmpresarial" class="inBlock anchoAlturaCR">
+            <div id="sectorEmpresarial" class="inBlock">
             <md-input-container title="Sector Empresarial" class="fixed-size" >
                 <label>Sector Empresarial *</label>
                 <md-select name="SectorEmp"
@@ -70,7 +70,7 @@
             </div>
 
             <!--    Tipo de actividad-->
-            <div id="actividad" class="inBlock anchoAlturaCR">
+            <div id="actividad" class="inBlock">
             <md-input-container title="Tipo de actividad" class="fixed-size" >
                 <label>Tipo de actividad *</label>
                 <md-select
@@ -88,7 +88,7 @@
             </div>
 
             <!--    Tipo de proyecto-->
-            <div id="tipoProyecto" class="inBlock anchoAlturaCR" >
+            <div id="tipoProyecto" class="inBlock" >
             <md-input-container title="Tipo de proyecto" class="fixed-size" >
                 <label>Tipo de proyecto *</label>
                 <md-select
@@ -106,12 +106,12 @@
             </div>
             <!--    Fecha inicio-->
 
-            <div id="fecha" class="inBlock anchoAlturaCR" >
+            <div id="fecha" class="inBlock" >
             <!--Fecha inicio, Usa la libreria Moment.js-->
             <md-datepicker ng-model="fechaInicio" md-placeholder="Fecha de Inicio *" ng-disabled="deshabilitarForm"></md-datepicker>
             </div>
             <!--    Duración-->    
-            <div id="Duracion" class="inBlock anchoAlturaCR" >
+            <div id="Duracion" class="inBlock" >
             <md-input-container title="Duración en meses" class="fixed-size" >
                 <label>Duración en meses *</label>
                 <input name="duracion" type="number" min="1" ng-model="referencia.duracionMeses" ng-disabled="deshabilitarForm" ng-required="true"tabindex="7" ng-blur="actualizaErrores('duracion', useForm.duracion.$error)"/>
@@ -120,7 +120,7 @@
             </div>
 
             <!-- Denominación-->
-            <div id="denominacion" class="inBlock anchoAlturaCR"> 
+            <div id="denominacion" class="inBlock"> 
             <md-input-container title="Denominación" class="fixed-size-denominacion" ng-disabled="mostrarBtValidar===true" >
                 <label>Denominación *</label>
                 <textarea name="denominacion"
@@ -137,7 +137,7 @@
             </div>
 
             <!-- Resumen del proyecto-->
-            <div id="resumen" class="inBlock anchoAlturaCR">
+            <div id="resumen" class="inBlock">
                 <md-input-container title="Resumen del proyecto" class="fixed-size-resumen">
                     <label>Resumen proyecto *</label>
                     <textarea name="Rproyecto"
@@ -152,8 +152,8 @@
                     </textarea>
                 </md-input-container>
             </div>
-            <!--Problemática del cliente AQUIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII-->
-            <div id="problematica" class="inBlock anchoAlturaCR">
+            <!--Problemática del cliente-->
+            <div id="problematica" class="inBlock">
             <md-input-container title="Problemática del cliente" class="fixed-size-resumen">
                 <label>Problemática del cliente *</label>
                 <textarea name="ProblemaCliente"
@@ -170,7 +170,7 @@
             </div>
 
             <!--    Solución-->
-            <div id="solucion" class="inBlock anchoAlturaCR">
+            <div id="solucion" class="inBlock">
             <md-input-container title="Solución GFI" class="fixed-size-solucion" >
                 <label>Solución GFI *</label>
                 <textarea name="solGFI"
@@ -188,7 +188,7 @@
             </div>
 
             <!--    FTE totales-->   
-            <div id="fte" class="inBlock anchoAlturaCR">
+            <div id="fte" class="inBlock">
             <md-input-container title="FTE Totales" class="fixed-size" >
                 <label>FTE Totales *</label>
                 <input name="fteTotal"
@@ -203,7 +203,7 @@
             </div>
 
             <!--    Certificado-->
-            <div id="certificado" class="inBlock anchoAlturaCR">
+            <div id="certificado" class="inBlock">
             <md-input-container  title="Existe certificado del cliente" class="fixed-size">
                 <label class="labelCertificado">¿Existe certificado del cliente? *</label>
                 <md-radio-group name="certificado"
@@ -218,7 +218,7 @@
             </md-input-container>
             </div>
             <!--Registros-->
-            <div id="registrosPedido" class="inBlock anchoAlturaCR">
+            <div id="registrosPedido" class="inBlock">
             <md-input-container title="Registros de pedido asociados a la referencia" class="fixed-size">
                 <label>Registros de pedido asociados a la referencia *</label>
                 <input name="registroPedido" type="text" ng-disabled="deshabilitarForm" ng-model="referencia.regPedidoAsociadoReferencia" tabindex="14"/> <!--ng-required="true"-->
@@ -228,7 +228,7 @@
             <!--Responsables-->
             <div layout="row">
                 <!--Responsable comercial-->
-                <div id="Comercial" class="inBlock anchoAlturaCR">
+                <div id="Comercial" class="inBlock">
                 <md-input-container title="Responsable comercial" class="contCom">
                     <label>Responsable Comercial *</label>
 
@@ -247,7 +247,7 @@
                 </div>
 
                 <!--    Responsable Técnico--> 
-                <div id="Tecnico" class="inBlock anchoAlturaCR">
+                <div id="Tecnico" class="inBlock">
                 <md-input-container title="Responsable técnico" class="contTec" >
                     <label>Responsable Técnico *</label>
                     <md-select name="rbleTecnico"
