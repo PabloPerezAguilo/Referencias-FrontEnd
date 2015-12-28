@@ -73,8 +73,7 @@
             <div id="actividad" class="inBlock anchoAlturaCR">
             <md-input-container title="Tipo de actividad" class="fixed-size" >
                 <label>Tipo de actividad *</label>
-                <md-select
-                           name="tActividad"
+                <md-select name="tActividad"
                            ng-model="referencia.tipoActividad"
                            ng-required="true"
                            ng-disabled="deshabilitarForm"
@@ -91,8 +90,7 @@
             <div id="tipoProyecto" class="inBlock anchoAlturaCR" >
             <md-input-container title="Tipo de proyecto" class="fixed-size" >
                 <label>Tipo de proyecto *</label>
-                <md-select
-                           name="tProyecto"
+                <md-select name="tProyecto"
                            ng-model="referencia.tipoProyecto"
                            ng-required="true"
                            ng-disabled="deshabilitarForm"
@@ -108,7 +106,7 @@
 
             <div id="fecha" class="inBlock anchoAlturaCR" >
             <!--Fecha inicio, Usa la libreria Moment.js-->
-            <md-datepicker ng-model="fechaInicio" md-placeholder="Fecha de Inicio *" ng-disabled="deshabilitarForm"></md-datepicker>
+            <md-datepicker ng-model="referencia.fechaInicio" md-placeholder="Fecha de Inicio *" ng-disabled="deshabilitarForm"></md-datepicker>
             </div>
             <!--    Duración-->    
             <div id="Duracion" class="inBlock anchoAlturaCR" >
@@ -239,7 +237,9 @@
                                tabindex="15"
                                ng-blur="actualizaErrores('rbleComercial', useForm.rbleComercial.$error)"> 
 
-                        <md-option ng-value="responsableComercial.nombre" data-ng-repeat="responsableComercial in catalogo.comercial" ng-selected="responsableComercial.nombre == referencia.responsableComercialSeleccionado ? true:false">
+                        <md-option ng-value="responsableComercial.nombre"
+                                   data-ng-repeat="responsableComercial in catalogo.comercial"
+                                   ng-selected="responsableComercial.nombre == referencia.responsableComercialSeleccionado ? true:false">
                             {{ responsableComercial.nombre }} ({{ responsableComercial.login }})
                         </md-option>
                     </md-select>
@@ -335,11 +335,33 @@
             
             <div class="botonesCrear" layout-align="center">          
              <!-- BOTONES ROL ADMINISTRADOR/MANTENIMIENTO -->
-                <md-button id="borrador" ng-show="mostrarBtCrear" class=botonesApp type="button"  ng-click="crearReferencia('borrador', $event)" tabindex="20" ng-disabled="deshabilitarForm">Guardar (Borrador)</md-button>
-                <md-button id="terminar" ng-show="mostrarBtCrear" class=botonesApp type="button"  ng-click="crearReferencia('pendiente', $event)" tabindex="21" ng-disabled="deshabilitarForm">Terminar</md-button>
+                <md-button id="borrador"
+                           ng-show="mostrarBtCrear"
+                           class="botonesApp"
+                           type="button" 
+                           ng-click="crearReferencia('borrador', $event)"
+                           tabindex="20"
+                           ng-disabled="deshabilitarForm">
+                    Guardar (Borrador)
+                </md-button>
+                <md-button id="terminar"
+                           ng-show="mostrarBtCrear"
+                           class="botonesApp"
+                           type="button"
+                           ng-click="crearReferencia('pendiente', $event)"
+                           tabindex="21"
+                           ng-disabled="deshabilitarForm">
+                    Terminar
+                </md-button>
             <!-- BOTONES ROL VALIDADOR -->
-                <md-button ng-show="mostrarBtValidar" class=botonesApp type="button"  ng-click="rechazarReferencia()" tabindex="22">Rechazar</md-button>
-                <md-button ng-show="mostrarBtValidar" class=botonesApp type="button"  ng-click="validarReferencia()" tabindex="23">Validar</md-button>
+                <md-button ng-show="mostrarBtValidar"
+                           class="botonesApp"
+                           type="button"
+                           ng-click="rechazarReferencia()"
+                           tabindex="22">
+                    Rechazar
+                </md-button>
+                <md-button ng-show="mostrarBtValidar" class="botonesApp" type="button"  ng-click="validarReferencia()" tabindex="23">Validar</md-button>
                
             </div> 
         </div>
