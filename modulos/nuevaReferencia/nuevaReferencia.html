@@ -332,12 +332,8 @@
                     </div>
                 </md-dialog-content>
             </div>
-
-            <!--    Resultado de la operación-->
-            <p id="mensajeEstado" >{{mensajeEstado}}</p>
             
-            <div class="botonesCrear" layout-align="center">
-          
+            <div class="botonesCrear" layout-align="center">          
              <!-- BOTONES ROL ADMINISTRADOR/MANTENIMIENTO -->
                 <md-button id="borrador" ng-show="mostrarBtCrear" class=botonesApp type="button"  ng-click="crearReferencia('borrador', $event)" tabindex="20" ng-disabled="deshabilitarForm">Guardar (Borrador)</md-button>
                 <md-button id="terminar" ng-show="mostrarBtCrear" class=botonesApp type="button"  ng-click="crearReferencia('pendiente', $event)" tabindex="21" ng-disabled="deshabilitarForm">Terminar</md-button>
