@@ -18,6 +18,7 @@ app.controller('controladorNuevaReferencia', function(servicioRest, config, $sco
         $scope.scroll=true;     
     };
     
+    
     // esta funcion permite cargar el menu cuando hemos recargado la pagina
     //servicioRest.cargarMenu();
       
@@ -34,7 +35,7 @@ app.controller('controladorNuevaReferencia', function(servicioRest, config, $sco
     
     //inicializamos el valor del certificado a 'si' para que salga esa opción seleccionada por defecto
     $scope.referencia.certificado='si';
-    
+     
     //Objeto con todos los mensajes errores de validación en la entrada de datos a través de los campos
     //Se guardan en un objeto porque JS no acepta arrays asociativos
     erroresTotales={};
@@ -385,11 +386,6 @@ app.controller('controladorNuevaReferencia', function(servicioRest, config, $sco
         return result;
     }
     
-    $scope.forzarBlur = function () {
-        console.log("sg");
-        //$scope.fechaInicio.focus();
-    }
-    
     $scope.comprobarFecha = function () {
         console.log($scope.fechaInicio);
     }
@@ -398,7 +394,7 @@ app.controller('controladorNuevaReferencia', function(servicioRest, config, $sco
         //Como los siguientes campos no los validar automñaticamente, los evaluamos aquí y actualizamos el array de errores
         compruebaCampo($scope.posicionEnArray, 'cliente');
         compruebaCampo($scope.posicionEnArray2, 'tecnologia');
-        compruebaCampo($scope.fechaInicio, 'fecha');
+        compruebaCampo($scope.referencia.fechaInicio, 'fecha');
         
         //Los campos serán válidos cuando no tengamos errorres en los campos obligatorios. Por lo que comparamos con la longitud del array de errores
         return 0===erroresCometidos.length;    
@@ -427,6 +423,28 @@ app.controller('controladorNuevaReferencia', function(servicioRest, config, $sco
 
  //--------------------------------------------------------------------------------------------------------------------------   
     /* CREAR la referencia, puede tener estado: pendiente/borrador  */
+    
+    //función para vaciar los campos una vez se cree la referencia
+    function limpiarCampos(){
+        $scope.referencia={};
+        $scope.referencia.denominacion='';
+        self.clientes.texto='';
+        self.tecnologias.texto='';
+        erroresCometidos=Object.keys(erroresTotales);
+        //$location.reload();
+    }
+    
+    function enviarReferencia(referencia, mensajeEstado){
+        servicioRest.postReferencia(referencia)
+        .then(function(data){
+            servicioRest.popupInfo(event, mensajeEstado);
+            limpiarCampos();
+        })
+        .catch(function(data){
+            servicioRest.popupInfo(event, 'Error al crear la referencia');
+        });
+    }
+    
     $scope.crearReferencia = function (estado, event) {
         //console.log($scope.fechaInicio.getDate());
         console.log('FECHA'+$scope.fechaInicio);
@@ -444,11 +462,13 @@ app.controller('controladorNuevaReferencia', function(servicioRest, config, $sco
                 $scope.referencia.tecnologias = $scope.catalogo.tecnologia[$scope.posicionEnArray2].codigo;
             }
                 
-            if(undefined!=$scope.fechaInicio){
-                $scope.referencia.fechaInicio = $scope.fechaInicio;
-            }
-                
             $scope.referencia.creadorReferencia = $rootScope.usuarioLS.name;
+            
+            if(undefined!=$scope.referencia.regPedidoAsociadoReferencia){
+                $scope.referencia.regPedidoAsociadoReferencia = $scope.referencia.regPedidoAsociadoReferencia.split(/,[ ]*/);
+            }else{
+                $scope.referencia.regPedidoAsociadoReferencia = [];
+            }
             var fileReader = new FileReader();
             
             if(undefined!=document.getElementById("botonFileReal").files[0]){
@@ -464,14 +484,13 @@ app.controller('controladorNuevaReferencia', function(servicioRest, config, $sco
                     $scope.referencia.estado = estado; 
                     if(estado==="pendiente")
                     {
-                        $scope.mensajeEstado='Referencia creada pendiente de validar.'; 
+                        mensajeEstado='Referencia creada pendiente de validar.'; 
                     }
                     else if(estado==="borrador")
                     {
-                        $scope.mensajeEstado='Referencia creada en modo borrador.'; 
+                        mensajeEstado='Referencia creada en modo borrador.'; 
                     }
-
-                    servicioRest.postReferencia(referencia);
+                    enviarReferencia(referencia, mensajeEstado);
                     console.log('referencia guardada');
                  }
             }else
@@ -480,14 +499,13 @@ app.controller('controladorNuevaReferencia', function(servicioRest, config, $sco
                     $scope.referencia.estado = estado; 
                     if(estado==="pendiente")
                     {
-                        $scope.mensajeEstado='Referencia creada pendiente de validar.'; 
+                        mensajeEstado='Referencia creada pendiente de validar.'; 
                     }
                     else if(estado==="borrador")
                     {
-                        $scope.mensajeEstado='Referencia creada en modo borrador.';
+                        mensajeEstado='Referencia creada en modo borrador.';
                     }
-                    servicioRest.postReferencia(referencia);
-                    console.log('referencia guardada');
+                    enviarReferencia(referencia, mensajeEstado);
             }
             
         }else{
@@ -578,21 +596,12 @@ app.controller('controladorNuevaReferencia', function(servicioRest, config, $sco
     function cargarDatosValidarReferencia(){
         // este codigo rellena la referencia con la informacion guardada en $rootScope
         $scope.referencia = {};
-        console.log('HOLA: '+$rootScope.referenciaCargada.cliente);
-        $scope.referencia.cliente=$rootScope.referenciaCargada.cliente;
-        $scope.referencia.tecnologias=$rootScope.referenciaCargada.tecnologias;
+        $scope.referencia=$rootScope.referenciaCargada;
         $scope.referencia.responsableComercial = {};
         $scope.referencia.sociedadSeleccionado = $rootScope.referenciaCargada.sociedad;
         $scope.referencia.sectorEmpresarialSeleccionado = $rootScope.referenciaCargada.sectorEmpresarial;
         $scope.referencia.tipoActividadSeleccionado = $rootScope.referenciaCargada.tipoActividad;
         $scope.referencia.tipoProyectoSeleccionado = $rootScope.referenciaCargada.tipoProyecto;
-        $scope.referencia.duracionMeses = $rootScope.referenciaCargada.duracionMeses;
-        $scope.referencia.denominacion = $rootScope.referenciaCargada.denominacion;
-        $scope.referencia.resumenProyecto = $rootScope.referenciaCargada.resumenProyecto;
-        $scope.referencia.problematicaCliente = $rootScope.referenciaCargada.problematicaCliente;
-        $scope.referencia.solucionGfi = $rootScope.referenciaCargada.solucionGfi;
-        $scope.referencia.fteTotales =$rootScope.referenciaCargada.fteTotales;
-        $scope.referencia.certificado = $rootScope.referenciaCargada.certificado;
         $scope.referencia.regPedidoAsociadoReferencia = $rootScope.referenciaCargada.regPedidoAsociadoReferencia;
         $scope.referencia.responsableComercialSeleccionado = $rootScope.referenciaCargada.responsableComercial;
         $scope.referencia.responsableTecnicoSeleccionado = $rootScope.referenciaCargada.responsableTecnico;
