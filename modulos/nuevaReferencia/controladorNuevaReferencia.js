@@ -431,6 +431,7 @@ app.controller('controladorNuevaReferencia', function(servicioRest, config, $sco
         self.clientes.texto='';
         self.tecnologias.texto='';
         erroresCometidos=Object.keys(erroresTotales);
+        //$location.reload();
     }
     
     function enviarReferencia(referencia, mensajeEstado){
@@ -462,7 +463,12 @@ app.controller('controladorNuevaReferencia', function(servicioRest, config, $sco
             }
                 
             $scope.referencia.creadorReferencia = $rootScope.usuarioLS.name;
-            $scope.referencia.regPedidoAsociadoReferencia = $scope.referencia.regPedidoAsociadoReferencia.split(/,[ ]*/);
+            
+            if(undefined!=$scope.referencia.regPedidoAsociadoReferencia){
+                $scope.referencia.regPedidoAsociadoReferencia = $scope.referencia.regPedidoAsociadoReferencia.split(/,[ ]*/);
+            }else{
+                $scope.referencia.regPedidoAsociadoReferencia = [];
+            }
             var fileReader = new FileReader();
             
             if(undefined!=document.getElementById("botonFileReal").files[0]){
