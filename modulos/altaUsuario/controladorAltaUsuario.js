@@ -173,9 +173,9 @@ app.controller('controladorAltaUsuario', function(servicioRest, config, $scope, 
                 intro: 'Al pulsar en este boton guarda el usuario seleccionado con el rol asignado en nuestra aplicacion.'
             }
             ];
-
-    
- 
+    setTimeout(function(){ 
+        $rootScope.lanzarAyuda=$scope.lanzarAyuda;
+    }, 1000);
 });    
 	
 

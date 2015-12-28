@@ -53,7 +53,7 @@ app.run(function(servicioRest, $rootScope, $http, $location, $mdDialog) {
      
         $mdDialog.show({
          
-          templateUrl: 'modulos/dialogos/usuarioLogueado.html',
+          templateUrl: 'modulos/popUp/usuarioLogueado.html',
           parent: angular.element(document.body),
           clickOutsideToClose:true
         })
@@ -95,6 +95,7 @@ app.run(function(servicioRest, $rootScope, $http, $location, $mdDialog) {
         }
     });
 
+    
 });
 
 app.config(function($routeProvider) {
