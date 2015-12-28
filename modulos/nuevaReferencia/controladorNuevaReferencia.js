@@ -2,7 +2,6 @@ app.controller('controladorNuevaReferencia', function(servicioRest, config, $sco
     
     //--------------------- Objetos del controlador (clientes y tecnologias)
     var self = this;
-
     // list of `state` value/display objects
     self.clientes={
         lista:[],
@@ -203,6 +202,10 @@ app.controller('controladorNuevaReferencia', function(servicioRest, config, $sco
             }
             ];
 
+    setTimeout(function(){ 
+        $rootScope.lanzarAyuda=$scope.ayuda;
+    }, 1000);
+    
     /* ----------------------- CARGA DE CATALOGOS ------------------------*/
     $scope.catalogo={};
     $scope.title = "";
@@ -487,7 +490,7 @@ app.controller('controladorNuevaReferencia', function(servicioRest, config, $sco
                     }
                     else if(estado==="borrador")
                     {
-                        $scope.mensajeEstado='Referencia creada en modo borrador.'; 
+                        $scope.mensajeEstado='Referencia creada en modo borrador.';
                     }
 
                     servicioRest.postReferencia(referencia)
@@ -513,7 +516,7 @@ app.controller('controladorNuevaReferencia', function(servicioRest, config, $sco
                 listaErrores: listaErr
             },
             controller: 'controladorErroresReferencia',
-            templateUrl: 'modulos/dialogos/erroresReferencia.html',
+            templateUrl: 'modulos/popUp/erroresReferencia.html',
             parent: angular.element(document.body),
             targetEvent: ev,
             clickOutsideToClose: true
