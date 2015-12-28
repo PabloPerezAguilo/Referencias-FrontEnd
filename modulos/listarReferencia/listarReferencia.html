@@ -8,9 +8,9 @@
         <th>SOLUCIÓN GFI</th>
       </tr>
       <tr ng-repeat="referencia in referencias | filter: paginate" ng-click="abrirReferenciaPendiente($index, referencias)" id="selPendientes">
-        <td id="prueba">{{referencia.cliente }} </td>
-        <td id="prueba">{{referencia.denominacion}}</td>		
-        <td id="prueba">{{referencia.solucionGfi}}</td>
+        <td class="listarReferencia">{{referencia.cliente }} </td>
+        <td class="listarReferencia">{{referencia.denominacion.substring(0,30)}}</td>		
+        <td class="listarReferencia">{{referencia.solucionGfi.substring(0,30)}}</td>
       </tr>
     </table>
     <div class="contenedorPaginacion">
