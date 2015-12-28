@@ -108,7 +108,7 @@
 
             <div id="fecha" class="inBlock anchoAlturaCR" >
             <!--Fecha inicio, Usa la libreria Moment.js-->
-            <md-datepicker ng-model="fechaInicio" md-placeholder="Fecha de Inicio *" ></md-datepicker>
+            <md-datepicker ng-model="fechaInicio" md-placeholder="Fecha de Inicio *" ng-readonly="algo"></md-datepicker>
             </div>
             <!--    Duración-->    
             <div id="Duracion" class="inBlock anchoAlturaCR" >
@@ -334,9 +334,6 @@
 
             <!--    Resultado de la operación-->
             <p id="mensajeEstado" >{{mensajeEstado}}</p>
-                
-                
-            <button ng-click="ayuda();"  >Demo</button>
             
             <div class="botonesCrear" layout-align="center">
           
