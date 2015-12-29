@@ -376,9 +376,9 @@ app.controller('controladorNuevaReferencia', function(servicioRest, config, $sco
     function listarErrores(){
         
         console.log(erroresCometidos);
-        var result="<h1>Errores en la entrada de datos</h1><br>"
+        var result=[];
         for (var i=0;i<erroresCometidos.length; i++){
-            result+='<p>'+erroresTotales[erroresCometidos[i]]+'</p>';
+            result.push(erroresTotales[erroresCometidos[i]]);
         }
         return result;
     }
@@ -505,8 +505,8 @@ app.controller('controladorNuevaReferencia', function(servicioRest, config, $sco
             }
             
         }else{
-            servicioRest.popupInfo(event,listarErrores());
-            //errores(event,listarErrores());
+            //servicioRest.popupInfo(event,listarErrores());
+            errores(event,listarErrores());
         }
                 
 
@@ -551,22 +551,41 @@ app.controller('controladorNuevaReferencia', function(servicioRest, config, $sco
     $scope.rechazarReferencia = function () {
         console.log($rootScope.referenciaCargada);
         $rootScope.referenciaCargada.estado='borrador';
-
+        
+        rechazarRefPopUp(event)
+        
         //cambiamos el estado de la referencia a 'borrador'
-        servicioRest.updateReferencia($rootScope.referenciaCargada)
-            .then(function(data) {
-                servicioRest.popupInfo('', "Referencia rechazada, se avisará al responsable.");
-                //Redireccionamos al usuario a la ventana de listar Referencias Pendientes de Validar
-                $location.path('/listarReferencia');
-                console.log("Referencia rechazada");
-                /*Vaciamos referenciaCargada*/
-                $rootScope.referenciaCargada = null;
-            }).catch(function(err) {
-                servicioRest.popupInfo('',"Error al rechazar la referencia.");
-                console.log("Error al rechazar la referencia");
-            });  
+        
     }
     
+    rechazarRefPopUp = function(ev) {
+        $mdDialog.show({
+            controller: 'controladorRechazarReferencia',
+            templateUrl: 'modulos/popUp/rechazarReferencia.html',
+            parent: angular.element(document.body),
+            targetEvent: ev,
+            clickOutsideToClose: true
+        })
+        .then(function(razonRechazo) {
+            console.log(razonRechazo);
+                servicioRest.updateReferencia($rootScope.referenciaCargada)
+                .then(function(data) {
+                    servicioRest.popupInfo('', "Referencia rechazada, se avisará al responsable.");
+                    //Redireccionamos al usuario a la ventana de listar Referencias Pendientes de Validar
+                    $location.path('/listarReferencia');
+                    console.log("Referencia rechazada");
+                    /*Vaciamos referenciaCargada*/
+                    $rootScope.referenciaCargada = null;
+                }).catch(function(err) {
+                    servicioRest.popupInfo('',"Error al rechazar la referencia.");
+                    console.log("Error al rechazar la referencia");
+                });  
+            })/*
+        .catch(function(err) {
+                servicioRest.popupInfo('',"Error al rechazar la referencia.");
+                console.log("Error al rechazar la referencia");
+            })*/;
+    };
     
 
    /*-----------------------  Cargar datos en validarReferencia ----------------------- */
