@@ -49,12 +49,12 @@ app.controller('controladorNuevaReferencia', function(servicioRest, config, $sco
     erroresTotales['fecha']="Se debe seleccionar una fecha de inicio";
 
     erroresTotales['duracion']="Se debe seleccionar una duración en meses mínima de 1 mes";
-    erroresTotales['denominacion']="El campo denominación no puede estar vacío";
+    erroresTotales['denominacion']="El campo denominación no puede estar vacío ni superar el límite de caracteres";
 
-    erroresTotales['Rproyecto']="El campo resumen del proyecto no puede estar vacío";
-    erroresTotales['ProblemaCliente']="El campo problemática del cliente no puede estar vacío";
+    erroresTotales['Rproyecto']="El campo resumen del proyecto no puede estar vacío ni superar el límite de caracteres";
+    erroresTotales['ProblemaCliente']="El campo problemática del cliente no puede estar vacío ni superar el límite de caracteres";
 
-    erroresTotales['solGFI']="El campo Solución GFI no puede estar vacío";
+    erroresTotales['solGFI']="El campo Solución GFI no puede estar vacío ni superar el límite de caracteres";
     
     erroresTotales['fteTotal']="Se debe seleccionar una cantidad de FTE totales mínima de 1 FTE";
 
