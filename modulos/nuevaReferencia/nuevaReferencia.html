@@ -125,7 +125,6 @@
                           type="text"
                           ng-model="referencia.denominacion"
                           ng-disabled="deshabilitarForm" 
-                          max="100"
                           md-maxlength="100"
                           rows="2"
                           ng-required="true"tabindex="8"
@@ -138,12 +137,12 @@
             <div id="resumen" class="inBlock">
                 <md-input-container title="Resumen del proyecto" class="fixed-size-resumen">
                     <label>Resumen proyecto *</label>
-                    <textarea name="Rproyecto"
+                    <textarea 
+                              name="Rproyecto"
                               ng-model="referencia.resumenProyecto"
                               ng-disabled="deshabilitarForm"
-                              max="300"
                               md-maxlength="300"
-                              rows="5"
+                              rows="7"
                               ng-required="true"
                               tabindex="9"
                               ng-blur="actualizaErrores('Rproyecto', useForm.Rproyecto.$error)">
@@ -151,15 +150,15 @@
                 </md-input-container>
             </div>
             <!--Problemática del cliente-->
-            <div id="problematica" class="inBlock">
+            <div id="problematica" class="inBlock tamanioGrande">
             <md-input-container title="Problemática del cliente" class="fixed-size-resumen">
                 <label>Problemática del cliente *</label>
-                <textarea name="ProblemaCliente"
+                <textarea 
+                          name="ProblemaCliente"
                           ng-model="referencia.problematicaCliente"
                           ng-disabled="deshabilitarForm"
-                          max="300"
                           md-maxlength="300"
-                          rows="5"
+                          rows="7"
                           ng-required="true"
                           tabindex="10"
                           ng-blur="actualizaErrores('ProblemaCliente', useForm.ProblemaCliente.$error)">
@@ -175,7 +174,6 @@
                           type="text"
                           ng-model="referencia.solucionGfi"
                           ng-disabled="deshabilitarForm"
-                          max="500"
                           md-maxlength="500"
                           rows="6"
                           ng-required="true"
