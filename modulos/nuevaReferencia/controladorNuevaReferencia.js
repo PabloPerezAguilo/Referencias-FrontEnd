@@ -376,9 +376,9 @@ app.controller('controladorNuevaReferencia', function(servicioRest, config, $sco
     function listarErrores(){
         
         console.log(erroresCometidos);
-        var result="<h1>Errores en la entrada de datos</h1><br>"
+        var result=[];
         for (var i=0;i<erroresCometidos.length; i++){
-            result+='<p>'+erroresTotales[erroresCometidos[i]]+'</p>';
+            result.push(erroresTotales[erroresCometidos[i]]);
         }
         return result;
     }
@@ -505,8 +505,8 @@ app.controller('controladorNuevaReferencia', function(servicioRest, config, $sco
             }
             
         }else{
-            servicioRest.popupInfo(event,listarErrores());
-            //errores(event,listarErrores());
+            //servicioRest.popupInfo(event,listarErrores());
+            errores(event,listarErrores());
         }
                 
 
