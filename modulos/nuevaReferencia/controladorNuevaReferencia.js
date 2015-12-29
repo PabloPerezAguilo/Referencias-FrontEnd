@@ -49,12 +49,12 @@ app.controller('controladorNuevaReferencia', function(servicioRest, config, $sco
     erroresTotales['fecha']="Se debe seleccionar una fecha de inicio";
 
     erroresTotales['duracion']="Se debe seleccionar una duración en meses mínima de 1 mes";
-    erroresTotales['denominacion']="El campo denominación no puede estar vacío";
+    erroresTotales['denominacion']="El campo denominación no puede estar vacío ni superar el límite de caracteres";
 
-    erroresTotales['Rproyecto']="El campo resumen del proyecto no puede estar vacío";
-    erroresTotales['ProblemaCliente']="El campo problemática del cliente no puede estar vacío";
+    erroresTotales['Rproyecto']="El campo resumen del proyecto no puede estar vacío ni superar el límite de caracteres";
+    erroresTotales['ProblemaCliente']="El campo problemática del cliente no puede estar vacío ni superar el límite de caracteres";
 
-    erroresTotales['solGFI']="El campo Solución GFI no puede estar vacío";
+    erroresTotales['solGFI']="El campo Solución GFI no puede estar vacío ni superar el límite de caracteres";
     
     erroresTotales['fteTotal']="Se debe seleccionar una cantidad de FTE totales mínima de 1 FTE";
 
@@ -203,9 +203,7 @@ app.controller('controladorNuevaReferencia', function(servicioRest, config, $sco
             }
             ];
 
-    setTimeout(function(){ 
-        $rootScope.lanzarAyuda=$scope.ayuda;
-    }, 1000);
+    servicioRest.actualizaAyuda($scope.ayuda);
     
     /* ----------------------- CARGA DE CATALOGOS ------------------------*/
     $scope.catalogo={};
@@ -216,7 +214,6 @@ app.controller('controladorNuevaReferencia', function(servicioRest, config, $sco
     servicioRest.getCatalogos().then(
         function(response) {
             $scope.catalogo = response;
-            /*Modificacion Ruben para cargar autocomplete en listar*/
             $rootScope.clientes = $scope.catalogo.clientes;
             $rootScope.tecnologias = $scope.catalogo.tecnologia;
        
@@ -379,9 +376,9 @@ app.controller('controladorNuevaReferencia', function(servicioRest, config, $sco
     function listarErrores(){
         
         console.log(erroresCometidos);
-        var result="<h1>Errores en la entrada de datos</h1><br>"
+        var result=[];
         for (var i=0;i<erroresCometidos.length; i++){
-            result+='<p>'+erroresTotales[erroresCometidos[i]]+'</p>';
+            result.push(erroresTotales[erroresCometidos[i]]);
         }
         return result;
     }
@@ -426,14 +423,13 @@ app.controller('controladorNuevaReferencia', function(servicioRest, config, $sco
     
     //función para vaciar los campos una vez se cree la referencia
     function limpiarCampos(){
+        //iniciamos la referencia a un objeto vacío y los textos que no aprarecen en ell a string vacío
         $scope.referencia={};
-        $scope.referencia.denominacion='';
         self.clientes.texto='';
         self.tecnologias.texto='';
         erroresCometidos=Object.keys(erroresTotales);
-        //$location.reload();
     }
-    
+    //por reutilización se llamará a esta función cuando se quiera mandar la refrencia a crear al back
     function enviarReferencia(referencia, mensajeEstado){
         servicioRest.postReferencia(referencia)
         .then(function(data){
@@ -509,8 +505,8 @@ app.controller('controladorNuevaReferencia', function(servicioRest, config, $sco
             }
             
         }else{
-            servicioRest.popupInfo(event,listarErrores());
-            //errores(event,listarErrores());
+            //servicioRest.popupInfo(event,listarErrores());
+            errores(event,listarErrores());
         }
                 
 
@@ -555,22 +551,41 @@ app.controller('controladorNuevaReferencia', function(servicioRest, config, $sco
     $scope.rechazarReferencia = function () {
         console.log($rootScope.referenciaCargada);
         $rootScope.referenciaCargada.estado='borrador';
-
+        
+        rechazarRefPopUp(event)
+        
         //cambiamos el estado de la referencia a 'borrador'
-        servicioRest.updateReferencia($rootScope.referenciaCargada)
-            .then(function(data) {
-                servicioRest.popupInfo('', "Referencia rechazada, se avisará al responsable.");
-                //Redireccionamos al usuario a la ventana de listar Referencias Pendientes de Validar
-                $location.path('/listarReferencia');
-                console.log("Referencia rechazada");
-                /*Vaciamos referenciaCargada*/
-                $rootScope.referenciaCargada = null;
-            }).catch(function(err) {
-                servicioRest.popupInfo('',"Error al rechazar la referencia.");
-                console.log("Error al rechazar la referencia");
-            });  
+        
     }
     
+    rechazarRefPopUp = function(ev) {
+        $mdDialog.show({
+            controller: 'controladorRechazarReferencia',
+            templateUrl: 'modulos/popUp/rechazarReferencia.html',
+            parent: angular.element(document.body),
+            targetEvent: ev,
+            clickOutsideToClose: true
+        })
+        .then(function(razonRechazo) {
+            console.log(razonRechazo);
+                servicioRest.updateReferencia($rootScope.referenciaCargada)
+                .then(function(data) {
+                    servicioRest.popupInfo('', "Referencia rechazada, se avisará al responsable.");
+                    //Redireccionamos al usuario a la ventana de listar Referencias Pendientes de Validar
+                    $location.path('/listarReferencia');
+                    console.log("Referencia rechazada");
+                    /*Vaciamos referenciaCargada*/
+                    $rootScope.referenciaCargada = null;
+                }).catch(function(err) {
+                    servicioRest.popupInfo('',"Error al rechazar la referencia.");
+                    console.log("Error al rechazar la referencia");
+                });  
+            })/*
+        .catch(function(err) {
+                servicioRest.popupInfo('',"Error al rechazar la referencia.");
+                console.log("Error al rechazar la referencia");
+            })*/;
+    };
     
 
    /*-----------------------  Cargar datos en validarReferencia ----------------------- */
