@@ -142,6 +142,28 @@ function ServicioREST($http, $q, $rootScope, config, $mdDialog) {
 		return promise;
 	}
     
+    /*
+    function updateReferencia(key, estado, motivoRechazo) {
+		var defered = $q.defer();
+		var promise = defered.promise;
+        datos = {'estado' : estado, 'motivoRechazo' : motivoRechazo}
+        console.log(datos);
+		$http({
+			method: 'PUT',
+			url: url + '/referencia/' + key,
+            data: datos
+		})
+		.success(function(data, status, headers, config) {
+			defered.resolve(data);
+		})
+		.error(function(data, status, headers, config) {
+			tratarError(data, status,defered);
+		});
+
+		return promise;
+	}
+    */
+    
     function deleteReferencia(key) {
 		var defered = $q.defer();
 		var promise = defered.promise;

@@ -598,14 +598,13 @@ app.controller('controladorNuevaReferencia', function(servicioRest, config, $sco
         // este codigo rellena la referencia con la informacion guardada en $rootScope
         $scope.referencia = {};
         $scope.referencia=$rootScope.referenciaCargada;
-        $scope.referencia.responsableComercial = {};
-        $scope.referencia.sociedadSeleccionado = $rootScope.referenciaCargada.sociedad;
-        $scope.referencia.sectorEmpresarialSeleccionado = $rootScope.referenciaCargada.sectorEmpresarial;
-        $scope.referencia.tipoActividadSeleccionado = $rootScope.referenciaCargada.tipoActividad;
-        $scope.referencia.tipoProyectoSeleccionado = $rootScope.referenciaCargada.tipoProyecto;
-        $scope.referencia.regPedidoAsociadoReferencia = $rootScope.referenciaCargada.regPedidoAsociadoReferencia;
-        $scope.referencia.responsableComercialSeleccionado = $rootScope.referenciaCargada.responsableComercial;
-        $scope.referencia.responsableTecnicoSeleccionado = $rootScope.referenciaCargada.responsableTecnico;
+        $scope.sociedadSeleccionado = $rootScope.referenciaCargada.sociedad;
+        $scope.sectorEmpresarialSeleccionado = $rootScope.referenciaCargada.sectorEmpresarial;
+        $scope.tipoActividadSeleccionado = $rootScope.referenciaCargada.tipoActividad;
+        $scope.tipoProyectoSeleccionado = $rootScope.referenciaCargada.tipoProyecto;
+        $scope.regPedidoAsociadoReferencia = $rootScope.referenciaCargada.regPedidoAsociadoReferencia;
+        $scope.responsableComercialSeleccionado = $rootScope.referenciaCargada.responsableComercial;
+        $scope.responsableTecnicoSeleccionado = $rootScope.referenciaCargada.responsableTecnico;
         $scope.valorQr = true;
         $scope.referencia.codigoQr = $rootScope.referenciaCargada.codigoQr;
         recargarQR();
