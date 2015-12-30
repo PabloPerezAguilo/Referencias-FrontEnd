@@ -1,14 +1,17 @@
 'use strict';
-
+//console.log('**************************************************************');
+//console.log('Antes de app');
 var app = angular.module('ref', ['ngRoute','ngMaterial','ngMdIcons','ngMessages','ja.qr','ui.bootstrap','angular-intro']);
+//console.log('Después de app: ');
+//console.log(app);
 app.run(function(servicioRest, $rootScope, $http, $location, $mdDialog) {
 
-    
+    //console.log('Inicio app');
     $rootScope.menu=false;
     // Opcion que determinará desde donde se accede a la pagina de nuevaReferencia para saber que cabecera y botones ponerle.
     $rootScope.actualizarTitulo = function(){
         $rootScope.opcion = 'nueva'; 
-        console.log('titulo cambiado');
+        //console.log('titulo cambiado');
     };
     
 	// Establecemos las cabeceras por defecto. Las cabecera Authorization se modificara cuando el usuario se loge
@@ -39,7 +42,7 @@ app.run(function(servicioRest, $rootScope, $http, $location, $mdDialog) {
                 })
                 .catch(function(err) {
                     // Debemos tratar el error   
-	               console.log("Error");
+	               //console.log("Error");
 
                 });
 	};
@@ -98,8 +101,10 @@ app.run(function(servicioRest, $rootScope, $http, $location, $mdDialog) {
 
     
 });
-
+//console.log('Fin app.run');
+//console.log('Antes de app.config');
 app.config(function($routeProvider) {
+    //console.log('Inicio app.config');
 
 	$routeProvider
     .when('/', {
@@ -137,6 +142,7 @@ app.config(function($routeProvider) {
 		redirectTo: "/pageNotFound"
 	});
 });
+//console.log('Fin app.config');
 
 app.service('servicioRest', ServicioREST);
 
