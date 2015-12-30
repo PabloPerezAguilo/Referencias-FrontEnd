@@ -5,7 +5,6 @@ app.run(function(servicioRest, $rootScope, $http, $location, $mdDialog) {
 
     
     $rootScope.menu=false;
-    
     // Opcion que determinará desde donde se accede a la pagina de nuevaReferencia para saber que cabecera y botones ponerle.
     $rootScope.actualizarTitulo = function(){
         $rootScope.opcion = 'nueva'; 
