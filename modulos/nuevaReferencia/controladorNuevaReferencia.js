@@ -2,6 +2,11 @@ app.controller('controladorNuevaReferencia', function(servicioRest, config, $sco
     
     //--------------------- Objetos del controlador (clientes y tecnologias)
     var self = this;
+    //Se obtienen los elementos que tengan la clase "md-datepicker-input" se obtiene el primer elemento (solo hay uno)
+    //y le añades el atributo "readonly" a true. Esto se hace porque el datepicker crea este elemento en ejecucion
+    //y no puedes establecer este atributo a mano en el html, debes añadirlo dinamicamente en ejecucion,
+    //que es el momento en el que se crea el elemento
+   document.getElementsByClassName("md-datepicker-input")[0].setAttribute("readonly","true");
     // list of `state` value/display objects
     self.clientes={
         lista:[],
