@@ -215,6 +215,8 @@ function ServicioREST($http, $q, $rootScope, config, $mdDialog) {
     function cargarMenu(prueba){
         if(localStorage.getItem("role") !== null || prueba === 1){
             if( $rootScope.usuarioLS.role === "ROLE_ADMINISTRADOR"){
+                $rootScope.menuTecnologias = true;
+                $rootScope.menuGestionTecnologias = true;
                 $rootScope.menuUsuarios = true;
                 $rootScope.menuUsuariosAlta = true;
                 $rootScope.menuUsuariosGestion = true;
