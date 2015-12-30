@@ -564,7 +564,7 @@ app.controller('controladorNuevaReferencia', function(servicioRest, config, $sco
             templateUrl: 'modulos/popUp/rechazarReferencia.html',
             parent: angular.element(document.body),
             targetEvent: ev,
-            clickOutsideToClose: true
+            clickOutsideToClose: false
         })
         .then(function(razonRechazo) {
             console.log(razonRechazo);
