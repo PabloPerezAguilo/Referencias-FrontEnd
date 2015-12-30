@@ -27,6 +27,15 @@
         </md-menu-content>
     </md-menu>
     <md-menu-divider></md-menu-divider>
+    <md-menu ng-show="menuTecnologias">
+        <md-button ng-click="$mdOpenMenu()">Tecnologias</md-button>
+        <md-menu-content>
+            <md-menu-item ng-show="menuGestionTecnologias">
+                <a class="textoHipervinculo" href="#/gestionTecnologias"><md-button>Gestión</md-button></a>
+            </md-menu-item>
+        </md-menu-content>
+    </md-menu>
+    <md-menu-divider></md-menu-divider>
 </data>
 <div layout="row" class="iconosMenu">
     <ng-md-icon title="ayuda" icon="live_help" style="fill: #242424" size="25" ng-click="lanzarAyuda()"></ng-md-icon>

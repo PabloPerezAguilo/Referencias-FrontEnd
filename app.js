@@ -71,6 +71,8 @@ app.run(function(servicioRest, $rootScope, $http, $location, $mdDialog) {
         $rootScope.menuUsuarios = false;
         $rootScope.menuUsuariosAlta = false;
         $rootScope.menuUsuariosGestion = false;
+        $rootScope.menuTecnologias = false;
+        $rootScope.menuGestionTecnologias = false;
         $rootScope.referenciaCargada = null;
     }
     
@@ -124,6 +126,10 @@ app.config(function($routeProvider) {
     .when('/bienvenida', {
         templateUrl: 'modulos/bienvenida/bienvenida.html',
         controller: 'controladorBienvenida'
+    })
+    .when('/gestionTecnologias', {
+        templateUrl: 'modulos/gestionTecnologias/gestionTecnologias.html',
+        controller: 'controladorGestionTecnologias'
     })
 	.when('/pageNotFound', {
 		templateUrl: 'modulos/error/templateError.html'
