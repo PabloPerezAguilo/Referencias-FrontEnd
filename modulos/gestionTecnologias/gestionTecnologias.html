@@ -9,7 +9,9 @@
     {{node.nombre}}
     <a class="pull-right btn btn-danger btn-xs" data-nodrag ng-click="remove(this)"><span
         class="glyphicon glyphicon-remove"></span></a>
-    <a class="pull-right btn btn-primary btn-xs" data-nodrag ng-click="newSubItem(this)" style="margin-right: 8px;"><span
+    <a class="pull-right btn btn-primary btn-xs" data-nodrag ng-click="newSubItem(this)" style="margin-right: 8px;" ng-if="node.clase=='nodo'"><span
+        class="glyphicon glyphicon-plus"></span></a>
+    <a class="pull-right btn btn-success btn-xs" data-nodrag ng-click="newSubItem(this)" style="margin-right: 8px;" ng-if="node.clase=='nodo'"><span
         class="glyphicon glyphicon-plus"></span></a>
   </div>
   <ol ui-tree-nodes="" ng-model="node.hijos" ng-class="{hidden: collapsed}">
@@ -18,11 +20,6 @@
   </ol>
 </script>
 
-<div class="row">
-  <div class="col-sm-12">
-    <h3>Basic Example</h3>
-  </div>
-</div>
 
 <div class="row">
   <div class="col-sm-6">
