@@ -1,4 +1,4 @@
-function ServicioREST($http, $q, $rootScope, config, $mdDialog) {
+function ServicioREST( utils, config, $http,$q, $rootScope) {
 	
 	var url = config.url;
 	
@@ -10,7 +10,7 @@ function ServicioREST($http, $q, $rootScope, config, $mdDialog) {
           //  defered.reject("Ldap no disponible");
         }else if (data == null){
             //$rootScope.error="";
-            popupInfo(null,"Error. Servidor no disponible")
+            utils.popupInfo(null,"Error. Servidor no disponible")
         } else if (data === undefined || data.message === undefined) {
 			defered.reject("Error: " + status);
 		} else {
@@ -18,20 +18,6 @@ function ServicioREST($http, $q, $rootScope, config, $mdDialog) {
 		}
 	}
     
-
-    
-    function popupInfo(ev,descripcion){    
-        $mdDialog.show(
-            $mdDialog.alert()
-            .parent(angular.element(document.querySelector('#popupContainer')))
-            .clickOutsideToClose(true)
-            .title("")
-            .content(descripcion)
-            .ariaLabel('Alert Dialog Demo')
-            .ok('Aceptar')
-            .targetEvent(ev)
-        );
-    }
     /* ---------- SERVICIOS LOGIN ---------- */
     
     function postLogin(usuario) {
@@ -211,43 +197,7 @@ function ServicioREST($http, $q, $rootScope, config, $mdDialog) {
 
 		return promise;
     }
-    
-    function cargarMenu(prueba){
-        if(localStorage.getItem("role") !== null || prueba === 1){
-            if( $rootScope.usuarioLS.role === "ROLE_ADMINISTRADOR"){
-                $rootScope.menuTecnologias = true;
-                $rootScope.menuGestionTecnologias = true;
-                $rootScope.menuUsuarios = true;
-                $rootScope.menuUsuariosAlta = true;
-                $rootScope.menuUsuariosGestion = true;
-                $rootScope.menuReferencias = true;
-                $rootScope.menuReferenciasGestion = true;
-                $rootScope.menuReferenciasNueva = true;
-                $rootScope.menuReferenciasListar = true;
-            }else if($rootScope.usuarioLS.role === "ROLE_VALIDADOR"){
-                $rootScope.menuReferencias = true;
-                $rootScope.menuReferenciasGestion = true;
-                $rootScope.menuReferenciasListar = true;
-            }else if($rootScope.usuarioLS.role === "ROLE_CONSULTOR"){
-                $rootScope.menuReferencias = true;
-                $rootScope.menuReferenciasListar = true;
-            }else if($rootScope.usuarioLS.role === "ROLE_MANTENIMIENTO"){ 
-                $rootScope.menuReferencias = true;
-                $rootScope.menuReferenciasGestion = true;
-                $rootScope.menuReferenciasListar = true;
-                $rootScope.menuReferenciasNueva = true;
-            }
-        }else{
-            console.log("No hay credenciales de usuario. No se hace recarga de contexto.")
-        }
-            
-    }
-	//---------Unificación de la actualización de la ayuda
-    function actualizaAyuda(funcAyuda){
-        setTimeout(function(){ 
-            $rootScope.lanzarAyuda=funcAyuda;
-        }, 1000);
-    }
+     
 		
 	return {
 		getReferencias: getReferencias,
@@ -259,9 +209,6 @@ function ServicioREST($http, $q, $rootScope, config, $mdDialog) {
 		getLDAP: getLDAP,
         getCatalogos: getCatalogos,
         postUsuario: postUsuario,
-        postLogin : postLogin,
-        popupInfo : popupInfo,
-        cargarMenu : cargarMenu,
-        actualizaAyuda : actualizaAyuda
+        postLogin : postLogin
 	}
 }

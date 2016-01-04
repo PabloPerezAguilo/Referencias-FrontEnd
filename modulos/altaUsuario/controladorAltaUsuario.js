@@ -1,8 +1,8 @@
 
-app.controller('controladorAltaUsuario', function(servicioRest, config, $scope, $http, $rootScope, $timeout, $q, $log,$mdDialog, $interval) {
+app.controller('controladorAltaUsuario', function(servicioRest,config,utils, $scope, $http, $rootScope, $timeout, $q, $log,$mdDialog, $interval) {
  
     // esta funcion permite cargar el menu cuando hemos recargado la pagina
-    //servicioRest.cargarMenu();
+    //utils.cargarMenu();
     
    $scope.title = "";
    $scope.descripcion = "";
@@ -23,10 +23,10 @@ app.controller('controladorAltaUsuario', function(servicioRest, config, $scope, 
             servicioRest.postUsuario($scope.usuario)
             .then(function(data) {
                 $scope.mensaje='Usuario creado con éxito';
-                servicioRest.popupInfo(evento,'Usuario creado con éxito');
+                utils.popupInfo(evento,'Usuario creado con éxito');
             })
             .catch(function(err) {
-                servicioRest.popupInfo(evento,'Usuario ya existente');
+                utils.popupInfo(evento,'Usuario ya existente');
             });
         }else{
             if($scope.posicionEnArray===-1|| $scope.posicionEnArray==undefined){
@@ -35,7 +35,7 @@ app.controller('controladorAltaUsuario', function(servicioRest, config, $scope, 
             if($scope.role==undefined){
                 mensaje+='<br/>Rol inválido';
             }
-            servicioRest.popupInfo(evento, mensaje);
+            utils.popupInfo(evento, mensaje);
         }
         
         
@@ -43,19 +43,22 @@ app.controller('controladorAltaUsuario', function(servicioRest, config, $scope, 
       
     /*Autocomplete*/ 
     $scope.miUsuarioSeleccionado = null 
-    servicioRest
-		.getLDAP()
-		.then(function(response) {
-            $scope.usuarios = response;
-            console.log(response);
-            $scope.arrayDatos = cargarDatos();
-            console.log("Ldap Cargado");
-            $scope.activado = false;
-            toggleActivation();
-        })
-		.catch(function(err) {
-             $scope.mensaje='error de cargar ldap';
-        });
+    alert('1');
+    servicioRest.getLDAP()
+    .then(function(response) {
+        alert('2');
+        $scope.usuarios = response;
+        console.log(response);
+        $scope.arrayDatos = cargarDatos();
+        console.log("Ldap Cargado");
+        $scope.activado = false;
+        toggleActivation();
+    })
+    .catch(function(err) {
+        alert('3');
+        console.log(err);
+        $scope.mensaje='error de cargar ldap';
+    });
 	
 	self.pos = "";
 	self.querySearch = querySearch;
@@ -66,11 +69,13 @@ app.controller('controladorAltaUsuario', function(servicioRest, config, $scope, 
         var results;
         $scope.posicionEnArray= undefined;
         if(''!==text){
+            ///guardamos en results los usuarios cuyo nick, nombre o email incluya la cadena de carcteres
             results=$scope.arrayDatos.filter(function(usuario) {
                 return  -1!==usuario.display.toLowerCase().indexOf(text.toLowerCase()) ||
                         -1!==usuario.mail.toLowerCase().indexOf(text.toLowerCase());
             });
         }else{
+            //en cuanto el texto a buscar esté vacío reiniciamos los resultados a todos los usuarios. Si no buscaríamos sólo sobre el resultado de la última búsqueda
             results= $scope.arrayDatos;
         }
         console.log('QUERY: '+$scope.posicionEnArray);
@@ -85,7 +90,6 @@ app.controller('controladorAltaUsuario', function(servicioRest, config, $scope, 
 
 	// Carga de datos inicial
 	function cargarDatos() {
-		// Convertimos los datos a una sola cadena
 		return $scope.usuarios.map(function(usuario) {
 			return {
 				value: usuario.usuario,
@@ -95,8 +99,7 @@ app.controller('controladorAltaUsuario', function(servicioRest, config, $scope, 
 		});
 	};
 
-	
-    
+
     $scope.data = {
       group1 : 'Administrador',
       group2 : '2',
@@ -174,7 +177,7 @@ app.controller('controladorAltaUsuario', function(servicioRest, config, $scope, 
             }
             ];
 
-    servicioRest.actualizaAyuda($scope.lanzarAyuda);
+    utils.actualizaAyuda($scope.lanzarAyuda);
 });    
 	
 
