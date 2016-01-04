@@ -1,25 +1,24 @@
 <script type="text/ng-template" id="nodes_renderer.html">
-    <div ui-tree-handle class="{{node.clase}} tree-node tree-node-content">
-        <a class="btn btn-success btn-xs" ng-if="node.hijos && node.hijos.length > 0" data-nodrag ng-click="toggle(this)">
-            <span class="glyphicon"
-                  ng-class="{'glyphicon-chevron-right': collapsed,'glyphicon-chevron-down': !collapsed}">
-            </span>
-        </a>
-        {{node.nombre}}
 
-        <a class="pull-right btn btn-danger btn-xs" ng-click="remove(this)">
-            <span class="glyphicon glyphicon-remove"></span>
-        </a>
-        
-        <a class="pull-right btn btn-primary btn-xs" data-nodrag ng-if="node.clase=='nodo'" ng-click="creaHoja(this)" style="margin-right: 8px;">
-            <span class="glyphicon glyphicon-plus"></span>
-        </a>
-        
-    </div>
-    <ol ui-tree-nodes="" ng-model="node.hijos" ng-class="{hidden: collapsed}">
-        <li ng-repeat="node in node.hijos" ui-tree-node ng-include="'nodes_renderer.html'">
-        </li>
-    </ol>
+  <div ui-tree-handle class="{{node.clase}} tree-node tree-node-content">
+    <a class="btn btn-success btn-xs" ng-if="node.hijos && node.hijos.length > 0" data-nodrag ng-click="toggle(this)"><span
+        class="glyphicon"
+        ng-class="{
+          'glyphicon-chevron-right': collapsed,
+          'glyphicon-chevron-down': !collapsed
+        }"></span></a>
+    {{node.nombre}}
+    <a class="pull-right btn btn-danger btn-xs" data-nodrag ng-click="remove(this)"><span
+        class="glyphicon glyphicon-remove"></span></a>
+    <a class="pull-right btn btn-primary btn-xs" data-nodrag ng-click="newSubItem(this)" style="margin-right: 8px;" ng-if="node.clase=='nodo'"><span
+        class="glyphicon glyphicon-plus"></span></a>
+    <a class="pull-right btn btn-success btn-xs" data-nodrag ng-click="newSubItem(this)" style="margin-right: 8px;" ng-if="node.clase=='nodo'"><span
+        class="glyphicon glyphicon-plus"></span></a>
+  </div>
+  <ol ui-tree-nodes="" ng-model="node.hijos" ng-class="{hidden: collapsed}">
+    <li ng-repeat="node in node.hijos" ui-tree-node ng-include="'nodes_renderer.html'">
+    </li>
+  </ol>
 </script>
 
 <div class="row">
