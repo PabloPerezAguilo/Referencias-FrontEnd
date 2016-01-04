@@ -1,33 +1,55 @@
-app.controller ('controladorGestionTecnologias', function (servicioRest, config, $scope, $http, $location, $rootScope) {  
+app.controller ('controladorGestionTecnologias', function (servicioRest, utils, config, $scope, $http, $location, $rootScope) {  
     
-    $rootScope.opcion = 'validar';
-    $scope.titulo = 'LISTA DE REFERENCIAS PENDIENTES DE VALIDAR';
-    $scope.referencias = [];
-    
-    // esta funcion permite cargar el menu cuando hemos recargado la pagina
-    servicioRest.cargarMenu();
-    
-    servicioRest.getReferenciasPendientes().then(
-        function (response) {           
-            $scope.referencias = response;
-            $scope.totalItems = $scope.referencias.length;
-        });
-    
-    $scope.currentPage = 1;
-    $scope.numPerPage = 15;
-
-    $scope.paginate = function(value) {
-    var begin, end, index;
-    begin = ($scope.currentPage - 1) * $scope.numPerPage;
-    end = begin + $scope.numPerPage;
-    index = $scope.referencias.indexOf(value);
-    return (begin <= index && index < end);
-    };
-    
-    
-    $scope.abrirReferenciaPendiente = function (index, referencias) {        
-        console.log(referencias[index]);
-        $rootScope.referenciaCargada = referencias[index];
-        $location.path('/validarReferencia');
-    }
+$scope.data = [
+  {
+    "id": 1,
+    "title": "node1",
+    "nodes": [
+      {
+        "id": 11,
+        "title": "node1.1",
+        "nodes": [
+          {
+            "id": 111,
+            "title": "node1.1.1",
+            "nodes": []
+          }
+        ]
+      },
+      {
+        "id": 12,
+        "title": "node1.2",
+        "nodes": []
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "title": "node2",
+    "nodrop": true,
+    "nodes": [
+      {
+        "id": 21,
+        "title": "node2.1",
+        "nodes": []
+      },
+      {
+        "id": 22,
+        "title": "node2.2",
+        "nodes": []
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "title": "node3",
+    "nodes": [
+      {
+        "id": 31,
+        "title": "node3.1",
+        "nodes": []
+      }
+    ]
+  }
+]
 }); 

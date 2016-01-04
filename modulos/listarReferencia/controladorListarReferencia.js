@@ -1,11 +1,11 @@
-app.controller ('controladorListarReferencia', function (servicioRest, config, $scope, $http, $location, $rootScope) {  
+app.controller ('controladorListarReferencia', function (servicioRest,utils, config, $scope, $http, $location, $rootScope) {  
     
     $rootScope.opcion = 'validar';
     $scope.titulo = 'LISTA DE REFERENCIAS PENDIENTES DE VALIDAR';
     $scope.referencias = [];
     
     // esta funcion permite cargar el menu cuando hemos recargado la pagina
-    servicioRest.cargarMenu();
+    utils.cargarMenu();
     
     servicioRest.getReferenciasPendientes().then(
         function (response) {           

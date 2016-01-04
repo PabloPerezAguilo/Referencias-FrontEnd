@@ -1,6 +1,6 @@
-app.controller('controladorBienvenida', function(servicioRest, $scope, $location, $rootScope) {  
+app.controller('controladorBienvenida', function(servicioRest, utils, $scope, $location, $rootScope) {  
     
     // cargamos menu segun role
-    servicioRest.cargarMenu(1);
+    utils.cargarMenu(1);
     $scope.nombre=$rootScope.usuarioLS.name;
 });

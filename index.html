@@ -10,15 +10,14 @@
         
 		<!-- build:CSSCDNs -->
 		<!-- AQUI IRAN LOS CSS QUE TENGAN CDN-->
-        <link rel="stylesheet" type="text/css" href="css/introjs.css"/>
         <link rel="stylesheet" href="https://cdn.gitcdn.xyz/cdn/angular/bower-material/v1.0.0-rc2/angular-material.css"/>
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,400italic"/>
-		 <!--BOOTSTRAP SE USA ALGUNA VEZ EN EL PROYECTO?-->
         <link data-require="bootstrap-css@*" data-semver="3.3.1" rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css"/>
-        <!--BOOTSTRAP SE USA ALGUNA VEZ EN EL PROYECTO?-->
         <!-- endbuild -->
         
 		<!-- AQUI IRAN LOS CSS NUESTROS QUE NO TENGAN CDN-->
+        <link rel="stylesheet" href="css/angular-ui-tree.min.css">
+        <link rel="stylesheet" type="text/css" href="css/introjs.css"/>
 		<link rel="stylesheet" href="css/style.css" />
        
 	</head>
@@ -71,6 +70,7 @@
         <script src="js/min/moment.min.js"></script>
         <script src="js/min/angular-material-icons.min.js"></script>
         <script src="js/min/ui-bootstrap-tpls-0.13.0.min.js"></script>
+        <script type="text/javascript" src="js/angular-ui-tree.js"></script>
         
         
         <!--Libreria necesaria para la fecha del DatePicker-->
@@ -80,8 +80,10 @@
 		<!-- endbuild -->       
         
 		<!-- build:JS -->
-		<script src="services.js"></script>
-		<script src="app.js"></script>
+        <script src="utils.js"></script>
+		
+        <script src="services.js"></script>
+		<script src="app.js"></script>    
 		<script src="config.js"></script>        
         <script src="modulos/login/controladorLogin.js"></script>
         <script src="modulos/altaUsuario/controladorAltaUsuario.js"></script>
