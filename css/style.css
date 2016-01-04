@@ -733,4 +733,10 @@ tr.angular-ui-tree-empty {
   -moz-box-sizing: border-box;
   box-sizing: border-box; }
 
+.hoja {
+  background-color: rgba(66, 220, 105, 0.42); }
+
+.nodo {
+  background-color: rgba(130, 205, 243, 0.55); }
+
 /*# sourceMappingURL=style.css.map */

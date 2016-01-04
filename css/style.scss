@@ -31,6 +31,8 @@ $colorClaro: #ececec;
 $colorDetalles: #ee941a;
 $colorSombreado: #D8D8D8;
 $colorError: #CE0000;
+$colorHoja: rgba(66, 220, 105,0.42);
+$colorNodo: rgba(130, 205, 243,0.55);
 
 /*medias querys*/
 
@@ -811,4 +813,13 @@ tr.angular-ui-tree-empty {
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
+}
+
+
+.hoja{
+    background-color: $colorHoja;
+}
+
+.nodo{
+    background-color: $colorNodo;
 }

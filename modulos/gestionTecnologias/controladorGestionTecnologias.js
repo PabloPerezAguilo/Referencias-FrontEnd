@@ -3,51 +3,60 @@ app.controller ('controladorGestionTecnologias', function (servicioRest, utils, 
 $scope.data = [
   {
     "id": 1,
-    "title": "node1",
-    "nodes": [
+    "nombre": "node1",
+      "clase":"nodo",
+    "hijos": [
       {
         "id": 11,
-        "title": "node1.1",
-        "nodes": [
+        "nombre": "node1.1",
+          "clase":"nodo",
+        "hijos": [
           {
             "id": 111,
-            "title": "node1.1.1",
-            "nodes": []
+            "nombre": "node1.1.1",
+              "clase":"hoja",
+            "hijos": []
           }
         ]
       },
       {
         "id": 12,
-        "title": "node1.2",
-        "nodes": []
+        "nombre": "node1.2",
+          "clase":"hoja",
+        "hijos": []
       }
     ]
   },
   {
     "id": 2,
-    "title": "node2",
+    "nombre": "node2",
+      "clase":"nodo",
     "nodrop": true,
-    "nodes": [
+    "hijos": [
       {
         "id": 21,
-        "title": "node2.1",
-        "nodes": []
+        "nombre": "node2.1",
+          "clase":"hoja",
+        "hijos": []
       },
       {
         "id": 22,
-        "title": "node2.2",
-        "nodes": []
+        "nombre": "node2.2",
+      "clase":"nodo",
+        "hijos": []
       }
     ]
   },
   {
     "id": 3,
-    "title": "node3",
-    "nodes": [
+    "nombre": "node3",
+      "clase":"nodo",
+    "hijos": [
       {
         "id": 31,
-        "title": "node3.1",
-        "nodes": []
+        "nombre": "node3.1",
+      "clase":"nodo",
+        "hijos": []
       }
     ]
   }
