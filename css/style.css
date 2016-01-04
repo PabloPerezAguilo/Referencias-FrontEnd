@@ -734,9 +734,15 @@ tr.angular-ui-tree-empty {
   box-sizing: border-box; }
 
 .hoja {
+  color: black;
   background-color: rgba(66, 220, 105, 0.42); }
 
 .nodo {
+  color: black;
   background-color: rgba(130, 205, 243, 0.55); }
+
+.hojaInvalida {
+  background-color: rgba(244, 54, 54, 0.55);
+  color: black; }
 
 /*# sourceMappingURL=style.css.map */

@@ -55,7 +55,7 @@ $scope.data = [
       {
         "id": 31,
         "nombre": "node3.1",
-      "clase":"nodo",
+      "clase":"hojaInvalida",
         "hijos": []
       }
     ]

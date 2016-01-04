@@ -33,6 +33,7 @@ $colorSombreado: #D8D8D8;
 $colorError: #CE0000;
 $colorHoja: rgba(66, 220, 105,0.42);
 $colorNodo: rgba(130, 205, 243,0.55);
+$colorHojaInvalida: rgba(244, 54, 54,0.55);
 
 /*medias querys*/
 
@@ -817,9 +818,16 @@ tr.angular-ui-tree-empty {
 
 
 .hoja{
+    color: black;
     background-color: $colorHoja;
 }
 
 .nodo{
+    color: black;
     background-color: $colorNodo;
+}
+
+.hojaInvalida{
+    background-color: $colorHojaInvalida;
+    color: black;
 }
