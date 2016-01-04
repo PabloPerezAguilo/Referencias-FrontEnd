@@ -1,7 +1,7 @@
 'use strict';
 //console.log('**************************************************************');
 //console.log('Antes de app');
-var app = angular.module('ref', ['ngRoute','ngMaterial','ngMdIcons','ngMessages','ja.qr','ui.bootstrap','angular-intro']);
+var app = angular.module('ref', ['ngRoute','ngMaterial','ngMdIcons','ngMessages','ja.qr','ui.bootstrap','angular-intro','ui.tree']);
 //console.log('Después de app: ');
 //console.log(app);
 app.run(function(servicioRest, $rootScope, $http, $location, $mdDialog) {
