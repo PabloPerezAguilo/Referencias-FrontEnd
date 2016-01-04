@@ -44,6 +44,9 @@ $colorError: #CE0000;
     }
 }
 
+:focus {
+    outline: $colorDetalles auto 5px;
+}
 
 body {
     line-height: 1;  

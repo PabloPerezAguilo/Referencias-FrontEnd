@@ -1,4 +1,10 @@
-app.controller('controladorRechazarReferencia', function ($scope, $mdDialog) {
+app.controller('controladorRechazarReferencia', function ($scope, $mdDialog, $document) {
+    
+    /*$document.on('keydown', function(e) {
+      if (e.which === 8 && (e.target.nodeName != "TEXTAREA")) { // you can add others here.
+        e.preventDefault();
+      }
+    });*/
     
     $scope.rechazarReferencia = function () {
         if($scope.motivoRechazo==="" || $scope.motivoRechazo===undefined){

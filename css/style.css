@@ -32,6 +32,9 @@ footer, header, hgroup, menu, nav, section {
   .botonesCrear {
     margin-bottom: 50px; } }
 
+:focus {
+  outline: #ee941a auto 5px; }
+
 body {
   line-height: 1;
   font-size: 13px;
