@@ -45,7 +45,7 @@
                            id="sociedad"  
                            ng-blur="actualizaErrores('sociedad', useForm.sociedad.$error)">
 
-                    <md-option ng-value="sociedad.codigo" data-ng-repeat="sociedad in catalogo.sociedades" ng-selected="sociedad.codigo == referencia.sociedadSeleccionado ? true:false" >
+                    <md-option ng-value="sociedad.codigo" data-ng-repeat="sociedad in catalogo.sociedades" ng-selected="sociedad.codigo ==  sociedadSeleccionado ? true:false" >
                         {{sociedad.descripcion}} ({{ sociedad.codigo }})
                     </md-option>
                 </md-select>
@@ -62,7 +62,7 @@
                            ng-disabled="deshabilitarForm" 
                            tabindex="3"
                            ng-blur="actualizaErrores('SectorEmp', useForm.SectorEmp.$error)">
-                    <md-option ng-value="sectorEmpresarial.codigo" data-ng-repeat="sectorEmpresarial in catalogo.sectorempresarial" ng-selected="sectorEmpresarial.codigo == referencia.sectorEmpresarialSeleccionado ? true:false">
+                    <md-option ng-value="sectorEmpresarial.codigo" data-ng-repeat="sectorEmpresarial in catalogo.sectorempresarial" ng-selected="sectorEmpresarial.codigo ==  sectorEmpresarialSeleccionado ? true:false">
                         {{sectorEmpresarial.descripcion}}  ({{ sectorEmpresarial.codigo }})
                     </md-option>
               </md-select>
@@ -79,7 +79,7 @@
                            ng-disabled="deshabilitarForm"
                            tabindex="4"
                            ng-blur="actualizaErrores('tActividad', useForm.tActividad.$error)">
-                    <md-option ng-value="tipoActividad.codigo" data-ng-repeat="tipoActividad in catalogo.actividad" ng-selected="tipoActividad.codigo == referencia.tipoActividadSeleccionado ? true:false">
+                    <md-option ng-value="tipoActividad.codigo" data-ng-repeat="tipoActividad in catalogo.actividad" ng-selected="tipoActividad.codigo ==  tipoActividadSeleccionado ? true:false">
                     {{ tipoActividad.descripcion }} ({{ tipoActividad.codigo }})
                     </md-option>      
                 </md-select>
@@ -96,7 +96,7 @@
                            ng-disabled="deshabilitarForm"
                            tabindex="5"
                            ng-blur="actualizaErrores('tProyecto', useForm.tProyecto.$error)">
-                    <md-option ng-value="tipoProyecto.codigo" data-ng-repeat="tipoProyecto in catalogo.proyecto" ng-selected="tipoProyecto.codigo == referencia.tipoProyectoSeleccionado ? true:false">
+                    <md-option ng-value="tipoProyecto.codigo" data-ng-repeat="tipoProyecto in catalogo.proyecto" ng-selected="tipoProyecto.codigo ==  tipoProyectoSeleccionado ? true:false">
                     {{ tipoProyecto.descripcion }} ({{ tipoProyecto.codigo }})
                     </md-option>      
                 </md-select>
@@ -237,7 +237,7 @@
 
                         <md-option ng-value="responsableComercial.nombre"
                                    data-ng-repeat="responsableComercial in catalogo.comercial"
-                                   ng-selected="responsableComercial.nombre == referencia.responsableComercialSeleccionado ? true:false">
+                                   ng-selected="responsableComercial.nombre ==  responsableComercialSeleccionado ? true:false">
                             {{ responsableComercial.nombre }} ({{ responsableComercial.login }})
                         </md-option>
                     </md-select>
@@ -254,7 +254,7 @@
                                required
                                tabindex="16"
                                ng-blur="actualizaErrores('rbleTecnico', useForm.rbleTecnico.$error)">
-                        <md-option ng-value="responsableTecnico.nombre" data-ng-repeat="responsableTecnico in catalogo.tecnico" ng-selected="responsableTecnico.nombre == referencia.responsableTecnicoSeleccionado ? true:false">
+                        <md-option ng-value="responsableTecnico.nombre" data-ng-repeat="responsableTecnico in catalogo.tecnico" ng-selected="responsableTecnico.nombre ==  responsableTecnicoSeleccionado ? true:false">
                             {{ responsableTecnico.nombre }} ({{ responsableTecnico.login }})
                         </md-option>
                     </md-select>
