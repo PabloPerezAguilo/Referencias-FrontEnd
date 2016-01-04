@@ -1,6 +1,6 @@
-app.controller ('controladorGestionTecnologias', function (servicioRest, config, $scope, $http, $location, $rootScope) {  
+app.controller ('controladorGestionTecnologias', function (servicioRest, utils, config, $scope, $http, $location, $rootScope) {  
     
-    $scope.data = [
+$scope.data = [
   {
     "id": 1,
     "title": "node1",

@@ -1,4 +1,4 @@
-app.controller('controladorNuevaReferencia', function(servicioRest, config, $scope, $http,$log, $rootScope,$location,$mdDialog,$interval,$timeout){
+app.controller('controladorNuevaReferencia', function(servicioRest,utils, config, $scope, $http,$log, $rootScope,$location,$mdDialog,$interval,$timeout){
     
     //--------------------- Objetos del controlador (clientes y tecnologias)
     var self = this;
@@ -208,7 +208,7 @@ app.controller('controladorNuevaReferencia', function(servicioRest, config, $sco
             }
             ];
 
-    servicioRest.actualizaAyuda($scope.ayuda);
+    utils.actualizaAyuda($scope.ayuda);
     
     /* ----------------------- CARGA DE CATALOGOS ------------------------*/
     $scope.catalogo={};
@@ -242,11 +242,11 @@ app.controller('controladorNuevaReferencia', function(servicioRest, config, $sco
     
     /*-----------------------  AUTOCOMPLETE ----------------------- */
 
-    
-
+    //filtramos los datos del autocomplete según el texto
     self.filtrar =function (texto, campo) {
         var resultado;
         var array;
+        // Determinamos cual es el array a filtrar y cuanl es el índice del resultado
         if(campo==='cliente'){
             
             array=self.clientes.lista;
@@ -256,29 +256,36 @@ app.controller('controladorNuevaReferencia', function(servicioRest, config, $sco
             array=self.tecnologias.lista;
             $scope.posicionEnArray2=undefined;
         }
-        
+        // hacemos la búsqueda en el array
         if(texto!==""){
-            //fil
+            //Si hay algo de texto, cogemos los elementos que tengan el texto en el nombre y/o en las siglas
             resultado=array.filter(function (cliente) {
                 return (cliente.display.toLowerCase().indexOf(texto.toLowerCase()) !==-1);
             });
         }else{
+            //si no hay texto, asignamos el resultado de la búsqueda al array completo para que se recarguen todos los datos
             resultado=array;
         }
         return resultado;
     }
     
-    
+    //Cuando seleccionamos un elemento de la lista de resultados del autocomplete
     self.selectedItemChange=function (item, campo) {
+        
         if(campo==='cliente'){
+            //si es el autocomplete del cliente, buscamos el índife en la lista de clientes.
+            //lo asignamos a la posición del catálogo de clientes correspondiente al mismo
             $scope.posicionEnArray=self.clientes.lista.indexOf(item);
             console.log('Cliente: '+$scope.posicionEnArray);
         }else if(campo==='tecnologia'){
+            //si es el autocomplete del tecnologñia, buscamos el índice en la lista de tecnologías.
+            //lo asignamos a la posición del catálogo de clientes correspondiente al mismo
             $scope.posicionEnArray2=self.tecnologias.lista.indexOf(item);
             console.log('Tecnología: '+$scope.posicionEnArray2);
         }
     }
-
+    
+    //cargamos los datos de los clientes y las tecnologías en los datos de los autocompleter correspondientes con estas funciones 
     function cargarDatosClientes() {
          self.clientes.lista= $rootScope.clientes.map( function (cliente) {
             return {
@@ -352,10 +359,7 @@ app.controller('controladorNuevaReferencia', function(servicioRest, config, $sco
     
 //--------------- Sección de validación de campos en nueva referencia --------------------------------------------
     
-    //Esta función debería estar en utils o algo parecido. determina si el objeto está vacío.
-    function isEmptyObject (objeto){
-        return angular.equals( {} , objeto );
-    };
+    
     
     //Por defecto, todos los campos están mal. Así que asignamos todos los errores al array
     var erroresCometidos=Object.keys(erroresTotales);
@@ -364,7 +368,7 @@ app.controller('controladorNuevaReferencia', function(servicioRest, config, $sco
     $scope.actualizaErrores=function(elem, error){
         var indice = erroresCometidos.indexOf(elem);
         
-        if(isEmptyObject(error)){//<-- Si el campo está mal
+        if(utils.isEmptyObject(error)){//<-- Si el campo está mal
             //Si el error segue en la lista, lo eliminamos  
             if (indice >= 0) {
                 erroresCometidos.splice(indice, 1);
@@ -438,11 +442,11 @@ app.controller('controladorNuevaReferencia', function(servicioRest, config, $sco
     function enviarReferencia(referencia, mensajeEstado){
         servicioRest.postReferencia(referencia)
         .then(function(data){
-            servicioRest.popupInfo(event, mensajeEstado);
+            utils.popupInfo(event, mensajeEstado);
             limpiarCampos();
         })
         .catch(function(data){
-            servicioRest.popupInfo(event, 'Error al crear la referencia');
+            utils.popupInfo(event, 'Error al crear la referencia');
         });
     }
     
@@ -510,7 +514,7 @@ app.controller('controladorNuevaReferencia', function(servicioRest, config, $sco
             }
             
         }else{
-            //servicioRest.popupInfo(event,listarErrores());
+            //utils.popupInfo(event,listarErrores());
             errores(event,listarErrores());
         }
                 
@@ -539,14 +543,14 @@ app.controller('controladorNuevaReferencia', function(servicioRest, config, $sco
         //cambiamos el estado de la referencia a 'validada'
         servicioRest.updateReferencia($rootScope.referenciaCargada)
             .then(function(data) {
-                servicioRest.popupInfo('', "Referencia validada con éxito.");
+                utils.popupInfo('', "Referencia validada con éxito.");
                  //Redireccionamos al usuario a la ventana de listar Referencias Pendientes de Validar
                 $location.path('/listarReferencia');
                 console.log("Referencia validada");
                 /*Vaciamos referenciaCargada*/
                 $rootScope.referenciaCargada = null;
             }).catch(function(err) {
-                servicioRest.popupInfo('',"Error al validar la referencia.");
+                utils.popupInfo('',"Error al validar la referencia.");
                 console.log("Error al validar la referencia");
             });  
     }
@@ -575,19 +579,19 @@ app.controller('controladorNuevaReferencia', function(servicioRest, config, $sco
             console.log(razonRechazo);
                 servicioRest.updateReferencia($rootScope.referenciaCargada)
                 .then(function(data) {
-                    servicioRest.popupInfo('', "Referencia rechazada, se avisará al responsable.");
+                    utils.popupInfo('', "Referencia rechazada, se avisará al responsable.");
                     //Redireccionamos al usuario a la ventana de listar Referencias Pendientes de Validar
                     $location.path('/listarReferencia');
                     console.log("Referencia rechazada");
                     /*Vaciamos referenciaCargada*/
                     $rootScope.referenciaCargada = null;
                 }).catch(function(err) {
-                    servicioRest.popupInfo('',"Error al rechazar la referencia.");
+                    utils.popupInfo('',"Error al rechazar la referencia.");
                     console.log("Error al rechazar la referencia");
                 });  
             })/*
         .catch(function(err) {
-                servicioRest.popupInfo('',"Error al rechazar la referencia.");
+                utils.popupInfo('',"Error al rechazar la referencia.");
                 console.log("Error al rechazar la referencia");
             })*/;
     };

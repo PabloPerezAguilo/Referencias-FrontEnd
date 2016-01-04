@@ -4,7 +4,7 @@
 var app = angular.module('ref', ['ngRoute','ngMaterial','ngMdIcons','ngMessages','ja.qr','ui.bootstrap','angular-intro','ui.tree']);
 //console.log('Después de app: ');
 //console.log(app);
-app.run(function(servicioRest, $rootScope, $http, $location, $mdDialog) {
+app.run(function(servicioRest, utils, $rootScope, $http, $location, $mdDialog) {
 
     //console.log('Inicio app');
     $rootScope.menu=false;
@@ -48,7 +48,7 @@ app.run(function(servicioRest, $rootScope, $http, $location, $mdDialog) {
 	};
     
     // esta funcion permite cargar el menu cuando hemos recargado la pagina
-    servicioRest.cargarMenu(0);
+    utils.cargarMenu(0);
     
     
     $rootScope.datosUsuarioLogueado = function() {
@@ -101,10 +101,8 @@ app.run(function(servicioRest, $rootScope, $http, $location, $mdDialog) {
 
     
 });
-//console.log('Fin app.run');
-//console.log('Antes de app.config');
+
 app.config(function($routeProvider) {
-    //console.log('Inicio app.config');
 
 	$routeProvider
     .when('/', {
@@ -142,7 +140,11 @@ app.config(function($routeProvider) {
 		redirectTo: "/pageNotFound"
 	});
 });
-//console.log('Fin app.config');
 
-app.service('servicioRest', ServicioREST);
+app.service('utils', utils);
+
+//Incluimos el servicio ServicioRest. Nocesitamos meter las dependencias que usa para que espere a que confid y utils se carguen
+app.service('servicioRest', ['utils', 'config', '$http','$q', '$rootScope' ,ServicioREST])
+
+
 
