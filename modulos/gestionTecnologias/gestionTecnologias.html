@@ -33,9 +33,11 @@
         </div>
     </div>
     
-    <div ng-hide="nodoSeleccionado==null">
+    
+    </div>
+        <div ng-hide="nodoSeleccionado==null">
         <div>
-            <md-input-container class="md-block" flex-gt-sm="" style="width:30px">
+            <md-input-container class="md-block" flex-gt-sm="" style="width:30%">
                 <label>Nombre: </label>
                 <input type="text"ng-model="nodoSeleccionado.nombre">
             </md-input-container>
@@ -56,8 +58,6 @@
             </div>
             
         </div>
-    </div>
-
     <div class="col-sm-6">
         <div class="info">
             {{info}}
