@@ -718,7 +718,8 @@ tr.angular-ui-tree-empty {
   background-color: #f2dede; }
 
 .tree-node-content {
-  margin: 10px; }
+  margin: 1.5%;
+  padding: 1%; }
 
 .tree-handle {
   padding: 10px;
@@ -744,5 +745,18 @@ tr.angular-ui-tree-empty {
 .hojaInvalida {
   background-color: rgba(244, 54, 54, 0.55);
   color: black; }
+
+.elementoSeleccionado {
+  text-decoration: underline;
+  border-style: none; }
+
+.hoja.elementoSeleccionado {
+  background-color: #42dc69; }
+
+.hojaInvalida.elementoSeleccionado {
+  background-color: #f43636; }
+
+.nodo.elementoSeleccionado {
+  background-color: #82cdf3; }
 
 /*# sourceMappingURL=style.css.map */

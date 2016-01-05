@@ -1,4 +1,3 @@
-console.log('Buenas Tardes');
 app.controller('controladorLogin', function(servicioRest, config, $scope, $http, $location, $rootScope, $mdDialog) {
     $scope.user={        
         nick:'',

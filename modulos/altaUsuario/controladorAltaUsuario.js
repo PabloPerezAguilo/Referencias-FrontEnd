@@ -43,10 +43,8 @@ app.controller('controladorAltaUsuario', function(servicioRest,config,utils, $sc
       
     /*Autocomplete*/ 
     $scope.miUsuarioSeleccionado = null 
-    alert('1');
     servicioRest.getLDAP()
     .then(function(response) {
-        alert('2');
         $scope.usuarios = response;
         console.log(response);
         $scope.arrayDatos = cargarDatos();
@@ -55,7 +53,6 @@ app.controller('controladorAltaUsuario', function(servicioRest,config,utils, $sc
         toggleActivation();
     })
     .catch(function(err) {
-        alert('3');
         console.log(err);
         $scope.mensaje='error de cargar ldap';
     });
