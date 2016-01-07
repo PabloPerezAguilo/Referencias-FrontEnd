@@ -66,11 +66,22 @@ app.controller ('controladorGestionTecnologias', function (servicioRest, utils, 
     $scope.nodoSeleccionado;
     var elementoSelecionado;
     
+    $scope.eventosArbol = {
+        removeNode: function(nodo){
+            console.log("removed");           
+        },
+        dropped: function(e) {
+            console.log("dropped");
+            var padre = e.dest.nodesScope.$parent.$modelValue.nombre;
+        }
+    };
+    
     $scope.tipos=["OpenSource", "Suscripción", "Licencia"];
     
     
     $scope.seleccionarElemento=function(elem, nodo){
         $scope.nodoSeleccionado=nodo;
+        console.log(elem.$parent.$parentNodeScope.$modelValue.nombre);
         elem=elem.$element;
         elem.addClass("elementoSeleccionado");
         if(elementoSelecionado!=undefined){
