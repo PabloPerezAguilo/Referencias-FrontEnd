@@ -12,15 +12,15 @@
         <a class="pull-right btn btn-danger btn-xs" data-nodrag ng-click="remove(this)">
             <span class="glyphicon glyphicon-remove"></span>
         </a>
-        <a class="pull-right btn btn-primary btn-xs" data-nodrag ng-click="newSubItem(this)" style="margin-right: 8px;" ng-if="node.clase=='nodo'">
+        <a class="pull-right btn btn-primary btn-xs" data-nodrag ng-click="aniadirElem($event, this, 'nodo')" style="margin-right: 8px;" ng-if="node.clase=='nodo'">
             <span class="glyphicon glyphicon-plus"></span>
         </a>
-        <a class="pull-right btn btn-success btn-xs" data-nodrag ng-click="newSubItem(this)" style="margin-right: 8px;" ng-if="node.clase=='nodo'">
+        <a class="pull-right btn btn-success btn-xs" data-nodrag ng-click="aniadirElem($event, this, 'hojaInvalida')" style="margin-right: 8px;" ng-if="node.clase=='nodo'">
             <span class="glyphicon glyphicon-plus"></span>
         </a>
     </div>
     <ol ui-tree-nodes="" ng-model="node.hijos" ng-class="{hidden: collapsed}">
-        <li ng-repeat="node in node.hijos" ui-tree-node ng-include="'nodes_renderer.html'"></li>
+        <li ng-repeat="node in node.hijos" ui-tree-node data-nodrop-enabled="nodes.clase!='nodo'" ng-include="'nodes_renderer.html'"></li>
     </ol>
 </script>
 
@@ -35,34 +35,43 @@
     
     <div ng-hide="nodoSeleccionado==null">
         <div>
-<!--            <md-input-container class="md-block" flex-gt-sm="" style="width:30px">-->
-                Nombre:{{nodoSeleccionado.nombre}}
-<!--                <input type="text"ng-model="nodoSeleccionado.nombre">-->
-<!--            </md-input-container>-->
+            
+            <md-input-container>
+                <div>{{titulo}}</div><br>
+                Nombre: {{nodoSeleccionado.nombre}}
+            <input type="text"ng-model="nodoSeleccionado.nombre">
+            </md-input-container>
         </div>
         <div ng-if="nodoSeleccionado.clase!=='nodo'">
-            <div>
-                <md-checkbox ng-model="nodoSeleccionado.producto">Producto</md-checkbox>
-            </div>
+            
             <div>
                 <md-input-container>
+                    
                     <label>Tipo</label>
                     <md-select ng-model="nodoSeleccionado.tipo">
                       <md-option ng-repeat="tipo in tipos" value="{{tipo}}">
                         {{tipo}}
                       </md-option>
                     </md-select>
+                    <div>
+                        <md-checkbox ng-model="nodoSeleccionado.producto">Producto</md-checkbox>
+                    </div>
+                    <div>
+                        <md-checkbox ng-model="nodoSeleccionado.clase=='hoja'">Validado</md-checkbox>
+                    </div>
                   </md-input-container>
             </div>
             
         </div>
+        <md-button class="botonesApp" type="button"  ng-click="guardarElem()">Guardar</md-button>
+        <md-button class="botonesApp" ng-show="true && (nodoSeleccionado.clase=='hojaInvalida')" type="button"  ng-click="validarElem()">Validar</md-button>
     </div>
 
-    <div class="col-sm-6">
+    <!--div class="col-sm-6">
         <div class="info">
             {{info}}
         </div>
         <pre class="code">{{ data | json }}</pre>
-    </div>
+    </div-->
 </div>
 
