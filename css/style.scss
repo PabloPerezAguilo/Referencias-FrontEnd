@@ -750,6 +750,10 @@ md-toolbar:not(.md-menu-toolbar) {
 
 /*--------------------- ESTILOS ARBOL TECNOLOGIAS -------------------------*/
 
+md-checkbox.md-checked .md-icon {
+    background-color: #ee941a;
+}
+
 .btn {
     margin-right: 8px;
 }
