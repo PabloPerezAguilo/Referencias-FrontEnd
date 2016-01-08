@@ -2,6 +2,9 @@ function utils($rootScope, $mdDialog){
     
     function actualizaAyuda(funcAyuda){
         setTimeout(function(){ 
+            //rootScope.lanzarAyuda funcion vacia del boton del menu, inutil hasta igualarlo a la funcion de cada vista
+            //funcAyuda el scope.lanzarAyuda de cada vista con sus tutoriales especificos, se igualan al lanzar
+            //ayuda del boton del menu al cargar el controlador de cada pagina
             $rootScope.lanzarAyuda=funcAyuda;
         }, 1000);
     }
