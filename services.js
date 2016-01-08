@@ -219,9 +219,49 @@ function ServicioREST( utils, config, $http,$q, $rootScope) {
 
 		return promise;
     }
+    
+    function postTecnologia(idPadre, nodo) {
+		var defered = $q.defer();
+		var promise = defered.promise;
+        datos = {'idPadre' : idPadre, 'nodo' : nodo}
+		$http({
+			method: 'POST',
+			url: url + '/tecnologias',
+			data: datos
+		})
+		.success(function(data, status, headers, config) {
+			defered.resolve(data);
+		})
+		.error(function(data, status, headers, config) {
+			tratarError(data, status, defered);
+		});
+
+		return promise;
+	}
+    
+    function putTecnologia(idAntiguo, nodo) {
+		var defered = $q.defer();
+		var promise = defered.promise;
+        datos = {'idAntiguo' : idAntiguo, 'nodo' : nodo}
+		$http({
+			method: 'PUT',
+			url: url + '/tecnologias',
+			data: datos
+		})
+		.success(function(data, status, headers, config) {
+			defered.resolve(data);
+		})
+		.error(function(data, status, headers, config) {
+			tratarError(data, status, defered);
+		});
+
+		return promise;
+	}
      
 		
 	return {
+        postTecnologia: postTecnologia,
+        putTecnologia: putTecnologia,
 		getReferencias: getReferencias,
 		getReferencia: getReferencia,
         getReferenciasPendientes: getReferenciasPendientes,
