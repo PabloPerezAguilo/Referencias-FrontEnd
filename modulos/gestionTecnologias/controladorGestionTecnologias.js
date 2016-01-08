@@ -2,17 +2,14 @@ app.controller ('controladorGestionTecnologias', function (servicioRest, utils, 
     var nodeData;
     $scope.data = [
       {
-        "id": 1,
         "nombre": "node1",
         "clase":"nodo",
         "hijos": [
           {
-            "id": 11,
             "nombre": "node1.1",
             "clase":"nodo",
             "hijos": [
               {
-                "id": 111,
                 "nombre": "node1.1.1",
                 "clase":"hoja",
                 "producto": true,
@@ -22,7 +19,6 @@ app.controller ('controladorGestionTecnologias', function (servicioRest, utils, 
             ]
           },
           {
-            "id": 12,
             "nombre": "node1.2",
             "clase":"hoja",
             "hijos": []
@@ -30,19 +26,16 @@ app.controller ('controladorGestionTecnologias', function (servicioRest, utils, 
         ]
       },
       {
-        "id": 2,
         "nombre": "node2",
         "clase":"nodo",
         "nodrop": true,
         "hijos": [
           {
-            "id": 21,
             "nombre": "node2.1",
             "clase":"hoja",
             "hijos": []
           },
           {
-            "id": 22,
             "nombre": "node2.2",
             "clase":"nodo",
             "hijos": []
@@ -50,12 +43,10 @@ app.controller ('controladorGestionTecnologias', function (servicioRest, utils, 
         ]
       },
       {
-        "id": 3,
         "nombre": "node3",
         "clase":"nodo",
         "hijos": [
           {
-            "id": 31,
             "nombre": "node3.1",
             "clase":"hojaInvalida",
             "hijos": []
@@ -67,12 +58,35 @@ app.controller ('controladorGestionTecnologias', function (servicioRest, utils, 
     var elementoSelecionado;
     
     $scope.eventosArbol = {
-        removeNode: function(nodo){
-            console.log("removed");           
+        removed: function(nodo){
+            console.log("removed: ");
+            try{
+                var padre=nodo.$parentNodeScope.$modelValue.nombre;
+                nodo=nodo.$modelValue;
+                
+                // TODO: Hacer la llamada al back
+            }
+            catch(error){
+                //se meterá en caso de que intente eliminar un directorio raíz
+                alert("No se puede eliminar un directorio raíz, patán");
+            }
+            
         },
         dropped: function(e) {
             console.log("dropped");
-            var padre = e.dest.nodesScope.$parent.$modelValue.nombre;
+            try{
+                var padreOrigen = e.source.nodesScope.$parent.$modelValue.nombre;
+                var padreDestino = e.dest.nodesScope.$parent.$modelValue.nombre;
+                var nodo= e.source.nodeScope.$modelValue;
+                
+                // Hacer la llamada al back
+            }
+            catch(error){
+                //Se meterá en el catch en caso de que muevas el elemento raíz o que muevas un elemento fuera del raíz.
+                //Como no tiene padre, saltará la excepción de que no existe $modelValue del $parent
+                alert("No metas nada fuera del Raíz ni muevas el raíz, cenutrio!!");
+            }
+            
         }
     };
     
@@ -101,7 +115,8 @@ app.controller ('controladorGestionTecnologias', function (servicioRest, utils, 
 
         $scope.titulo = "Editar " + nodo.clase;
         nodeData=nodo;
-        console.log(elem.$parent.$parentNodeScope.$modelValue.nombre)
+        
+        //console.log(elem.$parent.$parentNodeScope.$modelValue.nombre)
         ////////////////
         $scope.nodoSeleccionado={
             id: nodeData.id,

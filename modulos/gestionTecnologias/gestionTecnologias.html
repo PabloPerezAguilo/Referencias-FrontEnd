@@ -9,7 +9,7 @@
             </span>
           </a>
         {{node.nombre}}
-        <a class="pull-right btn btn-danger btn-xs" data-nodrag ng-click="remove(this)">
+        <a class="pull-right btn btn-danger btn-xs" data-nodrag ng-click="removeNode(this)">
             <span class="glyphicon glyphicon-remove"></span>
         </a>
         <a class="pull-right btn btn-primary btn-xs" data-nodrag ng-click="aniadirElem($event, this, 'nodo')" style="margin-right: 8px;" ng-if="node.clase=='nodo'">
