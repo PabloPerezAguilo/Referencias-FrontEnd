@@ -158,6 +158,11 @@ app.controller('controladorAltaUsuario', function(servicioRest,config,utils, $sc
     
     
     /* ayuda de nuevo usuario*/
+    
+    $scope.ayuda=function(){
+        console.log('hola');
+        $scope.lanzarAyuda();
+    }
     $scope.introOptions = config.introOptions;
     $scope.introOptions.steps = [
             {
@@ -172,9 +177,8 @@ app.controller('controladorAltaUsuario', function(servicioRest,config,utils, $sc
                 element: '#crear',
                 intro: 'Al pulsar en este boton guarda el usuario seleccionado con el rol asignado en nuestra aplicacion.'
             }
-            ];
-
-    utils.actualizaAyuda($scope.lanzarAyuda);
+        ];
+   utils.actualizaAyuda($scope.ayuda);
 });    
 	
 

@@ -58,6 +58,39 @@ app.controller ('controladorGestionTecnologias', function (servicioRest, utils, 
     $scope.nodoSeleccionado;
     var elementoSelecionado;
     
+    $scope.eventosArbol = {
+        removed: function(nodo){
+            console.log("removed: ");
+            try{
+                var padre=nodo.$parentNodeScope.$modelValue.nombre;
+                nodo=nodo.$modelValue;
+                
+                // TODO: Hacer la llamada al back
+            }
+            catch(error){
+                //se meterá en caso de que intente eliminar un directorio raíz
+                alert("No se puede eliminar un directorio raíz, patán");
+            }
+            
+        },
+        dropped: function(e) {
+            console.log("dropped");
+            try{
+                var padreOrigen = e.source.nodesScope.$parent.$modelValue.nombre;
+                var padreDestino = e.dest.nodesScope.$parent.$modelValue.nombre;
+                var nodo= e.source.nodeScope.$modelValue;
+                
+                // Hacer la llamada al back
+            }
+            catch(error){
+                //Se meterá en el catch en caso de que muevas el elemento raíz o que muevas un elemento fuera del raíz.
+                //Como no tiene padre, saltará la excepción de que no existe $modelValue del $parent
+                alert("No metas nada fuera del Raíz ni muevas el raíz, cenutrio!!");
+            }
+            
+        }
+    };
+    
     $scope.tipos=["OpenSource", "Suscripción", "Licencia"];
     
     $scope.aniadirElem=function(ev, scope, tipoElem){
@@ -69,6 +102,7 @@ app.controller ('controladorGestionTecnologias', function (servicioRest, utils, 
     };
     
     $scope.seleccionarElemento=function(elem, nodo){
+
         $scope.titulo = "Editar " + nodo.clase;
         nodeData=nodo;
         //console.log(elem.$parent.$parentNodeScope.$modelValue.nombre)
