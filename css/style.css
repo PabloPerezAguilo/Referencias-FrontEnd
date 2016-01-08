@@ -762,4 +762,7 @@ tr.angular-ui-tree-empty {
 .nodo.elementoSeleccionado {
   background-color: #82cdf3; }
 
+#tecnologias .btnAniadirNodo {
+  margin-right: 6.7%; }
+
 /*# sourceMappingURL=style.css.map */

@@ -1,6 +1,6 @@
 <script type="text/ng-template" id="nodes_renderer.html">
 
-    <div ui-tree-handle class="{{node.clase}} tree-node tree-node-content" ng-click="seleccionarElemento(this, node)" id="{{node.nombre}}" >
+    <div ui-tree-handle class="{{node.clase}} tree-node tree-node-content" ng-click="seleccionarElemento(this, node)" id="{{node.nombre}}" id="">
         <a class="btn btn-success btn-xs" ng-if="node.hijos && node.hijos.length > 0" data-nodrag ng-click="toggle(this)">
             <span class="glyphicon"
                 ng-class="{
@@ -9,10 +9,14 @@
             </span>
           </a>
         {{node.nombre}}
-        <a class="pull-right btn btn-danger btn-xs" data-nodrag ng-click="removeNode(this)">
+        <a class="pull-right btn btn-danger btn-xs"
+           data-nodrag
+           ng-click="removeNode(this)"
+           ng-if="this.$parentNodeScope != undefined">
+            
             <span class="glyphicon glyphicon-remove"></span>
         </a>
-        <a class="pull-right btn btn-primary btn-xs" data-nodrag ng-click="aniadirElem($event, this, 'nodo')" style="margin-right: 8px;" ng-if="node.clase=='nodo'">
+        <a class="pull-right btn btn-primary btn-xs btnAniadirNodo" data-nodrag ng-click="aniadirElem($event, this, 'nodo')"  ng-if="node.clase=='nodo'">
             <span class="glyphicon glyphicon-plus"></span>
         </a>
         <a class="pull-right btn btn-success btn-xs" data-nodrag ng-click="aniadirElem($event, this, 'hojaInvalida')" style="margin-right: 8px;" ng-if="node.clase=='nodo'">
