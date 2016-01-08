@@ -3,7 +3,7 @@ app.controller ('controladorGestionTecnologias', function (servicioRest, utils, 
     var operacion;
     $scope.data = [
       {
-        "nombre": "node1",
+        "nombre": "tecnologias",
         "clase":"nodo",
         "hijos": [
           {
@@ -59,6 +59,15 @@ app.controller ('controladorGestionTecnologias', function (servicioRest, utils, 
     var elementoSelecionado;
     
     $scope.eventosArbol = {
+        //Cuando salte el evento (la clave), saltará la función de callback que contiene
+        
+        //cuando se intenta arrastrar un nodo a otro sitio. Si se retorna true, se podrá soltar ahí. Si no, no 
+        accept: function(origen, destino, indiceDestino) {
+            // si el origen es el raíz o el destino está fuera del nodo raíz, su $parentNodeScope será null o undefined
+            // no se aceptará que se arrastre la raíz o que se arrastre algo fuera de la raíz
+            return destino.$parentNodeScope!= undefined && origen.$parentNodeScope!=undefined;
+        },
+        //Cuando se ha eliminado el nodo
         removed: function(nodo){
             console.log("removed: ");
             try{
@@ -73,13 +82,13 @@ app.controller ('controladorGestionTecnologias', function (servicioRest, utils, 
             }
             
         },
+        //Cuando se ha movido el nodo
         dropped: function(e) {
             console.log("dropped");
             try{
                 var padreOrigen = e.source.nodesScope.$parent.$modelValue.nombre;
                 var padreDestino = e.dest.nodesScope.$parent.$modelValue.nombre;
                 var nodo= e.source.nodeScope.$modelValue;
-                
                 // Hacer la llamada al back
             }
             catch(error){
