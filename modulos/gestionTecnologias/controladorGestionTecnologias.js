@@ -1,18 +1,16 @@
 app.controller ('controladorGestionTecnologias', function (servicioRest, utils, config, $scope, $http, $rootScope, $mdDialog) {  
     var nodeData;
+    var operacion;
     $scope.data = [
       {
-        "id": 1,
         "nombre": "node1",
         "clase":"nodo",
         "hijos": [
           {
-            "id": 11,
             "nombre": "node1.1",
             "clase":"nodo",
             "hijos": [
               {
-                "id": 111,
                 "nombre": "node1.1.1",
                 "clase":"hoja",
                 "producto": true,
@@ -22,7 +20,6 @@ app.controller ('controladorGestionTecnologias', function (servicioRest, utils, 
             ]
           },
           {
-            "id": 12,
             "nombre": "node1.2",
             "clase":"hoja",
             "hijos": []
@@ -30,19 +27,16 @@ app.controller ('controladorGestionTecnologias', function (servicioRest, utils, 
         ]
       },
       {
-        "id": 2,
         "nombre": "node2",
         "clase":"nodo",
         "nodrop": true,
         "hijos": [
           {
-            "id": 21,
             "nombre": "node2.1",
             "clase":"hoja",
             "hijos": []
           },
           {
-            "id": 22,
             "nombre": "node2.2",
             "clase":"nodo",
             "hijos": []
@@ -50,12 +44,10 @@ app.controller ('controladorGestionTecnologias', function (servicioRest, utils, 
         ]
       },
       {
-        "id": 3,
         "nombre": "node3",
         "clase":"nodo",
         "hijos": [
           {
-            "id": 31,
             "nombre": "node3.1",
             "clase":"hojaInvalida",
             "hijos": []
@@ -70,36 +62,21 @@ app.controller ('controladorGestionTecnologias', function (servicioRest, utils, 
     
     $scope.aniadirElem=function(ev, scope, tipoElem){
         ev.stopImmediatePropagation();
-        nodeData = scope.$modelValue;
         $scope.titulo = "Añadir " + tipoElem;
-        
-        console.log(nodeData);
-        var nuevoElemento = {"clase" : tipoElem};
-        $scope.nodoSeleccionado={};
-        
-        
-        nodeData.hijos.push({
-          id: nodeData.id * 10 + nodeData.hijos.length,
-          nombre: tipoElem + '.' + (nodeData.hijos.length + 1),
-          clase: tipoElem,
-          hijos: []
-        });
-        
+        $scope.nodoSeleccionado={'clase':tipoElem};
+        nodeData=scope.$modelValue;
+        operacion="anadir";
     };
     
     $scope.seleccionarElemento=function(elem, nodo){
         $scope.titulo = "Editar " + nodo.clase;
         nodeData=nodo;
-        console.log(elem.$parent.$parentNodeScope.$modelValue.nombre)
-        ////////////////
+        //console.log(elem.$parent.$parentNodeScope.$modelValue.nombre)
         $scope.nodoSeleccionado={
-            id: nodeData.id,
             nombre: nodeData.nombre,
             clase: nodeData.clase,
             hijos: nodeData.hijos
         };
-        //$scope.nodoSeleccionado=nodo;
-        ///////////////
         
         elem=elem.$element;
         elem.addClass("elementoSeleccionado");
@@ -107,13 +84,18 @@ app.controller ('controladorGestionTecnologias', function (servicioRest, utils, 
             elementoSelecionado.removeClass("elementoSeleccionado");
         }
         elementoSelecionado=elem;
+        operacion="editar";
     };
     
-    $scope.guardarElem=function(scope, tipoElem){
-        
-        console.log(nodeData);
-        elementoSelecionado.$modelValue=$scope.nodoSeleccionado;
-        console.log(nodeData);
+    $scope.guardarElem=function(){
+        if(operacion=="anadir"){
+            nodeData.hijos.push($scope.nodoSeleccionado);
+        }
+        else if (operacion=="editar"){
+            nodeData.nombre=$scope.nodoSeleccionado.nombre;
+            //MAS
+        }
+        $scope.nodoSeleccionado=null;
     };
     
     $scope.validarElem=function(){
@@ -134,12 +116,10 @@ app.controller ('controladorGestionTecnologias', function (servicioRest, utils, 
     });
   };
         //$scope.showConfirm();
+
+        nodeData.clase="hoja";
         $scope.nodoSeleccionado.clase="hoja";
-        /*nodeData.nodes.push({
-          id: nodeData.id * 10 + nodeData.nodes.length,
-          title: nodeData.title + '.' + (nodeData.nodes.length + 1),
-          nodes: []
-        });*/
+
         
     };
 }); 

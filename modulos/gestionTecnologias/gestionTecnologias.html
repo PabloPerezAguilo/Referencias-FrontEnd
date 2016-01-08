@@ -15,12 +15,12 @@
         <a class="pull-right btn btn-primary btn-xs" data-nodrag ng-click="aniadirElem($event, this, 'nodo')" style="margin-right: 8px;" ng-if="node.clase=='nodo'">
             <span class="glyphicon glyphicon-plus"></span>
         </a>
-        <a class="pull-right btn btn-success btn-xs" data-nodrag ng-click="aniadirElem($event, this, 'hojaInvalida')" style="margin-right: 8px;" ng-if="node.clase=='nodo'">
+        <a class="pull-right btn btn-success btn-xs" data-nodrag ng-click="aniadirElem($event, this, 'hoja')" style="margin-right: 8px;" ng-if="node.clase=='nodo'">
             <span class="glyphicon glyphicon-plus"></span>
         </a>
     </div>
     <ol ui-tree-nodes="" ng-model="node.hijos" ng-class="{hidden: collapsed}">
-        <li ng-repeat="node in node.hijos" ui-tree-node data-nodrop-enabled="nodes.clase!='nodo'" ng-include="'nodes_renderer.html'"></li>
+        <li ng-repeat="node in node.hijos" ui-tree-node data-nodrop-enabled="node.clase=='nodo'" ng-include="'nodes_renderer.html'"></li>
     </ol>
 </script>
 
