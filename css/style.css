@@ -769,4 +769,19 @@ tr.angular-ui-tree-empty {
 #tecnologias .btnAniadirNodo {
   margin-right: 6.7%; }
 
+#datosTecnologia md-input-container {
+  width: 90%;
+  font-size: 120%; }
+
+#datosTecnologia button {
+  width: 40%;
+  margin-left: 2%;
+  margin-right: 2%;
+  display: inline; }
+
+#tituloDatosTecnologia {
+  font-size: 150%;
+  font-style: italic;
+  font-weight: bold; }
+
 /*# sourceMappingURL=style.css.map */
