@@ -139,12 +139,35 @@ app.controller ('controladorGestionTecnologias', function (servicioRest, utils, 
     };
     
     $scope.guardarElem=function(){
+        
+        //------------Añadir elemento
         if(operacion=="anadir"){
             nodeData.hijos.push($scope.nodoSeleccionado);
+            
+            servicioRest.postTecnologia(nodeData.nombre, $scope.nodoSeleccionado)
+            .then(function(data) {
+                
+            }).catch(function(err) {
+                utils.popupInfo('',"Error al añadir tecnologia.");
+                console.log("Error al añadir tecnologia");
+            }); 
         }
+         //------------Editar elemento
         else if (operacion=="editar"){
+            var oldId=nodeData.nombre;
             nodeData.nombre=$scope.nodoSeleccionado.nombre;
-            //MAS
+            if(nodeData.clase!="nodo"){
+                nodeData.tipo=$scope.nodoSeleccionado.tipo;
+                nodeData.producto=$scope.nodoSeleccionado.producto;
+            }
+            
+            servicioRest.putTecnologia(oldId, nodeData)
+            .then(function(data) {
+                
+            }).catch(function(err) {
+                utils.popupInfo('',"Error al editar tecnologia.");
+                console.log("Error al editar tecnologia");
+            }); 
         }
         $scope.nodoSeleccionado=null;
     };
