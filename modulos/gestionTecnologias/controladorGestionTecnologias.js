@@ -65,7 +65,15 @@ app.controller ('controladorGestionTecnologias', function (servicioRest, utils, 
         accept: function(origen, destino, indiceDestino) {
             // si el origen es el raíz o el destino está fuera del nodo raíz, su $parentNodeScope será null o undefined
             // no se aceptará que se arrastre la raíz o que se arrastre algo fuera de la raíz
-            return destino.$parentNodeScope!= undefined && origen.$parentNodeScope!=undefined;
+            //console.log("ORIGEN: "+origen.$parentNodeScope);
+            try{
+                return destino.$parent.$modelValue.nombre!=undefined 
+                        && origen.$parentNodeScope != undefined 
+                        && destino.$nodeScope.$modelValue.clase === 'nodo';
+            }
+            catch(error){
+                return false;
+            }
         },
         //Cuando se ha eliminado el nodo
         removed: function(nodo){
