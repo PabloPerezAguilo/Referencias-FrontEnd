@@ -451,10 +451,7 @@ app.controller('controladorNuevaReferencia', function(servicioRest,utils, config
     }
     
     $scope.crearReferencia = function (estado, event) {
-        //console.log($scope.fechaInicio.getDate());
         console.log('FECHA'+$scope.fechaInicio);
-        console.log('prueba'+$scope.referencia.duracionMeses);
-        console.log('TIPO: '+typeof $scope.fechaInicio);
         if ((estado==="pendiente" && validarCampos()) || estado==="borrador")
         {
             // Crea/Guarda una referencia dependiendo de su estado
@@ -498,6 +495,9 @@ app.controller('controladorNuevaReferencia', function(servicioRest,utils, config
                     enviarReferencia(referencia, mensajeEstado);
                     console.log('referencia guardada');
                  }
+                console.log("AQUI");
+                console.log($scope.referencia);
+                console.log(referencia);
             }else
             {
                     var referencia = $scope.referencia;
@@ -600,8 +600,9 @@ app.controller('controladorNuevaReferencia', function(servicioRest,utils, config
    /*-----------------------  Cargar datos en validarReferencia ----------------------- */
     function cargarDatosValidarReferencia(){
         // este codigo rellena la referencia con la informacion guardada en $rootScope
-        $scope.referencia = {};
+        //$scope.referencia = {};
         $scope.referencia=$rootScope.referenciaCargada;
+        $scope.fechaInicio = new Date($rootScope.referenciaCargada.fechaInicio);
         $scope.sociedadSeleccionado = $rootScope.referenciaCargada.sociedad;
         $scope.sectorEmpresarialSeleccionado = $rootScope.referenciaCargada.sectorEmpresarial;
         $scope.tipoActividadSeleccionado = $rootScope.referenciaCargada.tipoActividad;

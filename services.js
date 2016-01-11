@@ -50,7 +50,7 @@ function ServicioREST( utils, config, $http,$q, $rootScope) {
 			data: objetoAEnviar
 		})
 		.success(function(data, status, headers, config) {
-			defered.resolve(data);
+			defered.resolve(data);   
 		})
 		.error(function(data, status, headers, config) {
 			tratarError(data, status, defered);
@@ -102,7 +102,12 @@ function ServicioREST( utils, config, $http,$q, $rootScope) {
             url: url + '/referencia/pendientes'
         })
         .success(function(data,status,headers,config){
-                 defered.resolve(data);
+            // Por cada referencia es necesario convertir la fecha (enviada en segundos) a un formato fecha,
+            // El propio constructor new Date(<Long>) lo hace por nosotros.
+            for(var i=0; i<data.length;i++){
+                data[i].fechaInicio=new Date(data[i].fechaInicio);            
+            }
+            defered.resolve(data);
         })
         .error(function(data,status,headers,config){
                tratarError(data,status,defered);
