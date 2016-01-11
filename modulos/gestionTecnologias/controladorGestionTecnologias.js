@@ -112,14 +112,26 @@ app.controller ('controladorGestionTecnologias', function (servicioRest, utils, 
     
     $scope.seleccionarElemento=function(elem, nodo){
 
+        console.log(nodo);
         $scope.titulo = "Editar " + nodo.clase;
         nodeData=nodo;
         //console.log(elem.$parent.$parentNodeScope.$modelValue.nombre)
-        $scope.nodoSeleccionado={
+        if(nodeData.clase=="nodo"){
+            $scope.nodoSeleccionado={
             nombre: nodeData.nombre,
             clase: nodeData.clase,
             hijos: nodeData.hijos
-        };
+            };
+        } else {
+            $scope.nodoSeleccionado={
+            nombre: nodeData.nombre,
+            clase: nodeData.clase,
+            producto: nodeData.producto,
+            tipo: nodeData.tipo,
+            hijos: nodeData.hijos
+            };
+        }
+        
         
         elem=elem.$element;
         elem.addClass("elementoSeleccionado");
@@ -134,11 +146,12 @@ app.controller ('controladorGestionTecnologias', function (servicioRest, utils, 
         
         //------------Añadir elemento
         if(operacion=="anadir"){
-            nodeData.hijos.push($scope.nodoSeleccionado);
+            console.log($scope.nodoSeleccionado);
+            
             
             servicioRest.postTecnologia(nodeData.nombre, $scope.nodoSeleccionado)
             .then(function(data) {
-                
+                nodeData.hijos.push($scope.nodoSeleccionado);
             }).catch(function(err) {
                 utils.popupInfo('',"Error al añadir tecnologia.");
                 console.log("Error al añadir tecnologia");
@@ -147,15 +160,15 @@ app.controller ('controladorGestionTecnologias', function (servicioRest, utils, 
          //------------Editar elemento
         else if (operacion=="editar"){
             var oldId=nodeData.nombre;
-            nodeData.nombre=$scope.nodoSeleccionado.nombre;
-            if(nodeData.clase!="nodo"){
-                nodeData.tipo=$scope.nodoSeleccionado.tipo;
-                nodeData.producto=$scope.nodoSeleccionado.producto;
-            }
             
-            servicioRest.putTecnologia(oldId, nodeData)
+            
+            servicioRest.putTecnologia(oldId, $scope.nodoSeleccionado)
             .then(function(data) {
-                
+                nodeData.nombre=$scope.nodoSeleccionado.nombre;
+                if(nodeData.clase!="nodo"){
+                    nodeData.tipo=$scope.nodoSeleccionado.tipo;
+                    nodeData.producto=$scope.nodoSeleccionado.producto;
+                }
             }).catch(function(err) {
                 utils.popupInfo('',"Error al editar tecnologia.");
                 console.log("Error al editar tecnologia");
