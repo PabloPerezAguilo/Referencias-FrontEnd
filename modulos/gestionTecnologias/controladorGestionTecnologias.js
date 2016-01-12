@@ -1,7 +1,7 @@
 app.controller ('controladorGestionTecnologias', function (servicioRest, utils, config, $scope, $http, $rootScope, $mdDialog) {  
     var nodeData;
     var operacion;
-    /*$scope.data = [
+    $scope.data = [
       {
         "nombre": "tecnologias",
         "clase":"nodo",
@@ -54,14 +54,14 @@ app.controller ('controladorGestionTecnologias', function (servicioRest, utils, 
           }
         ]
       }
-    ]*/
+    ]
     
-    servicioRest.getTecnologias().then(
+    /*servicioRest.getTecnologias().then(
         function (response) {
             console.log(response);
             $scope.data = [];
             $scope.data[0] = response;
-        });
+        });*/
     
     $scope.nodoSeleccionado;
     var elementoSelecionado={
@@ -174,9 +174,9 @@ app.controller ('controladorGestionTecnologias', function (servicioRest, utils, 
             };
         }
         
-       
+        elem=elem.$element;
         if(elem !== elementoSelecionado.elem){
-            elem=elem.$element;
+            
             elem.addClass("elementoSeleccionado");
             if(elementoSelecionado.elem!=undefined){
                 elementoSelecionado.elem.removeClass("elementoSeleccionado");
