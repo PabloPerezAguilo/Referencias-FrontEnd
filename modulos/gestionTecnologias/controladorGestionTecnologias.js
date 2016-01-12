@@ -1,7 +1,7 @@
 app.controller ('controladorGestionTecnologias', function (servicioRest, utils, config, $scope, $http, $rootScope, $mdDialog) {  
     var nodeData;
     var operacion;
-    $scope.data = [
+    /*$scope.data = [
       {
         "nombre": "tecnologias",
         "clase":"nodo",
@@ -54,7 +54,15 @@ app.controller ('controladorGestionTecnologias', function (servicioRest, utils, 
           }
         ]
       }
-    ]
+    ]*/
+    
+    servicioRest.getTecnologias().then(
+        function (response) {
+            console.log(response);
+            $scope.data = [];
+            $scope.data[0] = response;
+        });
+    
     $scope.nodoSeleccionado;
     var elementoSelecionado;
     
@@ -110,6 +118,16 @@ app.controller ('controladorGestionTecnologias', function (servicioRest, utils, 
     
     $scope.tipos=["OpenSource", "Suscripción", "Licencia"];
     
+    $scope.eliminarElem=function(scope, eliminarNodo){
+        servicioRest.deleteTecnologia(scope.$modelValue.nombre)
+            .then(function(data) {
+                eliminarNodo(scope);
+            }).catch(function(err) {
+                utils.popupInfo('',"Error al eliminar tecnologia.");
+                console.log("Error al eliminar tecnologia");
+            });    
+    };
+    
     $scope.aniadirElem=function(ev, scope, tipoElem){
         ev.stopImmediatePropagation();
         $scope.titulo = "Añadir " + tipoElem;
@@ -128,7 +146,7 @@ app.controller ('controladorGestionTecnologias', function (servicioRest, utils, 
             $scope.nodoSeleccionado={
             nombre: nodeData.nombre,
             clase: nodeData.clase,
-            hijos: nodeData.hijos
+            nodosHijos: nodeData.nodosHijos
             };
         } else {
             $scope.nodoSeleccionado={
@@ -136,7 +154,7 @@ app.controller ('controladorGestionTecnologias', function (servicioRest, utils, 
             clase: nodeData.clase,
             producto: nodeData.producto,
             tipo: nodeData.tipo,
-            hijos: nodeData.hijos
+            nodosHijos: nodeData.nodosHijos
             };
         }
         
@@ -159,7 +177,7 @@ app.controller ('controladorGestionTecnologias', function (servicioRest, utils, 
             
             servicioRest.postTecnologia(nodeData.nombre, $scope.nodoSeleccionado)
             .then(function(data) {
-                nodeData.hijos.push($scope.nodoSeleccionado);
+                nodeData.nodosHijos.push($scope.nodoSeleccionado);
             }).catch(function(err) {
                 utils.popupInfo('',"Error al añadir tecnologia.");
                 console.log("Error al añadir tecnologia");

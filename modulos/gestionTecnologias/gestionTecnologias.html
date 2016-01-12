@@ -1,7 +1,7 @@
 <script type="text/ng-template" id="nodes_renderer.html">
 
     <div ui-tree-handle class="{{node.clase}} tree-node tree-node-content" ng-click="seleccionarElemento(this, node)" id="{{node.nombre}}">
-        <a class="btn btn-success btn-xs" ng-if="node.hijos && node.hijos.length > 0" data-nodrag ng-click="toggle(this)">
+        <a class="btn btn-success btn-xs" ng-if="node.nodosHijos && node.nodosHijos.length > 0" data-nodrag ng-click="toggle(this)">
             <span class="glyphicon"
                 ng-class="{
                     'glyphicon-chevron-right': collapsed,
@@ -11,7 +11,7 @@
         {{node.nombre}}
         <a class="pull-right btn btn-danger btn-xs"
            data-nodrag
-           ng-click="removeNode(this)"
+           ng-click="eliminarElem(this,removeNode)"
            ng-if="this.$parentNodeScope != undefined">
             
             <span class="glyphicon glyphicon-remove"></span>
@@ -23,8 +23,8 @@
             <span class="glyphicon glyphicon-plus"></span>
         </a>
     </div>
-    <ol ui-tree-nodes="" ng-model="node.hijos" ng-class="{hidden: collapsed}">
-        <li ng-repeat="node in node.hijos" ui-tree-node data-nodrop-enabled="node.clase!=='nodo'" ng-include="'nodes_renderer.html'"></li>
+    <ol ui-tree-nodes="" ng-model="node.nodosHijos" ng-class="{hidden: collapsed}">
+        <li ng-repeat="node in node.nodosHijos" ui-tree-node data-nodrop-enabled="node.clase!=='nodo'" ng-include="'nodes_renderer.html'"></li>
     </ol>
 </script>
 
