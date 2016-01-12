@@ -97,17 +97,12 @@ app.controller ('controladorGestionTecnologias', function (servicioRest, utils, 
         dropped: function(e) {
             console.log("dropped");
             try{
-                
-                /*var elemASeleccionar=document.getElementById(elementoSelecionado.id);
-                if( elemASeleccionar!=undefined ){
-                    //elemeToSelect.class+=" elementoSeleccionado";
-                    console.log(elemASeleccionar);
-                } */
+                $scope.nodoSeleccionado=null;
                 
                 var padreOrigen = e.source.nodesScope.$parent.$modelValue.nombre;
                 var padreDestino = e.dest.nodesScope.$parent.$modelValue.nombre;
                 var nodo= e.source.nodeScope.$modelValue;
-                
+                //console.log (e.source);
                 // Hacer la llamada al back
             }
             catch(error){
@@ -131,7 +126,7 @@ app.controller ('controladorGestionTecnologias', function (servicioRest, utils, 
     };
     
     $scope.seleccionarElemento=function(elem, nodo){
-        console.log(nodo);
+        console.log(elem);
         $scope.titulo = "Editar " + nodo.clase;
         nodeData=nodo;
         //console.log(elem.$parent.$parentNodeScope.$modelValue.nombre)
@@ -163,7 +158,7 @@ app.controller ('controladorGestionTecnologias', function (servicioRest, utils, 
         }
         operacion="editar";
     };
-    
+        
     $scope.guardarElem=function(){
         
         //------------Añadir elemento
