@@ -4,8 +4,11 @@
 var app = angular.module('ref', ['ngRoute','ngMaterial','ngMdIcons','ngMessages','ja.qr','ui.bootstrap','angular-intro','ui.tree']);
 //console.log('Después de app: ');
 //console.log(app);
-app.run(function(servicioRest, utils, $rootScope, $http, $location, $mdDialog) {
 
+
+
+app.run(function(servicioRest, utils, $rootScope, $http, $location, $mdDialog) {
+    console.log("APP");
     //console.log('Inicio app');
     $rootScope.menu=false;
     // Opcion que determinará desde donde se accede a la pagina de nuevaReferencia para saber que cabecera y botones ponerle.
@@ -21,34 +24,39 @@ app.run(function(servicioRest, utils, $rootScope, $http, $location, $mdDialog) {
     
     
     // Comprobamos si el usuario guardó información en el localStorage. Si es asi la cargamos
-	if (localStorage.getItem("nick") !== null) {
-                $rootScope.usuarioLS = {
-                    nick: localStorage.getItem("nick"),
-                    password: Aes.Ctr.decrypt(localStorage.getItem("password"), localStorage.getItem("nick"), 256),
-                    role: localStorage.getItem("role"),
-                    name: localStorage.getItem("name")
-                };
+	if (localStorage.getItem("nick") !== null ||  sessionStorage.getItem("nick") !== null) {
         
-                //volvemos a cargar el menú
-                $rootScope.menu = true;
+        //Cargamos los datos del storage pertinente. No van a estarlos dos a la vez
+        if(localStorage.getItem("nick") !== null){
+            console.log("LOCAL");
+            caragaStorage(localStorage);
+        }
         
-                $http.defaults.headers.common['Authorization'] = 'Basic ' + btoa($rootScope.usuarioLS.nick + ':' + $rootScope.usuarioLS.password);
+        if(sessionStorage.getItem("nick") !== null){
+            console.log("SESSION")
+            caragaStorage(sessionStorage);
+        }
+        //volvemos a cargar el menú
+        $rootScope.menu = true;
 
-                // Hacemos la llamada al servicioRest pidiendole los datos del usuario
-                servicioRest.postLogin({nick:$rootScope.usuarioLS.nick ,password: $rootScope.usuarioLS.password})
-                .then(function(data) {
-                    data.role=$rootScope.usuarioLS.role;
-     
-                })
-                .catch(function(err) {
-                    // Debemos tratar el error   
-	               //console.log("Error");
+        $http.defaults.headers.common['Authorization'] = 'Basic ' + btoa($rootScope.usuarioLS.nick + ':' + $rootScope.usuarioLS.password);
 
-                });
-	};
+        // Hacemos la llamada al servicioRest pidiendole los datos del usuario
+        servicioRest.postLogin({nick:$rootScope.usuarioLS.nick ,password: $rootScope.usuarioLS.password})
+        .then(function(data) {
+            data.role=$rootScope.usuarioLS.role;
+            // esta funcion permite cargar el menu cuando hemos recargado la pagina
+            utils.cargarMenu(data.role);
+
+        })
+        .catch(function(err) {
+            // Debemos tratar el error   
+           //console.log("Error");
+
+        }); 
+	}
+   
     
-    // esta funcion permite cargar el menu cuando hemos recargado la pagina
-    utils.cargarMenu(0);
     
     
     $rootScope.datosUsuarioLogueado = function() {
@@ -60,9 +68,23 @@ app.run(function(servicioRest, utils, $rootScope, $http, $location, $mdDialog) {
           clickOutsideToClose:true
         })
     };
+    function caragaStorage(storage){
+        console.log(storage)
+        $rootScope.usuarioLS = {
+            nick: storage.getItem("nick"),
+            password: Aes.Ctr.decrypt(storage.getItem("password"), storage.getItem("nick"), 256),
+            role: storage.getItem("role"),
+            name: storage.getItem("name")
+        };   
+    }
+    
     
     $rootScope.salir = function() {
-        limpiarLocalStorage();
+        $rootScope.usuarioLS="";
+        limpiarStorage(localStorage);
+        limpiarStorage(sessionStorage);
+        $http.defaults.headers.common.Authorization = 'Basic ';
+        $rootScope.usuarioLS = undefined;
         $location.path('/');
         // Ocultamos el menú
         $rootScope.menu=false;
@@ -78,17 +100,16 @@ app.run(function(servicioRest, utils, $rootScope, $http, $location, $mdDialog) {
         $rootScope.referenciaCargada = null;
     }
     
-    function limpiarLocalStorage() {
+    function limpiarStorage(storage) {
 
-        $rootScope.usuarioLS="";
+        
         // Limpiamos el localStorage
-        localStorage.clear();
-        localStorage.removeItem("name");
-        localStorage.removeItem("password");
-        localStorage.removeItem("role");
+        storage.clear();
+        storage.removeItem("name");
+        storage.removeItem("password");
+        storage.removeItem("role");
         // Limpiamos las cabeceras de autenticación
-        $http.defaults.headers.common.Authorization = 'Basic ';
-        $rootScope.usuarioLS = undefined;
+        
     }
 
     // Redirige a la pagina de Login si no estas logeado
@@ -140,6 +161,8 @@ app.config(function($routeProvider) {
 		redirectTo: "/pageNotFound"
 	});
 });
+
+
 
 app.service('utils', utils);
 

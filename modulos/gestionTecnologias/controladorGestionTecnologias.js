@@ -64,7 +64,10 @@ app.controller ('controladorGestionTecnologias', function (servicioRest, utils, 
         });
     
     $scope.nodoSeleccionado;
-    var elementoSelecionado;
+    var elementoSelecionado={
+        elem:undefined,
+        id:undefined
+    };
     
     $scope.eventosArbol = {
         //Cuando salte el evento (la clave), saltará la función de callback que contiene
@@ -102,14 +105,23 @@ app.controller ('controladorGestionTecnologias', function (servicioRest, utils, 
         dropped: function(e) {
             console.log("dropped");
             try{
+                
+                /*var elemASeleccionar=document.getElementById(elementoSelecionado.id);
+                if( elemASeleccionar!=undefined ){
+                    //elemeToSelect.class+=" elementoSeleccionado";
+                    console.log(elemASeleccionar);
+                } */
+                
                 var padreOrigen = e.source.nodesScope.$parent.$modelValue.nombre;
                 var padreDestino = e.dest.nodesScope.$parent.$modelValue.nombre;
                 var nodo= e.source.nodeScope.$modelValue;
+                
                 // Hacer la llamada al back
             }
             catch(error){
                 //Se meterá en el catch en caso de que muevas el elemento raíz o que muevas un elemento fuera del raíz.
                 //Como no tiene padre, saltará la excepción de que no existe $modelValue del $parent
+                console.error(error);
                 alert("No metas nada fuera del Raíz ni muevas el raíz, cenutrio!!");
             }
             
@@ -137,7 +149,6 @@ app.controller ('controladorGestionTecnologias', function (servicioRest, utils, 
     };
     
     $scope.seleccionarElemento=function(elem, nodo){
-
         console.log(nodo);
         $scope.titulo = "Editar " + nodo.clase;
         nodeData=nodo;
@@ -158,13 +169,16 @@ app.controller ('controladorGestionTecnologias', function (servicioRest, utils, 
             };
         }
         
-        
-        elem=elem.$element;
-        elem.addClass("elementoSeleccionado");
-        if(elementoSelecionado!=undefined){
-            elementoSelecionado.removeClass("elementoSeleccionado");
+       
+        if(elem !== elementoSelecionado.elem){
+            elem=elem.$element;
+            elem.addClass("elementoSeleccionado");
+            if(elementoSelecionado.elem!=undefined){
+                elementoSelecionado.elem.removeClass("elementoSeleccionado");
+            }
+            elementoSelecionado.elem = elem;
+            elementoSelecionado.id = elem[0].id;
         }
-        elementoSelecionado=elem;
         operacion="editar";
     };
     
