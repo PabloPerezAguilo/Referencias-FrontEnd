@@ -22,10 +22,7 @@ app.controller('controladorNuevaReferencia', function(servicioRest,utils, config
     $scope.activarScroll=function(){     
         $scope.scroll=true;     
     };
-    
-    
-    // esta funcion permite cargar el menu cuando hemos recargado la pagina
-    //servicioRest.cargarMenu();
+
       
     //Habilitar/deshabilitar los campos del formulario
     $scope.deshabilitarForm=false;

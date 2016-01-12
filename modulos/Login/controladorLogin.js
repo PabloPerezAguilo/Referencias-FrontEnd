@@ -68,15 +68,21 @@ app.controller('controladorLogin', function(servicioRest, config, $scope, $http,
 			});    
     };
     
+    function rellenarStorage(storage){
+        storage.setItem("nick", $rootScope.usuarioLS.nick);
+        // Usamos el nick del usuario como secreto
+        storage.setItem("password", Aes.Ctr.encrypt($rootScope.usuarioLS.password, $rootScope.usuarioLS.nick, 256));
+        storage.setItem("role", $rootScope.usuarioLS.role);
+        storage.setItem("name", $rootScope.usuarioLS.name);
+    }
     
     function comprobarRecordar(){ 
 
         if($scope.recordar){
-            localStorage.setItem("nick", $rootScope.usuarioLS.nick);
-            // Usamos el nick del usuario como secreto
-            localStorage.setItem("password", Aes.Ctr.encrypt($rootScope.usuarioLS.password, $rootScope.usuarioLS.nick, 256));
-            localStorage.setItem("role", $rootScope.usuarioLS.role);
-            localStorage.setItem("name", $rootScope.usuarioLS.name);
+            rellenarStorage(localStorage);
+        }
+        else{
+            rellenarStorage(sessionStorage);
         }
     }
     

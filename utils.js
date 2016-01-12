@@ -22,9 +22,9 @@ function utils($rootScope, $mdDialog){
         );
     }
     
-    function cargarMenu(prueba){
-        if(localStorage.getItem("role") !== null || prueba === 1){
-            if( $rootScope.usuarioLS.role === "ROLE_ADMINISTRADOR"){
+    function cargarMenu(rol){
+        console.log("utils.cargarMeu: "+rol);
+            if( rol === "ROLE_ADMINISTRADOR"){
                 $rootScope.menuTecnologias = true;
                 $rootScope.menuGestionTecnologias = true;
                 $rootScope.menuUsuarios = true;
@@ -34,22 +34,20 @@ function utils($rootScope, $mdDialog){
                 $rootScope.menuReferenciasGestion = true;
                 $rootScope.menuReferenciasNueva = true;
                 $rootScope.menuReferenciasListar = true;
-            }else if($rootScope.usuarioLS.role === "ROLE_VALIDADOR"){
+            }else if(rol === "ROLE_VALIDADOR"){
                 $rootScope.menuReferencias = true;
                 $rootScope.menuReferenciasGestion = true;
                 $rootScope.menuReferenciasListar = true;
-            }else if($rootScope.usuarioLS.role === "ROLE_CONSULTOR"){
+            }else if(rol === "ROLE_CONSULTOR"){
                 $rootScope.menuReferencias = true;
                 $rootScope.menuReferenciasListar = true;
-            }else if($rootScope.usuarioLS.role === "ROLE_MANTENIMIENTO"){ 
+            }else if(rol === "ROLE_MANTENIMIENTO"){ 
                 $rootScope.menuReferencias = true;
                 $rootScope.menuReferenciasGestion = true;
                 $rootScope.menuReferenciasListar = true;
                 $rootScope.menuReferenciasNueva = true;
             }
-        }else{
-            console.log("No hay credenciales de usuario. No se hace recarga de contexto.")
-        }
+
             
     }
     
