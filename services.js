@@ -225,6 +225,24 @@ function ServicioREST( utils, config, $http,$q, $rootScope) {
 		return promise;
     }
     
+    function getTecnologias() {
+		var defered = $q.defer();
+		var promise = defered.promise;
+        
+		$http({
+			method: 'GET',
+			url: url + '/tecnologias'
+		})
+		.success(function(data, status, headers, config) {
+			defered.resolve(data);
+		})
+		.error(function(data, status, headers, config) {
+			tratarError(data, status, defered);
+		});
+
+		return promise;
+	}
+    
     function postTecnologia(idPadre, nodo) {
 		var defered = $q.defer();
 		var promise = defered.promise;
@@ -262,11 +280,31 @@ function ServicioREST( utils, config, $http,$q, $rootScope) {
 
 		return promise;
 	}
+    
+    function deleteTecnologia(id) {
+		var defered = $q.defer();
+		var promise = defered.promise;
+		$http({
+			method: 'DELETE',
+			url: url + '/tecnologias',
+			data: id
+		})
+		.success(function(data, status, headers, config) {
+			defered.resolve(data);
+		})
+		.error(function(data, status, headers, config) {
+			tratarError(data, status, defered);
+		});
+
+		return promise;
+	}
      
 		
 	return {
+        getTecnologias: getTecnologias,
         postTecnologia: postTecnologia,
         putTecnologia: putTecnologia,
+        deleteTecnologia: deleteTecnologia,
 		getReferencias: getReferencias,
 		getReferencia: getReferencia,
         getReferenciasPendientes: getReferenciasPendientes,
