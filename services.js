@@ -246,7 +246,7 @@ function ServicioREST( utils, config, $http,$q, $rootScope) {
     function postTecnologia(idPadre, nodo) {
 		var defered = $q.defer();
 		var promise = defered.promise;
-        datos = {'idPadre' : idPadre, 'nodo' : nodo}
+        datos = {idPadre : idPadre, nodo : nodo};
 		$http({
 			method: 'POST',
 			url: url + '/tecnologias',
@@ -262,10 +262,10 @@ function ServicioREST( utils, config, $http,$q, $rootScope) {
 		return promise;
 	}
     
-    function putTecnologia(idAntiguo, nodo) {
+    function putTecnologia(idAnterior, nodo) {
 		var defered = $q.defer();
 		var promise = defered.promise;
-        datos = {'idAntiguo' : idAntiguo, 'nodo' : nodo}
+        datos = {idAnterior : idAnterior, nodo : nodo}
 		$http({
 			method: 'PUT',
 			url: url + '/tecnologias',
@@ -286,8 +286,7 @@ function ServicioREST( utils, config, $http,$q, $rootScope) {
 		var promise = defered.promise;
 		$http({
 			method: 'DELETE',
-			url: url + '/tecnologias',
-			data: id
+			url: url + '/tecnologias/' + id
 		})
 		.success(function(data, status, headers, config) {
 			defered.resolve(data);

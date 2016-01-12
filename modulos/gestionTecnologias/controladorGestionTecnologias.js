@@ -126,12 +126,21 @@ app.controller ('controladorGestionTecnologias', function (servicioRest, utils, 
     $scope.tipos=["OpenSource", "Suscripción", "Licencia"];
     
     $scope.eliminarElem=function(scope, eliminarNodo){
+        console.log(scope.$modelValue.nombre);
         servicioRest.deleteTecnologia(scope.$modelValue.nombre)
             .then(function(data) {
-                eliminarNodo(scope);
+                //eliminarNodo(scope);
+                $scope.data = [];
+                $scope.data[0] = data;
+
             }).catch(function(err) {
                 utils.popupInfo('',"Error al eliminar tecnologia.");
                 console.log("Error al eliminar tecnologia");
+                servicioRest.getTecnologias().then(
+                function (response) {
+                    $scope.data = [];
+                    $scope.data[0] = response;
+                });
             });    
     };
     
@@ -151,16 +160,17 @@ app.controller ('controladorGestionTecnologias', function (servicioRest, utils, 
         if(nodeData.clase=="nodo"){
             $scope.nodoSeleccionado={
             nombre: nodeData.nombre,
-            clase: nodeData.clase,
-            nodosHijos: nodeData.nodosHijos
+            nodosHijos: nodeData.nodosHijos,
+            clase: nodeData.clase
+            
             };
         } else {
             $scope.nodoSeleccionado={
             nombre: nodeData.nombre,
-            clase: nodeData.clase,
+            nodosHijos: nodeData.nodosHijos,
             producto: nodeData.producto,
             tipo: nodeData.tipo,
-            nodosHijos: nodeData.nodosHijos
+            clase: nodeData.clase
             };
         }
         
@@ -183,9 +193,9 @@ app.controller ('controladorGestionTecnologias', function (servicioRest, utils, 
         if(operacion=="anadir"){
             console.log($scope.nodoSeleccionado);
             
-            
             servicioRest.postTecnologia(nodeData.nombre, $scope.nodoSeleccionado)
             .then(function(data) {
+                
                 nodeData.nodosHijos.push($scope.nodoSeleccionado);
             }).catch(function(err) {
                 utils.popupInfo('',"Error al añadir tecnologia.");

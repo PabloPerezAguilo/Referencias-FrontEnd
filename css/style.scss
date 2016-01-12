@@ -97,18 +97,17 @@ footer {
 footer #logoGfi {
     /*width: 5%;
     min-width: 5%;*/
-    max-height: 50%;
+    max-height: 70%;
     min-height: 5%;
     float: left;
-    margin-top: 7px;
+    margin-top: 5px;
     margin-left: 9px;
 }
 footer nav a {
-    line-height: 200px;
     float: right;
     display: inline-block;
     color: $colorDetalles;
-    padding: 20px 20px;
+    padding: 2% 2%;
     line-height: normal;
     font-size: 11px;
     -webkit-transition: all 500ms ease;
