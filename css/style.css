@@ -26,6 +26,47 @@ footer, header, hgroup, menu, nav, section {
 
 /*CSS Global Variables*/
 /*medias querys*/
+@media screen and (max-width: 1250px) {
+  .iconosMenu {
+    margin-left: 10% !important; } }
+
+@media screen and (max-width: 1185px) {
+  .iconosMenu {
+    margin-left: 5% !important; } }
+
+@media screen and (max-width: 1130px) {
+  .iconosMenu {
+    margin-left: 0 !important; } }
+
+@media screen and (max-width: 1075px) {
+  .md-button {
+    margin-right: 0;
+    margin-left: 0;
+    font-size: 15px; }
+  .iconosMenu {
+    margin-left: 6% !important; } }
+
+@media screen and (max-width: 1040px) {
+  .iconosMenu {
+    margin-left: 0 !important; } }
+
+/*@media screen and (max-width: 970px){
+    .iconosMenu {
+        width: 1px !important;
+    }
+}*/
+@media screen and (max-width: 970px) {
+  .md-button {
+    font-size: 12px; } }
+
+@media screen and (max-width: 875px) {
+  .iconosMenu {
+    width: 1px !important; } }
+
+@media screen and (max-width: 835px) {
+  .md-button {
+    font-size: 10px; } }
+
 @media screen and (max-width: 700px) {
   .contenedorVistas {
     width: 80%; }
@@ -60,8 +101,7 @@ header #logoSharon {
   max-height: 100%;
   min-height: 100%;
   display: block;
-  margin: auto;
-  width: 400px; }
+  margin: auto; }
 
 footer {
   width: 100%;
@@ -129,7 +169,8 @@ footer #lineaFooter {
 .iconosMenu {
   width: 10px;
   height: 25px;
-  margin: auto;
+  margin-top: 2%;
+  margin-left: 15%;
   cursor: pointer; }
 
 /* --------------------------- ESTILOS BIENVENIDA ---------------------- */

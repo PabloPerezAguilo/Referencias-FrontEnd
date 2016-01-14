@@ -5,24 +5,24 @@ app.controller ('controladorGestionTecnologias', function (servicioRest, utils, 
       {
         "nombre": "tecnologias",
         "clase":"nodo",
-        "hijos": [
+        "nodosHijos": [
           {
             "nombre": "node1.1",
             "clase":"nodo",
-            "hijos": [
+            "nodosHijos": [
               {
                 "nombre": "node1.1.1",
                 "clase":"hoja",
                 "producto": true,
                 "tipo": "OpenSource",
-                "hijos": []
+                "nodosHijos": []
               }
             ]
           },
           {
             "nombre": "node1.2",
             "clase":"hoja",
-            "hijos": []
+            "nodosHijos": []
           }
         ]
       },
@@ -30,38 +30,38 @@ app.controller ('controladorGestionTecnologias', function (servicioRest, utils, 
         "nombre": "node2",
         "clase":"nodo",
         "nodrop": true,
-        "hijos": [
+        "nodosHijos": [
           {
             "nombre": "node2.1",
             "clase":"hoja",
-            "hijos": []
+            "nodosHijos": []
           },
           {
             "nombre": "node2.2",
             "clase":"nodo",
-            "hijos": []
+            "nodosHijos": []
           }
         ]
       },
       {
         "nombre": "node3",
         "clase":"nodo",
-        "hijos": [
+        "nodosHijos": [
           {
             "nombre": "node3.1",
             "clase":"hojaInvalida",
-            "hijos": []
+            "nodosHijos": []
           }
         ]
       }
     ]
     
-    /*servicioRest.getTecnologias().then(
+    servicioRest.getTecnologias().then(
         function (response) {
             console.log(response);
             $scope.data = [];
             $scope.data[0] = response;
-        });*/
+        });
     
     $scope.nodoSeleccionado;
     var elementoSelecionado={
