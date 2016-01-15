@@ -65,7 +65,17 @@ footer, header, hgroup, menu, nav, section {
 
 @media screen and (max-width: 835px) {
   .md-button {
-    font-size: 10px; } }
+    font-size: 13px; }
+  #menu {
+    width: 80% !important;
+    background-color: black; }
+  .iconosMenu {
+    margin-left: 30% !important; } }
+
+@media screen and (max-width: 700px) {
+  #menu {
+    width: 100% !important;
+    border-radius: 0 !important; } }
 
 @media screen and (max-width: 700px) {
   .contenedorVistas {
