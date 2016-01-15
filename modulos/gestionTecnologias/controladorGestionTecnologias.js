@@ -117,7 +117,7 @@ app.controller ('controladorGestionTecnologias', function (servicioRest, utils, 
     
     $scope.tipos=["OpenSource", "Suscripción", "Licencia"];
     
-    $scope.eliminarElem=function(scope, eliminarNodo){
+    $scope.eliminarElem=function(scope){
         console.log(scope.$modelValue.nombre);
         servicioRest.deleteTecnologia(scope.$modelValue.nombre)
             .then(function(data) {
