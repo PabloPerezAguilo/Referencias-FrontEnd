@@ -1,7 +1,7 @@
 app.controller ('controladorGestionTecnologias', function (servicioRest, utils, config, $scope, $http, $rootScope, $mdDialog) {  
     var nodeData;
     var operacion;
-    $scope.data = [
+   /* $scope.data = [
       {
         "nombre": "tecnologias",
         "clase":"nodo",
@@ -54,7 +54,7 @@ app.controller ('controladorGestionTecnologias', function (servicioRest, utils, 
           }
         ]
       }
-    ]
+    ]*/
     
     servicioRest.getTecnologias().then(
         function (response) {
@@ -64,21 +64,23 @@ app.controller ('controladorGestionTecnologias', function (servicioRest, utils, 
         });
     
     $scope.nodoSeleccionado;
-    var elementoSelecionado={
-        elem:undefined,
-        id:undefined
-    };
+    
+    // Iniciamos el nodo selleccionado a undefined para indicar que inicialmente no hay ninguno seleccionado
+    var elementoSeleccionado=undefined;
     
     $scope.eventosArbol = {
         //Cuando salte el evento (la clave), saltará la función de callback que contiene
         
         //cuando se intenta arrastrar un nodo a otro sitio. Si se retorna true, se podrá soltar ahí. Si no, no 
         accept: function(origen, destino, indiceDestino) {
-            // si el origen es el raíz o el destino está fuera del nodo raíz, su $parentNodeScope será null o undefined
-            // no se aceptará que se arrastre la raíz o que se arrastre algo fuera de la raíz
-            //console.log("ORIGEN: "+origen.$parentNodeScope);
+            
+            // No se podrá arrastrar un nodo raíz ( Si origen.$parentNodeScope != undefined ), ni se podrámover un elemento a nodo raíz ni fuera ( destino.$parent.$modelValue.nombre!=undefined ) ni se podrá mover un nodo hoja u hoja inválida (destino.$nodeScope.$modelValue.clase === 'nodo')
+            
+            // ¡¡¡ IMPORTANTE !!!! se compara con '!=' o '==' en lugar de '!==' y '===' porque a veces es null y otras undefined
+            
             try{
-                return destino.$parent.$modelValue.nombre!=undefined 
+                return destino.$parent.$modelValue.nombre!=undefined /* Si se trata del elemento que contienen la raíz, será un array. Soi no, no tendrá $modelValue y dará unerror que recogeremos en el catch
+                */
                         && origen.$parentNodeScope != undefined 
                         && destino.$nodeScope.$modelValue.clase === 'nodo';
             }
@@ -86,36 +88,26 @@ app.controller ('controladorGestionTecnologias', function (servicioRest, utils, 
                 return false;
             }
         },
-        //Cuando se ha eliminado el nodo
-        removed: function(nodo){
-            console.log("removed: ");
-            try{
-                var padre=nodo.$parentNodeScope.$modelValue.nombre;
-                nodo=nodo.$modelValue;
-                
-                // TODO: Hacer la llamada al back
-            }
-            catch(error){
-                //se meterá en caso de que intente eliminar un directorio raíz
-                alert("No se puede eliminar un directorio raíz, patán");
-            }
-            
-        },
         //Cuando se ha movido el nodo
         dropped: function(e) {
             console.log("dropped");
             try{
+                // Ponemos el nodo seleccionado a  null para que la introducción de datos desaparezca, ya que se pierde el knodo seleccionado al arrastrar
                 $scope.nodoSeleccionado=null;
                 
+                // Obtenemos el padre del que se ha movido el nodo
                 var padreOrigen = e.source.nodesScope.$parent.$modelValue.nombre;
+                
+                //Obtenemos el padre destino
                 var padreDestino = e.dest.nodesScope.$parent.$modelValue.nombre;
+                
+                //Obtenemos el nodo a mover
                 var nodo= e.source.nodeScope.$modelValue;
-                //console.log (e.source);
                 // Hacer la llamada al back
             }
             catch(error){
                 //Se meterá en el catch en caso de que muevas el elemento raíz o que muevas un elemento fuera del raíz.
-                //Como no tiene padre, saltará la excepción de que no existe $modelValue del $parent
+                //Como no tiene padre, saltará la excepción de que no existe $modelValue del $parent (NO DEBERÍA PASAR!!!!!)
                 console.error(error);
                 alert("No metas nada fuera del Raíz ni muevas el raíz, cenutrio!!");
             }
@@ -125,7 +117,7 @@ app.controller ('controladorGestionTecnologias', function (servicioRest, utils, 
     
     $scope.tipos=["OpenSource", "Suscripción", "Licencia"];
     
-    $scope.eliminarElem=function(scope, eliminarNodo){
+    $scope.eliminarElem=function(scope){
         console.log(scope.$modelValue.nombre);
         servicioRest.deleteTecnologia(scope.$modelValue.nombre)
             .then(function(data) {
@@ -177,14 +169,20 @@ app.controller ('controladorGestionTecnologias', function (servicioRest, utils, 
         $scope.a=$scope.nodoSeleccionado.clase==='hoja';
         
         elem=elem.$element;
-        if(elem !== elementoSelecionado.elem){
+        
+        // Modificaremos el elemento seleccionado exclusivamente si no se ha hecho click en un elemenyto que ya estaba seleccionado
+        if(elem !== elementoSeleccionado){
             
+            // Añadimos la clase al elemento seleccionado actual
             elem.addClass("elementoSeleccionado");
-            if(elementoSelecionado.elem!=undefined){
-                elementoSelecionado.elem.removeClass("elementoSeleccionado");
+            
+            // Eliminamos la clase al anterior elemento seleccionado
+            if(elementoSeleccionado!=undefined){
+                elementoSeleccionado.removeClass("elementoSeleccionado");
             }
-            elementoSelecionado.elem = elem;
-            elementoSelecionado.id = elem[0].id;
+            
+            // asignamos el elemento seleccionado al actual
+            elementoSeleccionado = elem;
         }
         operacion="editar";
     };

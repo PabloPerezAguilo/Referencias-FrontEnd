@@ -11,7 +11,7 @@
         {{node.nombre}}
         <a class="pull-right btn btn-danger btn-xs"
            data-nodrag
-           ng-click="eliminarElem(this,removeNode)"
+           ng-click="eliminarElem(this)"
            ng-if="this.$parentNodeScope != undefined">
             
             <span class="glyphicon glyphicon-remove"></span>
@@ -38,19 +38,20 @@
     </div>
     <div class="col-sm-6">
         <div ng-hide="nodoSeleccionado==null" id="datosTecnologia">
-            <div>
-                <div id=tituloDatosTecnologia>{{titulo}}</div><br>
-                <md-input-container>
-                    <label>Nombre</label>
-                    <input type="text"ng-model="nodoSeleccionado.nombre">
-                </md-input-container>
-            </div>
-            <div ng-if="nodoSeleccionado.clase!=='nodo'">
-
+            <form name="datosNodo">
                 <div>
+                    <div id=tituloDatosTecnologia>{{titulo}}</div><br>
                     <md-input-container>
+                        <label>Nombre</label>
+                        <input type="text"ng-model="nodoSeleccionado.nombre" ng-required="true">
+                    </md-input-container>
+                </div>
+                <div ng-if="nodoSeleccionado.clase!=='nodo'">
 
-                        <label>Tipo</label>
+                    <div>
+                        <md-input-container>
+
+                            <label>Tipo</label>
                         <md-select ng-model="nodoSeleccionado.tipo">
                           <md-option ng-repeat="tipo in tipos" value="{{tipo}}">
                             {{tipo}}
@@ -63,11 +64,12 @@
                             <md-checkbox ng-model="a" ng-disabled="true">Validado</md-checkbox>
                         </div>
                       </md-input-container>
+                    </div>
                 </div>
-
-            </div>
-            <md-button class="botonesApp" type="button"  ng-click="guardarElem()">Guardar</md-button>
-            <md-button class="botonesApp" ng-show="true && (nodoSeleccionado.clase=='hojaInvalida')" type="button"  ng-click="validarElem()">Validar</md-button>
+                <md-button class="botonesApp" type="button"  ng-click="guardarElem()"
+                           ng-disabled="datosNodo.$invalid">Guardar</md-button>
+                <md-button class="botonesApp" ng-show="true && (nodoSeleccionado.clase=='hojaInvalida')" type="button"  ng-click="validarElem()">Validar</md-button>
+            </form>
         </div>
     </div>
 </div>
