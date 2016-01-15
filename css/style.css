@@ -836,4 +836,10 @@ tr.angular-ui-tree-empty {
   font-style: italic;
   font-weight: bold; }
 
+md-checkbox[disabled].md-checked .md-icon {
+  background-color: #ee941a; }
+
+md-checkbox[disabled] .md-label {
+  color: black; }
+
 /*# sourceMappingURL=style.css.map */

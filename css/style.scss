@@ -955,3 +955,11 @@ tr.angular-ui-tree-empty {
     font-style: italic;
     font-weight: bold;
 }
+
+md-checkbox[disabled].md-checked .md-icon {
+    background-color: $colorDetalles;
+}
+
+md-checkbox[disabled] .md-label {
+    color: black;
+}

@@ -27,7 +27,7 @@
         <li ng-repeat="node in node.nodosHijos" ui-tree-node data-nodrop-enabled="node.clase!=='nodo'" ng-include="'nodes_renderer.html'"></li>
     </ol>
 </script>
-
+<h1>pepe- {{a}} - {{nodoSeleccionado.clase}}</h1>
 <div class="row">
     <div class="col-sm-6">
         <div ui-tree="eventosArbol" id="tree-root" data-drag-delay="250" >
@@ -60,7 +60,7 @@
                             <md-checkbox ng-model="nodoSeleccionado.producto">Producto</md-checkbox>
                         </div>
                         <div>
-                            <md-checkbox ng-model="nodoSeleccionado.clase=='hoja'">Validado</md-checkbox>
+                            <md-checkbox ng-model="a" ng-disabled="true">Validado</md-checkbox>
                         </div>
                       </md-input-container>
                 </div>

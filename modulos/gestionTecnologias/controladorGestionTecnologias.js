@@ -153,7 +153,7 @@ app.controller ('controladorGestionTecnologias', function (servicioRest, utils, 
     };
     
     $scope.seleccionarElemento=function(elem, nodo){
-        console.log(elem);
+        console.log("aqui",elem);
         $scope.titulo = "Editar " + nodo.clase;
         nodeData=nodo;
         //console.log(elem.$parent.$parentNodeScope.$modelValue.nombre)
@@ -173,6 +173,8 @@ app.controller ('controladorGestionTecnologias', function (servicioRest, utils, 
             clase: nodeData.clase
             };
         }
+        
+        $scope.a=$scope.nodoSeleccionado.clase==='hoja';
         
         elem=elem.$element;
         if(elem !== elementoSelecionado.elem){
@@ -195,8 +197,9 @@ app.controller ('controladorGestionTecnologias', function (servicioRest, utils, 
             
             servicioRest.postTecnologia(nodeData.nombre, $scope.nodoSeleccionado)
             .then(function(data) {
-                
-                nodeData.nodosHijos.push($scope.nodoSeleccionado);
+                $scope.data = [];
+                $scope.data[0] = data;
+                //nodeData.nodosHijos.push($scope.nodoSeleccionado);
             }).catch(function(err) {
                 utils.popupInfo('',"Error al añadir tecnologia.");
                 console.log("Error al añadir tecnologia");
@@ -209,11 +212,13 @@ app.controller ('controladorGestionTecnologias', function (servicioRest, utils, 
             
             servicioRest.putTecnologia(oldId, $scope.nodoSeleccionado)
             .then(function(data) {
-                nodeData.nombre=$scope.nodoSeleccionado.nombre;
+                $scope.data = [];
+                $scope.data[0] = data;
+                /*nodeData.nombre=$scope.nodoSeleccionado.nombre;
                 if(nodeData.clase!="nodo"){
                     nodeData.tipo=$scope.nodoSeleccionado.tipo;
                     nodeData.producto=$scope.nodoSeleccionado.producto;
-                }
+                }*/
             }).catch(function(err) {
                 utils.popupInfo('',"Error al editar tecnologia.");
                 console.log("Error al editar tecnologia");
