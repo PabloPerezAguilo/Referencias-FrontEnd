@@ -1,7 +1,7 @@
 app.controller ('controladorGestionTecnologias', function (servicioRest, utils, config, $scope, $http, $rootScope, $mdDialog) {  
     var nodeData;
     var operacion;
-   /* $scope.data = [
+    /*$scope.data = [
       {
         "nombre": "tecnologias",
         "clase":"nodo",
@@ -54,15 +54,30 @@ app.controller ('controladorGestionTecnologias', function (servicioRest, utils, 
           }
         ]
       }
-    ]*/
+    ];*/
     
     servicioRest.getTecnologias().then(
         function (response) {
-            console.log(response);
+            console.log(JSON.stringify(response));
+            recorrerArbol(response);
+            niapa = JSON.stringify(response).replace('"nodosHijos":null','"nodosHijos":[]');
+            console.log(niapa);
+            //rsponse = JSON.parse(niapa);
             $scope.data = [];
             $scope.data[0] = response;
         });
     
+    
+    function recorrerArbol(response){
+        if(response.nodosHijos != null){
+            for(var i=0; i<response.nodosHijos.length; i++){
+                recorrerArbol(response.nodosHijos[i]);
+            }
+        }
+        else{
+            response.nodosHijos=[];
+        }
+    };
     $scope.nodoSeleccionado;
     
     // Iniciamos el nodo selleccionado a undefined para indicar que inicialmente no hay ninguno seleccionado
@@ -79,6 +94,8 @@ app.controller ('controladorGestionTecnologias', function (servicioRest, utils, 
             // ¡¡¡ IMPORTANTE !!!! se compara con '!=' o '==' en lugar de '!==' y '===' porque a veces es null y otras undefined
             
             try{
+               // return true;
+                cosole.log(destino.$parent)
                 return destino.$parent.$modelValue.nombre!=undefined /* Si se trata del elemento que contienen la raíz, será un array. Soi no, no tendrá $modelValue y dará unerror que recogeremos en el catch
                 */
                         && origen.$parentNodeScope != undefined 
@@ -146,6 +163,7 @@ app.controller ('controladorGestionTecnologias', function (servicioRest, utils, 
     
     $scope.seleccionarElemento=function(elem, nodo){
         console.log(elem);
+        console.log(nodo);
         $scope.titulo = "Editar " + nodo.clase;
         nodeData=nodo;
         //console.log(elem.$parent.$parentNodeScope.$modelValue.nombre)

@@ -120,7 +120,8 @@ footer {
   position: fixed;
   bottom: 0px;
   height: 7%;
-  clear: both; }
+  clear: both;
+  min-height: 50px; }
 
 footer #logoGfi {
   /*width: 5%;
@@ -818,8 +819,12 @@ tr.angular-ui-tree-empty {
 .nodo.elementoSeleccionado {
   background-color: #82cdf3; }
 
+.btn {
+  margin-right: 2%;
+  border-width: 4%; }
+
 #tecnologias .btnAniadirNodo {
-  margin-right: 6.7%; }
+  margin-right: 8%; }
 
 #datosTecnologia md-input-container {
   width: 90%;
