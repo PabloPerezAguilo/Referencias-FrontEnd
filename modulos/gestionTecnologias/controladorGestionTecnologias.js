@@ -166,7 +166,7 @@ app.controller ('controladorGestionTecnologias', function (servicioRest, utils, 
             };
         }
         
-        $scope.a=$scope.nodoSeleccionado.clase==='hoja';
+        $scope.estaValidado=$scope.nodoSeleccionado.clase==='hoja';
         
         elem=elem.$element;
         
