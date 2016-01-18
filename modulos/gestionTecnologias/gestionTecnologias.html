@@ -11,7 +11,7 @@
         {{node.nombre}}
         <a class="pull-right btn btn-danger btn-xs"
            data-nodrag
-           ng-click="eliminarElem(this)"
+           ng-click="eliminarElem($event, this)"
            ng-if="this.$parentNodeScope != undefined">
             
             <span class="glyphicon glyphicon-remove"></span>
@@ -36,7 +36,7 @@
         </div>
     </div>
     <div class="col-sm-6">
-        <div ng-hide="nodoSeleccionado==null" id="datosTecnologia">
+        <div ng-hide="nodoSeleccionado==null || nodoSeleccionado.clase=='raiz'" id="datosTecnologia">
             <form name="datosNodo">
                 <div>
                     <div id=tituloDatosTecnologia>{{titulo}}</div><br>

@@ -134,23 +134,30 @@ app.controller ('controladorGestionTecnologias', function (servicioRest, utils, 
     
     $scope.tipos=["OpenSource", "Suscripción", "Licencia"];
     
-    $scope.eliminarElem=function(scope){
-        console.log(scope.$modelValue.nombre);
-        servicioRest.deleteTecnologia(scope.$modelValue.nombre)
-            .then(function(data) {
-                //eliminarNodo(scope);
-                $scope.data = [];
-                $scope.data[0] = data;
-
-            }).catch(function(err) {
-                utils.popupInfo('',"Error al eliminar tecnologia.");
-                console.log("Error al eliminar tecnologia");
-                servicioRest.getTecnologias().then(
-                function (response) {
+    $scope.eliminarElem=function(ev, scope){
+        console.log(scope.$modelValue.nodosHijos);
+        if(scope.$modelValue.nodosHijos[0]==null)
+        {
+            ev.stopImmediatePropagation();
+            console.log(scope.$modelValue.nombre);
+            servicioRest.deleteTecnologia(scope.$modelValue.nombre)
+                .then(function(data) {
+                    //eliminarNodo(scope);
+                    recorrerArbol(data);
                     $scope.data = [];
-                    $scope.data[0] = response;
-                });
-            });    
+                    $scope.data[0] = data;
+
+                }).catch(function(err) {
+                    utils.popupInfo('',"Error al eliminar tecnologia.");
+                    console.log("Error al eliminar tecnologia");
+                    servicioRest.getTecnologias().then(
+                    function (response) {
+                        recorrerArbol(response);
+                        $scope.data = [];
+                        $scope.data[0] = response;
+                    });
+                });   
+        }
     };
     
     $scope.aniadirElem=function(ev, scope, tipoElem){
@@ -206,42 +213,79 @@ app.controller ('controladorGestionTecnologias', function (servicioRest, utils, 
         operacion="editar";
     };
         
+    function comprobarArbol(nodos, nombreNodo, encontrado){
+        if(nodos.nodosHijos != null){
+            var i=0;
+            while(!encontrado && i<nodos.nodosHijos.length){
+                if(nodos.nodosHijos[i].nombre===nombreNodo){
+                    encontrado=true;
+                }
+                else{
+                    encontrado = comprobarArbol(nodos.nodosHijos[i], nombreNodo, encontrado);
+                }
+                i++;
+            }
+        }
+        return encontrado;
+    };
+    
     $scope.guardarElem=function(){
         
-        //------------Añadir elemento
-        if(operacion=="anadir"){
-            console.log($scope.nodoSeleccionado);
-            
-            servicioRest.postTecnologia(nodeData.nombre, $scope.nodoSeleccionado)
-            .then(function(data) {
-                $scope.data = [];
-                $scope.data[0] = data;
-                //nodeData.nodosHijos.push($scope.nodoSeleccionado);
-            }).catch(function(err) {
-                utils.popupInfo('',"Error al añadir tecnologia.");
-                console.log("Error al añadir tecnologia");
-            }); 
+        var nombreRepetido = comprobarArbol($scope.data[0], $scope.nodoSeleccionado.nombre, false);
+        //var nombreRepetido=false;
+        if(!nombreRepetido){
+            //------------Añadir elemento
+            if(operacion=="anadir"){
+                console.log($scope.nodoSeleccionado);
+
+                servicioRest.postTecnologia(nodeData.nombre, $scope.nodoSeleccionado)
+                .then(function(data) {
+                    recorrerArbol(data);
+                    $scope.data = [];
+                    $scope.data[0] = data;
+                    //nodeData.nodosHijos.push($scope.nodoSeleccionado);
+                }).catch(function(err) {
+                    servicioRest.getTecnologias().then(
+                    function (response) {
+                        recorrerArbol(response);
+                        $scope.data = [];
+                        $scope.data[0] = response;
+                    });
+                    utils.popupInfo('',"Error al añadir tecnologia.");
+                    console.log("Error al añadir tecnologia");
+                }); 
+            }
+             //------------Editar elemento
+            else if (operacion=="editar"){
+                var oldId=nodeData.nombre;
+
+
+                servicioRest.putTecnologia(oldId, $scope.nodoSeleccionado)
+                .then(function(data) {
+                    recorrerArbol(data);
+                    $scope.data = [];
+                    $scope.data[0] = data;
+                    /*nodeData.nombre=$scope.nodoSeleccionado.nombre;
+                    if(nodeData.clase!="nodo"){
+                        nodeData.tipo=$scope.nodoSeleccionado.tipo;
+                        nodeData.producto=$scope.nodoSeleccionado.producto;
+                    }*/
+                }).catch(function(err) {
+                    servicioRest.getTecnologias().then(
+                    function (response) {
+                        recorrerArbol(response);
+                        $scope.data = [];
+                        $scope.data[0] = response;
+                    });
+                    utils.popupInfo('',"Error al editar tecnologia.");
+                    console.log("Error al editar tecnologia");
+                }); 
+            }
+            $scope.nodoSeleccionado=null;
         }
-         //------------Editar elemento
-        else if (operacion=="editar"){
-            var oldId=nodeData.nombre;
-            
-            
-            servicioRest.putTecnologia(oldId, $scope.nodoSeleccionado)
-            .then(function(data) {
-                $scope.data = [];
-                $scope.data[0] = data;
-                /*nodeData.nombre=$scope.nodoSeleccionado.nombre;
-                if(nodeData.clase!="nodo"){
-                    nodeData.tipo=$scope.nodoSeleccionado.tipo;
-                    nodeData.producto=$scope.nodoSeleccionado.producto;
-                }*/
-            }).catch(function(err) {
-                utils.popupInfo('',"Error al editar tecnologia.");
-                console.log("Error al editar tecnologia");
-            }); 
+        else{
+            utils.popupInfo('',"Johnny repetido");
         }
-        $scope.nodoSeleccionado=null;
     };
     
     $scope.validarElem=function(){
