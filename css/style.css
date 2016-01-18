@@ -823,11 +823,12 @@ tr.angular-ui-tree-empty {
   margin-right: 2%;
   border-width: 4%; }
 
-li:hover {
-  border-width: 1px;
-  border-style: dashed;
-  border-color: blue; }
-
+/*
+li:hover{
+    border-width: 1px;
+    border-style: dashed;
+    border-color: blue;
+}*/
 #tecnologias .btnAniadirNodo {
   margin-right: 8%; }
 

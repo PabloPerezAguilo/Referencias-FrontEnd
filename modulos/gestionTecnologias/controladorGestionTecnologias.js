@@ -96,7 +96,8 @@ app.controller ('controladorGestionTecnologias', function (servicioRest, utils, 
                 */
                 return destino.$parent.$modelValue.nombre!=undefined 
                         && origen.$parentNodeScope != undefined 
-                        && destino.$nodeScope.$modelValue.clase === 'nodo';
+                        && (destino.$nodeScope.$modelValue.clase === 'nodo'
+                        || destino.$nodeScope.$modelValue.clase === 'raiz');
             }
             catch(error){
                 //console.error(error);
