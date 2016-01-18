@@ -121,6 +121,23 @@ app.controller ('controladorGestionTecnologias', function (servicioRest, utils, 
                 //Obtenemos el nodo a mover
                 var nodo= e.source.nodeScope.$modelValue;
                 // Hacer la llamada al back
+                servicioRest.putMoverTecnologia(padreDestino, nodo)
+                .then(function(data) {
+                    //eliminarNodo(scope);
+                    recorrerArbol(data);
+                    $scope.data = [];
+                    $scope.data[0] = data;
+
+                }).catch(function(err) {
+                    utils.popupInfo('',"Error al eliminar tecnologia.");
+                    console.log("Error al eliminar tecnologia");
+                    servicioRest.getTecnologias().then(
+                    function (response) {
+                        recorrerArbol(response);
+                        $scope.data = [];
+                        $scope.data[0] = response;
+                    });
+                });   
             }
             catch(error){
                 //Se meterá en el catch en caso de que muevas el elemento raíz o que muevas un elemento fuera del raíz.

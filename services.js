@@ -283,6 +283,25 @@ function ServicioREST( utils, config, $http,$q, $rootScope) {
 		return promise;
 	}
     
+    function putMoverTecnologia(idDestino, nodo) {
+		var defered = $q.defer();
+		var promise = defered.promise;
+        datos = {idDestino : idDestino, nodo : nodo}
+		$http({
+			method: 'PUT',
+			url: url + '/tecnologias',
+			data: datos
+		})
+		.success(function(data, status, headers, config) {
+			defered.resolve(data);
+		})
+		.error(function(data, status, headers, config) {
+			tratarError(data, status, defered);
+		});
+
+		return promise;
+	}
+    
     function deleteTecnologia(id) {
 		var defered = $q.defer();
 		var promise = defered.promise;
@@ -305,6 +324,7 @@ function ServicioREST( utils, config, $http,$q, $rootScope) {
         getTecnologias: getTecnologias,
         postTecnologia: postTecnologia,
         putTecnologia: putTecnologia,
+        putMoverTecnologia: putMoverTecnologia,
         deleteTecnologia: deleteTecnologia,
 		getReferencias: getReferencias,
 		getReferencia: getReferencia,
