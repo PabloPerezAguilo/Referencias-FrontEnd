@@ -941,6 +941,11 @@ tr.angular-ui-tree-empty {
     border-width: 4%;
 }
 
+li:hover{
+    border-width: 1px;
+    border-style: dashed;
+    border-color: blue;
+}
 
 #tecnologias .btnAniadirNodo{
     margin-right: 8%;

@@ -225,6 +225,8 @@ function ServicioREST( utils, config, $http,$q, $rootScope) {
 		return promise;
     }
     
+    
+    
     function getTecnologias() {
 		var defered = $q.defer();
 		var promise = defered.promise;

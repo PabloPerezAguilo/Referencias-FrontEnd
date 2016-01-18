@@ -55,6 +55,8 @@ function utils($rootScope, $mdDialog){
         return angular.equals( {} , objeto );
     };
     
+    
+    
      return {
          actualizaAyuda: actualizaAyuda,
          popupInfo: popupInfo,

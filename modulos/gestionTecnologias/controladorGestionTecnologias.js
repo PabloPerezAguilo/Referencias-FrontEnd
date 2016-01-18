@@ -58,11 +58,7 @@ app.controller ('controladorGestionTecnologias', function (servicioRest, utils, 
     
     servicioRest.getTecnologias().then(
         function (response) {
-            console.log(JSON.stringify(response));
             recorrerArbol(response);
-            niapa = JSON.stringify(response).replace('"nodosHijos":null','"nodosHijos":[]');
-            console.log(niapa);
-            //rsponse = JSON.parse(niapa);
             $scope.data = [];
             $scope.data[0] = response;
         });
@@ -78,6 +74,7 @@ app.controller ('controladorGestionTecnologias', function (servicioRest, utils, 
             response.nodosHijos=[];
         }
     };
+    
     $scope.nodoSeleccionado;
     
     // Iniciamos el nodo selleccionado a undefined para indicar que inicialmente no hay ninguno seleccionado
@@ -95,16 +92,18 @@ app.controller ('controladorGestionTecnologias', function (servicioRest, utils, 
             
             try{
                // return true;
-                cosole.log(destino.$parent)
-                return destino.$parent.$modelValue.nombre!=undefined /* Si se trata del elemento que contienen la raíz, será un array. Soi no, no tendrá $modelValue y dará unerror que recogeremos en el catch
+                console.log("DESTINO:");/* Si se trata del elemento que contienen la raíz, será un array. Soi no, no tendrá $modelValue y dará unerror que recogeremos en el catch
                 */
+                return destino.$parent.$modelValue.nombre!=undefined 
                         && origen.$parentNodeScope != undefined 
                         && destino.$nodeScope.$modelValue.clase === 'nodo';
             }
             catch(error){
+                //console.error(error);
                 return false;
             }
         },
+        
         //Cuando se ha movido el nodo
         dropped: function(e) {
             console.log("dropped");
