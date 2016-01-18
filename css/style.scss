@@ -165,6 +165,7 @@ footer {
     bottom: 0px;
     height: 7%;
     clear:both;
+    min-height: 50px;
 }
 footer #logoGfi {
     /*width: 5%;
@@ -935,8 +936,19 @@ tr.angular-ui-tree-empty {
     background-color: rgba($colorNodo, 1);
 }
 
+.btn{
+    margin-right: 2%;
+    border-width: 4%;
+}
+
+li:hover{
+    border-width: 1px;
+    border-style: dashed;
+    border-color: blue;
+}
+
 #tecnologias .btnAniadirNodo{
-    margin-right: 6.7%;
+    margin-right: 8%;
 }
 
 #datosTecnologia md-input-container{

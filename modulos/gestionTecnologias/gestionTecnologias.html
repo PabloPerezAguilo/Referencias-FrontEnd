@@ -16,10 +16,10 @@
             
             <span class="glyphicon glyphicon-remove"></span>
         </a>
-        <a class="pull-right btn btn-primary btn-xs btnAniadirNodo" data-nodrag ng-click="aniadirElem($event, this, 'nodo')"  ng-if="node.clase=='nodo' || node.clase=='raiz'">
+        <a class="pull-right btn btn-primary btn-xs btnAniadirNodo btnAniadir" data-nodrag ng-click="aniadirElem($event, this, 'nodo')"  ng-if="node.clase=='nodo' || node.clase=='raiz'">
             <span class="glyphicon glyphicon-plus"></span>
         </a>
-        <a class="pull-right btn btn-success btn-xs" data-nodrag ng-click="aniadirElem($event, this, 'hoja')" style="margin-right: 8px;" ng-if="node.clase=='nodo' || node.clase=='raiz'">
+        <a class="pull-right btn btn-success btn-xs btnAniadir" data-nodrag ng-click="aniadirElem($event, this, 'hoja')" style="margin-right: 8px;" ng-if="node.clase=='nodo' || node.clase=='raiz'">
             <span class="glyphicon glyphicon-plus"></span>
         </a>
     </div>
