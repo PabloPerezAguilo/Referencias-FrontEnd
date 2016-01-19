@@ -976,6 +976,11 @@ md-checkbox[disabled] .md-label {
     color: black;
 }
 
+md-toast.md-default-theme, md-toast {
+    background-color: $colorDetalles;
+    color: black;
+}
+
 .leyenda{
     display: block;
 }

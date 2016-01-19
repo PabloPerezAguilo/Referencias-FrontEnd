@@ -1,78 +1,25 @@
-app.controller ('controladorGestionTecnologias', function (servicioRest, utils, config, $scope, $http, $rootScope, $mdDialog) {  
+app.controller ('controladorGestionTecnologias', function (servicioRest, utils, config, $scope, $http, $rootScope, $mdDialog, $mdToast) {  
     var nodeData;
     var operacion;
-    /*$scope.data = [
-      {
-        "nombre": "tecnologias",
-        "clase":"nodo",
-        "nodosHijos": [
-          {
-            "nombre": "node1.1",
-            "clase":"nodo",
-            "nodosHijos": [
-              {
-                "nombre": "node1.1.1",
-                "clase":"hoja",
-                "producto": true,
-                "tipo": "OpenSource",
-                "nodosHijos": []
-              }
-            ]
-          },
-          {
-            "nombre": "node1.2",
-            "clase":"hoja",
-            "nodosHijos": []
-          }
-        ]
-      },
-      {
-        "nombre": "node2",
-        "clase":"nodo",
-        "nodrop": true,
-        "nodosHijos": [
-          {
-            "nombre": "node2.1",
-            "clase":"hoja",
-            "nodosHijos": []
-          },
-          {
-            "nombre": "node2.2",
-            "clase":"nodo",
-            "nodosHijos": []
-          }
-        ]
-      },
-      {
-        "nombre": "node3",
-        "clase":"nodo",
-        "nodosHijos": [
-          {
-            "nombre": "node3.1",
-            "clase":"hojaInvalida",
-            "nodosHijos": []
-          }
-        ]
-      }
-    ];*/
     
-    /*servicioRest.getTecnologias().then(
+    function toast(texto) {
+		$mdToast.show(
+			$mdToast.simple().content(texto).position('top right').hideDelay(1500)
+		);
+	}
+       
+    servicioRest.getTecnologias().then(
         function (response) {
-            recorrerArbol(response);
-            $scope.data = [];
-            $scope.data[0] = response;
-        });*/
+            actualizarArbol(response);
+        });
     
-    function actualizarArbol(){          
-        servicioRest.getTecnologias().then(                         
-            function (response) {                      
-                recorrerArbol(response);                        
-                $scope.data = [];                      
-                $scope.data[0] = response;                  
-            });
+    function actualizarArbol(arbol){                               
+            recorrerArbol(arbol);                        
+            $scope.data = [];                      
+            $scope.data[0] = arbol;                  
     };
     
-    actualizarArbol();
+    
     
     function recorrerArbol(response){
         if(response.nodosHijos != null){
@@ -134,18 +81,14 @@ app.controller ('controladorGestionTecnologias', function (servicioRest, utils, 
                 servicioRest.putMoverTecnologia(padreDestino, nodo)
                 .then(function(data) {
                     //eliminarNodo(scope);
-                    recorrerArbol(data);
-                    $scope.data = [];
-                    $scope.data[0] = data;
+                    actualizarArbol(data);
 
                 }).catch(function(err) {
                     utils.popupInfo('',"Error al mover tecnologia.");
                     console.log("Error al mover tecnologia");
                     servicioRest.getTecnologias().then(
                     function (response) {
-                        recorrerArbol(response);
-                        $scope.data = [];
-                        $scope.data[0] = response;
+                        actualizarArbol(response);
                     });
                 });   
             }
@@ -162,27 +105,26 @@ app.controller ('controladorGestionTecnologias', function (servicioRest, utils, 
     
     $scope.eliminarElem=function(ev, scope){
         console.log(scope.$modelValue.nodosHijos);
-        if(scope.$modelValue.nodosHijos[0]==null)
-        {
+        if(scope.$modelValue.nodosHijos[0]==null){
             ev.stopImmediatePropagation();
             console.log(scope.$modelValue.nombre);
             servicioRest.deleteTecnologia(scope.$modelValue.nombre)
                 .then(function(data) {
                     //eliminarNodo(scope);
-                    recorrerArbol(data);
-                    $scope.data = [];
-                    $scope.data[0] = data;
+                    actualizarArbol(data);
+                toast("Tecnologia eliminada");
 
                 }).catch(function(err) {
                     utils.popupInfo('',"Error al eliminar tecnologia.");
                     console.log("Error al eliminar tecnologia");
                     servicioRest.getTecnologias().then(
                     function (response) {
-                        recorrerArbol(response);
-                        $scope.data = [];
-                        $scope.data[0] = response;
+                        actualizarArbol(response);
                     });
                 });   
+        }
+        else{
+            utils.popupInfo('',"No se puede eliminar una tecnologia que tiene hijos.");
         }
     };
     
@@ -266,16 +208,13 @@ app.controller ('controladorGestionTecnologias', function (servicioRest, utils, 
 
                 servicioRest.postTecnologia(nodeData.nombre, $scope.nodoSeleccionado)
                 .then(function(data) {
-                    recorrerArbol(data);
-                    $scope.data = [];
-                    $scope.data[0] = data;
+                    actualizarArbol(data);
+                    toast("Tecnologia añadida");
                     //nodeData.nodosHijos.push($scope.nodoSeleccionado);
                 }).catch(function(err) {
                     servicioRest.getTecnologias().then(
                     function (response) {
-                        recorrerArbol(response);
-                        $scope.data = [];
-                        $scope.data[0] = response;
+                        actualizarArbol(response);
                     });
                     utils.popupInfo('',"Error al añadir tecnologia.");
                     console.log("Error al añadir tecnologia");
@@ -288,9 +227,8 @@ app.controller ('controladorGestionTecnologias', function (servicioRest, utils, 
 
                 servicioRest.putTecnologia(oldId, $scope.nodoSeleccionado)
                 .then(function(data) {
-                    recorrerArbol(data);
-                    $scope.data = [];
-                    $scope.data[0] = data;
+                    actualizarArbol(data);
+                    toast("Tecnologia modificada");
                     /*nodeData.nombre=$scope.nodoSeleccionado.nombre;
                     if(nodeData.clase!="nodo"){
                         nodeData.tipo=$scope.nodoSeleccionado.tipo;
@@ -299,9 +237,7 @@ app.controller ('controladorGestionTecnologias', function (servicioRest, utils, 
                 }).catch(function(err) {
                     servicioRest.getTecnologias().then(
                     function (response) {
-                        recorrerArbol(response);
-                        $scope.data = [];
-                        $scope.data[0] = response;
+                        actualizarArbol(response);
                     });
                     utils.popupInfo('',"Error al editar tecnologia.");
                     console.log("Error al editar tecnologia");
@@ -310,7 +246,7 @@ app.controller ('controladorGestionTecnologias', function (servicioRest, utils, 
             $scope.nodoSeleccionado=null;
         }
         else{
-            utils.popupInfo('',"El nombre de la tecnologia ya esta en uso, REPORT");
+            utils.popupInfo('',"El nombre de la tecnologia ya esta en uso");
         }
     };
     
