@@ -156,10 +156,7 @@ app.controller('controladorAltaUsuario', function(servicioRest,config,utils, $sc
     
     /* ayuda de nuevo usuario*/
     
-    $scope.ayuda=function(){
-        console.log('hola');
-        $scope.lanzarAyuda();
-    }
+
     $scope.introOptions = config.introOptions;
     $scope.introOptions.steps = [
             {
@@ -175,7 +172,11 @@ app.controller('controladorAltaUsuario', function(servicioRest,config,utils, $sc
                 intro: 'Al pulsar en este boton guarda el usuario seleccionado con el rol asignado en nuestra aplicacion.'
             }
         ];
-   utils.actualizaAyuda($scope.ayuda);
+
+    setTimeout(function(){ 
+            //Se necesita un tiem out para dar tiempo a que se cargue el lanzar ayuda
+            $rootScope.lanzarAyuda=$scope.lanzarAyuda;
+        }, 1000);
 });    
 	
 

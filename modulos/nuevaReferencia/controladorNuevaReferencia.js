@@ -205,7 +205,10 @@ app.controller('controladorNuevaReferencia', function(servicioRest,utils, config
             }
             ];
 
-    utils.actualizaAyuda($scope.ayuda);
+    setTimeout(function(){ 
+            //Se necesita un tiem out para dar tiempo a que se cargue el lanzar ayuda
+            $rootScope.lanzarAyuda=$scope.ayuda;
+        }, 1000)
     
     /* ----------------------- CARGA DE CATALOGOS ------------------------*/
     $scope.catalogo={};
