@@ -124,7 +124,7 @@ app.controller ('controladorGestionTecnologias', function (servicioRest, utils, 
                 });   
         }
         else{
-            utils.popupInfo('',"No se puede eliminar una tecnologia que tiene hijos.");
+            utils.popupInfo('',"No se puede eliminar una tecnologia que tiene otras tecnologias dentor suya.");
         }
     };
     

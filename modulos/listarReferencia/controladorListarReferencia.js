@@ -27,4 +27,28 @@ app.controller ('controladorListarReferencia', function (servicioRest,utils, con
         $rootScope.referenciaCargada = referencias[index];
         $location.path('/validarReferencia');
     }
+    
+    /*   AYUDA     */
+    
+    $scope.introOptions = config.introOptions;
+    
+    $scope.introOptions.steps = [
+            {
+                element: '.cabeceraPagina',
+                intro: 'Esta seccion muestra un listado con las tecnologias pendientes de validar.'
+            },
+            {
+                element: '#referenciasPendientes',
+                intro: 'Haciendo click en cualquier fila accederemos a la referencio seleccionada para poder validarla.'
+            },
+            {
+                element: '.pagination-sm',
+                intro: 'Esta seccion de aqui permite movernos entre distintas paginas por si el numero de referencias pendientes de validar fura muy extenso.'
+            }
+            ];
+    
+    setTimeout(function(){ 
+            //Se necesita un tiem out para dar tiempo a que se cargue el lanzar ayuda
+            $rootScope.lanzarAyuda = $scope.lanzarAyuda;
+        }, 1000)
 }); 
