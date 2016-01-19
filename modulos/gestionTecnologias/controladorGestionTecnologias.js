@@ -56,13 +56,23 @@ app.controller ('controladorGestionTecnologias', function (servicioRest, utils, 
       }
     ];*/
     
-    servicioRest.getTecnologias().then(
+    /*servicioRest.getTecnologias().then(
         function (response) {
             recorrerArbol(response);
             $scope.data = [];
             $scope.data[0] = response;
-        });
+        });*/
     
+    function actualizarArbol(){          
+        servicioRest.getTecnologias().then(                         
+            function (response) {                      
+                recorrerArbol(response);                        
+                $scope.data = [];                      
+                $scope.data[0] = response;                  
+            });
+    };
+    
+    actualizarArbol();
     
     function recorrerArbol(response){
         if(response.nodosHijos != null){
@@ -129,8 +139,8 @@ app.controller ('controladorGestionTecnologias', function (servicioRest, utils, 
                     $scope.data[0] = data;
 
                 }).catch(function(err) {
-                    utils.popupInfo('',"Error al eliminar tecnologia.");
-                    console.log("Error al eliminar tecnologia");
+                    utils.popupInfo('',"Error al mover tecnologia.");
+                    console.log("Error al mover tecnologia");
                     servicioRest.getTecnologias().then(
                     function (response) {
                         recorrerArbol(response);
@@ -143,7 +153,6 @@ app.controller ('controladorGestionTecnologias', function (servicioRest, utils, 
                 //Se meterá en el catch en caso de que muevas el elemento raíz o que muevas un elemento fuera del raíz.
                 //Como no tiene padre, saltará la excepción de que no existe $modelValue del $parent (NO DEBERÍA PASAR!!!!!)
                 console.error(error);
-                alert("No metas nada fuera del Raíz ni muevas el raíz, cenutrio!!");
             }
             
         }
@@ -301,7 +310,7 @@ app.controller ('controladorGestionTecnologias', function (servicioRest, utils, 
             $scope.nodoSeleccionado=null;
         }
         else{
-            utils.popupInfo('',"Johnny repetido");
+            utils.popupInfo('',"El nombre de la tecnologia ya esta en uso, REPORT");
         }
     };
     
