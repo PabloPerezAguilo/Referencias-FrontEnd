@@ -853,6 +853,10 @@ md-checkbox[disabled].md-checked .md-icon {
 md-checkbox[disabled] .md-label {
   color: black; }
 
+md-toast.md-default-theme, md-toast {
+  background-color: #ee941a;
+  color: black; }
+
 .leyenda {
   display: block; }
 
