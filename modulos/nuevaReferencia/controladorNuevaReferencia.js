@@ -1,19 +1,19 @@
 app.controller('controladorNuevaReferencia', function(servicioRest,utils, config, $scope, $http,$log, $rootScope,$location,$mdDialog,$interval,$timeout){
     
     //--------------------- Objetos del controlador (clientes y tecnologias)
-    var self = this;
+
     //Se obtienen los elementos que tengan la clase "md-datepicker-input" se obtiene el primer elemento (solo hay uno)
     //y le añades el atributo "readonly" a true. Esto se hace porque el datepicker crea este elemento en ejecucion
     //y no puedes establecer este atributo a mano en el html, debes añadirlo dinamicamente en ejecucion,
     //que es el momento en el que se crea el elemento
    document.getElementsByClassName("md-datepicker-input")[0].setAttribute("readonly","true");
     // list of `state` value/display objects
-    self.clientes={
+    $scope.clientes={
         lista:[],
         texto:'',
         elemSelecionado:{}
     };
-    self.tecnologias={
+    $scope.tecnologias={
         lista:[],
         texto:'',
         elemSelecionado:{}
@@ -211,8 +211,8 @@ app.controller('controladorNuevaReferencia', function(servicioRest,utils, config
     $scope.catalogo={};
     $scope.title = "";
     $scope.descripcion = "";
-    var self = this, j= 0, counter = 0;
-    $scope.activado = self.activated;
+    var j = 0, counter = 0;
+    $scope.activado = $scope.activated;
     servicioRest.getCatalogos().then(
         function(response) {
             $scope.catalogo = response;
@@ -240,17 +240,17 @@ app.controller('controladorNuevaReferencia', function(servicioRest,utils, config
     /*-----------------------  AUTOCOMPLETE ----------------------- */
 
     //filtramos los datos del autocomplete según el texto
-    self.filtrar =function (texto, campo) {
+    $scope.filtrar = function (texto, campo) {
         var resultado;
         var array;
         // Determinamos cual es el array a filtrar y cuanl es el índice del resultado
         if(campo==='cliente'){
             
-            array=self.clientes.lista;
+            array=$scope.clientes.lista;
             $scope.posicionEnArray=undefined;
         }
         else if (campo==='tecnologia'){
-            array=self.tecnologias.lista;
+            array=$scope.tecnologias.lista;
             $scope.posicionEnArray2=undefined;
         }
         // hacemos la búsqueda en el array
@@ -267,24 +267,24 @@ app.controller('controladorNuevaReferencia', function(servicioRest,utils, config
     }
     
     //Cuando seleccionamos un elemento de la lista de resultados del autocomplete
-    self.selectedItemChange=function (item, campo) {
+    $scope.selectedItemChange=function (item, campo) {
         
         if(campo==='cliente'){
             //si es el autocomplete del cliente, buscamos el índife en la lista de clientes.
             //lo asignamos a la posición del catálogo de clientes correspondiente al mismo
-            $scope.posicionEnArray=self.clientes.lista.indexOf(item);
+            $scope.posicionEnArray=$scope.clientes.lista.indexOf(item);
             console.log('Cliente: '+$scope.posicionEnArray);
         }else if(campo==='tecnologia'){
             //si es el autocomplete del tecnologñia, buscamos el índice en la lista de tecnologías.
             //lo asignamos a la posición del catálogo de clientes correspondiente al mismo
-            $scope.posicionEnArray2=self.tecnologias.lista.indexOf(item);
+            $scope.posicionEnArray2=$scope.tecnologias.lista.indexOf(item);
             console.log('Tecnología: '+$scope.posicionEnArray2);
         }
     }
     
     //cargamos los datos de los clientes y las tecnologías en los datos de los autocompleter correspondientes con estas funciones 
     function cargarDatosClientes() {
-         self.clientes.lista= $rootScope.clientes.map( function (cliente) {
+         $scope.clientes.lista= $rootScope.clientes.map( function (cliente) {
             return {
                 value: cliente.nombre,
                 display: cliente.nombre+' ('+cliente.siglas+')'
@@ -294,7 +294,7 @@ app.controller('controladorNuevaReferencia', function(servicioRest,utils, config
     }
     
     function cargarDatosTecnologias() {
-        self.tecnologias.lista= $rootScope.tecnologias.map( function (tec) {
+        $scope.tecnologias.lista= $rootScope.tecnologias.map( function (tec) {
             return {
                 value: tec.descripcion,
                 display: tec.descripcion+' ('+tec.codigo+')'
@@ -431,8 +431,8 @@ app.controller('controladorNuevaReferencia', function(servicioRest,utils, config
     function limpiarCampos(){
         //iniciamos la referencia a un objeto vacío y los textos que no aprarecen en ell a string vacío
         $scope.referencia={};
-        self.clientes.texto='';
-        self.tecnologias.texto='';
+        $scope.clientes.texto='';
+        $scope.tecnologias.texto='';
         erroresCometidos=Object.keys(erroresTotales);
     }
     //por reutilización se llamará a esta función cuando se quiera mandar la refrencia a crear al back
@@ -586,11 +586,11 @@ app.controller('controladorNuevaReferencia', function(servicioRest,utils, config
                     utils.popupInfo('',"Error al rechazar la referencia.");
                     console.log("Error al rechazar la referencia");
                 });  
-            })/*
+            })
         .catch(function(err) {
                 utils.popupInfo('',"Error al rechazar la referencia.");
                 console.log("Error al rechazar la referencia");
-            })*/;
+            });
     };
     
 
