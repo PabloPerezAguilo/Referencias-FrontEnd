@@ -975,3 +975,50 @@ md-checkbox[disabled].md-checked .md-icon {
 md-checkbox[disabled] .md-label {
     color: black;
 }
+
+.leyenda{
+    display: block;
+}
+#colorRaiz{ 
+    background-color: #F8FAFF;
+    border: 1px solid black;
+    margin-top: 5%;
+    margin-left: 5%;
+    margin-right: 1%;
+    padding-right: 4%;
+    padding-bottom: 1.5%;
+    display: inline-block;
+}
+
+#colorNodo{ 
+    background-color: $colorNodo;
+    border: 1px solid black;
+    margin-top: 1%;
+    margin-left: 5%;
+    margin-right: 1%;
+    padding-right: 4%;
+    padding-bottom: 1.5%;
+    display: inline-block;
+}
+
+#colorHoja{ 
+    background-color: $colorHoja;
+    border: 1px solid black;
+    margin-top: 1%;
+    margin-left: 5%;
+    margin-right: 1%;
+    padding-right: 4%;
+    padding-bottom: 1.5%;
+    display: inline-block;
+}
+
+#colorHojaInvalida{ 
+    background-color: $colorHojaInvalida;
+    border: 1px solid black;
+    margin-top: 1%;
+    margin-left: 5%;
+    margin-right: 1%;
+    padding-right: 4%;
+    padding-bottom: 1.5%;
+    display: inline-block;
+}

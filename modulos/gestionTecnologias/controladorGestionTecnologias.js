@@ -56,13 +56,23 @@ app.controller ('controladorGestionTecnologias', function (servicioRest, utils, 
       }
     ];*/
     
-    servicioRest.getTecnologias().then(
+    /*servicioRest.getTecnologias().then(
         function (response) {
             recorrerArbol(response);
             $scope.data = [];
             $scope.data[0] = response;
-        });
+        });*/
     
+    function actualizarArbol(){          
+        servicioRest.getTecnologias().then(                         
+            function (response) {                      
+                recorrerArbol(response);                        
+                $scope.data = [];                      
+                $scope.data[0] = response;                  
+            });
+    };
+    
+    actualizarArbol();
     
     function recorrerArbol(response){
         if(response.nodosHijos != null){
@@ -129,8 +139,8 @@ app.controller ('controladorGestionTecnologias', function (servicioRest, utils, 
                     $scope.data[0] = data;
 
                 }).catch(function(err) {
-                    utils.popupInfo('',"Error al eliminar tecnologia.");
-                    console.log("Error al eliminar tecnologia");
+                    utils.popupInfo('',"Error al mover tecnologia.");
+                    console.log("Error al mover tecnologia");
                     servicioRest.getTecnologias().then(
                     function (response) {
                         recorrerArbol(response);
@@ -143,7 +153,6 @@ app.controller ('controladorGestionTecnologias', function (servicioRest, utils, 
                 //Se meterá en el catch en caso de que muevas el elemento raíz o que muevas un elemento fuera del raíz.
                 //Como no tiene padre, saltará la excepción de que no existe $modelValue del $parent (NO DEBERÍA PASAR!!!!!)
                 console.error(error);
-                alert("No metas nada fuera del Raíz ni muevas el raíz, cenutrio!!");
             }
             
         }
@@ -301,7 +310,7 @@ app.controller ('controladorGestionTecnologias', function (servicioRest, utils, 
             $scope.nodoSeleccionado=null;
         }
         else{
-            utils.popupInfo('',"Johnny repetido");
+            utils.popupInfo('',"El nombre de la tecnologia ya esta en uso, REPORT");
         }
     };
     
@@ -329,4 +338,40 @@ app.controller ('controladorGestionTecnologias', function (servicioRest, utils, 
 
         
     };
+    
+    /*             AYUDA                 */
+    
+    $scope.introOptions = config.introOptions;
+    
+    $scope.introOptions.steps = [
+            {
+                element: '.cabeceraPagina',
+                intro: 'Esta seccion controla la gestion de tecnologias, permite crear tecnologias intermedias y tecnologias finales pudiendo gestionar su distribucion. Siempre tendra una raiz como base que se llama "Tecnologias" y de el cuelga toda la distribucion, siendo imposible mover o borrar este nodo.<br> Esta seccion se guarda automaticamente por lo que cualquier cambio repercutira en el resultado que ven los demas.<br>El orden para las tecnologias del mismo nivel sera por orden de entrada y no se podra modificar por nadie.'
+            },
+            {
+                element: '.raiz',
+                intro: 'Aqui se encuentra la raiz, a partir de aqui puede construir el arbol que desee.'
+            },
+            {
+                element: '.flechaAyuda',
+                intro: 'un icono con forma de flecha situado en la parte izquierda de cada tecnologia permite desplegar u ocultar todas las tecnologias que descienden de esta tecnologia intermedia,si ejecutas este tutorial con  una tecnologia que tenga algo que ocultar tutorial te señalara el punto exacto donde esta ese icono.'
+            },
+            {
+                element: '.hojaAyuda',
+                intro: 'Este icono de aqui te permitira añadir tecnologias INTERMEDIAS descendientes inmediatas de la tecnologia intermedia a la que pertenece, nunca encontraras este icono en una tecnoilogia final, ya que estas tecnologias no pueden tener otras tecnologias como descendientes.'
+            },
+            {
+                element: '.nodoAyuda',
+                intro: 'Este icono de aqui te permitira añadir tecnologias FINALES descendientes inmediatas de la tecnologia intermedia a la que pertenece, nunca encontraras este icono en una tecnoilogia final, ya que estas tecnologias no pueden tener otras tecnologias como descendientes..'
+            },
+            {
+                element: '.borrarAyuda',
+                intro: 'Un icono con forma de equis(X) situado en la parte derecha de cada tecnologia permite eliminar esa tecnologia ,si ejecutas este tutorial con  una tecnologia que s epueda eliminar el tutorial te señalara el punto exacto donde esta ese icono.'
+            }
+            ];
+    setTimeout(function(){ 
+            //Se necesita un tiem out para dar tiempo a que se cargue el lanzar ayuda
+            $rootScope.lanzarAyuda = $scope.lanzarAyuda;
+        }, 1000)
+    
 }); 

@@ -1,7 +1,7 @@
 <script type="text/ng-template" id="nodes_renderer.html">
 
     <div ui-tree-handle class="{{node.clase}} tree-node tree-node-content" ng-click="seleccionarElemento(this, node)" id="{{node.nombre}}">
-        <a class="btn btn-success btn-xs" ng-if="node.nodosHijos && node.nodosHijos.length > 0" data-nodrag ng-click="toggle(this)">
+        <a class="btn btn-success btn-xs flechaAyuda" ng-if="node.nodosHijos && node.nodosHijos.length > 0" data-nodrag ng-click="toggle(this)">
             <span class="glyphicon"
                 ng-class="{
                     'glyphicon-chevron-right': collapsed,
@@ -9,17 +9,17 @@
             </span>
           </a>
         {{node.nombre}}
-        <a class="pull-right btn btn-danger btn-xs"
+        <a class="pull-right btn btn-danger btn-xs borrarAyuda"
            data-nodrag
            ng-click="eliminarElem($event, this)"
            ng-if="this.$parentNodeScope != undefined">
             
             <span class="glyphicon glyphicon-remove"></span>
         </a>
-        <a class="pull-right btn btn-primary btn-xs btnAniadirNodo btnAniadir" data-nodrag ng-click="aniadirElem($event, this, 'nodo')"  ng-if="node.clase=='nodo' || node.clase=='raiz'">
+        <a class="pull-right btn btn-primary btn-xs btnAniadirNodo btnAniadir nodoAyuda" data-nodrag ng-click="aniadirElem($event, this, 'nodo')"  ng-if="node.clase=='nodo' || node.clase=='raiz'">
             <span class="glyphicon glyphicon-plus"></span>
         </a>
-        <a class="pull-right btn btn-success btn-xs btnAniadir" data-nodrag ng-click="aniadirElem($event, this, 'hoja')" style="margin-right: 8px;" ng-if="node.clase=='nodo' || node.clase=='raiz'">
+        <a class="pull-right btn btn-success btn-xs btnAniadir hojaAyuda" data-nodrag ng-click="aniadirElem($event, this, 'hoja')" style="margin-right: 8px;" ng-if="node.clase=='nodo' || node.clase=='raiz'">
             <span class="glyphicon glyphicon-plus"></span>
         </a>
     </div>
@@ -27,12 +27,19 @@
         <li ng-repeat="node in node.nodosHijos" ui-tree-node data-nodrop-enabled="node.clase!=='nodo'" ng-include="'nodes_renderer.html'"></li>
     </ol>
 </script>
+<h1 class="cabeceraPagina">Gestion de tecnologias</h1>
 <div class="row">
     <div class="col-sm-6">
         <div ui-tree="eventosArbol" id="tree-root" data-drag-delay="250" >
           <ol ui-tree-nodes ng-model="data">
             <li ng-repeat="node in data" ui-tree-node ng-include="'nodes_renderer.html'"></li>
           </ol>
+        </div>
+        <div>
+            <div class="leyenda"><div id="colorRaiz"></div>Raiz</div>
+            <div class="leyenda"><div id="colorNodo"></div>Nodo</div>
+            <div class="leyenda"><div id="colorHoja"></div>Hoja</div>
+            <div class="leyenda"><div id="colorHojaInvalida"></div>Hoja invalida</div>
         </div>
     </div>
     <div class="col-sm-6">
