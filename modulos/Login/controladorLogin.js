@@ -16,7 +16,7 @@ app.controller('controladorLogin', function(servicioRest, config, $scope, $http,
     
     $scope.intro = function (pressEvent){
         //Si presiona intro para acceder
-        if(pressEvent.charCode == 13){ 
+        if(pressEvent.keyCode == 13){ 
             login();   
           }
     };
