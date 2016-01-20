@@ -73,9 +73,11 @@ app.controller('controladorNuevaReferencia', function(servicioRest,utils, config
     
     if($rootScope.referenciaCargada != null && $rootScope.opcion === 'validar'){
         $scope.clienteCargado = $rootScope.referenciaCargada.cliente;
-        $scope.tecnologiaCargada = $rootScope.referenciaCargada.tecnologias;
+        $scope.tecnologiasSeleccionadas = $rootScope.referenciaCargada.tecnologias;
         $scope.fechaInicio = new Date($rootScope.referenciaCargada.fechaInicio);
         $scope.UserPhoto = $rootScope.referenciaCargada.imagenProyecto;
+        console.log("tre",$rootScope.referenciaCargada.tecnologias);
+        console.log("try",$scope.tecnologiasSeleccionadas);
     }else{
          /*Vaciamos referenciaCargada*/
         $rootScope.referenciaCargada = null;
@@ -220,10 +222,10 @@ app.controller('controladorNuevaReferencia', function(servicioRest,utils, config
         function(response) {
             $scope.catalogo = response;
             $rootScope.clientes = $scope.catalogo.clientes;
-            $rootScope.tecnologias = $scope.catalogo.tecnologia;
+            //$rootScope.tecnologias = $scope.catalogo.tecnologia;
        
             cargarDatosClientes();
-            cargarDatosTecnologias();
+            //cargarDatosTecnologias();
             
             
             console.log("Catalogos Cargados");
@@ -237,11 +239,21 @@ app.controller('controladorNuevaReferencia', function(servicioRest,utils, config
             }
         });
     
+    servicioRest.getTecnologiasFinales().then(
+        function(response) {
+            console.log("hola",response);
+            $scope.tecnologias.lista = response;
+            //cargarTecnologias($scope.tecnologias.lista);
+            cargarDatosTecnologias(response);
+        });
+    
     
     
     
     /*-----------------------  AUTOCOMPLETE ----------------------- */
 
+    $scope.tecnologiasSeleccionadas=[];
+    
     //filtramos los datos del autocomplete según el texto
     $scope.filtrar = function (texto, campo) {
         var resultado;
@@ -296,16 +308,26 @@ app.controller('controladorNuevaReferencia', function(servicioRest,utils, config
         //cargamos los datos en el autocomplete a través del controlador          
     }
     
-    function cargarDatosTecnologias() {
-        $scope.tecnologias.lista= $rootScope.tecnologias.map( function (tec) {
+    // TODO: BORRAR SI SE DEMUESTRA QUE ES INUTIL
+    function cargarDatosTecnologias(listaTecnologias) {
+        $scope.tecnologias.lista= listaTecnologias.map( function (tec) {
             return {
-                value: tec.descripcion,
-                display: tec.descripcion+' ('+tec.codigo+')'
+                value: tec.nombre,
+                display: tec.nombre
             };
         });
+        console.log($scope.tecnologias.lista);
         //cargamos los datos en el autocomplete a través del controlador          
     }
 
+    function transformChip(chip) {
+        
+      if (angular.isObject(chip)) {
+        return chip;
+      }
+
+      return { value: chip, display: chip }
+    }
  
     
     //-----------------------------------------------CREACIÓN---------------------------------------------------------------------
@@ -364,7 +386,7 @@ app.controller('controladorNuevaReferencia', function(servicioRest,utils, config
     //Por defecto, todos los campos están mal. Así que asignamos todos los errores al array
     var erroresCometidos=Object.keys(erroresTotales);
     
-    //actualizamos la ista de errores
+    //actualizamos la lista de errores
     $scope.actualizaErrores=function(elem, error){
         var indice = erroresCometidos.indexOf(elem);
         
@@ -399,7 +421,18 @@ app.controller('controladorNuevaReferencia', function(servicioRest,utils, config
     function validarCampos(){
         //Como los siguientes campos no los validar automñaticamente, los evaluamos aquí y actualizamos el array de errores
         compruebaCampo($scope.posicionEnArray, 'cliente');
-        compruebaCampo($scope.posicionEnArray2, 'tecnologia');
+        console.log("johnny repetido",$scope.tecnologiasSeleccionadas.length);
+        aux = $scope.tecnologiasSeleccionadas.length;
+        console.log(aux);
+        if($scope.tecnologiasSeleccionadas.length>0){
+            if(erroresCometidos.indexOf('tecnologia')>=0){
+            erroresCometidos.splice(erroresCometidos.indexOf('tecnologia'), 1);
+            }
+        }else{
+            if(erroresCometidos.indexOf('tecnologia')<0){
+            erroresCometidos.push('tecnologia');
+            }
+        }
         compruebaCampo($scope.referencia.fechaInicio, 'fecha');
         
         //Los campos serán válidos cuando no tengamos errorres en los campos obligatorios. Por lo que comparamos con la longitud del array de errores
@@ -408,7 +441,7 @@ app.controller('controladorNuevaReferencia', function(servicioRest,utils, config
     
     function compruebaCampo(campo, id_error){
         
-        var indice=erroresCometidos.indexOf(id_error)
+        var indice=erroresCometidos.indexOf(id_error);
         //las posiciones en los arrays serán -1 en caso de que no haya error y la fecha será undefined o null
         if(undefined!=campo && -1!==campo){//<-- Si el campo está bien
             //Si el error había sido eliminado de la lista, lo insertamos
@@ -459,9 +492,8 @@ app.controller('controladorNuevaReferencia', function(servicioRest,utils, config
                 $scope.referencia.cliente = $scope.catalogo.clientes[$scope.posicionEnArray].nombre;
             }
                       
-            var indiceTecnologia = $rootScope.tecnologias.indexOf($scope.catalogo.tecnologia[$scope.posicionEnArray2]);
-            if(undefined!=$scope.posicionEnArray2){
-                $scope.referencia.tecnologias = $scope.catalogo.tecnologia[$scope.posicionEnArray2].codigo;
+            if(undefined!=$scope.tecnologiasSeleccionadas){
+                $scope.referencia.tecnologias = $scope.tecnologiasSeleccionadas;
             }
                 
             $scope.referencia.creadorReferencia = $rootScope.usuarioLS.name;

@@ -315,26 +315,33 @@
             <div class="contenedor-tecnologia">
                 <md-dialog-content class="selecTec" id="tecnologia">
                     <div class="md-dialog-content"  id="tecnologias">
-                        <md-autocomplete name='tecnologia'
-                                         tabindex='19'
-                                         ng-disabled="deshabilitarForm"
-                                         md-selected-item="tecnologias.elemSeleccionado"
-                                         md-search-text="tecnologias.texto"
-                                         md-selected-item-change="selectedItemChange(item, 'tecnologia')"
-                                         md-items="item in filtrar(tecnologias.texto, 'tecnologia') | limitTo : 8"
-                                         md-item-text="item.display"
-                                         md-min-length="2"
-                                         placeholder="Busque Tecnologías"
-                                         ng-required
-                                         ng-init="tecnologias.texto=tecnologiaCargada"
-                                         ng-disabled="deshabilitarForm">
-                            <md-item-template>
-                                <span md-highlight-text="tecnologias.texto" md-highlight-flags="^i">{{item.display}}</span>
-                            </md-item-template>
-                            <md-not-found>
-                                No se encuenta "{{tecnologias.texto}}" en la lista.
-                            </md-not-found>
-                      </md-autocomplete>
+                        <md-chips ng-model="tecnologiasSeleccionadas" md-autocomplete-snap="" md-transform-chip="transformChip($chip)" md-require-match="true">
+                            
+                            <md-autocomplete name='tecnologia'
+                                             tabindex='19'
+                                             ng-disabled="deshabilitarForm"
+                                             md-selected-item="tecnologias.elemSeleccionado"
+                                             md-search-text="tecnologias.texto"
+                                             md-selected-item-change="selectedItemChange(item, 'tecnologia')"
+                                             md-items="item in filtrar(tecnologias.texto, 'tecnologia') | limitTo : 8"
+                                             md-item-text="item.display"
+                                             md-min-length="2"
+                                             placeholder="Busque Tecnologías"
+                                             ng-required
+                                             ng-init="tecnologias.texto=tecnologiaCargada"
+                                             ng-disabled="deshabilitarForm">
+                                <md-item-template>
+                                    <span md-highlight-text="tecnologias.texto" md-highlight-flags="^i">{{item.display}}</span>
+                                </md-item-template>
+                                <md-not-found>
+                                    No se encuenta "{{tecnologias.texto}}" en la lista.
+                                </md-not-found>
+                          </md-autocomplete> 
+                          <md-chip-template>
+                            <span>{{$chip.value}}</span>
+                          </md-chip-template>
+                    </md-chips>
+                        
                     </div>
                 </md-dialog-content>
             </div>

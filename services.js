@@ -207,6 +207,23 @@ function ServicioREST( utils, config, $http,$q, $rootScope) {
 		return promise;
 	}
     
+    function getTecnologiasFinales() {
+		var defered = $q.defer();
+		var promise = defered.promise;
+		$http({
+			method: 'GET',
+			url: url + '/tecnologias/finales'
+		})
+		.success(function(data, status, headers, config) {
+			defered.resolve(data);
+		})
+		.error(function(data, status, headers, config) {
+			tratarError(data, status,defered);
+		});
+
+		return promise;
+	}
+    
     function postUsuario(usuario){
         var defered = $q.defer();
 		var promise = defered.promise;
@@ -321,7 +338,7 @@ function ServicioREST( utils, config, $http,$q, $rootScope) {
      
 		
 	return {
-        getTecnologias: getTecnologias,
+        getTecnologiasFinales: getTecnologiasFinales,
         postTecnologia: postTecnologia,
         putTecnologia: putTecnologia,
         putMoverTecnologia: putMoverTecnologia,
@@ -334,6 +351,7 @@ function ServicioREST( utils, config, $http,$q, $rootScope) {
         deleteReferencia : deleteReferencia,
 		getLDAP: getLDAP,
         getCatalogos: getCatalogos,
+        getTecnologias: getTecnologias,
         postUsuario: postUsuario,
         postLogin : postLogin
 	}
