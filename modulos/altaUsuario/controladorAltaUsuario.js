@@ -43,14 +43,11 @@ app.controller('controladorAltaUsuario', function(servicioRest,config,utils, $sc
     servicioRest.getLDAP()
     .then(function(response) {
         $scope.usuarios = response;
-        console.log(response);
         $scope.arrayDatos = cargarDatos();
-        console.log("Ldap Cargado");
         $scope.activado = false;
         toggleActivation();
     })
     .catch(function(err) {
-        console.log(err);
         $scope.mensaje='error de cargar ldap';
     });
 	
@@ -72,14 +69,12 @@ app.controller('controladorAltaUsuario', function(servicioRest,config,utils, $sc
             //en cuanto el texto a buscar esté vacío reiniciamos los resultados a todos los usuarios. Si no buscaríamos sólo sobre el resultado de la última búsqueda
             results= $scope.arrayDatos;
         }
-        console.log('QUERY: '+$scope.posicionEnArray);
         return results;
 	};
 
 	// Elemento seleccionado
 	function selectedItemChange(item) {
         $scope.posicionEnArray = $scope.arrayDatos.indexOf(item);
-        console.log('ITEM: '+$scope.posicionEnArray);
 	};
 
 	// Carga de datos inicial
