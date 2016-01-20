@@ -53,7 +53,6 @@ app.controller('controladorLogin', function(servicioRest, config, $scope, $http,
 			})
 			.catch(function(err) {
              //Tratamos el error.
-                console.log(err);
                 if(err=="Credenciales erróneas"){
                     $rootScope.error="Contraseña incorrecta.";
                     
