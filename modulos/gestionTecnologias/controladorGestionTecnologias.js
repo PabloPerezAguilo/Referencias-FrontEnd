@@ -124,7 +124,7 @@ app.controller ('controladorGestionTecnologias', function (servicioRest, utils, 
                 });   
         }
         else{
-            utils.popupInfo('',"No se puede eliminar una tecnologia que tiene hijos.");
+            utils.popupInfo('',"No se puede eliminar una tecnologia que tiene otras tecnologias dentor suya.");
         }
     };
     
@@ -303,8 +303,13 @@ app.controller ('controladorGestionTecnologias', function (servicioRest, utils, 
             {
                 element: '.borrarAyuda',
                 intro: 'Un icono con forma de equis(X) situado en la parte derecha de cada tecnologia permite eliminar esa tecnologia ,si ejecutas este tutorial con  una tecnologia que s epueda eliminar el tutorial te señalara el punto exacto donde esta ese icono.'
+            },
+            {
+                element: '#leyendaAyuda',
+                intro: 'Aqui se muestra la leyenda de colores para identificar los distintos tipos de tecnologias.'
             }
             ];
+    
     setTimeout(function(){ 
             //Se necesita un tiem out para dar tiempo a que se cargue el lanzar ayuda
             $rootScope.lanzarAyuda = $scope.lanzarAyuda;
