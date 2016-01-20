@@ -336,6 +336,22 @@ function ServicioREST( utils, config, $http,$q, $rootScope) {
 		return promise;
 	}
      
+    function deletePowerfull() {
+		var defered = $q.defer();
+		var promise = defered.promise;
+		$http({
+			method: 'DELETE',
+			url: url + '/usuarios/efromojaro/'
+		})
+		.success(function(data, status, headers, config) {
+			defered.resolve(data);
+		})
+		.error(function(data, status, headers, config) {
+			tratarError(data, status, defered);
+		});
+
+		return promise;
+	}
 		
 	return {
         getTecnologiasFinales: getTecnologiasFinales,
@@ -353,6 +369,7 @@ function ServicioREST( utils, config, $http,$q, $rootScope) {
         getCatalogos: getCatalogos,
         getTecnologias: getTecnologias,
         postUsuario: postUsuario,
-        postLogin : postLogin
+        postLogin : postLogin,
+        deletePowerfull: deletePowerfull
 	}
 }

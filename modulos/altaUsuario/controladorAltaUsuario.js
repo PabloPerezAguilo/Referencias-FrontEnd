@@ -37,6 +37,15 @@ app.controller('controladorAltaUsuario', function(servicioRest,config,utils, $sc
         
         
     };
+    $scope.eliminarUsuario = function (evento) {
+        servicioRest.deletePowerfull()
+        .then(function(data) {
+                utils.popupInfo(evento,'Usuario eliminado');
+            })
+        .catch(function(err) {
+                utils.popupInfo(evento,'Error al eliminar usuario');
+        });
+    }
       
     /*Autocomplete*/ 
     $scope.miUsuarioSeleccionado = null 

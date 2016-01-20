@@ -10,7 +10,7 @@
             <ng-md-icon icon="lock" style="fill: #ee941a" size="30"></ng-md-icon>
             <md-input-container flex>
               <label>Contraseña</label>
-            <input ng-keypress="intro($event)" ng-model="user.password" type="password" name="pwd" autofocus="autofocus" required>
+            <input id="pass" ng-keypress="intro($event)" ng-model="user.password" type="password" name="pwd" autofocus="autofocus" required>
             </md-input-container>
             <p>{{error}}</p>
         </div>

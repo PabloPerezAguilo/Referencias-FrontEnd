@@ -17,13 +17,11 @@ app.config(function($mdDateLocaleProvider) {
     $mdDateLocaleProvider.shortDays = ['D', 'L', 'M', 'X', 'J', 'V', 'S'];
     $mdDateLocaleProvider.shortMonths = ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'];
       $mdDateLocaleProvider.formatDate = function(date) {
-          console.log("aaa");
         return date ? moment(date).format('D/M/YYYY') : '';
       };
 
       $mdDateLocaleProvider.parseDate = function(dateString) {
         var m = moment(dateString, 'D/M/YYYY', true);
-          console.log("bbb");
         return m.isValid() ? m.toDate() : moment('undefined', 'D/M/YYYY', true).toDate();
       };
 });

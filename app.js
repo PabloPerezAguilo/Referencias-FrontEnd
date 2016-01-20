@@ -1,20 +1,14 @@
 'use strict';
-//console.log('**************************************************************');
-//console.log('Antes de app');
 var app = angular.module('ref', ['ngRoute','ngMaterial','ngMdIcons','ngMessages','ja.qr','ui.bootstrap','angular-intro','ui.tree']);
-//console.log('Después de app: ');
-//console.log(app);
 
 
 
 app.run(function(servicioRest, utils, $rootScope, $http, $location, $mdDialog) {
-    console.log("APP");
     //console.log('Inicio app');
     $rootScope.menu=false;
     // Opcion que determinará desde donde se accede a la pagina de nuevaReferencia para saber que cabecera y botones ponerle.
     $rootScope.actualizarTitulo = function(){
         $rootScope.opcion = 'nueva'; 
-        //console.log('titulo cambiado');
     };
     
 	// Establecemos las cabeceras por defecto. Las cabecera Authorization se modificara cuando el usuario se loge
@@ -28,12 +22,12 @@ app.run(function(servicioRest, utils, $rootScope, $http, $location, $mdDialog) {
         
         //Cargamos los datos del storage pertinente. No van a estarlos dos a la vez
         if(localStorage.getItem("nick") !== null){
-            console.log("LOCAL");
+
             caragaStorage(localStorage);
         }
         
         if(sessionStorage.getItem("nick") !== null){
-            console.log("SESSION")
+
             caragaStorage(sessionStorage);
         }
         //volvemos a cargar el menú
@@ -51,7 +45,7 @@ app.run(function(servicioRest, utils, $rootScope, $http, $location, $mdDialog) {
         })
         .catch(function(err) {
             // Debemos tratar el error   
-           //console.log("Error");
+
 
         }); 
 	}
@@ -69,7 +63,7 @@ app.run(function(servicioRest, utils, $rootScope, $http, $location, $mdDialog) {
         })
     };
     function caragaStorage(storage){
-        console.log(storage)
+
         $rootScope.usuarioLS = {
             nick: storage.getItem("nick"),
             password: Aes.Ctr.decrypt(storage.getItem("password"), storage.getItem("nick"), 256),

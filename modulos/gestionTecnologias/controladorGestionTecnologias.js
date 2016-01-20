@@ -134,6 +134,7 @@ app.controller ('controladorGestionTecnologias', function (servicioRest, utils, 
         $scope.nodoSeleccionado={'clase':tipoElem};
         nodeData=scope.$modelValue;
         operacion="anadir";
+        $scope.estaValidado=$scope.nodoSeleccionado.clase==='hoja';
     };
     
     $scope.seleccionarElemento=function(elem, nodo){
@@ -201,7 +202,7 @@ app.controller ('controladorGestionTecnologias', function (servicioRest, utils, 
         
         var nombreRepetido = comprobarArbol($scope.data[0], $scope.nodoSeleccionado.nombre, false);
         //var nombreRepetido=false;
-        if(!nombreRepetido){
+        if(!nombreRepetido || (operacion==="editar" && nodeData.nombre===$scope.nodoSeleccionado.nombre)){
             //------------Añadir elemento
             if(operacion=="anadir"){
                 console.log($scope.nodoSeleccionado);

@@ -14,7 +14,6 @@ function utils($rootScope, $mdDialog){
     }
     
     function cargarMenu(rol){
-        console.log("utils.cargarMeu: "+rol);
             if( rol === "ROLE_ADMINISTRADOR"){
                 $rootScope.menuTecnologias = true;
                 $rootScope.menuGestionTecnologias = true;

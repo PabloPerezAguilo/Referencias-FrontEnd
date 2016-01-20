@@ -23,7 +23,6 @@ app.controller('controladorLogin', function(servicioRest, config, $scope, $http,
     
     //Comprobamos que el LocalStorage tenga datos
     if(localStorage.getItem("nick")!==null){
-       console.log(localStorage.getItem("nick"));
        $location.path("/bienvenida");
 
     }

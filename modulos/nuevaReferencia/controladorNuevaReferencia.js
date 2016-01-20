@@ -1,5 +1,8 @@
 app.controller('controladorNuevaReferencia', function(servicioRest,utils, config, $scope, $http,$log, $rootScope,$location,$mdDialog,$interval,$timeout){
-    
+    var fruitNames = [];
+    fruitNames = [{display:'Apple', value:'Apple'}, {display:'Banana', value:'Banana'}, {display:'Orange',value:'Orange'}];
+    $scope.tecnologiasSeleccionadas = angular.copy(fruitNames);
+    console.log("aqui",$scope.tecnologiasSeleccionadas);
     //--------------------- Objetos del controlador (clientes y tecnologias)
 
     //Se obtienen los elementos que tengan la clase "md-datepicker-input" se obtiene el primer elemento (solo hay uno)
@@ -73,7 +76,7 @@ app.controller('controladorNuevaReferencia', function(servicioRest,utils, config
     
     if($rootScope.referenciaCargada != null && $rootScope.opcion === 'validar'){
         $scope.clienteCargado = $rootScope.referenciaCargada.cliente;
-        $scope.tecnologiasSeleccionadas = $rootScope.referenciaCargada.tecnologias;
+        $scope.tecnologiasSeleccionadas = angular.copy($rootScope.referenciaCargada.tecnologias);
         $scope.fechaInicio = new Date($rootScope.referenciaCargada.fechaInicio);
         $scope.UserPhoto = $rootScope.referenciaCargada.imagenProyecto;
         console.log("tre",$rootScope.referenciaCargada.tecnologias);
@@ -227,8 +230,6 @@ app.controller('controladorNuevaReferencia', function(servicioRest,utils, config
             cargarDatosClientes();
             //cargarDatosTecnologias();
             
-            
-            console.log("Catalogos Cargados");
             $rootScope.sociedades = $scope.catalogo.sociedades;
             
             // si venimos de listar referencias tendremos una referencia cargada en $rootScope para la comunicacion entre los controladores
@@ -241,7 +242,6 @@ app.controller('controladorNuevaReferencia', function(servicioRest,utils, config
     
     servicioRest.getTecnologiasFinales().then(
         function(response) {
-            console.log("hola",response);
             $scope.tecnologias.lista = response;
             //cargarTecnologias($scope.tecnologias.lista);
             cargarDatosTecnologias(response);
@@ -287,13 +287,11 @@ app.controller('controladorNuevaReferencia', function(servicioRest,utils, config
         if(campo==='cliente'){
             //si es el autocomplete del cliente, buscamos el índife en la lista de clientes.
             //lo asignamos a la posición del catálogo de clientes correspondiente al mismo
-            $scope.posicionEnArray=$scope.clientes.lista.indexOf(item);
-            console.log('Cliente: '+$scope.posicionEnArray);
+            $scope.posicionEnArray=$scope.clientes.lista.indexOf(item);     
         }else if(campo==='tecnologia'){
             //si es el autocomplete del tecnologñia, buscamos el índice en la lista de tecnologías.
             //lo asignamos a la posición del catálogo de clientes correspondiente al mismo
             $scope.posicionEnArray2=$scope.tecnologias.lista.indexOf(item);
-            console.log('Tecnología: '+$scope.posicionEnArray2);
         }
     }
     
@@ -316,7 +314,6 @@ app.controller('controladorNuevaReferencia', function(servicioRest,utils, config
                 display: tec.nombre
             };
         });
-        console.log($scope.tecnologias.lista);
         //cargamos los datos en el autocomplete a través del controlador          
     }
 
@@ -406,7 +403,6 @@ app.controller('controladorNuevaReferencia', function(servicioRest,utils, config
     
     function listarErrores(){
         
-        console.log(erroresCometidos);
         var result=[];
         for (var i=0;i<erroresCometidos.length; i++){
             result.push(erroresTotales[erroresCometidos[i]]);
@@ -414,16 +410,12 @@ app.controller('controladorNuevaReferencia', function(servicioRest,utils, config
         return result;
     }
     
-    $scope.comprobarFecha = function () {
-        console.log($scope.fechaInicio);
-    }
     
     function validarCampos(){
         //Como los siguientes campos no los validar automñaticamente, los evaluamos aquí y actualizamos el array de errores
         compruebaCampo($scope.posicionEnArray, 'cliente');
-        console.log("johnny repetido",$scope.tecnologiasSeleccionadas.length);
         aux = $scope.tecnologiasSeleccionadas.length;
-        console.log(aux);
+        console.log($scope.tecnologiasSeleccionadas);
         if($scope.tecnologiasSeleccionadas.length>0){
             if(erroresCometidos.indexOf('tecnologia')>=0){
             erroresCometidos.splice(erroresCometidos.indexOf('tecnologia'), 1);
@@ -444,15 +436,13 @@ app.controller('controladorNuevaReferencia', function(servicioRest,utils, config
         var indice=erroresCometidos.indexOf(id_error);
         //las posiciones en los arrays serán -1 en caso de que no haya error y la fecha será undefined o null
         if(undefined!=campo && -1!==campo){//<-- Si el campo está bien
-            //Si el error había sido eliminado de la lista, lo insertamos
-            console.log('BIEN: '+id_error+' , '+campo);
+            //Si el error había sido eliminado de la lista, lo insertamos  
             if (indice >= 0) {
                 erroresCometidos.splice(indice, 1);
             }
         }
         else{ //<-- Si el campo está mal
             //Si el error sigue en la lista, lo eliminamos
-            console.log('MAL: '+id_error+' , '+campo);
             if (indice < 0) {
                 erroresCometidos.push(id_error);
             }
@@ -484,7 +474,6 @@ app.controller('controladorNuevaReferencia', function(servicioRest,utils, config
     }
     
     $scope.crearReferencia = function (estado, event) {
-        console.log('FECHA'+$scope.fechaInicio);
         if ((estado==="pendiente" && validarCampos()) || estado==="borrador")
         {
             // Crea/Guarda una referencia dependiendo de su estado
@@ -493,7 +482,13 @@ app.controller('controladorNuevaReferencia', function(servicioRest,utils, config
             }
                       
             if(undefined!=$scope.tecnologiasSeleccionadas){
-                $scope.referencia.tecnologias = $scope.tecnologiasSeleccionadas;
+                var arrayAux=[];
+                for(var i=0;i<$scope.tecnologiasSeleccionadas.length;i++)
+                {
+                    arrayAux.push($scope.tecnologiasSeleccionadas[i].value);
+                }
+                $scope.referencia.tecnologias = arrayAux;
+                
             }
                 
             $scope.referencia.creadorReferencia = $rootScope.usuarioLS.name;
@@ -525,11 +520,7 @@ app.controller('controladorNuevaReferencia', function(servicioRest,utils, config
                         mensajeEstado='Referencia creada en modo borrador.'; 
                     }
                     enviarReferencia(referencia, mensajeEstado);
-                    console.log('referencia guardada');
                  }
-                console.log("AQUI");
-                console.log($scope.referencia);
-                console.log(referencia);
             }else
             {
                     var referencia = $scope.referencia;
@@ -569,7 +560,6 @@ app.controller('controladorNuevaReferencia', function(servicioRest,utils, config
     /* ------------------------ VALIDAR UNA REFERENCIA ------------------------------- */
     
     $scope.validarReferencia = function () {
-        console.log($rootScope.referenciaCargada);
         $rootScope.referenciaCargada.estado='validada';
 
         //cambiamos el estado de la referencia a 'validada'
@@ -590,7 +580,6 @@ app.controller('controladorNuevaReferencia', function(servicioRest,utils, config
     /* ------------------------ RECHAZAR UNA REFERENCIA ------------------------------- */
     
     $scope.rechazarReferencia = function () {
-        console.log($rootScope.referenciaCargada);
         $rootScope.referenciaCargada.estado='borrador';
         
         rechazarRefPopUp(event)
@@ -608,7 +597,6 @@ app.controller('controladorNuevaReferencia', function(servicioRest,utils, config
             clickOutsideToClose: false
         })
         .then(function(razonRechazo) {
-            console.log(razonRechazo);
                 servicioRest.updateReferencia($rootScope.referenciaCargada)
                 .then(function(data) {
                     utils.popupInfo('', "Referencia rechazada, se avisará al responsable.");
