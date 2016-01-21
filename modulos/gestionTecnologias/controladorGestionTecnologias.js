@@ -3,12 +3,10 @@ app.controller ('controladorGestionTecnologias', function (servicioRest, utils, 
     var operacion;
     
     $scope.activarScroll=function(){     
-        console.log("fuera");
         $scope.scroll=true;     
     };
     
     $scope.ayuda = function(){
-        console.log("dentro");
       $scope.scroll=false
       $scope.lanzarAyuda();
         
@@ -121,10 +119,8 @@ app.controller ('controladorGestionTecnologias', function (servicioRest, utils, 
     $scope.tipos=["OpenSource", "Suscripción", "Licencia"];
     
     $scope.eliminarElem=function(ev, scope){
-        console.log(scope.$modelValue.nodosHijos);
         if(scope.$modelValue.nodosHijos[0]==null){
             ev.stopImmediatePropagation();
-            console.log(scope.$modelValue.nombre);
             servicioRest.deleteTecnologia(scope.$modelValue.nombre)
                 .then(function(data) {
                     //eliminarNodo(scope);
@@ -132,7 +128,8 @@ app.controller ('controladorGestionTecnologias', function (servicioRest, utils, 
                 toast("Tecnologia eliminada");
 
                 }).catch(function(err) {
-                    utils.popupInfo('',"Error al eliminar tecnologia.");
+                console.log(err);
+                    utils.popupInfo('',err);
                     console.log("Error al eliminar tecnologia");
                     servicioRest.getTecnologias().then(
                     function (response) {
@@ -141,7 +138,7 @@ app.controller ('controladorGestionTecnologias', function (servicioRest, utils, 
                 });   
         }
         else{
-            utils.popupInfo('',"No se puede eliminar una tecnologia que tiene otras tecnologias dentor suya.");
+            utils.popupInfo('',"Error al borrar<br>Hay tecnologias dentro");
         }
     };
     
@@ -155,12 +152,8 @@ app.controller ('controladorGestionTecnologias', function (servicioRest, utils, 
     };
     
     $scope.seleccionarElemento=function(elem, nodo){
-
-        console.log(nodo);
-
         $scope.titulo = "Editar " + nodo.clase;
         nodeData=nodo;
-        //console.log(elem.$parent.$parentNodeScope.$modelValue.nombre)
         if(nodeData.clase=="nodo"){
             $scope.nodoSeleccionado={
             nombre: nodeData.nombre,
@@ -222,8 +215,6 @@ app.controller ('controladorGestionTecnologias', function (servicioRest, utils, 
         if(!nombreRepetido || (operacion==="editar" && nodeData.nombre===$scope.nodoSeleccionado.nombre)){
             //------------Añadir elemento
             if(operacion=="anadir"){
-                console.log($scope.nodoSeleccionado);
-
                 servicioRest.postTecnologia(nodeData.nombre, $scope.nodoSeleccionado)
                 .then(function(data) {
                     actualizarArbol(data);
@@ -269,34 +260,32 @@ app.controller ('controladorGestionTecnologias', function (servicioRest, utils, 
     };
     
     $scope.validarElem=function(){
-        $scope.showConfirm = function(ev) {
-    // Appending dialog to document.body to cover sidenav in docs app
-    var confirm = $mdDialog.confirm()
-          .title('Would you like to delete your debt?')
-          .textContent('All of the banks have agreed to forgive you your debts.')
-          .ariaLabel('Lucky day')
-          .targetEvent(ev)
-          .ok('Please do it!')
-          .cancel('Sounds like a scam');
-
-    $mdDialog.show(confirm).then(function() {
-      $scope.status = 'You decided to get rid of your debt.';
-    }, function() {
-      $scope.status = 'You decided to keep your debt.';
-    });
-  };
-        //$scope.showConfirm();
-
-        nodeData.clase="hoja";
-        $scope.nodoSeleccionado.clase="hoja";
-        $scope.estaValidado=$scope.nodoSeleccionado.clase==='hoja';
-        $scope.guardarElem();
-        
+        $mdDialog.show(
+            $mdDialog.confirm()
+            .clickOutsideToClose(true)
+            .title('Validar hoja')
+            .content('Estas seguro de querer validar la hoja?')
+            .ariaLabel('Lucky day')
+            .ok('Validar')
+            .cancel('Cancelar')
+        ).then(function() {
+            nodeData.clase="hoja";
+            $scope.nodoSeleccionado.clase="hoja";
+            $scope.estaValidado=$scope.nodoSeleccionado.clase==='hoja';
+            $scope.guardarElem();
+        });
     };
     
     servicioRest.getTecnologiasFinales().then(
         function(response) {
-            $scope.clientes.lista= response.map( function (tec) {
+            var aux=[];
+            for(var i=0;i<response.length;i++){
+                if(response[i].clase==="hoja"){
+                    aux.push(response[i]);
+                }
+            }
+            console.log(response);
+            $scope.clientes.lista= aux.map( function (tec) {
                 return {
                     value: tec.nombre,
                     display: tec.nombre
@@ -327,8 +316,6 @@ app.controller ('controladorGestionTecnologias', function (servicioRest, utils, 
 
     
     $scope.rechazarElem=function(){
-        console.log($scope.clientes.elemSeleccionado.value);
-        console.log(nodeData.nombre);
         servicioRest.rechazarTecnologia(nodeData.nombre, $scope.clientes.elemSeleccionado.value).then(
         function (response) {
             
