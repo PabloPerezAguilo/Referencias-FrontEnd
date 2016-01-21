@@ -335,6 +335,27 @@ function ServicioREST( utils, config, $http,$q, $rootScope) {
 
 		return promise;
 	}
+    
+    function rechazarTecnologia(anterior, nueva) {
+		var defered = $q.defer();
+		var promise = defered.promise;
+        datos = {anterior : anterior, nueva : nueva}
+		$http({
+			method: 'PUT',
+			url: url + '/referencia/tecnologias',
+			data: datos
+		})
+		.success(function(data, status, headers, config) {
+			defered.resolve(data);
+		})
+		.error(function(data, status, headers, config) {
+			tratarError(data, status, defered);
+		});
+
+		return promise;
+	}
+    
+    /************TEMPORAL*/
      
     function deletePowerfull() {
 		var defered = $q.defer();
@@ -370,6 +391,7 @@ function ServicioREST( utils, config, $http,$q, $rootScope) {
         getTecnologias: getTecnologias,
         postUsuario: postUsuario,
         postLogin : postLogin,
+        rechazarTecnologia: rechazarTecnologia,
         deletePowerfull: deletePowerfull
 	}
 }

@@ -294,6 +294,61 @@ app.controller ('controladorGestionTecnologias', function (servicioRest, utils, 
         
     };
     
+    servicioRest.getTecnologiasFinales().then(
+        function(response) {
+            $scope.clientes.lista= response.map( function (tec) {
+                return {
+                    value: tec.nombre,
+                    display: tec.nombre
+                };
+            });
+            console.log($scope.clientes.lista);
+        });
+    
+    $scope.filtrar = function (texto) {
+        var resultado;
+        var array;
+        // Determinamos cual es el array a filtrar y cuanl es el índice del resultado    
+            array=$scope.clientes.lista;
+            $scope.posicionEnArray=undefined;
+        // hacemos la búsqueda en el array
+        if(texto!==""){
+            //Si hay algo de texto, cogemos los elementos que tengan el texto en el nombre y/o en las siglas
+            resultado=array.filter(function (cliente) {
+                return (cliente.display.toLowerCase().indexOf(texto.toLowerCase()) !==-1);
+            });
+        }else{
+            //si no hay texto, asignamos el resultado de la búsqueda al array completo para que se recarguen todos los datos
+            resultado=array;
+        }
+        return resultado;
+    }
+        //cargamos los datos en el autocomplete a través del controlador          
+
+    
+    $scope.rechazarElem=function(){
+        console.log($scope.clientes.elemSeleccionado.value);
+        console.log(nodeData.nombre);
+        servicioRest.rechazarTecnologia(nodeData.nombre, $scope.clientes.elemSeleccionado.value).then(
+        function (response) {
+            
+            servicioRest.deleteTecnologia(nodeData.nombre)
+                .then(function(data) {
+                    //eliminarNodo(scope);
+                    actualizarArbol(data);
+                toast("Tecnologia rechazada");
+
+                }).catch(function(err) {
+                    utils.popupInfo('',"Error al rechazar tecnologia.");
+                    console.log("Error al rechazar tecnologia");
+                    servicioRest.getTecnologias().then(
+                    function (response) {
+                        actualizarArbol(response);
+                    });
+                });  
+        });
+    };
+    
     /*             AYUDA                 */
     
     $scope.introOptions = config.introOptions;

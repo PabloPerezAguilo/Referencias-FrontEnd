@@ -833,6 +833,13 @@ md-toolbar:not(.md-menu-toolbar) {
 
 /*--------------------- ESTILOS ARBOL TECNOLOGIAS -------------------------*/
 
+#autocompleteTecnologias{
+    width: 40%;
+    margin-right: 2%;
+    margin-left: 2%;
+    display: inline-block;
+}
+
 md-checkbox.md-checked .md-icon {
     background-color: #ee941a;
 }

@@ -75,21 +75,21 @@
                 <md-button class="botonesApp" type="button"  ng-click="guardarElem()"
                            ng-disabled="datosNodo.$invalid">Guardar</md-button>
                 <md-button class="botonesApp" ng-show="true && (nodoSeleccionado.clase=='hojaInvalida')" type="button"  ng-click="validarElem()">Validar</md-button>
-                <md-autocomplete id="autocompleteTecnologias" md-selected-item="ctrl.selectedItem"
-						 md-search-text-change="ctrl.searchTextChange(ctrl.searchText)"
-						 md-search-text="ctrl.searchText"
-						 md-selected-item-change="ctrl.selectedItemChange(item)"
-						 md-items="item in ctrl.querySearch(ctrl.searchText) | filter : tecnologia | limitTo : 8"
-						 md-item-text="item.display"
-						 md-min-length="3"
-						 placeholder="Buscar usuario por nombre o nick"
-						 ng-disabled="permisoEscritura"
-						 ng-maxlength="13"
-						 class="fondoCuerpo margenBt20 sinBorde">
-			<md-item-template>
-				<span md-highlight-text="ctrl.searchText" md-highlight-flags="^i">{{item.display}}</span>
-			</md-item-template>
-		</md-autocomplete>
+                <md-autocomplete id="autocompleteTecnologias" ng-show="true && (nodoSeleccionado.clase=='hojaInvalida')"
+                                 md-selected-item="clientes.elemSeleccionado"
+                                 md-search-text="clientes.texto"
+                                 md-selected-item-change="selectedItemChange(item, 'cliente')"
+                                 md-items="item in filtrar(clientes.texto, 'cliente') | limitTo : 8"
+                                 md-item-text="item.display"
+                                 md-min-length="3"
+                                 placeholder="Asociar a sus referencias a...">
+                    <md-item-template>
+                        <span md-highlight-text="clientes.texto" md-highlight-flags="^i">{{item.display}}</span>
+                    </md-item-template>
+                    <md-not-found>
+                        No se encuenta "{{clientes.texto}}" en la lista.
+                    </md-not-found>
+              </md-autocomplete>
                 <md-button class="botonesApp" ng-show="true && (nodoSeleccionado.clase=='hojaInvalida')" type="button"  ng-click="rechazarElem()">Rechazar</md-button>
             </form>
         </div>

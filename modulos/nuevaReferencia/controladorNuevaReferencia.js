@@ -76,6 +76,7 @@ app.controller('controladorNuevaReferencia', function(servicioRest,utils, config
     
     if($rootScope.referenciaCargada != null && $rootScope.opcion === 'validar'){
         $scope.clienteCargado = $rootScope.referenciaCargada.cliente;
+        console.log($rootScope.referenciaCargada.tecnologias);
         $scope.tecnologiasSeleccionadas = angular.copy($rootScope.referenciaCargada.tecnologias);
         $scope.fechaInicio = new Date($rootScope.referenciaCargada.fechaInicio);
         $scope.UserPhoto = $rootScope.referenciaCargada.imagenProyecto;
