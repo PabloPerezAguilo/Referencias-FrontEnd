@@ -22,5 +22,4 @@ app.controller('controladorUsuarioLogueado', function(servicioRest, config, $sco
         $location.path('/');
         
     }
-    console.log($scope.rolUsu);
 });

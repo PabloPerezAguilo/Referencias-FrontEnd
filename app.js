@@ -4,7 +4,7 @@ var app = angular.module('ref', ['ngRoute','ngMaterial','ngMdIcons','ngMessages'
 
 
 app.run(function(servicioRest, utils, $rootScope, $http, $location, $mdDialog) {
-    //console.log('Inicio app');
+    
     $rootScope.menu=false;
     // Opcion que determinará desde donde se accede a la pagina de nuevaReferencia para saber que cabecera y botones ponerle.
     $rootScope.actualizarTitulo = function(){
