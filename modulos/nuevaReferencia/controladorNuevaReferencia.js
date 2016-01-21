@@ -1,4 +1,4 @@
-app.controller('controladorNuevaReferencia', function(servicioRest,utils, config, $scope, $http,$log, $rootScope,$location,$mdDialog,$interval,$timeout){
+app.controller('controladorNuevaReferencia', function(servicioRest,utils, config, $scope, $http,$log, $rootScope,$location,$mdDialog,$interval,$timeout,$route){
     var fruitNames = [];
     fruitNames = [{display:'Apple', value:'Apple'}, {display:'Banana', value:'Banana'}, {display:'Orange',value:'Orange'}];
     $scope.tecnologiasSeleccionadas = angular.copy(fruitNames);
@@ -452,21 +452,13 @@ app.controller('controladorNuevaReferencia', function(servicioRest,utils, config
 
  //--------------------------------------------------------------------------------------------------------------------------   
     /* CREAR la referencia, puede tener estado: pendiente/borrador  */
-    
-    //función para vaciar los campos una vez se cree la referencia
-    function limpiarCampos(){
-        //iniciamos la referencia a un objeto vacío y los textos que no aprarecen en ell a string vacío
-        $scope.referencia={};
-        $scope.clientes.texto='';
-        $scope.tecnologias.texto='';
-        erroresCometidos=Object.keys(erroresTotales);
-    }
+
     //por reutilización se llamará a esta función cuando se quiera mandar la refrencia a crear al back
     function enviarReferencia(referencia, mensajeEstado){
         servicioRest.postReferencia(referencia)
         .then(function(data){
             utils.popupInfo(event, mensajeEstado);
-            limpiarCampos();
+            $route.reload();
         })
         .catch(function(data){
             utils.popupInfo(event, 'Error al crear la referencia');
