@@ -2,6 +2,23 @@ app.controller ('controladorGestionTecnologias', function (servicioRest, utils, 
     var nodeData;
     var operacion;
     
+    $scope.activarScroll=function(){     
+        console.log("fuera");
+        $scope.scroll=true;     
+    };
+    
+    $scope.ayuda = function(){
+        console.log("dentro");
+      $scope.scroll=false
+      $scope.lanzarAyuda();
+        
+    };
+    
+    setTimeout(function(){ 
+            //Se necesita un tiem out para dar tiempo a que se cargue el lanzar ayuda
+            $rootScope.lanzarAyuda=$scope.ayuda;
+        }, 1000)
+    
     function toast(texto) {
 		$mdToast.show(
 			$mdToast.simple().content(texto).position('top right').hideDelay(1500)
@@ -312,9 +329,5 @@ app.controller ('controladorGestionTecnologias', function (servicioRest, utils, 
             }
             ];
     
-    setTimeout(function(){ 
-            //Se necesita un tiem out para dar tiempo a que se cargue el lanzar ayuda
-            $rootScope.lanzarAyuda = $scope.lanzarAyuda;
-        }, 1000)
     
 }); 
