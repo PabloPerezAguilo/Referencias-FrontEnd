@@ -355,7 +355,25 @@ function ServicioREST( utils, config, $http,$q, $rootScope) {
 		return promise;
 	}
     
-    /************TEMPORAL*/
+    function getReferenciasAsociadas(tecnologia) {
+		var defered = $q.defer();
+		var promise = defered.promise;
+        
+		$http({
+			method: 'GET',
+			url: url + '/referencia/tecnologias/' + tecnologia
+		})
+		.success(function(data, status, headers, config) {
+			defered.resolve(data);
+		})
+		.error(function(data, status, headers, config) {
+			tratarError(data, status, defered);
+		});
+
+		return promise;
+	}
+    
+    /************ TEMPORAL **************/
      
     function deletePowerfull() {
 		var defered = $q.defer();
@@ -392,6 +410,7 @@ function ServicioREST( utils, config, $http,$q, $rootScope) {
         postUsuario: postUsuario,
         postLogin : postLogin,
         rechazarTecnologia: rechazarTecnologia,
+        getReferenciasAsociadas: getReferenciasAsociadas,
         deletePowerfull: deletePowerfull
 	}
 }

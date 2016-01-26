@@ -22,7 +22,7 @@ app.controller('controladorLogin', function(servicioRest, config, $scope, $http,
     };
     
     //Comprobamos que el LocalStorage tenga datos
-    if(localStorage.getItem("nick")!==null){
+    if(localStorage.getItem("nick")!==null || sessionStorage.getItem("nick")!==null){
        $location.path("/bienvenida");
 
     }

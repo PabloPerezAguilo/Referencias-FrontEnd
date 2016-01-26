@@ -75,7 +75,7 @@
                 <md-button class="botonesApp" type="button"  ng-click="guardarElem()"
                            ng-disabled="datosNodo.$invalid">Guardar</md-button>
                 <md-button class="botonesApp" ng-show="true && (nodoSeleccionado.clase=='hojaInvalida')" type="button"  ng-click="validarElem()">Validar</md-button>
-                <md-autocomplete id="autocompleteTecnologias" ng-show="true && (nodoSeleccionado.clase=='hojaInvalida')"
+                <md-autocomplete id="autocompleteTecnologias" ng-show="hayRefAsociadas && (nodoSeleccionado.clase=='hojaInvalida')"
                                  md-selected-item="clientes.elemSeleccionado"
                                  md-search-text="clientes.texto"
                                  md-selected-item-change="selectedItemChange(item, 'cliente')"
@@ -90,7 +90,7 @@
                         No se encuenta "{{clientes.texto}}" en la lista.
                     </md-not-found>
               </md-autocomplete>
-                <md-button class="botonesApp" ng-show="true && (nodoSeleccionado.clase=='hojaInvalida')" type="button"  ng-click="rechazarElem()">Rechazar</md-button>
+                <md-button class="botonesApp" ng-show="true && (nodoSeleccionado.clase=='hojaInvalida')" type="button"  ng-click="rechazarElem(hayRefAsociadas)">Rechazar</md-button>
             </form>
         </div>
     </div>

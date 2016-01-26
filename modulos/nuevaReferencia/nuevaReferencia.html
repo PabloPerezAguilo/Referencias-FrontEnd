@@ -315,7 +315,7 @@
             <div class="contenedor-tecnologia">
                 <md-dialog-content class="selecTec" id="tecnologia">
                     <div class="md-dialog-content"  id="tecnologias">
-                        <md-chips ng-model="tecnologiasSeleccionadas" md-autocomplete-snap md-transform-chip="transformChip($chip)" md-require-match="true">
+                        <md-chips ng-model="tecnologiasSeleccionadas" md-autocomplete-snap="" md-transform-chip="transformChip($chip)" md-require-match="false">
                             
                             <md-autocomplete name='tecnologia'
                                              tabindex='19'
@@ -375,7 +375,7 @@
                     Rechazar
                 </md-button>
                 <md-button ng-show="mostrarBtValidar" class="botonesApp" type="button"  ng-click="validarReferencia()" tabindex="23">Validar</md-button>
-               
+                
             </div> 
         </div>
     </md-content>
