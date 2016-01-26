@@ -1,3 +1,4 @@
+
 <form name="useForm" >
     <h1 class="cabeceraPagina">{{titulo}}</h1>
     <md-content class="layout-padding">
@@ -263,7 +264,7 @@
                 <div id="Tecnico" class="inBlock">
                 <md-input-container title="Responsable técnico" class="contTec" >
                     <label>Responsable Técnico *</label>
-                    <md-select id="respTecnico"
+                    <md-select id="respTecnico" 
                                name="rbleTecnico"
                                ng-model="referencia.responsableTecnico"
                                ng-disabled="deshabilitarForm"
@@ -312,7 +313,7 @@
                     </div>   
                 </div> 
                 <!--Imagen-->  
-                <div layout="row" id="imagenMostrada" class="contImg">           
+                <div layout="row" id="imagenMostrada" class="contImg">                 
                     <img ng-src="data:image/jpeg;base64,{{UserPhoto}}" id="photo-id" width="450" height="450"/>          
                 </div>
             </div>
@@ -323,7 +324,7 @@
             <div class="contenedor-tecnologia">
                 <md-dialog-content class="selecTec" id="tecnologia">
                     <div class="md-dialog-content"  id="tecnologias">
-                        <md-chips id="chipsTecnologias" ng-model="tecnologiasSeleccionadas" md-autocomplete-snap md-transform-chip="transformChip($chip)" md-require-match="true">
+                        <md-chips ng-model="tecnologiasSeleccionadas" md-autocomplete-snap="" md-transform-chip="transformChip($chip)" md-require-match="false">
                             
                             <md-autocomplete name='tecnologia'
                                              tabindex='19'
@@ -383,7 +384,7 @@
                     Rechazar
                 </md-button>
                 <md-button ng-show="mostrarBtValidar" class="botonesApp" type="button"  ng-click="validarReferencia()" tabindex="23">Validar</md-button>
-               
+                
             </div> 
         </div>
     </md-content>
