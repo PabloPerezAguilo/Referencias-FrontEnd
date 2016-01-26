@@ -39,11 +39,11 @@ app.controller ('controladorListarReferencia', function (servicioRest,utils, con
             },
             {
                 element: '#referenciasPendientes',
-                intro: 'Haciendo click en cualquier fila accederemos a la referencio seleccionada para poder validarla.'
+                intro: 'Haciendo click en cualquier fila accederemos a la referencia seleccionada para poder validarla.'
             },
             {
                 element: '.pagination-sm',
-                intro: 'Esta seccion de aqui permite movernos entre distintas paginas por si el numero de referencias pendientes de validar fura muy extenso.'
+                intro: 'Esta seccion de aqui permite movernos entre distintas paginas por si el numero de referencias pendientes de validar fuera muy extenso.'
             }
             ];
     

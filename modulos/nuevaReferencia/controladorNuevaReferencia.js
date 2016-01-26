@@ -132,7 +132,18 @@ app.controller('controladorNuevaReferencia', function(servicioRest,utils, config
     };
     
     $scope.introOptions = config.introOptions;
-    $scope.introOptions.steps = [
+    
+    if($rootScope.referenciaCargada != null && $rootScope.opcion === 'validar'){
+        
+         $scope.introOptions.steps = [
+            {
+                element: '.md-dialog-content',
+                intro: 'Debe seleccionar un cliente valido de la lista disponible. La lista se mostrara a partir de la tercera letra escrita. <br/> Para guardar en borrador no sera necesario la validez de este cliente, pero si escribe algo invalido en este campo,  al guarda como borrador el cliente se guardara vacio como si no hubiera escrito nada.'
+            }];
+            
+        
+    }else{
+        $scope.introOptions.steps = [
             {
                 element: '.md-dialog-content',
                 intro: 'Debe seleccionar un cliente valido de la lista disponible. La lista se mostrara a partir de la tercera letra escrita. <br/> Para guardar en borrador no sera necesario la validez de este cliente, pero si escribe algo invalido en este campo,  al guarda como borrador el cliente se guardara vacio como si no hubiera escrito nada.'
@@ -214,6 +225,7 @@ app.controller('controladorNuevaReferencia', function(servicioRest,utils, config
                 intro: 'Si pulsa en terminar, debera tener todos los campos obligatorios (aquellos que tienen asteriscos) rellenos y de forma correcta, si esto no es asi saltara un mensaje que le indicara los errores para que pueda solucionarlos, cuando todo este correcto podra guardar la referencia para que la validen.'
             }
             ];
+    }
 
     setTimeout(function(){ 
             //Se necesita un tiem out para dar tiempo a que se cargue el lanzar ayuda

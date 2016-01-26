@@ -400,11 +400,19 @@ app.controller ('controladorGestionTecnologias', function (servicioRest, utils, 
             },
             {
                 element: '.borrarAyuda',
-                intro: 'Un icono con forma de equis(X) situado en la parte derecha de cada tecnologia permite eliminar esa tecnologia ,si ejecutas este tutorial con  una tecnologia que s epueda eliminar el tutorial te señalara el punto exacto donde esta ese icono.'
+                intro: 'Un icono con forma de equis(X) situado en la parte derecha de cada tecnologia permite eliminar esa tecnologia ,si ejecutas este tutorial con  una tecnologia que se pueda eliminar el tutorial te señalara el punto exacto donde esta ese icono.'
             },
             {
                 element: '#leyendaAyuda',
                 intro: 'Aqui se muestra la leyenda de colores para identificar los distintos tipos de tecnologias.'
+            },
+            {
+                element: '#contenedorOpciones',
+                intro: 'En esta zona se mostraran los datos de las tecnologias que selecciones.'
+            },
+            {
+                element: '#nombreTecnologia',
+                intro: 'En esta zona se mostraran los datos de las tecnologias que selecciones.'
             }
             ];
     
