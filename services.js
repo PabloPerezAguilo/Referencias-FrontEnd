@@ -1,6 +1,31 @@
 function ServicioREST( utils, config, $http,$q, $rootScope) {
 	
 	var url = config.url;
+    /*          LLamada general           */
+    
+    function llamadaHTTP(conf){
+        
+	   var defered = $q.defer();
+	   var promise = defered.promise;
+	   $http(conf)
+	   .success(function(data, status, headers, config) {
+		defered.resolve(data);
+	   })
+	   .error(function(data, status, headers, config) {
+           tratarError(data, status, defered);
+	   });
+
+	   return promise;
+    }
+    function postPregunta(objetoAEnviar) {
+
+	   return llamadaHTTP({
+           method: 'POST',
+			url: url + '/login ',
+			data: usuario
+	   });
+    }
+    
 	
 	/* ---------- GESTION DE ERRORES DE SERVICIOS ---------- */
 	function tratarError(data, status, defered) {
@@ -21,76 +46,43 @@ function ServicioREST( utils, config, $http,$q, $rootScope) {
     /* ---------- SERVICIOS LOGIN ---------- */
     
     function postLogin(usuario) {
-		var defered = $q.defer();
-		var promise = defered.promise;
-		$http({
-			method: 'POST',
+        
+		return llamadaHTTP({
+           method: 'POST',
 			url: url + '/login ',
 			data: usuario
-		})
-		.success(function(data, status, headers, config) {
-			defered.resolve(data);
-		})
-		.error(function(data, status, headers, config) {
-			tratarError(data, status, defered);
-		});
-
-		return promise;
+	   });
 	}
     
 
 	/* ---------- SERVICIOS REFERENCIA ---------- */
     
 	function postReferencia(objetoAEnviar) {
-		var defered = $q.defer();
-		var promise = defered.promise;
-		$http({
+        
+		return llamadaHTTP({
 			method: 'POST',
 			url: url + '/referencia',
 			data: objetoAEnviar
-		})
-		.success(function(data, status, headers, config) {
-			defered.resolve(data);   
-		})
-		.error(function(data, status, headers, config) {
-			tratarError(data, status, defered);
 		});
 
-		return promise;
 	}
 
 	function getReferencias() {
-		var defered = $q.defer();
-		var promise = defered.promise;
-		$http({
+        
+		return llamadaHTTP({
 			method: 'GET',
 			url: url + '/referencia'
-		})
-		.success(function(data, status, headers, config) {
-			defered.resolve(data);
-		})
-		.error(function(data, status, headers, config) {
-			tratarError(data, status,defered);
 		});
 
-		return promise;
 	}
 
 	function getReferencia(key) {
-		var defered = $q.defer();
-		var promise = defered.promise;
-		$http({
+        
+		return llamadaHTTP({
 			method: 'GET',
 			url: url + '/referencia/' + key
-		})
-		.success(function(data, status, headers, config) {
-			defered.resolve(data);
-		})
-		.error(function(data, status, headers, config) {
-			tratarError(data, status,defered);
 		});
 
-		return promise;
 	}
     
     function getReferenciasPendientes(){
@@ -116,21 +108,13 @@ function ServicioREST( utils, config, $http,$q, $rootScope) {
     }
     
     function updateReferencia(nuevo) {
-		var defered = $q.defer();
-		var promise = defered.promise;
-		$http({
+        
+		return llamadaHTTP({
 			method: 'PUT',
 			url: url + '/referencia/',
             data: nuevo
-		})
-		.success(function(data, status, headers, config) {
-			defered.resolve(data);
-		})
-		.error(function(data, status, headers, config) {
-			tratarError(data, status,defered);
 		});
 
-		return promise;
 	}
     
     /*
@@ -156,203 +140,114 @@ function ServicioREST( utils, config, $http,$q, $rootScope) {
     */
     
     function deleteReferencia(key) {
-		var defered = $q.defer();
-		var promise = defered.promise;
-		$http({
+        
+		return llamadaHTTP({
 			method: 'DELETE',
 			url: url + '/referencia/' + key,
             data: key
-		})
-		.success(function(data, status, headers, config) {
-			defered.resolve(data);
-		})
-		.error(function(data, status, headers, config) {
-			tratarError(data, status,defered);
 		});
 
-		return promise;
 	}
 
 	function getLDAP(){
-		var defered = $q.defer();
-		var promise = defered.promise;
-		$http({
+
+		return llamadaHTTP({
 			method: 'GET',
 			url: url + '/usuariosldap/'
-		})
-		.success(function(data, status, headers, config) {
-			defered.resolve(data);
-		})
-		.error(function(data, status, headers, config) {
-			tratarError(data, status, defered);
 		});
 
-		return promise;
 	}
     
     function getCatalogos() {
-		var defered = $q.defer();
-		var promise = defered.promise;
-		$http({
+        
+		return llamadaHTTP({
 			method: 'GET',
 			url: url + '/catalogo'
-		})
-		.success(function(data, status, headers, config) {
-			defered.resolve(data);
-		})
-		.error(function(data, status, headers, config) {
-			tratarError(data, status,defered);
 		});
 
-		return promise;
 	}
     
     function getTecnologiasFinales() {
-		var defered = $q.defer();
-		var promise = defered.promise;
-		$http({
+        
+		return llamadaHTTP({
 			method: 'GET',
 			url: url + '/tecnologias/finales'
-		})
-		.success(function(data, status, headers, config) {
-			defered.resolve(data);
-		})
-		.error(function(data, status, headers, config) {
-			tratarError(data, status,defered);
 		});
 
-		return promise;
 	}
     
     function postUsuario(usuario){
-        var defered = $q.defer();
-		var promise = defered.promise;
-		$http({
+        
+       return llamadaHTTP({
 			method: 'POST',
 			url: url + '/usuarios',
 			data: usuario
-		})
-		.success(function(data, status, headers, config) {
-			defered.resolve(data);
-		})
-		.error(function(data, status, headers, config) {
-			tratarError(data, status, defered);
 		});
 
-		return promise;
     }
     
     
     
     function getTecnologias() {
-		var defered = $q.defer();
-		var promise = defered.promise;
         
-		$http({
+	   return llamadaHTTP({
 			method: 'GET',
 			url: url + '/tecnologias'
-		})
-		.success(function(data, status, headers, config) {
-			defered.resolve(data);
-		})
-		.error(function(data, status, headers, config) {
-			tratarError(data, status, defered);
 		});
 
-		return promise;
 	}
     
     function postTecnologia(idPadre, nodo) {
-		var defered = $q.defer();
-		var promise = defered.promise;
+
         datos = {idPadre : idPadre, nodo : nodo};
-		$http({
+        return llamadaHTTP({
 			method: 'POST',
 			url: url + '/tecnologias',
 			data: datos
-		})
-		.success(function(data, status, headers, config) {
-			defered.resolve(data);
-		})
-		.error(function(data, status, headers, config) {
-			tratarError(data, status, defered);
 		});
 
-		return promise;
 	}
     
     function putTecnologia(idAnterior, nodo) {
-		var defered = $q.defer();
-		var promise = defered.promise;
+
         datos = {idAnterior : idAnterior, nodo : nodo}
-		$http({
+		return llamadaHTTP({
 			method: 'PUT',
 			url: url + '/tecnologias',
 			data: datos
-		})
-		.success(function(data, status, headers, config) {
-			defered.resolve(data);
-		})
-		.error(function(data, status, headers, config) {
-			tratarError(data, status, defered);
 		});
 
-		return promise;
 	}
     
     function putMoverTecnologia(idDestino, nodo) {
-		var defered = $q.defer();
-		var promise = defered.promise;
+
         datos = {idDestino : idDestino, nodo : nodo}
-		$http({
+		return llamadaHTTP({
 			method: 'PUT',
 			url: url + '/tecnologias',
 			data: datos
-		})
-		.success(function(data, status, headers, config) {
-			defered.resolve(data);
-		})
-		.error(function(data, status, headers, config) {
-			tratarError(data, status, defered);
 		});
 
-		return promise;
 	}
     
     function deleteTecnologia(id) {
-		var defered = $q.defer();
-		var promise = defered.promise;
-		$http({
+        
+        return llamadaHTTP({
 			method: 'DELETE',
 			url: url + '/tecnologias/' + id
-		})
-		.success(function(data, status, headers, config) {
-			defered.resolve(data);
-		})
-		.error(function(data, status, headers, config) {
-			tratarError(data, status, defered);
 		});
 
-		return promise;
 	}
     
     function rechazarTecnologia(anterior, nueva) {
-		var defered = $q.defer();
-		var promise = defered.promise;
+		
         datos = {anterior : anterior, nueva : nueva}
-		$http({
+		return llamadaHTTP({
 			method: 'PUT',
 			url: url + '/referencia/tecnologias',
 			data: datos
-		})
-		.success(function(data, status, headers, config) {
-			defered.resolve(data);
-		})
-		.error(function(data, status, headers, config) {
-			tratarError(data, status, defered);
 		});
 
-		return promise;
 	}
     
     function getReferenciasAsociadas(tecnologia) {
