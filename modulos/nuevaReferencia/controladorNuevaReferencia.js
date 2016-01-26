@@ -340,6 +340,22 @@ app.controller('controladorNuevaReferencia', function(servicioRest,utils, config
       if (angular.isObject(chip)) {
         return chip;
       }
+        else{
+            $mdDialog.show(
+                $mdDialog.confirm()
+                .clickOutsideToClose(true)
+                .title('Añadir tecnologia')
+                .content('Estas seguro de querer validar la hoja?')
+                .ariaLabel('Lucky day')
+                .ok('Guardar')
+                .cancel('Cancelar')
+            ).then(function() {
+                console.log("bien");
+            })
+            .catch(function() {
+                console.log("mal");
+            });
+        }
 
       return { value: chip, display: chip }
     }

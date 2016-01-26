@@ -2,7 +2,7 @@
  * Angular Material Design
  * https://github.com/angular/material
  * @license MIT
- * v1.0.1-master-8ef798f
+ * v1.0.3
  */
 (function( window, angular, undefined ){
 "use strict";
@@ -846,9 +846,9 @@ function UtilFactory($document, $timeout, $compile, $rootScope, $$mdAnimate, $in
         element = angular.element(element || body)[0];
         var zIndex = 50;
         var scrollMask = angular.element(
-          '<div class="md-scroll-mask" style="z-index: ' + zIndex + '">' +
+          '<div class="md-scroll-mask">' +
           '  <div class="md-scroll-mask-bar"></div>' +
-          '</div>');
+          '</div>').css('z-index', zIndex);
         element.appendChild(scrollMask[0]);
 
         scrollMask.on('wheel', preventDefault);
@@ -883,8 +883,8 @@ function UtilFactory($document, $timeout, $compile, $rootScope, $$mdAnimate, $in
       // position
       function disableBodyScroll() {
         var htmlNode = body.parentNode;
-        var restoreHtmlStyle = htmlNode.getAttribute('style') || '';
-        var restoreBodyStyle = body.getAttribute('style') || '';
+        var restoreHtmlStyle = htmlNode.style.cssText || '';
+        var restoreBodyStyle = body.style.cssText || '';
         var scrollOffset = $mdUtil.scrollTop(body);
         var clientWidth = body.clientWidth;
 
@@ -903,8 +903,8 @@ function UtilFactory($document, $timeout, $compile, $rootScope, $$mdAnimate, $in
         if (body.clientWidth < clientWidth) applyStyles(body, {overflow: 'hidden'});
 
         return function restoreScroll() {
-          body.setAttribute('style', restoreBodyStyle);
-          htmlNode.setAttribute('style', restoreHtmlStyle);
+          body.style.cssText = restoreBodyStyle;
+          htmlNode.style.cssText = restoreHtmlStyle;
           body.scrollTop = scrollOffset;
           htmlNode.scrollTop = scrollOffset;
         };
@@ -922,7 +922,15 @@ function UtilFactory($document, $timeout, $compile, $rootScope, $$mdAnimate, $in
     },
     floatingScrollbars: function() {
       if (this.floatingScrollbars.cached === undefined) {
-        var tempNode = angular.element('<div style="width: 100%; z-index: -1; position: absolute; height: 35px; overflow-y: scroll"><div style="height: 60px;"></div></div>');
+        var tempNode = angular.element('<div><div></div></div>').css({
+          width: '100%',
+          'z-index': -1,
+          position: 'absolute',
+          height: '35px',
+          'overflow-y': 'scroll'
+        });
+        tempNode.children().css('height', '60px');
+
         $document[0].body.appendChild(tempNode[0]);
         this.floatingScrollbars.cached = (tempNode[0].offsetWidth == tempNode[0].childNodes[0].offsetWidth);
         tempNode.remove();
@@ -1371,95 +1379,6 @@ angular.element.prototype.blur = angular.element.prototype.blur || function() {
 (function(){
 "use strict";
 
-
-angular.module('material.core')
-  .service('$mdAria', AriaService);
-
-/*
- * @ngInject
- */
-function AriaService($$rAF, $log, $window) {
-
-  return {
-    expect: expect,
-    expectAsync: expectAsync,
-    expectWithText: expectWithText
-  };
-
-  /**
-   * Check if expected attribute has been specified on the target element or child
-   * @param element
-   * @param attrName
-   * @param {optional} defaultValue What to set the attr to if no value is found
-   */
-  function expect(element, attrName, defaultValue) {
-
-    var node = angular.element(element)[0] || element;
-
-    // if node exists and neither it nor its children have the attribute
-    if (node &&
-       ((!node.hasAttribute(attrName) ||
-        node.getAttribute(attrName).length === 0) &&
-        !childHasAttribute(node, attrName))) {
-
-      defaultValue = angular.isString(defaultValue) ? defaultValue.trim() : '';
-      if (defaultValue.length) {
-        element.attr(attrName, defaultValue);
-      } else {
-        $log.warn('ARIA: Attribute "', attrName, '", required for accessibility, is missing on node:', node);
-      }
-
-    }
-  }
-
-  function expectAsync(element, attrName, defaultValueGetter) {
-    // Problem: when retrieving the element's contents synchronously to find the label,
-    // the text may not be defined yet in the case of a binding.
-    // There is a higher chance that a binding will be defined if we wait one frame.
-    $$rAF(function() {
-      expect(element, attrName, defaultValueGetter());
-    });
-  }
-
-  function expectWithText(element, attrName) {
-    expectAsync(element, attrName, function() {
-      return getText(element);
-    });
-  }
-
-  function getText(element) {
-    return element.text().trim();
-  }
-
-  function childHasAttribute(node, attrName) {
-    var hasChildren = node.hasChildNodes(),
-        hasAttr = false;
-
-    function isHidden(el) {
-      var style = el.currentStyle ? el.currentStyle : $window.getComputedStyle(el);
-      return (style.display === 'none');
-    }
-
-    if(hasChildren) {
-      var children = node.childNodes;
-      for(var i=0; i<children.length; i++){
-        var child = children[i];
-        if(child.nodeType === 1 && child.hasAttribute(attrName)) {
-          if(!isHidden(child)){
-            hasAttr = true;
-          }
-        }
-      }
-    }
-    return hasAttr;
-  }
-}
-AriaService.$inject = ["$$rAF", "$log", "$window"];
-
-})();
-(function(){
-"use strict";
-
 angular
   .module('material.core')
   .service('$mdCompiler', mdCompilerService);
@@ -1600,6 +1519,102 @@ function mdCompilerService($q, $http, $injector, $compile, $controller, $templat
   };
 }
 mdCompilerService.$inject = ["$q", "$http", "$injector", "$compile", "$controller", "$templateCache"];
+
+})();
+(function(){
+"use strict";
+
+
+angular.module('material.core')
+  .service('$mdAria', AriaService);
+
+/*
+ * @ngInject
+ */
+function AriaService($$rAF, $log, $window, $interpolate) {
+
+  return {
+    expect: expect,
+    expectAsync: expectAsync,
+    expectWithText: expectWithText
+  };
+
+  /**
+   * Check if expected attribute has been specified on the target element or child
+   * @param element
+   * @param attrName
+   * @param {optional} defaultValue What to set the attr to if no value is found
+   */
+  function expect(element, attrName, defaultValue) {
+
+    var node = angular.element(element)[0] || element;
+
+    // if node exists and neither it nor its children have the attribute
+    if (node &&
+       ((!node.hasAttribute(attrName) ||
+        node.getAttribute(attrName).length === 0) &&
+        !childHasAttribute(node, attrName))) {
+
+      defaultValue = angular.isString(defaultValue) ? defaultValue.trim() : '';
+      if (defaultValue.length) {
+        element.attr(attrName, defaultValue);
+      } else {
+        $log.warn('ARIA: Attribute "', attrName, '", required for accessibility, is missing on node:', node);
+      }
+
+    }
+  }
+
+  function expectAsync(element, attrName, defaultValueGetter) {
+    // Problem: when retrieving the element's contents synchronously to find the label,
+    // the text may not be defined yet in the case of a binding.
+    // There is a higher chance that a binding will be defined if we wait one frame.
+    $$rAF(function() {
+        expect(element, attrName, defaultValueGetter());
+    });
+  }
+
+  function expectWithText(element, attrName) {
+    var content = getText(element) || "";
+    var hasBinding = content.indexOf($interpolate.startSymbol())>-1;
+
+    if ( hasBinding ) {
+      expectAsync(element, attrName, function() {
+        return getText(element);
+      });
+    } else {
+      expect(element, attrName, content);
+    }
+  }
+
+  function getText(element) {
+    return (element.text() || "").trim();
+  }
+
+  function childHasAttribute(node, attrName) {
+    var hasChildren = node.hasChildNodes(),
+        hasAttr = false;
+
+    function isHidden(el) {
+      var style = el.currentStyle ? el.currentStyle : $window.getComputedStyle(el);
+      return (style.display === 'none');
+    }
+
+    if(hasChildren) {
+      var children = node.childNodes;
+      for(var i=0; i<children.length; i++){
+        var child = children[i];
+        if(child.nodeType === 1 && child.hasAttribute(attrName)) {
+          if(!isHidden(child)){
+            hasAttr = true;
+          }
+        }
+      }
+    }
+    return hasAttr;
+  }
+}
+AriaService.$inject = ["$$rAF", "$log", "$window", "$interpolate"];
 
 })();
 (function(){
@@ -4651,6 +4666,13 @@ angular.module('material.core.theming', ['material.core.theming.palette'])
 
 /**
  * @ngdoc method
+ * @name $mdThemingProvider#setNonce
+ * @param {string} nonceValue The nonce to be added as an attribute to the theme style tags.
+ * Setting a value allows the use CSP policy without using the unsafe-inline directive.
+ */
+
+/**
+ * @ngdoc method
  * @name $mdThemingProvider#setDefaultTheme
  * @param {string} themeName Default theme name to be applied to elements. Default value is `default`.
  */
@@ -4762,6 +4784,9 @@ var VALID_HUE_VALUES = [
 // Whether or not themes are to be generated on-demand (vs. eagerly).
 var generateOnDemand = false;
 
+// Nonce to be added as an attribute to the generated themes style tags.
+var nonce = null;
+
 function ThemingProvider($mdColorPalette) {
   PALETTES = { };
   THEMES = { };
@@ -4781,6 +4806,9 @@ function ThemingProvider($mdColorPalette) {
     extendPalette: extendPalette,
     theme: registerTheme,
 
+    setNonce: function(nonceValue) {
+      nonce = nonceValue;
+    },
     setDefaultTheme: function(theme) {
       defaultTheme = theme;
     },
@@ -4993,7 +5021,7 @@ function ThemingProvider($mdColorPalette) {
     applyTheme.THEMES = angular.extend({}, THEMES);
     applyTheme.defaultTheme = function() { return defaultTheme; };
     applyTheme.registered = registered;
-    applyTheme.generateTheme = generateTheme;
+    applyTheme.generateTheme = function(name) { generateTheme(name, nonce); };
 
     return applyTheme;
 
@@ -5157,7 +5185,7 @@ function generateAllThemes($injector) {
 
   angular.forEach(THEMES, function(theme) {
     if (!GENERATED[theme.name]) {
-      generateTheme(theme.name);
+      generateTheme(theme.name, nonce);
     }
   });
 
@@ -5223,7 +5251,7 @@ function generateAllThemes($injector) {
 }
 generateAllThemes.$inject = ["$injector"];
 
-function generateTheme(name) {
+function generateTheme(name, nonce) {
   var theme = THEMES[name];
   var head = document.head;
   var firstChild = head ? head.firstElementChild : null;
@@ -5238,6 +5266,9 @@ function generateTheme(name) {
         if (styleContent) {
           var style = document.createElement('style');
           style.setAttribute('md-theme-style', '');
+          if (nonce) {
+            style.setAttribute('nonce', nonce);
+          }
           style.appendChild(document.createTextNode(styleContent));
           head.insertBefore(style, firstChild);
         }
@@ -6390,14 +6421,11 @@ function MdButtonDirective($mdButtonInkRipple, $mdTheming, $mdAria, $timeout) {
   }
 
   function postLink(scope, element, attr) {
-    var node = element[0];
     $mdTheming(element);
     $mdButtonInkRipple.attach(scope, element);
 
-    var elementHasText = node.textContent.trim();
-    if (!elementHasText) {
-      $mdAria.expect(element, 'aria-label');
-    }
+    // Use async expect to support possible bindings in the button label
+    $mdAria.expectWithText(element, 'aria-label');
 
     // For anchor elements, we have to set tabindex manually when the
     // element is disabled
@@ -8334,18 +8362,21 @@ function iosScrollFix(node) {
    * @param {Date=} opt_date Date to check. If not given, defaults to the datepicker's model value.
    */
   DatePickerCtrl.prototype.updateErrorState = function(opt_date) {
-    var date = opt_date || this.date;
+    // Force all dates to midnight in order to ignore the time portion.
+    var date = this.dateUtil.createDateAtMidnight(opt_date || this.date);
 
     // Clear any existing errors to get rid of anything that's no longer relevant.
     this.clearErrorState();
 
     if (this.dateUtil.isValidDate(date)) {
       if (this.dateUtil.isValidDate(this.minDate)) {
-        this.ngModelCtrl.$setValidity('mindate', date >= this.minDate);
+        var minDate = this.dateUtil.createDateAtMidnight(this.minDate);
+        this.ngModelCtrl.$setValidity('mindate', date >= minDate);
       }
 
       if (this.dateUtil.isValidDate(this.maxDate)) {
-        this.ngModelCtrl.$setValidity('maxdate', date <= this.maxDate);
+        var maxDate = this.dateUtil.createDateAtMidnight(this.maxDate);
+        this.ngModelCtrl.$setValidity('maxdate', date <= maxDate);
       }
       
       if (angular.isFunction(this.dateFilter)) {
@@ -9708,7 +9739,9 @@ function MdDialogProvider($$interimElementProvider) {
 
       // When focus is about to move out of the dialog, we want to intercept it and redirect it
       // back to the dialog element.
-      var focusHandler = angular.bind(element, element.focus);
+      var focusHandler = function() {
+        element.focus();
+      };
       topFocusTrap.addEventListener('focus', focusHandler);
       bottomFocusTrap.addEventListener('focus', focusHandler);
 
@@ -10315,6 +10348,14 @@ MdDividerDirective.$inject = ["$mdTheming"];
    * space where the actions will appear, you must also add the `md-hover-full` class to the speed
    * dial element. Without this, the hover effect will only occur on top of the trigger.
    *
+   * See the demos for more information.
+   *
+   * ## Troubleshooting
+   *
+   * If your speed dial shows the closing animation upon launch, you may need to use `ng-cloak` on
+   * the parent container to ensure that it is only visible once ready. We have plans to remove this
+   * necessity in the future.
+   *
    * @usage
    * <hljs lang="html">
    * <md-fab-speed-dial md-direction="up" class="md-fling">
@@ -10474,7 +10515,7 @@ MdDividerDirective.$inject = ["$mdTheming"];
           offsetDelay = index * delay;
 
         styles.opacity = ctrl.isOpen ? 1 : 0;
-        styles.transform = styles.webkitTransform = ctrl.isOpen ? 'scale(1)' : 'scale(0.1)';
+        styles.transform = styles.webkitTransform = ctrl.isOpen ? 'scale(1)' : 'scale(0)';
         styles.transitionDelay = (ctrl.isOpen ? offsetDelay : (items.length - offsetDelay)) + 'ms';
 
         // Make the items closest to the trigger have the highest z-index
@@ -11786,10 +11827,13 @@ function inputTextareaDirective($mdUtil, $window, $mdAria) {
     }
 
     var isErrorGetter = containerCtrl.isErrorGetter || function() {
-      return ngModelCtrl.$invalid && (
-        ngModelCtrl.$touched ||
-        (ngModelCtrl.$$parentForm && ngModelCtrl.$$parentForm.$submitted)
-      );
+      return ngModelCtrl.$invalid && (ngModelCtrl.$touched || isParentFormSubmitted());
+    };
+
+    var isParentFormSubmitted = function () {
+      var parent = $mdUtil.getClosest(element, 'form');
+
+      return parent ? angular.element(parent).controller('form').$submitted : false;
     };
 
     scope.$watch(isErrorGetter, containerCtrl.setInvalid);
@@ -15536,7 +15580,7 @@ function SliderDirective($$rAF, $window, $mdAria, $mdUtil, $mdConstant, $mdThemi
 
       var numSteps = Math.floor( (max - min) / step );
       if (!tickCanvas) {
-        tickCanvas = angular.element('<canvas style="position:absolute;">');
+        tickCanvas = angular.element('<canvas>').css('position', 'absolute');
         tickContainer.append(tickCanvas);
 
         var trackTicksStyle = $window.getComputedStyle(tickContainer[0]);
@@ -21462,19 +21506,14 @@ function mdIconDirective($mdIcon, $mdTheming, $mdAria ) {
          }, function(val, attr) {
            this.element.setAttribute(attr, val);
          }, this);
-
-         angular.forEach({
-           'pointer-events' : 'none',
-           'display' : 'block'
-         }, function(val, style) {
-           this.element.style[style] = val;
-         }, this);
    }
 
    /**
     * Clone the Icon DOM element.
     */
    function cloneSVG(){
+     // If the element or any of its children have a style attribute, then a CSP policy without
+     // 'unsafe-inline' in the style-src directive, will result in a violation.
      return this.element.cloneNode(true);
    }
 
@@ -22561,7 +22600,7 @@ MenuBarController.prototype.disableOpenOnHover = function() {
   this.openOnHoverEnabled = false;
   var parentToolbar;
   if (parentToolbar = this.parentToolbar) {
-    parentToolbar.setAttribute('style', parentToolbar.dataset.mdRestoreStyle || '');
+    parentToolbar.style.cssText = parentToolbar.dataset.mdRestoreStyle || '';
   }
   angular
     .element(this.getMenus())
@@ -23388,6 +23427,9 @@ function MdTabsController ($scope, $element, $window, $mdConstant, $mdTabInkRipp
 
   function handleMaxTabWidth (newWidth, oldWidth) {
     if (newWidth !== oldWidth) {
+      angular.forEach(elements.tabs, function(tab) {
+        tab.style.maxWidth = newWidth + 'px';
+      });
       $mdUtil.nextTick(ctrl.updateInkBarStyles);
     }
   }
@@ -24125,7 +24167,6 @@ function MdTabs () {
               '<md-tab-item ' +
                   'tabindex="-1" ' +
                   'class="md-tab" ' +
-                  'style="max-width: {{ $mdTabsCtrl.maxTabWidth + \'px\' }}" ' +
                   'ng-repeat="tab in $mdTabsCtrl.tabs" ' +
                   'role="tab" ' +
                   'aria-controls="tab-content-{{::tab.id}}" ' +
@@ -24243,4 +24284,4 @@ angular.module("material.core").constant("$MD_THEME_CSS", "md-autocomplete.md-TH
 })();
 
 
-})(window, window.angular);;window.ngMaterial={version:{full: "1.0.1-master-8ef798f"}};
+})(window, window.angular);;window.ngMaterial={version:{full: "1.0.3"}};

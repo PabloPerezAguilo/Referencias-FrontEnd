@@ -270,6 +270,9 @@ footer #lineaFooter {
   float: left; }
 
 /* ---------------------------- ESTILOS ALTA USUARIOS ---------------------- */
+#cabeceraRol {
+  margin-bottom: 2%; }
+
 #listaUsuarios {
   background: whitesmoke;
   position: absolute;

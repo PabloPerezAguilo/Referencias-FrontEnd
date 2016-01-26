@@ -1,9 +1,9 @@
 <data md-toolbar class="md-menu-toolbar">
     <md-menu ng-show="menuUsuarios">
-        <md-button ng-click="$mdOpenMenu()">Usuarios</md-button>
+        <md-button id="UsuariosBotonMenu" ng-click="$mdOpenMenu()">Usuarios</md-button>
         <md-menu-content>
             <md-menu-item ng-show="menuUsuariosAlta">
-                <a class="textoHipervinculo" href="#/alta"><md-button>Alta</md-button></a>
+                <a id="altaUsuariosBotonMenu" class="textoHipervinculo" href="#/alta"><md-button>Alta</md-button></a>
             </md-menu-item>
             <md-menu-divider></md-menu-divider>
             <md-menu-item ng-show="menuUsuariosGestion">
@@ -13,13 +13,13 @@
     </md-menu>
     <md-menu-divider></md-menu-divider>  
     <md-menu ng-show="menuReferencias">
-        <md-button ng-click="$mdOpenMenu()">Referencias</md-button>
+        <md-button id="referenciasBotonMenu" ng-click="$mdOpenMenu()">Referencias</md-button>
         <md-menu-content>
             <md-menu-item ng-show="menuReferenciasListar">
-                <a class="textoHipervinculo" href="#/listarReferencia"><md-button>Listar</md-button></a>
+                <a   id="listarReferenciasBotonMenu"class="textoHipervinculo" href="#/listarReferencia"><md-button>Listar</md-button></a>
             </md-menu-item>
             <md-menu-item ng-show="menuReferenciasNueva">
-                <a class="textoHipervinculo" href="#/nueva" ng-click="actualizarTitulo()"><md-button>Nueva</md-button></a>
+                <a id="nuevaReferenciasBotonMenu"class="textoHipervinculo" href="#/nueva" ng-click="actualizarTitulo()"><md-button>Nueva</md-button></a>
             </md-menu-item>
             <md-menu-item ng-show="menuReferenciasGestion">
                 <a class="textoHipervinculo" href="#/gestionreferenncia"><md-button>Gestión</md-button></a>
@@ -28,17 +28,17 @@
     </md-menu>
     <md-menu-divider></md-menu-divider>
     <md-menu ng-show="menuTecnologias">
-        <md-button ng-click="$mdOpenMenu()">Tecnologias</md-button>
+        <md-button id="tecnologiasBotonMenu" ng-click="$mdOpenMenu()">Tecnologias</md-button>
         <md-menu-content>
             <md-menu-item ng-show="menuGestionTecnologias">
-                <a class="textoHipervinculo" href="#/gestionTecnologias"><md-button>Gestión</md-button></a>
+                <a id="gestionTecnologiasBotonMenu" class="textoHipervinculo" href="#/gestionTecnologias"><md-button>Gestión</md-button></a>
             </md-menu-item>
         </md-menu-content>
     </md-menu>
     <md-menu-divider></md-menu-divider>
 </data>
 <div layout="row" class="iconosMenu">
-    <ng-md-icon title="ayuda" icon="live_help" style="fill: #242424" size="25" ng-click="lanzarAyuda()"></ng-md-icon>
-    <ng-md-icon title="Usuario registrado" icon="account_box" style="fill: #242424" size="25" ng-click="datosUsuarioLogueado()"></ng-md-icon>
-    <ng-md-icon title="Salir" class="iconoLogout" icon="logout" style="fill: #242424" size="25" ng-click="salir()"></ng-md-icon>
+    <ng-md-icon id="iconoAyuda" title="ayuda" icon="live_help" style="fill: #242424" size="25" ng-click="lanzarAyuda()"></ng-md-icon>
+    <ng-md-icon id="iconoDatos" title="Usuario registrado" icon="account_box" style="fill: #242424" size="25" ng-click="datosUsuarioLogueado()"></ng-md-icon>
+    <ng-md-icon id="iconoSalir" title="Salir" class="iconoLogout" icon="logout" style="fill: #242424" size="25" ng-click="salir()"></ng-md-icon>
 </div>
