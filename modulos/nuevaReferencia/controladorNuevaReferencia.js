@@ -1,8 +1,4 @@
 app.controller('controladorNuevaReferencia', function(servicioRest,utils, config, $scope, $http,$log, $rootScope,$location,$mdDialog,$interval,$timeout,$route){
-    var fruitNames = [];
-    fruitNames = [{display:'Apple', value:'Apple'}, {display:'Banana', value:'Banana'}, {display:'Orange',value:'Orange'}];
-    $scope.tecnologiasSeleccionadas = angular.copy(fruitNames);
-    console.log("aqui",$scope.tecnologiasSeleccionadas);
     //--------------------- Objetos del controlador (clientes y tecnologias)
 
     //Se obtienen los elementos que tengan la clase "md-datepicker-input" se obtiene el primer elemento (solo hay uno)
@@ -10,6 +6,7 @@ app.controller('controladorNuevaReferencia', function(servicioRest,utils, config
     //y no puedes establecer este atributo a mano en el html, debes añadirlo dinamicamente en ejecucion,
     //que es el momento en el que se crea el elemento
    document.getElementsByClassName("md-datepicker-input")[0].setAttribute("readonly","true");
+    $scope.tecnologiasSeleccionadas=[];
     // list of `state` value/display objects
     $scope.clientes={
         lista:[],
@@ -72,12 +69,19 @@ app.controller('controladorNuevaReferencia', function(servicioRest,utils, config
     erroresTotales['userfile']="Se debe subir una imágen";
     erroresTotales['tecnologia']="Tecnología inválida";
     
-    
+    function inicializarChipsTecnologia(){
+        return $rootScope.referenciaCargada.tecnologias.map( function (tec) {
+            return {
+                value: tec,
+                display: tec
+            };
+        });
+   }
     
     if($rootScope.referenciaCargada != null && $rootScope.opcion === 'validar'){
         $scope.clienteCargado = $rootScope.referenciaCargada.cliente;
         console.log($rootScope.referenciaCargada.tecnologias);
-        $scope.tecnologiasSeleccionadas = angular.copy($rootScope.referenciaCargada.tecnologias);
+        $scope.tecnologiasSeleccionadas = inicializarChipsTecnologia(); //angular.copy($rootScope.referenciaCargada.tecnologias);
         $scope.fechaInicio = new Date($rootScope.referenciaCargada.fechaInicio);
         $scope.UserPhoto = $rootScope.referenciaCargada.imagenProyecto;
         console.log("tre",$rootScope.referenciaCargada.tecnologias);
@@ -252,8 +256,6 @@ app.controller('controladorNuevaReferencia', function(servicioRest,utils, config
     
     
     /*-----------------------  AUTOCOMPLETE ----------------------- */
-
-    $scope.tecnologiasSeleccionadas=[];
     
     //filtramos los datos del autocomplete según el texto
     $scope.filtrar = function (texto, campo) {
@@ -292,7 +294,10 @@ app.controller('controladorNuevaReferencia', function(servicioRest,utils, config
         }else if(campo==='tecnologia'){
             //si es el autocomplete del tecnologñia, buscamos el índice en la lista de tecnologías.
             //lo asignamos a la posición del catálogo de clientes correspondiente al mismo
+            
             $scope.posicionEnArray2=$scope.tecnologias.lista.indexOf(item);
+            console.log("aquisss",item);
+            console.log("array",$scope.posicionEnArray2);
         }
     }
     
@@ -318,8 +323,8 @@ app.controller('controladorNuevaReferencia', function(servicioRest,utils, config
         //cargamos los datos en el autocomplete a través del controlador          
     }
 
-    function transformChip(chip) {
-        
+    $scope.transformChip = function (chip) {
+        console.log("qwe");
       if (angular.isObject(chip)) {
         return chip;
       }
@@ -467,6 +472,7 @@ app.controller('controladorNuevaReferencia', function(servicioRest,utils, config
     }
     
     $scope.crearReferencia = function (estado, event) {
+        console.log("tec", $scope.tecnologiasSeleccionadas);
         if ((estado==="pendiente" && validarCampos()) || estado==="borrador")
         {
             // Crea/Guarda una referencia dependiendo de su estado
@@ -474,6 +480,8 @@ app.controller('controladorNuevaReferencia', function(servicioRest,utils, config
                 $scope.referencia.cliente = $scope.catalogo.clientes[$scope.posicionEnArray].nombre;
             }
                       
+            
+            
             if(undefined!=$scope.tecnologiasSeleccionadas){
                 var arrayAux=[];
                 for(var i=0;i<$scope.tecnologiasSeleccionadas.length;i++)
@@ -627,7 +635,5 @@ app.controller('controladorNuevaReferencia', function(servicioRest,utils, config
         $scope.referencia.codigoQr = $rootScope.referenciaCargada.codigoQr;
         recargarQR();
     }
-
-  
 });
 

@@ -170,6 +170,19 @@ app.controller ('controladorGestionTecnologias', function (servicioRest, utils, 
             clase: nodeData.clase
             };
         }
+        console.log("aqui", nodo.nombre);
+        servicioRest.getReferenciasAsociadas(nodo.nombre)
+                .then(function(data) {
+            //if(data!=[]){
+                    
+            $scope.hayRefAsociadas=false;
+            console.log("data",data);
+            //}
+                }).catch(function(err) {
+            console.log("err",err);
+            $scope.hayRefAsociadas=true;
+                    
+                });
         
         $scope.estaValidado=$scope.nodoSeleccionado.clase==='hoja';
         
@@ -218,6 +231,7 @@ app.controller ('controladorGestionTecnologias', function (servicioRest, utils, 
                 servicioRest.postTecnologia(nodeData.nombre, $scope.nodoSeleccionado)
                 .then(function(data) {
                     actualizarArbol(data);
+                    getHojasValidadas();
                     toast("Tecnologia añadida");
                     //nodeData.nodosHijos.push($scope.nodoSeleccionado);
                 }).catch(function(err) {
@@ -237,6 +251,7 @@ app.controller ('controladorGestionTecnologias', function (servicioRest, utils, 
                 servicioRest.putTecnologia(oldId, $scope.nodoSeleccionado)
                 .then(function(data) {
                     actualizarArbol(data);
+                    getHojasValidadas();
                     toast("Tecnologia modificada");
                     /*nodeData.nombre=$scope.nodoSeleccionado.nombre;
                     if(nodeData.clase!="nodo"){
@@ -275,24 +290,26 @@ app.controller ('controladorGestionTecnologias', function (servicioRest, utils, 
             $scope.guardarElem();
         });
     };
-    
-    servicioRest.getTecnologiasFinales().then(
-        function(response) {
-            var aux=[];
-            for(var i=0;i<response.length;i++){
-                if(response[i].clase==="hoja"){
-                    aux.push(response[i]);
+    function getHojasValidadas(){
+        servicioRest.getTecnologiasFinales().then(
+            function(response) {
+                var aux=[];
+                for(var i=0;i<response.length;i++){
+                    if(response[i].clase==="hoja"){
+                        aux.push(response[i]);
+                    }
                 }
-            }
-            console.log(response);
-            $scope.clientes.lista= aux.map( function (tec) {
-                return {
-                    value: tec.nombre,
-                    display: tec.nombre
-                };
+                console.log(response);
+                $scope.clientes.lista= aux.map( function (tec) {
+                    return {
+                        value: tec.nombre,
+                        display: tec.nombre
+                    };
+                });
+                console.log($scope.clientes.lista);
             });
-            console.log($scope.clientes.lista);
-        });
+    }
+    getHojasValidadas();
     
     $scope.filtrar = function (texto) {
         var resultado;
@@ -315,25 +332,45 @@ app.controller ('controladorGestionTecnologias', function (servicioRest, utils, 
         //cargamos los datos en el autocomplete a través del controlador          
 
     
-    $scope.rechazarElem=function(){
-        servicioRest.rechazarTecnologia(nodeData.nombre, $scope.clientes.elemSeleccionado.value).then(
-        function (response) {
-            
-            servicioRest.deleteTecnologia(nodeData.nombre)
-                .then(function(data) {
-                    //eliminarNodo(scope);
-                    actualizarArbol(data);
-                toast("Tecnologia rechazada");
+    $scope.rechazarElem=function(hayRefAsociadas){
+        if(hayRefAsociadas){
+            servicioRest.rechazarTecnologia(nodeData.nombre, $scope.clientes.elemSeleccionado.value).then(
+            function (response) {
 
-                }).catch(function(err) {
-                    utils.popupInfo('',"Error al rechazar tecnologia.");
-                    console.log("Error al rechazar tecnologia");
-                    servicioRest.getTecnologias().then(
-                    function (response) {
-                        actualizarArbol(response);
-                    });
-                });  
-        });
+                servicioRest.deleteTecnologia(nodeData.nombre)
+                    .then(function(data) {
+                        //eliminarNodo(scope);
+                        actualizarArbol(data);
+                        $scope.nodoSeleccionado=null;
+                        toast("Tecnologia rechazada");
+
+                    }).catch(function(err) {
+                        utils.popupInfo('',"Error al rechazar tecnologia.");
+                        console.log("Error al rechazar tecnologia");
+                        servicioRest.getTecnologias().then(
+                        function (response) {
+                            actualizarArbol(response);
+                        });
+                    });  
+            });
+        }
+        else{
+            servicioRest.deleteTecnologia(nodeData.nombre)
+                    .then(function(data) {
+                        //eliminarNodo(scope);
+                        actualizarArbol(data);
+                        $scope.nodoSeleccionado=null;
+                        toast("Tecnologia rechazada");
+
+                    }).catch(function(err) {
+                        utils.popupInfo('',"Error al rechazar tecnologia.");
+                        console.log("Error al rechazar tecnologia");
+                        servicioRest.getTecnologias().then(
+                        function (response) {
+                            actualizarArbol(response);
+                        });
+                    }); 
+        }
     };
     
     /*             AYUDA                 */
