@@ -329,7 +329,8 @@ app.controller('controladorNuevaReferencia', function(servicioRest,utils, config
         return chip;
       }
         else{
-            $mdDialog.show(
+            anadirTecPopUp(event, chip);
+            /*$mdDialog.show(
                 $mdDialog.confirm()
                 .clickOutsideToClose(true)
                 .title('Añadir tecnologia')
@@ -339,14 +340,49 @@ app.controller('controladorNuevaReferencia', function(servicioRest,utils, config
                 .cancel('Cancelar')
             ).then(function() {
                 console.log("bien");
+                console.log($scope.tecnologiasSeleccionadas);
+                console.log($scope.tecnologias.lista);
+                $scope.tecnologias.lista.push({value:chip, display:chip});
+                console.log($scope.tecnologias.lista);
+                //$scope.tecnologiasSeleccionadas.push({display:chip,value:chip});
+                console.log($scope.tecnologiasSeleccionadas);
+                //$scope.tecnologias.lista.push({display:"algo",value:"algo"});
             })
             .catch(function() {
                 console.log("mal");
-            });
+                $scope.tecnologiasSeleccionadas.splice($scope.tecnologiasSeleccionadas.length-1);
+            });*/
         }
 
-      return { value: chip, display: chip }
+      return { value: chip, display: chip };
+        //return null;
     }
+    
+    anadirTecPopUp = function(ev, nombreTec) {
+        $mdDialog.show({
+            locals: {
+                nombreTecnologia: nombreTec
+            },
+            controller: 'controladorCrearTec',
+            templateUrl: 'modulos/popUp/crearTec.html',
+            parent: angular.element(document.body),
+            targetEvent: ev,
+            clickOutsideToClose: true
+        })
+        .then(function(nuevaTecnologia) {
+            console.log(nuevaTecnologia);
+            servicioRest.postTecnologiaPValidar(nuevaTecnologia)
+            .then(function(data){
+                utils.popupInfo('', "Tecnologia creada con exito");
+            })
+            .catch(function(data){
+                utils.popupInfo('', 'Error al crear la tecnologia');
+            });
+        })
+        .catch(function(err) {
+            $scope.tecnologiasSeleccionadas.splice($scope.tecnologiasSeleccionadas.length-1);
+        });
+    };
  
     
     //-----------------------------------------------CREACIÓN---------------------------------------------------------------------

@@ -208,6 +208,17 @@ function ServicioREST( utils, config, $http,$q, $rootScope) {
 
 	}
     
+    function postTecnologiaPValidar(nodo) {
+
+        datos = nodo;
+        return llamadaHTTP({
+			method: 'POST',
+			url: url + '/tecnologias/pendientesValidar',
+			data: datos
+		});
+
+	}
+    
     function putTecnologia(idAnterior, nodo) {
 
         datos = {idAnterior : idAnterior, nodo : nodo}
@@ -290,6 +301,7 @@ function ServicioREST( utils, config, $http,$q, $rootScope) {
 	return {
         getTecnologiasFinales: getTecnologiasFinales,
         postTecnologia: postTecnologia,
+        postTecnologiaPValidar: postTecnologiaPValidar,
         putTecnologia: putTecnologia,
         putMoverTecnologia: putMoverTecnologia,
         deleteTecnologia: deleteTecnologia,
