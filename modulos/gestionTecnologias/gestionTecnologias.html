@@ -42,10 +42,10 @@
             <div class="leyenda"><div id="colorHojaInvalida"></div>Hoja sin validar</div>
         </div>
     </div>
-    <div class="col-sm-6">
+    <div id="contenedorOpciones"  class="col-sm-6">
         <div ng-hide="nodoSeleccionado==null || nodoSeleccionado.clase=='raiz'" id="datosTecnologia">
             <form name="datosNodo">
-                <div>
+                <div id="ContenedporTipoTecnologiaYNombre">
                     <div id=tituloDatosTecnologia>{{titulo}}</div><br>
                     <md-input-container>
                         <label>Nombre</label>
@@ -63,8 +63,8 @@
                             {{tipo}}
                           </md-option>
                         </md-select>
-                        <div>
-                            <md-checkbox ng-model="nodoSeleccionado.producto">Producto</md-checkbox>
+                        <div id="productoTecnologia">
+                            <md-checkbox id="cBProductoTecnologia" ng-model="nodoSeleccionado.producto">Producto</md-checkbox>
                         </div>
                         <div>
                             <md-checkbox ng-model="estaValidado" ng-disabled="true">Validado</md-checkbox>

@@ -143,8 +143,19 @@ app.controller ('controladorGestionTecnologias', function (servicioRest, utils, 
     };
     
     $scope.aniadirElem=function(ev, scope, tipoElem){
+        var tipo;
+        switch(tipoElem){
+                
+            case "hojaInvalida":  tipo = "Tecnologia pendiente de validar";
+                break;
+            case "nodo":  tipo = "Tecnologia intermedia";
+                break;
+            case "hoja":  tipo = "Tecnologia final";
+                break;
+            default:tipo = tipoElem;
+        }
         ev.stopImmediatePropagation();
-        $scope.titulo = "Añadir " + tipoElem;
+        $scope.titulo = "Añadir " + tipo;
         $scope.nodoSeleccionado={'clase':tipoElem};
         nodeData=scope.$modelValue;
         operacion="anadir";
@@ -152,7 +163,18 @@ app.controller ('controladorGestionTecnologias', function (servicioRest, utils, 
     };
     
     $scope.seleccionarElemento=function(elem, nodo){
-        $scope.titulo = "Editar " + nodo.clase;
+        var tipo;
+        switch(nodo.clase){
+                
+            case "hojaInvalida":  tipo = "Tecnologia pendiente de validar";
+                break;
+            case "nodo":  tipo = "Tecnologia intermedia";
+                break;
+            case "hoja":  tipo = "Tecnologia final";
+                break;
+            default:tipo = nodo.clase;
+        }
+        $scope.titulo = "Editar " + tipo;
         nodeData=nodo;
         if(nodeData.clase=="nodo"){
             $scope.nodoSeleccionado={
@@ -400,11 +422,27 @@ app.controller ('controladorGestionTecnologias', function (servicioRest, utils, 
             },
             {
                 element: '.borrarAyuda',
-                intro: 'Un icono con forma de equis(X) situado en la parte derecha de cada tecnologia permite eliminar esa tecnologia ,si ejecutas este tutorial con  una tecnologia que s epueda eliminar el tutorial te señalara el punto exacto donde esta ese icono.'
+                intro: 'Un icono con forma de equis(X) situado en la parte derecha de cada tecnologia permite eliminar esa tecnologia ,si es una tecnologia final con referencias asociadas a ella no podras eliminarla mientras estas referencias sigan usando esta tecnologia. Si ejecutas este tutorial con  una tecnologia que pueda tener este icono el tutorial te señalara el punto exacto donde se encuentra.'
             },
             {
                 element: '#leyendaAyuda',
                 intro: 'Aqui se muestra la leyenda de colores para identificar los distintos tipos de tecnologias.'
+            },
+            {
+                element: '#contenedorOpciones',
+                intro: 'En esta zona se mostraran los datos de las tecnologias que selecciones.'
+            },
+            {
+                element: '#contenedorOpciones',
+                intro: 'podras rellenar o modificar el nombre de las tecnologias intermedias y rellenar o modificar los datos de las tecnologias finales, para que estos cambios se realicen sera imprescindible pulsar en el boton de guardar antes de modificar otra tecnologia.'
+            },
+            {
+                element: '#contenedorOpciones',
+                intro: 'En el caso de que sea una tecnologia pendiente de validar aparte del boton de guardar observara un boton para validar la tecnologia.'
+            },
+            {
+                element: '#contenedorOpciones',
+                intro: 'Si por el contrario quiere eliminarla tendra que darle al boton rechazar, si observa a la izquierda de este boton un cuadro de texto, antes de pulsar rechazar debera asociar todas las referencias que tiene esta tecnologia a otra tecnologia final que este activa, para hacer esto escriba el nombre de esta tecnologia en el cuadro de texto antes mencionado.Si por el contrario no observa ningun cuadro de texto, puede rechazarla sin mas pulsando en el boton rechazar ya que esto  indica que no hay ninguna referencia asociada a esa tecnologia.'
             }
             ];
     

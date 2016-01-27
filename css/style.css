@@ -96,7 +96,8 @@ body {
 
 /* -------------------- Contenedor de las vistas de la pagina (ng-view) ---------------------- */
 #contenedorVistas {
-  height: 75%; }
+  height: 75%;
+  overflow-x: hidden; }
 
 /* ------------------------------- CABECERA Y PIE ---------------------- */
 header {
@@ -743,6 +744,15 @@ md-toolbar:not(.md-menu-toolbar) {
   border-color: #ddd; }
 
 /*--------------------- ESTILOS ARBOL TECNOLOGIAS -------------------------*/
+#ContenedporTipoTecnologiaYNombre {
+  max-height: 18%; }
+
+#cBProductoTecnologia:focus {
+  outline: none; }
+
+#productoTecnologia {
+  margin-top: 5%; }
+
 #autocompleteTecnologias {
   width: 40%;
   margin-right: 2%;

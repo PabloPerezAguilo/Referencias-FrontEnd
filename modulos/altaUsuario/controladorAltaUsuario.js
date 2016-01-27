@@ -30,7 +30,9 @@ app.controller('controladorAltaUsuario', function(servicioRest,config,utils, $sc
                 mensaje+='<br>Usuario inválido';
             }
             if($scope.role==undefined){
+                
                 mensaje+='<br>\rRol inválido';
+
             }
             utils.popupInfo(evento, mensaje);
         }

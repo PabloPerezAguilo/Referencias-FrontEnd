@@ -139,6 +139,7 @@ body {
 
 #contenedorVistas{
     height: 75%;
+    overflow-x: hidden;
 }
 
 /* ------------------------------- CABECERA Y PIE ---------------------- */
@@ -841,6 +842,21 @@ md-toolbar:not(.md-menu-toolbar) {
 
 /*--------------------- ESTILOS ARBOL TECNOLOGIAS -------------------------*/
 
+#ContenedporTipoTecnologiaYNombre{
+    
+    max-height: 18%
+    
+}
+#cBProductoTecnologia:focus{
+    
+    outline: none;
+
+}
+#productoTecnologia{
+    
+    margin-top:5%; 
+  
+}
 #autocompleteTecnologias{
     width: 40%;
     margin-right: 2%;
