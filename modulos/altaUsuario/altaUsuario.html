@@ -47,5 +47,5 @@
     <form class="dialog-demo-content" layout="row" layout-sm="column" layout-wrap="" layout-align=" center center">
       <md-button id="crear" class="botonesApp" ng-click="crear($event)">CREAR USUARIO</md-button>   
     </form> 
-    <md-button id="elim" class="botonesApp" ng-click="eliminarUsuario($event)">DESPEDIR A ENRIQUE</md-button>
+    <md-button id="elim" ng-show="!enriqueDespDef" class="botonesApp" ng-click="eliminarUsuario($event)">DESPEDIR A ENRIQUE</md-button>
 </div>

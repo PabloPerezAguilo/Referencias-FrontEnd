@@ -80,12 +80,9 @@ app.controller('controladorNuevaReferencia', function(servicioRest,utils, config
     
     if($rootScope.referenciaCargada != null && $rootScope.opcion === 'validar'){
         $scope.clienteCargado = $rootScope.referenciaCargada.cliente;
-        console.log($rootScope.referenciaCargada.tecnologias);
         $scope.tecnologiasSeleccionadas = inicializarChipsTecnologia(); //angular.copy($rootScope.referenciaCargada.tecnologias);
         $scope.fechaInicio = new Date($rootScope.referenciaCargada.fechaInicio);
         $scope.UserPhoto = $rootScope.referenciaCargada.imagenProyecto;
-        console.log("tre",$rootScope.referenciaCargada.tecnologias);
-        console.log("try",$scope.tecnologiasSeleccionadas);
     }else{
          /*Vaciamos referenciaCargada*/
         $rootScope.referenciaCargada = null;
@@ -308,8 +305,6 @@ app.controller('controladorNuevaReferencia', function(servicioRest,utils, config
             //lo asignamos a la posición del catálogo de clientes correspondiente al mismo
             
             $scope.posicionEnArray2=$scope.tecnologias.lista.indexOf(item);
-            console.log("aquisss",item);
-            console.log("array",$scope.posicionEnArray2);
         }
     }
     
@@ -326,6 +321,7 @@ app.controller('controladorNuevaReferencia', function(servicioRest,utils, config
     
     // TODO: BORRAR SI SE DEMUESTRA QUE ES INUTIL
     function cargarDatosTecnologias(listaTecnologias) {
+        console.log(listaTecnologias);
         $scope.tecnologias.lista= listaTecnologias.map( function (tec) {
             return {
                 value: tec.nombre,
@@ -336,34 +332,11 @@ app.controller('controladorNuevaReferencia', function(servicioRest,utils, config
     }
 
     $scope.transformChip = function (chip) {
-        console.log("qwe");
       if (angular.isObject(chip)) {
         return chip;
       }
         else{
             anadirTecPopUp(event, chip);
-            /*$mdDialog.show(
-                $mdDialog.confirm()
-                .clickOutsideToClose(true)
-                .title('Añadir tecnologia')
-                .content('Estas seguro de querer validar la hoja?')
-                .ariaLabel('Lucky day')
-                .ok('Guardar')
-                .cancel('Cancelar')
-            ).then(function() {
-                console.log("bien");
-                console.log($scope.tecnologiasSeleccionadas);
-                console.log($scope.tecnologias.lista);
-                $scope.tecnologias.lista.push({value:chip, display:chip});
-                console.log($scope.tecnologias.lista);
-                //$scope.tecnologiasSeleccionadas.push({display:chip,value:chip});
-                console.log($scope.tecnologiasSeleccionadas);
-                //$scope.tecnologias.lista.push({display:"algo",value:"algo"});
-            })
-            .catch(function() {
-                console.log("mal");
-                $scope.tecnologiasSeleccionadas.splice($scope.tecnologiasSeleccionadas.length-1);
-            });*/
         }
 
       return { value: chip, display: chip };
@@ -382,16 +355,22 @@ app.controller('controladorNuevaReferencia', function(servicioRest,utils, config
             clickOutsideToClose: true
         })
         .then(function(nuevaTecnologia) {
-            console.log(nuevaTecnologia);
             servicioRest.postTecnologiaPValidar(nuevaTecnologia)
             .then(function(data){
                 utils.popupInfo('', "Tecnologia creada con exito");
+                servicioRest.getTecnologiasFinales().then(
+                function(response) {
+                    $scope.tecnologias.lista = response;
+                    cargarDatosTecnologias(response);
+                });
             })
             .catch(function(data){
                 utils.popupInfo('', 'Error al crear la tecnologia');
+                $scope.tecnologiasSeleccionadas.splice($scope.tecnologiasSeleccionadas.length-1);
             });
         })
         .catch(function(err) {
+            utils.popupInfo('', 'Ha ocurrido un error inesperado');
             $scope.tecnologiasSeleccionadas.splice($scope.tecnologiasSeleccionadas.length-1);
         });
     };
@@ -485,7 +464,6 @@ app.controller('controladorNuevaReferencia', function(servicioRest,utils, config
         //Como los siguientes campos no los validar automñaticamente, los evaluamos aquí y actualizamos el array de errores
         compruebaCampo($scope.posicionEnArray, 'cliente');
         aux = $scope.tecnologiasSeleccionadas.length;
-        console.log($scope.tecnologiasSeleccionadas);
         if($scope.tecnologiasSeleccionadas.length>0){
             if(erroresCometidos.indexOf('tecnologia')>=0){
             erroresCometidos.splice(erroresCometidos.indexOf('tecnologia'), 1);
@@ -536,7 +514,6 @@ app.controller('controladorNuevaReferencia', function(servicioRest,utils, config
     }
     
     $scope.crearReferencia = function (estado, event) {
-        console.log("tec", $scope.tecnologiasSeleccionadas);
         if ((estado==="pendiente" && validarCampos()) || estado==="borrador")
         {
             // Crea/Guarda una referencia dependiendo de su estado
