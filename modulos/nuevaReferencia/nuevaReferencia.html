@@ -376,14 +376,17 @@
                     Terminar
                 </md-button>
             <!-- BOTONES ROL VALIDADOR -->
-                <md-button ng-show="mostrarBtValidar"
+                <md-button id="rechazar"
+                           ng-show="mostrarBtValidar"
                            class="botonesApp"
                            type="button"
                            ng-click="rechazarReferencia()"
-                           tabindex="22">
-                    Rechazar
-                </md-button>
-                <md-button ng-show="mostrarBtValidar" class="botonesApp" type="button"  ng-click="validarReferencia()" tabindex="23">Validar</md-button>
+                           tabindex="22">Rechazar</md-button>
+                <md-button id="validar"
+                           ng-show="mostrarBtValidar"
+                           class="botonesApp" type="button" 
+                           ng-click="validarReferencia()" 
+                           tabindex="23">Validar</md-button>
                 
             </div> 
         </div>

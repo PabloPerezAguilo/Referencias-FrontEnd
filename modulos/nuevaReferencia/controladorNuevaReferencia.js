@@ -135,8 +135,21 @@ app.controller('controladorNuevaReferencia', function(servicioRest,utils, config
          $scope.introOptions.steps = [
             {
                 element: '.cabeceraPagina',
-                intro: 'Debe seleccionar un cliente valido de la lista disponible. La lista se mostrara a partir de la tercera letra escrita. <br/> Para guardar en borrador no sera necesario la validez de este cliente, pero si escribe algo invalido en este campo,  al guarda como borrador el cliente se guardara vacio como si no hubiera escrito nada.'
-            }];
+                intro: 'Esta es la seccion para validar referencias, las referencias cargadas en esta zona solo pueden ser modificadas por el administrador, el objetivo de esta seccion sera validar o rechazar la referencia cargada.'
+            },
+            {
+                element: '.botonesCrear',
+                intro: 'En esta zona estan los botones de rechazar y validar.'
+            },
+            {
+                element: '#rechazar',
+                intro: 'Si pulsas en rechazar deberas rellenar un motivo por el que se la rechaza, si, no podras rechazarla.'
+            },
+            {
+                element: '#validar',
+                intro: 'Si la referencia esta correcta, solo con pulsar aqui quedara validada.'
+            }
+         ];
             
         
     }else{
@@ -211,7 +224,11 @@ app.controller('controladorNuevaReferencia', function(servicioRest,utils, config
             },
             {
                 element: '#tecnologias',
-                intro: 'Debe seleccionar una tecnologia valida de la lista disponible. La lista se mostrara a partir de la segunda letra escrita. <br/> Para guardar en borrador no sera necesario la validez de este cliente, pero si escribe algo invalido en este campo,  al guarda como borrador el cliente se guardara vacio como si no hubiera escrito nada.'
+                intro: 'Debe seleccionar una o varias tecnologias validas de la lista disponible. La lista se mostrara a partir de la segunda letra escrita. <br/> Si la tecnologia que usted desea añadir no esta, puede añadirla, para esto siga las siguientes intrucciones:'
+            },
+            {
+                element: '#tecnologias',
+                intro: 'Escriba la tecnologia que desea dar de alta, luego pulse intro, etso le abrira un menu donde puede rellenar los datos de la tecnologia, si lo hace hasta el final  y pulsa en guardar la tecnologia sera añadida a la referencia, si no, se borrara del campo tecnologia.'
             },
             {
                 element: '#borrador',
@@ -546,8 +563,11 @@ app.controller('controladorNuevaReferencia', function(servicioRest,utils, config
             $scope.referencia.creadorReferencia = $rootScope.usuarioLS.name;
             
             if(undefined!=$scope.referencia.regPedidoAsociadoReferencia){
-                $scope.referencia.regPedidoAsociadoReferencia = $scope.referencia.regPedidoAsociadoReferencia.split(/,[ ]*/);
+                //TODO
+                //$scope.referencia.regPedidoAsociadoReferencia = $scope.referencia.regPedidoAsociadoReferencia.split(/,[ ]*/);
+                $scope.referencia.regPedidoAsociadoReferencia = [];
             }else{
+                
                 $scope.referencia.regPedidoAsociadoReferencia = [];
             }
             var fileReader = new FileReader();
