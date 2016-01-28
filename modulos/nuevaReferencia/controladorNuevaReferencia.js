@@ -553,8 +553,11 @@ app.controller('controladorNuevaReferencia', function(servicioRest,utils, config
             $scope.referencia.creadorReferencia = $rootScope.usuarioLS.name;
             
             if(undefined!=$scope.referencia.regPedidoAsociadoReferencia){
-                $scope.referencia.regPedidoAsociadoReferencia = $scope.referencia.regPedidoAsociadoReferencia.split(/,[ ]*/);
+                //TODO
+                //$scope.referencia.regPedidoAsociadoReferencia = $scope.referencia.regPedidoAsociadoReferencia.split(/,[ ]*/);
+                $scope.referencia.regPedidoAsociadoReferencia = [];
             }else{
+                
                 $scope.referencia.regPedidoAsociadoReferencia = [];
             }
             var fileReader = new FileReader();
