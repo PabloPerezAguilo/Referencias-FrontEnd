@@ -17,15 +17,6 @@ function ServicioREST( utils, config, $http,$q, $rootScope) {
 
 	   return promise;
     }
-    function postPregunta(objetoAEnviar) {
-
-	   return llamadaHTTP({
-           method: 'POST',
-			url: url + '/login ',
-			data: usuario
-	   });
-    }
-    
 	
 	/* ---------- GESTION DE ERRORES DE SERVICIOS ---------- */
 	function tratarError(data, status, defered) {

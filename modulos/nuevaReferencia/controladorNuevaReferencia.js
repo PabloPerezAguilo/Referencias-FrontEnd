@@ -370,7 +370,7 @@ app.controller('controladorNuevaReferencia', function(servicioRest,utils, config
             });
         })
         .catch(function(err) {
-            utils.popupInfo('', 'Ha ocurrido un error inesperado');
+            utils.popupInfo('', 'No se ha agregado la tecnologia');
             $scope.tecnologiasSeleccionadas.splice($scope.tecnologiasSeleccionadas.length-1);
         });
     };

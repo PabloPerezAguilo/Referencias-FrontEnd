@@ -139,7 +139,7 @@ body {
 
 #contenedorVistas{
     height: 75%;
-    overflow-x: hidden;
+    //overflow-x: hidden;
 }
 
 /* ------------------------------- CABECERA Y PIE ---------------------- */
@@ -262,6 +262,7 @@ footer #lineaFooter{
 .contenedorVistas{
     margin-top: 0.2%;
     overflow: auto;
+    overflow-x: hidden;
     height: 700px;
 }
 .contenedorVistasAyuda{
@@ -839,6 +840,23 @@ md-toolbar:not(.md-menu-toolbar) {
     border-color: #ddd;
 }
 
+md-input-container .md-input[disabled], md-input-container.md-default-theme .md-input [disabled], md-input-container .md-input [disabled] {
+    /* border-bottom-color: none;
+    /* color: rgba(0,0,0,0.26);
+    /* background-image: linear-gradient(to right, rgba(0,0,0,0.26) 0%, rgba(0,0,0,0.26) 33%, transparent 0%); */
+}
+
+/*--------------------- ESTILOS POP UP AÑADIR TEC NO VALIDA -------------------------*/
+
+#nombreTecnologia{
+    width: 150%;
+}
+
+#tipoNuevaTec{
+    margin-bottom: 60%;
+    width: 400%;
+    margin-left: 200%;
+}
 
 /*--------------------- ESTILOS ARBOL TECNOLOGIAS -------------------------*/
 

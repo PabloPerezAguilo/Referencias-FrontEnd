@@ -7,12 +7,12 @@
         <md-dialog-content>
                <md-input-container>
                         <label>Nombre</label>
-                        <input id="nombreTecnologia" type="text"ng-model="nodoSeleccionado.nombre">
+                        <input id="nombreTecnologia" ng-disabled="true" type="text"ng-model="nodoSeleccionado.nombre">
                 </md-input-container>
 
                 <md-input-container>
                     <label>Tipo</label>
-                    <md-select ng-model="nodoSeleccionado.tipo">
+                    <md-select id="tipoNuevaTec" ng-model="nodoSeleccionado.tipo">
                         <md-option ng-repeat="tipo in tipos" value="{{tipo}}">
                         {{tipo}}
                         </md-option>
