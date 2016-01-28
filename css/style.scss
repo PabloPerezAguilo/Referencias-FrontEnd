@@ -729,6 +729,15 @@ md-select-menu.md-default-theme md-option[selected]:focus, md-select-menu md-opt
 .md-virtual-repeat-container.md-autocomplete-suggestions-container {
 	min-height: 26px;
 }*/
+
+md-chips .md-chips.md-focused {
+    box-shadow: 0 2px $colorDetalles;
+}
+
+md-chips .md-chip.md-focused {
+    background: $colorDetalles;
+}
+
 /*--------------------- ESTILOS POPUPS -------------------------*/
 #popUpError{
     background-color: $colorError;
@@ -840,22 +849,26 @@ md-toolbar:not(.md-menu-toolbar) {
     border-color: #ddd;
 }
 
-md-input-container .md-input[disabled], md-input-container.md-default-theme .md-input [disabled], md-input-container .md-input [disabled] {
-    /* border-bottom-color: none;
-    /* color: rgba(0,0,0,0.26);
-    /* background-image: linear-gradient(to right, rgba(0,0,0,0.26) 0%, rgba(0,0,0,0.26) 33%, transparent 0%); */
-}
-
 /*--------------------- ESTILOS POP UP AÑADIR TEC NO VALIDA -------------------------*/
 
-#nombreTecnologia{
-    width: 150%;
+#nombreTecnologiaNueva{
+    width: 40%;
+}
+
+#inputNombreTecnologia{
+    border-bottom-color: $colorOscuro;
+    color: $colorOscuro;
+    background-image: none;
 }
 
 #tipoNuevaTec{
-    margin-bottom: 60%;
-    width: 400%;
-    margin-left: 200%;
+    margin-bottom: 9.2%;
+    margin-left: 12%;
+    width: 40%;
+}
+
+#cbProducto{
+    bottom: 23px;
 }
 
 /*--------------------- ESTILOS ARBOL TECNOLOGIAS -------------------------*/
@@ -1025,7 +1038,7 @@ md-checkbox[disabled] .md-label {
     color: black;
 }
 
-md-toast.md-default-theme, md-toast {
+md-toast.md-default-theme .md-toast-content, md-toast .md-toast-content {
     background-color: $colorDetalles;
     color: black;
 }
@@ -1075,4 +1088,8 @@ md-toast.md-default-theme, md-toast {
     padding-right: 4%;
     padding-bottom: 1.5%;
     display: inline-block;
+}
+
+.glyphicon {
+    top: 0;
 }

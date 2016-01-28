@@ -330,12 +330,22 @@ app.controller('controladorNuevaReferencia', function(servicioRest,utils, config
         });
         //cargamos los datos en el autocomplete a través del controlador          
     }
+    
+    function existeChip (nombreChip){
+        var encontrado=false;
+        for(var i=0; i<$scope.tecnologias.lista.length; i++){
+            if($scope.tecnologias.lista[0].display===nombreChip){
+                encontrado=true;
+            }
+        }
+        return encontrado;
+    }
 
     $scope.transformChip = function (chip) {
       if (angular.isObject(chip)) {
         return chip;
       }
-        else{
+        else if(!existeChip(chip)){
             anadirTecPopUp(event, chip);
         }
 
