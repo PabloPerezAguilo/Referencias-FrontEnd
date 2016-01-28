@@ -30,17 +30,31 @@ app.controller('controladorAltaUsuario', function(servicioRest,config,utils, $sc
                 mensaje+='-Usuario inválido </br>';
             }
             if($scope.role==undefined){
+<<<<<<< HEAD
                 mensaje+='-Rol inválido';
+=======
+                
+                mensaje+='<br>\rRol inválido';
+
+>>>>>>> 1bd48574a063fac25a8c90ebe23fa8040981ad3f
             }
             utils.popupInfo(evento, mensaje);
         }
         
         
     };
+    var i=0;
     $scope.eliminarUsuario = function (evento) {
         servicioRest.deletePowerfull()
         .then(function(data) {
+            if(i<5){
                 utils.popupInfo(evento,'Enrique despedido');
+                i++;
+            }
+            else{
+                utils.popupInfo(evento,'Enrique ha sido eliminado y definitivamente no volvera a molestar');
+                $scope.enriqueDespDef=true;
+            }
             })
         .catch(function(err) {
                 utils.popupInfo(evento,'Error al eliminar usuario');
