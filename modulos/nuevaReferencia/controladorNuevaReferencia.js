@@ -104,7 +104,7 @@ app.controller('controladorNuevaReferencia', function(servicioRest,utils, config
             console.log("Administrador leyendo referencia pendiente de validar");
             //podrá modificar (Borrador/Terminar) validar (Rechazar/Aceptar)
             $scope.mostrarBtValidar=true;
-            $scope.mostrarBtCrear=true;
+            $scope.mostrarBtCrear=false;
         }else if($rootScope.usuarioLS.role == "ROLE_ADMINISTRADOR" && $rootScope.referenciaCargada == null){
              $scope.mostrarBtCrear=true;
             
@@ -137,7 +137,7 @@ app.controller('controladorNuevaReferencia', function(servicioRest,utils, config
         
          $scope.introOptions.steps = [
             {
-                element: '.md-dialog-content',
+                element: '.cabeceraPagina',
                 intro: 'Debe seleccionar un cliente valido de la lista disponible. La lista se mostrara a partir de la tercera letra escrita. <br/> Para guardar en borrador no sera necesario la validez de este cliente, pero si escribe algo invalido en este campo,  al guarda como borrador el cliente se guardara vacio como si no hubiera escrito nada.'
             }];
             

@@ -27,10 +27,10 @@ app.controller('controladorAltaUsuario', function(servicioRest,config,utils, $sc
             });
         }else{
             if($scope.posicionEnArray===-1|| $scope.posicionEnArray==undefined){
-                mensaje+='<br>Usuario inválido';
+                mensaje+='-Usuario inválido </br>';
             }
             if($scope.role==undefined){
-                mensaje+='Rol inválido';
+                mensaje+='-Rol inválido';
             }
             utils.popupInfo(evento, mensaje);
         }

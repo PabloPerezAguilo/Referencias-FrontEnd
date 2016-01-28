@@ -6,7 +6,7 @@ function utils($rootScope, $mdDialog){
             .parent(angular.element(document.querySelector('#popupContainer')))
             .clickOutsideToClose(true)
             .title("")
-            .content(descripcion)
+            .htmlContent(descripcion)
             .ariaLabel('Alert Dialog Demo')
             .ok('Aceptar')
             .targetEvent(ev)
