@@ -766,6 +766,9 @@ md-toolbar:not(.md-menu-toolbar) {
 #cbProducto {
   bottom: 23px; }
 
+#cbProducto:focus {
+  outline: none; }
+
 /*--------------------- ESTILOS ARBOL TECNOLOGIAS -------------------------*/
 #ContenedporTipoTecnologiaYNombre {
   max-height: 18%; }
