@@ -5,7 +5,9 @@ app.controller('controladorNuevaReferencia', function(servicioRest,utils, config
     //y le añades el atributo "readonly" a true. Esto se hace porque el datepicker crea este elemento en ejecucion
     //y no puedes establecer este atributo a mano en el html, debes añadirlo dinamicamente en ejecucion,
     //que es el momento en el que se crea el elemento
-   document.getElementsByClassName("md-datepicker-input")[0].setAttribute("readonly","true");
+    
+    document.getElementsByClassName("md-datepicker-input")[0].setAttribute("readonly","true");
+    clienteReferencia.focus();
     $scope.tecnologiasSeleccionadas=[];
     // list of `state` value/display objects
     $scope.clientes={
