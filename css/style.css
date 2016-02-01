@@ -94,6 +94,10 @@ body {
   font-family: verdana;
   overflow: hidden; }
 
+.error {
+  margin-left: 2%;
+  color: crimson; }
+
 /* -------------------- Contenedor de las vistas de la pagina (ng-view) ---------------------- */
 #contenedorVistas {
   height: 75%; }

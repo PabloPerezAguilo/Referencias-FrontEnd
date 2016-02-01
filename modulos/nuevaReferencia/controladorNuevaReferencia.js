@@ -351,10 +351,11 @@ app.controller('controladorNuevaReferencia', function(servicioRest,utils, config
     function existeChip (nombreChip){
         var encontrado=false;
         for(var i=0; i<$scope.tecnologias.lista.length; i++){
-            if($scope.tecnologias.lista[0].display===nombreChip){
+            if($scope.tecnologias.lista[i].display===nombreChip){
                 encontrado=true;
             }
         }
+        console.log(encontrado);
         return encontrado;
     }
 
@@ -366,6 +367,7 @@ app.controller('controladorNuevaReferencia', function(servicioRest,utils, config
             anadirTecPopUp(event, chip);
         }
 
+        console.log($scope.tecnologias.lista);
       return { value: chip, display: chip };
         //return null;
     }

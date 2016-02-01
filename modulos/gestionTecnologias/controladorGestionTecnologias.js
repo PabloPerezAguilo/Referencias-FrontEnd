@@ -1,14 +1,21 @@
 app.controller ('controladorGestionTecnologias', function (servicioRest, utils, config, $scope, $http, $rootScope, $mdDialog, $mdToast) {  
     var nodeData;
     var operacion;
-    
+    $scope.nodoSeleccionado={};
+    $scope.nodoSeleccionado.clase="raiz";
     $scope.activarScroll=function(){     
-        $scope.scroll=true;     
+        $scope.scroll=true;  
+        $scope.nodoSeleccionado.clase="raiz";
     };
     
     $scope.ayuda = function(){
-      $scope.scroll=false
-      $scope.lanzarAyuda();
+        $scope.scroll=false
+        $scope.titulo="Ejemplo de edición";
+        $scope.nodoSeleccionado.clase="hoja";
+        $scope.nodoSeleccionado.nombre="Nombre Tecnologia";
+        $scope.nodoSeleccionado.tipo="OpenSource";
+        $scope.nodoSeleccionado.producto=true;
+        $scope.lanzarAyuda();
         
     };
     
@@ -321,7 +328,6 @@ app.controller ('controladorGestionTecnologias', function (servicioRest, utils, 
                         aux.push(response[i]);
                     }
                 }
-                console.log(response);
                 $scope.clientes.lista= aux.map( function (tec) {
                     return {
                         value: tec.nombre,
@@ -353,28 +359,31 @@ app.controller ('controladorGestionTecnologias', function (servicioRest, utils, 
     }
         //cargamos los datos en el autocomplete a través del controlador          
 
-    
     $scope.rechazarElem=function(hayRefAsociadas){
         if(hayRefAsociadas){
-            servicioRest.rechazarTecnologia(nodeData.nombre, $scope.clientes.elemSeleccionado.value).then(
-            function (response) {
+            if(true){//$scope.clientes.elemSeleccionado.value!=undefined){
+                servicioRest.rechazarTecnologia(nodeData.nombre, $scope.clientes.elemSeleccionado.value).then(
+                function (response) {
+                    $scope.clientes.elemSeleccionado.value=undefined;
+                    servicioRest.deleteTecnologia(nodeData.nombre)
+                        .then(function(data) {
+                            //eliminarNodo(scope);
+                            actualizarArbol(data);
+                            $scope.nodoSeleccionado=null;
+                            toast("Tecnologia rechazada");
 
-                servicioRest.deleteTecnologia(nodeData.nombre)
-                    .then(function(data) {
-                        //eliminarNodo(scope);
-                        actualizarArbol(data);
-                        $scope.nodoSeleccionado=null;
-                        toast("Tecnologia rechazada");
-
-                    }).catch(function(err) {
-                        utils.popupInfo('',"Error al rechazar tecnologia.");
-                        console.log("Error al rechazar tecnologia");
-                        servicioRest.getTecnologias().then(
-                        function (response) {
-                            actualizarArbol(response);
-                        });
-                    });  
-            });
+                        }).catch(function(err) {
+                            utils.popupInfo('',"Error al rechazar tecnologia.");
+                            console.log("Error al rechazar tecnologia");
+                            servicioRest.getTecnologias().then(
+                            function (response) {
+                                actualizarArbol(response);
+                            });
+                        });  
+                });
+            }else{
+                $scope.hayError=true;
+            }
         }
         else{
             servicioRest.deleteTecnologia(nodeData.nombre)
