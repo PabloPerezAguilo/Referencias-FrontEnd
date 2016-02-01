@@ -49,7 +49,7 @@
                     <div id=tituloDatosTecnologia>{{titulo}}</div><br>
                     <md-input-container>
                         <label>Nombre</label>
-                        <input id="nombreTecnologia" type="text"ng-model="nodoSeleccionado.nombre" ng-required="true">
+                        <input ng-keypress="intro($event)" id="nombreTecnologia" type="text"ng-model="nodoSeleccionado.nombre" ng-required="true">
                     </md-input-container>
                 </div>
                 <div ng-if="nodoSeleccionado.clase!=='nodo'">

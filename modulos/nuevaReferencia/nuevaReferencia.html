@@ -8,7 +8,8 @@
             <div class="control-group" ng-class="{true: 'error'}[submitted && form.email.$invalid]">
                 <md-dialog-content class="selecCli">
                     <div class="md-dialog-content">
-                        <md-autocomplete name='cliente'
+                        <md-autocomplete id="clienteReferencia"
+                                         name='cliente'
                                          tabindex='1'
                                          ng-disabled="deshabilitarForm"
                                          md-selected-item="clientes.elemSeleccionado"

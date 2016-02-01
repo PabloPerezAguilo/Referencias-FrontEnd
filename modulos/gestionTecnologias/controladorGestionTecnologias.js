@@ -150,6 +150,7 @@ app.controller ('controladorGestionTecnologias', function (servicioRest, utils, 
     };
     
     $scope.aniadirElem=function(ev, scope, tipoElem){
+        
         var tipo;
         switch(tipoElem){
                 
@@ -167,9 +168,14 @@ app.controller ('controladorGestionTecnologias', function (servicioRest, utils, 
         nodeData=scope.$modelValue;
         operacion="anadir";
         $scope.estaValidado=$scope.nodoSeleccionado.clase==='hoja';
+        setTimeout(function(){ 
+            //Se necesita un tiem out para dar tiempo a que se cargue el lanzar ayuda
+            nombreTecnologia.focus();
+        }, 100)
     };
     
     $scope.seleccionarElemento=function(elem, nodo){
+        
         var tipo;
         switch(nodo.clase){
                 
@@ -232,6 +238,11 @@ app.controller ('controladorGestionTecnologias', function (servicioRest, utils, 
             elementoSeleccionado = elem;
         }
         operacion="editar";
+        setTimeout(function(){ 
+            //Se necesita un tiem out para dar tiempo a que se cargue el lanzar ayuda
+            nombreTecnologia.focus();
+        }, 100)
+        
     };
         
     function comprobarArbol(nodos, nombreNodo, encontrado){
@@ -406,6 +417,21 @@ app.controller ('controladorGestionTecnologias', function (servicioRest, utils, 
     
     /*             AYUDA                 */
     
+     $scope.activarScroll=function(){     
+        $scope.scroll=true;     
+    };
+    
+    $scope.ayuda = function(){
+      $scope.scroll=false
+      $scope.lanzarAyuda();
+        
+    };
+    
+    setTimeout(function(){ 
+            //Se necesita un tiem out para dar tiempo a que se cargue el lanzar ayuda
+            $rootScope.lanzarAyuda=$scope.ayuda;
+        }, 1000)
+    
     $scope.introOptions = config.introOptions;
     
     $scope.introOptions.steps = [
@@ -454,6 +480,14 @@ app.controller ('controladorGestionTecnologias', function (servicioRest, utils, 
                 intro: 'Si por el contrario quiere eliminarla tendra que darle al boton rechazar, si observa a la izquierda de este boton un cuadro de texto, antes de pulsar rechazar debera asociar todas las referencias que tiene esta tecnologia a otra tecnologia final que este activa, para hacer esto escriba el nombre de esta tecnologia en el cuadro de texto antes mencionado.Si por el contrario no observa ningun cuadro de texto, puede rechazarla sin mas pulsando en el boton rechazar ya que esto  indica que no hay ninguna referencia asociada a esa tecnologia.'
             }
             ];
+    
+    //pulsar intro crea  la tecnologia si es posible
+    $scope.intro = function (pressEvent){    
+        console.log("111");
+        if(pressEvent.keyCode == 13){ 
+            $scope.guardarElem();   
+          }
+    };
     
     
 }); 
