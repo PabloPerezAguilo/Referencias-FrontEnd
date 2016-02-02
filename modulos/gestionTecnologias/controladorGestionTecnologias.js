@@ -1,6 +1,11 @@
 app.controller ('controladorGestionTecnologias', function (servicioRest, utils, config, $scope, $http, $rootScope, $mdDialog, $mdToast) {  
     var nodeData;
     var operacion;
+    $scope.nodoSeleccionado={};
+    $scope.nodoSeleccionado.clase="raiz";
+    $scope.clientes={};
+    //$scope.clientes.elemSeleccionado={};
+    //console.log($scope.clientes.elemSeleccionado.value);
     
     function toast(texto) {
 		$mdToast.show(
@@ -128,7 +133,7 @@ app.controller ('controladorGestionTecnologias', function (servicioRest, utils, 
     };
     
     $scope.aniadirElem=function(ev, scope, tipoElem){
-        
+        $scope.hayError=false;
         var tipo;
         switch(tipoElem){
                 
@@ -154,6 +159,7 @@ app.controller ('controladorGestionTecnologias', function (servicioRest, utils, 
     
     $scope.seleccionarElemento=function(elem, nodo){
         
+        $scope.hayError=false;
         var tipo;
         switch(nodo.clase){
                 
@@ -175,6 +181,8 @@ app.controller ('controladorGestionTecnologias', function (servicioRest, utils, 
             
             };
         } else {
+            //Se elimina el texto del autocumplete de rechazar tecnologia
+            $scope.clientes.texto="";
             $scope.nodoSeleccionado={
             nombre: nodeData.nombre,
             nodosHijos: nodeData.nodosHijos,
@@ -188,12 +196,12 @@ app.controller ('controladorGestionTecnologias', function (servicioRest, utils, 
                 .then(function(data) {
             //if(data!=[]){
                     
-            $scope.hayRefAsociadas=false;
+            $scope.hayRefAsociadas=data;
             console.log("data",data);
             //}
                 }).catch(function(err) {
             console.log("err",err);
-            $scope.hayRefAsociadas=true;
+            //$scope.hayRefAsociadas=true;
                     
                 });
         
@@ -317,7 +325,6 @@ app.controller ('controladorGestionTecnologias', function (servicioRest, utils, 
                         aux.push(response[i]);
                     }
                 }
-                console.log(response);
                 $scope.clientes.lista= aux.map( function (tec) {
                     return {
                         value: tec.nombre,
@@ -349,28 +356,32 @@ app.controller ('controladorGestionTecnologias', function (servicioRest, utils, 
     }
         //cargamos los datos en el autocomplete a través del controlador          
 
-    
     $scope.rechazarElem=function(hayRefAsociadas){
         if(hayRefAsociadas){
-            servicioRest.rechazarTecnologia(nodeData.nombre, $scope.clientes.elemSeleccionado.value).then(
-            function (response) {
+            
+            if($scope.clientes.elemSeleccionado!=undefined){
+                servicioRest.rechazarTecnologia(nodeData.nombre, $scope.clientes.elemSeleccionado.value).then(
+                function (response) {
+                    $scope.clientes.elemSeleccionado.value=undefined;
+                    servicioRest.deleteTecnologia(nodeData.nombre)
+                        .then(function(data) {
+                            //eliminarNodo(scope);
+                            actualizarArbol(data);
+                            $scope.nodoSeleccionado=null;
+                            toast("Tecnologia rechazada");
 
-                servicioRest.deleteTecnologia(nodeData.nombre)
-                    .then(function(data) {
-                        //eliminarNodo(scope);
-                        actualizarArbol(data);
-                        $scope.nodoSeleccionado=null;
-                        toast("Tecnologia rechazada");
-
-                    }).catch(function(err) {
-                        utils.popupInfo('',"Error al rechazar tecnologia.");
-                        console.log("Error al rechazar tecnologia");
-                        servicioRest.getTecnologias().then(
-                        function (response) {
-                            actualizarArbol(response);
-                        });
-                    });  
-            });
+                        }).catch(function(err) {
+                            utils.popupInfo('',"Error al rechazar tecnologia.");
+                            console.log("Error al rechazar tecnologia");
+                            servicioRest.getTecnologias().then(
+                            function (response) {
+                                actualizarArbol(response);
+                            });
+                        });  
+                });
+            }else{
+                $scope.hayError=true;
+            }
         }
         else{
             servicioRest.deleteTecnologia(nodeData.nombre)
@@ -393,13 +404,19 @@ app.controller ('controladorGestionTecnologias', function (servicioRest, utils, 
     
     /*             AYUDA                 */
     
-     $scope.activarScroll=function(){     
-        $scope.scroll=true;     
+    $scope.activarScroll=function(){     
+        $scope.scroll=true;  
+        $scope.nodoSeleccionado.clase="raiz";
     };
     
     $scope.ayuda = function(){
-      $scope.scroll=false
-      $scope.lanzarAyuda();
+        $scope.scroll=false
+        $scope.titulo="Ejemplo de edición";
+        $scope.nodoSeleccionado.clase="hoja";
+        $scope.nodoSeleccionado.nombre="Nombre Tecnologia";
+        $scope.nodoSeleccionado.tipo="OpenSource";
+        $scope.nodoSeleccionado.producto=true;
+        $scope.lanzarAyuda();
         
     };
     

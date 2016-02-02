@@ -58,7 +58,7 @@
                         <md-input-container>
 
                             <label>Tipo</label>
-                        <md-select ng-model="nodoSeleccionado.tipo">
+                        <md-select ng-model="nodoSeleccionado.tipo" ng-required="true">
                           <md-option ng-repeat="tipo in tipos" value="{{tipo}}">
                             {{tipo}}
                           </md-option>
@@ -66,9 +66,9 @@
                         <div id="productoTecnologia">
                             <md-checkbox id="cBProductoTecnologia" ng-model="nodoSeleccionado.producto">Producto</md-checkbox>
                         </div>
-                        <div>
+                        <!--div>
                             <md-checkbox ng-model="estaValidado" ng-disabled="true">Validado</md-checkbox>
-                        </div>
+                        </div-->
                       </md-input-container>
                     </div>
                 </div>
@@ -82,6 +82,7 @@
                                  md-items="item in filtrar(clientes.texto, 'cliente') | limitTo : 8"
                                  md-item-text="item.display"
                                  md-min-length="3"
+                                 ng-focus="hayError=false"
                                  placeholder="Asociar a sus referencias a...">
                     <md-item-template>
                         <span md-highlight-text="clientes.texto" md-highlight-flags="^i">{{item.display}}</span>
@@ -91,6 +92,7 @@
                     </md-not-found>
               </md-autocomplete>
                 <md-button class="botonesApp" ng-show="true && (nodoSeleccionado.clase=='hojaInvalida')" type="button"  ng-click="rechazarElem(hayRefAsociadas)">Rechazar</md-button>
+                <p class="error" ng-show="hayError">Introducir referencia a asociar</p>
             </form>
         </div>
     </div>

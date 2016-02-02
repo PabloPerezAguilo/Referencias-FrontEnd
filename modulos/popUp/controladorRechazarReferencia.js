@@ -11,7 +11,7 @@ app.controller('controladorRechazarReferencia', function ($scope, $mdDialog, $do
     
     $scope.rechazarReferencia = function () {
         if($scope.motivoRechazo==="" || $scope.motivoRechazo===undefined){
-            console.log("vacio");
+            $scope.hayError=true;
             //$scope.useForm.motivoRechazo.$error;
         }
         else{
