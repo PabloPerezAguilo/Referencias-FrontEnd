@@ -7,7 +7,7 @@ app.controller('controladorNuevaReferencia', function(servicioRest,utils, config
     //que es el momento en el que se crea el elemento
     
     document.getElementsByClassName("md-datepicker-input")[0].setAttribute("readonly","true");
-    clienteReferencia.focus();
+    //clienteReferencia.focus();
     $scope.tecnologiasSeleccionadas=[];
     // list of `state` value/display objects
     $scope.clientes={
@@ -502,6 +502,26 @@ app.controller('controladorNuevaReferencia', function(servicioRest,utils, config
             erroresCometidos.push('tecnologia');
             }
         }
+        //Es necesario comprobar aqui los errores de fteTotales y duracionMeses poruqe en mozilla no sale automatico.(en chrome y explorer si)
+        
+        if($scope.referencia.duracionMeses!=null && $scope.referencia.duracionMeses>0){
+            if(erroresCometidos.indexOf('duracion')>=0){
+            erroresCometidos.splice(erroresCometidos.indexOf('duracion'), 1);
+            }
+        }else{
+            if(erroresCometidos.indexOf('duracion')<0){
+            erroresCometidos.push('duracion');
+            }
+        }
+        if($scope.referencia.fteTotales!=null && $scope.referencia.fteTotales>0){
+            if(erroresCometidos.indexOf('fteTotal')>=0){
+            erroresCometidos.splice(erroresCometidos.indexOf('fteTotal'), 1);
+            }
+        }else{
+            if(erroresCometidos.indexOf('fteTotal')<0){
+            erroresCometidos.push('fteTotal');
+            }
+        }
         compruebaCampo($scope.referencia.fechaInicio, 'fecha');
         
         //Los campos serán válidos cuando no tengamos errorres en los campos obligatorios. Por lo que comparamos con la longitud del array de errores
@@ -534,11 +554,11 @@ app.controller('controladorNuevaReferencia', function(servicioRest,utils, config
     function enviarReferencia(referencia, mensajeEstado){
         servicioRest.postReferencia(referencia)
         .then(function(data){
-            utils.popupInfo(event, mensajeEstado);
+            utils.popupInfo('', mensajeEstado);
             $route.reload();
         })
         .catch(function(data){
-            utils.popupInfo(event, 'Error al crear la referencia');
+            utils.popupInfo('', 'Error al crear la referencia');
         });
     }
     
@@ -584,6 +604,7 @@ app.controller('controladorNuevaReferencia', function(servicioRest,utils, config
                     objeto = btoa(objeto);
                     $scope.referencia.imagenProyecto = objeto;
                     var referencia = $scope.referencia;
+                    
                     $scope.referencia.estado = estado; 
                     if(estado==="pendiente")
                     {
@@ -611,7 +632,6 @@ app.controller('controladorNuevaReferencia', function(servicioRest,utils, config
             }
             
         }else{
-            //utils.popupInfo(event,listarErrores());
             errores(event,listarErrores());
         }
                 

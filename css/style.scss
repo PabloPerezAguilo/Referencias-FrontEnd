@@ -271,6 +271,15 @@ footer #lineaFooter{
     height: 700px;
 }
 /* --------------------------- ESTILOS LISTAR USUARIOS ----------------------------- */
+#contenedorListarReferencia{
+    // introducir media querry para que no se estropee listar
+}
+.contenedorPaginacion {
+    text-align: center;
+    position: relative;
+    bottom: 2%;
+    width:100%;
+}
 .listarReferencia {
 	text-align: center;
     border-bottom: #ee941a 2px solid;
@@ -829,12 +838,6 @@ md-toolbar:not(.md-menu-toolbar) {
 }
 #selPendientes{
    cursor: pointer;
-}
-.contenedorPaginacion {
-    text-align: center;
-    position: fixed;
-    bottom: 100px;
-    width:100%;
 }
 .pagination>li>a {
     color: $colorOscuro;
