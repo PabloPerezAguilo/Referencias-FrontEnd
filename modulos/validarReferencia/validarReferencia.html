@@ -1,6 +1,6 @@
 
 <form name="useForm" >
-    <h1 class="cabeceraPagina">NUEVA REFERENCIA</h1>
+    <h1 class="cabeceraPagina">PENDIENTE DE VALIDACIÓN</h1>
     <md-content class="layout-padding">
         <div class="para1">
             
@@ -11,6 +11,7 @@
                         <md-autocomplete id="clienteReferencia"
                                          name='cliente'
                                          tabindex='1'
+                                         ng-disabled=true
                                          md-selected-item="clientes.elemSeleccionado"
                                          md-search-text="clientes.texto"
                                          md-selected-item-change="selectedItemChange(item, 'cliente')"
@@ -18,7 +19,9 @@
                                          md-item-text="item.display"
                                          md-min-length="3"
                                          placeholder="Busque por cliente o siglas."
-                                         ng-required>
+                                         ng-required
+                                         ng-init="clientes.texto=clienteCargado"
+                                         ng-disabled=true>
                             <md-item-template>
                                 <span md-highlight-text="clientes.texto" md-highlight-flags="^i">{{item.display}}</span>
                             </md-item-template>
@@ -40,6 +43,7 @@
                                tabindex="2"
                                ng-model="referencia.sociedad"
                                ng-required="true"
+                               ng-disabled=true
                                ng-blur="actualizaErrores('sociedad', useForm.sociedad.$error)">
 
                         <md-option ng-value="sociedad.codigo" data-ng-repeat="sociedad in catalogo.sociedades" 
@@ -58,6 +62,7 @@
                                name="SectorEmp"
                                ng-model="referencia.sectorEmpresarial"  
                                ng-required="true" 
+                               ng-disabled=true 
                                tabindex="3"
                                ng-blur="actualizaErrores('SectorEmp', useForm.SectorEmp.$error)">
                         <md-option ng-value="sectorEmpresarial.codigo" 
@@ -77,6 +82,7 @@
                                name="tActividad"
                                ng-model="referencia.tipoActividad"
                                ng-required="true"
+                               ng-disabled=true
                                tabindex="4"
                                ng-blur="actualizaErrores('tActividad', useForm.tActividad.$error)">
                         <md-option ng-value="tipoActividad.codigo" 
@@ -96,6 +102,7 @@
                                name="tProyecto"
                                ng-model="referencia.tipoProyecto"
                                ng-required="true"
+                               ng-disabled=true
                                tabindex="5"
                                ng-blur="actualizaErrores('tProyecto', useForm.tProyecto.$error)">
                         <md-option ng-value="tipoProyecto.codigo" data-ng-repeat="tipoProyecto in catalogo.proyecto" 
@@ -110,25 +117,27 @@
             <div id="fecha" class="inBlock" >
             <!--Fecha inicio, Usa la libreria Moment.js-->
                 <md-datepicker id="fecha" ng-model="referencia.fechaInicio" md-placeholder="Fecha de Inicio *" 
-                               readonly="true"></md-datepicker>
+                               ng-disabled=true readonly="true"></md-datepicker>
             </div>
             <!--    Duración-->    
             <div id="Duracion" class="inBlock" >
                 <md-input-container title="Duración en meses" class="fixed-size" >
                     <label>Duración en meses *</label>
                     <input id="duracionInput" name="duracion" type="number" min="1" ng-model="referencia.duracionMeses" 
-                           ng-required="true"tabindex="7" ng-blur="actualizaErrores('duracion', useForm.duracion.$error)"/>
+                           ng-disabled=true ng-required="true"tabindex="7" 
+                           ng-blur="actualizaErrores('duracion', useForm.duracion.$error)"/>
                 </md-input-container>
             </div>
 
             <!-- Denominación-->
             <div id="denominacion" class="inBlock"> 
-                <md-input-container title="Denominación" class="fixed-size-denominacion">
+                <md-input-container title="Denominación" class="fixed-size-denominacion" ng-disabled=true >
                     <label>Denominación *</label>
                     <textarea id="denominacionTexto"
                               name="denominacion"
                               type="text"
                               ng-model="referencia.denominacion"
+                              ng-disabled=true 
                               md-maxlength="100"
                               rows="2"
                               ng-required="true"tabindex="8"
@@ -144,6 +153,7 @@
                     <textarea id="textResumen"
                               name="Rproyecto"
                               ng-model="referencia.resumenProyecto"
+                              ng-disabled=true
                               md-maxlength="300"
                               rows="7"
                               ng-required="true"
@@ -159,6 +169,7 @@
                     <textarea id="textProblematica"
                               name="ProblemaCliente"
                               ng-model="referencia.problematicaCliente"
+                              ng-disabled=true
                               md-maxlength="300"
                               rows="7"
                               ng-required="true"
@@ -176,6 +187,7 @@
                               name="solGFI"
                               type="text"
                               ng-model="referencia.solucionGfi"
+                              ng-disabled=true
                               md-maxlength="500"
                               rows="6"
                               ng-required="true"
@@ -194,6 +206,7 @@
                        type="number"
                        min="1"
                        ng-model="referencia.fteTotales"
+                       ng-disabled=true
                        ng-required="true"
                        tabindex="12"
                        ng-blur="actualizaErrores('fteTotal', useForm.fteTotal.$error)"/>
@@ -207,11 +220,12 @@
                 <md-radio-group id="hayCertificado"
                                 name="certificado"
                                 ng-model="referencia.certificado"
+                                ng-disabled=true
                                 ng-required="true"
                                 tabindex="13"
                                 ng-blur="actualizaErrores('certificado', useForm.certificado.$error)">                  
-                    <md-radio-button class="inBlock radioCertificado" value="si" ng-checked="true">Si</md-radio-button>
-                    <md-radio-button class="inBlock radioCertificado" value="no">No</md-radio-button>
+                    <md-radio-button class="inBlock radioCertificado" value="si" ng-checked="true" ng-disabled=true>Si</md-radio-button>
+                    <md-radio-button class="inBlock radioCertificado" value="no" ng-disabled=true>No</md-radio-button>
                 </md-radio-group>
             </md-input-container>
             </div>
@@ -219,7 +233,7 @@
             <div id="registrosPedido" class="inBlock">
             <md-input-container title="Registros de pedido asociados a la referencia" class="fixed-size">
                 <label>Registros de pedido asociados a la referencia *</label>
-                <input name="registroPedido" type="text" ng-model="referencia.regPedidoAsociadoReferencia" tabindex="14"/> <!--ng-required="true"-->
+                <input name="registroPedido" type="text" ng-disabled=true ng-model="referencia.regPedidoAsociadoReferencia" tabindex="14"/> <!--ng-required="true"-->
             </md-input-container>
             </div>
 
@@ -233,6 +247,7 @@
                     <md-select id="respNormal"
                                name="rbleComercial"
                                ng-model="referencia.responsableComercial"
+                               ng-disabled=true
                                required
                                tabindex="15"
                                ng-blur="actualizaErrores('rbleComercial', useForm.rbleComercial.$error)"> 
@@ -253,6 +268,7 @@
                     <md-select id="respTecnico" 
                                name="rbleTecnico"
                                ng-model="referencia.responsableTecnico"
+                               ng-disabled=true
                                required
                                tabindex="16"
                                ng-blur="actualizaErrores('rbleTecnico', useForm.rbleTecnico.$error)">
@@ -274,6 +290,7 @@
                            ng-model="referencia.imagenProyecto"
                            id="botonFileReal"
                            onchange="angular.element(this).scope().uploadFile(this)"
+                           ng-disabled=true
                            ng-required>
                     <input id="imagen"
                            type="button"
@@ -281,6 +298,7 @@
                            value="SUBIR IMAGEN *"
                            onclick="document.getElementById('botonFileReal').click();"
                            style=""
+                           ng-disabled=true
                            tabindex="17"
                            ng-blur="actualizaErrores('userfile', useForm.userfile.$error)"/>
                     
@@ -288,11 +306,11 @@
                     <!--Código QR--> 
                     <md-input-container id="qrCode" title="Código QR" class="fixed-size">
                         <label>Código Qr</label>
-                        <input id="codigoQR" ng-model="referencia.codigoQr" ng-Change="QrChaged()" tabindex="18"/>
+                        <input id="codigoQR" ng-model="referencia.codigoQr" ng-Change="QrChaged()" ng-disabled=true tabindex="18"/>
                     </md-input-container>
                     <br>
                     <div class="centrado-QR">
-                        <qr text="codigoQr" version="3" error-correction-level="Q" size="100" ng-show="qrCodeVisible"></qr>
+                        <qr ng-init="qrCodeVisible=valorQr" text="codigoQr" version="3" error-correction-level="Q" size="100" ng-show="qrCodeVisible"></qr>
                     </div>   
                 </div> 
                 <!--Imagen-->  
@@ -307,10 +325,11 @@
             <div class="contenedor-tecnologia">
                 <md-dialog-content class="selecTec" id="tecnologia">
                     <div class="md-dialog-content"  id="tecnologias">
-                        <md-chips ng-model="tecnologiasSeleccionadas" md-autocomplete-snap="" md-transform-chip="transformChip($chip)" md-require-match="false">
+                        <md-chips ng-model="tecnologiasSeleccionadas" md-autocomplete-snap="" md-transform-chip="transformChip($chip)" md-require-match="false" readonly="true">
                             
                             <md-autocomplete name='tecnologia'
                                              tabindex='19'
+                                             ng-disabled=true
                                              md-selected-item="tecnologias.elemSeleccionado"
                                              md-search-text="tecnologias.texto"
                                              md-selected-item-change="selectedItemChange(item, 'tecnologia')"
@@ -318,7 +337,9 @@
                                              md-item-text="item.display"
                                              md-min-length="2"
                                              placeholder="Busque Tecnologías"
-                                             ng-required>
+                                             ng-required
+                                             ng-init="tecnologias.texto=tecnologiaCargada"
+                                             ng-disabled=true>
                                 <md-item-template>
                                     <span md-highlight-text="tecnologias.texto" md-highlight-flags="^i">{{item.display}}</span>
                                 </md-item-template>
@@ -336,21 +357,16 @@
             </div>
             
             <div class="botonesCrear" layout-align="center">          
-             <!-- BOTONES ROL ADMINISTRADOR/MANTENIMIENTO -->
-                <md-button id="borrador"
-                           class="botonesApp"
-                           type="button" 
-                           ng-click="crearReferencia('borrador', $event)"
-                           tabindex="20">
-                    Guardar (Borrador)
-                </md-button>
-                <md-button id="terminar"
+            <!-- BOTONES ROL VALIDADOR -->
+                <md-button id="rechazar"
                            class="botonesApp"
                            type="button"
-                           ng-click="crearReferencia('pendiente', $event)"
-                           tabindex="21">
-                    Terminar
-                </md-button>        
+                           ng-click="rechazarReferencia()"
+                           tabindex="22">Rechazar</md-button>
+                <md-button id="validar"
+                           class="botonesApp" type="button" 
+                           ng-click="validarReferencia()" 
+                           tabindex="23">Validar</md-button>
             </div> 
         </div>
     </md-content>

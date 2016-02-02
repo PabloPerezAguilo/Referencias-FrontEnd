@@ -126,19 +126,27 @@ app.config(function($routeProvider) {
 	})
     .when('/alta', {
         templateUrl: 'modulos/altaUsuario/altaUsuario.html',
-        controller: 'controladorAltaUsuario as ctrl'
+        controller: 'controladorAltaUsuario'
+    })
+    .when('/buscarReferencias', {
+        templateUrl: 'modulos/buscarReferencias/buscarReferencias.html',
+        controller: 'controladorBuscarReferencias'
     })
     .when('/nueva', {
         templateUrl: 'modulos/nuevaReferencia/nuevaReferencia.html',
-        controller: 'controladorNuevaReferencia as ctrl'
+        controller: 'controladorNuevaReferencia'
     })
     .when('/validarReferencia', {
-        templateUrl: 'modulos/nuevaReferencia/nuevaReferencia.html',
-        controller: 'controladorNuevaReferencia as ctrl'
+        templateUrl: 'modulos/validarReferencia/validarReferencia.html',
+        controller: 'controladorValidarReferencia'
     })
-    .when('/listarReferencia', {
-        templateUrl: 'modulos/listarReferencia/listarReferencia.html',
-        controller: 'controladorListarReferencia'
+    .when('/modificarReferencia', {
+        templateUrl: 'modulos/modificarReferencia/modificarReferencia.html',
+        controller: 'controladorModificarReferencia'
+    })
+    .when('/listarReferenciasValidar', {
+        templateUrl: 'modulos/listarReferenciasValidar/listarReferenciasValidar.html',
+        controller: 'controladorListarReferenciasValidar'
     })
     .when('/bienvenida', {
         templateUrl: 'modulos/bienvenida/bienvenida.html',

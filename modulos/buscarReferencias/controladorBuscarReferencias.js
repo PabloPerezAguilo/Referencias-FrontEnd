@@ -1,7 +1,7 @@
-app.controller ('controladorListarReferencia', function (servicioRest,utils, config, $scope, $http, $location, $rootScope) {  
+app.controller ('controladorBuscarReferencias', function (servicioRest,utils, config, $scope, $http, $location, $rootScope) {  
     
     $rootScope.opcion = 'validar';
-    $scope.titulo = 'LISTA DE REFERENCIAS PENDIENTES DE VALIDAR';
+    $scope.titulo = 'BUSCAR REFERENCIAS';
     $scope.referencias = [];
    
     
@@ -25,7 +25,7 @@ app.controller ('controladorListarReferencia', function (servicioRest,utils, con
     
     $scope.abrirReferenciaPendiente = function (index, referencias) {        
         $rootScope.referenciaCargada = referencias[index];
-        $location.path('/validarReferencia');
+        $location.path('/modificarReferencia');
     }
     
     /*   AYUDA     */

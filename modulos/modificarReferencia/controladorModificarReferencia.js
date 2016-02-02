@@ -1,4 +1,4 @@
-app.controller('controladorNuevaReferencia', function(servicioRest,utils, config, $scope, $http,$log, $rootScope,$location,$mdDialog,$interval,$timeout,$route){
+app.controller('controladorModificarReferencia', function(servicioRest,utils, config, $scope, $http,$log, $rootScope,$location,$mdDialog,$interval,$timeout,$route){
     //--------------------- Objetos del controlador (clientes y tecnologias)
 
     //Se obtienen los elementos que tengan la clase "md-datepicker-input" se obtiene el primer elemento (solo hay uno)
@@ -71,8 +71,26 @@ app.controller('controladorNuevaReferencia', function(servicioRest,utils, config
     erroresTotales['userfile']="Se debe subir una imágen";
     erroresTotales['tecnologia']="Tecnología inválida";
     
-    $rootScope.referenciaCargada = null;
-        
+    function inicializarChipsTecnologia(){
+        return $rootScope.referenciaCargada.tecnologias.map( function (tec) {
+            return {
+                value: tec,
+                display: tec
+            };
+        });
+   }
+    
+    if($rootScope.referenciaCargada != null && $rootScope.opcion === 'validar'){
+        $scope.clienteCargado = $rootScope.referenciaCargada.cliente;
+        $scope.tecnologiasSeleccionadas = inicializarChipsTecnologia(); //angular.copy($rootScope.referenciaCargada.tecnologias);
+        $scope.fechaInicio = new Date($rootScope.referenciaCargada.fechaInicio);
+        $scope.UserPhoto = $rootScope.referenciaCargada.imagenProyecto;
+    }else{
+         /*Vaciamos referenciaCargada*/
+        $rootScope.referenciaCargada = null;
+     }
+    
+    
     //---------AYUDA DE LA PAGINA--------
   
     $scope.ayuda = function(){
@@ -83,93 +101,92 @@ app.controller('controladorNuevaReferencia', function(servicioRest,utils, config
     
     $scope.introOptions = config.introOptions;
     
-
     $scope.introOptions.steps = [
-            {
-                element: '.md-dialog-content',
-                intro: 'Debe seleccionar un cliente valido de la lista disponible. La lista se mostrara a partir de la tercera letra escrita. <br/> Para guardar en borrador no sera necesario la validez de este cliente, pero si escribe algo invalido en este campo,  al guarda como borrador el cliente se guardara vacio como si no hubiera escrito nada.'
-            },
-            {
-                element: '#sociedad',
-                intro: 'Seleccione una sociedad de la lista disponible, si no encuentra la que busca consulte con su gerente.'
-            },
-            {
-                element: '#sectorEmpresarial',
-                intro: 'Seleccione un Sector empresarial de la lista disponible, si no encuentra el que busca consulte con su gerente.'
-            },
-            {
-                element: '#actividad',
-                intro: 'Seleccione una actividad de la lista disponible, si no encuentra la que busca consulte con su gerente.'
-            },
-            {
-                element: '#tipoProyecto',
-                intro: 'Seleccione un tipo de proyecto de la lista disponible, si no encuentra el que busca consulte con su gerente.'
-            },
-            {
-                element: '#fecha',
-                intro: 'Seleccione una fecha o escribala con el siguiente formato DD/MM/AAAA.'
-            },
-            {
-                element: '#duracion',
-                intro: 'Este campo debe rellenarse con la duracion del proyeccto en meses con un minimo de un mes.'
-            },
-            {
-                element: '#denominacion',
-                intro: 'Escriba aqui un nombre que identifique y defina el proyecto.'
-            }, 
-            {
-                element: '#resumen',
-                intro: 'En este campo debe escribirse un resumen del alcance del proyecto.'
-            },
-            {
-                element: '#problematica',
-                intro: 'Debe rellenar este campo con una definicion detallada del problema que tiene el cliente.'
-            },
-            {
-                element: '#solucion',
-                intro: 'Debe rellenar este campo con la solucion optada por GFI para solucionar la problematica del cliente.'
-            },
-            {
-                element: '#fte',
-                intro: 'Numero de horas empleadas en el proyecto con un minimo de 1.'
-            },
-            {
-                element: '#certificado',
-                intro: 'Seleccione si el proyecto tiene un certificado.'
-            },
-            {
-                element: '#comercial',
-                intro: 'Gerente encargado de la parte comercial del proyecto.'
-            },
-            {
-                element: '#tecnico',
-                intro: 'Gerente encargado de la parte tecnica del proyecto.'
-            },
-            {
-                element: '#imagen',
-                intro: 'Debe pulsar aqui para subir una imagen del proyecto.'
-            },
-            {
-                element: '#qrCode',
-                intro: 'En este campo se añadira una url para ponerla en el proyecto como un codigo QR.'
-            },
-            {
-                element: '#tecnologias',
-                intro: 'Debe seleccionar una o varias tecnologias validas de la lista disponible. La lista se mostrara a partir de la segunda letra escrita. <br/> Si la tecnologia que usted desea añadir no esta, puede añadirla, para esto siga las siguientes intrucciones:'
-            },
-            {
-                element: '#tecnologias',
-                intro: 'Escriba la tecnologia que desea dar de alta, luego pulse intro, etso le abrira un menu donde puede rellenar los datos de la tecnologia, si lo hace hasta el final  y pulsa en guardar la tecnologia sera añadida a la referencia, si no, se borrara del campo tecnologia.'
-            },
-            {
-                element: '#borrador',
-                intro: 'Al pulsar en este boton guarda la referencia en estado borrador, lo que implica que no todos los campos tienen que star rellenos y los campos invalidos simplemente no se guardaran.'
-            },
-            {
-                element: '#terminar',
-                intro: 'Si pulsa en terminar, debera tener todos los campos obligatorios (aquellos que tienen asteriscos) rellenos y de forma correcta, si esto no es asi saltara un mensaje que le indicara los errores para que pueda solucionarlos, cuando todo este correcto podra guardar la referencia para que la validen.'
-            }
-            ];
+        {
+            element: '.md-dialog-content',
+            intro: 'Debe seleccionar un cliente valido de la lista disponible. La lista se mostrara a partir de la tercera letra escrita. <br/> Para guardar en borrador no sera necesario la validez de este cliente, pero si escribe algo invalido en este campo,  al guarda como borrador el cliente se guardara vacio como si no hubiera escrito nada.'
+        },
+        {
+            element: '#sociedad',
+            intro: 'Seleccione una sociedad de la lista disponible, si no encuentra la que busca consulte con su gerente.'
+        },
+        {
+            element: '#sectorEmpresarial',
+            intro: 'Seleccione un Sector empresarial de la lista disponible, si no encuentra el que busca consulte con su gerente.'
+        },
+        {
+            element: '#actividad',
+            intro: 'Seleccione una actividad de la lista disponible, si no encuentra la que busca consulte con su gerente.'
+        },
+        {
+            element: '#tipoProyecto',
+            intro: 'Seleccione un tipo de proyecto de la lista disponible, si no encuentra el que busca consulte con su gerente.'
+        },
+        {
+            element: '#fecha',
+            intro: 'Seleccione una fecha o escribala con el siguiente formato DD/MM/AAAA.'
+        },
+        {
+            element: '#duracion',
+            intro: 'Este campo debe rellenarse con la duracion del proyeccto en meses con un minimo de un mes.'
+        },
+        {
+            element: '#denominacion',
+            intro: 'Escriba aqui un nombre que identifique y defina el proyecto.'
+        }, 
+        {
+            element: '#resumen',
+            intro: 'En este campo debe escribirse un resumen del alcance del proyecto.'
+        },
+        {
+            element: '#problematica',
+            intro: 'Debe rellenar este campo con una definicion detallada del problema que tiene el cliente.'
+        },
+        {
+            element: '#solucion',
+            intro: 'Debe rellenar este campo con la solucion optada por GFI para solucionar la problematica del cliente.'
+        },
+        {
+            element: '#fte',
+            intro: 'Numero de horas empleadas en el proyecto con un minimo de 1.'
+        },
+        {
+            element: '#certificado',
+            intro: 'Seleccione si el proyecto tiene un certificado.'
+        },
+        {
+            element: '#comercial',
+            intro: 'Gerente encargado de la parte comercial del proyecto.'
+        },
+        {
+            element: '#tecnico',
+            intro: 'Gerente encargado de la parte tecnica del proyecto.'
+        },
+        {
+            element: '#imagen',
+            intro: 'Debe pulsar aqui para subir una imagen del proyecto.'
+        },
+        {
+            element: '#qrCode',
+            intro: 'En este campo se añadira una url para ponerla en el proyecto como un codigo QR.'
+        },
+        {
+            element: '#tecnologias',
+            intro: 'Debe seleccionar una o varias tecnologias validas de la lista disponible. La lista se mostrara a partir de la segunda letra escrita. <br/> Si la tecnologia que usted desea añadir no esta, puede añadirla, para esto siga las siguientes intrucciones:'
+        },
+        {
+            element: '#tecnologias',
+            intro: 'Escriba la tecnologia que desea dar de alta, luego pulse intro, etso le abrira un menu donde puede rellenar los datos de la tecnologia, si lo hace hasta el final  y pulsa en guardar la tecnologia sera añadida a la referencia, si no, se borrara del campo tecnologia.'
+        },
+        {
+            element: '#borrador',
+            intro: 'Al pulsar en este boton guarda la referencia en estado borrador, lo que implica que no todos los campos tienen que star rellenos y los campos invalidos simplemente no se guardaran.'
+        },
+        {
+            element: '#terminar',
+            intro: 'Si pulsa en terminar, debera tener todos los campos obligatorios (aquellos que tienen asteriscos) rellenos y de forma correcta, si esto no es asi saltara un mensaje que le indicara los errores para que pueda solucionarlos, cuando todo este correcto podra guardar la referencia para que la validen.'
+        }
+        ];
 
     setTimeout(function(){ 
             //Se necesita un tiem out para dar tiempo a que se cargue el lanzar ayuda
@@ -473,6 +490,8 @@ app.controller('controladorNuevaReferencia', function(servicioRest,utils, config
     }
     
     $scope.crearReferencia = function (estado, event) {
+        console.log($scope.referencia.fteTotales);
+        console.log($scope.referencia.duracionMeses);
         if ((estado==="pendiente" && validarCampos()) || estado==="borrador")
         {
             // Crea/Guarda una referencia dependiendo de su estado
@@ -560,5 +579,23 @@ app.controller('controladorNuevaReferencia', function(servicioRest,utils, config
             clickOutsideToClose: true
         })
     };
+    
+   /*-----------------------  Cargar datos en validarReferencia ----------------------- */
+    function cargarDatosValidarReferencia(){
+        // este codigo rellena la referencia con la informacion guardada en $rootScope
+        //$scope.referencia = {};
+        $scope.referencia=$rootScope.referenciaCargada;
+        $scope.fechaInicio = new Date($rootScope.referenciaCargada.fechaInicio);
+        $scope.sociedadSeleccionado = $rootScope.referenciaCargada.sociedad;
+        $scope.sectorEmpresarialSeleccionado = $rootScope.referenciaCargada.sectorEmpresarial;
+        $scope.tipoActividadSeleccionado = $rootScope.referenciaCargada.tipoActividad;
+        $scope.tipoProyectoSeleccionado = $rootScope.referenciaCargada.tipoProyecto;
+        $scope.regPedidoAsociadoReferencia = $rootScope.referenciaCargada.regPedidoAsociadoReferencia;
+        $scope.responsableComercialSeleccionado = $rootScope.referenciaCargada.responsableComercial;
+        $scope.responsableTecnicoSeleccionado = $rootScope.referenciaCargada.responsableTecnico;
+        $scope.valorQr = true;
+        $scope.referencia.codigoQr = $rootScope.referenciaCargada.codigoQr;
+        recargarQR();
+    }
 });
 
