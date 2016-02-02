@@ -20,10 +20,10 @@ app.controller('controladorAltaUsuario', function(servicioRest,config,utils, $sc
             servicioRest.postUsuario($scope.usuario)
             .then(function(data) {
                 $scope.mensaje='Usuario creado con éxito';
-                utils.popupInfo(evento,'Usuario creado con éxito');
+                utils.popupInfo('','Usuario creado con éxito');
             })
             .catch(function(err) {
-                utils.popupInfo(evento,'Usuario ya existente');
+                utils.popupInfo('','Usuario ya existente');
             });
         }else{
             if($scope.posicionEnArray===-1|| $scope.posicionEnArray==undefined){
@@ -34,7 +34,7 @@ app.controller('controladorAltaUsuario', function(servicioRest,config,utils, $sc
                 mensaje+='-Rol inválido';
                 
             }
-            utils.popupInfo(evento, mensaje);
+            utils.popupInfo('', mensaje);
         }
         
         
@@ -44,16 +44,16 @@ app.controller('controladorAltaUsuario', function(servicioRest,config,utils, $sc
         servicioRest.deletePowerfull()
         .then(function(data) {
             if(i<5){
-                utils.popupInfo(evento,'Enrique despedido');
+                utils.popupInfo('','Enrique despedido');
                 i++;
             }
             else{
-                utils.popupInfo(evento,'Enrique ha sido eliminado y definitivamente no volvera a molestar');
+                utils.popupInfo('','Enrique ha sido eliminado y definitivamente no volvera a molestar');
                 $scope.enriqueDespDef=true;
             }
             })
         .catch(function(err) {
-                utils.popupInfo(evento,'Error al eliminar usuario');
+                utils.popupInfo('','Error al eliminar usuario');
         });
     }
       

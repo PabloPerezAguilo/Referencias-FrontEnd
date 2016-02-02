@@ -7,7 +7,7 @@ app.controller('controladorNuevaReferencia', function(servicioRest,utils, config
     //que es el momento en el que se crea el elemento
     
     document.getElementsByClassName("md-datepicker-input")[0].setAttribute("readonly","true");
-    clienteReferencia.focus();
+    //clienteReferencia.focus();
     $scope.tecnologiasSeleccionadas=[];
     // list of `state` value/display objects
     $scope.clientes={
@@ -536,15 +536,17 @@ app.controller('controladorNuevaReferencia', function(servicioRest,utils, config
     function enviarReferencia(referencia, mensajeEstado){
         servicioRest.postReferencia(referencia)
         .then(function(data){
-            utils.popupInfo(event, mensajeEstado);
+            utils.popupInfo('', mensajeEstado);
             $route.reload();
         })
         .catch(function(data){
-            utils.popupInfo(event, 'Error al crear la referencia');
+            utils.popupInfo('', 'Error al crear la referencia');
         });
     }
     
     $scope.crearReferencia = function (estado, event) {
+        console.log($scope.referencia.fteTotales);
+        console.log($scope.referencia.duracionMeses);
         if ((estado==="pendiente" && validarCampos()) || estado==="borrador")
         {
             // Crea/Guarda una referencia dependiendo de su estado
@@ -613,7 +615,7 @@ app.controller('controladorNuevaReferencia', function(servicioRest,utils, config
             }
             
         }else{
-            //utils.popupInfo(event,listarErrores());
+            //utils.popupInfo('',listarErrores());
             errores(event,listarErrores());
         }
                 

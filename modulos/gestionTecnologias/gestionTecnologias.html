@@ -82,6 +82,7 @@
                                  md-items="item in filtrar(clientes.texto, 'cliente') | limitTo : 8"
                                  md-item-text="item.display"
                                  md-min-length="3"
+                                 ng-focus="hayError=false"
                                  placeholder="Asociar a sus referencias a...">
                     <md-item-template>
                         <span md-highlight-text="clientes.texto" md-highlight-flags="^i">{{item.display}}</span>

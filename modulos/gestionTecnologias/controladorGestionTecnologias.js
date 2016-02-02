@@ -3,26 +3,9 @@ app.controller ('controladorGestionTecnologias', function (servicioRest, utils, 
     var operacion;
     $scope.nodoSeleccionado={};
     $scope.nodoSeleccionado.clase="raiz";
-    $scope.activarScroll=function(){     
-        $scope.scroll=true;  
-        $scope.nodoSeleccionado.clase="raiz";
-    };
-    
-    $scope.ayuda = function(){
-        $scope.scroll=false
-        $scope.titulo="Ejemplo de edición";
-        $scope.nodoSeleccionado.clase="hoja";
-        $scope.nodoSeleccionado.nombre="Nombre Tecnologia";
-        $scope.nodoSeleccionado.tipo="OpenSource";
-        $scope.nodoSeleccionado.producto=true;
-        $scope.lanzarAyuda();
-        
-    };
-    
-    setTimeout(function(){ 
-            //Se necesita un tiem out para dar tiempo a que se cargue el lanzar ayuda
-            $rootScope.lanzarAyuda=$scope.ayuda;
-        }, 1000)
+    $scope.clientes={};
+    //$scope.clientes.elemSeleccionado={};
+    //console.log($scope.clientes.elemSeleccionado.value);
     
     function toast(texto) {
 		$mdToast.show(
@@ -150,7 +133,7 @@ app.controller ('controladorGestionTecnologias', function (servicioRest, utils, 
     };
     
     $scope.aniadirElem=function(ev, scope, tipoElem){
-        
+        $scope.hayError=false;
         var tipo;
         switch(tipoElem){
                 
@@ -176,6 +159,7 @@ app.controller ('controladorGestionTecnologias', function (servicioRest, utils, 
     
     $scope.seleccionarElemento=function(elem, nodo){
         
+        $scope.hayError=false;
         var tipo;
         switch(nodo.clase){
                 
@@ -197,6 +181,8 @@ app.controller ('controladorGestionTecnologias', function (servicioRest, utils, 
             
             };
         } else {
+            //Se elimina el texto del autocumplete de rechazar tecnologia
+            $scope.clientes.texto="";
             $scope.nodoSeleccionado={
             nombre: nodeData.nombre,
             nodosHijos: nodeData.nodosHijos,
@@ -210,12 +196,12 @@ app.controller ('controladorGestionTecnologias', function (servicioRest, utils, 
                 .then(function(data) {
             //if(data!=[]){
                     
-            $scope.hayRefAsociadas=false;
+            $scope.hayRefAsociadas=data;
             console.log("data",data);
             //}
                 }).catch(function(err) {
             console.log("err",err);
-            $scope.hayRefAsociadas=true;
+            //$scope.hayRefAsociadas=true;
                     
                 });
         
@@ -372,7 +358,8 @@ app.controller ('controladorGestionTecnologias', function (servicioRest, utils, 
 
     $scope.rechazarElem=function(hayRefAsociadas){
         if(hayRefAsociadas){
-            if(true){//$scope.clientes.elemSeleccionado.value!=undefined){
+            
+            if($scope.clientes.elemSeleccionado!=undefined){
                 servicioRest.rechazarTecnologia(nodeData.nombre, $scope.clientes.elemSeleccionado.value).then(
                 function (response) {
                     $scope.clientes.elemSeleccionado.value=undefined;
@@ -417,13 +404,19 @@ app.controller ('controladorGestionTecnologias', function (servicioRest, utils, 
     
     /*             AYUDA                 */
     
-     $scope.activarScroll=function(){     
-        $scope.scroll=true;     
+    $scope.activarScroll=function(){     
+        $scope.scroll=true;  
+        $scope.nodoSeleccionado.clase="raiz";
     };
     
     $scope.ayuda = function(){
-      $scope.scroll=false
-      $scope.lanzarAyuda();
+        $scope.scroll=false
+        $scope.titulo="Ejemplo de edición";
+        $scope.nodoSeleccionado.clase="hoja";
+        $scope.nodoSeleccionado.nombre="Nombre Tecnologia";
+        $scope.nodoSeleccionado.tipo="OpenSource";
+        $scope.nodoSeleccionado.producto=true;
+        $scope.lanzarAyuda();
         
     };
     

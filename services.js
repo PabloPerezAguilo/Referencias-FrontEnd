@@ -26,7 +26,7 @@ function ServicioREST( utils, config, $http,$q, $rootScope) {
           //  defered.reject("Ldap no disponible");
         }else if (data == null){
             //$rootScope.error="";
-            utils.popupInfo(null,"Error. Servidor no disponible")
+            utils.popupInfo('',"Error. Servidor no disponible")
         } else if (data === undefined || data.message === undefined) {
 			defered.reject("Error: " + status);
 		} else {
@@ -258,7 +258,7 @@ function ServicioREST( utils, config, $http,$q, $rootScope) {
         
 		$http({
 			method: 'GET',
-			url: url + '/referencia/tecnologias/' + tecnologia
+			url: url + '/referencia/asociadas/' + tecnologia
 		})
 		.success(function(data, status, headers, config) {
 			defered.resolve(data);
