@@ -8,6 +8,7 @@
         <th>SOLUCIÓN GFI</th>
       </tr>
       <tr ng-repeat="referencia in referencias | filter: paginate" ng-click="abrirReferenciaPendiente($index, referencias)" id="selPendientes">
+          <td class="listarReferencia">{{referencia.estado}} </td>
         <td class="listarReferencia">{{referencia.cliente}} </td>
         <td class="listarReferencia" ng-if="referencia.denominacion.length<=30">{{referencia.denominacion}}</td>		
         <td class="listarReferencia" ng-if="referencia.denominacion.length>30">{{referencia.denominacion.substring(0,30) + "..."}}</td>	

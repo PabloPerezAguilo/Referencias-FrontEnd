@@ -166,7 +166,7 @@ app.controller('controladorValidarReferencia', function(servicioRest,utils, conf
             .then(function(data) {
                 utils.popupInfo('', "Referencia validada con éxito.");
                  //Redireccionamos al usuario a la ventana de listar Referencias Pendientes de Validar
-                $location.path('/listarReferencia');
+                $location.path('/listarReferenciasValidar');
                 console.log("Referencia validada");
                 /*Vaciamos referenciaCargada*/
                 $rootScope.referenciaCargada = null;
@@ -200,7 +200,7 @@ app.controller('controladorValidarReferencia', function(servicioRest,utils, conf
                 .then(function(data) {
                     utils.popupInfo('', "Referencia rechazada, se avisará al responsable.");
                     //Redireccionamos al usuario a la ventana de listar Referencias Pendientes de Validar
-                    $location.path('/listarReferencia');
+                    $location.path('/listarReferenciasValidar');
                     console.log("Referencia rechazada");
                     /*Vaciamos referenciaCargada*/
                     $rootScope.referenciaCargada = null;

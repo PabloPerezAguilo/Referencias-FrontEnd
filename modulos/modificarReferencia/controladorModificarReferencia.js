@@ -285,7 +285,6 @@ app.controller('controladorModificarReferencia', function(servicioRest,utils, co
     
     // TODO: BORRAR SI SE DEMUESTRA QUE ES INUTIL
     function cargarDatosTecnologias(listaTecnologias) {
-        console.log(listaTecnologias);
         $scope.tecnologias.lista= listaTecnologias.map( function (tec) {
             return {
                 value: tec.nombre,
@@ -302,7 +301,6 @@ app.controller('controladorModificarReferencia', function(servicioRest,utils, co
                 encontrado=true;
             }
         }
-        console.log(encontrado);
         return encontrado;
     }
 
@@ -314,7 +312,6 @@ app.controller('controladorModificarReferencia', function(servicioRest,utils, co
             anadirTecPopUp(event, chip);
         }
 
-        console.log($scope.tecnologias.lista);
       return { value: chip, display: chip };
         //return null;
     }
@@ -479,19 +476,18 @@ app.controller('controladorModificarReferencia', function(servicioRest,utils, co
 
     //por reutilización se llamará a esta función cuando se quiera mandar la refrencia a crear al back
     function enviarReferencia(referencia, mensajeEstado){
-        servicioRest.postReferencia(referencia)
+        servicioRest.updateReferencia(referencia)
         .then(function(data){
             utils.popupInfo('', mensajeEstado);
-            $route.reload();
+            $location.path('/buscarReferencias');
         })
         .catch(function(data){
-            utils.popupInfo('', 'Error al crear la referencia');
+            utils.popupInfo('', 'Error al modificar la referencia');
         });
     }
     
     $scope.crearReferencia = function (estado, event) {
-        console.log($scope.referencia.fteTotales);
-        console.log($scope.referencia.duracionMeses);
+        console.log($scope.referencia.creadorReferencia);
         if ((estado==="pendiente" && validarCampos()) || estado==="borrador")
         {
             // Crea/Guarda una referencia dependiendo de su estado
@@ -511,7 +507,7 @@ app.controller('controladorModificarReferencia', function(servicioRest,utils, co
                 
             }
                 
-            $scope.referencia.creadorReferencia = $rootScope.usuarioLS.name;
+            $scope.referencia.creadorReferencia = $rootScope.usuarioLS.nick;
             
             if(undefined!=$scope.referencia.regPedidoAsociadoReferencia){
                 //TODO
@@ -580,6 +576,35 @@ app.controller('controladorModificarReferencia', function(servicioRest,utils, co
         })
     };
     
+     $scope.borrarReferencia = function(){
+         console.log("aqui",$rootScope.referenciaCargada.responsableComercial);
+         console.log("aqui",$rootScope.referenciaCargada.responsableTecnico);
+         console.log($scope.referencia.creadorReferencia);
+         //var aux= $rootScope.referenciaCargada.responsableTecnico.splitText();
+         $mdDialog.show(
+            $mdDialog.confirm()
+            .clickOutsideToClose(true)
+            .title('Eliminar referencia')
+            .content('¿Estas seguro de querer eliminar la referencia?')
+            .ariaLabel('Lucky day')
+            .ok('Eliminar')
+            .cancel('Cancelar')
+        ).then(function() {
+            servicioRest.deleteReferencia($scope.referencia._id)
+             .then(function(data){
+                utils.popupInfo('', "Referencia borrada");
+                $location.path('/buscarReferencias');
+            })
+            .catch(function(data){
+                utils.popupInfo('', 'Error al modificar la referencia');
+            });
+        });
+         
+         
+    }
+    
+    $scope.pop=utils.popupInfo;
+    
    /*-----------------------  Cargar datos en validarReferencia ----------------------- */
     function cargarDatosValidarReferencia(){
         // este codigo rellena la referencia con la informacion guardada en $rootScope
@@ -596,6 +621,13 @@ app.controller('controladorModificarReferencia', function(servicioRest,utils, co
         $scope.valorQr = true;
         $scope.referencia.codigoQr = $rootScope.referenciaCargada.codigoQr;
         recargarQR();
+        
+        if($rootScope.usuarioLS.nick===$rootScope.referenciaCargada.responsableComercial || $rootScope.usuarioLS.nick===$rootScope.referenciaCargada.responsableTecnico || $rootScope.usuarioLS.nick===$scope.referencia.creadorReferencia){
+        $scope.puedeBorrar=true;
+        }
+        else{
+            $scope.puedeBorrar=false;
+        }
     }
 });
 

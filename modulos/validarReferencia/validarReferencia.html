@@ -252,9 +252,9 @@
                                tabindex="15"
                                ng-blur="actualizaErrores('rbleComercial', useForm.rbleComercial.$error)"> 
 
-                        <md-option ng-value="responsableComercial.nombre"
+                        <md-option ng-value="responsableComercial.login"
                                    data-ng-repeat="responsableComercial in catalogo.comercial"
-                                   ng-selected="responsableComercial.nombre ==  responsableComercialSeleccionado ? true:false">
+                                   ng-selected="responsableComercial.login ==  responsableComercialSeleccionado ? true:false">
                             {{ responsableComercial.nombre }} ({{ responsableComercial.login }})
                         </md-option>
                     </md-select>
@@ -272,7 +272,7 @@
                                required
                                tabindex="16"
                                ng-blur="actualizaErrores('rbleTecnico', useForm.rbleTecnico.$error)">
-                        <md-option ng-value="responsableTecnico.nombre" data-ng-repeat="responsableTecnico in catalogo.tecnico" ng-selected="responsableTecnico.nombre ==  responsableTecnicoSeleccionado ? true:false">
+                        <md-option ng-value="responsableTecnico.login" data-ng-repeat="responsableTecnico in catalogo.tecnico" ng-selected="responsableTecnico.login ==  responsableTecnicoSeleccionado ? true:false">
                             {{ responsableTecnico.nombre }} ({{ responsableTecnico.login }})
                         </md-option>
                     </md-select>
