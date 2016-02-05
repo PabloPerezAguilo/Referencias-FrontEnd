@@ -493,7 +493,7 @@ app.controller('controladorNuevaReferencia', function(servicioRest,utils, config
         {
             // Crea/Guarda una referencia dependiendo de su estado
             if(undefined!=$scope.posicionEnArray){
-                $scope.referencia.cliente = $scope.catalogo.clientes[$scope.posicionEnArray].nombre;
+                $scope.referencia.cliente = $scope.clientes.lista[$scope.posicionEnArray].display;
             }
                       
             

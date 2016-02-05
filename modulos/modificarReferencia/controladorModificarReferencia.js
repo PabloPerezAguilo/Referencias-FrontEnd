@@ -6,6 +6,10 @@ app.controller('controladorModificarReferencia', function(servicioRest,utils, co
     //y no puedes establecer este atributo a mano en el html, debes añadirlo dinamicamente en ejecucion,
     //que es el momento en el que se crea el elemento
     
+    if($rootScope.referenciaCargada===undefined){
+        $location.path('/buscarReferencias');
+    }
+    
     document.getElementsByClassName("md-datepicker-input")[0].setAttribute("readonly","true");
     //clienteReferencia.focus();
     $scope.tecnologiasSeleccionadas=[];
@@ -44,32 +48,7 @@ app.controller('controladorModificarReferencia', function(servicioRest,utils, co
     //Se guardan en un objeto porque JS no acepta arrays asociativos
     erroresTotales={};
     //Le metemos los valores usando como clave el atributo 'name' del elemente html que lo recoge
-    erroresTotales['cliente']="Cliente inválido";
-    erroresTotales['sociedad']="Se debe seleccionar una sociedad";
-    erroresTotales['SectorEmp']="Se debe seleccionar un sector empresarial";
-    erroresTotales['tActividad']="Se debe seleccionar un tipo de actividad";
-    erroresTotales['tProyecto']="Se debe seleccionar un tipo de proyecto";
-
-    erroresTotales['fecha']="Se debe seleccionar una fecha de inicio";
-
-    erroresTotales['duracion']="Se debe seleccionar una duración en meses mínima de 1 mes";
-    erroresTotales['denominacion']="El campo denominación no puede estar vacío ni superar el límite de caracteres";
-
-    erroresTotales['Rproyecto']="El campo resumen del proyecto no puede estar vacío ni superar el límite de caracteres";
-    erroresTotales['ProblemaCliente']="El campo problemática del cliente no puede estar vacío ni superar el límite de caracteres";
-
-    erroresTotales['solGFI']="El campo Solución GFI no puede estar vacío ni superar el límite de caracteres";
     
-    erroresTotales['fteTotal']="Se debe seleccionar una cantidad de FTE totales mínima de 1 FTE";
-
-    //$scope.errores['registroPedido']="El campo de registros asociados no puede estar vacío";
-
-    erroresTotales['rbleComercial']="Se debe seleccionar un responsable comercial";
-
-    erroresTotales['rbleTecnico']="Se debe seleccionar un responsable técnico";
-
-    erroresTotales['userfile']="Se debe subir una imágen";
-    erroresTotales['tecnologia']="Tecnología inválida";
     
     function inicializarChipsTecnologia(){
         return $rootScope.referenciaCargada.tecnologias.map( function (tec) {
@@ -80,15 +59,12 @@ app.controller('controladorModificarReferencia', function(servicioRest,utils, co
         });
    }
     
-    if($rootScope.referenciaCargada != null && $rootScope.opcion === 'validar'){
+
         $scope.clienteCargado = $rootScope.referenciaCargada.cliente;
         $scope.tecnologiasSeleccionadas = inicializarChipsTecnologia(); //angular.copy($rootScope.referenciaCargada.tecnologias);
-        $scope.fechaInicio = new Date($rootScope.referenciaCargada.fechaInicio);
+        $scope.referencia.fechaInicio = new Date($rootScope.referenciaCargada.fechaInicio);
         $scope.UserPhoto = $rootScope.referenciaCargada.imagenProyecto;
-    }else{
-         /*Vaciamos referenciaCargada*/
-        $rootScope.referenciaCargada = null;
-     }
+
     
     
     //---------AYUDA DE LA PAGINA--------
@@ -263,7 +239,7 @@ app.controller('controladorModificarReferencia', function(servicioRest,utils, co
         if(campo==='cliente'){
             //si es el autocomplete del cliente, buscamos el índife en la lista de clientes.
             //lo asignamos a la posición del catálogo de clientes correspondiente al mismo
-            $scope.posicionEnArray=$scope.clientes.lista.indexOf(item);     
+            $scope.posicionEnArray=$scope.clientes.lista.indexOf(item); 
         }else if(campo==='tecnologia'){
             //si es el autocomplete del tecnologñia, buscamos el índice en la lista de tecnologías.
             //lo asignamos a la posición del catálogo de clientes correspondiente al mismo
@@ -405,6 +381,23 @@ app.controller('controladorModificarReferencia', function(servicioRest,utils, co
     //Por defecto, todos los campos están mal. Así que asignamos todos los errores al array
     var erroresCometidos=Object.keys(erroresTotales);
     
+    // INICIALIZAMOS LOS ERRORES VIENDO QUE CAMPOS ESTAN COMPLETOS Y CUALES NO POR SI SE TRATARA DE UN BORRADOR
+    console.log(useForm);
+    //$scope.actualizaErrores('sociedad', useForm.sociedad.$error);
+    //$scope.actualizaErrores('SectorEmp', useForm.SectorEmp.$error);
+    //$scope.actualizaErrores('tActividad', useForm.tActividad.$error);
+    //$scope.actualizaErrores('tProyecto', useForm.tProyecto.$error);
+    //$scope.actualizaErrores('duracion', useForm.duracion.$error);
+    //$scope.actualizaErrores('denominacion', useForm.denominacion.$error);
+    //$scope.actualizaErrores('Rproyecto', useForm.Rproyecto.$error);
+    //$scope.actualizaErrores('ProblemaCliente', useForm.ProblemaCliente.$error);
+    //$scope.actualizaErrores('solGFI', useForm.solGFI.$error);
+    //$scope.actualizaErrores('fteTotal', useForm.fteTotal.$error);
+    //$scope.actualizaErrores('certificado', useForm.certificado.$error);
+    //$scope.actualizaErrores('rbleComercial', useForm.rbleComercial.$error);
+    //$scope.actualizaErrores('rbleTecnico', useForm.rbleTecnico.$error);
+    //$scope.actualizaErrores('userfile', useForm.userfile.$error);
+    
     //actualizamos la lista de errores
     $scope.actualizaErrores=function(elem, error){
         var indice = erroresCometidos.indexOf(elem);
@@ -486,13 +479,13 @@ app.controller('controladorModificarReferencia', function(servicioRest,utils, co
         });
     }
     
-    $scope.crearReferencia = function (estado, event) {
-        console.log($scope.referencia.creadorReferencia);
-        if ((estado==="pendiente" && validarCampos()) || estado==="borrador")
+    $scope.crearReferencia = function (estado, erroresP, event) {
+        console.log("aqui",erroresP);
+        if ((estado==="pendiente" && erroresP.$valid) || estado==="borrador")
         {
             // Crea/Guarda una referencia dependiendo de su estado
             if(undefined!=$scope.posicionEnArray){
-                $scope.referencia.cliente = $scope.catalogo.clientes[$scope.posicionEnArray].nombre;
+                $scope.referencia.cliente = $scope.clientes.lista[$scope.posicionEnArray].display;
             }
                       
             
@@ -557,7 +550,7 @@ app.controller('controladorModificarReferencia', function(servicioRest,utils, co
             
         }else{
             //utils.popupInfo('',listarErrores());
-            errores(event,listarErrores());
+            errores(event,erroresP);
         }
                 
 
@@ -577,9 +570,6 @@ app.controller('controladorModificarReferencia', function(servicioRest,utils, co
     };
     
      $scope.borrarReferencia = function(){
-         console.log("aqui",$rootScope.referenciaCargada.responsableComercial);
-         console.log("aqui",$rootScope.referenciaCargada.responsableTecnico);
-         console.log($scope.referencia.creadorReferencia);
          //var aux= $rootScope.referenciaCargada.responsableTecnico.splitText();
          $mdDialog.show(
             $mdDialog.confirm()
@@ -610,7 +600,9 @@ app.controller('controladorModificarReferencia', function(servicioRest,utils, co
         // este codigo rellena la referencia con la informacion guardada en $rootScope
         //$scope.referencia = {};
         $scope.referencia=$rootScope.referenciaCargada;
+        console.log("antes",$rootScope.referenciaCargada.fechaInicio);
         $scope.fechaInicio = new Date($rootScope.referenciaCargada.fechaInicio);
+        console.log("despues",$scope.fechaInicio);
         $scope.sociedadSeleccionado = $rootScope.referenciaCargada.sociedad;
         $scope.sectorEmpresarialSeleccionado = $rootScope.referenciaCargada.sectorEmpresarial;
         $scope.tipoActividadSeleccionado = $rootScope.referenciaCargada.tipoActividad;
