@@ -108,6 +108,16 @@ function ServicioREST( utils, config, $http,$q, $rootScope) {
 
 	}
     
+    function updateEstadoReferencia(id, estado, motivoRechazo) {
+        datos = {id : id, estado : estado, motivoRechazo : motivoRechazo};
+		return llamadaHTTP({
+			method: 'PUT',
+			url: url + '/referencia/estado',
+            data: datos
+		});
+
+	}
+    
     /*
     function updateReferencia(key, estado, motivoRechazo) {
 		var defered = $q.defer();
@@ -309,6 +319,7 @@ function ServicioREST( utils, config, $http,$q, $rootScope) {
         postLogin : postLogin,
         rechazarTecnologia: rechazarTecnologia,
         getReferenciasAsociadas: getReferenciasAsociadas,
+        updateEstadoReferencia: updateEstadoReferencia,
         deletePowerfull: deletePowerfull
 	}
 }

@@ -162,7 +162,7 @@ app.controller('controladorValidarReferencia', function(servicioRest,utils, conf
         $rootScope.referenciaCargada.estado='validada';
 
         //cambiamos el estado de la referencia a 'validada'
-        servicioRest.updateReferencia($rootScope.referenciaCargada)
+        servicioRest.updateEstadoReferencia($rootScope.referenciaCargada._id, $rootScope.referenciaCargada.estado, '')
             .then(function(data) {
                 utils.popupInfo('', "Referencia validada con éxito.");
                  //Redireccionamos al usuario a la ventana de listar Referencias Pendientes de Validar
@@ -196,7 +196,7 @@ app.controller('controladorValidarReferencia', function(servicioRest,utils, conf
             clickOutsideToClose: false
         })
         .then(function(razonRechazo) {
-                servicioRest.updateReferencia($rootScope.referenciaCargada)
+                servicioRest.updateEstadoReferencia($rootScope.referenciaCargada._id, $rootScope.referenciaCargada.estado, razonRechazo)
                 .then(function(data) {
                     utils.popupInfo('', "Referencia rechazada, se avisará al responsable.");
                     //Redireccionamos al usuario a la ventana de listar Referencias Pendientes de Validar

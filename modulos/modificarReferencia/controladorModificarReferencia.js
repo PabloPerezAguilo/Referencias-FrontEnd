@@ -500,7 +500,7 @@ app.controller('controladorModificarReferencia', function(servicioRest,utils, co
                 
             }
                 
-            $scope.referencia.creadorReferencia = $rootScope.usuarioLS.nick;
+            $scope.referencia.autor = $rootScope.usuarioLS.nick;
             
             if(undefined!=$scope.referencia.regPedidoAsociadoReferencia){
                 //TODO
