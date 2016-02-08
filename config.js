@@ -13,7 +13,7 @@ app.constant('config', {
 });
 //Configuracion necesaria para la fecha del DatePicker
 app.config(function($mdDateLocaleProvider) {
-        $mdDateLocaleProvider.firstDayOfWeek = 1;
+    $mdDateLocaleProvider.firstDayOfWeek = 1;
     $mdDateLocaleProvider.shortDays = ['D', 'L', 'M', 'X', 'J', 'V', 'S'];
     $mdDateLocaleProvider.shortMonths = ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'];
       $mdDateLocaleProvider.formatDate = function(date) {

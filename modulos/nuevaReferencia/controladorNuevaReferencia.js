@@ -7,7 +7,11 @@ app.controller('controladorNuevaReferencia', function(servicioRest,utils, config
     //que es el momento en el que se crea el elemento
     
     document.getElementsByClassName("md-datepicker-input")[0].setAttribute("readonly","true");
-    //clienteReferencia.focus();
+    //focus al autocomplet necesita tratamiento especial
+    setTimeout(function(){
+        document.getElementById("clienteReferencia").childNodes[1].childNodes[2].focus();
+    },1);
+    
     $scope.tecnologiasSeleccionadas=[];
     // list of `state` value/display objects
     $scope.clientes={

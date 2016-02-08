@@ -184,7 +184,7 @@ footer #lineaFooter {
 .iconosMenu {
   width: 10px;
   height: 25px;
-  margin-top: 2%;
+  margin-top: 10px;
   margin-left: 15%;
   cursor: pointer; }
 
@@ -782,6 +782,10 @@ md-toolbar:not(.md-menu-toolbar) {
 
 #productoTecnologia {
   margin-top: 5%; }
+
+@-moz-document url-prefix() {
+  .mozillaAutocompleteTecnologias {
+    display: inline-flex !important; } }
 
 #autocompleteTecnologias {
   width: 40%;
