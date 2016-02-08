@@ -5,14 +5,16 @@
       <tr>
         <th>CLIENTE</th>
         <th>DENOMINACIÓN</th>		
-        <th>SOLUCIÓN GFI</th>
+        <th>ESTADO</th>
       </tr>
       <tr ng-repeat="referencia in referencias | filter: paginate" ng-click="abrirReferenciaPendiente($index, referencias)" id="selPendientes">
-        <td class="listarReferencia">{{referencia.cliente}} </td>
+          
+        <td class="listarReferencia" ng-if="referencia.cliente.length!=null">{{referencia.cliente}} </td>
+        <td class="listarReferencia" ng-if="referencia.cliente.length==null">-</td>
         <td class="listarReferencia" ng-if="referencia.denominacion.length<=30">{{referencia.denominacion}}</td>		
         <td class="listarReferencia" ng-if="referencia.denominacion.length>30">{{referencia.denominacion.substring(0,30) + "..."}}</td>	
-        <td class="listarReferencia" ng-if="referencia.solucionGfi.length<=30">{{referencia.solucionGfi}}</td>
-        <td class="listarReferencia" ng-if="referencia.solucionGfi.length>30">{{referencia.solucionGfi.substring(0,30) + "..."}}</td>
+        <td class="listarReferencia" ng-if="referencia.denominacion.length==null">-</td>
+        <td class="listarReferencia">{{referencia.estado}}</td>
       </tr>
     </table>
     <div class="contenedorPaginacion">

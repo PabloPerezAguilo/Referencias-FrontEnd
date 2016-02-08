@@ -272,7 +272,6 @@ app.controller('controladorNuevaReferencia', function(servicioRest,utils, config
     
     // TODO: BORRAR SI SE DEMUESTRA QUE ES INUTIL
     function cargarDatosTecnologias(listaTecnologias) {
-        console.log(listaTecnologias);
         $scope.tecnologias.lista= listaTecnologias.map( function (tec) {
             return {
                 value: tec.nombre,
@@ -289,7 +288,6 @@ app.controller('controladorNuevaReferencia', function(servicioRest,utils, config
                 encontrado=true;
             }
         }
-        console.log(encontrado);
         return encontrado;
     }
 
@@ -300,8 +298,6 @@ app.controller('controladorNuevaReferencia', function(servicioRest,utils, config
         else if(!existeChip(chip)){
             anadirTecPopUp(event, chip);
         }
-
-        console.log($scope.tecnologias.lista);
       return { value: chip, display: chip };
         //return null;
     }
@@ -501,7 +497,7 @@ app.controller('controladorNuevaReferencia', function(servicioRest,utils, config
         {
             // Crea/Guarda una referencia dependiendo de su estado
             if(undefined!=$scope.posicionEnArray){
-                $scope.referencia.cliente = $scope.catalogo.clientes[$scope.posicionEnArray].nombre;
+                $scope.referencia.cliente = $scope.clientes.lista[$scope.posicionEnArray].display;
             }
                       
             
@@ -516,7 +512,7 @@ app.controller('controladorNuevaReferencia', function(servicioRest,utils, config
                 
             }
                 
-            $scope.referencia.creadorReferencia = $rootScope.usuarioLS.name;
+            $scope.referencia.creadorReferencia = $rootScope.usuarioLS.nick;
             
             if(undefined!=$scope.referencia.regPedidoAsociadoReferencia){
                 //TODO
