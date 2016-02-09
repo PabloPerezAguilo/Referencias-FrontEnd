@@ -18,7 +18,7 @@
                                          md-item-text="item.display"
                                          md-min-length="3"
                                          placeholder="Busque por cliente o siglas."
-                                         ng-required
+                                         required="true"
                                          ng-init="clientes.texto=clienteCargado">
                             <md-item-template>
                                 <span md-highlight-text="clientes.texto" md-highlight-flags="^i">{{item.display}}</span>
@@ -109,7 +109,7 @@
             <!--    Fecha inicio-->
             <div id="fecha" class="inBlock" >
             <!--Fecha inicio, Usa la libreria Moment.js-->
-                <md-datepicker id="fecha" ng-model="referencia.fechaInicio" md-placeholder="Fecha de Inicio *" readonly="true"></md-datepicker>
+                <md-datepicker id="fecha" name="fecha" ng-required="true" ng-model="referencia.fechaInicio" md-placeholder="Fecha de Inicio *" readonly="true"></md-datepicker>
             </div>
             <!--    Duración-->    
             <div id="Duracion" class="inBlock" >
@@ -232,7 +232,7 @@
                     <md-select id="respNormal"
                                name="rbleComercial"
                                ng-model="referencia.responsableComercial"
-                               required
+                               ng-required="true"
                                tabindex="15"
                                ng-blur="actualizaErrores('rbleComercial', useForm.rbleComercial.$error)"> 
 
@@ -252,7 +252,7 @@
                     <md-select id="respTecnico" 
                                name="rbleTecnico"
                                ng-model="referencia.responsableTecnico"
-                               required
+                               ng-required="true"
                                tabindex="16"
                                ng-blur="actualizaErrores('rbleTecnico', useForm.rbleTecnico.$error)">
                         <md-option ng-value="responsableTecnico.login" data-ng-repeat="responsableTecnico in catalogo.tecnico" ng-selected="responsableTecnico.login ==  responsableTecnicoSeleccionado ? true:false">
@@ -274,7 +274,7 @@
                            ng-model="referencia.imagenProyecto"
                            id="botonFileReal"
                            onchange="angular.element(this).scope().uploadFile(this)"
-                           ng-required>
+                           ng-required="true">
                     <input id="imagen"
                            type="button"
                            class="botones"
@@ -307,10 +307,9 @@
             <div class="contenedor-tecnologia">
                 <md-dialog-content class="selecTec" id="tecnologia">
                     <div class="md-dialog-content"  id="tecnologias">
-                        <md-chips ng-model="tecnologiasSeleccionadas" md-autocomplete-snap="" md-transform-chip="transformChip($chip)" md-require-match="false">
+                        <md-chips ng-model="tecnologiasSeleccionadas" md-autocomplete-snap="" md-transform-chip="transformChip($chip)" md-require-match="false" name="tecnologia" ng-required="true">
                             
-                            <md-autocomplete name='tecnologia'
-                                             tabindex='19'
+                            <md-autocomplete tabindex='19'
                                              md-selected-item="tecnologias.elemSeleccionado"
                                              md-search-text="tecnologias.texto"
                                              md-selected-item-change="selectedItemChange(item, 'tecnologia')"
@@ -318,7 +317,6 @@
                                              md-item-text="item.display"
                                              md-min-length="2"
                                              placeholder="Busque Tecnologías"
-                                             ng-required
                                              ng-init="tecnologias.texto=tecnologiaCargada">
                                 <md-item-template>
                                     <span md-highlight-text="tecnologias.texto" md-highlight-flags="^i">{{item.display}}</span>
@@ -341,7 +339,7 @@
                 <md-button id="borrador"
                            class="botonesApp"
                            type="button" 
-                           ng-click="crearReferencia('pendiente', useForm, $event)"
+                           ng-click="crearReferencia(useForm, $event)"
                            tabindex="20">
                     Modificar
                 </md-button>

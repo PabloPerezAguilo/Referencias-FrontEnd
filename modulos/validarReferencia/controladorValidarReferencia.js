@@ -6,6 +6,10 @@ app.controller('controladorValidarReferencia', function(servicioRest,utils, conf
     //y no puedes establecer este atributo a mano en el html, debes añadirlo dinamicamente en ejecucion,
     //que es el momento en el que se crea el elemento
     
+    if($rootScope.referenciaCargada===undefined){
+        $location.path('/listarReferenciasValidar');
+    }
+    
     document.getElementsByClassName("md-datepicker-input")[0].setAttribute("readonly","true");
     //clienteReferencia.focus();
     $scope.tecnologiasSeleccionadas=[];

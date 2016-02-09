@@ -31,6 +31,8 @@ app.controller('controladorLogin', function(servicioRest, config, $scope, $http,
         $rootScope.error = "";
         servicioRest.postLogin($scope.user)
 			.then(function(data) {
+                localStorage.setItem("campos", data.campos);
+            console.log("aqui",localStorage.getItem("campos"));
                 $rootScope.usuarioP = $scope.user;
                 //Guardamos el usuario completo incluido el rol que nos devuelve
                 $rootScope.usuarioLS={

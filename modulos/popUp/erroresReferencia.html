@@ -5,6 +5,13 @@
           </div>
         </md-toolbar>
         <md-dialog-content>
+            <!--ul id="listaError">
+                <li ng-repeat="error in errores">
+                    <p>
+                        {{ error }}
+                    </p>
+                </li>
+            </ul-->
             <div ng-messages="errores.cliente.$error" style="color:maroon" role="alert">
                 <div ng-message="required">Cliente inválido</div>
             </div>
@@ -31,15 +38,15 @@
             </div>
             <div ng-messages="errores.Rproyecto.$error" style="color:maroon" role="alert">
                 <div ng-message="required">El campo resumen del proyecto no puede estar vacío ni superar el límite de caracteres</div>
+            <div ng-messages="errores.ProblemaCliente.$error" style="color:maroon" role="alert">
+                <div ng-message="required">El campo problematica del cliente no puede estar vacío ni superar el límite de caracteres</div>
+            </div>
             </div>
             <div ng-messages="errores.solGFI.$error" style="color:maroon" role="alert">
                 <div ng-message="required">El campo Solución GFI no puede estar vacío ni superar el límite de caracteres</div>
             </div>
             <div ng-messages="errores.fteTotal.$error" style="color:maroon" role="alert">
                 <div ng-message="required">Se debe seleccionar una cantidad de FTE totales mínima de 1 FTE</div>
-            </div>
-            <div ng-messages="errores.registroPedido.$error" style="color:maroon" role="alert">
-                <div ng-message="required">El campo de registros asociados no puede estar vacío</div>
             </div>
             <div ng-messages="errores.rbleComercial.$error" style="color:maroon" role="alert">
                 <div ng-message="required">Se debe seleccionar un responsable comercial</div>

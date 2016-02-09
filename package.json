@@ -5,6 +5,9 @@
   "main": "gulpfile.js",
   "devDependencies": {
     "gulp": "^3.9.0",
-    "gulp-connect": "^2.2.0"
+    "gulp-connect": "^2.2.0",
+    "gulp-livereload": "^3.8.1",
+	"express": "^4.13.4",
+	"connect-livereload": "^0.5.4"
   }
 }

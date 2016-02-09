@@ -380,6 +380,9 @@ label {
   width: 18px; }
 
 /*------------------------------ ESTILOS NUEVA REFERENCIA ---------------------------------*/
+md-option .md-text {
+  overflow: initial; }
+
 .md-calendar-day-header th, td {
   vertical-align: middle; }
 

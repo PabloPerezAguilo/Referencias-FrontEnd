@@ -382,7 +382,6 @@ app.controller('controladorModificarReferencia', function(servicioRest,utils, co
     var erroresCometidos=Object.keys(erroresTotales);
     
     // INICIALIZAMOS LOS ERRORES VIENDO QUE CAMPOS ESTAN COMPLETOS Y CUALES NO POR SI SE TRATARA DE UN BORRADOR
-    console.log(useForm);
     //$scope.actualizaErrores('sociedad', useForm.sociedad.$error);
     //$scope.actualizaErrores('SectorEmp', useForm.SectorEmp.$error);
     //$scope.actualizaErrores('tActividad', useForm.tActividad.$error);
@@ -467,8 +466,109 @@ app.controller('controladorModificarReferencia', function(servicioRest,utils, co
  //--------------------------------------------------------------------------------------------------------------------------   
     /* CREAR la referencia, puede tener estado: pendiente/borrador  */
 
+    function comprobarCamposModificados(){
+        var estado="validada";
+        var campos = localStorage.getItem("campos").split(",");
+        for (var i=0;i<campos.length;i++){
+            switch (campos[i]){
+                    case "cliente":
+                        if($scope.referencia.cliente!=$rootScope.referenciaCargada.cliente){
+                            estado="pendiente";
+                        }
+                        break;
+                    case "sociedad":
+                        if($scope.referencia.sociedad!=$rootScope.referenciaCargada.sociedad){
+                            estado="pendiente";
+                        }
+                        break;
+                    case "sectorEmpresarial":
+                        if($scope.referencia.sectorEmpresarial!=$rootScope.referenciaCargada.sectorEmpresarial){
+                            estado="pendiente";
+                        }
+                        break;
+                    case "tipoActividad":
+                        if($scope.referencia.tipoActividad!=$rootScope.referenciaCargada.tipoActividad){
+                            estado="pendiente";
+                        }
+                        break;
+                    case "tipoProyecto":
+                        if($scope.referencia.tipoProyecto!=$rootScope.referenciaCargada.tipoProyecto){
+                            estado="pendiente";
+                        }
+                        break;
+                    case "fechaInicio":
+                        if($scope.referencia.fechaInicio!=$rootScope.referenciaCargada.fechaInicio){
+                            estado="pendiente";
+                        }
+                        break;
+                    case "duracionMeses":
+                        if($scope.referencia.duracionMeses!=$rootScope.referenciaCargada.duracionMeses){
+                            estado="pendiente";
+                        }
+                        break;
+                    case "denominacion":
+                        if($scope.referencia.denominacion!=$rootScope.referenciaCargada.denominacion){
+                            estado="pendiente";
+                        }
+                        break;
+                    case "resumenProyecto":
+                        if($scope.referencia.resumenProyecto!=$rootScope.referenciaCargada.resumenProyecto){
+                            estado="pendiente";
+                        }
+                        break;
+                    case "problematicaCliente":
+                        if($scope.referencia.problematicaCliente!=$rootScope.referenciaCargada.problematicaCliente){
+                            estado="pendiente";
+                        }
+                        break;
+                    case "solucionGfi":
+                        if($scope.referencia.solucionGfi!=$rootScope.referenciaCargada.solucionGfi){
+                            estado="pendiente";
+                        }
+                        break;
+                    case "fteTotales":
+                        if($scope.referencia.fteTotales!=$rootScope.referenciaCargada.fteTotales){
+                            estado="pendiente";
+                        }
+                        break;
+                    case "responsableComercial":
+                        if($scope.referencia.responsableComercial!=$rootScope.referenciaCargada.responsableComercial){
+                            estado="pendiente";
+                        }
+                        break;
+                    case "responsableTecnico":
+                        if($scope.referencia.responsableTecnico!=$rootScope.referenciaCargada.responsableTecnico){
+                            estado="pendiente";
+                        }
+                        break;
+                    case "imagenProyecto":
+                        if($scope.referencia.imagenProyecto!=$rootScope.referenciaCargada.imagenProyecto){
+                            estado="pendiente";
+                        }
+                        break;
+                    case "codigoQr":
+                        if($scope.referencia.codigoQr!=$rootScope.referenciaCargada.codigoQr){
+                            estado="pendiente";
+                        }
+                        break;
+                    case "tecnologiasSeleccionadas":
+                        if($scope.referencia.tecnologias!=$rootScope.referenciaCargada.tecnologias){
+                            estado="pendiente";
+                        }
+                        break;
+                    default:
+                        console.log("campo no existe");
+            }
+            
+            /* TODO: Crear un array con todos los inputs para recorrer todos a lo bestia en cada iteracion */
+        }
+        console.log(estado);
+        return estado;
+    }
+    
     //por reutilización se llamará a esta función cuando se quiera mandar la refrencia a crear al back
     function enviarReferencia(referencia, mensajeEstado){
+        console.log(referencia.estado);
         servicioRest.updateReferencia(referencia)
         .then(function(data){
             utils.popupInfo('', mensajeEstado);
@@ -479,9 +579,9 @@ app.controller('controladorModificarReferencia', function(servicioRest,utils, co
         });
     }
     
-    $scope.crearReferencia = function (estado, erroresP, event) {
-        console.log("aqui",erroresP);
-        if ((estado==="pendiente" && erroresP.$valid) || estado==="borrador")
+    $scope.crearReferencia = function (erroresP, event) {
+        
+        if (erroresP.$valid)
         {
             // Crea/Guarda una referencia dependiendo de su estado
             if(undefined!=$scope.posicionEnArray){
@@ -522,28 +622,32 @@ app.controller('controladorModificarReferencia', function(servicioRest,utils, co
                     objeto = btoa(objeto);
                     $scope.referencia.imagenProyecto = objeto;
                     var referencia = $scope.referencia;
-                    $scope.referencia.estado = estado; 
-                    if(estado==="pendiente")
+                    $scope.referencia.estado = comprobarCamposModificados()
+                    console.log($scope.referencia.estado);
+                    //$scope.referencia.estado = estado; 
+                    if($scope.referencia.estado==="pendiente")
                     {
                         mensajeEstado='Referencia creada pendiente de validar.'; 
                     }
-                    else if(estado==="borrador")
+                    else if($scope.referencia.estado==="validada")
                     {
-                        mensajeEstado='Referencia creada en modo borrador.'; 
+                        mensajeEstado='Referencia creada en modo validada.'; 
                     }
                     enviarReferencia(referencia, mensajeEstado);
                  }
             }else
             {
                     var referencia = $scope.referencia;
-                    $scope.referencia.estado = estado; 
-                    if(estado==="pendiente")
+                    $scope.referencia.estado = comprobarCamposModificados()
+                    console.log($scope.referencia.estado);
+                    //$scope.referencia.estado = estado; 
+                    if($scope.referencia.estado==="pendiente")
                     {
                         mensajeEstado='Referencia creada pendiente de validar.'; 
                     }
-                    else if(estado==="borrador")
+                    else if($scope.referencia.estado==="validada")
                     {
-                        mensajeEstado='Referencia creada en modo borrador.';
+                        mensajeEstado='Referencia creada en modo validada.';
                     }
                     enviarReferencia(referencia, mensajeEstado);
             }
@@ -600,9 +704,7 @@ app.controller('controladorModificarReferencia', function(servicioRest,utils, co
         // este codigo rellena la referencia con la informacion guardada en $rootScope
         //$scope.referencia = {};
         $scope.referencia=$rootScope.referenciaCargada;
-        console.log("antes",$rootScope.referenciaCargada.fechaInicio);
         $scope.fechaInicio = new Date($rootScope.referenciaCargada.fechaInicio);
-        console.log("despues",$scope.fechaInicio);
         $scope.sociedadSeleccionado = $rootScope.referenciaCargada.sociedad;
         $scope.sectorEmpresarialSeleccionado = $rootScope.referenciaCargada.sectorEmpresarial;
         $scope.tipoActividadSeleccionado = $rootScope.referenciaCargada.tipoActividad;

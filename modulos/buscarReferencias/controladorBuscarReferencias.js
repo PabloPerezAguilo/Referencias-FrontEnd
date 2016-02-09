@@ -3,7 +3,7 @@ app.controller ('controladorBuscarReferencias', function (servicioRest,utils, co
     $rootScope.opcion = 'validar';
     $scope.titulo = 'BUSCAR REFERENCIAS';
     $scope.referencias = [];
-   
+    $scope.pop=utils.popupInfo;
     
     servicioRest.getReferencias().then(
         function (response) {           
