@@ -15,17 +15,17 @@
     <md-menu ng-show="menuReferencias">
         <md-button id="referenciasBotonMenu" ng-click="$mdOpenMenu()">Referencias</md-button>
         <md-menu-content>
-            <md-menu-item ng-show="menuReferenciasListar">
+            <md-menu-item ng-show="menuReferenciasListarVal">
                 <a   id="listarReferenciasBotonMenu"class="textoHipervinculo" href="#/listarReferenciasValidar"><md-button>Validar</md-button></a>
             </md-menu-item>
             <md-menu-item ng-show="menuReferenciasNueva">
                 <a id="nuevaReferenciasBotonMenu"class="textoHipervinculo" href="#/nueva" ng-click="actualizarTitulo()"><md-button>Nueva</md-button></a>
             </md-menu-item>
-            <md-menu-item ng-show="menuReferenciasGestion">
+            <md-menu-item ng-show="menuReferenciasBuscar">
                 <a class="textoHipervinculo" href="#/buscarReferencias"><md-button>Buscar</md-button></a>
             </md-menu-item>
-            <md-menu-item ng-show="menuReferenciasGestion">
-                <a class="textoHipervinculo" href="#/listarNoValidadas"><md-button>Listar no validadas</md-button></a>
+            <md-menu-item ng-show="menuReferenciasListarNoVal">
+                <a class="textoHipervinculo" href="#/listarNoValidadas"><md-button>No validadas</md-button></a>
             </md-menu-item>
         </md-menu-content>
     </md-menu>

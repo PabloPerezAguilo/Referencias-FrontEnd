@@ -84,8 +84,9 @@ app.run(function(servicioRest, utils, $rootScope, $http, $location, $mdDialog) {
         $rootScope.menu=false;
         $rootScope.menuReferencias = false;
         $rootScope.menuReferenciasNueva = false;
-        $rootScope.menuReferenciasGestion = false;
-        $rootScope.menuReferenciasListar = false;
+        $rootScope.menuReferenciasBuscar = false;
+        $rootScope.menuReferenciasListarVal = false;
+        $rootScope.menuReferenciasListarNoVal = false;
         $rootScope.menuUsuarios = false;
         $rootScope.menuUsuariosAlta = false;
         $rootScope.menuUsuariosGestion = false;

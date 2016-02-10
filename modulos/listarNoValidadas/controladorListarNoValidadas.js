@@ -1,11 +1,11 @@
-app.controller ('controladorBuscarReferencias', function (servicioRest,utils, config, $scope, $http, $location, $rootScope) {  
+app.controller ('controladorListarNoValidadas', function (servicioRest,utils, config, $scope, $http, $location, $rootScope) {  
     
     $rootScope.opcion = 'validar';
     $scope.titulo = 'BUSCAR REFERENCIAS';
     $scope.referencias = [];
     $scope.pop=utils.popupInfo;
     
-    servicioRest.getReferencias().then(
+    servicioRest.getReferenciasAsociadasAUsuario().then(
         function (response) {           
             $scope.referencias = response;
             $scope.totalItems = $scope.referencias.length;

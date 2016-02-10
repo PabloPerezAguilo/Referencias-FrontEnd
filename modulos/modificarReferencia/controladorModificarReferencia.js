@@ -5,11 +5,32 @@ app.controller('controladorModificarReferencia', function(servicioRest,utils, co
     //y le añades el atributo "readonly" a true. Esto se hace porque el datepicker crea este elemento en ejecucion
     //y no puedes establecer este atributo a mano en el html, debes añadirlo dinamicamente en ejecucion,
     //que es el momento en el que se crea el elemento
+    $scope.noModificar=true;
     
     if($rootScope.referenciaCargada===undefined){
         $location.path('/buscarReferencias');
     }
+    var referenciaOld={};
     
+    referenciaOld.cliente = $rootScope.referenciaCargada.cliente;
+    referenciaOld.sociedad = $rootScope.referenciaCargada.sociedad;
+    referenciaOld.sectorEmpresarial = $rootScope.referenciaCargada.sectorEmpresarial;
+    referenciaOld.tipoActividad = $rootScope.referenciaCargada.tipoActividad;
+    referenciaOld.tipoProyecto = $rootScope.referenciaCargada.tipoProyecto;
+    referenciaOld.fechaInicio = $rootScope.referenciaCargada.fechaInicio;
+    referenciaOld.duracionMeses = $rootScope.referenciaCargada.duracionMeses;
+    referenciaOld.denominacion = $rootScope.referenciaCargada.denominacion;
+    referenciaOld.resumenProyecto = $rootScope.referenciaCargada.resumenProyecto;
+    referenciaOld.problematicaCliente = $rootScope.referenciaCargada.problematicaCliente;
+    referenciaOld.solucionGfi = $rootScope.referenciaCargada.solucionGfi;
+    referenciaOld.fteTotales = $rootScope.referenciaCargada.fteTotales;
+    referenciaOld.responsableComercial = $rootScope.referenciaCargada.responsableComercial;
+    referenciaOld.responsableTecnico = $rootScope.referenciaCargada.responsableTecnico;
+    referenciaOld.imagenProyecto = $rootScope.referenciaCargada.imagenProyecto;
+    referenciaOld.codigoQr = $rootScope.referenciaCargada.codigoQr;
+    referenciaOld.tecnologias = $rootScope.referenciaCargada.tecnologias;
+    
+    //--------------------------------------------------------
     document.getElementsByClassName("md-datepicker-input")[0].setAttribute("readonly","true");
     //clienteReferencia.focus();
     $scope.tecnologiasSeleccionadas=[];
@@ -472,87 +493,87 @@ app.controller('controladorModificarReferencia', function(servicioRest,utils, co
         for (var i=0;i<campos.length;i++){
             switch (campos[i]){
                     case "cliente":
-                        if($scope.referencia.cliente!=$rootScope.referenciaCargada.cliente){
+                        if($scope.referencia.cliente!=referenciaOld.cliente){
                             estado="pendiente";
                         }
                         break;
                     case "sociedad":
-                        if($scope.referencia.sociedad!=$rootScope.referenciaCargada.sociedad){
+                        if($scope.referencia.sociedad!=referenciaOld.sociedad){
                             estado="pendiente";
                         }
                         break;
                     case "sectorEmpresarial":
-                        if($scope.referencia.sectorEmpresarial!=$rootScope.referenciaCargada.sectorEmpresarial){
+                        if($scope.referencia.sectorEmpresarial!=referenciaOld.sectorEmpresarial){
                             estado="pendiente";
                         }
                         break;
                     case "tipoActividad":
-                        if($scope.referencia.tipoActividad!=$rootScope.referenciaCargada.tipoActividad){
+                        if($scope.referencia.tipoActividad!=referenciaOld.tipoActividad){
                             estado="pendiente";
                         }
                         break;
                     case "tipoProyecto":
-                        if($scope.referencia.tipoProyecto!=$rootScope.referenciaCargada.tipoProyecto){
+                        if($scope.referencia.tipoProyecto!=referenciaOld.tipoProyecto){
                             estado="pendiente";
                         }
                         break;
                     case "fechaInicio":
-                        if($scope.referencia.fechaInicio!=$rootScope.referenciaCargada.fechaInicio){
+                        if($scope.referencia.fechaInicio!=referenciaOld.fechaInicio){
                             estado="pendiente";
                         }
                         break;
                     case "duracionMeses":
-                        if($scope.referencia.duracionMeses!=$rootScope.referenciaCargada.duracionMeses){
+                        if($scope.referencia.duracionMeses!=referenciaOld.duracionMeses){
                             estado="pendiente";
                         }
                         break;
                     case "denominacion":
-                        if($scope.referencia.denominacion!=$rootScope.referenciaCargada.denominacion){
+                        if($scope.referencia.denominacion!=referenciaOld.denominacion){
                             estado="pendiente";
                         }
                         break;
                     case "resumenProyecto":
-                        if($scope.referencia.resumenProyecto!=$rootScope.referenciaCargada.resumenProyecto){
+                        if($scope.referencia.resumenProyecto!=referenciaOld.resumenProyecto){
                             estado="pendiente";
                         }
                         break;
                     case "problematicaCliente":
-                        if($scope.referencia.problematicaCliente!=$rootScope.referenciaCargada.problematicaCliente){
+                        if($scope.referencia.problematicaCliente!=referenciaOld.problematicaCliente){
                             estado="pendiente";
                         }
                         break;
                     case "solucionGfi":
-                        if($scope.referencia.solucionGfi!=$rootScope.referenciaCargada.solucionGfi){
+                        if($scope.referencia.solucionGfi!=referenciaOld.solucionGfi){
                             estado="pendiente";
                         }
                         break;
                     case "fteTotales":
-                        if($scope.referencia.fteTotales!=$rootScope.referenciaCargada.fteTotales){
+                        if($scope.referencia.fteTotales!=referenciaOld.fteTotales){
                             estado="pendiente";
                         }
                         break;
                     case "responsableComercial":
-                        if($scope.referencia.responsableComercial!=$rootScope.referenciaCargada.responsableComercial){
+                        if($scope.referencia.responsableComercial!=referenciaOld.responsableComercial){
                             estado="pendiente";
                         }
                         break;
                     case "responsableTecnico":
-                        if($scope.referencia.responsableTecnico!=$rootScope.referenciaCargada.responsableTecnico){
+                        if($scope.referencia.responsableTecnico!=referenciaOld.responsableTecnico){
                             estado="pendiente";
                         }
                         break;
                     case "imagenProyecto":
-                        if($scope.referencia.imagenProyecto!=$rootScope.referenciaCargada.imagenProyecto){
+                        if($scope.referencia.imagenProyecto!=referenciaOld.imagenProyecto){
                             estado="pendiente";
                         }
                         break;
                     case "codigoQr":
-                        if($scope.referencia.codigoQr!=$rootScope.referenciaCargada.codigoQr){
+                        if($scope.referencia.codigoQr!=referenciaOld.codigoQr){
                             estado="pendiente";
                         }
                         break;
                     case "tecnologiasSeleccionadas":
-                        if($scope.referencia.tecnologias!=$rootScope.referenciaCargada.tecnologias){
+                        if($scope.referencia.tecnologias!=referenciaOld.tecnologias){
                             estado="pendiente";
                         }
                         break;
@@ -562,108 +583,126 @@ app.controller('controladorModificarReferencia', function(servicioRest,utils, co
             
             /* TODO: Crear un array con todos los inputs para recorrer todos a lo bestia en cada iteracion */
         }
-        console.log(estado);
         return estado;
     }
     
     //por reutilización se llamará a esta función cuando se quiera mandar la refrencia a crear al back
     function enviarReferencia(referencia, mensajeEstado){
-        console.log(referencia.estado);
-        servicioRest.updateReferencia(referencia)
-        .then(function(data){
-            utils.popupInfo('', mensajeEstado);
-            $location.path('/buscarReferencias');
-        })
-        .catch(function(data){
-            utils.popupInfo('', 'Error al modificar la referencia');
-        });
+        if(referencia.estado==="validada"){
+            servicioRest.updateReferencia(referencia)
+            .then(function(data){
+                utils.popupInfo('', mensajeEstado);
+                $location.path('/buscarReferencias');
+            })
+            .catch(function(data){
+                utils.popupInfo('', 'Error al modificar la referencia');
+            });
+        }else if(referencia.estado==="pendiente"){
+            referencia.idEnlaceOriginal=referencia._id;
+            referencia._id=null;
+            servicioRest.postReferencia(referencia)
+            .then(function(data){
+                utils.popupInfo('', mensajeEstado);
+                $location.path('/buscarReferencias');
+            })
+            .catch(function(data){
+                utils.popupInfo('', 'Error al modificar la referencia');
+            });
+        }
+        
     }
     
     $scope.crearReferencia = function (erroresP, event) {
-        
-        if (erroresP.$valid)
-        {
-            // Crea/Guarda una referencia dependiendo de su estado
-            if(undefined!=$scope.posicionEnArray){
-                $scope.referencia.cliente = $scope.clientes.lista[$scope.posicionEnArray].display;
-            }
-                      
-            
-            
-            if(undefined!=$scope.tecnologiasSeleccionadas){
-                var arrayAux=[];
-                for(var i=0;i<$scope.tecnologiasSeleccionadas.length;i++)
-                {
-                    arrayAux.push($scope.tecnologiasSeleccionadas[i].value);
-                }
-                $scope.referencia.tecnologias = arrayAux;
-                
-            }
-                
-            $scope.referencia.autor = $rootScope.usuarioLS.nick;
-            
-            if(undefined!=$scope.referencia.regPedidoAsociadoReferencia){
-                //TODO
-                //$scope.referencia.regPedidoAsociadoReferencia = $scope.referencia.regPedidoAsociadoReferencia.split(/,[ ]*/);
-                $scope.referencia.regPedidoAsociadoReferencia = [];
-            }else{
-                
-                $scope.referencia.regPedidoAsociadoReferencia = [];
-            }
-            var fileReader = new FileReader();
-            
-            if(undefined!=document.getElementById("botonFileReal").files[0]){
-                
-                var imagen = document.getElementById("botonFileReal").files[0];
-                fileReader.readAsBinaryString(imagen);
-                fileReader.onloadend = function(e)
-                {
-                    var objeto = e.target.result;
-                    objeto = btoa(objeto);
-                    $scope.referencia.imagenProyecto = objeto;
-                    var referencia = $scope.referencia;
-                    $scope.referencia.estado = comprobarCamposModificados()
-                    console.log($scope.referencia.estado);
-                    //$scope.referencia.estado = estado; 
-                    if($scope.referencia.estado==="pendiente")
-                    {
-                        mensajeEstado='Referencia creada pendiente de validar.'; 
-                    }
-                    else if($scope.referencia.estado==="validada")
-                    {
-                        mensajeEstado='Referencia creada en modo validada.'; 
-                    }
-                    enviarReferencia(referencia, mensajeEstado);
-                 }
-            }else
+        if(!$scope.noModificar){
+            console.log($scope.clientes);
+            if (erroresP.$valid && $scope.posicionEnArray!=-1 && $scope.tecnologiasSeleccionadas.length>0)
             {
-                    var referencia = $scope.referencia;
-                    $scope.referencia.estado = comprobarCamposModificados()
-                    console.log($scope.referencia.estado);
-                    //$scope.referencia.estado = estado; 
-                    if($scope.referencia.estado==="pendiente")
+                console.log("entra");
+                // Crea/Guarda una referencia dependiendo de su estado
+                if(undefined!=$scope.posicionEnArray){
+                    $scope.referencia.cliente = $scope.clientes.lista[$scope.posicionEnArray].display;
+                }
+
+
+
+                if(undefined!=$scope.tecnologiasSeleccionadas){
+                    var arrayAux=[];
+                    for(var i=0;i<$scope.tecnologiasSeleccionadas.length;i++)
                     {
-                        mensajeEstado='Referencia creada pendiente de validar.'; 
+                        arrayAux.push($scope.tecnologiasSeleccionadas[i].value);
                     }
-                    else if($scope.referencia.estado==="validada")
+                    $scope.referencia.tecnologias = arrayAux;
+
+                }
+
+                $scope.referencia.autor = $rootScope.usuarioLS.nick;
+
+                if(undefined!=$scope.referencia.regPedidoAsociadoReferencia){
+                    //TODO
+                    //$scope.referencia.regPedidoAsociadoReferencia = $scope.referencia.regPedidoAsociadoReferencia.split(/,[ ]*/);
+                    $scope.referencia.regPedidoAsociadoReferencia = [];
+                }else{
+
+                    $scope.referencia.regPedidoAsociadoReferencia = [];
+                }
+                var fileReader = new FileReader();
+
+                if(undefined!=document.getElementById("botonFileReal").files[0]){
+
+                    var imagen = document.getElementById("botonFileReal").files[0];
+                    fileReader.readAsBinaryString(imagen);
+                    fileReader.onloadend = function(e)
                     {
-                        mensajeEstado='Referencia creada en modo validada.';
-                    }
-                    enviarReferencia(referencia, mensajeEstado);
+                        var objeto = e.target.result;
+                        objeto = btoa(objeto);
+                        $scope.referencia.imagenProyecto = objeto;
+                        var referencia = $scope.referencia;
+                        $scope.referencia.estado = comprobarCamposModificados()
+                        //$scope.referencia.estado = estado; 
+                        if($scope.referencia.estado==="pendiente")
+                        {
+                            mensajeEstado='Referencia creada pendiente de validar.'; 
+                        }
+                        else if($scope.referencia.estado==="validada")
+                        {
+                            mensajeEstado='Referencia creada en modo validada.'; 
+                        }
+                        enviarReferencia(referencia, mensajeEstado);
+                     }
+                }else
+                {
+                        var referencia = $scope.referencia;
+                        $scope.referencia.estado = comprobarCamposModificados()
+                        //$scope.referencia.estado = estado; 
+                        if($scope.referencia.estado==="pendiente")
+                        {
+                            mensajeEstado='Referencia creada pendiente de validar.'; 
+                        }
+                        else if($scope.referencia.estado==="validada")
+                        {
+                            mensajeEstado='Referencia creada en modo validada.';
+                        }
+                        enviarReferencia(referencia, mensajeEstado);
+                }
+
+            }else{
+                console.log("fuera");
+                //utils.popupInfo('',listarErrores());
+                errores(event,erroresP,$scope.posicionEnArray===-1,$scope.tecnologiasSeleccionadas.length<=0);
             }
-            
         }else{
-            //utils.popupInfo('',listarErrores());
-            errores(event,erroresP);
-        }
-                
+            utils.popupInfo('',"funcion Monco");
+            $scope.noModificar=false;
+        }                
 
     }
     
-    errores = function(ev, listaErr) {
+    errores = function(ev, listaErr, errorClien, errorTec) {
         $mdDialog.show({
             locals: {
-                listaErrores: listaErr
+                listaErrores: listaErr,
+                errorCliente: errorClien,
+                errorTecnologias: errorTec
             },
             controller: 'controladorErroresReferencia',
             templateUrl: 'modulos/popUp/erroresReferencia.html',
@@ -715,8 +754,7 @@ app.controller('controladorModificarReferencia', function(servicioRest,utils, co
         $scope.valorQr = true;
         $scope.referencia.codigoQr = $rootScope.referenciaCargada.codigoQr;
         recargarQR();
-        
-        if($rootScope.usuarioLS.nick===$rootScope.referenciaCargada.responsableComercial || $rootScope.usuarioLS.nick===$rootScope.referenciaCargada.responsableTecnico || $rootScope.usuarioLS.nick===$scope.referencia.creadorReferencia){
+        if($rootScope.usuarioLS.nick===$rootScope.referenciaCargada.responsableComercial || $rootScope.usuarioLS.nick===$rootScope.referenciaCargada.responsableTecnico || $rootScope.usuarioLS.nick===$scope.referencia.autor){
         $scope.puedeBorrar=true;
         }
         else{

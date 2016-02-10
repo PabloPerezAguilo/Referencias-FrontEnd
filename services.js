@@ -59,7 +59,7 @@ function ServicioREST( utils, config, $http,$q, $rootScope) {
 	}
 
 	function getReferencias() {
-        console.log("mesf");
+
 		return llamadaHTTP({
 			method: 'GET',
 			url: url + '/referencia'
@@ -68,10 +68,19 @@ function ServicioREST( utils, config, $http,$q, $rootScope) {
 	}
     
     function getReferenciasValidadas() {
-        console.log("aqui powerf");
+
 		return llamadaHTTP({
 			method: 'GET',
 			url: url + '/referencia/validadas'
+		});
+
+	}
+    
+    function getReferenciasAsociadasAUsuario() {
+
+		return llamadaHTTP({
+			method: 'GET',
+			url: url + '/referencia/asociadas'
 		});
 
 	}
@@ -318,6 +327,7 @@ function ServicioREST( utils, config, $http,$q, $rootScope) {
 		getReferencias: getReferencias,
 		getReferencia: getReferencia,
         getReferenciasPendientes: getReferenciasPendientes,
+        getReferenciasAsociadasAUsuario: getReferenciasAsociadasAUsuario,
 		postReferencia: postReferencia,
         updateReferencia : updateReferencia,
         deleteReferencia : deleteReferencia,

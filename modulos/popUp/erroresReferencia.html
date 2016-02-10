@@ -12,8 +12,8 @@
                     </p>
                 </li>
             </ul-->
-            <div ng-messages="errores.cliente.$error" style="color:maroon" role="alert">
-                <div ng-message="required">Cliente inválido</div>
+            <div ng-show="errorCliente" style="color:maroon" role="alert">
+                <div>Cliente inválido</div>
             </div>
             <div ng-messages="errores.sociedad.$error" style="color:maroon" role="alert">
                 <div ng-message="required">Se debe seleccionar una sociedad</div>
@@ -57,8 +57,8 @@
             <div ng-messages="errores.userfile.$error" style="color:maroon" role="alert">
                 <div ng-message="required">Se debe subir una imágen</div>
             </div>
-            <div ng-messages="errores.tecnologia.$error" style="color:maroon" role="alert">
-                <div ng-message="required">Tecnología inválida</div>
+            <div ng-show="errorTecnologias" style="color:maroon" role="alert">
+                <div>Tecnología inválida</div>
             </div>
         </md-dialog-content>
     </md-dialog>  

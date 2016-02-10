@@ -21,20 +21,20 @@ function utils($rootScope, $mdDialog){
                 $rootScope.menuUsuariosAlta = true;
                 $rootScope.menuUsuariosGestion = true;
                 $rootScope.menuReferencias = true;
-                $rootScope.menuReferenciasGestion = true;
+                $rootScope.menuReferenciasBuscar = true;
                 $rootScope.menuReferenciasNueva = true;
-                $rootScope.menuReferenciasListar = true;
+                $rootScope.menuReferenciasListarVal = true;
+                $rootScope.menuReferenciasListarNoVal = true;
             }else if(rol === "ROLE_VALIDADOR"){
                 $rootScope.menuReferencias = true;
-                $rootScope.menuReferenciasGestion = true;
-                $rootScope.menuReferenciasListar = true;
+                $rootScope.menuReferenciasListarVal = true;
             }else if(rol === "ROLE_CONSULTOR"){
                 $rootScope.menuReferencias = true;
-                $rootScope.menuReferenciasListar = true;
+                $rootScope.menuReferenciasBuscar = true;
             }else if(rol === "ROLE_MANTENIMIENTO"){ 
                 $rootScope.menuReferencias = true;
-                $rootScope.menuReferenciasGestion = true;
-                $rootScope.menuReferenciasListar = true;
+                $rootScope.menuReferenciasBuscar = true;
+                $rootScope.menuReferenciasListarNoVal = true;
                 $rootScope.menuReferenciasNueva = true;
             }
 
