@@ -59,10 +59,19 @@ function ServicioREST( utils, config, $http,$q, $rootScope) {
 	}
 
 	function getReferencias() {
-        
+        console.log("mesf");
 		return llamadaHTTP({
 			method: 'GET',
 			url: url + '/referencia'
+		});
+
+	}
+    
+    function getReferenciasValidadas() {
+        console.log("aqui powerf");
+		return llamadaHTTP({
+			method: 'GET',
+			url: url + '/referencia/validadas'
 		});
 
 	}
@@ -320,6 +329,7 @@ function ServicioREST( utils, config, $http,$q, $rootScope) {
         rechazarTecnologia: rechazarTecnologia,
         getReferenciasAsociadas: getReferenciasAsociadas,
         updateEstadoReferencia: updateEstadoReferencia,
+        getReferenciasValidadas: getReferenciasValidadas,
         deletePowerfull: deletePowerfull
 	}
 }

@@ -5,7 +5,7 @@ app.controller ('controladorBuscarReferencias', function (servicioRest,utils, co
     $scope.referencias = [];
     $scope.pop=utils.popupInfo;
     
-    servicioRest.getReferenciasValidadas().then(
+    servicioRest.getReferencias().then(
         function (response) {           
             $scope.referencias = response;
             $scope.totalItems = $scope.referencias.length;

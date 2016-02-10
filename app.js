@@ -132,6 +132,10 @@ app.config(function($routeProvider) {
         templateUrl: 'modulos/buscarReferencias/buscarReferencias.html',
         controller: 'controladorBuscarReferencias'
     })
+    .when('/listarNoValidadas', {
+        templateUrl: 'modulos/listarNoValidadas/listarNoValidadas.html',
+        controller: 'controladorListarNoValidadas'
+    })
     .when('/nueva', {
         templateUrl: 'modulos/nuevaReferencia/nuevaReferencia.html',
         controller: 'controladorNuevaReferencia'
