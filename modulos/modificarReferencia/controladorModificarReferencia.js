@@ -6,6 +6,7 @@ app.controller('controladorModificarReferencia', function(servicioRest,utils, co
     //y no puedes establecer este atributo a mano en el html, debes añadirlo dinamicamente en ejecucion,
     //que es el momento en el que se crea el elemento
     $scope.noModificar=true;
+    $scope.titulo="VISUALIZAR REFERENCIA";
     
     function toast(texto) {
 		$mdToast.show(
@@ -692,7 +693,6 @@ app.controller('controladorModificarReferencia', function(servicioRest,utils, co
                 }
 
             }else{
-                console.log("fuera");
                 //utils.popupInfo('',listarErrores());
                 errores(event,erroresP,$scope.posicionEnArray===-1,$scope.tecnologiasSeleccionadas.length<=0);
             }
@@ -701,6 +701,7 @@ app.controller('controladorModificarReferencia', function(servicioRest,utils, co
             .then(function(data){
                 if(data.autor==="vacia"){
                     toast('Se puede modificar la referencia');
+                    $scope.titulo="MODIFICAR REFERENCIA";
                     $scope.noModificar=false;
                 }else{
                     utils.popupInfo('', 'Actualmente existe una copia en borrador o pendiente de esta referencia, si desea realizar una modificacion abra dicha referencia');
