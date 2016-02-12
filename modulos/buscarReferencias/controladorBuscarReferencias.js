@@ -35,15 +35,15 @@ app.controller ('controladorBuscarReferencias', function (servicioRest,utils, co
     $scope.introOptions.steps = [
             {
                 element: '.cabeceraPagina',
-                intro: 'Esta seccion muestra un listado con las tecnologias pendientes de validar.'
+                intro: 'Esta seccion muestra un listado con las tecnologias validadas.'
             },
             {
                 element: '#referenciasPendientes',
-                intro: 'Haciendo click en cualquier fila accederemos a la referencia seleccionada para poder validarla.'
+                intro: 'Haciendo click en cualquier fila accederemos a la referencia seleccionada para poder consultarla y, en caso de que no existiera una copia pendiente o en borrador, modificarla.'
             },
             {
                 element: '.pagination-sm',
-                intro: 'Esta seccion de aqui permite movernos entre distintas paginas por si el numero de referencias pendientes de validar fuera muy extenso.'
+                intro: 'Esta seccion de aqui permite movernos entre distintas paginas por si el numero de referencias validadas fuera muy extenso.'
             }
             ];
     

@@ -280,6 +280,15 @@ function ServicioREST( utils, config, $http,$q, $rootScope) {
 
 	}
     
+    function getCopiaReferencia(idRef) {
+        
+		return llamadaHTTP({
+			method: 'GET',
+			url: url + '/referencia/copia/' + idRef
+		});
+
+	}
+    
     function getReferenciasAsociadas(tecnologia) {
 		var defered = $q.defer();
 		var promise = defered.promise;
@@ -329,6 +338,7 @@ function ServicioREST( utils, config, $http,$q, $rootScope) {
         getReferenciasPendientes: getReferenciasPendientes,
         getReferenciasAsociadasAUsuario: getReferenciasAsociadasAUsuario,
 		postReferencia: postReferencia,
+        getCopiaReferencia: getCopiaReferencia,
         updateReferencia : updateReferencia,
         deleteReferencia : deleteReferencia,
 		getLDAP: getLDAP,
