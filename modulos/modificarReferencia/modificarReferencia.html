@@ -370,7 +370,7 @@
                            type="button"
                            ng-click="borrarReferencia()"
                            tabindex="21"
-                           ng-show="puedeBorrar">
+                           ng-show="puedeBorrar && (referencia.estado!='validada')">
                     Borrar
                 </md-button>
                 <md-button id="terminar"

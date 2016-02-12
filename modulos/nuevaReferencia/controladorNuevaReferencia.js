@@ -573,8 +573,8 @@ app.controller('controladorNuevaReferencia', function(servicioRest,utils, config
             locals: {
                 listaErrores: listaErr
             },
-            controller: 'controladorErroresReferencia',
-            templateUrl: 'modulos/popUp/erroresReferencia.html',
+            controller: 'controladorErroresNuevaReferencia',
+            templateUrl: 'modulos/popUp/erroresNuevaReferencia.html',
             parent: angular.element(document.body),
             targetEvent: ev,
             clickOutsideToClose: true
