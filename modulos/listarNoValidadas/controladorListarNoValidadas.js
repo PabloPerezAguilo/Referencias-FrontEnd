@@ -1,7 +1,7 @@
 app.controller ('controladorListarNoValidadas', function (servicioRest,utils, config, $scope, $http, $location, $rootScope) {  
     
     $rootScope.opcion = 'validar';
-    $scope.titulo = 'BUSCAR REFERENCIAS';
+    $scope.titulo = 'REFERENCIAS NO VALIDADAS';
     $scope.referencias = [];
     $scope.pop=utils.popupInfo;
     
@@ -43,7 +43,7 @@ app.controller ('controladorListarNoValidadas', function (servicioRest,utils, co
             },
             {
                 element: '.pagination-sm',
-                intro: 'Esta seccion de aqui permite movernos entre distintas paginas por si el numero de referencias pendientes de validar fuera muy extenso.'
+                intro: 'Esta seccion de aqui permite movernos entre distintas paginas por si el numero de referencias no validadas fuera muy extenso.'
             }
             ];
     

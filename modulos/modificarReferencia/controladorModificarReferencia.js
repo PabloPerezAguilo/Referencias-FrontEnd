@@ -1,4 +1,4 @@
-app.controller('controladorModificarReferencia', function(servicioRest,utils, config, $scope, $http,$log, $rootScope,$location,$mdDialog,$interval,$timeout,$route){
+app.controller('controladorModificarReferencia', function(servicioRest,utils, config, $scope, $http,$log, $rootScope,$location,$mdDialog,$interval,$timeout,$route, $mdToast){
     //--------------------- Objetos del controlador (clientes y tecnologias)
 
     //Se obtienen los elementos que tengan la clase "md-datepicker-input" se obtiene el primer elemento (solo hay uno)
@@ -6,6 +6,12 @@ app.controller('controladorModificarReferencia', function(servicioRest,utils, co
     //y no puedes establecer este atributo a mano en el html, debes añadirlo dinamicamente en ejecucion,
     //que es el momento en el que se crea el elemento
     $scope.noModificar=true;
+    
+    function toast(texto) {
+		$mdToast.show(
+			$mdToast.simple().content(texto).position('top right').hideDelay(1500)
+		);
+	}
     
     if($rootScope.referenciaCargada===undefined){
         $location.path('/buscarReferencias');
@@ -691,8 +697,19 @@ app.controller('controladorModificarReferencia', function(servicioRest,utils, co
                 errores(event,erroresP,$scope.posicionEnArray===-1,$scope.tecnologiasSeleccionadas.length<=0);
             }
         }else{
-            utils.popupInfo('',"funcion Monco");
-            $scope.noModificar=false;
+            servicioRest.getCopiaReferencia($rootScope.referenciaCargada._id)
+            .then(function(data){
+                if(data.autor==="vacia"){
+                    toast('Se puede modificar la referencia');
+                    $scope.noModificar=false;
+                }else{
+                    utils.popupInfo('', 'Actualmente existe una copia en borrador o pendiente de esta referencia, si desea realizar una modificacion abra dicha referencia');
+                }
+            })
+            .catch(function(data){
+                utils.popupInfo('', 'Error al comprobar la copia de esta referencia');
+            });
+            
         }                
 
     }
