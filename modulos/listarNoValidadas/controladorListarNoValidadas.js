@@ -35,11 +35,11 @@ app.controller ('controladorListarNoValidadas', function (servicioRest,utils, co
     $scope.introOptions.steps = [
             {
                 element: '.cabeceraPagina',
-                intro: 'Esta seccion muestra un listado con las tecnologias pendientes de validar.'
+                intro: 'Esta seccion muestra un listado con las tecnologias asociadas a una persona que no estan validadas aun(aquellas que ha creado o de las que es gerente)'
             },
             {
                 element: '#referenciasPendientes',
-                intro: 'Haciendo click en cualquier fila accederemos a la referencia seleccionada para poder validarla.'
+                intro: 'Haciendo click en cualquier fila accederemos a la referencia seleccionada para poder consultarla a modificarla.'
             },
             {
                 element: '.pagination-sm',
