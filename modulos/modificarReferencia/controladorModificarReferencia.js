@@ -106,6 +106,11 @@ app.controller('controladorModificarReferencia', function(servicioRest,utils, co
     
     $scope.introOptions.steps = [
         {
+            
+            element: '.cabeceraPagina',
+            intro: 'Esta es la seccion de modificar referencias que estan validadas.'
+        },
+        {
             element: '.md-dialog-content',
             intro: 'Debe seleccionar un cliente valido de la lista disponible. La lista se mostrara a partir de la tercera letra escrita. <br/> Para guardar en borrador no sera necesario la validez de este cliente, pero si escribe algo invalido en este campo,  al guarda como borrador el cliente se guardara vacio como si no hubiera escrito nada.'
         },
