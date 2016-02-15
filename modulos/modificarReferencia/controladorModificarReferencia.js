@@ -609,19 +609,7 @@ app.controller('controladorModificarReferencia', function(servicioRest,utils, co
             .catch(function(data){
                 utils.popupInfo('', 'Error al modificar la referencia');
             });
-        }else if(referencia.estado==="pendiente"){
-            referencia.idEnlaceOriginal=referencia._id;
-            referencia._id=null;
-            servicioRest.postReferencia(referencia)
-            .then(function(data){
-                utils.popupInfo('', mensajeEstado);
-                $location.path('/buscarReferencias');
-            })
-            .catch(function(data){
-                utils.popupInfo('', 'Error al modificar la referencia');
-            });
-        }
-        
+        }        
     }
     
     $scope.crearReferencia = function (erroresP, event) {
@@ -670,30 +658,14 @@ app.controller('controladorModificarReferencia', function(servicioRest,utils, co
                         $scope.referencia.imagenProyecto = objeto;
                         var referencia = $scope.referencia;
                         $scope.referencia.estado = comprobarCamposModificados()
-                        //$scope.referencia.estado = estado; 
-                        if($scope.referencia.estado==="pendiente")
-                        {
-                            mensajeEstado='Referencia creada pendiente de validar.'; 
-                        }
-                        else if($scope.referencia.estado==="validada")
-                        {
-                            mensajeEstado='Referencia creada en modo validada.'; 
-                        }
+                        mensajeEstado='Referencia creada en modo validada.'; 
                         enviarReferencia(referencia, mensajeEstado);
                      }
                 }else
                 {
                         var referencia = $scope.referencia;
                         $scope.referencia.estado = comprobarCamposModificados()
-                        //$scope.referencia.estado = estado; 
-                        if($scope.referencia.estado==="pendiente")
-                        {
-                            mensajeEstado='Referencia creada pendiente de validar.'; 
-                        }
-                        else if($scope.referencia.estado==="validada")
-                        {
-                            mensajeEstado='Referencia creada en modo validada.';
-                        }
+                        mensajeEstado='Referencia creada en modo validada.';
                         enviarReferencia(referencia, mensajeEstado);
                 }
 
@@ -709,7 +681,23 @@ app.controller('controladorModificarReferencia', function(servicioRest,utils, co
                     $scope.titulo="MODIFICAR REFERENCIA";
                     $scope.noModificar=false;
                 }else{
-                    utils.popupInfo('', 'Actualmente existe una copia en borrador o pendiente de esta referencia, si desea realizar una modificacion abra dicha referencia');
+                    $mdDialog.show(
+                    $mdDialog.confirm()
+                    .clickOutsideToClose(true)
+                    .title('Copia de referencia ya existente')
+                    .content('Actualmente existe una copia en borrador o pendiente de esta referencia, si desea realizar una modificacion abra dicha referencia.')
+                    .ariaLabel('Lucky day')
+                    .ok('Abrir referencia')
+                    .cancel('Cancelar')
+                    ).then(function() {
+                        //servicioRest.deleteReferencia($scope.referencia._id)
+                        //.then(function(data){
+                            $location.path('/buscarReferencias');
+                        //})
+                        //.catch(function(data){
+                        //    utils.popupInfo('', 'Error al modificar la referencia');
+                        //});
+                    });
                 }
             })
             .catch(function(data){

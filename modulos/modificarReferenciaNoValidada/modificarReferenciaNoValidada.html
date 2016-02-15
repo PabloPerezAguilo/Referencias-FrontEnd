@@ -3,9 +3,23 @@
     <h1 class="cabeceraPagina">MODIFICAR NO VALIDADA</h1>
     <md-content class="layout-padding">
         <div class="para1">
-            
+            <!--MOTIVO RECHAZO-->
+            <div id="motivoRechazo" class="inBlock" ng-show="referencia.motivoRechazo!=null"> 
+                <md-input-container title="motivoRechazo" class="fixed-size-denominacion">
+                    <label class="labelGrande">Esta referencia esta en estado borrador por el siguiente motivo:</label>
+                    <textarea id="motivoRechazoTexto"
+                              name="motivoRechazoTexto"
+                              type="text"
+                              ng-model="referencia.motivoRechazo"
+                              readonly="true"
+                              columns="70"
+                              md-maxlength="300"
+                              rows="5">
+                    </textarea>
+                </md-input-container>
+            </div>
             <!--CLIENTE-->
-            <div class="control-group" ng-class="{true: 'error'}[submitted && form.email.$invalid]">
+            <div class="control-group espaciadoTop" ng-class="{true: 'error'}[submitted && form.email.$invalid]">
                 <md-dialog-content class="selecCli">
                     <div class="md-dialog-content">
                         <md-autocomplete id="clienteReferencia"
@@ -344,9 +358,26 @@
                 <md-button id="borrador"
                            class="botonesApp"
                            type="button" 
-                           ng-click="crearReferencia(useForm, $event)"
-                           tabindex="20">
-                    Modificar
+                           ng-click="crearReferencia(useForm, 'pendiente', $event)"
+                           tabindex="20"
+                           ng-show="referenciaOld.estado=='pendiente'">
+                    Guardar
+                </md-button>
+                <md-button id="borrador"
+                           class="botonesApp"
+                           type="button" 
+                           ng-click="crearReferencia(useForm, 'borrador', $event)"
+                           tabindex="20"
+                           ng-show="referenciaOld.estado=='borrador'">
+                    Guardar (Borrador)
+                </md-button>
+                <md-button id="borrador"
+                           class="botonesApp"
+                           type="button" 
+                           ng-click="crearReferencia(useForm, 'pendiente', $event)"
+                           tabindex="20"
+                           ng-show="referenciaOld.estado=='borrador'">
+                    Terminar
                 </md-button>
                 <md-button id="terminar"
                            class="botonesApp"
