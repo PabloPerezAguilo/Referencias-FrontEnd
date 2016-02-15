@@ -504,7 +504,7 @@ app.controller('controladorModificarReferenciaNoValidada', function(servicioRest
         servicioRest.updateReferencia(referencia)
         .then(function(data){
             utils.popupInfo('', mensajeEstado);
-            $location.path('/buscarReferencias');
+            $location.path('/listarNoValidadas');
         })
         .catch(function(data){
             utils.popupInfo('', 'Error al modificar la referencia');
@@ -615,7 +615,7 @@ app.controller('controladorModificarReferenciaNoValidada', function(servicioRest
             servicioRest.deleteReferencia($scope.referencia._id)
              .then(function(data){
                 utils.popupInfo('', "Referencia borrada");
-                $location.path('/buscarReferencias');
+                $location.path('/listarNoValidadas');
             })
             .catch(function(data){
                 utils.popupInfo('', 'Error al modificar la referencia');

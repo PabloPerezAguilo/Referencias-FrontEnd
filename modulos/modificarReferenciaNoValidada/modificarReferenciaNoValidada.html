@@ -4,7 +4,7 @@
     <md-content class="layout-padding">
         <div class="para1">
             <!--MOTIVO RECHAZO-->
-            <div id="motivoRechazo" class="inBlock" ng-show="referencia.motivoRechazo!=null"> 
+            <div id="motivoRechazo" class="inBlock" ng-show="referencia.motivoRechazo!=null && referenciaOld.estado==='borrador'"> 
                 <md-input-container title="motivoRechazo" class="fixed-size-denominacion">
                     <label class="labelGrande">Esta referencia esta en estado borrador por el siguiente motivo:</label>
                     <textarea id="motivoRechazoTexto"

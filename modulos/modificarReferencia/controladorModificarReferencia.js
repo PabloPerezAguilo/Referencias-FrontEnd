@@ -609,7 +609,30 @@ app.controller('controladorModificarReferencia', function(servicioRest,utils, co
             .catch(function(data){
                 utils.popupInfo('', 'Error al modificar la referencia');
             });
-        }        
+        }else if(referencia.estado==="pendiente"){
+            $mdDialog.show(
+            $mdDialog.confirm()
+            .clickOutsideToClose(true)
+            .title('Crear copia de la referencia')
+            .content('Se han modificado ciertos campos importantes, por lo tanto se creara una copia de esta referencia con sus modificaciones realizadas. ¿Esta seguro?')
+            .ariaLabel('Lucky day')
+            .ok('Crear referencia')
+            .cancel('Cancelar')
+            ).then(function() {
+                referencia.idEnlaceOriginal=referencia._id;
+                referencia._id=null;
+                servicioRest.postReferencia(referencia)
+                .then(function(data){
+                    utils.popupInfo('', mensajeEstado);
+                    $location.path('/buscarReferencias');
+                })
+                .catch(function(data){
+                    utils.popupInfo('', 'Error al modificar la referencia');
+                });
+            });
+            
+        }
+        
     }
     
     $scope.crearReferencia = function (erroresP, event) {
@@ -658,14 +681,30 @@ app.controller('controladorModificarReferencia', function(servicioRest,utils, co
                         $scope.referencia.imagenProyecto = objeto;
                         var referencia = $scope.referencia;
                         $scope.referencia.estado = comprobarCamposModificados()
-                        mensajeEstado='Referencia creada en modo validada.'; 
+                        //$scope.referencia.estado = estado; 
+                        if($scope.referencia.estado==="pendiente")
+                        {
+                            mensajeEstado='Referencia creada pendiente de validar.'; 
+                        }
+                        else if($scope.referencia.estado==="validada")
+                        {
+                            mensajeEstado='Referencia creada en modo validada.'; 
+                        }
                         enviarReferencia(referencia, mensajeEstado);
                      }
                 }else
                 {
                         var referencia = $scope.referencia;
                         $scope.referencia.estado = comprobarCamposModificados()
-                        mensajeEstado='Referencia creada en modo validada.';
+                        //$scope.referencia.estado = estado; 
+                        if($scope.referencia.estado==="pendiente")
+                        {
+                            mensajeEstado='Referencia creada pendiente de validar.'; 
+                        }
+                        else if($scope.referencia.estado==="validada")
+                        {
+                            mensajeEstado='Referencia creada en modo validada.';
+                        }
                         enviarReferencia(referencia, mensajeEstado);
                 }
 
@@ -676,6 +715,7 @@ app.controller('controladorModificarReferencia', function(servicioRest,utils, co
         }else{
             servicioRest.getCopiaReferencia($rootScope.referenciaCargada._id)
             .then(function(data){
+                console.log(data);
                 if(data.autor==="vacia"){
                     toast('Se puede modificar la referencia');
                     $scope.titulo="MODIFICAR REFERENCIA";
@@ -684,19 +724,14 @@ app.controller('controladorModificarReferencia', function(servicioRest,utils, co
                     $mdDialog.show(
                     $mdDialog.confirm()
                     .clickOutsideToClose(true)
-                    .title('Copia de referencia ya existente')
+                    .title('Copia de esta referencia ya existente')
                     .content('Actualmente existe una copia en borrador o pendiente de esta referencia, si desea realizar una modificacion abra dicha referencia.')
                     .ariaLabel('Lucky day')
                     .ok('Abrir referencia')
                     .cancel('Cancelar')
                     ).then(function() {
-                        //servicioRest.deleteReferencia($scope.referencia._id)
-                        //.then(function(data){
-                            $location.path('/buscarReferencias');
-                        //})
-                        //.catch(function(data){
-                        //    utils.popupInfo('', 'Error al modificar la referencia');
-                        //});
+                        $rootScope.referenciaCargada=data;
+                        $location.path('/modificarReferenciaNoValidada');
                     });
                 }
             })
