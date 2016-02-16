@@ -782,7 +782,28 @@ app.controller('controladorModificarReferencia', function(servicioRest,utils, co
          
     }
     
-    $scope.pop=utils.popupInfo;
+    $scope.exportarRefPopUp = function(ev) {
+        $mdDialog.show({
+            controller: 'controladorExportarReferencia',
+            templateUrl: 'modulos/popUp/exportarReferencia.html',
+            parent: angular.element(document.body),
+            targetEvent: ev,
+            clickOutsideToClose: true
+        })
+        .then(function(tipoDocumento) {
+                servicioRest.exportarReferencia($rootScope.referenciaCargada._id, tipoDocumento)
+                .then(function(data) {
+                    utils.popupInfo('', "Referencia exportada a word");
+                }).catch(function(err) {
+                    utils.popupInfo('',"Error al exportar la referencia.");
+                    console.log("Error al exportar la referencia");
+                });  
+            })
+        .catch(function(err) {
+                utils.popupInfo('',"Error al exportar la referencia.");
+                console.log("Error al exportar la referencia");
+            });
+    };
     
    /*-----------------------  Cargar datos en validarReferencia ----------------------- */
     function cargarDatosValidarReferencia(){
