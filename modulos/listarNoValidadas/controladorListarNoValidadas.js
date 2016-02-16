@@ -25,7 +25,7 @@ app.controller ('controladorListarNoValidadas', function (servicioRest,utils, co
     
     $scope.abrirReferenciaPendiente = function (index, referencias) {        
         $rootScope.referenciaCargada = referencias[index];
-        $location.path('/modificarReferencia');
+        $location.path('/modificarReferenciaNoValidada');
     }
     
     /*   AYUDA     */

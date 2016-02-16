@@ -149,6 +149,10 @@ app.config(function($routeProvider) {
         templateUrl: 'modulos/modificarReferencia/modificarReferencia.html',
         controller: 'controladorModificarReferencia'
     })
+    .when('/modificarReferenciaNoValidada', {
+        templateUrl: 'modulos/modificarReferenciaNoValidada/modificarReferenciaNoValidada.html',
+        controller: 'controladorModificarReferenciaNoValidada'
+    })
     .when('/listarReferenciasValidar', {
         templateUrl: 'modulos/listarReferenciasValidar/listarReferenciasValidar.html',
         controller: 'controladorListarReferenciasValidar'

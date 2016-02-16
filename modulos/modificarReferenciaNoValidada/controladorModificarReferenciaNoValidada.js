@@ -1,12 +1,10 @@
-app.controller('controladorModificarReferencia', function(servicioRest,utils, config, $scope, $http,$log, $rootScope,$location,$mdDialog,$interval,$timeout,$route, $mdToast){
+app.controller('controladorModificarReferenciaNoValidada', function(servicioRest,utils, config, $scope, $http,$log, $rootScope,$location,$mdDialog,$interval,$timeout,$route, $mdToast){
     //--------------------- Objetos del controlador (clientes y tecnologias)
 
     //Se obtienen los elementos que tengan la clase "md-datepicker-input" se obtiene el primer elemento (solo hay uno)
     //y le añades el atributo "readonly" a true. Esto se hace porque el datepicker crea este elemento en ejecucion
     //y no puedes establecer este atributo a mano en el html, debes añadirlo dinamicamente en ejecucion,
     //que es el momento en el que se crea el elemento
-    $scope.noModificar=true;
-    $scope.titulo="VISUALIZAR REFERENCIA";
     
     function toast(texto) {
 		$mdToast.show(
@@ -15,27 +13,28 @@ app.controller('controladorModificarReferencia', function(servicioRest,utils, co
 	}
     
     if($rootScope.referenciaCargada===undefined){
-        $location.path('/buscarReferencias');
+        $location.path('/listarNoValidadas');
     }
-    var referenciaOld={};
+    $scope.referenciaOld={};
     
-    referenciaOld.cliente = $rootScope.referenciaCargada.cliente;
-    referenciaOld.sociedad = $rootScope.referenciaCargada.sociedad;
-    referenciaOld.sectorEmpresarial = $rootScope.referenciaCargada.sectorEmpresarial;
-    referenciaOld.tipoActividad = $rootScope.referenciaCargada.tipoActividad;
-    referenciaOld.tipoProyecto = $rootScope.referenciaCargada.tipoProyecto;
-    referenciaOld.fechaInicio = $rootScope.referenciaCargada.fechaInicio;
-    referenciaOld.duracionMeses = $rootScope.referenciaCargada.duracionMeses;
-    referenciaOld.denominacion = $rootScope.referenciaCargada.denominacion;
-    referenciaOld.resumenProyecto = $rootScope.referenciaCargada.resumenProyecto;
-    referenciaOld.problematicaCliente = $rootScope.referenciaCargada.problematicaCliente;
-    referenciaOld.solucionGfi = $rootScope.referenciaCargada.solucionGfi;
-    referenciaOld.fteTotales = $rootScope.referenciaCargada.fteTotales;
-    referenciaOld.responsableComercial = $rootScope.referenciaCargada.responsableComercial;
-    referenciaOld.responsableTecnico = $rootScope.referenciaCargada.responsableTecnico;
-    referenciaOld.imagenProyecto = $rootScope.referenciaCargada.imagenProyecto;
-    referenciaOld.codigoQr = $rootScope.referenciaCargada.codigoQr;
-    referenciaOld.tecnologias = $rootScope.referenciaCargada.tecnologias;
+    $scope.referenciaOld.cliente = $rootScope.referenciaCargada.cliente;
+    $scope.referenciaOld.sociedad = $rootScope.referenciaCargada.sociedad;
+    $scope.referenciaOld.sectorEmpresarial = $rootScope.referenciaCargada.sectorEmpresarial;
+    $scope.referenciaOld.tipoActividad = $rootScope.referenciaCargada.tipoActividad;
+    $scope.referenciaOld.tipoProyecto = $rootScope.referenciaCargada.tipoProyecto;
+    $scope.referenciaOld.fechaInicio = $rootScope.referenciaCargada.fechaInicio;
+    $scope.referenciaOld.duracionMeses = $rootScope.referenciaCargada.duracionMeses;
+    $scope.referenciaOld.denominacion = $rootScope.referenciaCargada.denominacion;
+    $scope.referenciaOld.resumenProyecto = $rootScope.referenciaCargada.resumenProyecto;
+    $scope.referenciaOld.problematicaCliente = $rootScope.referenciaCargada.problematicaCliente;
+    $scope.referenciaOld.solucionGfi = $rootScope.referenciaCargada.solucionGfi;
+    $scope.referenciaOld.fteTotales = $rootScope.referenciaCargada.fteTotales;
+    $scope.referenciaOld.responsableComercial = $rootScope.referenciaCargada.responsableComercial;
+    $scope.referenciaOld.responsableTecnico = $rootScope.referenciaCargada.responsableTecnico;
+    $scope.referenciaOld.imagenProyecto = $rootScope.referenciaCargada.imagenProyecto;
+    $scope.referenciaOld.codigoQr = $rootScope.referenciaCargada.codigoQr;
+    $scope.referenciaOld.tecnologias = $rootScope.referenciaCargada.tecnologias;
+    $scope.referenciaOld.estado = $rootScope.referenciaCargada.estado;
     
     //--------------------------------------------------------
     document.getElementsByClassName("md-datepicker-input")[0].setAttribute("readonly","true");
@@ -498,250 +497,92 @@ app.controller('controladorModificarReferencia', function(servicioRest,utils, co
 
  //--------------------------------------------------------------------------------------------------------------------------   
     /* CREAR la referencia, puede tener estado: pendiente/borrador  */
-
-    function comprobarCamposModificados(){
-        var estado="validada";
-        var campos = localStorage.getItem("campos").split(",");
-        for (var i=0;i<campos.length;i++){
-            switch (campos[i]){
-                    case "cliente":
-                        if($scope.referencia.cliente!=referenciaOld.cliente){
-                            estado="pendiente";
-                        }
-                        break;
-                    case "sociedad":
-                        if($scope.referencia.sociedad!=referenciaOld.sociedad){
-                            estado="pendiente";
-                        }
-                        break;
-                    case "sectorEmpresarial":
-                        if($scope.referencia.sectorEmpresarial!=referenciaOld.sectorEmpresarial){
-                            estado="pendiente";
-                        }
-                        break;
-                    case "tipoActividad":
-                        if($scope.referencia.tipoActividad!=referenciaOld.tipoActividad){
-                            estado="pendiente";
-                        }
-                        break;
-                    case "tipoProyecto":
-                        if($scope.referencia.tipoProyecto!=referenciaOld.tipoProyecto){
-                            estado="pendiente";
-                        }
-                        break;
-                    case "fechaInicio":
-                        if($scope.referencia.fechaInicio!=referenciaOld.fechaInicio){
-                            estado="pendiente";
-                        }
-                        break;
-                    case "duracionMeses":
-                        if($scope.referencia.duracionMeses!=referenciaOld.duracionMeses){
-                            estado="pendiente";
-                        }
-                        break;
-                    case "denominacion":
-                        if($scope.referencia.denominacion!=referenciaOld.denominacion){
-                            estado="pendiente";
-                        }
-                        break;
-                    case "resumenProyecto":
-                        if($scope.referencia.resumenProyecto!=referenciaOld.resumenProyecto){
-                            estado="pendiente";
-                        }
-                        break;
-                    case "problematicaCliente":
-                        if($scope.referencia.problematicaCliente!=referenciaOld.problematicaCliente){
-                            estado="pendiente";
-                        }
-                        break;
-                    case "solucionGfi":
-                        if($scope.referencia.solucionGfi!=referenciaOld.solucionGfi){
-                            estado="pendiente";
-                        }
-                        break;
-                    case "fteTotales":
-                        if($scope.referencia.fteTotales!=referenciaOld.fteTotales){
-                            estado="pendiente";
-                        }
-                        break;
-                    case "responsableComercial":
-                        if($scope.referencia.responsableComercial!=referenciaOld.responsableComercial){
-                            estado="pendiente";
-                        }
-                        break;
-                    case "responsableTecnico":
-                        if($scope.referencia.responsableTecnico!=referenciaOld.responsableTecnico){
-                            estado="pendiente";
-                        }
-                        break;
-                    case "imagenProyecto":
-                        if($scope.referencia.imagenProyecto!=referenciaOld.imagenProyecto){
-                            estado="pendiente";
-                        }
-                        break;
-                    case "codigoQr":
-                        if($scope.referencia.codigoQr!=referenciaOld.codigoQr){
-                            estado="pendiente";
-                        }
-                        break;
-                    case "tecnologiasSeleccionadas":
-                        if($scope.referencia.tecnologias!=referenciaOld.tecnologias){
-                            estado="pendiente";
-                        }
-                        break;
-                    default:
-                        console.log("campo no existe");
-            }
-            
-            /* TODO: Crear un array con todos los inputs para recorrer todos a lo bestia en cada iteracion */
-        }
-        return estado;
-    }
     
     //por reutilización se llamará a esta función cuando se quiera mandar la refrencia a crear al back
     function enviarReferencia(referencia, mensajeEstado){
-        if(referencia.estado==="validada"){
-            servicioRest.updateReferencia(referencia)
-            .then(function(data){
-                utils.popupInfo('', mensajeEstado);
-                $location.path('/buscarReferencias');
-            })
-            .catch(function(data){
-                utils.popupInfo('', 'Error al modificar la referencia');
-            });
-        }else if(referencia.estado==="pendiente"){
-            $mdDialog.show(
-            $mdDialog.confirm()
-            .clickOutsideToClose(true)
-            .title('Crear copia de la referencia')
-            .content('Se han modificado ciertos campos importantes, por lo tanto se creara una copia de esta referencia con sus modificaciones realizadas. ¿Esta seguro?')
-            .ariaLabel('Lucky day')
-            .ok('Crear referencia')
-            .cancel('Cancelar')
-            ).then(function() {
-                referencia.idEnlaceOriginal=referencia._id;
-                referencia._id=null;
-                servicioRest.postReferencia(referencia)
-                .then(function(data){
-                    utils.popupInfo('', mensajeEstado);
-                    $location.path('/buscarReferencias');
-                })
-                .catch(function(data){
-                    utils.popupInfo('', 'Error al modificar la referencia');
-                });
-            });
-            
-        }
-        
+        console.log(referencia);
+        servicioRest.updateReferencia(referencia)
+        .then(function(data){
+            utils.popupInfo('', mensajeEstado);
+            $location.path('/listarNoValidadas');
+        })
+        .catch(function(data){
+            utils.popupInfo('', 'Error al modificar la referencia');
+        });        
     }
     
-    $scope.crearReferencia = function (erroresP, event) {
-        if(!$scope.noModificar){
-            console.log($rootScope.referenciaCargada.idEnlaceOriginal);
-            console.log($scope.referencia.idEnlaceOriginal);
-            console.log($scope.clientes);
-            if (erroresP.$valid && $scope.posicionEnArray!=-1 && $scope.tecnologiasSeleccionadas.length>0)
-            {
-                console.log("entra");
-                // Crea/Guarda una referencia dependiendo de su estado
-                if(undefined!=$scope.posicionEnArray){
-                    $scope.referencia.cliente = $scope.clientes.lista[$scope.posicionEnArray].display;
-                }
-
-
-
-                if(undefined!=$scope.tecnologiasSeleccionadas){
-                    var arrayAux=[];
-                    for(var i=0;i<$scope.tecnologiasSeleccionadas.length;i++)
-                    {
-                        arrayAux.push($scope.tecnologiasSeleccionadas[i].value);
-                    }
-                    $scope.referencia.tecnologias = arrayAux;
-
-                }
-
-                $scope.referencia.autor = $rootScope.usuarioLS.nick;
-
-                if(undefined!=$scope.referencia.regPedidoAsociadoReferencia){
-                    //TODO
-                    //$scope.referencia.regPedidoAsociadoReferencia = $scope.referencia.regPedidoAsociadoReferencia.split(/,[ ]*/);
-                    $scope.referencia.regPedidoAsociadoReferencia = [];
-                }else{
-
-                    $scope.referencia.regPedidoAsociadoReferencia = [];
-                }
-                var fileReader = new FileReader();
-
-                if(undefined!=document.getElementById("botonFileReal").files[0]){
-
-                    var imagen = document.getElementById("botonFileReal").files[0];
-                    fileReader.readAsBinaryString(imagen);
-                    fileReader.onloadend = function(e)
-                    {
-                        var objeto = e.target.result;
-                        objeto = btoa(objeto);
-                        $scope.referencia.imagenProyecto = objeto;
-                        var referencia = $scope.referencia;
-                        $scope.referencia.estado = comprobarCamposModificados()
-                        //$scope.referencia.estado = estado; 
-                        if($scope.referencia.estado==="pendiente")
-                        {
-                            mensajeEstado='Referencia creada pendiente de validar.'; 
-                        }
-                        else if($scope.referencia.estado==="validada")
-                        {
-                            mensajeEstado='Referencia creada en modo validada.'; 
-                        }
-                        enviarReferencia(referencia, mensajeEstado);
-                     }
-                }else
-                {
-                        var referencia = $scope.referencia;
-                        $scope.referencia.estado = comprobarCamposModificados()
-                        //$scope.referencia.estado = estado; 
-                        if($scope.referencia.estado==="pendiente")
-                        {
-                            mensajeEstado='Referencia creada pendiente de validar.'; 
-                        }
-                        else if($scope.referencia.estado==="validada")
-                        {
-                            mensajeEstado='Referencia creada en modo validada.';
-                        }
-                        enviarReferencia(referencia, mensajeEstado);
-                }
-
-            }else{
-                //utils.popupInfo('',listarErrores());
-                errores(event,erroresP,$scope.posicionEnArray===-1,$scope.tecnologiasSeleccionadas.length<=0);
+    $scope.crearReferencia = function (erroresP, estado, event) {
+        if (estado==="borrador" || erroresP.$valid && $scope.posicionEnArray!=-1 && $scope.tecnologiasSeleccionadas.length>0)
+        {
+            // Crea/Guarda una referencia dependiendo de su estado
+            if(undefined!=$scope.posicionEnArray){
+                $scope.referencia.cliente = $scope.clientes.lista[$scope.posicionEnArray].display;
             }
-        }else{
-            servicioRest.getCopiaReferencia($rootScope.referenciaCargada._id)
-            .then(function(data){
-                console.log(data);
-                if(data.autor==="vacia"){
-                    toast('Se puede modificar la referencia');
-                    $scope.titulo="MODIFICAR REFERENCIA";
-                    $scope.noModificar=false;
-                }else{
-                    $mdDialog.show(
-                    $mdDialog.confirm()
-                    .clickOutsideToClose(true)
-                    .title('Copia de esta referencia ya existente')
-                    .content('Actualmente existe una copia en borrador o pendiente de esta referencia, si desea realizar una modificacion abra dicha referencia.')
-                    .ariaLabel('Lucky day')
-                    .ok('Abrir referencia')
-                    .cancel('Cancelar')
-                    ).then(function() {
-                        $rootScope.referenciaCargada=data;
-                        $location.path('/modificarReferenciaNoValidada');
-                    });
+
+
+
+            if(undefined!=$scope.tecnologiasSeleccionadas){
+                var arrayAux=[];
+                for(var i=0;i<$scope.tecnologiasSeleccionadas.length;i++)
+                {
+                    arrayAux.push($scope.tecnologiasSeleccionadas[i].value);
                 }
-            })
-            .catch(function(data){
-                utils.popupInfo('', 'Error al comprobar la copia de esta referencia');
-            });
-            
-        }                
+                $scope.referencia.tecnologias = arrayAux;
+
+            }
+
+            $scope.referencia.autor = $rootScope.usuarioLS.nick;
+
+            if(undefined!=$scope.referencia.regPedidoAsociadoReferencia){
+                //TODO
+                //$scope.referencia.regPedidoAsociadoReferencia = $scope.referencia.regPedidoAsociadoReferencia.split(/,[ ]*/);
+                $scope.referencia.regPedidoAsociadoReferencia = [];
+            }else{
+
+                $scope.referencia.regPedidoAsociadoReferencia = [];
+            }
+            var fileReader = new FileReader();
+
+            if(undefined!=document.getElementById("botonFileReal").files[0]){
+
+                var imagen = document.getElementById("botonFileReal").files[0];
+                fileReader.readAsBinaryString(imagen);
+                fileReader.onloadend = function(e)
+                {
+                    var objeto = e.target.result;
+                    objeto = btoa(objeto);
+                    $scope.referencia.imagenProyecto = objeto;
+                    var referencia = $scope.referencia;
+                    referencia.estado = estado;
+                    if($scope.referencia.estado==="pendiente")
+                    {
+                        mensajeEstado='Referencia creada pendiente de validar.'; 
+                    }
+                    else if($scope.referencia.estado==="borrador")
+                    {
+                        mensajeEstado='Referencia creada en modo borrador.'; 
+                    }
+                    enviarReferencia(referencia, mensajeEstado);
+                 }
+            }else
+            {
+                    var referencia = $scope.referencia;
+                    referencia.estado = estado; 
+                    if($scope.referencia.estado==="pendiente")
+                    {
+                        mensajeEstado='Referencia creada pendiente de validar.'; 
+                    }
+                    else if($scope.referencia.estado==="borrador")
+                    {
+                        mensajeEstado='Referencia creada en modo borrador.';
+                    }
+                    enviarReferencia(referencia, mensajeEstado);
+            }
+
+        }else{
+            //utils.popupInfo('',listarErrores());
+            errores(event,erroresP,$scope.posicionEnArray===-1,$scope.tecnologiasSeleccionadas.length<=0);
+        }               
 
     }
     
@@ -774,7 +615,7 @@ app.controller('controladorModificarReferencia', function(servicioRest,utils, co
             servicioRest.deleteReferencia($scope.referencia._id)
              .then(function(data){
                 utils.popupInfo('', "Referencia borrada");
-                $location.path('/buscarReferencias');
+                $location.path('/listarNoValidadas');
             })
             .catch(function(data){
                 utils.popupInfo('', 'Error al modificar la referencia');

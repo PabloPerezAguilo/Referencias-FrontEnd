@@ -656,6 +656,15 @@ md-chips .md-chips.md-focused {
 md-chips .md-chip.md-focused {
   background: #ee941a; }
 
+#motivoRechazo {
+  border: 3px solid maroon; }
+
+.labelGrande {
+  font-size: initial; }
+
+.espaciadoTop {
+  margin-top: 3%; }
+
 /*--------------------- ESTILOS POPUPS -------------------------*/
 #popUpError {
   background-color: #CE0000; }
