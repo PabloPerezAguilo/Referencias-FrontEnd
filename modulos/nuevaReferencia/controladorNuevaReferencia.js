@@ -12,6 +12,7 @@ app.controller('controladorNuevaReferencia', function(servicioRest,utils, config
         document.getElementById("clienteReferencia").childNodes[1].childNodes[2].focus();
     },1);
     
+    console.log(document.getElementById("clienteReferencia").childNodes[1].childNodes[2]);
     $scope.tecnologiasSeleccionadas=[];
     // list of `state` value/display objects
     $scope.clientes={

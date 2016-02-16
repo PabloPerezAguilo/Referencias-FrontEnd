@@ -52,7 +52,7 @@
                         <input ng-keypress="intro($event)" id="nombreTecnologia" type="text"ng-model="nodoSeleccionado.nombre" ng-required="true">
                     </md-input-container>
                 </div>
-                <div ng-if="nodoSeleccionado.clase!=='nodo'">
+                <div id="camposTecnologiasFinales" ng-if="nodoSeleccionado.clase!=='nodo'">
 
                     <div>
                         <md-input-container>
@@ -72,7 +72,7 @@
                       </md-input-container>
                     </div>
                 </div>
-                <md-button class="botonesApp" type="button"  ng-click="guardarElem()"
+                <md-button id="guardarTecnologia" class="botonesApp" type="button"  ng-click="guardarElem()"
                            ng-disabled="datosNodo.$invalid">Guardar</md-button>
                 <md-button class="botonesApp" ng-show="true && (nodoSeleccionado.clase=='hojaInvalida')" type="button"  ng-click="validarElem()">Validar</md-button>
                 <md-autocomplete class="mozillaAutocompleteTecnologias"

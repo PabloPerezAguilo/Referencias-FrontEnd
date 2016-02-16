@@ -626,6 +626,8 @@ app.controller('controladorModificarReferencia', function(servicioRest,utils, co
     
     $scope.crearReferencia = function (erroresP, event) {
         if(!$scope.noModificar){
+            console.log($rootScope.referenciaCargada.idEnlaceOriginal);
+            console.log($scope.referencia.idEnlaceOriginal);
             console.log($scope.clientes);
             if (erroresP.$valid && $scope.posicionEnArray!=-1 && $scope.tecnologiasSeleccionadas.length>0)
             {

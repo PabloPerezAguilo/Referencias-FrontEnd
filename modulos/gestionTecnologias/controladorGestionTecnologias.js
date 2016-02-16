@@ -461,8 +461,16 @@ app.controller ('controladorGestionTecnologias', function (servicioRest, utils, 
                 intro: 'En esta zona se mostraran los datos de las tecnologias que selecciones.'
             },
             {
-                element: '#contenedorOpciones',
-                intro: 'podras rellenar o modificar el nombre de las tecnologias intermedias y rellenar o modificar los datos de las tecnologias finales, para que estos cambios se realicen sera imprescindible pulsar en el boton de guardar antes de modificar otra tecnologia.'
+                element: '#nombreTecnologia',
+                intro: 'Aqui podras rellenar o modificar el nombre de las tecnologias'
+            },
+            {
+                element: '#camposTecnologiasFinales',
+                intro: 'En esta parte podras rellenar o modificar  los datos de las tecnologias finales.'
+            },
+            {
+                element: '#guardarTecnologia',
+                intro: 'Para que los cambios se realicen sera imprescindible pulsar en el boton de guardar antes de modificar otra tecnologia.'
             },
             {
                 element: '#contenedorOpciones',
