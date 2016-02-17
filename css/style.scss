@@ -245,6 +245,31 @@ footer #lineaFooter{
 
 /* --------------------------- ESTILOS COMUNES ----------------------------- */
 
+.material-icons {
+  font-family: 'Material Icons';
+  font-weight: normal;
+  font-style: normal;
+  font-size: 36px;  /* Preferred icon size */
+  display: inline-block;
+  line-height: 0;
+  text-transform: none;
+  letter-spacing: normal;
+  word-wrap: normal;
+  white-space: nowrap;
+  direction: ltr;
+
+  /* Support for all WebKit browsers. */
+  -webkit-font-smoothing: antialiased;
+  /* Support for Safari and Chrome. */
+  text-rendering: optimizeLegibility;
+
+  /* Support for Firefox. */
+  -moz-osx-font-smoothing: grayscale;
+
+  /* Support for IE. */
+  font-feature-settings: 'liga';
+}
+
 .cabeceraPagina {
     margin-right: 25px;
     text-align: right;
@@ -463,6 +488,12 @@ label{
 .autocompletedemoCustomTemplate .autocomplete-custom-template .item-title md-icon {
     height: 18px;
     width: 18px; 
+}
+
+/*------------------------------ ESTILOS BUSCAR REFERENCIA ---------------------------------*/
+
+#busquedaRef{
+    background-color: transparent; 
 }
 
 /*------------------------------ ESTILOS NUEVA REFERENCIA ---------------------------------*/
@@ -834,6 +865,27 @@ md-toolbar:not(.md-menu-toolbar) {
     font-size: 12px;
 }
 
+/*--------------------- ESTILOS BUSCAR REFERENCIAS -------------------------*/
+
+#botonBusqueda{
+    margin-bottom: 2.3%;
+}
+
+.selectBusqueda{
+    width: 70%;
+}
+
+#cuerpoBusquedaAvanzada{
+    margin-left: 5%;
+}
+
+#clienteBusqueda{
+    width: 90%;
+}
+
+#duracionBusqueda{
+    width: 277%;
+}
 /*ESTILOS REFERENCIAS PENDIENTES*/
 #referenciasPendientes th, td{
     border: none;

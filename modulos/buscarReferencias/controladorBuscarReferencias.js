@@ -5,6 +5,43 @@ app.controller ('controladorBuscarReferencias', function (servicioRest,utils, co
     $scope.referencias = [];
     $scope.pop=utils.popupInfo;
     
+    servicioRest.getCatalogos().then(
+        function(response) {
+            $scope.catalogo = response;
+            $scope.clientes.lista= $scope.catalogo.clientes.map( function (cliente) {
+            return {
+                value: cliente.nombre,
+                display: cliente.nombre+' ('+cliente.siglas+')'
+            };
+        });
+    });
+    
+    $scope.filtrar = function (texto) {
+        var resultado;
+        var array;
+        // Determinamos cual es el array a filtrar y cuanl es el índice del resultado            
+        array=$scope.clientes.lista;
+        $scope.posicionEnArray=undefined;
+        // hacemos la búsqueda en el array
+        if(texto!==""){
+            //Si hay algo de texto, cogemos los elementos que tengan el texto en el nombre y/o en las siglas
+            resultado=array.filter(function (cliente) {
+                return (cliente.display.toLowerCase().indexOf(texto.toLowerCase()) !==-1);
+            });
+        }else{
+            //si no hay texto, asignamos el resultado de la búsqueda al array completo para que se recarguen todos los datos
+            resultado=array;
+        }
+        return resultado;
+    }
+    
+    //Cuando seleccionamos un elemento de la lista de resultados del autocomplete
+    $scope.selectedItemChange=function (item) {
+        //si es el autocomplete del cliente, buscamos el índife en la lista de clientes.
+        //lo asignamos a la posición del catálogo de clientes correspondiente al mismo
+        $scope.posicionEnArray=$scope.clientes.lista.indexOf(item);     
+    }
+    
     servicioRest.getReferenciasValidadas().then(
         function (response) {           
             $scope.referencias = response;
