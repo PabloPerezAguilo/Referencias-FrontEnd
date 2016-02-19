@@ -7,9 +7,9 @@
     <md-toolbar id="busquedaRef">
         <div class="md-toolbar-tools">
           <md-input-container md-theme="input" flex>
-            <input ng-model="busqueda" placeholder="Buscar referencias">
+            <input ng-model="referencia.busqueda" placeholder="Buscar referencias">
           </md-input-container>
-          <md-button id="botonBusqueda" aria-label="Search">
+          <md-button id="botonBusqueda" aria-label="Search" ng-click="buscar()">
             <ng-md-icon icon="search"></ng-md-icon>
           </md-button>
         </div>
@@ -24,7 +24,7 @@
                 <i class="material-icons" ng-show="mostrarBAvanzada">keyboard_arrow_down</i>
                 <!--ng-md-icon icon="keyboard_arrow_down" ng-show="mostrarBAvanzada"></ng-md-icon-->
             </md-button>
-            Busqueda avanzada
+            <div id="tituloBotonBusquedaAvanzada">Busqueda avanzada</div>
         </div><br>
         <div id="cuerpoBusquedaAvanzada" ng-init="mostrarBAvanzada=false" ng-show="mostrarBAvanzada">
             <!--CLIENTE-->
@@ -52,7 +52,6 @@
                       </div>
                 </md-dialog-content>
             </div>
-            <br>
 
             <!--    SOCIEDAD-->
             <div id="sociedad">
@@ -126,11 +125,28 @@
             <!--    Duración-->    
             <div id="Duracion">
                 <md-input-container title="Duración en meses" class="fixed-size" >
-                    <label>Duración en meses *</label>
-                    <input id="duracionBusqueda" name="duracion" type="number" min="1" ng-model="referencia.duracionMeses" 
+                    <label>Nº años anteriores</label>
+                    <input id="duracionBusqueda" name="duracion" type="number" min="0" ng-init="referencia.ultimosAnios=0" ng-model="referencia.ultimosAnios" 
                            tabindex="7"/>
                 </md-input-container>
             </div>
+            <md-input-container class="selectBusqueda">
+                <label>Tipo de tecnologia</label>
+                <md-select ng-model="referencia.tipoTecnologia" ng-required="true">
+                  <md-option ng-repeat="tipo in tipos" value="{{tipo}}">
+                    {{tipo}}
+                  </md-option>
+                </md-select>
+            </md-input-container>
+            <md-input-container id="busquedaProductoTecnologia" title="Existe certificado del cliente" class="fixed-size">
+                <label class="labelCertificado">La tecnologia es producto</label>
+                <md-radio-group id="hayCertificado"
+                                name="certificado"
+                                ng-model="referencia.esProducto">                  
+                    <md-radio-button class="inBlock radioCertificado" value="si">Si</md-radio-button>
+                    <md-radio-button class="inBlock radioCertificado" value="no">No</md-radio-button>
+                </md-radio-group>
+            </md-input-container>
         </div>
     </div>
     

@@ -9,6 +9,11 @@ app.controller('controladorValidarReferencia', function(servicioRest,utils, conf
     if($rootScope.referenciaCargada===undefined){
         $location.path('/listarReferenciasValidar');
     }
+    var i=0;
+    while(document.getElementsByClassName("md-select-value")[i]!=null){
+        document.getElementsByClassName("md-select-value")[i].children[0].style.color="#242424";
+        i++;
+    }
     
     document.getElementsByClassName("md-datepicker-input")[0].setAttribute("readonly","true");
     //clienteReferencia.focus();

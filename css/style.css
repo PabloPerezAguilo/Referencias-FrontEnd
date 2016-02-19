@@ -405,6 +405,9 @@ label {
 #busquedaRef {
   background-color: transparent; }
 
+#busquedaProductoTecnologia {
+  display: block; }
+
 /*------------------------------ ESTILOS NUEVA REFERENCIA ---------------------------------*/
 md-option .md-text {
   overflow: initial; }
@@ -691,6 +694,10 @@ md-chips .md-chip.md-focused {
 .espaciadoTop {
   margin-top: 3%; }
 
+/*--------------------- VALIDAR REFERENCIA -------------------------*/
+.quitarEstiloDeshabilitado {
+  color: #242424 !important; }
+
 /*--------------------- ESTILOS POPUPS -------------------------*/
 #popUpError {
   background-color: #CE0000; }
@@ -755,6 +762,13 @@ md-toolbar:not(.md-menu-toolbar) {
   font-size: 12px; }
 
 /*--------------------- ESTILOS BUSCAR REFERENCIAS -------------------------*/
+#tituloBotonBusquedaAvanzada {
+  margin-top: 1%;
+  margin-left: 0.5%;
+  display: inline-block;
+  height: 18;
+  vertical-align: top; }
+
 #botonBusqueda {
   margin-bottom: 2.3%; }
 

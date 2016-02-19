@@ -17,6 +17,13 @@ app.controller('controladorModificarReferencia', function(servicioRest,utils, co
     if($rootScope.referenciaCargada===undefined){
         $location.path('/buscarReferencias');
     }
+    
+    var i=0;
+    while(document.getElementsByClassName("md-select-value")[i]!=null){
+        document.getElementsByClassName("md-select-value")[i].children[0].style.color="#242424";
+        i++;
+    }
+    
     var referenciaOld={};
     
     referenciaOld.cliente = $rootScope.referenciaCargada.cliente;

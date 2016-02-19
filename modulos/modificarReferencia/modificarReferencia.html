@@ -123,7 +123,7 @@
             <div id="Duracion" class="inBlock" >
                 <md-input-container title="Duración en meses" class="fixed-size" >
                     <label>Duración en meses *</label>
-                    <input id="duracionInput" name="duracion" type="number" min="1" ng-model="referencia.duracionMeses" 
+                    <input id="duracionInput" class="quitarEstiloDeshabilitado" name="duracion" type="number" min="1" ng-model="referencia.duracionMeses" 
                            ng-disabled=noModificar ng-required="true"tabindex="7" 
                            ng-blur="actualizaErrores('duracion', useForm.duracion.$error)"/>
                 </md-input-container>
@@ -134,6 +134,7 @@
                 <md-input-container title="Denominación" class="fixed-size-denominacion" ng-disabled=noModificar >
                     <label>Denominación *</label>
                     <textarea id="denominacionTexto"
+                              class="quitarEstiloDeshabilitado"
                               name="denominacion"
                               type="text"
                               ng-model="referencia.denominacion"
@@ -151,6 +152,7 @@
                 <md-input-container title="Resumen del proyecto" class="fixed-size-resumen">
                     <label>Resumen proyecto *</label>
                     <textarea id="textResumen"
+                              class="quitarEstiloDeshabilitado"
                               name="Rproyecto"
                               ng-model="referencia.resumenProyecto"
                               ng-disabled=noModificar
@@ -167,6 +169,7 @@
                 <md-input-container title="Problemática del cliente" class="fixed-size-resumen">
                     <label>Problemática del cliente *</label>
                     <textarea id="textProblematica"
+                              class="quitarEstiloDeshabilitado"
                               name="ProblemaCliente"
                               ng-model="referencia.problematicaCliente"
                               ng-disabled=noModificar
@@ -184,6 +187,7 @@
                 <md-input-container title="Solución GFI" class="fixed-size-solucion" >
                     <label>Solución GFI *</label>
                     <textarea id="textSolucion"
+                              class="quitarEstiloDeshabilitado"
                               name="solGFI"
                               type="text"
                               ng-model="referencia.solucionGfi"
@@ -202,6 +206,7 @@
             <md-input-container title="FTE Totales" class="fixed-size" >
                 <label>FTE Totales *</label>
                 <input id="inputFte"
+                       class="quitarEstiloDeshabilitado"
                        name="fteTotal"
                        type="number"
                        min="1"
@@ -306,7 +311,7 @@
                     <!--Código QR--> 
                     <md-input-container id="qrCode" title="Código QR" class="fixed-size">
                         <label>Código Qr</label>
-                        <input id="codigoQR" ng-model="referencia.codigoQr" ng-Change="QrChaged()" ng-disabled=noModificar tabindex="18"/>
+                        <input id="codigoQR" class="quitarEstiloDeshabilitado" ng-model="referencia.codigoQr" ng-Change="QrChaged()" ng-disabled=noModificar tabindex="18"/>
                     </md-input-container>
                     <br>
                     <div class="centrado-QR">

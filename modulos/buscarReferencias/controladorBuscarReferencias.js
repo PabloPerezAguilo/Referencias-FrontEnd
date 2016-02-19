@@ -4,7 +4,11 @@ app.controller ('controladorBuscarReferencias', function (servicioRest,utils, co
     $scope.titulo = 'BUSCAR REFERENCIAS';
     $scope.referencias = [];
     $scope.pop=utils.popupInfo;
+    $scope.tipos=["OpenSource", "Suscripción", "Licencia"];
     
+    
+    document.getElementsByClassName("md-select-value")[0].children[0].style.width="0";
+    document.getElementsByClassName("md-select-value")[1].children[0].style.width="0";
     servicioRest.getCatalogos().then(
         function(response) {
             $scope.catalogo = response;
@@ -15,6 +19,18 @@ app.controller ('controladorBuscarReferencias', function (servicioRest,utils, co
             };
         });
     });
+    
+    $scope.buscar= function(){
+        if(undefined!=$scope.posicionEnArray){
+                $scope.referencia.cliente = $scope.clientes.lista[$scope.posicionEnArray].display;
+        }
+        $scope.referencia.anioLimite = moment('default', 'D/M/YYYY', true).toDate().getFullYear() - $scope.referencia.ultimosAnios
+        servicioRest.buscarReferencias($scope.referencia).then(
+        function (response) {           
+            $scope.referencias = response;
+            $scope.totalItems = $scope.referencias.length;
+        });
+    }
     
     $scope.filtrar = function (texto) {
         var resultado;
