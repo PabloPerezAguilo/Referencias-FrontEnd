@@ -130,6 +130,12 @@
                            tabindex="7"/>
                 </md-input-container>
             </div>
+            <div id="TecnologiasSelec">
+                <md-input-container title="Tecnologias Seleccionadas" class="fixed-size" >
+                    <label>Tecnologias seleccionadas</label>
+                    <input id="duracionBusqueda" name="tecnologias" ng-focus="seleccionarTecnologias(this)" type="text" ng-model="tecnologiasSeleccionadas"/>
+                </md-input-container>
+            </div>
             <md-input-container class="selectBusqueda">
                 <label>Tipo de tecnologia</label>
                 <md-select ng-model="referencia.tipoTecnologia" ng-required="true">
@@ -143,8 +149,9 @@
                 <md-radio-group id="hayCertificado"
                                 name="certificado"
                                 ng-model="referencia.esProducto">                  
-                    <md-radio-button class="inBlock radioCertificado" value="si">Si</md-radio-button>
-                    <md-radio-button class="inBlock radioCertificado" value="no">No</md-radio-button>
+                    <md-radio-button class="inBlock radioCertificado" value="true">Si</md-radio-button>
+                    <md-radio-button class="inBlock radioCertificado" value="false">No</md-radio-button>
+                    <md-radio-button class="inBlock radioCertificado" value="undefined">No aplica</md-radio-button>
                 </md-radio-group>
             </md-input-container>
         </div>

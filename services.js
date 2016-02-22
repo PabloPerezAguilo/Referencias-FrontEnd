@@ -344,6 +344,7 @@ function ServicioREST( utils, config, $http,$q, $rootScope) {
         putMoverTecnologia: putMoverTecnologia,
         deleteTecnologia: deleteTecnologia,
 		getReferencias: getReferencias,
+        buscarReferencias: buscarReferencias,
 		getReferencia: getReferencia,
         getReferenciasPendientes: getReferenciasPendientes,
         getReferenciasAsociadasAUsuario: getReferenciasAsociadasAUsuario,
