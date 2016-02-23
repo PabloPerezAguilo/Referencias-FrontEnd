@@ -119,50 +119,37 @@ app.controller('controladorSeleccionarTecnologias', function ($scope, $mdDialog,
         $scope.hayError=false;
         var tipo;
         nodeData=nodo;
-        console.log("aqui", nodo.nodosHijos);
-        console.log("aqui", elem.$modelValue);
-        console.log("aqui", elem.hasChild());
-        //console.log("aqui", elem.childNodes()[0].childNodes()[0].$modelValue);
-        var elemActual = elem//   elem.childNodes()[0];
-        console.log(elemActual.$modelValue);
-        //console.log(elemActual.childNodes()[0].$modelValue);
-        console.log(elemActual.$element);
-        elemActual.$element.addClass("elementoSeleccionado");
-        tecSelec.push(elemActual.$modelValue.nombre);
+        var elemActual = elem;//   elem.childNodes()[0];
+        if(elemActual.$element[0].classList.contains("elementoSeleccionado")){
+            console.log("hola");
+            elemActual.$element.removeClass("elementoSeleccionado");
+            console.log("indexPadre",tecSelec.indexOf(elemActual.$modelValue.nombre));
+            tecSelec.splice(tecSelec.indexOf(elemActual.$modelValue.nombre),1);
+        }else{
+            elemActual.$element.addClass("elementoSeleccionado");
+            tecSelec.push(elemActual.$modelValue.nombre);
+        }
+        
         while(elemActual.hasChild()){
             elemActual = elemActual.childNodes()[0];
-            tecSelec.push(elemActual.$modelValue.nombre);
+            console.log("AQUI",elemActual.$element[0].classList);
+            if(elemActual.$element[0].classList.contains("elementoSeleccionado")){
+                console.log("selec");
+                elemActual.$element.removeClass("elementoSeleccionado");
+                console.log("indexHijo",tecSelec.indexOf(elemActual.$modelValue.nombre));
+                tecSelec.splice(tecSelec.indexOf(elemActual.$modelValue.nombre),1);
+            }else{
+                console.log("no selec");
+                elemActual.$element.addClass("elementoSeleccionado");
+                tecSelec.push(elemActual.$modelValue.nombre);
+            }
+            //tecSelec.push(elemActual.$modelValue.nombre);
             //elemActual.$element.addClass("elementoSeleccionado");
             console.log(elemActual.$element);
             console.log(elemActual.$modelValue);
         }
         console.log(tecSelec);
-        /*elem=elem.$element;
-        var i=0;
-        while(elem.childNodes()[0]!=null)
-        {
-            var aux=elem.childNodes()[0];
-            i++
-            console.log(i);
-            console.log("aqui", elem.$modelValue);
-        }*//*
-        elem=elem.$element;
-        // Modificaremos el elemento seleccionado exclusivamente si no se ha hecho click en un elemenyto que ya estaba seleccionado
-        if(elem !== elementoSeleccionado){
-            
-            // Añadimos la clase al elemento seleccionado actual
-            elem.addClass("elementoSeleccionado");
-            
-            // Eliminamos la clase al anterior elemento seleccionado
-            if(elementoSeleccionado!=undefined){
-                elementoSeleccionado.removeClass("elementoSeleccionado");
-            }
-            
-            // asignamos el elemento seleccionado al actual
-            elementoSeleccionado = elem;
-        }
-        operacion="editar";*/
-        
+    
     };
         
     

@@ -44,7 +44,7 @@ app.controller ('controladorBuscarReferencias', function (servicioRest,utils, co
         })
         .then(function(tecnologiasElegidas) {
             console.log("resultado", tecnologiasElegidas);
-            $scope.referencia.tecnologiasSeleccionadas = undefined;
+            //$scope.referencia.tecnologiasSeleccionadas = undefined;
             $scope.referencia.tecnologiasSeleccionadas = tecnologiasElegidas;
         })
         .catch(function(err) {
