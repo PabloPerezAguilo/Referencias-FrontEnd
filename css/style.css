@@ -405,6 +405,9 @@ label {
 #busquedaRef {
   background-color: transparent; }
 
+#busquedaProductoTecnologia {
+  display: block; }
+
 /*------------------------------ ESTILOS NUEVA REFERENCIA ---------------------------------*/
 md-option .md-text {
   overflow: initial; }
@@ -416,6 +419,7 @@ md-option .md-text {
   margin: 0; }
 
 .labelCertificado {
+  color: black;
   position: relative;
   display: block;
   transform: inherit !important;
@@ -691,6 +695,10 @@ md-chips .md-chip.md-focused {
 .espaciadoTop {
   margin-top: 3%; }
 
+/*--------------------- VALIDAR REFERENCIA -------------------------*/
+.quitarEstiloDeshabilitado {
+  color: #242424 !important; }
+
 /*--------------------- ESTILOS POPUPS -------------------------*/
 #popUpError {
   background-color: #CE0000; }
@@ -698,6 +706,12 @@ md-chips .md-chip.md-focused {
 #listaError li {
   list-style-type: disc;
   margin-bottom: 0.5%; }
+
+#tecDialog {
+  margin: auto;
+  min-width: 1100px;
+  min-height: 700px;
+  max-height: 1000px; }
 
 #rejectDialog {
   margin: auto;
@@ -755,6 +769,13 @@ md-toolbar:not(.md-menu-toolbar) {
   font-size: 12px; }
 
 /*--------------------- ESTILOS BUSCAR REFERENCIAS -------------------------*/
+#tituloBotonBusquedaAvanzada {
+  margin-top: 1%;
+  margin-left: 0.5%;
+  display: inline-block;
+  height: 18;
+  vertical-align: top; }
+
 #botonBusqueda {
   margin-bottom: 2.3%; }
 

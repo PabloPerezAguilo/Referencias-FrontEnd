@@ -67,6 +67,16 @@ function ServicioREST( utils, config, $http,$q, $rootScope) {
 
 	}
     
+    function buscarReferencias(busqueda) {
+/*?bGeneral=' + busqueda.busqueda + '&bCliente=' + busqueda.cliente + '&bSociedad='+ busqueda.sociedad + '&bSector=' + busqueda.sectorEmpresarial + '&bActividad=' + busqueda.tipoActividad + '&bProyecto=' + busqueda.tipoProyecto + '&bAnios=' + busqueda.anioLimite + '&bTipoTecnologia=' + busqueda.tipoTecnologia + '&bEsProducto=' + busqueda.esProducto*/
+		return llamadaHTTP({
+			method: 'GET',
+			url: url + '/referencia/filtro',
+            params: {bGeneral: busqueda.busqueda, bCliente: busqueda.cliente, bSociedad: busqueda.sociedad, bSector: busqueda.sectorEmpresarial, bActividad: busqueda.tipoActividad, bProyecto: busqueda.tipoProyecto, bAnios: busqueda.anioLimite, bTipoTecnologia: busqueda.tipoTecnologia, bEsProducto: busqueda.esProducto}
+		});
+
+	}
+    
     function getReferenciasValidadas() {
 
 		return llamadaHTTP({
@@ -334,6 +344,7 @@ function ServicioREST( utils, config, $http,$q, $rootScope) {
         putMoverTecnologia: putMoverTecnologia,
         deleteTecnologia: deleteTecnologia,
 		getReferencias: getReferencias,
+        buscarReferencias: buscarReferencias,
 		getReferencia: getReferencia,
         getReferenciasPendientes: getReferenciasPendientes,
         getReferenciasAsociadasAUsuario: getReferenciasAsociadasAUsuario,

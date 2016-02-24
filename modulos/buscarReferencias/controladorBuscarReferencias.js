@@ -1,10 +1,14 @@
-app.controller ('controladorBuscarReferencias', function (servicioRest,utils, config, $scope, $http, $location, $rootScope) {  
+app.controller ('controladorBuscarReferencias', function (servicioRest,utils, config, $scope, $http, $location, $rootScope, $mdDialog) {  
     
     $rootScope.opcion = 'validar';
     $scope.titulo = 'BUSCAR REFERENCIAS';
     $scope.referencias = [];
     $scope.pop=utils.popupInfo;
+    $scope.tipos=["OpenSource", "Suscripción", "Licencia"];
+    $scope.referencia={esProducto : "undefined"};
     
+    document.getElementsByClassName("md-select-value")[0].children[0].style.width="0";
+    document.getElementsByClassName("md-select-value")[1].children[0].style.width="0";
     servicioRest.getCatalogos().then(
         function(response) {
             $scope.catalogo = response;
@@ -15,6 +19,38 @@ app.controller ('controladorBuscarReferencias', function (servicioRest,utils, co
             };
         });
     });
+    
+    $scope.buscar= function(){
+        if(undefined!=$scope.posicionEnArray){
+                $scope.referencia.cliente = $scope.clientes.lista[$scope.posicionEnArray].display;
+        }
+        $scope.referencia.anioLimite = moment('default', 'D/M/YYYY', true).toDate().getFullYear() - $scope.referencia.ultimosAnios
+        servicioRest.buscarReferencias($scope.referencia).then(
+        function (response) {           
+            $scope.referencias = response;
+            $scope.totalItems = $scope.referencias.length;
+        });
+    }
+    
+    $scope.seleccionarTecnologias=function (inputTecnologias){
+        $mdDialog.show({
+            locals: {
+                tecnologiasSelecIniciales: $scope.referencia.tecnologiasSeleccionadas
+            },
+            controller: 'controladorSeleccionarTecnologias',
+            templateUrl: 'modulos/popUp/seleccionarTecnologias.html',
+            parent: angular.element(document.body),
+            clickOutsideToClose: true
+        })
+        .then(function(tecnologiasElegidas) {
+            console.log("resultado", tecnologiasElegidas);
+            //$scope.referencia.tecnologiasSeleccionadas = undefined;
+            $scope.referencia.tecnologiasSeleccionadas = tecnologiasElegidas;
+        })
+        .catch(function(err) {
+            
+        });
+    }
     
     $scope.filtrar = function (texto) {
         var resultado;
