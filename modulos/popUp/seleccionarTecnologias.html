@@ -7,14 +7,7 @@
         <md-dialog-content >
             <script type="text/ng-template" id="nodes_renderer.html">
 
-    <div ui-tree-handle class="{{node.clase}} tree-node tree-node-content" ng-click="seleccionarElemento(this, node)" id="{{node.nombre}}">
-        <a class="btn btn-success btn-xs flechaAyuda" ng-if="node.nodosHijos && node.nodosHijos.length > 0" data-nodrag ng-click="toggle(this)">
-            <span class="glyphicon"
-                ng-class="{
-                    'glyphicon-chevron-right': collapsed,
-                    'glyphicon-chevron-down': !collapsed}">
-            </span>
-          </a>
+    <div ui-tree-handle class="{{node.clase}} tree-node tree-node-content" ng-click="seleccionarElemento(this, node)" id="{{node.nombre}}" data-nodrag>
         {{node.nombre}}
     </div>
     <ol ui-tree-nodes="" ng-model="node.nodosHijos" ng-class="{hidden: collapsed}">
