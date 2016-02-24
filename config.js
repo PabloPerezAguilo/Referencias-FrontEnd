@@ -1,5 +1,5 @@
 app.constant('config', {
-	url: "http://localhost:8080/Xonger/api",
+	url: "http://localhost:8080/Sharon/api",
 	atributoConstante: "esto es una constante",
     introOptions: {
         showStepNumbers: false,
