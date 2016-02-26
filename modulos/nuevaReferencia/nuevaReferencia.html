@@ -132,7 +132,8 @@
                               ng-model="referencia.denominacion"
                               md-maxlength="100"
                               rows="2"
-                              ng-required="true"tabindex="8"
+                              ng-required="true"
+                              tabindex="8"
                               ng-blur="actualizaErrores('denominacion', useForm.denominacion.$error)">
                     </textarea>
                 </md-input-container>
@@ -142,7 +143,7 @@
             <div id="resumen" class="inBlock">
                 <md-input-container title="Resumen del proyecto" class="fixed-size-resumen">
                     <label>Resumen del proyecto *</label>
-                    <textarea id="textResumen"
+                    <textarea id="text"
                               name="Rproyecto"
                               ng-model="referencia.resumenProyecto"
                               md-maxlength="300"
@@ -211,7 +212,7 @@
                                 ng-required="true"
                                 tabindex="13"
                                 ng-blur="actualizaErrores('certificado', useForm.certificado.$error)">                  
-                    <md-radio-button class="inBlock radioCertificado" value="si" ng-checked="true">Si</md-radio-button>
+                    <md-radio-button class="inBlock radioCertificado" value="si">Si</md-radio-button>
                     <md-radio-button class="inBlock radioCertificado" value="no">No</md-radio-button>
                 </md-radio-group>
             </md-input-container>

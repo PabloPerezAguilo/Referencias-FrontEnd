@@ -33,12 +33,14 @@ app.controller('controladorSeleccionarTecnologias', function ($scope, $mdDialog,
     };
     
     function recorrerArbol(response){
+        console.log(angular.element(response).__proto__.addClass("elementoSeleccionado"));
+        angular.element(response).addClass("elementoSeleccionado");
         if(response.nodosHijos != null){
             for(var i=0; i<response.nodosHijos.length; i++){
-                recorrerArbol(response.nodosHijos[i]);
+                recorrerArbol(response.nodosHijos[i].$element);
             }
         }
-        console.log("hola");
+        console.log(angular.element(response));
         angular.element(response).addClass("elementoSeleccionado");
         
         //console.log($scope.data[0].$element);
