@@ -43,7 +43,7 @@ app.controller('controladorNuevaReferencia', function(servicioRest,utils, config
     $scope.referencia={}
     
     //inicializamos el valor del certificado a 'si' para que salga esa opción seleccionada por defecto
-    $scope.referencia.certificado='si';
+    $scope.referencia.certificado='no';
      
     //Objeto con todos los mensajes errores de validación en la entrada de datos a través de los campos
     //Se guardan en un objeto porque JS no acepta arrays asociativos
@@ -180,6 +180,41 @@ app.controller('controladorNuevaReferencia', function(servicioRest,utils, config
             //Se necesita un tiem out para dar tiempo a que se cargue el lanzar ayuda
             $rootScope.lanzarAyuda=$scope.ayuda;
         }, 1000)
+    
+    
+    var observe;
+    if (window.attachEvent) {
+        observe = function (element, event, handler) {
+            element.attachEvent('on'+event, handler);
+        };
+    }
+    else {
+        observe = function (element, event, handler) {
+            element.addEventListener(event, handler, false);
+        };
+    }
+    function init () {
+        var text = document.getElementById('text');
+        function resize () {
+            text.style.height = 'auto';
+            text.style.height = text.scrollHeight+'px';
+        }
+        /* 0-timeout to get the already changed text */
+        function delayedResize () {
+            window.setTimeout(resize, 0);
+        }
+        observe(text, 'change',  resize);
+        observe(text, 'cut',     delayedResize);
+        observe(text, 'paste',   delayedResize);
+        observe(text, 'drop',    delayedResize);
+        observe(text, 'keydown', delayedResize);
+
+        text.focus();
+        text.select();
+        resize();
+    }
+    init();
+    
     
     /* ----------------------- CARGA DE CATALOGOS ------------------------*/
     $scope.catalogo={};

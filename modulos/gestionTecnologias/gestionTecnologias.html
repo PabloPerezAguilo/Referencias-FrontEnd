@@ -15,12 +15,21 @@
            ng-if="this.$parentNodeScope != undefined && this.$modelValue.clase != 'hojaInvalida'">
             
             <span class="glyphicon glyphicon-remove"></span>
+            <md-tooltip>
+                Eliminar tecnologia
+            </md-tooltip>
         </a>
         <a class="pull-right btn btn-primary btn-xs btnAniadirNodo btnAniadir nodoAyuda" data-nodrag ng-click="aniadirElem($event, this, 'nodo')"  ng-if="node.clase=='nodo' || node.clase=='raiz'">
             <span class="glyphicon glyphicon-plus"></span>
+            <md-tooltip>
+                Añadir nodo
+            </md-tooltip>
         </a>
         <a class="pull-right btn btn-success btn-xs btnAniadir hojaAyuda" data-nodrag ng-click="aniadirElem($event, this, 'hoja')" style="margin-right: 8px;" ng-if="node.clase=='nodo' || node.clase=='raiz'">
             <span class="glyphicon glyphicon-plus"></span>
+            <md-tooltip>
+                Añadir hoja
+            </md-tooltip>
         </a>
     </div>
     <ol ui-tree-nodes="" ng-model="node.nodosHijos" ng-class="{hidden: collapsed}">
