@@ -7,6 +7,8 @@ app.controller ('controladorBuscarReferencias', function (servicioRest,utils, co
     $scope.tipos=["OpenSource", "Suscripción", "Licencia"];
     $scope.referencia={esProducto : "undefined"};
     
+    $scope.referencia.tecnologiasSeleccionadas=[];
+    
     document.getElementsByClassName("md-select-value")[0].children[0].style.width="0";
     document.getElementsByClassName("md-select-value")[1].children[0].style.width="0";
     servicioRest.getCatalogos().then(
@@ -35,7 +37,7 @@ app.controller ('controladorBuscarReferencias', function (servicioRest,utils, co
     $scope.seleccionarTecnologias=function (inputTecnologias){
         $mdDialog.show({
             locals: {
-                tecnologiasSelecIniciales: $scope.referencia.tecnologiasSeleccionadas
+                tecnologiasSelecIniciales: $scope.referencia.tecnologiasSeleccionadas.slice()
             },
             controller: 'controladorSeleccionarTecnologias',
             templateUrl: 'modulos/popUp/seleccionarTecnologias.html',
@@ -44,7 +46,6 @@ app.controller ('controladorBuscarReferencias', function (servicioRest,utils, co
         })
         .then(function(tecnologiasElegidas) {
             console.log("resultado", tecnologiasElegidas);
-            //$scope.referencia.tecnologiasSeleccionadas = undefined;
             $scope.referencia.tecnologiasSeleccionadas = tecnologiasElegidas;
         })
         .catch(function(err) {

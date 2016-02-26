@@ -38,6 +38,8 @@ app.controller('controladorSeleccionarTecnologias', function ($scope, $mdDialog,
                 recorrerArbol(response.nodosHijos[i]);
             }
         }
+        console.log("hola");
+        angular.element(response).addClass("elementoSeleccionado");
         
         //console.log($scope.data[0].$element);
     };
