@@ -15,7 +15,7 @@ app.controller('controladorUsuarioLogueado', function(servicioRest, config, $sco
         $scope.rolUsu = 'Validador';
         break;
     case "ROLE_CONSULTOR":
-        $scope.rolUsu = 'Consultor';
+        $scope.rolUsu = 'Consulta';
         break;
     default:
         servicioRest.popupError(null,"Rol incorrecto");

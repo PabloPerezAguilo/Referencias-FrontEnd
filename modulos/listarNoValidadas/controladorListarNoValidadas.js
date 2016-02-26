@@ -1,7 +1,7 @@
 app.controller ('controladorListarNoValidadas', function (servicioRest,utils, config, $scope, $http, $location, $rootScope) {  
     
     $rootScope.opcion = 'validar';
-    $scope.titulo = 'REFERENCIAS NO VALIDADAS';
+    $scope.titulo = 'Referencias no validadas';
     $scope.referencias = [];
     $scope.pop=utils.popupInfo;
     

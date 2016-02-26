@@ -1,7 +1,7 @@
 app.controller ('controladorListarReferenciasValidar', function (servicioRest,utils, config, $scope, $http, $location, $rootScope) {  
     
     $rootScope.opcion = 'validar';
-    $scope.titulo = 'REFERENCIAS PENDIENTES DE VALIDAR';
+    $scope.titulo = 'Referencias pendientes de validar';
     $scope.referencias = [];
    
     
