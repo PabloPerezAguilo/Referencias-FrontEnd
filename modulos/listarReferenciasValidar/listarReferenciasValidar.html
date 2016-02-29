@@ -15,6 +15,7 @@
         <td class="listarReferencia" ng-if="referencia.solucionGfi.length>30">{{referencia.solucionGfi.substring(0,30) + "..."}}</td>
       </tr>
     </table>
+    <div ng-if="referencias.length===0" class="mensajeNoExisteReferencias">No existe ninguna referencia</div>
     <div class="contenedorPaginacion">
         <pagination total-items="totalItems" ng-model="currentPage"
         max-size="5" boundary-links="true"

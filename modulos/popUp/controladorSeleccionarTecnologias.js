@@ -26,32 +26,67 @@ app.controller('controladorSeleccionarTecnologias', function ($scope, $mdDialog,
                 tecSelec = tecnologiasSelecIniciales;
             }
         
-            recorrerArbol(arbol);                        
+                                  
             $scope.data = [];                      
             $scope.data[0] = arbol; 
+        setTimeout(function(){ 
+            recorrerArbol(arbol, document.getElementById("arbol").children[0].children[1]);      //console.log(document.getElementById("arbol").children[0].children[1].children[0].children[1].children[0].firstElementChild.classList.add("elementoSeleccionado"));
+//console.log(document.getElementById("arbol").children[0].children[1].children[0].children[1].children);
+        
+        }, 1)
+        
         //console.log($scope.data[0]);
     };
     
-    function recorrerArbol(response){
-        console.log(angular.element(response).__proto__.addClass("elementoSeleccionado"));
-        angular.element(response).addClass("elementoSeleccionado");
+    function recorrerArbol(response, algo){
+        
+        //angular.element(response).addClass("elementoSeleccionado");
         if(response.nodosHijos != null){
             for(var i=0; i<response.nodosHijos.length; i++){
-                recorrerArbol(response.nodosHijos[i].$element);
+                if(existeElemento(algo.children[i])){
+                    algo.children[i].firstElementChild.classList.add("elementoSeleccionado");
+                }
+                
+                recorrerArbol(response.nodosHijos[i], algo.children[i].children[1]);
             }
         }
-        console.log(angular.element(response));
-        angular.element(response).addClass("elementoSeleccionado");
+        
+        //angular.element(response).addClass("elementoSeleccionado");
         
         //console.log($scope.data[0].$element);
     };
+    
+    function existeElemento(algo){
+        var result = false;
+        for(var i=0; i<tecSelec.length; i++){
+            if(tecSelec[i]===algo.firstElementChild.outerText){
+                result = true;
+            }
+        }
+        return result;
+    }
     
     $scope.nodoSeleccionado;
     
     // Iniciamos el nodo selleccionado a undefined para indicar que inicialmente no hay ninguno seleccionado
     var elementoSeleccionado=undefined;
     
-    
+    function marcarElementos(elemActual) {
+        for(var i=0; i<elemActual.childNodes().length; i++){
+            console.log(elemActual.$element[0].firstElementChild);
+            if(elemActual.childNodes()[i].$element[0].firstElementChild.classList.contains("elementoSeleccionado")){
+                //console.log("selec");
+                elemActual.childNodes()[i].$element[0].firstElementChild.classList.remove("elementoSeleccionado");
+                //console.log("indexHijo",tecSelec.indexOf(elemActual.$modelValue.nombre));
+                tecSelec.splice(tecSelec.indexOf(elemActual.childNodes()[i].$modelValue.nombre),1);
+            }else{
+                //console.log("no selec");
+                elemActual.childNodes()[i].$element[0].firstElementChild.classList.add("elementoSeleccionado");
+                tecSelec.push(elemActual.childNodes()[i].$modelValue.nombre);
+            }
+            marcarElementos(elemActual.childNodes()[i]);
+        }
+    }
 
     
     $scope.seleccionarElemento=function(elem, nodo){
@@ -71,8 +106,8 @@ app.controller('controladorSeleccionarTecnologias', function ($scope, $mdDialog,
             elemActual.$element.addClass("elementoSeleccionado");
             tecSelec.push(elemActual.$modelValue.nombre);
         }
-        
-        while(elemActual.hasChild()){
+        marcarElementos(elemActual);
+        /*while(elemActual.hasChild()){
             elemActual = elemActual.childNodes()[0];
             //console.log("AQUI",elemActual);
             //console.log("AQUI",elemActual.$element[0].firstElementChild.classList);
@@ -91,10 +126,14 @@ app.controller('controladorSeleccionarTecnologias', function ($scope, $mdDialog,
             //elemActual.$element.addClass("elementoSeleccionado");
             //console.log(elemActual.$element);
             //console.log(elemActual.$modelValue);
-        }
+        }*/
         //console.log(tecSelec);
     
-    };
+    
+    
+};
+    
+    
         
     
     

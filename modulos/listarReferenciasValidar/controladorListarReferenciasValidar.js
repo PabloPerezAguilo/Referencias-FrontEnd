@@ -9,6 +9,7 @@ app.controller ('controladorListarReferenciasValidar', function (servicioRest,ut
         function (response) {           
             $scope.referencias = response;
             $scope.totalItems = $scope.referencias.length;
+            console.log($scope.referencias.length);
         });
     
     $scope.currentPage = 1;
