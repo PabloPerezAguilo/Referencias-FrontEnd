@@ -181,8 +181,8 @@ app.controller('controladorNuevaReferencia', function(servicioRest,utils, config
             $rootScope.lanzarAyuda=$scope.ayuda;
         }, 1000)
     
-    
-    var observe;
+    /* ADAPTAR TAMAÑO DE TEXTAREA DE FORMA DINAMICA */
+    /*var observe;
     if (window.attachEvent) {
         observe = function (element, event, handler) {
             element.attachEvent('on'+event, handler);
@@ -200,7 +200,7 @@ app.controller('controladorNuevaReferencia', function(servicioRest,utils, config
             text.style.height = text.scrollHeight+'px';
         }
         /* 0-timeout to get the already changed text */
-        function delayedResize () {
+        /*function delayedResize () {
             window.setTimeout(resize, 0);
         }
         observe(text, 'change',  resize);
@@ -213,8 +213,8 @@ app.controller('controladorNuevaReferencia', function(servicioRest,utils, config
         text.select();
         resize();
     }
-    init();
-    
+    init();*/
+    /* ADAPTAR TAMAÑO DE TEXTAREA DE FORMA DINAMICA */
     
     /* ----------------------- CARGA DE CATALOGOS ------------------------*/
     $scope.catalogo={};

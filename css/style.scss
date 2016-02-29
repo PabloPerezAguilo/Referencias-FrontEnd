@@ -500,10 +500,14 @@ label{
     display: block;
 }
 
-.mensajeNoExisteReferencias{
+.mensajeNoExisteReferencias{ 
     margin-left: 42%;
     margin-top: 2%;
     margin-bottom: 10%;
+}
+
+li{
+    list-style-image:url(../tick.gif);
 }
 
 /*------------------------------ ESTILOS NUEVA REFERENCIA ---------------------------------*/
@@ -970,7 +974,7 @@ md-toolbar:not(.md-menu-toolbar) {
 }
 
 #tipoNuevaTec{
-    margin-bottom: 9.2%;
+    margin-bottom: 6.2%;
     margin-left: 12%;
     width: 40%;
 }
@@ -998,7 +1002,7 @@ md-toolbar:not(.md-menu-toolbar) {
 
 }
 #productoTecnologia{
-    
+    font-size: initial;
     margin-top:5%; 
   
 }

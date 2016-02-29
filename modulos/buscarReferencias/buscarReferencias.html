@@ -179,6 +179,7 @@
         <td class="listarReferencia">{{referencia.tipoProyecto}}</td>
       </tr>
     </table>
+    <div ng-if="referencias.length===0" class="mensajeNoExisteReferencias">No existe ninguna referencia</div>
     <div class="contenedorPaginacion">
         <pagination total-items="totalItems" ng-model="currentPage"
         max-size="5" boundary-links="true"

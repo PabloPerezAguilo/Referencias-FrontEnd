@@ -408,6 +408,14 @@ label {
 #busquedaProductoTecnologia {
   display: block; }
 
+.mensajeNoExisteReferencias {
+  margin-left: 42%;
+  margin-top: 2%;
+  margin-bottom: 10%; }
+
+li {
+  list-style-image: url(../tick.gif); }
+
 /*------------------------------ ESTILOS NUEVA REFERENCIA ---------------------------------*/
 md-option .md-text {
   overflow: initial; }
@@ -839,7 +847,7 @@ md-toolbar:not(.md-menu-toolbar) {
   background-image: none; }
 
 #tipoNuevaTec {
-  margin-bottom: 9.2%;
+  margin-bottom: 6.2%;
   margin-left: 12%;
   width: 40%; }
 
@@ -857,6 +865,7 @@ md-toolbar:not(.md-menu-toolbar) {
   outline: none; }
 
 #productoTecnologia {
+  font-size: initial;
   margin-top: 5%; }
 
 @-moz-document url-prefix() {
