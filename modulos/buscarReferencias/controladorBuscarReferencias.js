@@ -1,7 +1,7 @@
 app.controller ('controladorBuscarReferencias', function (servicioRest,utils, config, $scope, $http, $location, $rootScope, $mdDialog) {  
     
     $rootScope.opcion = 'validar';
-    $scope.titulo = 'BUSCAR REFERENCIAS';
+    $scope.titulo = 'Buscar referencias';
     $scope.referencias = [];
     $scope.pop=utils.popupInfo;
     $scope.tipos=["OpenSource", "Suscripción", "Licencia"];
