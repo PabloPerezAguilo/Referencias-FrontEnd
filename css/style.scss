@@ -121,7 +121,7 @@ $colorHojaInvalida: #F43636;
     }
 }
 
-
+ 
 
 :focus {
     outline: $colorDetalles auto 5px;
@@ -490,25 +490,7 @@ label{
     width: 18px; 
 }
 
-/*------------------------------ ESTILOS BUSCAR REFERENCIA ---------------------------------*/
 
-#busquedaRef{
-    background-color: transparent; 
-}
-
-#busquedaProductoTecnologia{
-    display: block;
-}
-
-.mensajeNoExisteReferencias{ 
-    margin-left: 42%;
-    margin-top: 2%;
-    margin-bottom: 10%;
-}
-
-li{
-    list-style-image:url(../tick.gif);
-}
 
 /*------------------------------ ESTILOS NUEVA REFERENCIA ---------------------------------*/
 
@@ -891,7 +873,29 @@ md-toolbar:not(.md-menu-toolbar) {
     font-size: 12px;
 }
 
-/*--------------------- ESTILOS BUSCAR REFERENCIAS -------------------------*/
+/*------------------------------ ESTILOS BUSCAR REFERENCIA ---------------------------------*/
+
+.chipSelecTecnologias{
+    width: 60%;
+}
+
+#busquedaRef{
+    background-color: transparent; 
+}
+
+#busquedaProductoTecnologia{
+    display: block;
+}
+
+.mensajeNoExisteReferencias{ 
+    margin-left: 42%;
+    margin-top: 2%;
+    margin-bottom: 10%;
+}
+
+li{ //li .prueba{
+    list-style-image:url(../tick.gif);
+}
 
 #tituloBotonBusquedaAvanzada{
     margin-top: 1%;

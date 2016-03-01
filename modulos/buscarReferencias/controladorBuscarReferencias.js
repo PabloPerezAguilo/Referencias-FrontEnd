@@ -1,5 +1,13 @@
 app.controller ('controladorBuscarReferencias', function (servicioRest,utils, config, $scope, $http, $location, $rootScope, $mdDialog) {  
     
+    /*setTimeout(function(){
+         console.log(document.getElementsByTagName("md-chips-wrap")[0].setAttribute("class","chipSelecTecnologias"));
+    },1);*/
+  /* angular.ready(function() {
+ console.log(document.getElementsByClassName("md-input")[2]);
+});*/
+    
+    
     $rootScope.opcion = 'validar';
     $scope.titulo = 'Buscar referencias';
     $scope.referencias = [];
@@ -34,7 +42,7 @@ app.controller ('controladorBuscarReferencias', function (servicioRest,utils, co
         });
     }
     
-    $scope.seleccionarTecnologias=function (inputTecnologias){
+    $scope.seleccionarTecnologias=function (){
         $mdDialog.show({
             locals: {
                 tecnologiasSelecIniciales: $scope.referencia.tecnologiasSeleccionadas.slice()

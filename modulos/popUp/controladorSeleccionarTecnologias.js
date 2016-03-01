@@ -45,6 +45,7 @@ app.controller('controladorSeleccionarTecnologias', function ($scope, $mdDialog,
             for(var i=0; i<response.nodosHijos.length; i++){
                 if(existeElemento(algo.children[i])){
                     algo.children[i].firstElementChild.classList.add("elementoSeleccionado");
+                    algo.children[i].firstElementChild.classList.add("elementoSeleccionado");
                 }
                 
                 recorrerArbol(response.nodosHijos[i], algo.children[i].children[1]);

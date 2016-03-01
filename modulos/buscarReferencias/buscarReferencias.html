@@ -131,10 +131,16 @@
                 </md-input-container>
             </div>
             <div id="TecnologiasSelec">
-                <md-input-container title="Tecnologias Seleccionadas" class="fixed-size" >
+                <md-chips ng-model="referencia.tecnologiasSeleccionadas"></md-chips>
+                <md-button class="botonesApp"
+                           type="button"
+                           ng-click="seleccionarTecnologias()">
+                    Seleccionar tecnologias
+                </md-button>
+                <!--md-input-container title="Tecnologias Seleccionadas" class="fixed-size" >
                     <label>Tecnologias seleccionadas</label>
                     <input id="duracionBusqueda" name="tecnologias" ng-focus="seleccionarTecnologias(this)" type="text" ng-model="referencia.tecnologiasSeleccionadas"/>
-                </md-input-container>
+                </md-input-container-->
             </div>
             <md-input-container class="selectBusqueda">
                 <label>Tipo de tecnologia</label>
