@@ -9,6 +9,7 @@
 
     <div ui-tree-handle class="{{node.clase}} tree-node tree-node-content" ng-click="seleccionarElemento(this, node)" id="{{node.nombre}}" data-nodrag>
         {{node.nombre}}
+        <img class="imagenSeleccionado ocultarImagen" src="../tick.gif">
     </div>
     <ol ui-tree-nodes="" ng-model="node.nodosHijos" ng-class="{hidden: collapsed}">
         <li ng-repeat="node in node.nodosHijos" ui-tree-node data-nodrop-enabled="node.clase!=='nodo'" ng-include="'nodes_renderer.html'"></li>

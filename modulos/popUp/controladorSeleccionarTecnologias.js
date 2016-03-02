@@ -125,6 +125,7 @@ app.controller('controladorSeleccionarTecnologias', function ($scope, $mdDialog,
             //console.log("AQUI",elemActual.$element[0]);
         if(elemActual.$element[0].classList.contains("elementoSeleccionado")){
             elemActual.$element.removeClass("elementoSeleccionado");
+            elemActual.$element[0].childNodes[1].classList.add("ocultarImagen");
             //console.log("indexPadre",tecSelec.indexOf(elemActual.$modelValue.nombre));
             if(elemActual.$modelValue.clase === "nodo"){
                 tecSelec.nodos.splice(tecSelec.nodos.indexOf(elemActual.$modelValue.nombre),1);
@@ -134,7 +135,9 @@ app.controller('controladorSeleccionarTecnologias', function ($scope, $mdDialog,
             
             marcar=false;
         }else{
+            console.log("aqui",elemActual.$element[0].childNodes[1].classList);
             elemActual.$element.addClass("elementoSeleccionado");
+            elemActual.$element[0].childNodes[1].classList.remove("ocultarImagen");
             if(elemActual.$modelValue.clase === "nodo"){
                 tecSelec.nodos.push(elemActual.$modelValue.nombre);
             }else{

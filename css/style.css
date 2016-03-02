@@ -783,9 +783,6 @@ md-toolbar:not(.md-menu-toolbar) {
   margin-top: 2%;
   margin-bottom: 10%; }
 
-li {
-  list-style-image: url(../tick.gif); }
-
 #tituloBotonBusquedaAvanzada {
   margin-top: 1%;
   margin-left: 0.5%;
@@ -959,6 +956,12 @@ tr.angular-ui-tree-empty {
 .elementoSeleccionado {
   text-decoration: underline;
   border-style: none; }
+
+.imagenSeleccionado {
+  float: right; }
+
+.ocultarImagen {
+  display: none; }
 
 .hoja.elementoSeleccionado {
   background-color: #42dc69; }
