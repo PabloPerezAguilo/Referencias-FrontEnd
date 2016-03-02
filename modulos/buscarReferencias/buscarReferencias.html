@@ -143,24 +143,25 @@
                     <input id="duracionBusqueda" name="tecnologias" ng-focus="seleccionarTecnologias(this)" type="text" ng-model="referencia.tecnologiasSeleccionadas"/>
                 </md-input-container-->
             </div>
-            <md-input-container id="tipoTecnologias" class="selectBusqueda">
-                <label>Tipo de tecnologia</label>
-                <md-select ng-model="referencia.tipoTecnologia" ng-required="true">
-                  <md-option ng-repeat="tipo in tipos" value="{{tipo}}">
-                    {{tipo}}
-                  </md-option>
-                </md-select>
-            </md-input-container>
             <md-input-container id="busquedaProductoTecnologia" title="Existe certificado del cliente" class="fixed-size">
                 <label class="labelCertificado">La tecnologia es producto</label>
                 <md-radio-group id="hayCertificado"
                                 name="certificado"
                                 ng-model="referencia.esProducto">                  
-                    <md-radio-button class="inBlock radioCertificado" value="true">Si</md-radio-button>
-                    <md-radio-button class="inBlock radioCertificado" value="false">No</md-radio-button>
-                    <md-radio-button class="inBlock radioCertificado" value="undefined">No aplica</md-radio-button>
+                    <md-radio-button class="inBlock radioCertificado" value="si">Si</md-radio-button>
+                    <md-radio-button class="inBlock radioCertificado" value="no">No</md-radio-button>
+                    <md-radio-button class="inBlock radioCertificado" value="">No aplica</md-radio-button>
                 </md-radio-group>
             </md-input-container>
+            <md-input-container id="tipoTecnologias" class="selectBusqueda" ng-show="referencia.esProducto==='si'">
+                <label>Tipo de tecnologia</label>
+                <md-select multiple ng-model="referencia.tipoTecnologia" ng-required="true">
+                  <md-option ng-repeat="tipo in tipos" value="{{tipo}}">
+                    {{tipo}}
+                  </md-option>
+                </md-select>
+            </md-input-container>
+            
         </div>
     </div>
     

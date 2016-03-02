@@ -7,13 +7,12 @@ app.controller ('controladorBuscarReferencias', function (servicioRest,utils, co
  console.log(document.getElementsByClassName("md-input")[2]);
 });*/
     
-    
     $rootScope.opcion = 'validar';
     $scope.titulo = 'Buscar referencias';
     $scope.referencias = [];
     $scope.pop=utils.popupInfo;
     $scope.tipos=["OpenSource", "Suscripción", "Licencia"];
-    $scope.referencia={esProducto : "undefined"};
+    $scope.referencia={esProducto : ""};
     
     $scope.referencia.tecnologiasSeleccionadas=[];
     
@@ -34,6 +33,9 @@ app.controller ('controladorBuscarReferencias', function (servicioRest,utils, co
         if(undefined!=$scope.posicionEnArray){
                 $scope.referencia.cliente = $scope.clientes.lista[$scope.posicionEnArray].display;
         }
+        if($scope.referencia.esProducto!="si"){
+            $scope.referencia.tipoTecnologia="";
+        }
         $scope.referencia.anioLimite = moment('default', 'D/M/YYYY', true).toDate().getFullYear() - $scope.referencia.ultimosAnios
         servicioRest.buscarReferencias($scope.referencia).then(
         function (response) {           
@@ -41,11 +43,16 @@ app.controller ('controladorBuscarReferencias', function (servicioRest,utils, co
             $scope.totalItems = $scope.referencias.length;
         });
     }
-    
+    var tecSeleccionados = {};
+    tecSeleccionados.nodos = [];
+    tecSeleccionados.hojas = [];
+    $scope.referencia.tecnologiasSeleccionadas = [];
     $scope.seleccionarTecnologias=function (){
+        tecSeleccionados.hojas=$scope.referencia.tecnologiasSeleccionadas;
+        console.log(tecSeleccionados);
         $mdDialog.show({
             locals: {
-                tecnologiasSelecIniciales: $scope.referencia.tecnologiasSeleccionadas.slice()
+                tecnologiasSelecIniciales: angular.copy(tecSeleccionados)
             },
             controller: 'controladorSeleccionarTecnologias',
             templateUrl: 'modulos/popUp/seleccionarTecnologias.html',
@@ -54,7 +61,8 @@ app.controller ('controladorBuscarReferencias', function (servicioRest,utils, co
         })
         .then(function(tecnologiasElegidas) {
             console.log("resultado", tecnologiasElegidas);
-            $scope.referencia.tecnologiasSeleccionadas = tecnologiasElegidas;
+            $scope.referencia.tecnologiasSeleccionadas = tecnologiasElegidas.hojas;
+            tecSeleccionados = tecnologiasElegidas;
         })
         .catch(function(err) {
             
