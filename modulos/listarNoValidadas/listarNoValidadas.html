@@ -1,0 +1,47 @@
+<div id="contenedorListarReferencia">
+    <p  class="cabeceraPagina">{{titulo}}</p>
+    <br>
+    <table id="referenciasPendientes">
+      <tr>
+        <th>CLIENTE</th>
+        <th>DENOMINACIÓN</th>		
+        <th>ESTADO</th>
+      </tr>
+      <tr ng-repeat="referencia in referencias | filter: paginate" ng-click="abrirReferenciaPendiente($index, referencias)" id="selPendientes">
+          
+        <td class="listarReferencia" ng-if="referencia.cliente.length!=null">{{referencia.cliente}} </td>
+        <td class="listarReferencia" ng-if="referencia.cliente.length==null">-</td>
+        <td class="listarReferencia" ng-if="referencia.denominacion.length<=30">{{referencia.denominacion}}</td>		
+        <td class="listarReferencia" ng-if="referencia.denominacion.length>30">{{referencia.denominacion.substring(0,30) + "..."}}</td>	
+        <td class="listarReferencia" ng-if="referencia.denominacion.length==null">-</td>
+        <td class="listarReferencia">{{referencia.estado}}</td>
+      </tr>
+    </table>
+    <div ng-if="referencias.length===0" class="mensajeNoExisteReferencias">No existe ninguna referencia</div>
+    <div class="contenedorPaginacion">
+        <pagination total-items="totalItems" ng-model="currentPage"
+        max-size="5" boundary-links="true"
+        items-per-page="numPerPage" class="pagination-sm" previous-text="Anterior" next-text="Siguiente" first-text="Primero" last-text="Último">
+        </pagination>
+    </div>
+    <div class="botonesCrear" layout-align="center">
+        <md-button id="expPdf"
+                   class="botonesApp"
+                   type="button" 
+                   ng-click="pop('','sin func')">
+            Exportar a Pdf
+        </md-button>
+        <md-button id="expWord"
+                   class="botonesApp"
+                   type="button" 
+                   ng-click="pop('','sin func')">
+            Exportar a Word
+        </md-button>
+        <md-button id="expPptx"
+                   class="botonesApp"
+                   type="button" 
+                   ng-click="pop('','sin func')">
+            Exportar a PowerPoint
+        </md-button>
+    </div>
+</div>

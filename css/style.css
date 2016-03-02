@@ -24,67 +24,143 @@ article, aside, details, figcaption, figure,
 footer, header, hgroup, menu, nav, section {
   display: block; }
 
+/*CSS Global Variables*/
+/*medias querys*/
+@media screen and (max-width: 1250px) {
+  .iconosMenu {
+    margin-left: 10% !important; } }
+
+@media screen and (max-width: 1185px) {
+  .iconosMenu {
+    margin-left: 5% !important; } }
+
+@media screen and (max-width: 1130px) {
+  .iconosMenu {
+    margin-left: 0 !important; } }
+
+@media screen and (max-width: 1075px) {
+  .md-button {
+    margin-right: 0;
+    margin-left: 0;
+    font-size: 15px; }
+  .iconosMenu {
+    margin-left: 6% !important; } }
+
+@media screen and (max-width: 1040px) {
+  .iconosMenu {
+    margin-left: 0 !important; } }
+
+/*@media screen and (max-width: 970px){
+    .iconosMenu {
+        width: 1px !important;
+    }
+}*/
+@media screen and (max-width: 970px) {
+  .md-button {
+    font-size: 12px; } }
+
+@media screen and (max-width: 875px) {
+  .iconosMenu {
+    width: 1px !important; } }
+
+@media screen and (max-width: 835px) {
+  .md-button {
+    font-size: 13px; }
+  #menu {
+    width: 80% !important;
+    background-color: black; }
+  .iconosMenu {
+    margin-left: 30% !important; } }
+
+@media screen and (max-width: 700px) {
+  #menu {
+    width: 100% !important;
+    border-radius: 0 !important; } }
+
+@media screen and (max-width: 700px) {
+  .contenedorVistas {
+    width: 80%; }
+  .botonesCrear {
+    margin-bottom: 50px; } }
+
+:focus {
+  outline: #F07F0A auto 5px; }
+
+@font-face {
+  font-family: 'BlissfulThinking';
+  /*a name to be used later*/
+  src: "css\font\BlissfulThinking.otf";
+  /*URL to font*/ }
+
 body {
   line-height: 1;
-  font-size: 17px;
+  font-size: 13px;
   height: 31px;
   width: 100%;
-  background-color: #ececec; }
+  font-family: verdana;
+  overflow: hidden;
+  color: #303f48; }
+
+.error {
+  margin-left: 2%;
+  color: crimson; }
+
+/* -------------------- Contenedor de las vistas de la pagina (ng-view) ---------------------- */
+#contenedorVistas {
+  height: 75%; }
 
 /* ------------------------------- CABECERA Y PIE ---------------------- */
 header {
-  width: 100%;
-  /* Establecemos que el header abarque el 100% del documento */
+  width: auto;
+  min-width: 20%;
+  height: 10%;
   overflow: hidden;
-  /* Eliminamos errores de float */
-  background: #242424;
-  margin-bottom: 20px;
-  height: 180px; }
+  background: #303F48;
+  box-shadow: 1px 1px 1px 1px #777; }
 
-header #titulo {
-  color: #ececec;
-  font-size: 50px;
-  float: left;
-  font-family: sans-serif;
-  margin-left: 30px;
-  margin-top: 50px; }
-
-header #logo {
-  position: relative;
-  float: right;
-  margin-top: 25px;
-  margin-right: 10px; }
+header #logoSharon {
+  max-height: 100%;
+  min-height: 100%;
+  display: block;
+  margin: auto; }
 
 footer {
   width: 100%;
-  /* Establecemos que el footer abarque el 100% del documento */
   overflow: hidden;
-  /* Eliminamos errores de float */
-  background: #242424;
+  background: #303F48;
   position: fixed;
   bottom: 0px;
-  height: 63px;
-  clear: both; }
+  height: 7%;
+  clear: both;
+  min-height: 50px; }
+
+footer #logoGfi {
+  /*width: 5%;
+    min-width: 5%;*/
+  max-height: 70%;
+  min-height: 5%;
+  float: left;
+  margin-top: 5px;
+  margin-left: 9px; }
 
 footer nav a {
-  line-height: 200px;
   float: right;
   display: inline-block;
-  color: #ececec;
-  padding: 10px 20px;
+  color: #F07F0A;
+  padding: 2% 2%;
   line-height: normal;
-  font-size: 13px;
-  font-weight: bold;
+  font-size: 11px;
   -webkit-transition: all 500ms ease;
   -o-transition: all 500ms ease;
   transition: all 500ms ease; }
 
 footer nav a:hover {
-  background: #ee941a;
+  background: #F07F0A;
   border-radius: 50px; }
 
 footer #lineaFooter {
-  background: #ee941a;
+  box-shadow: 1px 1px 1px 1px #777;
+  background: #F07F0A;
   bottom: 0px;
   height: 4px;
   width: 100%;
@@ -92,9 +168,32 @@ footer #lineaFooter {
 
 /* --------------------------- ESTILOS MENÚ ---------------------- */
 #menu {
-  color: #ececec;
-  margin-top: 130px;
-  font-family: verdana; }
+  width: 45%;
+  height: auto;
+  color: #303f48;
+  overflow: hidden;
+  background: #F07F0A;
+  border-radius: 0 0 20px 0;
+  box-shadow: 1px 1px 1px 1px #777; }
+
+.textoHipervinculo {
+  color: #303F48;
+  text-decoration: none; }
+
+.textoHipervinculo:hover {
+  color: #F07F0A;
+  text-decoration: none;
+  width: 100%; }
+
+.iconoLogout {
+  margin-left: 200%; }
+
+.iconosMenu {
+  width: 10px;
+  height: 25px;
+  margin-top: 10px;
+  margin-left: 15%;
+  cursor: pointer; }
 
 /* --------------------------- ESTILOS BIENVENIDA ---------------------- */
 #bienvenida {
@@ -102,11 +201,68 @@ footer #lineaFooter {
   margin-top: 300px; }
 
 /* --------------------------- ESTILOS COMUNES ----------------------------- */
+.material-icons {
+  font-family: 'Material Icons';
+  font-weight: normal;
+  font-style: normal;
+  font-size: 36px;
+  /* Preferred icon size */
+  display: inline-block;
+  line-height: 0;
+  text-transform: none;
+  letter-spacing: normal;
+  word-wrap: normal;
+  white-space: nowrap;
+  direction: ltr;
+  /* Support for all WebKit browsers. */
+  -webkit-font-smoothing: antialiased;
+  /* Support for Safari and Chrome. */
+  text-rendering: optimizeLegibility;
+  /* Support for Firefox. */
+  -moz-osx-font-smoothing: grayscale;
+  /* Support for IE. */
+  font-feature-settings: 'liga'; }
+
 .cabeceraPagina {
-  text-align: center;
+  margin-right: 25px;
+  text-align: right;
   font-size: 25px;
   height: 40px;
-  color: #ee941a; }
+  color: #ececec; }
+
+.botonesApp {
+  background-color: #F07F0A;
+  font-size: 13px;
+  text-align: center; }
+
+#dialogLogueado {
+  width: 90px;
+  height: 90px;
+  border-radius: 20px 20px 20px 20px;
+  box-shadow: 2px 2px 2px 2px #777;
+  background-color: #ececec; }
+
+.contenedorVistas {
+  margin-top: 0.2%;
+  overflow: auto;
+  overflow-x: hidden;
+  height: 700px; }
+
+.contenedorVistasAyuda {
+  margin-top: 0.2%;
+  overflow: initial;
+  height: 700px; }
+
+/* --------------------------- ESTILOS LISTAR USUARIOS ----------------------------- */
+.contenedorPaginacion {
+  text-align: center;
+  position: relative;
+  bottom: 2%;
+  width: 100%; }
+
+.listarReferencia {
+  text-align: center;
+  border-bottom: #ee941a 2px solid; }
 
 /* --------------------------- ESTILOS LOGIN ----------------------------- */
 #contenedorLogin {
@@ -135,7 +291,7 @@ footer #lineaFooter {
   font-size: 11px; }
 
 #contenedorLogin #inferior {
-  background-color: #242424;
+  background-color: #303F48;
   -webkit-border-radius: 0 0 20px 20px;
   -moz-border-radius: 0 0 20px 20px;
   border-radius: 0 0 20px 20px;
@@ -154,6 +310,9 @@ footer #lineaFooter {
   float: left; }
 
 /* ---------------------------- ESTILOS ALTA USUARIOS ---------------------- */
+#cabeceraRol {
+  margin-bottom: 2%; }
+
 #listaUsuarios {
   background: whitesmoke;
   position: absolute;
@@ -191,25 +350,10 @@ footer #lineaFooter {
   border-radius: 3px;
   box-shadow: inset 1px 1px 0 rgba(0, 0, 0, 0.1); }
 
-li {
-  list-style: none;
-  background-color: rgba(0, 0, 0, 0.05);
-  background-image: linear-gradient(90deg, #FFD32E 10px, #EEE 10px, #EEE 11px, transparent 11px);
-  padding: 10px 15px 10px 25px;
-  border: 1px solid #CCC;
-  box-shadow: inset 1px 1px 0 rgba(255, 255, 255, 0.5);
-  margin-bottom: 5px;
-  width: 100%;
-  box-sizing: border-box;
-  cursor: pointer;
-  border-radius: 3px; }
-
 ul {
   margin: 0 auto;
   padding: 0;
   max-height: 320px;
-  overflow-y: auto;
-  border: 1px solid rgba(0, 0, 0, 0.1);
   padding: 5px 5px 0 5px;
   border-left: none;
   border-right: none; }
@@ -240,7 +384,11 @@ ul {
   bottom: 5px;
   left: 7px;
   font-size: 14px;
-  opacity: 0.54; }
+  opacity: 0.54;
+  border-color: #F07F0A; }
+
+label {
+  color: #F07F0A; }
 
 .autocompletedemoCustomTemplate .autocomplete-custom-template li {
   border-bottom: 1px solid #ccc;
@@ -261,19 +409,648 @@ ul {
   width: 18px; }
 
 /*------------------------------ ESTILOS NUEVA REFERENCIA ---------------------------------*/
+md-option .md-text {
+  overflow: initial; }
+
+.md-calendar-day-header th, td {
+  vertical-align: middle; }
+
+.radioCertificado {
+  margin: 0; }
+
+.labelCertificado {
+  color: black;
+  position: relative;
+  display: block;
+  transform: inherit !important;
+  bottom: 0; }
+
+.inBlock {
+  display: inline-block; }
+
 #cajaNueva {
-  line-height: 45px; }
+  line-height: 45px;
+  font-size: 15px; }
+
+md-content {
+  display: block;
+  position: relative;
+  overflow: auto; }
+
+#layout-padding {
+  font-size: 15px;
+  width: 36px;
+  position: relative;
+  padding: 8px; }
 
 .para1 {
+  margin-left: 130px;
+  margin-right: 130px;
+  margin-bottom: 50px; }
+
+.contenedorBoton {
+  width: 95%;
+  text-align: center; }
+
+md-input-container {
+  padding: 1px;
+  position: relative; }
+
+.fixed-size {
+  width: 305px;
+  height: 40px; }
+
+.fixed-size-denominacion {
+  width: 920px;
+  height: 40px; }
+
+.fixed-size-resumen {
+  width: 460px;
+  height: 40px; }
+
+.fixed-size-solucion {
+  width: 920px;
+  height: 40px; }
+
+md-radio-button.md-default-theme.md-checked .md-off, md-radio-button.md-checked .md-off {
+  border-color: #F07F0A; }
+
+md-radio-button.md-default-theme .md-on, md-radio-button .md-on {
+  background-color: #F07F0A; }
+
+md-radio-button.md-default-theme.md-checked .md-ink-ripple, md-radio-button.md-checked .md-ink-ripple {
+  color: #F07F0A; }
+
+md-icon.md-default-theme, md-icon {
+  color: #F07F0A; }
+
+.md-default-theme .md-datepicker-open .md-datepicker-calendar-icon, .md-datepicker-open .md-datepicker-calendar-icon {
+  fill: #F07F0A; }
+
+.md-default-theme .md-calendar-date.md-calendar-selected-date .md-calendar-date-selection-indicator, .md-calendar-date.md-calendar-selected-date .md-calendar-date-selection-indicator, .md-default-theme .md-calendar-date.md-focus.md-calendar-selected-date .md-calendar-date-selection-indicator, .md-calendar-date.md-focus.md-calendar-selected-date .md-calendar-date-selection-indicator {
+  background: #F07F0A;
+  color: rgba(255, 255, 255, 0.87);
+  border-color: transparent; }
+
+.md-default-theme .md-calendar-date.md-calendar-date-today .md-calendar-date-selection-indicator, .md-calendar-date.md-calendar-date-today .md-calendar-date-selection-indicator {
+  border: 1px solid #F07F0A; }
+
+.md-datepicker-input {
+  width: 230px; }
+
+#resumen {
   float: left; }
 
-.para2 {
-  float: right; }
+#problematica {
+  float: left; }
 
-.boton {
-  position: absolute;
-  bottom: 100px;
-  width: 100%;
+.botonesCrear {
+  margin-top: 10px;
   text-align: center; }
+
+#mensajeEstado {
+  font-family: verdana;
+  font-size: 12px;
+  color: #F07F0A;
+  text-align: center;
+  font-weight: bold; }
+
+md-input-container.md-default-theme:not(.md-input-invalid).md-input-focused .md-input, md-input-container:not(.md-input-invalid).md-input-focused .md-input {
+  border-color: #F07F0A; }
+
+.txtSimilarMD {
+  font-size: 13px;
+  color: darkgray; }
+
+.selecTec {
+  float: left;
+  width: 925px;
+  height: 60px; }
+
+.selecCli {
+  float: left;
+  width: 925px;
+  height: 60px; }
+
+.contImg {
+  width: 460px;
+  height: 40px;
+  margin-left: 20px;
+  margin-bottom: 20px; }
+
+.contQr {
+  width: 460px;
+  height: 40px; }
+
+.contTec {
+  width: 460px;
+  height: 40px; }
+
+.contCom {
+  width: 470px;
+  height: 80px; }
+
+.ImgQr {
+  width: 920px;
+  height: 450px; }
+
+.contenedor-tecnologia {
+  margin-top: 40px;
+  margin-bottom: 100px; }
+
+md-input-container.md-default-theme:not(.md-input-invalid).md-input-has-value label, md-input-container:not(.md-input-invalid).md-input-has-value label {
+  color: #F07F0A; }
+
+md-input-container.md-default-theme:not(.md-input-invalid).md-input-focused label, md-input-container:not(.md-input-invalid).md-input-focused label {
+  color: #F07F0A; }
+
+md-select:not([disabled]):focus .md-select-value {
+  border-bottom-color: #F07F0A;
+  color: rgba(0, 0, 0, 0.87); }
+
+md-input-container .md-char-counter {
+  font-size: 12px;
+  line-height: 14px;
+  overflow: hidden;
+  padding-top: 5px;
+  color: rgba(0, 0, 0, 0.26); }
+
+.md-datepicker-input-container.md-datepicker-focused {
+  border-bottom-color: #F07F0A; }
+
+.md-autocomplete-suggestions li {
+  font-size: 14px;
+  overflow: hidden;
+  padding: 0 15px;
+  line-height: 30px;
+  height: 25px;
+  transition: background 0.15s linear;
+  margin: 0px !important;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  list-style: none;
+  background-color: rgba(0, 0, 0, 0.05);
+  background-image: linear-gradient(90deg, #F07F0A 10px, #EEE 10px, #EEE 11px, transparent 11px);
+  box-shadow: inset 1px 1px 0 rgba(255, 255, 255, 0.5);
+  width: 100%;
+  box-sizing: border-box;
+  cursor: pointer;
+  border-radius: 3px; }
+
+.md-autocomplete-suggestions li:focus {
+  outline: none; }
+
+.autocompletedemoCustomTemplate .autocomplete-custom-template li {
+  border-bottom: 1px solid #ccc;
+  height: auto;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  white-space: normal; }
+
+.autocompletedemoCustomTemplate .autocomplete-custom-template li:last-child {
+  border-bottom-width: 0; }
+
+.autocompletedemoCustomTemplate .autocomplete-custom-template .item-title, .autocompletedemoCustomTemplate .autocomplete-custom-template .item-metadata {
+  display: block;
+  line-height: 2; }
+
+.autocompletedemoCustomTemplate .autocomplete-custom-template .item-title md-icon {
+  height: 18px;
+  width: 18px; }
+
+/* WTF IS THIS
+.md-virtual-repeat-container .md-virtual-repeat-scroller {
+    bottom: 0;
+    box-sizing: border-box;
+    left: 0;
+    margin: 0;
+    overflow-x: hidden;
+    overflow-y: hidden;
+    padding: 0;
+    position: absolute;
+    right: 0;
+    top: 0; 
+}*/
+.md-virtual-repeat-container.md-orient-horizontal .md-virtual-repeat-scroller {
+  overflow-x: hidden;
+  overflow-y: hidden; }
+
+md-select-menu md-option[selected] {
+  color: #F07F0A; }
+
+md-select-menu.md-default-theme md-option[selected]:focus, md-select-menu md-option[selected]:focus {
+  color: #ee941a; }
+
+.botones {
+  margin-left: 30px;
+  margin-bottom: 30px;
+  font-size: 13px;
+  width: 250px;
+  height: 40px;
+  cursor: hand;
+  color: #303F48;
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: #F07F0A;
+  border-radius: 3px 3px 3px 3px;
+  border: none; }
+
+.botones:hover {
+  margin-left: 30px;
+  margin-bottom: 30px;
+  font-size: 13px;
+  width: 250px;
+  height: 40px;
+  cursor: hand;
+  color: #303F48;
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: lightgray;
+  border-radius: 3px 3px 3px 3px;
+  border: none; }
+
+.centrado-QR {
+  margin-left: 110px; }
+
+/*
+.md-virtual-repeat-container.md-autocomplete-suggestions-container.md-whiteframe-z1.md-virtual-repeat-container {
+	height: 26px;
+}
+.md-virtual-repeat-scroller {
+	min-height: 26px;
+}
+.md-virtual-repeat-container.md-autocomplete-suggestions-container {
+	min-height: 26px;
+}*/
+md-chips .md-chips.md-focused {
+  box-shadow: 0 2px #F07F0A; }
+
+md-chips .md-chip.md-focused {
+  background: #F07F0A; }
+
+#motivoRechazo {
+  border: 3px solid maroon; }
+
+.labelGrande {
+  font-size: initial; }
+
+.espaciadoTop {
+  margin-top: 3%; }
+
+/*--------------------- VALIDAR REFERENCIA -------------------------*/
+.quitarEstiloDeshabilitado {
+  color: #242424 !important; }
+
+/*--------------------- ESTILOS POPUPS -------------------------*/
+#popUpError {
+  background-color: #CE0000; }
+
+#listaError li {
+  list-style-type: disc;
+  margin-bottom: 0.5%; }
+
+#tecDialog {
+  margin: auto;
+  min-width: 1100px;
+  min-height: 700px;
+  max-height: 1000px; }
+
+#rejectDialog {
+  margin: auto;
+  min-width: 700px;
+  min-height: 300px;
+  max-height: 700px; }
+
+#errorDialog {
+  margin: auto;
+  min-width: 700px;
+  min-height: 375px;
+  max-height: 700px; }
+
+#textoRechazar {
+  display: block; }
+
+.botonesRechazar {
+  display: inline-block;
+  margin-left: 33%; }
+
+md-dialog {
+  width: 400px;
+  height: 220px;
+  overflow: hidden;
+  border-radius: 20px 20px 20px 20px; }
+
+md-dialog.md-default-theme, md-dialog {
+  border-radius: 20px 20px 20px 20px;
+  background-color: white; }
+
+md-dialog md-dialog-content {
+  height: 200px;
+  padding: 30px;
+  font-size: 13px;
+  overflow: hidden; }
+
+md-dialog md-dialog-content .md-dialog-content-body {
+  width: 100%;
+  padding: 40px;
+  font-size: 15px; }
+
+md-toolbar:not(.md-menu-toolbar) {
+  background-color: #F07F0A;
+  color: rgba(255, 255, 255, 0.87);
+  font-size: 15px;
+  padding: 25px; }
+
+.md-button.md-default-theme.md-primary, .md-button.md-primary {
+  color: #F07F0A; }
+
+#dialogCabecera {
+  font-size: 13px; }
+
+#dialogContenido {
+  font-size: 12px; }
+
+/*------------------------------ ESTILOS BUSCAR REFERENCIA ---------------------------------*/
+.chipSelecTecnologias {
+  width: 60%; }
+
+#busquedaRef {
+  background-color: transparent; }
+
+#busquedaProductoTecnologia {
+  display: block; }
+
+.mensajeNoExisteReferencias {
+  margin-left: 42%;
+  margin-top: 2%;
+  margin-bottom: 10%; }
+
+li {
+  list-style-image: url(../tick.gif); }
+
+#tituloBotonBusquedaAvanzada {
+  margin-top: 1%;
+  margin-left: 0.5%;
+  display: inline-block;
+  height: 18;
+  vertical-align: top; }
+
+#botonBusqueda {
+  margin-bottom: 2.3%; }
+
+.selectBusqueda {
+  width: 70%; }
+
+#cuerpoBusquedaAvanzada {
+  margin-left: 5%; }
+
+#clienteBusqueda {
+  width: 90%; }
+
+#duracionBusqueda {
+  width: 277%; }
+
+/*ESTILOS REFERENCIAS PENDIENTES*/
+#referenciasPendientes th, td {
+  border: none;
+  border-collapse: collapse;
+  padding: 5px; }
+
+#referenciasPendientes th {
+  background-color: #F07F0A;
+  color: #ececec;
+  text-align: center;
+  font-weight: bold; }
+
+#referenciasPendientes {
+  margin: 0 auto;
+  width: 95%;
+  height: 2%;
+  overflow: hidden;
+  border: 1px solid black;
+  border-radius: 0px 0px 10px 10px; }
+
+#referenciasPendientes tr:nth-child(odd) {
+  background: #D8D8D8; }
+
+#selPendientes {
+  cursor: pointer; }
+
+.pagination > li > a {
+  color: #303F48; }
+
+.pagination > .active > a, .pagination > .active > span, .pagination > .active > a:hover, .pagination > .active > span:hover, .pagination > .active > a:focus, .pagination > .active > span:focus {
+  background-color: #F07F0A;
+  border-color: #F07F0A; }
+
+.pagination > li > a:hover, .pagination > li > span:hover, .pagination > li > a:focus, .pagination > li > span:focus {
+  color: #303F48;
+  background-color: #eee;
+  border-color: #ddd; }
+
+/*--------------------- ESTILOS POP UP AÑADIR TEC NO VALIDA -------------------------*/
+#nombreTecnologiaNueva {
+  width: 40%; }
+
+#inputNombreTecnologia {
+  border-bottom-color: #303F48;
+  color: #303F48;
+  background-image: none; }
+
+#tipoNuevaTec {
+  margin-bottom: 6.2%;
+  margin-left: 12%;
+  width: 40%; }
+
+#cbProducto {
+  bottom: 23px; }
+
+#cbProducto:focus {
+  outline: none; }
+
+/*--------------------- ESTILOS ARBOL TECNOLOGIAS -------------------------*/
+#ContenedporTipoTecnologiaYNombre {
+  max-height: 18%; }
+
+#cBProductoTecnologia:focus {
+  outline: none; }
+
+#productoTecnologia {
+  font-size: initial;
+  margin-top: 5%; }
+
+@-moz-document url-prefix() {
+  .mozillaAutocompleteTecnologias {
+    display: inline-flex !important; } }
+
+#autocompleteTecnologias {
+  width: 40%;
+  margin-right: 2%;
+  margin-left: 2%;
+  display: inline-block; }
+
+md-checkbox.md-checked .md-icon {
+  background-color: #ee941a; }
+
+.btn {
+  margin-right: 8px; }
+
+.angular-ui-tree-handle {
+  background: #f8faff;
+  border: 1px solid #dae2ea;
+  color: #7c9eb2;
+  padding: 10px 10px; }
+
+.angular-ui-tree-handle:hover {
+  color: #438eb9;
+  background: #f4f6f7;
+  border-color: #dce2e8; }
+
+.angular-ui-tree-placeholder {
+  background: #f0f9ff;
+  border: 2px dashed #bed2db;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box; }
+
+tr.angular-ui-tree-empty {
+  height: 100px; }
+
+.group-title {
+  background-color: #687074 !important;
+  color: #FFF !important; }
+
+/* --- Tree --- */
+.tree-node {
+  border: 1px solid #dae2ea;
+  background: #f8faff;
+  color: #7c9eb2; }
+
+.nodrop {
+  background-color: #f2dede; }
+
+.tree-node-content {
+  margin: 1.5%;
+  padding: 1%; }
+
+.tree-handle {
+  padding: 10px;
+  background: #428bca;
+  color: #FFF;
+  margin-right: 10px; }
+
+.angular-ui-tree-placeholder {
+  background: #f0f9ff;
+  border: 2px dashed #bed2db;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box; }
+
+.hoja {
+  color: black;
+  background-color: rgba(66, 220, 105, 0.42); }
+
+.nodo {
+  color: black;
+  background-color: rgba(130, 205, 243, 0.55); }
+
+.hojaInvalida {
+  background-color: rgba(244, 54, 54, 0.55);
+  color: black; }
+
+.elementoSeleccionado {
+  text-decoration: underline;
+  border-style: none; }
+
+.hoja.elementoSeleccionado {
+  background-color: #42dc69; }
+
+.hojaInvalida.elementoSeleccionado {
+  background-color: #f43636; }
+
+.nodo.elementoSeleccionado {
+  background-color: #82cdf3; }
+
+.btn {
+  margin-right: 2%;
+  border-width: 4%; }
+
+/*
+li:hover{
+    border-width: 1px;
+    border-style: dashed;
+    border-color: blue;
+}*/
+#tecnologias .btnAniadirNodo {
+  margin-right: 8%; }
+
+#datosTecnologia md-input-container {
+  width: 90%;
+  font-size: 120%; }
+
+#datosTecnologia button {
+  width: 40%;
+  margin-left: 2%;
+  margin-right: 2%;
+  display: inline; }
+
+#tituloDatosTecnologia {
+  font-size: 150%;
+  font-style: italic;
+  font-weight: bold; }
+
+md-checkbox[disabled].md-checked .md-icon {
+  background-color: #F07F0A; }
+
+md-checkbox[disabled] .md-label {
+  color: black; }
+
+md-toast.md-default-theme .md-toast-content, md-toast .md-toast-content {
+  background-color: #F07F0A;
+  color: black; }
+
+.leyenda {
+  display: block; }
+
+#colorRaiz {
+  background-color: #F8FAFF;
+  border: 1px solid black;
+  margin-top: 5%;
+  margin-left: 5%;
+  margin-right: 1%;
+  padding-right: 4%;
+  padding-bottom: 1.5%;
+  display: inline-block; }
+
+#colorNodo {
+  background-color: #82CDF3;
+  border: 1px solid black;
+  margin-top: 1%;
+  margin-left: 5%;
+  margin-right: 1%;
+  padding-right: 4%;
+  padding-bottom: 1.5%;
+  display: inline-block; }
+
+#colorHoja {
+  background-color: #42DC69;
+  border: 1px solid black;
+  margin-top: 1%;
+  margin-left: 5%;
+  margin-right: 1%;
+  padding-right: 4%;
+  padding-bottom: 1.5%;
+  display: inline-block; }
+
+#colorHojaInvalida {
+  background-color: #F43636;
+  border: 1px solid black;
+  margin-top: 1%;
+  margin-left: 5%;
+  margin-right: 1%;
+  padding-right: 4%;
+  padding-bottom: 1.5%;
+  display: inline-block; }
+
+.glyphicon {
+  top: 0; }
 
 /*# sourceMappingURL=style.css.map */

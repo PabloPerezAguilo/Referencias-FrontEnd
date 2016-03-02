@@ -1,0 +1,26 @@
+    <md-dialog id="rejectDialog" aria-label="Datos del Usuario" >
+        <md-toolbar>
+          <div class="dialogCabecera">
+            <h1>Exportar referencia</h1> 
+          </div>
+        </md-toolbar>
+        <md-dialog-content >
+
+              <md-input-container id="textoRechazar">
+                <label>Tipo de documento</label>
+                <md-select     ng-model="tipoElegido"
+                               ng-required="true"
+                               ng-focus="hayError=false">
+
+                        <md-option ng-value="doc" ng-repeat="doc in tipoDocumentos">
+                            {{doc}}
+                        </md-option>
+                    </md-select>
+              </md-input-container>
+            <p class="error" ng-show="hayError">Elige el tipo de documento para exportar la referencia</p>
+              <div class="botonesRechazar">
+                  <md-button class="botonesApp" ng-click="exportar()">Exportar</md-button>
+                  <md-button class="botonesApp" ng-click="cancel()">Cancelar</md-button>
+              </div>
+        </md-dialog-content>
+    </md-dialog>  

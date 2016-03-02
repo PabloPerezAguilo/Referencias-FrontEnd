@@ -1,14 +1,18 @@
 <div layout="column"class="md-padding dialogdemoBasicUsage" id="popupContainer" ng-cloak="">
+
+  <h1 class="cabeceraPagina">Alta de usuario</h1>
   <md-content layout-padding layout="column">
     <form ng-submit="$event.preventDefault()">
-      <p>Seleccione <small> USUARIO </small></p>
+      <p>Seleccione USUARIO</p>
         <br>
-     <md-autocomplete pattern="[a-zA-Z]+"
-						 md-selected-item="ctrl.selectedItem"
+    <div id="usuario">
+
+     <md-autocomplete id="nombreAutocompletar"
+                      md-selected-item="ctrl.selectedItem"
 						 md-search-text-change="ctrl.searchTextChange(ctrl.searchText)"
 						 md-search-text="ctrl.searchText"
 						 md-selected-item-change="ctrl.selectedItemChange(item)"
-						 md-items="item in ctrl.querySearch(ctrl.searchText)"
+						 md-items="item in ctrl.querySearch(ctrl.searchText) | filter : tecnologia | limitTo : 8"
 						 md-item-text="item.display"
 						 md-min-length="3"
 						 placeholder="Buscar usuario por nombre o nick"
@@ -19,6 +23,7 @@
 				<span md-highlight-text="ctrl.searchText" md-highlight-flags="^i">{{item.display}}</span>
 			</md-item-template>
 		</md-autocomplete>
+    </div>
     </form>
   </md-content>
     <div layout="row" layout-sm="column" layout-align="space-around">    
@@ -27,20 +32,20 @@
    <md-content layout-padding layout="column">
     <div class="radioButtondemoBasicUsage">
   <form ng-submit="submit()" ng-cloak="">
-    <p>Rol seleccionado: <span class="radioValue">{{ role }}</span> </p>
+    <p id="cabeceraRol">Seleccione ROL:</p>
+    <div id="rol">
       <md-radio-group ng-model="role">
-      <md-radio-button value="administrador" class="md-primary" checked>Administrador</md-radio-button>
-      <md-radio-button value="validador"> Validador </md-radio-button>
-      <md-radio-button value="consultor"> Consultor </md-radio-button>
-      <md-radio-button value="mantenimiento"> Mantenimiento </md-radio-button>    
-    </md-radio-group>
-
+      <md-radio-button id="rdAdministrador" value="administrador" checked>Administrador</md-radio-button>
+      <md-radio-button id="rdValidador" value="validador"> Validador </md-radio-button>
+      <md-radio-button id="rdConsultor" value="consultor"> Consulta </md-radio-button>
+      <md-radio-button id="rdMantenimiento" value="mantenimiento"> Mantenimiento </md-radio-button>    
+      </md-radio-group>
+    </div>
   </form>
 </div>
   </md-content>  
-    <p>{{mensaje}}</p>
     <form class="dialog-demo-content" layout="row" layout-sm="column" layout-wrap="" layout-align=" center center">
-      <md-button class="botonesApp" ng-click="crear()">CREAR USUARIO</md-button>   
-    </form>    
+      <md-button id="crear" class="botonesApp" ng-click="crear($event)">CREAR USUARIO</md-button>   
+    </form> 
+    <!--md-button id="elim" ng-show="!enriqueDespDef" class="botonesApp" ng-click="eliminarUsuario($event)">DESPEDIR A ENRIQUE</md-button-->
 </div>
-

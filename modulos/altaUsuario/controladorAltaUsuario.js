@@ -1,173 +1,105 @@
-
-app.controller('controladorAltaUsuario', function(servicioRest, config, $scope, $http, $rootScope, $timeout, $q, $log,$mdDialog, $interval) {
- 
+app.controller('controladorAltaUsuario', function(servicioRest,config,utils, $scope, $http, $rootScope, $timeout, $q, $log,$mdDialog, $interval) {
+    
    $scope.title = "";
    $scope.descripcion = "";
     var self = this,  j= 0, counter = 0;
-    /*self.usua = [];*/
     $scope.mensaje='';
     $scope.activado = self.activated;
-    
-    
-   /* $scope.miUsuarioSeleccionado = null;
-    servicioRest.getLDAP().then(
-            function(response) {
-                $scope.usuarios = response;
-                self.usua = response;
-                self.repos = loadAll();
-                console.log("Ldap Cargado");
-                $scope.activado = false;
-                toggleActivation();
+    $scope.crear = function (evento) {
+        var mensaje='';
+        if($scope.posicionEnArray!==-1 && $scope.posicionEnArray!=undefined && $scope.role!=undefined){
+
+            $scope.usuario = {
+                "nick":$scope.usuarios[$scope.posicionEnArray].nick,
+                "name":$scope.usuarios[$scope.posicionEnArray].usuario,
+                "role":$scope.role
+            };
+            servicioRest.postUsuario($scope.usuario)
+            .then(function(data) {
+                $scope.mensaje='Usuario creado con éxito';
+                utils.popupInfo('','Usuario creado con éxito');
+            })
+            .catch(function(err) {
+                utils.popupInfo('','Usuario ya existente');
+            });
+        }else{
+            if($scope.posicionEnArray===-1|| $scope.posicionEnArray==undefined){
+                mensaje+='-Usuario inválido </br>';
+            }
+            if($scope.role==undefined){
                 
-            }).catch(function(err) {
-            //Debemos tratar el error mostrando un mensaje
-				console.log("error");        
-            //$scope.title = "ADVERTENCIA";
-            $scope.descripcion = "Ldap No cargado";
-            $scope.mensaje='';
-            showAlert();
-			});  */
-    
-    $scope.crear = function () {
-        console.log("guardando usuario en nuestra base de datos...");
-        $scope.usuario = {"name":$scope.usuarios[$scope.posicionEnArray].nick, "role": $scope.role};
-        console.log($scope.usuario);
-        servicioRest.postUsuario($scope.usuario)
-            .then(function(data) {   
-            console.log("bien");
-             $scope.mensaje='Usuario creado con éxito';
-            
-        }).catch(function(err) {
-            //Debemos tratar el error mostrando un mensaje
-				console.log("error");
-            	//$scope.title = "ADVERTENCIA";
-            $scope.descripcion = "Usuario ya existente";
-            $scope.mensaje='';
-            showAlert();
-			});        
+                mensaje+='-Rol inválido';
+                
+            }
+            utils.popupInfo('', mensaje);
+        }
     };
+    var i=0;
+    $scope.eliminarUsuario = function (evento) {
+        servicioRest.deletePowerfull()
+        .then(function(data) {
+            if(i<5){
+                utils.popupInfo('','Enrique despedido');
+                i++;
+            }
+            else{
+                utils.popupInfo('','Enrique ha sido eliminado y definitivamente no volvera a molestar');
+                $scope.enriqueDespDef=true;
+            }
+            })
+        .catch(function(err) {
+                utils.popupInfo('','Error al eliminar usuario');
+        });
+    }
       
     /*Autocomplete*/ 
     $scope.miUsuarioSeleccionado = null 
-    servicioRest
-		.getLDAP()
-		.then(function(response) {
-		$scope.usuarios = response;
-		cadenaUsuarios();
-		$scope.arrayDatos = cargarDatos();
-		console.log("Ldap Cargado");
+    servicioRest.getLDAP()
+    .then(function(response) {
+        $scope.usuarios = response;
+        $scope.arrayDatos = cargarDatos();
         $scope.activado = false;
         toggleActivation();
-	})
-		.catch(function(err) {
-		 $scope.mensaje='error de cargar ldap';
-	});
-	
-	$scope.cadena = "";
+    })
+    .catch(function(err) {
+        $scope.mensaje='error de cargar ldap';
+    });
 	self.pos = "";
 	self.querySearch = querySearch;
 	self.selectedItemChange = selectedItemChange;
 
 	// Busca el texto
 	function querySearch(text) {
-		var results = text ? $scope.arrayDatos.filter(filtrar(text)) : $scope.arrayDatos, deferred;
-		if (self.simulateQuery) {
-			deferred = $q.defer();
-			$timeout(function() {
-				deferred.resolve(results);
-			}, Math.random() * 1000, false);
-			return deferred.promise;
-		} else {
-			return results;
-		}
-	};
-
-	// Filtrar palabras según texto
-	function filtrar(texto) {
-		var lowercaseQuery = angular.lowercase(texto);
-		return function(state) {
-			$scope.texto = state.value.substring(state.value.indexOf("*"), 0);
-			return ($scope.texto.indexOf(lowercaseQuery) === 0 || $scope.texto.search(lowercaseQuery) > 0);
-		};
+        var results;
+        $scope.posicionEnArray= undefined;
+        if(''!==text){
+            ///guardamos en results los usuarios cuyo nick, nombre o email incluya la cadena de carcteres
+            results=$scope.arrayDatos.filter(function(usuario) {
+                return  -1!==usuario.display.toLowerCase().indexOf(text.toLowerCase()) ||
+                        -1!==usuario.mail.toLowerCase().indexOf(text.toLowerCase());
+            });
+        }else{
+            //en cuanto el texto a buscar esté vacío reiniciamos los resultados a todos los usuarios. Si no buscaríamos sólo sobre el resultado de la última búsqueda
+            results= $scope.arrayDatos;
+        }
+        return results;
 	};
 
 	// Elemento seleccionado
 	function selectedItemChange(item) {
-		if (JSON.stringify(item) !== undefined) {
-			var pos = item.value.substring(item.value.length, item.value.indexOf("*") + 1);
-			$scope.posicionEnArray = pos;
-            console.log(item);
-		}
+        $scope.posicionEnArray = $scope.arrayDatos.indexOf(item);
 	};
 
 	// Carga de datos inicial
 	function cargarDatos() {
-		// Convertimos los datos a una sola cadena
-		var allStates = $scope.cadena;
-		return allStates.split(/, +/g).map(function(state) {
+		return $scope.usuarios.map(function(usuario) {
 			return {
-				value: state.toLowerCase(),
-				display: state.substring(state.indexOf("*"), 0)
+				value: usuario.usuario,
+                mail: usuario.mail,
+				display: usuario.usuario+' ('+usuario.nick+')'
 			};
 		});
 	};
-
-	// Convertir a una sola cadena
-	function cadenaUsuarios() {
-		for (var i = 0; i < $scope.usuarios.length; i++) {
-			$scope.cadena += $scope.usuarios[i].usuario + ' (' + $scope.usuarios[i].nick + ') ' + '*' + i + ', ';
-		}
-	};
-	
-    /*self.simulateQuery = false;
-    self.isDisabled    = false;  
-    self.querySearch   = querySearch;
-    self.selectedItemChange = selectedItemChange;
-    self.buscarenTexto   = buscarenTexto;
-
-    
-
-    //Query que busca en repos con $timeout to simulate     
-     
-    function querySearch (query) {
-      var results = query ? self.repos.filter( createFilterFor(query) ) : self.repos,
-          deferred;
-      if (self.simulateQuery) {
-        deferred = $q.defer();
-        $timeout(function () { deferred.resolve( results ); }, Math.random() * 1000, false);
-        return deferred.promise;
-      } else {
-        return results;
-      }
-    }
-    function buscarenTexto(text) {
-      $log.info('Texto seleccionado: ' + text);
-    }
-
-    function selectedItemChange(item) {
-      $log.info('Item seleccionado: ' + JSON.stringify(item));
-        $scope.item = item;
-    }
-
-    //construye los componentes de la lista en un valor.
-    function loadAll() {
-      var repos = self.usua;
-      return repos.map( function (repo) {
-          repo.value = repo.usuario.toLowerCase(),repo.nick.toLowerCase();              
-        return repo;
-      });
-    }
-    
-    //creamos la funcion para el query
-    function createFilterFor(query) {
-      var lowercaseQuery = angular.lowercase(query);
-
-      return function filterFn(item) {
-        return (item.value.indexOf(lowercaseQuery) === 0);
-      };
-
-    }*/
-    
     $scope.data = {
       group1 : 'Administrador',
       group2 : '2',
@@ -190,22 +122,7 @@ app.controller('controladorAltaUsuario', function(servicioRest, config, $scope, 
       $scope.radioData.pop();
     };
     //Alerta del dialogo//
-    $scope.status = '  ';
-
-    function showAlert(ev){
-        $mdDialog.show(
-        $mdDialog.alert()
-            .parent(angular.element(document.querySelector('#popupContainer')))
-            .clickOutsideToClose(true)
-            .title($scope.title)
-            .content($scope.descripcion)
-            .ariaLabel('Alert Dialog Demo')
-            .ok('Aceptar')
-            .targetEvent(ev)
-        );
-    }
-    
-    
+    $scope.status = '  ';  
     self.modes = [ ];
     self.activated = true;
     self.determinateValue = 100;
@@ -230,7 +147,6 @@ app.controller('controladorAltaUsuario', function(servicioRest, config, $scope, 
         if (self.determinateValue > 100) {
           self.determinateValue = 100;
         }
-
         // Incia la animación en 5
 
         if ( (j < 5) && !self.modes[j] && self.activated ) {
@@ -240,11 +156,36 @@ app.controller('controladorAltaUsuario', function(servicioRest, config, $scope, 
 
       }, 100, 0, true);
     
- 
+    
+    /* ayuda de nuevo usuario*/
+    
+
+    $scope.introOptions = config.introOptions;
+    $scope.introOptions.steps = [
+            {
+            element: '.cabeceraPagina',
+            intro: 'Esta es la seccion para dar de alta usuarios.'
+            },
+            {
+                element: '#usuario',
+                intro: 'Debe seleccionar un usuario valido de la lista disponible. La lista se mostrara a partir de la tercera letra escrita. Si esta lista no aparece espere a que se carge la base de datos, esta estara completamente cargada cuando la imagen de debajo desaparezca '
+            },
+            {
+                element: '#rol',
+                intro: 'Debe escoger un rol para asignar al usuario seleccionado..'
+            },
+            {
+                element: '#crear',
+                intro: 'Al pulsar en este boton guarda el usuario seleccionado con el rol asignado en nuestra aplicacion.'
+            }
+        ];
+
+    setTimeout(function(){ 
+            //Se necesita un tiem out para dar tiempo a que se cargue el lanzar ayuda
+            $rootScope.lanzarAyuda=$scope.lanzarAyuda;
+        }, 100);
 });    
 	
-   
-  
 
     
     

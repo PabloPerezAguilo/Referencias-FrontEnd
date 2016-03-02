@@ -9,96 +9,108 @@
 		<title>Referencia</title>
         
 		<!-- build:CSSCDNs -->
-		 
-  
 		<!-- AQUI IRAN LOS CSS QUE TENGAN CDN-->
-		<!--link rel="stylesheet" href="css/style.css" /-->
-
-		<!-- endbuild -->
-        <link rel="stylesheet" href="https://cdn.gitcdn.xyz/cdn/angular/bower-material/v1.0.0-rc2/angular-material.css"/>
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,400italic">
+        <link rel="stylesheet" href="/css/angular-material.css"/>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,400italic"/>
+        <link data-require="bootstrap-css@*" data-semver="3.3.1" rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css"/>
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
+        <!-- endbuild -->
+        
 		<!-- AQUI IRAN LOS CSS NUESTROS QUE NO TENGAN CDN-->
+        <link rel="stylesheet" href="css/angular-ui-tree.min.css">
+        <link rel="stylesheet" type="text/css" href="css/introjs.css"/>
 		<link rel="stylesheet" href="css/style.css" />
        
 	</head>
 	<body>
 		<header>
-            <p id="titulo">Referencias</p>
-            <img id="logo" src="/logo_gfi.png"/>
-            <div ng-show="menu" id="menu" layout layout-sm="column">
-                <data md-toolbar class="md-menu-toolbar">
-                    <md-menu>
-                        <md-button ng-click="$mdOpenMenu()">Usuarios</md-button>
-                        <md-menu-content>
-                            <md-menu-item>
-                                <md-button ng-click="irA('alta')">Alta</md-button>
-                            </md-menu-item>
-                            <md-menu-divider></md-menu-divider>
-                            <md-menu-item>
-                                <md-button ng-click="irA('eliminarUsu')">Eliminar</md-button>
-                            </md-menu-item>             
-                        </md-menu-content>
-                    </md-menu>
-                    <md-menu-divider></md-menu-divider>  
-                    <md-menu>
-                        <md-button ng-click="$mdOpenMenu()">Referencias</md-button>
-                        <md-menu-content>
-                            <md-menu-item>
-                                <md-button ng-click="irA('listar')">Listar</md-button>
-                            </md-menu-item>
-                            <md-menu-item>
-                                <md-button ng-click="irA('nueva')">Nueva</md-button>
-                            </md-menu-item>
-                            <md-menu-item>
-                                <md-button ng-click="irA('modificar')">Modificar</md-button>
-                            </md-menu-item>
-                            <md-menu-item>
-                                <md-button ng-click="irA('eliminar')">Eliminar</md-button>
-                            </md-menu-item>
-                        </md-menu-content>
-                    </md-menu>
-                    <md-menu-divider></md-menu-divider>  
-                    <md-menu>
-                        <md-button ng-click="irA()">Salir</md-button>  
-                        <md-menu-content></md-menu-content>
-                    </md-menu>
-                </data> 
-            </div>
+            <img id="logoSharon" src="/sharon.png"/>
         </header>
-        
-        <div ng-view>            
-         
+        <div ng-show="menu" id="menu" layout layout-sm="column" ng-include="'./modulos/menu/menu.html'"></div>
+        <div id="contenedorVistas" ng-init="scroll=true" ng-view ng-intro-options="introOptions" ng-intro-method="lanzarAyuda" ng-class="{'contenedorVistas': scroll, 'contenedorVistasAyuda': !scroll}" ng-intro-onexit="activarScroll" ng-intro-oncomplete="activarScroll" >            
 		</div>
-        
         <footer>
+            <img id="logoGfi" src="/logo_gfi.png"/>
              <nav>                
                 <a href="http://www.gfi.es">2015.Sharon.Agile</a>               
              </nav>       
-            <div id="lineaFooter"></div>
+            <div id="lineaFooter"/>
         </footer>   
 
 		<!-- build:JSCDNs -->
-         
-        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.6/angular.js"></script>        
-        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.6/angular-animate.min.js"></script>        
-        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.6/angular-route.min.js"></script>        
+            <!-- CDNs-->
+       <!-- <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.6/angular.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.6/angular-animate.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.6/angular-route.min.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.6/angular-aria.min.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.6/angular-messages.min.js"></script>
-        <script src="https://cdn.gitcdn.xyz/cdn/angular/bower-material/v1.0.0-rc2/angular-material.js"></script>
+        <script src="https://cdn.gitcdn.xyz/cdn/angular/bower-material/v1.0.0-rc2/angular-material.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-material-icons/0.6.0/angular-material-icons.min.js"></script>
-       
-
+        <script src="http://code.angularjs.org/1.2.16/angular-resource.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.6/moment.min.js"></script>
+        <script data-require="ui-bootstrap@0.13.0" data-semver="0.13.0" src="http://angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.13.0.min.js"></script>-->
+<!--        <script src="http://angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.11.0.js"></script>-->
+        
+        <!-- Locales no minificados -->
+        <script type="text/javascript" src="js/no-min/qrcode.js"></script>
+        
+        <!-- locales minificados-->
+        <!-- Intro.js ¿y AES? deben cargarse desde local porque no se les puede direccionar por internet (cdn)-->
+        
+        
+        <script src="js/min/AES.min.js"></script>
+        <script src="js/min/angular.min.js"></script>
+        <script src="js/min/angular-animate.min.js"></script>
+        <script src="js/min/angular-aria.min.js"></script>
+        <script src="js/min/angular-messages.min.js"></script>
+        <script src="js/angular-qr.min.js"></script>
+        <script src="js/min/angular-route.min.js"></script>
+        <script src="js/min/intro.min.js"></script>
+        
+        <script src="js/min/angular-material.min.js"></script>
+        <script src="js/min/angular-resource.min.js"></script>
+        <script src="js/min/moment.min.js"></script>
+        <script src="js/min/angular-material-icons.min.js"></script>
+        <script src="js/min/ui-bootstrap-tpls-0.13.0.min.js"></script>
+        <script type="text/javascript" src="js/angular-ui-tree.js"></script>
+        <script src="js/min/angular-sanitize.min.js"></script>
+        
+        
+        <!--Libreria necesaria para la fecha del DatePicker-->
+        
+        <!--BOOTSTRAP Se usa para los estilos y la paginacion de listar referencias-->
+        
 		<!-- endbuild -->       
+        
 		<!-- build:JS -->
-		<script src="services.js"></script>
-		<script src="app.js"></script>
-		<script src="config.js"></script>
+        <script src="utils.js"></script>
+		
+        <script src="services.js"></script>
+		<script src="app.js"></script>    
+		<script src="config.js"></script>        
         <script src="modulos/login/controladorLogin.js"></script>
         <script src="modulos/altaUsuario/controladorAltaUsuario.js"></script>
+        <script src="modulos/buscarReferencias/controladorBuscarReferencias.js"></script>
+        <script src="modulos/listarNoValidadas/controladorListarNoValidadas.js"></script>
         <script src="modulos/nuevaReferencia/controladorNuevaReferencia.js"></script>
+        <script src="modulos/modificarReferencia/controladorModificarReferencia.js"></script>
+        <script src="modulos/modificarReferenciaNoValidada/controladorModificarReferenciaNoValidada.js"></script>
+        <script src="modulos/validarReferencia/controladorValidarReferencia.js"></script>
         <script src="modulos/bienvenida/controladorBienvenida.js"></script>
+        <script src="modulos/popUp/controladorUsuarioLogueado.js"></script>
+        <script src="modulos/popUp/controladorErroresReferencia.js"></script>
+        <script src="modulos/popUp/controladorErroresNuevaReferencia.js"></script>
+        <script src="modulos/popUp/controladorRechazarReferencia.js"></script>
+        <script src="modulos/popUp/controladorExportarReferencia.js"></script>
+        <script src="modulos/popUp/controladorCrearTec.js"></script>
+        <script src="modulos/popUp/controladorSeleccionarTecnologias.js"></script>
+        <script src="modulos/listarReferenciasValidar/controladorListarReferenciasValidar.js"></script>
+        <script src="modulos/gestionTecnologias/controladorGestionTecnologias.js"></script>
 		<!-- endbuild -->
-		<script src="js/AES.min.js"></script>
+		
+        
+
 
 	</body>
 </html> 

@@ -1,0 +1,64 @@
+    <md-dialog id="errorDialog" aria-label="Datos del Usuario" >
+        <md-toolbar id="popUpError">
+          <div class="dialogCabecera">
+            <h2>Se han encontrado unos errores</h2> 
+          </div>
+        </md-toolbar>
+        <md-dialog-content>
+            <!--ul id="listaError">
+                <li ng-repeat="error in errores">
+                    <p>
+                        {{ error }}
+                    </p>
+                </li>
+            </ul-->
+            <div ng-show="errorCliente" style="color:maroon" role="alert">
+                <div>Cliente inválido</div>
+            </div>
+            <div ng-messages="errores.sociedad.$error" style="color:maroon" role="alert">
+                <div ng-message="required">Se debe seleccionar una sociedad</div>
+            </div>
+            <div ng-messages="errores.SectorEmp.$error" style="color:maroon" role="alert">
+                <div ng-message="required">Se debe seleccionar un sector empresarial</div>
+            </div>
+            <div ng-messages="errores.tActividad.$error" style="color:maroon" role="alert">
+                <div ng-message="required">Se debe seleccionar un tipo de actividad</div>
+            </div>
+            <div ng-messages="errores.tProyecto.$error" style="color:maroon" role="alert">
+                <div ng-message="required">Se debe seleccionar un tipo de proyecto</div>
+            </div>
+            <div ng-messages="errores.fecha.$error" style="color:maroon" role="alert">
+                <div ng-message="required">Se debe seleccionar una fecha de inicio</div>
+            </div>
+            <div ng-messages="errores.duracion.$error" style="color:maroon" role="alert">
+                <div ng-message="required">Se debe seleccionar una duración en meses mínima de 1 mes</div>
+            </div>
+            <div ng-messages="errores.denominacion.$error" style="color:maroon" role="alert">
+                <div ng-message="required">El campo denominación no puede estar vacío ni superar el límite de caracteres</div>
+            </div>
+            <div ng-messages="errores.Rproyecto.$error" style="color:maroon" role="alert">
+                <div ng-message="required">El campo resumen del proyecto no puede estar vacío ni superar el límite de caracteres</div>
+            <div ng-messages="errores.ProblemaCliente.$error" style="color:maroon" role="alert">
+                <div ng-message="required">El campo problematica del cliente no puede estar vacío ni superar el límite de caracteres</div>
+            </div>
+            </div>
+            <div ng-messages="errores.solGFI.$error" style="color:maroon" role="alert">
+                <div ng-message="required">El campo Solución GFI no puede estar vacío ni superar el límite de caracteres</div>
+            </div>
+            <div ng-messages="errores.fteTotal.$error" style="color:maroon" role="alert">
+                <div ng-message="required">Se debe seleccionar una cantidad de FTE totales mínima de 1 FTE</div>
+            </div>
+            <div ng-messages="errores.rbleComercial.$error" style="color:maroon" role="alert">
+                <div ng-message="required">Se debe seleccionar un responsable comercial</div>
+            </div>
+            <div ng-messages="errores.rbleTecnico.$error" style="color:maroon" role="alert">
+                <div ng-message="required">Se debe seleccionar un responsable técnico</div>
+            </div>
+            <div ng-messages="errores.userfile.$error" style="color:maroon" role="alert">
+                <div ng-message="required">Se debe subir una imágen</div>
+            </div>
+            <div ng-show="errorTecnologias" style="color:maroon" role="alert">
+                <div>Tecnología inválida</div>
+            </div>
+        </md-dialog-content>
+    </md-dialog>  

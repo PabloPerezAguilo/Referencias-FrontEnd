@@ -1,100 +1,91 @@
-app.controller('controladorLogin', function(servicioRest, config, $scope, $http, $location, $rootScope) {
+app.controller('controladorLogin', function(servicioRest, config, $scope, $http, $location, $rootScope, $mdDialog) {
     $scope.user={        
-        name:'',
+        nick:'',
         password:'' 
     };
-    $scope.error;
+    $rootScope.error;
     
 	$scope.login = function () {
         
-        
-       if($scope.user.name!="" && $scope.user.password!="" && $scope.user.name!=undefined && $scope.user.password!=undefined){
-           
-           login();
-           
+       if($scope.user.nick!="" && $scope.user.password!="" && $scope.user.nick!=undefined && $scope.user.password!=undefined){
+           login();   
        }else{
             $scope.error="Debe de completar los dos campos";
        }
-		
-	
-    
     };
     
     $scope.intro = function (pressEvent){
         //Si presiona intro para acceder
-        if(pressEvent.charCode == 13){ 
+        if(pressEvent.keyCode == 13){ 
             login();   
           }
     };
     
-    function login(){
+    //Comprobamos que el LocalStorage tenga datos
+    if(localStorage.getItem("nick")!==null || sessionStorage.getItem("nick")!==null){
+       $location.path("/bienvenida");
+
+    }
     
+    function login(){
+        $rootScope.error = "";
         servicioRest.postLogin($scope.user)
-			.then(function(data) {   
-            
-				console.log(data); 
-                $rootScope.menu = true;
-                $rootScope.datoRol=data;
-                //Redireccionamos al usuario según su ROL
-                redireccionar();
+			.then(function(data) {
+                localStorage.setItem("campos", data.campos);
+            console.log("aqui",localStorage.getItem("campos"));
                 $rootScope.usuarioP = $scope.user;
-            
                 //Guardamos el usuario completo incluido el rol que nos devuelve
                 $rootScope.usuarioLS={
-                    name:$scope.user.name,
+                    nick:$scope.user.nick,
                     password:$scope.user.password,
-                    role:data.role   
+                    role:data.role,
+                    name:data.name
                 };
             
-                $http.defaults.headers.common['Authorization'] = 'Basic ' + btoa($rootScope.usuarioP.name + ':' + $rootScope.usuarioP.password);
-
-                //Comprobamos si ha seleccionado recordar
+                //Redireccionamos al usuario a la página de bienvenida
+                $location.path('/bienvenida');
+                //Mostramos el menú
+                $rootScope.menu = true;
+            
+                $http.defaults.headers.common['Authorization'] = 'Basic ' + btoa($rootScope.usuarioP.nick + ':' + $rootScope.usuarioP.password);
+                
+                //Si el usuario ha pulsado recordar guardamos
                 comprobarRecordar();
 
 			})
 			.catch(function(err) {
-             //Tratamos el error
-                console.log(err);
-
+             //Tratamos el error.
                 if(err=="Credenciales erróneas"){
-                    $scope.error="Contraseña incorrecta.";
+                    $rootScope.error="Contraseña incorrecta.";
                     
                 }else if(err=="User not found in DB"){
-                    $scope.error="El usuario no está registrado.";
-                    $scope.user={        
-                        name:'',
+                    $rootScope.error="El usuario no está registrado.";
+                    $rootScope.user={        
+                        nick:'',
                         password:'' 
                     };
                 }
 			});    
     };
     
-    function comprobarRecordar() {
-		// Si el usuario ha pulsado en recordar lo guardamos en el localStorage
-		if ($scope.recordar) {
-			localStorage.setItem("name", $rootScope.usuarioLS.name);
-			// Usamos el nick del usuario como secreto
-			localStorage.setItem("password", Aes.Ctr.encrypt($rootScope.usuarioLS.password, $rootScope.usuarioLS.name, 256));
-			localStorage.setItem("role", $rootScope.usuarioLS.role);
-		}
-	}
+    function rellenarStorage(storage){
+        storage.setItem("nick", $rootScope.usuarioLS.nick);
+        // Usamos el nick del usuario como secreto
+        storage.setItem("password", Aes.Ctr.encrypt($rootScope.usuarioLS.password, $rootScope.usuarioLS.nick, 256));
+        storage.setItem("role", $rootScope.usuarioLS.role);
+        storage.setItem("name", $rootScope.usuarioLS.name);
+    }
     
-    function redireccionar() {
-        console.log("Redireccionando segun rol"); 
-		// Redireccionamos al usuario logeado dependiendo de su rol
-		  if ($rootScope.datoRol.role==="ROLE_ADMINISTRADOR"){
-                 $location.path('/bienvenida');
+    function comprobarRecordar(){ 
 
-                }else if($rootScope.datoRol.role==="ROLE_MANTENIMIENTO"){
-                    $location.path('/bienvenida');
-                    
-                }else if($rootScope.datoRol.role==="ROLE_VALIDADOR"){
-                    $location.path('/bienvenida');
-                    
-                }else if($rootScope.datoRol.role==="ROLE_CONSULTOR"){
-                    $location.path('/bienvenida');
-                }
-	}
+        if($scope.recordar){
+            rellenarStorage(localStorage);
+        }
+        else{
+            rellenarStorage(sessionStorage);
+        }
+    }
+    
 });
 
 
