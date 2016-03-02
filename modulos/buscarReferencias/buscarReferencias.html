@@ -54,7 +54,7 @@
             </div>
 
             <!--    SOCIEDAD-->
-            <div id="sociedad">
+            <div>
                 <md-input-container title="Sociedad" class="fixed-size selectBusqueda" >
                     <label>Sociedad *</label>
                     <md-select multiple
@@ -72,7 +72,7 @@
             </div>
             
             <!--   SECTOR-->
-            <div id="sectorEmpresarial">
+            <div>
             <md-input-container title="Sector Empresarial" class="fixed-size selectBusqueda" >
                     <label>Sector Empresarial *</label>
                     <md-select multiple
@@ -107,7 +107,7 @@
             </div>
 
             <!--    Tipo de proyecto-->
-            <div id="tipoProyecto">
+            <div>
                 <md-input-container title="Tipo de proyecto" class="fixed-size selectBusqueda" >
                     <label>Tipo de proyecto *</label>
                     <md-select multiple
@@ -131,18 +131,19 @@
                 </md-input-container>
             </div>
             <div id="TecnologiasSelec">
-                <md-chips ng-model="referencia.tecnologiasSeleccionadas"></md-chips>
-                <md-button class="botonesApp"
+                <md-button id="busquedaBotonTecnologias"
+                           class="botonesApp"
                            type="button"
                            ng-click="seleccionarTecnologias()">
                     Seleccionar tecnologias
                 </md-button>
+                <md-chips id="busquedaTecnologias" ng-model="referencia.tecnologiasSeleccionadas"></md-chips>
                 <!--md-input-container title="Tecnologias Seleccionadas" class="fixed-size" >
                     <label>Tecnologias seleccionadas</label>
                     <input id="duracionBusqueda" name="tecnologias" ng-focus="seleccionarTecnologias(this)" type="text" ng-model="referencia.tecnologiasSeleccionadas"/>
                 </md-input-container-->
             </div>
-            <md-input-container class="selectBusqueda">
+            <md-input-container id="tipoTecnologias" class="selectBusqueda">
                 <label>Tipo de tecnologia</label>
                 <md-select ng-model="referencia.tipoTecnologia" ng-required="true">
                   <md-option ng-repeat="tipo in tipos" value="{{tipo}}">

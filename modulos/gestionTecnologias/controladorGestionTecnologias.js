@@ -402,6 +402,16 @@ app.controller ('controladorGestionTecnologias', function (servicioRest, utils, 
         }
     };
     
+       
+    //pulsar intro crea  la tecnologia si es posible
+    $scope.intro = function (pressEvent){    
+        console.log("111");
+        if(pressEvent.keyCode == 13){ 
+            $scope.guardarElem();   
+          }
+    };
+    
+    
     /*             AYUDA                 */
     
     $scope.activarScroll=function(){     
@@ -481,14 +491,6 @@ app.controller ('controladorGestionTecnologias', function (servicioRest, utils, 
                 intro: 'Si por el contrario quiere eliminarla tendra que darle al boton rechazar, si observa a la izquierda de este boton un cuadro de texto, antes de pulsar rechazar debera asociar todas las referencias que tiene esta tecnologia a otra tecnologia final que este activa, para hacer esto escriba el nombre de esta tecnologia en el cuadro de texto antes mencionado.Si por el contrario no observa ningun cuadro de texto, puede rechazarla sin mas pulsando en el boton rechazar ya que esto  indica que no hay ninguna referencia asociada a esa tecnologia.'
             }
             ];
-    
-    //pulsar intro crea  la tecnologia si es posible
-    $scope.intro = function (pressEvent){    
-        console.log("111");
-        if(pressEvent.keyCode == 13){ 
-            $scope.guardarElem();   
-          }
-    };
-    
+ 
     
 }); 

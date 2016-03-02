@@ -99,41 +99,7 @@ app.controller('controladorValidarReferencia', function(servicioRest,utils, conf
         $rootScope.referenciaCargada = null;
      }
     
-    //---------AYUDA DE LA PAGINA--------
-  
-    $scope.ayuda = function(){
-      $scope.scroll=false
-      $scope.lanzarAyuda();
-        
-    };
     
-    $scope.introOptions = config.introOptions;
-    
-
-        
-    $scope.introOptions.steps = [
-        {
-            element: '.cabeceraPagina',
-            intro: 'Esta es la seccion para validar referencias, las referencias cargadas en esta zona solo pueden ser modificadas por el administrador, el objetivo de esta seccion sera validar o rechazar la referencia cargada.'
-        },
-        {
-            element: '.botonesCrear',
-            intro: 'En esta zona estan los botones de rechazar y validar.'
-        },
-        {
-            element: '#rechazar',
-            intro: 'Si pulsas en rechazar deberas rellenar un motivo por el que se la rechaza, si, no podras rechazarla.'
-        },
-        {
-            element: '#validar',
-            intro: 'Si la referencia esta correcta, solo con pulsar aqui quedara validada.'
-        }
-     ];
-            
-    setTimeout(function(){ 
-            //Se necesita un tiem out para dar tiempo a que se cargue el lanzar ayuda
-            $rootScope.lanzarAyuda=$scope.ayuda;
-        }, 1000)
     /* ----------------------- CARGA DE CATALOGOS ------------------------*/
     $scope.catalogo={};
     $scope.title = "";
@@ -242,5 +208,41 @@ app.controller('controladorValidarReferencia', function(servicioRest,utils, conf
         $scope.referencia.codigoQr = $rootScope.referenciaCargada.codigoQr;
         recargarQR();
     }
+    
+    //---------AYUDA DE LA PAGINA--------
+  
+    $scope.ayuda = function(){
+      $scope.scroll=false
+      $scope.lanzarAyuda();
+        
+    };
+    
+    $scope.introOptions = config.introOptions;
+    
+
+        
+    $scope.introOptions.steps = [
+        {
+            element: '.cabeceraPagina',
+            intro: 'Esta es la seccion para validar referencias, las referencias cargadas en esta zona solo pueden ser modificadas por el administrador, el objetivo de esta seccion sera validar o rechazar la referencia cargada.'
+        },
+        {
+            element: '.botonesCrear',
+            intro: 'En esta zona estan los botones de rechazar y validar.'
+        },
+        {
+            element: '#rechazar',
+            intro: 'Si pulsas en rechazar deberas rellenar un motivo por el que se la rechaza, si, no podras rechazarla.'
+        },
+        {
+            element: '#validar',
+            intro: 'Si la referencia esta correcta, solo con pulsar aqui quedara validada.'
+        }
+     ];
+            
+    setTimeout(function(){ 
+            //Se necesita un tiem out para dar tiempo a que se cargue el lanzar ayuda
+            $rootScope.lanzarAyuda=$scope.ayuda;
+        }, 100)
 });
 

@@ -174,6 +174,10 @@ app.controller('controladorAltaUsuario', function(servicioRest,config,utils, $sc
     $scope.introOptions = config.introOptions;
     $scope.introOptions.steps = [
             {
+            element: '.cabeceraPagina',
+            intro: 'Esta es la seccion para dar de alta usuarios.'
+            },
+            {
                 element: '#usuario',
                 intro: 'Debe seleccionar un usuario valido de la lista disponible. La lista se mostrara a partir de la tercera letra escrita. Si esta lista no aparece espere a que se carge la base de datos, esta estara completamente cargada cuando la imagen de debajo desaparezca '
             },
@@ -190,7 +194,7 @@ app.controller('controladorAltaUsuario', function(servicioRest,config,utils, $sc
     setTimeout(function(){ 
             //Se necesita un tiem out para dar tiempo a que se cargue el lanzar ayuda
             $rootScope.lanzarAyuda=$scope.lanzarAyuda;
-        }, 1000);
+        }, 100);
 });    
 	
 

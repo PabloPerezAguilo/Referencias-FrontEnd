@@ -112,25 +112,81 @@ app.controller ('controladorBuscarReferencias', function (servicioRest,utils, co
     
     /*   AYUDA     */
     
+     $scope.activarScroll=function(){     
+        $scope.scroll=true;
+        $scope.mostrarBAvanzada=false;
+    };
+    
+    $scope.prueba111=function(){     
+        console.log("sdads");
+    };
+    
+    $scope.ayuda = function(){
+        $scope.scroll=false
+        $scope.mostrarBAvanzada=true;
+        $scope.lanzarAyuda();
+        
+    };
+    
+    setTimeout(function(){ 
+            //Se necesita un tiem out para dar tiempo a que se cargue el lanzar ayuda
+            $rootScope.lanzarAyuda=$scope.ayuda;
+        }, 1000)
+    
     $scope.introOptions = config.introOptions;
     
     $scope.introOptions.steps = [
             {
                 element: '.cabeceraPagina',
-                intro: 'Esta seccion muestra un listado con las tecnologias validadas.'
+                intro: 'Esta seccion gestiona la busqueda de las referencias.'
             },
             {
-                element: '#referenciasPendientes',
-                intro: 'Haciendo click en cualquier fila accederemos a la referencia seleccionada para poder consultarla y, en caso de que no existiera una copia pendiente o en borrador, modificarla.'
+                element: '#busquedaRef',
+                intro: 'Este buscador permite buscar cualquier palabra o palabras en todas las secciones de una referencia, una vez escrito algo en esta zona o en la de busqueda avanzada pulsando en la lupa lanzaremos la busqueda que queremos realizar.'
             },
             {
-                element: '.pagination-sm',
-                intro: 'Esta seccion de aqui permite movernos entre distintas paginas por si el numero de referencias validadas fuera muy extenso.'
+                element: '#cabeceraBusquedaAvanzada',
+                intro: 'Desplegando esta seccion encontrara la seccion de busqueda avanzada.'
+            },
+            {
+                element: '#clienteBusqueda',
+                intro: 'Este buscador permite filtrar por los clientes de una referencia, a partir d ela tercera letra introducida podra elegir un cliente de la lista.'
+            },
+            {
+                element: '#sociedadSelect',
+                intro: 'Esta lista desplegable permite elegir una o varias sociedades para filtrar las referencias.'
+            },
+            {
+                element: '#selectSectorEmpresarial',
+                intro: 'Esta lista despegable permite elegir uno o varios sectores empresarial para filtrar las referencias.'
+            },
+            {
+                element: '#selectActividad',
+                intro: 'Esta lista desplegable permite elegir una o varias actividades para filtrar las referencias..'
+            },
+            {
+                element: '#tipoProyectoSelect',
+                intro: 'Esta lista despegable permite elegir uno o varios tipos de proyectos para filtrar las referencias.'
+            },
+            {
+                element: '#duracionBusqueda',
+                intro: 'Esta zona te permitira seleccionar desde que año quieres ver las referencias, para ello introduce un numero, este numero sera los años que hace que fue creada esa referencia'
+            },
+            {
+                element: '#busquedaBotonTecnologias',
+                intro: 'En este boton podra seleccionar las tecnologias por las que desea filtrar.'
+            },
+            {
+                element: '#TecnologiasSelec',
+                intro: 'En esta zona se iran cargando las tecnologias que ha seleccionado y tambien podra eliminarlas pulsando en la "x" que aparece en cada una.'
+            },
+            {
+                element: '#busquedaProductoTecnologia',
+                intro: 'Nos permitira decidir si buscamos un producto o no, en caso de no seleccionar ninguno o seleccionar "no aplica" sacara ambos tipos.'
+            },
+            {
+                element: '#tipoTecnologias',
+                intro: 'Este listado permite escoger el tipo de tecnologias que buscamos.'
             }
             ];
-    
-    setTimeout(function(){ 
-            //Se necesita un tiem out para dar tiempo a que se cargue el lanzar ayuda
-            $rootScope.lanzarAyuda = $scope.lanzarAyuda;
-        }, 1000)
 }); 
