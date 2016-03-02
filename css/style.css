@@ -86,13 +86,20 @@ footer, header, hgroup, menu, nav, section {
 :focus {
   outline: #F07F0A auto 5px; }
 
+@font-face {
+  font-family: 'BlissfulThinking';
+  /*a name to be used later*/
+  src: "css\font\BlissfulThinking.otf";
+  /*URL to font*/ }
+
 body {
   line-height: 1;
   font-size: 13px;
   height: 31px;
   width: 100%;
   font-family: verdana;
-  overflow: hidden; }
+  overflow: hidden;
+  color: #303f48; }
 
 .error {
   margin-left: 2%;
@@ -163,7 +170,7 @@ footer #lineaFooter {
 #menu {
   width: 45%;
   height: auto;
-  color: #303F48;
+  color: #303f48;
   overflow: hidden;
   background: #F07F0A;
   border-radius: 0 0 20px 0;
@@ -221,7 +228,7 @@ footer #lineaFooter {
   text-align: right;
   font-size: 25px;
   height: 40px;
-  color: #ee941a; }
+  color: #ececec; }
 
 .botonesApp {
   background-color: #F07F0A;

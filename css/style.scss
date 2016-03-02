@@ -31,7 +31,7 @@ $colorClaro: #ececec;
 $colorDetalles: #F07F0A;
 $colorSombreado: #D8D8D8;
 $colorError: #CE0000;
-
+$colorLetra: #303f48;
 $colorHoja: #42DC69;
 $colorNodo: #82CDF3;
 $colorHojaInvalida: #F43636;
@@ -127,6 +127,11 @@ $colorHojaInvalida: #F43636;
     outline: $colorDetalles auto 5px;
 }
 
+@font-face {
+    font-family: 'BlissfulThinking'; /*a name to be used later*/
+    src: "css\font\BlissfulThinking.otf"; /*URL to font*/
+}
+
 body {
     line-height: 1;  
     font-size: 13px;
@@ -134,6 +139,7 @@ body {
     width: 100%;
     font-family: verdana;
     overflow: hidden;
+    color: $colorLetra;
 }
 
 .error{
@@ -210,7 +216,7 @@ footer #lineaFooter{
 #menu{
     width:45%;
     height: auto;
-    color: $colorOscuro;
+    color: $colorLetra;
     overflow:hidden; 
     background: $colorDetalles;
     border-radius: 0 0 20px 0 ;
@@ -275,7 +281,7 @@ footer #lineaFooter{
     text-align: right;
     font-size: 25px;
     height: 40px;
-    color: #ee941a;
+    color: $colorClaro;
 }
 .botonesApp{
     background-color: $colorDetalles;
