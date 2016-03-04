@@ -1,7 +1,7 @@
     <md-dialog id="tecDialog" aria-label="Datos del Usuario" >
         <md-toolbar>
           <div class="dialogCabecera">
-            <h1>Razon para rechazar referencia</h1> 
+            <h1>Tecnologías para la búsqueda</h1> 
           </div>
         </md-toolbar>
         <md-dialog-content >
@@ -15,7 +15,7 @@
         <li ng-repeat="node in node.nodosHijos" ui-tree-node data-nodrop-enabled="node.clase!=='nodo'" ng-include="'nodes_renderer.html'"></li>
     </ol>
 </script>
-<h1 class="cabeceraPagina">Gestion de tecnologias</h1>
+<h1 class="cabeceraPagina">Gestión de tecnologías</h1>
 <div class="row">
     <div class="col-sm-6">
         <div ui-tree="eventosArbol" id="tree-root" data-drag-delay="250" >

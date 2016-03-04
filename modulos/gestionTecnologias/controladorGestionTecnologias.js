@@ -42,6 +42,11 @@ app.controller ('controladorGestionTecnologias', function (servicioRest, utils, 
     // Iniciamos el nodo selleccionado a undefined para indicar que inicialmente no hay ninguno seleccionado
     var elementoSeleccionado=undefined;
     
+    $scope.ocultarHijos = function (nodo){
+        toggle(nodo);
+        console.log("aa");
+    }
+    
     $scope.eventosArbol = {
         //Cuando salte el evento (la clave), saltará la función de callback que contiene
         

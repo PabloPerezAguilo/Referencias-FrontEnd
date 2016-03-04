@@ -1,8 +1,8 @@
 app.controller ('controladorBuscarReferencias', function (servicioRest,utils, config, $scope, $http, $location, $rootScope, $mdDialog) {  
     
-    /*setTimeout(function(){
-         console.log(document.getElementsByTagName("md-chips-wrap")[0].setAttribute("class","chipSelecTecnologias"));
-    },1);*/
+    setTimeout(function(){
+         console.log(document.getElementsByTagName("md-chips-wrap")[0].classList.add("chipSelecTecnologias"));
+    },1);
   /* angular.ready(function() {
  console.log(document.getElementsByClassName("md-input")[2]);
 });*/

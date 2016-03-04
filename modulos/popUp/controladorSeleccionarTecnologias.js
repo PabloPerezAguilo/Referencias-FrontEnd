@@ -53,7 +53,8 @@ app.controller('controladorSeleccionarTecnologias', function ($scope, $mdDialog,
             for(var i=0; i<response.nodosHijos.length; i++){
                 if(existeElemento(padre.children[i])){
                     padre.children[i].firstElementChild.classList.add("elementoSeleccionado");
-                    padre.children[i].firstElementChild.classList.add("elementoSeleccionado");
+                    console.log("pruebatick",padre.children[i].firstElementChild.children[0].classList.remove("ocultarImagen"));
+                    //padre.children[i].firstElementChild.classList.add("elementoSeleccionado");
                 }
                 
                 recorrerArbol(response.nodosHijos[i], padre.children[i].children[1]);
@@ -86,6 +87,7 @@ app.controller('controladorSeleccionarTecnologias', function ($scope, $mdDialog,
                 if(elemActual.childNodes()[i].$element[0].firstElementChild.classList.contains("elementoSeleccionado")){
                     //console.log("selec");
                     elemActual.childNodes()[i].$element[0].firstElementChild.classList.remove("elementoSeleccionado");
+                    elemActual.childNodes()[i].$element[0].children[0].children[0].classList.add("ocultarImagen");
                     //console.log("indexHijo",tecSelec.indexOf(elemActual.$modelValue.nombre));
                     if(elemActual.childNodes()[i].$modelValue.clase === "nodo"){
                         tecSelec.nodos.splice(tecSelec.nodos.indexOf(elemActual.childNodes()[i].$modelValue.nombre),1);
@@ -98,6 +100,7 @@ app.controller('controladorSeleccionarTecnologias', function ($scope, $mdDialog,
                 if(!elemActual.childNodes()[i].$element[0].firstElementChild.classList.contains("elementoSeleccionado")){
                     //console.log("no selec");
                     elemActual.childNodes()[i].$element[0].firstElementChild.classList.add("elementoSeleccionado");
+                    elemActual.childNodes()[i].$element[0].children[0].children[0].classList.remove("ocultarImagen");
                     if(elemActual.childNodes()[i].$modelValue.clase === "nodo"){
                         tecSelec.nodos.push(elemActual.childNodes()[i].$modelValue.nombre);
                     }else{
@@ -148,7 +151,8 @@ app.controller('controladorSeleccionarTecnologias', function ($scope, $mdDialog,
         }
         
         if(elemActual.hasChild()){
-        marcarElementos(elemActual,marcar);}
+            marcarElementos(elemActual,marcar);
+        }
         /*while(elemActual.hasChild()){
             elemActual = elemActual.childNodes()[0];
             //console.log("AQUI",elemActual);

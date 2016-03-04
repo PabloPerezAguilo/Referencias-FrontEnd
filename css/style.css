@@ -711,7 +711,8 @@ md-chips .md-chip.md-focused {
   margin: auto;
   min-width: 1100px;
   min-height: 700px;
-  max-height: 1000px; }
+  max-height: 1000px;
+  overflow-y: scroll; }
 
 #rejectDialog {
   margin: auto;
@@ -770,7 +771,7 @@ md-toolbar:not(.md-menu-toolbar) {
 
 /*------------------------------ ESTILOS BUSCAR REFERENCIA ---------------------------------*/
 .chipSelecTecnologias {
-  width: 60%; }
+  width: 70.4%; }
 
 #busquedaRef {
   background-color: transparent; }
