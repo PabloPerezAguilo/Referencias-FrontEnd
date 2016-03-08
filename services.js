@@ -69,10 +69,15 @@ function ServicioREST( utils, config, $http,$q, $rootScope) {
     
     function buscarReferencias(busqueda) {
 /*?bGeneral=' + busqueda.busqueda + '&bCliente=' + busqueda.cliente + '&bSociedad='+ busqueda.sociedad + '&bSector=' + busqueda.sectorEmpresarial + '&bActividad=' + busqueda.tipoActividad + '&bProyecto=' + busqueda.tipoProyecto + '&bAnios=' + busqueda.anioLimite + '&bTipoTecnologia=' + busqueda.tipoTecnologia + '&bEsProducto=' + busqueda.esProducto*/
-		return llamadaHTTP({
+		
+        // muy importante!!! se necesita mandar undefined si no hay listado seleccionado o la consulta volvera vacia
+        if(busqueda.tipoTecnologia==""||busqueda.tipoTecnologia==null){
+            busqueda.tipoTecnologia=undefined;
+        }
+        return llamadaHTTP({
 			method: 'GET',
 			url: url + '/referencia/filtro',
-            params: {bGeneral: busqueda.busqueda, bCliente: busqueda.cliente, bSociedad: busqueda.sociedad, bSector: busqueda.sectorEmpresarial, bActividad: busqueda.tipoActividad, bProyecto: busqueda.tipoProyecto, bAnios: busqueda.anioLimite, bTipoTecnologia: busqueda.tipoTecnologia, bEsProducto: busqueda.esProducto}
+            params: {bGeneral: busqueda.busqueda, bCliente: busqueda.cliente, bSociedad: busqueda.sociedad, bSector: busqueda.sectorEmpresarial, bActividad: busqueda.tipoActividad, bProyecto: busqueda.tipoProyecto, bAnios: busqueda.anioLimite, bTipoTecnologia: busqueda.tipoTecnologia,bTecnologias: busqueda.tecnologiasSeleccionadas, bEsProducto: busqueda.esProducto}
 		});
 
 	}

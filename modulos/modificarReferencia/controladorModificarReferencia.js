@@ -75,9 +75,6 @@ app.controller('controladorModificarReferencia', function(servicioRest,utils, co
     //la asignamos un objeto vacío al que le metemos los valores por defecto
 
     $scope.referencia={}
-    
-    //inicializamos el valor del certificado a 'si' para que salga esa opción seleccionada por defecto
-    $scope.referencia.certificado='si';
      
     //Objeto con todos los mensajes errores de validación en la entrada de datos a través de los campos
     //Se guardan en un objeto porque JS no acepta arrays asociativos
@@ -607,6 +604,7 @@ app.controller('controladorModificarReferencia', function(servicioRest,utils, co
     
     //por reutilización se llamará a esta función cuando se quiera mandar la refrencia a crear al back
     function enviarReferencia(referencia, mensajeEstado){
+        console.log(referencia);
         if(referencia.estado==="validada"){
             servicioRest.updateReferencia(referencia)
             .then(function(data){

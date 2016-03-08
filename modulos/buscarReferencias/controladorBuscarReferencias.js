@@ -30,8 +30,10 @@ app.controller ('controladorBuscarReferencias', function (servicioRest,utils, co
     });
     
     $scope.buscar= function(){
-        if(undefined!=$scope.posicionEnArray){
+        if(undefined!=$scope.posicionEnArray&&$scope.clientes.texto!=null&&$scope.clientes.texto!=undefined){
                 $scope.referencia.cliente = $scope.clientes.lista[$scope.posicionEnArray].display;
+        }else{
+             $scope.referencia.cliente="";
         }
         if($scope.referencia.esProducto!="si"){
             $scope.referencia.tipoTecnologia="";
@@ -76,7 +78,7 @@ app.controller ('controladorBuscarReferencias', function (servicioRest,utils, co
         array=$scope.clientes.lista;
         $scope.posicionEnArray=undefined;
         // hacemos la búsqueda en el array
-        if(texto!==""){
+        if(texto!=undefined && texto!==""){
             //Si hay algo de texto, cogemos los elementos que tengan el texto en el nombre y/o en las siglas
             resultado=array.filter(function (cliente) {
                 return (cliente.display.toLowerCase().indexOf(texto.toLowerCase()) !==-1);
