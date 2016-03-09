@@ -445,7 +445,7 @@ app.controller ('controladorGestionTecnologias', function (servicioRest, utils, 
     $scope.introOptions.steps = [
             {
                 element: '.cabeceraPagina',
-                intro: 'Esta seccion controla la gestion de tecnologias, permite crear tecnologias intermedias y tecnologias finales pudiendo gestionar su distribucion. Siempre tendra una raiz como base que se llama "Tecnologias" y de el cuelga toda la distribucion, siendo imposible mover o borrar este nodo.<br> Esta seccion se guarda automaticamente por lo que cualquier cambio repercutira en el resultado que ven los demas.<br>El orden para las tecnologias del mismo nivel sera por orden de entrada y no se podra modificar por nadie.'
+                intro: 'Esta seccion controla la gestion de tecnologias, permite crear tecnologias "nodo" y tecnologias "hoja" pudiendo gestionar su distribucion. Siempre tendra una raiz como base que se llama "Tecnologias" y de el cuelga toda la distribucion, siendo imposible mover o borrar este nodo.<br> Esta seccion se guarda automaticamente por lo que cualquier cambio repercutira en el resultado que ven los demas.<br>El orden para las tecnologias del mismo nivel sera por orden de entrada y no se podra modificar por nadie.'
             },
             {
                 element: '.raiz',
@@ -457,11 +457,11 @@ app.controller ('controladorGestionTecnologias', function (servicioRest, utils, 
             },
             {
                 element: '.hojaAyuda',
-                intro: 'Este icono de aqui te permitira añadir tecnologias INTERMEDIAS descendientes inmediatas de la tecnologia intermedia a la que pertenece, nunca encontraras este icono en una tecnoilogia final, ya que estas tecnologias no pueden tener otras tecnologias como descendientes.'
+                intro: 'Este icono de aqui te permitira añadir tecnologias "nodo" descendientes inmediatas de la tecnologia intermedia a la que pertenece, nunca encontraras este icono en una tecnoilogia final, ya que estas tecnologias no pueden tener otras tecnologias como descendientes.'
             },
             {
                 element: '.nodoAyuda',
-                intro: 'Este icono de aqui te permitira añadir tecnologias FINALES descendientes inmediatas de la tecnologia intermedia a la que pertenece, nunca encontraras este icono en una tecnoilogia final, ya que estas tecnologias no pueden tener otras tecnologias como descendientes..'
+                intro: 'Este icono de aqui te permitira añadir tecnologias "hoja" descendientes inmediatas de la tecnologia intermedia a la que pertenece, nunca encontraras este icono en una tecnoilogia final, ya que estas tecnologias no pueden tener otras tecnologias como descendientes..'
             },
             {
                 element: '.borrarAyuda',
@@ -493,7 +493,7 @@ app.controller ('controladorGestionTecnologias', function (servicioRest, utils, 
             },
             {
                 element: '#contenedorOpciones',
-                intro: 'Si por el contrario quiere eliminarla tendra que darle al boton rechazar, si observa a la izquierda de este boton un cuadro de texto, antes de pulsar rechazar debera asociar todas las referencias que tiene esta tecnologia a otra tecnologia final que este activa, para hacer esto escriba el nombre de esta tecnologia en el cuadro de texto antes mencionado.Si por el contrario no observa ningun cuadro de texto, puede rechazarla sin mas pulsando en el boton rechazar ya que esto  indica que no hay ninguna referencia asociada a esa tecnologia.'
+                intro: 'Si por el contrario quiere eliminarla tendra que darle al boton rechazar, si observa a la izquierda de este boton un cuadro de texto, antes de pulsar rechazar debera asociar todas las referencias que tiene esta tecnologia a otra tecnologias "hoja" que este activa, para hacer esto escriba el nombre de esta tecnologia en el cuadro de texto antes mencionado.Si por el contrario no observa ningun cuadro de texto, puede rechazarla sin mas pulsando en el boton rechazar ya que esto  indica que no hay ninguna referencia asociada a esa tecnologia.'
             }
             ];
  

@@ -195,8 +195,12 @@ app.controller ('controladorBuscarReferencias', function (servicioRest,utils, co
                 intro: 'Nos permitira decidir si buscamos un producto o no, en caso de no seleccionar ninguno o seleccionar "no aplica" sacara ambos tipos.'
             },
             {
-                element: '#tipoTecnologias',
-                intro: 'Este listado permite escoger el tipo de tecnologias que buscamos.'
+                element: '#referenciasBusqueda',
+                intro: 'Este listado permite escoger entre las referencias que hemos buscado.'
+            },
+            {
+                element: '.pagination-sm',
+                intro: 'Esta seccion de aqui permite movernos entre distintas paginas por si el numero de referencias buscadas fuera muy extenso.'
             }
             ];
 }); 

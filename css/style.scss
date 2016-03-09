@@ -927,20 +927,20 @@ md-toolbar:not(.md-menu-toolbar) {
 #duracionBusqueda{
     width: 277%;
 }
-/*ESTILOS REFERENCIAS PENDIENTES*/
-#referenciasPendientes th, td{
+/* ESTILOS TABLAS */
+.tablasReferencias th, td{
     border: none;
     border-collapse: collapse;
     padding: 5px;
      
 }
-#referenciasPendientes th{
+.tablasReferencias  th{
     background-color: $colorDetalles;
     color:$colorClaro;
     text-align: center;
     font-weight: bold;
 }
-#referenciasPendientes{
+.tablasReferencias {
     margin: 0 auto;
     width:95%;
     height: 2%;
@@ -949,9 +949,10 @@ md-toolbar:not(.md-menu-toolbar) {
     border-radius: 0px 0px 10px 10px;
     
 }
-#referenciasPendientes tr:nth-child(odd) {
+.tablasReferencias  tr:nth-child(odd) {
     background: $colorSombreado;
 }
+/*ESTILOS REFERENCIAS PENDIENTES*/
 #selPendientes{
    cursor: pointer;
 }

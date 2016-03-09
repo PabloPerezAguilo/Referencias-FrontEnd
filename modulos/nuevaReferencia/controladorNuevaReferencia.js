@@ -78,40 +78,6 @@ app.controller('controladorNuevaReferencia', function(servicioRest,utils, config
     
     $rootScope.referenciaCargada = null;
     
-    /* ADAPTAR TAMAÑO DE TEXTAREA DE FORMA DINAMICA */
-    /*var observe;
-    if (window.attachEvent) {
-        observe = function (element, event, handler) {
-            element.attachEvent('on'+event, handler);
-        };
-    }
-    else {
-        observe = function (element, event, handler) {
-            element.addEventListener(event, handler, false);
-        };
-    }
-    function init () {
-        var text = document.getElementById('text');
-        function resize () {
-            text.style.height = 'auto';
-            text.style.height = text.scrollHeight+'px';
-        }
-        /* 0-timeout to get the already changed text */
-        /*function delayedResize () {
-            window.setTimeout(resize, 0);
-        }
-        observe(text, 'change',  resize);
-        observe(text, 'cut',     delayedResize);
-        observe(text, 'paste',   delayedResize);
-        observe(text, 'drop',    delayedResize);
-        observe(text, 'keydown', delayedResize);
-
-        text.focus();
-        text.select();
-        resize();
-    }
-    init();*/
-    /* ADAPTAR TAMAÑO DE TEXTAREA DE FORMA DINAMICA */
     
     /* ----------------------- CARGA DE CATALOGOS ------------------------*/
     $scope.catalogo={};
@@ -526,6 +492,11 @@ app.controller('controladorNuevaReferencia', function(servicioRest,utils, config
     
 
     $scope.introOptions.steps = [
+            {
+            
+            element: '.cabeceraPagina',
+            intro: 'Esta es la seccion de crear referencias.'
+            },
             {
                 element: '.md-dialog-content',
                 intro: 'Debe seleccionar un cliente valido de la lista disponible. La lista se mostrara a partir de la tercera letra escrita. <br/> Para guardar en borrador no sera necesario la validez de este cliente, pero si escribe algo invalido en este campo,  al guarda como borrador el cliente se guardara vacio como si no hubiera escrito nada.'

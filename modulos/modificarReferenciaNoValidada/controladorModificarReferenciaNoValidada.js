@@ -108,7 +108,7 @@ app.controller('controladorModificarReferenciaNoValidada', function(servicioRest
         {
             
             element: '.cabeceraPagina',
-            intro: 'Esta es la seccion de modificar referencias que estan validadas.'
+            intro: 'Esta es la seccion de modificar referencias que aun no se han validado.'
         },
         {
             element: '.md-dialog-content',
@@ -187,12 +187,16 @@ app.controller('controladorModificarReferenciaNoValidada', function(servicioRest
             intro: 'Escriba la tecnologia que desea dar de alta, luego pulse intro, etso le abrira un menu donde puede rellenar los datos de la tecnologia, si lo hace hasta el final  y pulsa en guardar la tecnologia sera añadida a la referencia, si no, se borrara del campo tecnologia.'
         },
         {
-            element: '#borrador',
-            intro: 'Al pulsar en este boton guarda la referencia en estado borrador, lo que implica que no todos los campos tienen que star rellenos y los campos invalidos simplemente no se guardaran.'
+            element: '.borrador',
+            intro: 'Al pulsar en este boton guarda la referencia en estado borrador, lo que implica que no todos los campos tienen que estar rellenos y los campos invalidos simplemente no se guardaran.'
         },
         {
             element: '#terminar',
             intro: 'Si pulsa en terminar, debera tener todos los campos obligatorios (aquellos que tienen asteriscos) rellenos y de forma correcta, si esto no es asi saltara un mensaje que le indicara los errores para que pueda solucionarlos, cuando todo este correcto podra guardar la referencia para que la validen.'
+        },
+        {
+            element: '#borrar',
+            intro: 'Pulsando en este boton borraras la referencia actual.'
         }
         ];
 

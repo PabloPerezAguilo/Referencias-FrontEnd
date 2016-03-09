@@ -192,7 +192,7 @@ app.controller('controladorModificarReferencia', function(servicioRest,utils, co
             intro: 'Escriba la tecnologia que desea dar de alta, luego pulse intro, etso le abrira un menu donde puede rellenar los datos de la tecnologia, si lo hace hasta el final  y pulsa en guardar la tecnologia sera añadida a la referencia, si no, se borrara del campo tecnologia.'
         },
         {
-            element: '#borrador',
+            element: '.borrador',
             intro: 'Al pulsar en este boton guarda la referencia en estado borrador, lo que implica que no todos los campos tienen que star rellenos y los campos invalidos simplemente no se guardaran.'
         },
         {

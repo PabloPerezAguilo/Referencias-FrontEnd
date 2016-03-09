@@ -355,7 +355,7 @@
             
             <div class="botonesCrear" layout-align="center">          
              <!-- BOTONES ROL ADMINISTRADOR/MANTENIMIENTO -->
-                <md-button id="borrador"
+                <md-button id="guardar"
                            class="botonesApp"
                            type="button" 
                            ng-click="crearReferencia(useForm, 'pendiente', $event)"
@@ -363,15 +363,15 @@
                            ng-show="referenciaOld.estado=='pendiente'">
                     Guardar
                 </md-button>
-                <md-button id="borrador"
-                           class="botonesApp"
+                <md-button id="guardarBorrador"
+                           class="borrador botonesApp"
                            type="button" 
                            ng-click="crearReferencia(useForm, 'borrador', $event)"
                            tabindex="20"
                            ng-show="referenciaOld.estado=='borrador'">
                     Guardar (Borrador)
                 </md-button>
-                <md-button id="borrador"
+                <md-button id="terminar"
                            class="botonesApp"
                            type="button" 
                            ng-click="crearReferencia(useForm, 'pendiente', $event)"
@@ -379,7 +379,7 @@
                            ng-show="referenciaOld.estado=='borrador'">
                     Terminar
                 </md-button>
-                <md-button id="terminar"
+                <md-button id="borrar"
                            class="botonesApp"
                            type="button"
                            ng-click="borrarReferencia()"
@@ -387,7 +387,7 @@
                            ng-show="puedeBorrar">
                     Borrar
                 </md-button>
-                <md-button id="terminar"
+                <md-button id="exportar"
                            class="botonesApp"
                            type="button"
                            ng-click="exportarRefPopUp()"
