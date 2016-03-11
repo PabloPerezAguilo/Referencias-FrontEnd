@@ -798,17 +798,19 @@ app.controller('controladorModificarReferencia', function(servicioRest,utils, co
             clickOutsideToClose: true
         })
         .then(function(tipoDocumento) {
-                servicioRest.exportarReferencia($rootScope.referenciaCargada._id, tipoDocumento)
+                var aux =[$scope.referencia._id]
+                servicioRest.exportarReferencia(aux, tipoDocumento)
                 .then(function(data) {
-                    utils.popupInfo('', "Referencia exportada a word");
+                    utils.popupInfo('', "Referencia exportada a :"+tipoDocumento);
                 }).catch(function(err) {
                     utils.popupInfo('',"Error al exportar la referencia.");
                     console.log("Error al exportar la referencia");
-                });  
+                }); 
             })
         .catch(function(err) {
-                utils.popupInfo('',"Error al exportar la referencia.");
-                console.log("Error al exportar la referencia");
+                //mensaje cuanod se cancela
+                //utils.popupInfo('',"Error al exportar la referencia.");
+                //console.log("Error al exportar la referencia");
             });
     };
     

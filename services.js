@@ -48,6 +48,18 @@ function ServicioREST( utils, config, $http,$q, $rootScope) {
 
 	/* ---------- SERVICIOS REFERENCIA ---------- */
     
+    
+    function exportarReferencia(listaId,tipoDocumento) {
+        console.log(listaId);
+        console.log(tipoDocumento);
+		return llamadaHTTP({
+			method: 'GET',
+			url: url + '/referencia/plantillas',
+			params: {listaId: listaId, tipoDocumento: tipoDocumento}
+		});
+
+	}
+    
 	function postReferencia(objetoAEnviar) {
         
 		return llamadaHTTP({
@@ -366,6 +378,7 @@ function ServicioREST( utils, config, $http,$q, $rootScope) {
         getReferenciasAsociadas: getReferenciasAsociadas,
         updateEstadoReferencia: updateEstadoReferencia,
         getReferenciasValidadas: getReferenciasValidadas,
+        exportarReferencia:exportarReferencia,
         deletePowerfull: deletePowerfull
 	}
 }
