@@ -802,6 +802,7 @@ app.controller('controladorModificarReferencia', function(servicioRest,utils, co
                 servicioRest.exportarReferencia(aux, tipoDocumento)
                 .then(function(data) {
                     utils.popupInfo('', "Referencia exportada a :"+tipoDocumento);
+                    document.getElementById("pform").click();
                 }).catch(function(err) {
                     utils.popupInfo('',"Error al exportar la referencia.");
                     console.log("Error al exportar la referencia");
