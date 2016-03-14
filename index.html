@@ -26,13 +26,13 @@
 	<body>
         <!-- El 42 es el sentido de la vida, del universo y de todo lo demas -->
 		<header>
-            <img id="logoSharon" src="/sharon.png"/>
+            <img id="logoSharon" src="/imagenes/sharon.png"/>
         </header>
         <div ng-show="menu" id="menu" layout layout-sm="column" ng-include="'./modulos/menu/menu.html'"></div>
         <div id="contenedorVistas" ng-init="scroll=true" ng-view ng-intro-options="introOptions" ng-intro-method="lanzarAyuda" ng-class="{'contenedorVistas': scroll, 'contenedorVistasAyuda': !scroll}" ng-intro-onexit="activarScroll" ng-intro-oncomplete="activarScroll" >            
 		</div>
         <footer>
-            <img id="logoGfi" src="/logo_gfi.png"/>
+            <img id="logoGfi" src="/imagenes/logo_gfi.png"/>
              <nav>                
                 <a href="http://www.gfi.es">2015.Sharon.Agile</a>               
              </nav>       
@@ -94,6 +94,7 @@
 		<script src="config.js"></script>        
         <script src="modulos/login/controladorLogin.js"></script>
         <script src="modulos/altaUsuario/controladorAltaUsuario.js"></script>
+		<script src="modulos/gestionUsuario/controladorGestionUsuario.js"></script>
         <script src="modulos/buscarReferencias/controladorBuscarReferencias.js"></script>
         <script src="modulos/listarNoValidadas/controladorListarNoValidadas.js"></script>
         <script src="modulos/nuevaReferencia/controladorNuevaReferencia.js"></script>

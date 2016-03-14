@@ -203,6 +203,15 @@ function ServicioREST( utils, config, $http,$q, $rootScope) {
 		});
 
 	}
+	
+	function getUsuarios(){
+
+		return llamadaHTTP({
+			method: 'GET',
+			url: url + '/usuarios/'
+		});
+
+	}
     
     function getCatalogos() {
         
@@ -226,6 +235,16 @@ function ServicioREST( utils, config, $http,$q, $rootScope) {
         
        return llamadaHTTP({
 			method: 'POST',
+			url: url + '/usuarios',
+			data: usuario
+		});
+
+    }
+	
+	 function putUsuario(usuario){
+        
+       return llamadaHTTP({
+			method: 'PUT',
 			url: url + '/usuarios',
 			data: usuario
 		});
@@ -373,6 +392,7 @@ function ServicioREST( utils, config, $http,$q, $rootScope) {
         getCatalogos: getCatalogos,
         getTecnologias: getTecnologias,
         postUsuario: postUsuario,
+		putUsuario: putUsuario,
         postLogin : postLogin,
         rechazarTecnologia: rechazarTecnologia,
         getReferenciasAsociadas: getReferenciasAsociadas,

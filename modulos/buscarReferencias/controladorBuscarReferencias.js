@@ -6,7 +6,10 @@ app.controller ('controladorBuscarReferencias', function (servicioRest,utils, co
   /* angular.ready(function() {
  console.log(document.getElementsByClassName("md-input")[2]);
 });*/
-    
+    //Voy a inicializar unas clases que no se ven en tiempo de compilacion
+	//console.log("AQUI");
+	//document.getElementById("margenSi").children[1].classList.add("prueba");
+	
     $rootScope.opcion = 'validar';
     $scope.titulo = 'Buscar referencias';
     $scope.referencias = [];

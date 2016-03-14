@@ -87,9 +87,9 @@ footer, header, hgroup, menu, nav, section {
   outline: #F07F0A auto 5px; }
 
 @font-face {
-  font-family: 'BlissfulThinking';
+  font-family: 'Bliss2Rg';
   /*a name to be used later*/
-  src: "css\font\BlissfulThinking.otf";
+  src: url("Bliss2/Bliss2Rg.otf");
   /*URL to font*/ }
 
 body {
@@ -97,7 +97,7 @@ body {
   font-size: 13px;
   height: 31px;
   width: 100%;
-  font-family: verdana;
+  font-family: 'Bliss2Rg';
   overflow: hidden;
   color: #303f48; }
 

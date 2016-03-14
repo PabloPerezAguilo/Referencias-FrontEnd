@@ -129,6 +129,10 @@ app.config(function($routeProvider) {
         templateUrl: 'modulos/altaUsuario/altaUsuario.html',
         controller: 'controladorAltaUsuario as ctrl'
     })
+	.when('/gestionUsuario', {
+        templateUrl: 'modulos/gestionUsuario/gestionUsuario.html',
+        controller: 'controladorGestionUsuario as ctrl'
+    })
     .when('/buscarReferencias', {
         templateUrl: 'modulos/buscarReferencias/buscarReferencias.html',
         controller: 'controladorBuscarReferencias'

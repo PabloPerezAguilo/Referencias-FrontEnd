@@ -1,11 +1,14 @@
-app.controller('controladorAltaUsuario', function(servicioRest,config,utils, $scope, $http, $rootScope, $timeout, $q, $log,$mdDialog, $interval) {
+app.controller('controladorGestionUsuario', function(servicioRest,config,utils, $scope, $http, $rootScope, $timeout, $q, $log,$mdDialog, $interval) {
+	
+	
+	//console.log(usuarios[$scope.posicionEnArray].nick);
     
    $scope.title = "";
    $scope.descripcion = "";
     var self = this,  j= 0, counter = 0;
     $scope.mensaje='';
     $scope.activado = self.activated;
-    $scope.crear = function (evento) {
+    $scope.modificar = function (evento) {
         var mensaje='';
         if($scope.posicionEnArray!==-1 && $scope.posicionEnArray!=undefined && $scope.role!=undefined){
 
@@ -14,10 +17,14 @@ app.controller('controladorAltaUsuario', function(servicioRest,config,utils, $sc
                 "name":$scope.usuarios[$scope.posicionEnArray].usuario,
                 "role":$scope.role
             };
-            servicioRest.postUsuario($scope.usuario)
+            servicioRest.putUsuario($scope.usuario)
             .then(function(data) {
-                $scope.mensaje='Usuario creado con éxito';
-                utils.popupInfo('','Usuario creado con éxito');
+                $scope.mensaje='Usuario modificado con éxito';
+                utils.popupInfo('','Usuario modificado con éxito');
+				setTimeout(function(){ 
+   				location.reload();
+				}, 1000)
+				
             })
             .catch(function(err) {
                 utils.popupInfo('','Usuario ya existente');
@@ -54,7 +61,7 @@ app.controller('controladorAltaUsuario', function(servicioRest,config,utils, $sc
       
     /*Autocomplete*/ 
     $scope.miUsuarioSeleccionado = null 
-    servicioRest.getLDAP()
+    servicioRest.getUsuarios()
     .then(function(response) {
         $scope.usuarios = response;
         $scope.arrayDatos = cargarDatos();
@@ -62,7 +69,7 @@ app.controller('controladorAltaUsuario', function(servicioRest,config,utils, $sc
         toggleActivation();
     })
     .catch(function(err) {
-        $scope.mensaje='error de cargar ldap';
+        $scope.mensaje='error al cargar los usuarios';
     });
 	self.pos = "";
 	self.querySearch = querySearch;
@@ -73,10 +80,9 @@ app.controller('controladorAltaUsuario', function(servicioRest,config,utils, $sc
         var results;
         $scope.posicionEnArray= undefined;
         if(''!==text){
-            ///guardamos en results los usuarios cuyo nick, nombre o email incluya la cadena de carcteres
+            ///guardamos en results los usuarios cuyo nick, nombre o role incluya la cadena de caracteres
             results=$scope.arrayDatos.filter(function(usuario) {
-                return  -1!==usuario.display.toLowerCase().indexOf(text.toLowerCase()) ||
-                        -1!==usuario.mail.toLowerCase().indexOf(text.toLowerCase());
+                return  -1!==usuario.display.toLowerCase().indexOf(text.toLowerCase());
             });
         }else{
             //en cuanto el texto a buscar esté vacío reiniciamos los resultados a todos los usuarios. Si no buscaríamos sólo sobre el resultado de la última búsqueda
@@ -84,12 +90,20 @@ app.controller('controladorAltaUsuario', function(servicioRest,config,utils, $sc
         }
         return results;
 	};
-	
-	
 
 	// Elemento seleccionado
 	function selectedItemChange(item) {
         $scope.posicionEnArray = $scope.arrayDatos.indexOf(item);
+		switch($scope.usuarios[$scope.posicionEnArray].role){
+			case "ROLE_ADMINISTRADOR":$scope.role="administrador";
+				break;
+			case "ROLE_VALIDADOR":$scope.role="validador";
+				break;
+			case "ROLE_CONSULTOR":$scope.role="consultor";
+				break;
+			case "ROLE_MANTENIMIENTO":$scope.role="mantenimiento";
+				break;
+		}
 	};
 
 	// Carga de datos inicial
@@ -97,8 +111,8 @@ app.controller('controladorAltaUsuario', function(servicioRest,config,utils, $sc
 		return $scope.usuarios.map(function(usuario) {
 			return {
 				value: usuario.usuario,
-                mail: usuario.mail,
-				display: usuario.usuario+' ('+usuario.nick+')'
+                role: usuario.role,
+				display: usuario.name+' ('+usuario.nick+')'
 			};
 		});
 	};
@@ -166,7 +180,7 @@ app.controller('controladorAltaUsuario', function(servicioRest,config,utils, $sc
     $scope.introOptions.steps = [
             {
             element: '.cabeceraPagina',
-            intro: 'Esta es la seccion para dar de alta usuarios.'
+            intro: 'Esta es la seccion para modificar usuarios.'
             },
             {
                 element: '#usuario',
@@ -177,8 +191,8 @@ app.controller('controladorAltaUsuario', function(servicioRest,config,utils, $sc
                 intro: 'Debe escoger un rol para asignar al usuario seleccionado..'
             },
             {
-                element: '#crear',
-                intro: 'Al pulsar en este boton guarda el usuario seleccionado con el rol asignado en nuestra aplicacion.'
+                element: '#modificar',
+                intro: 'Al pulsar en este boton modifica el usuario seleccionado con el rol asignado en nuestra aplicacion.'
             }
         ];
 
@@ -186,8 +200,4 @@ app.controller('controladorAltaUsuario', function(servicioRest,config,utils, $sc
             //Se necesita un tiem out para dar tiempo a que se cargue el lanzar ayuda
             $rootScope.lanzarAyuda=$scope.lanzarAyuda;
         }, 100);
-});    
-	
-
-    
-    
+}); 

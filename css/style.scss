@@ -128,8 +128,8 @@ $colorHojaInvalida: #F43636;
 }
 
 @font-face {
-    font-family: 'BlissfulThinking'; /*a name to be used later*/
-    src: "css\font\BlissfulThinking.otf"; /*URL to font*/
+    font-family: 'Bliss2Rg'; /*a name to be used later*/
+    src: url('Bliss2/Bliss2Rg.otf'); /*URL to font*/
 }
 
 body {
@@ -137,7 +137,7 @@ body {
     font-size: 13px;
     height: 31px;
     width: 100%;
-    font-family: verdana;
+    font-family: 'Bliss2Rg';
     overflow: hidden;
     color: $colorLetra;
 }
@@ -968,6 +968,7 @@ md-toolbar:not(.md-menu-toolbar) {
     background-color: #eee;
     border-color: #ddd;
 }
+
 
 /*--------------------- ESTILOS POP UP AÑADIR TEC NO VALIDA -------------------------*/
 

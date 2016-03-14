@@ -6,6 +6,15 @@ app.controller ('controladorGestionTecnologias', function (servicioRest, utils, 
     $scope.clientes={};
     //$scope.clientes.elemSeleccionado={};
     //console.log($scope.clientes.elemSeleccionado.value);
+	$scope.aux = document.getElementById("tree-root").children;
+	console.log($scope.aux);
+	//console.log($scope.aux[0].childNodes);
+	
+	//console.log(document.getElementById("tree-root").children);
+	
+	//console.log($scope.aux[0].childNodes[3].childNodes[3].textContent);
+	
+	console.log("a")
     
     function toast(texto) {
 		$mdToast.show(
@@ -14,7 +23,7 @@ app.controller ('controladorGestionTecnologias', function (servicioRest, utils, 
 	}
        
     servicioRest.getTecnologias().then(
-        function (response) {
+        function (response) { 
             actualizarArbol(response);
         });
     
@@ -196,7 +205,12 @@ app.controller ('controladorGestionTecnologias', function (servicioRest, utils, 
             clase: nodeData.clase
             };
         }
-        console.log("aqui", nodo.nombre);
+        //console.log("aqui", nodo.nombre);
+		if(nodo.nombre == "prueba1"){
+			
+			console.log(document.getElementsByClassName("glyphicon-chevron-right"));
+			console.log("aqui", nodo.nombre);
+		}
         servicioRest.getReferenciasAsociadas(nodo.nombre)
                 .then(function(data) {
             //if(data!=[]){
@@ -336,7 +350,7 @@ app.controller ('controladorGestionTecnologias', function (servicioRest, utils, 
                         display: tec.nombre
                     };
                 });
-                console.log($scope.clientes.lista);
+                //console.log($scope.clientes.lista);
             });
     }
     getHojasValidadas();
