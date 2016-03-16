@@ -798,15 +798,8 @@ app.controller('controladorModificarReferencia', function(servicioRest,utils, co
             clickOutsideToClose: true
         })
         .then(function(tipoDocumento) {
-                var aux =[$scope.referencia._id]
-                servicioRest.exportarReferencia(aux, tipoDocumento)
-                .then(function(data) {
-                    utils.popupInfo('', "Referencia exportada a :"+tipoDocumento);
-                    document.getElementById("pform").click();
-                }).catch(function(err) {
-                    utils.popupInfo('',"Error al exportar la referencia.");
-                    console.log("Error al exportar la referencia");
-                }); 
+                var aux =[$scope.referencia._id];
+                servicioRest.exportarReferencia(aux, tipoDocumento);
             })
         .catch(function(err) {
                 //mensaje cuanod se cancela

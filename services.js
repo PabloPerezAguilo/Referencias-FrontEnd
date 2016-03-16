@@ -50,14 +50,40 @@ function ServicioREST( utils, config, $http,$q, $rootScope) {
     
     
     function exportarReferencia(listaId,tipoDocumento) {
+        
         console.log(listaId);
         console.log(tipoDocumento);
-		return llamadaHTTP({
-			method: 'GET',
+        
+        window.URL = window.URL || window.webkitURL;  // Take care of vendor prefixes.
+
+        var xhr = new XMLHttpRequest();
+        xhr.open('GET', url + '/referencia/plantillas'+'?listaId=' + encodeURIComponent(listaId)+'&tipoDocumento=' + encodeURIComponent(tipoDocumento), true);
+        xhr.responseType = 'blob';
+        xhr.setRequestHeader("Authorization", 'Basic ' + btoa($rootScope.usuarioLS.nick + ':' + $rootScope.usuarioLS.password));
+        xhr.onload = function(e) {
+            if (this.status == 200) {
+                var blob = this.response;
+                saveAs(blob, "Report.xlsx");
+            }
+        };
+        
+        xhr.send()
+        
+        xhr.onreadystatechange = function() {
+        if(xhr.readyState == 4 && xhr.status == 200){
+            utils.popupInfo('', "Referencia exportada a :"+tipoDocumento);
+        }else if(xhr.readyState == 4 && xhr.status != 200){
+            utils.popupInfo('',"Error al exportar la referencia.");
+        }}
+        
+        console.log("antes");
+		llamadaHTTP({
+			method: 'DELETE',
 			url: url + '/referencia/plantillas',
-			params: {listaId: listaId, tipoDocumento: tipoDocumento}
+			params: { tipoDocumento: tipoDocumento}
 		});
 
+         console.log("despues");
 	}
     
 	function postReferencia(objetoAEnviar) {
@@ -392,6 +418,7 @@ function ServicioREST( utils, config, $http,$q, $rootScope) {
         getCatalogos: getCatalogos,
         getTecnologias: getTecnologias,
         postUsuario: postUsuario,
+        getUsuarios: getUsuarios,
 		putUsuario: putUsuario,
         postLogin : postLogin,
         rechazarTecnologia: rechazarTecnologia,

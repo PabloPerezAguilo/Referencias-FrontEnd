@@ -1,7 +1,7 @@
 {
-  "name": "Lisa",
+  "name": "Sharon",
   "version": "1.0.0",
-  "description": "Lisa Front",
+  "description": "Sharon Front",
   "main": "gulpfile.js",
   "devDependencies": {
     "gulp": "^3.9.0",
