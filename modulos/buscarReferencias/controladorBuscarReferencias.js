@@ -130,8 +130,32 @@ app.controller ('controladorBuscarReferencias', function (servicioRest,utils, co
         $scope.mostrarBAvanzada=false;
     };
     
-    $scope.prueba111=function(){     
-        console.log("sdads");
+    $scope.exportarRefsPopUp = function(ev) {
+        $mdDialog.show({
+            controller: 'controladorExportarReferencia',
+            templateUrl: 'modulos/popUp/exportarReferencia.html',
+            parent: angular.element(document.body),
+            targetEvent: ev,
+            clickOutsideToClose: true
+        })
+        .then(function(tipoDocumento) {
+                console.log($scope.referencias[0]._id);
+                var aux="";
+                for(var i = 0;i<$scope.referencias.length;i++){
+                    if(i+1<$scope.referencias.length){
+                        aux += $scope.referencias[i]._id+",";
+                    }else{
+                        aux += $scope.referencias[i]._id
+                    }
+                }
+                console.log(aux);
+                servicioRest.exportarReferencia(aux, tipoDocumento);
+            })
+        .catch(function(err) {
+                //mensaje cuanod se cancela
+                //utils.popupInfo('',"Error al exportar la referencia.");
+                //console.log("Error al exportar la referencia");
+            });
     };
     
     $scope.ayuda = function(){

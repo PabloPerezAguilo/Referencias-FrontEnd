@@ -51,19 +51,25 @@ function ServicioREST( utils, config, $http,$q, $rootScope) {
     
     function exportarReferencia(listaId,tipoDocumento) {
         
+        console.log("aqui");
         console.log(listaId);
         console.log(tipoDocumento);
         
-        window.URL = window.URL || window.webkitURL;  // Take care of vendor prefixes.
+        window.URL = window.URL || window.webkitURL;  // Take care of vendor prefixes. encodeURIComponent(listaId)
 
         var xhr = new XMLHttpRequest();
-        xhr.open('GET', url + '/referencia/plantillas'+'?listaId=' + encodeURIComponent(listaId)+'&tipoDocumento=' + encodeURIComponent(tipoDocumento), true);
+        xhr.open('GET', url + '/referencia/plantillas'+'?listaId=' + listaId+'&tipoDocumento=' + encodeURIComponent(tipoDocumento), true);
         xhr.responseType = 'blob';
         xhr.setRequestHeader("Authorization", 'Basic ' + btoa($rootScope.usuarioLS.nick + ':' + $rootScope.usuarioLS.password));
         xhr.onload = function(e) {
             if (this.status == 200) {
-                var blob = this.response;
-                saveAs(blob, "Report.xlsx");
+                if(tipoDocumento=="Excel"){
+                    var blob = this.response;
+                    saveAs(blob, "SharonReport.xlsx");
+                }else if(tipoDocumento=="Word"){
+                    var blob = this.response;
+                    saveAs(blob, "SharonReport.docx"); 
+                }
             }
         };
         
@@ -76,14 +82,12 @@ function ServicioREST( utils, config, $http,$q, $rootScope) {
             utils.popupInfo('',"Error al exportar la referencia.");
         }}
         
-        console.log("antes");
 		llamadaHTTP({
 			method: 'DELETE',
 			url: url + '/referencia/plantillas',
 			params: { tipoDocumento: tipoDocumento}
 		});
 
-         console.log("despues");
 	}
     
 	function postReferencia(objetoAEnviar) {

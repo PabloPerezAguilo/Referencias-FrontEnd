@@ -128,36 +128,6 @@ app.controller('controladorAltaUsuario', function(servicioRest,config,utils, $sc
     self.modes = [ ];
     self.activated = true;
     self.determinateValue = 100;
-
-      //Apaga o enciende el loader
-       
-    function toggleActivation() {
-          if ( !$scope.activated ) self.modes = [ ];
-          if (  $scope.activated ) j = counter = 0; 
-    }
-    self.toggleActivation = function() {
-          if ( !self.activated ) self.modes = [ ];
-          if (  self.activated ) j = counter = 0;
-      };
-
-      // Se mueve cada 100ms sin parar.
-      $interval(function() {
-
-        // Incrementa el moviento de loader
-
-        self.determinateValue += 1;
-        if (self.determinateValue > 100) {
-          self.determinateValue = 100;
-        }
-        // Incia la animación en 5
-
-        if ( (j < 5) && !self.modes[j] && self.activated ) {
-          self.modes[j] = 'indeterminate';
-        }
-        if ( counter++ % 4 == 0 ) j++;
-
-      }, 100, 0, true);
-    
     
     /* ayuda de nuevo usuario*/
     
