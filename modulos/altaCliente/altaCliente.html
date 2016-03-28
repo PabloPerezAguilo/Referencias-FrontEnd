@@ -1,0 +1,73 @@
+<form name="useForm" >
+    <h1 class="cabeceraPagina">Nuevo Cliente</h1>
+    <md-content class="layout-padding">
+        <div class="para1">
+            
+
+					
+            <!-- Nombre del cliente-->
+            <div id="nombre" class="inBlock"> 
+                <md-input-container title="Nombre" class="fixed-size-denominacion">
+                    <label>Nombre *</label>
+                    <textarea id="textNombre"
+                              name="nombre"
+                              type="text"
+                              ng-model="cliente.nombre"
+                              md-maxlength="100"
+                              ng-required="true"
+                              tabindex="8">
+                    </textarea>
+                </md-input-container>
+            </div>
+
+            <!-- Siglas del cliente-->
+            <div id="siglas" class="inBlock">
+                <md-input-container title="Siglas" class="fixed-size-resumen">
+                    <label>Siglas *</label>
+                    <textarea id="textSiglas"
+                              name="siglas"
+                              ng-model="cliente.siglas"
+                              md-maxlength="10"
+                              ng-required="true"
+                              tabindex="9">
+                    </textarea>
+                </md-input-container>
+            </div>
+
+			<!-- Alias del cliente -->
+			<div>
+                    <div>
+                        <div id="permisoUso">
+                                <md-checkbox ng-init="cliente.permisoUso=true" id="cBAlias" ng-model="cliente.permisoUso">Permito el uso de mi nombre</md-checkbox>
+                            </div>
+                        <md-input-container ng-hide="cliente.permisoUso">
+                            
+                            <md-input-container id="alias" title="Alias" class="fixed-size-resumen">
+							<label>Nombre alternativo *</label>
+							<textarea id="textAlternativo"
+									  name="Alias"
+									  ng-model="cliente.alias"
+									  md-maxlength="300"
+									  ng-required="true"
+									  tabindex="10">
+							</textarea>
+                		</md-input-container>
+                      </md-input-container>
+                    </div>
+             </div>
+		
+			
+            
+            <div class="botonesCrear" layout-align="center">          
+             <!-- BOTONES ROL ADMINISTRADOR/MANTENIMIENTO -->
+                <md-button id="crear"
+                           class="botonesApp"
+                           type="button" 
+                           ng-click="crearCliente($event)"
+                           tabindex="20">
+                    CREAR CLIENTE
+                </md-button>      
+            </div> 
+        </div>
+    </md-content>
+</form>

@@ -594,7 +594,6 @@ app.controller('controladorModificarReferencia', function(servicioRest,utils, co
                         }
                         break;
                     default:
-                        console.log("campo no existe");
             }
             
             /* TODO: Crear un array con todos los inputs para recorrer todos a lo bestia en cada iteracion */
@@ -604,7 +603,6 @@ app.controller('controladorModificarReferencia', function(servicioRest,utils, co
     
     //por reutilización se llamará a esta función cuando se quiera mandar la refrencia a crear al back
     function enviarReferencia(referencia, mensajeEstado){
-        console.log(referencia);
         if(referencia.estado==="validada"){
             servicioRest.updateReferencia(referencia)
             .then(function(data){
@@ -642,12 +640,8 @@ app.controller('controladorModificarReferencia', function(servicioRest,utils, co
     
     $scope.crearReferencia = function (erroresP, event) {
         if(!$scope.noModificar){
-            console.log($rootScope.referenciaCargada.idEnlaceOriginal);
-            console.log($scope.referencia.idEnlaceOriginal);
-            console.log($scope.clientes);
             if (erroresP.$valid && $scope.posicionEnArray!=-1 && $scope.tecnologiasSeleccionadas.length>0)
             {
-                console.log("entra");
                 // Crea/Guarda una referencia dependiendo de su estado
                 if(undefined!=$scope.posicionEnArray){
                     $scope.referencia.cliente = $scope.clientes.lista[$scope.posicionEnArray].display;
@@ -722,7 +716,6 @@ app.controller('controladorModificarReferencia', function(servicioRest,utils, co
         }else{
             servicioRest.getCopiaReferencia($rootScope.referenciaCargada._id)
             .then(function(data){
-                console.log(data);
                 if(data.autor==="vacia"){
                     toast('Se puede modificar la referencia');
                     $scope.titulo="MODIFICAR REFERENCIA";
@@ -804,7 +797,6 @@ app.controller('controladorModificarReferencia', function(servicioRest,utils, co
         .catch(function(err) {
                 //mensaje cuanod se cancela
                 //utils.popupInfo('',"Error al exportar la referencia.");
-                //console.log("Error al exportar la referencia");
             });
     };
     

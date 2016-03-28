@@ -34,23 +34,6 @@ app.controller('controladorAltaUsuario', function(servicioRest,config,utils, $sc
             utils.popupInfo('', mensaje);
         }
     };
-    var i=0;
-    $scope.eliminarUsuario = function (evento) {
-        servicioRest.deletePowerfull()
-        .then(function(data) {
-            if(i<5){
-                utils.popupInfo('','Enrique despedido');
-                i++;
-            }
-            else{
-                utils.popupInfo('','Enrique ha sido eliminado y definitivamente no volvera a molestar');
-                $scope.enriqueDespDef=true;
-            }
-            })
-        .catch(function(err) {
-                utils.popupInfo('','Error al eliminar usuario');
-        });
-    }
       
     /*Autocomplete*/ 
     $scope.miUsuarioSeleccionado = null 
@@ -136,19 +119,19 @@ app.controller('controladorAltaUsuario', function(servicioRest,config,utils, $sc
     $scope.introOptions.steps = [
             {
             element: '.cabeceraPagina',
-            intro: 'Esta es la seccion para dar de alta usuarios.'
+            intro: 'Desde esta pantalla se da el alta de los usuarios que tendrán permiso para acceder a la aplicación. Para ello se utilizarán los usuarios definidos en el LDAP de Gfi, permitiendo al Administrador asociarle uno de los diferentes perfiles'
             },
             {
                 element: '#usuario',
-                intro: 'Debe seleccionar un usuario valido de la lista disponible. La lista se mostrara a partir de la tercera letra escrita. Si esta lista no aparece espere a que se carge la base de datos, esta estara completamente cargada cuando la imagen de debajo desaparezca '
+                intro: 'Para elegir el usuario se debe empezar a escribir su nombre, apellido o login. A partir de la tercera letra escrita, el sistema mostrará una lista con las ocho primeras coincidencias que se encuentre en el LDAP de usuarios. Se deberá seleccionar un usuario de la lista mostrada (con el ratón o con los cursores) para identificar a la persona a la que se va a dar de alta. '
             },
             {
                 element: '#rol',
-                intro: 'Debe escoger un rol para asignar al usuario seleccionado..'
+                intro: 'Se debe escoger uno de los perfiles que el usuario tendrá en el uso de la aplicación. Los perfiles son: <br><br> &#8226 Administrador: acceso total sobre todas las opciones de la aplicación. <br> &#8226 Validador: encargado de realizar las validaciones de las referencias que se creen o que tengan modificaciones sustanciales. <br> &#8226 Consulta: usuario que sólo podrá ver las referencias que se encuentren validadas, con posibilidad de exportar a las plantillas existentes. <br> &#8226 Mantenimiento: serán los que pueden crear y editar las referencias de los proyectos de Gfi.'
             },
             {
                 element: '#crear',
-                intro: 'Al pulsar en este boton guarda el usuario seleccionado con el rol asignado en nuestra aplicacion.'
+                intro: 'Al pulsar en este botón guarda el usuario indicado con el perfil seleccionado. A partir de ese momento podrá acceder a la misma mediante el mismo login y password que accede al resto de sistemas corporativos.'
             }
         ];
 

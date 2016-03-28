@@ -8,14 +8,12 @@ app.controller('controladorCrearTec', function ($scope, $mdDialog, $document, no
         e.preventDefault();
       }
     });
-    console.log(nombreTecnologia);
     $scope.nodoSeleccionado={};
     $scope.nodoSeleccionado.nombre=nombreTecnologia;
     $scope.tipos=["OpenSource", "Suscripción", "Licencia"];
     
     $scope.crearTecnologia = function () {
         $scope.nodoSeleccionado.clase="hojaInvalida";
-        console.log($scope.nodoSeleccionado.clase);
         $scope.hide($scope.nodoSeleccionado);
     };
     

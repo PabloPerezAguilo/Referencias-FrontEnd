@@ -1,11 +1,11 @@
 <div layout="column"class="md-padding dialogdemoBasicUsage" id="popupContainer" ng-cloak="">
 
-  <h1 class="cabeceraPagina">Gestión de usuario</h1>
+  <h1 class="cabeceraPagina">Gestión de gerente</h1>
   <md-content layout-padding layout="column">
     <form ng-submit="$event.preventDefault()">
-      <p>Seleccione USUARIO que quiere modificar</p>
+      <p>Seleccione GERENTE que quiere modificar</p>
         <br>
-    <div id="usuario">
+    <div id="gerente">
 
      <md-autocomplete id="nombreAutocompletar"
                       md-selected-item="ctrl.selectedItem"
@@ -15,7 +15,7 @@
 						 md-items="item in ctrl.querySearch(ctrl.searchText) | filter : tecnologia | limitTo : 8"
 						 md-item-text="item.display"
 						 md-min-length="3"
-						 placeholder="Buscar usuario por nombre o nick"
+						 placeholder="Buscar gerente por nombre o nick"
 						 ng-disabled="permisoEscritura"
 						 ng-maxlength="13"
 						 class="fondoCuerpo margenBt20 sinBorde">
@@ -29,21 +29,19 @@
    <md-content layout-padding layout="column">
     <div class="radioButtondemoBasicUsage">
   <form ng-submit="submit()" ng-cloak="">
-    <p id="cabeceraRol">Seleccione ROL:</p>
-    <div id="rol">
-      <md-radio-group ng-model="role">
-      <md-radio-button id="rdAdministrador" value="administrador" checked>Administrador</md-radio-button>
-      <md-radio-button id="rdValidador" value="validador"> Validador </md-radio-button>
-      <md-radio-button id="rdConsultor" value="consultor"> Consulta </md-radio-button>
-      <md-radio-button id="rdMantenimiento" value="mantenimiento"> Mantenimiento </md-radio-button>    
+    <p id="cabeceraTipo">Seleccione TIPO:</p>
+    <div id="tipoGerente">
+      <md-radio-group ng-model="tipoGerente">
+      <md-radio-button id="rdTecnico" value="tecnico" checked>Técnico</md-radio-button>
+      <md-radio-button id="rdComercial" value="comercial"> Comercial </md-radio-button> 
       </md-radio-group>
     </div>
   </form>
 </div>
   </md-content>  
     <form class="dialog-demo-content" layout="row" layout-sm="column" layout-wrap="" layout-align=" center center">
-      <md-button id="modificar" class="botonesApp" ng-click="modificarUsuario($event)">MODIFICAR USUARIO</md-button>
-	  <md-button id="borrar" class="botonesApp" ng-click="borrarUsuario($event)">BORRAR USUARIO</md-button>		
+      <md-button id="modificar" class="botonesApp" ng-click="modificarGerente($event)">MODIFICAR GERENTE</md-button>
+	  <md-button id="borrar" class="botonesApp" ng-click="borrarGerente($event)">BORRAR GERENTE</md-button>		
     </form> 
     <!--md-button id="elim" ng-show="!enriqueDespDef" class="botonesApp" ng-click="eliminarUsuario($event)">DESPEDIR A ENRIQUE</md-button-->
 </div>

@@ -1,4 +1,4 @@
-app.controller ('controladorListarNoValidadas', function (servicioRest,utils, config, $scope, $http, $location, $rootScope) {  
+app.controller ('controladorListarNoValidadas', function (servicioRest,utils, config, $scope, $http, $location, $rootScope, $mdDialog) {  
     
     $rootScope.opcion = 'validar';
     $scope.titulo = 'Referencias no validadas';
@@ -27,6 +27,31 @@ app.controller ('controladorListarNoValidadas', function (servicioRest,utils, co
         $rootScope.referenciaCargada = referencias[index];
         $location.path('/modificarReferenciaNoValidada');
     }
+    
+    $scope.exportarRefsPopUp = function(ev) {
+        $mdDialog.show({
+            controller: 'controladorExportarReferencia',
+            templateUrl: 'modulos/popUp/exportarReferencia.html',
+            parent: angular.element(document.body),
+            targetEvent: ev,
+            clickOutsideToClose: true
+        })
+        .then(function(tipoDocumento) {
+                var aux="";
+                for(var i = 0;i<$scope.referencias.length;i++){
+                    if(i+1<$scope.referencias.length){
+                        aux += $scope.referencias[i]._id+",";
+                    }else{
+                        aux += $scope.referencias[i]._id
+                    }
+                }
+                servicioRest.exportarReferencia(aux, tipoDocumento);
+            })
+        .catch(function(err) {
+                //mensaje cuanod se cancela
+                //utils.popupInfo('',"Error al exportar la referencia.");
+            });
+    };
     
     /*   AYUDA     */
     

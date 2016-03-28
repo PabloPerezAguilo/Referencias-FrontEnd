@@ -1,5 +1,4 @@
 app.controller('controladorErroresNuevaReferencia', function ($scope, $mdDialog, listaErrores) {
-    console.log(listaErrores);
     $scope.errores=listaErrores;
 	$scope.hide = function () {
 		$mdDialog.hide();

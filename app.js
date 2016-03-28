@@ -1,5 +1,5 @@
 'use strict';
-var app = angular.module('ref', ['ngRoute','ngMaterial','ngMdIcons','ngMessages','ja.qr','ui.bootstrap','angular-intro','ui.tree','ngSanitize']);
+var app = angular.module('ref', ['ngAnimate','ngRoute','ngMaterial','ngMdIcons','ngMessages','ja.qr','ui.bootstrap','angular-intro','ui.tree','ngSanitize']);
 
 
 
@@ -90,6 +90,10 @@ app.run(function(servicioRest, utils, $rootScope, $http, $location, $mdDialog) {
         $rootScope.menuUsuarios = false;
         $rootScope.menuUsuariosAlta = false;
         $rootScope.menuUsuariosGestion = false;
+		$rootScope.menuClientesAlta = false;
+        $rootScope.menuClientesGestion = false;
+		$rootScope.menuGerentesAlta = false;
+        $rootScope.menuGerentesGestion = false;
         $rootScope.menuTecnologias = false;
         $rootScope.menuGestionTecnologias = false;
         $rootScope.referenciaCargada = null;
@@ -125,13 +129,29 @@ app.config(function($routeProvider) {
 		templateUrl: 'modulos/login/login.html',
         controller: 'controladorLogin'
 	})
-    .when('/alta', {
+    .when('/altaUsuario', {
         templateUrl: 'modulos/altaUsuario/altaUsuario.html',
         controller: 'controladorAltaUsuario as ctrl'
     })
 	.when('/gestionUsuario', {
         templateUrl: 'modulos/gestionUsuario/gestionUsuario.html',
-        controller: 'controladorGestionUsuario'
+        controller: 'controladorGestionUsuario  as ctrl'
+    })
+	.when('/altaGerente', {
+        templateUrl: 'modulos/altaGerente/altaGerente.html',
+        controller: 'controladorAltaGerente  as ctrl'
+    })
+	.when('/gestionGerente', {
+        templateUrl: 'modulos/gestionGerente/gestionGerente.html',
+        controller: 'controladorGestionGerente  as ctrl'
+    })
+	.when('/gestionCliente', {
+        templateUrl: 'modulos/gestionCliente/gestionCliente.html',
+        controller: 'controladorGestionCliente  as ctrl'
+    })
+	.when('/altaCliente', {
+        templateUrl: 'modulos/altaCliente/altaCliente.html',
+        controller: 'controladorAltaCliente  as ctrl'
     })
     .when('/buscarReferencias', {
         templateUrl: 'modulos/buscarReferencias/buscarReferencias.html',

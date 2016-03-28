@@ -142,12 +142,10 @@ app.controller('controladorValidarReferencia', function(servicioRest,utils, conf
                 utils.popupInfo('', "Referencia validada con éxito.");
                  //Redireccionamos al usuario a la ventana de listar Referencias Pendientes de Validar
                 $location.path('/listarReferenciasValidar');
-                console.log("Referencia validada");
                 /*Vaciamos referenciaCargada*/
                 $rootScope.referenciaCargada = null;
             }).catch(function(err) {
                 utils.popupInfo('',"Error al validar la referencia.");
-                console.log("Error al validar la referencia");
             });  
     }
     
@@ -176,17 +174,14 @@ app.controller('controladorValidarReferencia', function(servicioRest,utils, conf
                     utils.popupInfo('', "Referencia rechazada, se avisará al responsable.");
                     //Redireccionamos al usuario a la ventana de listar Referencias Pendientes de Validar
                     $location.path('/listarReferenciasValidar');
-                    console.log("Referencia rechazada");
                     /*Vaciamos referenciaCargada*/
                     $rootScope.referenciaCargada = null;
                 }).catch(function(err) {
                     utils.popupInfo('',"Error al rechazar la referencia.");
-                    console.log("Error al rechazar la referencia");
                 });  
             })
         .catch(function(err) {
                 utils.popupInfo('',"Error al rechazar la referencia.");
-                console.log("Error al rechazar la referencia");
             });
     };
     
@@ -224,19 +219,15 @@ app.controller('controladorValidarReferencia', function(servicioRest,utils, conf
     $scope.introOptions.steps = [
         {
             element: '.cabeceraPagina',
-            intro: 'Esta es la seccion para validar referencias, las referencias cargadas en esta zona solo pueden ser modificadas por el administrador, el objetivo de esta seccion sera validar o rechazar la referencia cargada.'
-        },
-        {
-            element: '.botonesCrear',
-            intro: 'En esta zona estan los botones de rechazar y validar.'
+            intro: 'Esta pantalla muestra la información de detalle de la referencia que se pretende validar. El validador revisará la calidad de la redacción de los diferentes campos descriptivos del proyecto y, con la botonera de abajo, podrá aceptarla como válida o rechazarla indicando un motivo concreto.'
         },
         {
             element: '#rechazar',
-            intro: 'Si pulsas en rechazar deberas rellenar un motivo por el que se la rechaza, si, no podras rechazarla.'
+            intro: 'Si se pulsa el botón de rechazar, se abrirá una ventana para indicar el motivo del rechazo. Se debe introducir un mensaje lo más claro y descriptivo posible, indicando los elementos que se deben mejorar. Este mensaje se mostrará después al usuario que haya creado la referencia para que sea consciente lo que debe modificar y qué se espera que corrija. Esta descripción es obligatoria en el caso de un rechazo.'
         },
         {
             element: '#validar',
-            intro: 'Si la referencia esta correcta, solo con pulsar aqui quedara validada.'
+            intro: 'Al pulsar el botón validar, la referencia quedará validada y disponible para su uso.'
         }
      ];
             

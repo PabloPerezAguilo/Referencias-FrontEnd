@@ -1,4 +1,5 @@
 @charset "UTF-8";
+/* line 14, C:/Users/usuario.delomba/Documents/SVN-Referencias/Desarrollo/Entorno Back/src/main/webapp/css/style.scss */
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
@@ -20,6 +21,7 @@ time, mark, audio, video {
   vertical-align: baseline; }
 
 /* HTML5 display-role reset for older browsers */
+/* line 25, C:/Users/usuario.delomba/Documents/SVN-Referencias/Desarrollo/Entorno Back/src/main/webapp/css/style.scss */
 article, aside, details, figcaption, figure,
 footer, header, hgroup, menu, nav, section {
   display: block; }
@@ -27,26 +29,32 @@ footer, header, hgroup, menu, nav, section {
 /*CSS Global Variables*/
 /*medias querys*/
 @media screen and (max-width: 1250px) {
+  /* line 43, C:/Users/usuario.delomba/Documents/SVN-Referencias/Desarrollo/Entorno Back/src/main/webapp/css/style.scss */
   .iconosMenu {
     margin-left: 10% !important; } }
 
 @media screen and (max-width: 1185px) {
+  /* line 48, C:/Users/usuario.delomba/Documents/SVN-Referencias/Desarrollo/Entorno Back/src/main/webapp/css/style.scss */
   .iconosMenu {
     margin-left: 5% !important; } }
 
 @media screen and (max-width: 1130px) {
+  /* line 54, C:/Users/usuario.delomba/Documents/SVN-Referencias/Desarrollo/Entorno Back/src/main/webapp/css/style.scss */
   .iconosMenu {
     margin-left: 0 !important; } }
 
 @media screen and (max-width: 1075px) {
+  /* line 60, C:/Users/usuario.delomba/Documents/SVN-Referencias/Desarrollo/Entorno Back/src/main/webapp/css/style.scss */
   .md-button {
     margin-right: 0;
     margin-left: 0;
     font-size: 15px; }
+  /* line 65, C:/Users/usuario.delomba/Documents/SVN-Referencias/Desarrollo/Entorno Back/src/main/webapp/css/style.scss */
   .iconosMenu {
     margin-left: 6% !important; } }
 
 @media screen and (max-width: 1040px) {
+  /* line 71, C:/Users/usuario.delomba/Documents/SVN-Referencias/Desarrollo/Entorno Back/src/main/webapp/css/style.scss */
   .iconosMenu {
     margin-left: 0 !important; } }
 
@@ -56,33 +64,42 @@ footer, header, hgroup, menu, nav, section {
     }
 }*/
 @media screen and (max-width: 970px) {
+  /* line 83, C:/Users/usuario.delomba/Documents/SVN-Referencias/Desarrollo/Entorno Back/src/main/webapp/css/style.scss */
   .md-button {
     font-size: 12px; } }
 
 @media screen and (max-width: 875px) {
+  /* line 89, C:/Users/usuario.delomba/Documents/SVN-Referencias/Desarrollo/Entorno Back/src/main/webapp/css/style.scss */
   .iconosMenu {
     width: 1px !important; } }
 
 @media screen and (max-width: 835px) {
+  /* line 97, C:/Users/usuario.delomba/Documents/SVN-Referencias/Desarrollo/Entorno Back/src/main/webapp/css/style.scss */
   .md-button {
     font-size: 13px; }
+  /* line 100, C:/Users/usuario.delomba/Documents/SVN-Referencias/Desarrollo/Entorno Back/src/main/webapp/css/style.scss */
   #menu {
     width: 80% !important;
     background-color: black; }
+  /* line 104, C:/Users/usuario.delomba/Documents/SVN-Referencias/Desarrollo/Entorno Back/src/main/webapp/css/style.scss */
   .iconosMenu {
     margin-left: 30% !important; } }
 
 @media screen and (max-width: 700px) {
+  /* line 110, C:/Users/usuario.delomba/Documents/SVN-Referencias/Desarrollo/Entorno Back/src/main/webapp/css/style.scss */
   #menu {
     width: 100% !important;
     border-radius: 0 !important; } }
 
 @media screen and (max-width: 700px) {
+  /* line 117, C:/Users/usuario.delomba/Documents/SVN-Referencias/Desarrollo/Entorno Back/src/main/webapp/css/style.scss */
   .contenedorVistas {
     width: 80%; }
+  /* line 120, C:/Users/usuario.delomba/Documents/SVN-Referencias/Desarrollo/Entorno Back/src/main/webapp/css/style.scss */
   .botonesCrear {
     margin-bottom: 50px; } }
 
+/* line 127, C:/Users/usuario.delomba/Documents/SVN-Referencias/Desarrollo/Entorno Back/src/main/webapp/css/style.scss */
 :focus {
   outline: #F07F0A auto 5px; }
 
@@ -92,6 +109,7 @@ footer, header, hgroup, menu, nav, section {
   src: url("Bliss2/Bliss2Rg.otf");
   /*URL to font*/ }
 
+/* line 136, C:/Users/usuario.delomba/Documents/SVN-Referencias/Desarrollo/Entorno Back/src/main/webapp/css/style.scss */
 body {
   line-height: 1;
   font-size: 13px;
@@ -101,15 +119,18 @@ body {
   overflow: hidden;
   color: #303f48; }
 
+/* line 146, C:/Users/usuario.delomba/Documents/SVN-Referencias/Desarrollo/Entorno Back/src/main/webapp/css/style.scss */
 .error {
   margin-left: 2%;
   color: crimson; }
 
 /* -------------------- Contenedor de las vistas de la pagina (ng-view) ---------------------- */
+/* line 152, C:/Users/usuario.delomba/Documents/SVN-Referencias/Desarrollo/Entorno Back/src/main/webapp/css/style.scss */
 #contenedorVistas {
   height: 75%; }
 
 /* ------------------------------- CABECERA Y PIE ---------------------- */
+/* line 159, C:/Users/usuario.delomba/Documents/SVN-Referencias/Desarrollo/Entorno Back/src/main/webapp/css/style.scss */
 header {
   width: auto;
   min-width: 20%;
@@ -118,12 +139,14 @@ header {
   background: #303F48;
   box-shadow: 1px 1px 1px 1px #777; }
 
+/* line 167, C:/Users/usuario.delomba/Documents/SVN-Referencias/Desarrollo/Entorno Back/src/main/webapp/css/style.scss */
 header #logoSharon {
   max-height: 100%;
   min-height: 100%;
   display: block;
   margin: auto; }
 
+/* line 173, C:/Users/usuario.delomba/Documents/SVN-Referencias/Desarrollo/Entorno Back/src/main/webapp/css/style.scss */
 footer {
   width: 100%;
   overflow: hidden;
@@ -134,6 +157,7 @@ footer {
   clear: both;
   min-height: 50px; }
 
+/* line 183, C:/Users/usuario.delomba/Documents/SVN-Referencias/Desarrollo/Entorno Back/src/main/webapp/css/style.scss */
 footer #logoGfi {
   /*width: 5%;
     min-width: 5%;*/
@@ -143,6 +167,7 @@ footer #logoGfi {
   margin-top: 5px;
   margin-left: 9px; }
 
+/* line 192, C:/Users/usuario.delomba/Documents/SVN-Referencias/Desarrollo/Entorno Back/src/main/webapp/css/style.scss */
 footer nav a {
   float: right;
   display: inline-block;
@@ -154,10 +179,12 @@ footer nav a {
   -o-transition: all 500ms ease;
   transition: all 500ms ease; }
 
+/* line 203, C:/Users/usuario.delomba/Documents/SVN-Referencias/Desarrollo/Entorno Back/src/main/webapp/css/style.scss */
 footer nav a:hover {
   background: #F07F0A;
   border-radius: 50px; }
 
+/* line 207, C:/Users/usuario.delomba/Documents/SVN-Referencias/Desarrollo/Entorno Back/src/main/webapp/css/style.scss */
 footer #lineaFooter {
   box-shadow: 1px 1px 1px 1px #777;
   background: #F07F0A;
@@ -167,6 +194,7 @@ footer #lineaFooter {
   position: fixed; }
 
 /* --------------------------- ESTILOS MENÚ ---------------------- */
+/* line 217, C:/Users/usuario.delomba/Documents/SVN-Referencias/Desarrollo/Entorno Back/src/main/webapp/css/style.scss */
 #menu {
   width: 45%;
   height: auto;
@@ -176,18 +204,26 @@ footer #lineaFooter {
   border-radius: 0 0 20px 0;
   box-shadow: 1px 1px 1px 1px #777; }
 
+/* line 227, C:/Users/usuario.delomba/Documents/SVN-Referencias/Desarrollo/Entorno Back/src/main/webapp/css/style.scss */
+#menuA {
+  display: block; }
+
+/* line 230, C:/Users/usuario.delomba/Documents/SVN-Referencias/Desarrollo/Entorno Back/src/main/webapp/css/style.scss */
 .textoHipervinculo {
   color: #303F48;
   text-decoration: none; }
 
+/* line 234, C:/Users/usuario.delomba/Documents/SVN-Referencias/Desarrollo/Entorno Back/src/main/webapp/css/style.scss */
 .textoHipervinculo:hover {
   color: #F07F0A;
   text-decoration: none;
   width: 100%; }
 
+/* line 239, C:/Users/usuario.delomba/Documents/SVN-Referencias/Desarrollo/Entorno Back/src/main/webapp/css/style.scss */
 .iconoLogout {
   margin-left: 200%; }
 
+/* line 242, C:/Users/usuario.delomba/Documents/SVN-Referencias/Desarrollo/Entorno Back/src/main/webapp/css/style.scss */
 .iconosMenu {
   width: 10px;
   height: 25px;
@@ -196,11 +232,13 @@ footer #lineaFooter {
   cursor: pointer; }
 
 /* --------------------------- ESTILOS BIENVENIDA ---------------------- */
+/* line 252, C:/Users/usuario.delomba/Documents/SVN-Referencias/Desarrollo/Entorno Back/src/main/webapp/css/style.scss */
 #bienvenida {
   text-align: center;
   margin-top: 300px; }
 
 /* --------------------------- ESTILOS COMUNES ----------------------------- */
+/* line 259, C:/Users/usuario.delomba/Documents/SVN-Referencias/Desarrollo/Entorno Back/src/main/webapp/css/style.scss */
 .material-icons {
   font-family: 'Material Icons';
   font-weight: normal;
@@ -223,6 +261,7 @@ footer #lineaFooter {
   /* Support for IE. */
   font-feature-settings: 'liga'; }
 
+/* line 284, C:/Users/usuario.delomba/Documents/SVN-Referencias/Desarrollo/Entorno Back/src/main/webapp/css/style.scss */
 .cabeceraPagina {
   margin-right: 25px;
   text-align: right;
@@ -230,11 +269,13 @@ footer #lineaFooter {
   height: 40px;
   color: #F07F0A; }
 
+/* line 291, C:/Users/usuario.delomba/Documents/SVN-Referencias/Desarrollo/Entorno Back/src/main/webapp/css/style.scss */
 .botonesApp {
   background-color: #F07F0A;
   font-size: 13px;
   text-align: center; }
 
+/* line 296, C:/Users/usuario.delomba/Documents/SVN-Referencias/Desarrollo/Entorno Back/src/main/webapp/css/style.scss */
 #dialogLogueado {
   width: 90px;
   height: 90px;
@@ -242,29 +283,34 @@ footer #lineaFooter {
   box-shadow: 2px 2px 2px 2px #777;
   background-color: #ececec; }
 
+/* line 303, C:/Users/usuario.delomba/Documents/SVN-Referencias/Desarrollo/Entorno Back/src/main/webapp/css/style.scss */
 .contenedorVistas {
   margin-top: 0.2%;
   overflow: auto;
   overflow-x: hidden;
   height: 700px; }
 
+/* line 309, C:/Users/usuario.delomba/Documents/SVN-Referencias/Desarrollo/Entorno Back/src/main/webapp/css/style.scss */
 .contenedorVistasAyuda {
   margin-top: 0.2%;
   overflow: initial;
   height: 700px; }
 
 /* --------------------------- ESTILOS LISTAR USUARIOS ----------------------------- */
+/* line 318, C:/Users/usuario.delomba/Documents/SVN-Referencias/Desarrollo/Entorno Back/src/main/webapp/css/style.scss */
 .contenedorPaginacion {
   text-align: center;
   position: relative;
   bottom: 2%;
   width: 100%; }
 
+/* line 324, C:/Users/usuario.delomba/Documents/SVN-Referencias/Desarrollo/Entorno Back/src/main/webapp/css/style.scss */
 .listarReferencia {
   text-align: center;
   border-bottom: #ee941a 2px solid; }
 
 /* --------------------------- ESTILOS LOGIN ----------------------------- */
+/* line 330, C:/Users/usuario.delomba/Documents/SVN-Referencias/Desarrollo/Entorno Back/src/main/webapp/css/style.scss */
 #contenedorLogin {
   margin: 50px auto;
   margin-top: 150px;
@@ -272,6 +318,7 @@ footer #lineaFooter {
   font-family: sans-serif;
   font-size: 15px; }
 
+/* line 338, C:/Users/usuario.delomba/Documents/SVN-Referencias/Desarrollo/Entorno Back/src/main/webapp/css/style.scss */
 #contenedorLogin #superior {
   background-color: #ececec;
   color: #777;
@@ -282,14 +329,17 @@ footer #lineaFooter {
   padding: 20px 26px;
   box-shadow: 2px 2px 4px 2px #666; }
 
+/* line 349, C:/Users/usuario.delomba/Documents/SVN-Referencias/Desarrollo/Entorno Back/src/main/webapp/css/style.scss */
 #contenedorLogin #superior #contenido {
   margin-left: 20px; }
 
+/* line 353, C:/Users/usuario.delomba/Documents/SVN-Referencias/Desarrollo/Entorno Back/src/main/webapp/css/style.scss */
 #contenedorLogin #superior p {
   text-align: center;
   color: red;
   font-size: 11px; }
 
+/* line 359, C:/Users/usuario.delomba/Documents/SVN-Referencias/Desarrollo/Entorno Back/src/main/webapp/css/style.scss */
 #contenedorLogin #inferior {
   background-color: #303F48;
   -webkit-border-radius: 0 0 20px 20px;
@@ -300,19 +350,23 @@ footer #lineaFooter {
   padding: 20px 26px;
   box-shadow: 2px 2px 4px 2px #666; }
 
+/* line 370, C:/Users/usuario.delomba/Documents/SVN-Referencias/Desarrollo/Entorno Back/src/main/webapp/css/style.scss */
 #inferior p {
   margin-top: 15px;
   float: right; }
 
+/* line 376, C:/Users/usuario.delomba/Documents/SVN-Referencias/Desarrollo/Entorno Back/src/main/webapp/css/style.scss */
 #inferior #bt {
   margin-top: 10px;
   margin-left: 50px;
   float: left; }
 
 /* ---------------------------- ESTILOS ALTA USUARIOS ---------------------- */
+/* line 385, C:/Users/usuario.delomba/Documents/SVN-Referencias/Desarrollo/Entorno Back/src/main/webapp/css/style.scss */
 #cabeceraRol {
   margin-bottom: 2%; }
 
+/* line 389, C:/Users/usuario.delomba/Documents/SVN-Referencias/Desarrollo/Entorno Back/src/main/webapp/css/style.scss */
 #listaUsuarios {
   background: whitesmoke;
   position: absolute;
@@ -326,6 +380,7 @@ footer #lineaFooter {
   box-shadow: inset 1px 1px 0 white;
   max-height: 500px; }
 
+/* line 403, C:/Users/usuario.delomba/Documents/SVN-Referencias/Desarrollo/Entorno Back/src/main/webapp/css/style.scss */
 #listaRoles {
   background: whitesmoke;
   position: absolute;
@@ -339,6 +394,7 @@ footer #lineaFooter {
   box-shadow: inset 1px 1px 0 white;
   max-height: 500px; }
 
+/* line 417, C:/Users/usuario.delomba/Documents/SVN-Referencias/Desarrollo/Entorno Back/src/main/webapp/css/style.scss */
 #cajaFiltro {
   width: 100%;
   box-sizing: border-box;
@@ -350,6 +406,7 @@ footer #lineaFooter {
   border-radius: 3px;
   box-shadow: inset 1px 1px 0 rgba(0, 0, 0, 0.1); }
 
+/* line 430, C:/Users/usuario.delomba/Documents/SVN-Referencias/Desarrollo/Entorno Back/src/main/webapp/css/style.scss */
 ul {
   margin: 0 auto;
   padding: 0;
@@ -358,27 +415,33 @@ ul {
   border-left: none;
   border-right: none; }
 
+/* line 441, C:/Users/usuario.delomba/Documents/SVN-Referencias/Desarrollo/Entorno Back/src/main/webapp/css/style.scss */
 #cajaFiltro:focus {
   border: 2px solid #FAAAAA;
   box-shadow: 0 0 10px rgba(255, 255, 0, 0.1);
   outline: none; }
 
+/* line 447, C:/Users/usuario.delomba/Documents/SVN-Referencias/Desarrollo/Entorno Back/src/main/webapp/css/style.scss */
 .right {
   float: right; }
 
+/* line 451, C:/Users/usuario.delomba/Documents/SVN-Referencias/Desarrollo/Entorno Back/src/main/webapp/css/style.scss */
 .radioButtondemoBasicUsage .radioValue {
   margin-left: 5px;
   color: #0f9d58;
   font-weight: bold;
   padding: 5px; }
 
+/* line 458, C:/Users/usuario.delomba/Documents/SVN-Referencias/Desarrollo/Entorno Back/src/main/webapp/css/style.scss */
 .dialogdemoBasicUsage #popupContainer {
   position: relative; }
 
+/* line 462, C:/Users/usuario.delomba/Documents/SVN-Referencias/Desarrollo/Entorno Back/src/main/webapp/css/style.scss */
 .dialogdemoBasicUsage .footer, .dialogdemoBasicUsage .footer > code {
   font-size: 0.8em;
   margin-top: 50px; }
 
+/* line 467, C:/Users/usuario.delomba/Documents/SVN-Referencias/Desarrollo/Entorno Back/src/main/webapp/css/style.scss */
 .buttondemoBasicUsage .label {
   position: absolute;
   bottom: 5px;
@@ -387,9 +450,11 @@ ul {
   opacity: 0.54;
   border-color: #F07F0A; }
 
+/* line 478, C:/Users/usuario.delomba/Documents/SVN-Referencias/Desarrollo/Entorno Back/src/main/webapp/css/style.scss */
 label {
   color: #F07F0A; }
 
+/* line 482, C:/Users/usuario.delomba/Documents/SVN-Referencias/Desarrollo/Entorno Back/src/main/webapp/css/style.scss */
 .autocompletedemoCustomTemplate .autocomplete-custom-template li {
   border-bottom: 1px solid #ccc;
   height: auto;
@@ -397,27 +462,49 @@ label {
   padding-bottom: 8px;
   white-space: normal; }
 
+/* line 490, C:/Users/usuario.delomba/Documents/SVN-Referencias/Desarrollo/Entorno Back/src/main/webapp/css/style.scss */
 .autocompletedemoCustomTemplate .autocomplete-custom-template li:last-child {
   border-bottom-width: 0; }
 
+/* line 494, C:/Users/usuario.delomba/Documents/SVN-Referencias/Desarrollo/Entorno Back/src/main/webapp/css/style.scss */
 .autocompletedemoCustomTemplate .autocomplete-custom-template .item-title, .autocompletedemoCustomTemplate .autocomplete-custom-template .item-metadata {
   display: block;
   line-height: 2; }
 
+/* line 499, C:/Users/usuario.delomba/Documents/SVN-Referencias/Desarrollo/Entorno Back/src/main/webapp/css/style.scss */
 .autocompletedemoCustomTemplate .autocomplete-custom-template .item-title md-icon {
   height: 18px;
   width: 18px; }
 
+/*--------------------- ESTILOS ClIENTES -------------------------*/
+/* line 507, C:/Users/usuario.delomba/Documents/SVN-Referencias/Desarrollo/Entorno Back/src/main/webapp/css/style.scss */
+#permisoUso {
+  padding-left: 25px;
+  padding-top: 25px; }
+
+/* line 512, C:/Users/usuario.delomba/Documents/SVN-Referencias/Desarrollo/Entorno Back/src/main/webapp/css/style.scss */
+#cBAlias:focus {
+  outline: none; }
+
+/*--------------------- ESTILOS GERENTES -------------------------*/
+/* line 522, C:/Users/usuario.delomba/Documents/SVN-Referencias/Desarrollo/Entorno Back/src/main/webapp/css/style.scss */
+#cabeceraTipo {
+  margin-bottom: 2%; }
+
 /*------------------------------ ESTILOS NUEVA REFERENCIA ---------------------------------*/
+/* line 530, C:/Users/usuario.delomba/Documents/SVN-Referencias/Desarrollo/Entorno Back/src/main/webapp/css/style.scss */
 md-option .md-text {
   overflow: initial; }
 
+/* line 534, C:/Users/usuario.delomba/Documents/SVN-Referencias/Desarrollo/Entorno Back/src/main/webapp/css/style.scss */
 .md-calendar-day-header th, td {
   vertical-align: middle; }
 
+/* line 538, C:/Users/usuario.delomba/Documents/SVN-Referencias/Desarrollo/Entorno Back/src/main/webapp/css/style.scss */
 .radioCertificado {
   margin: 0; }
 
+/* line 541, C:/Users/usuario.delomba/Documents/SVN-Referencias/Desarrollo/Entorno Back/src/main/webapp/css/style.scss */
 .labelCertificado {
   color: black;
   position: relative;
@@ -425,89 +512,112 @@ md-option .md-text {
   transform: inherit !important;
   bottom: 0; }
 
+/* line 549, C:/Users/usuario.delomba/Documents/SVN-Referencias/Desarrollo/Entorno Back/src/main/webapp/css/style.scss */
 .inBlock {
   display: inline-block; }
 
+/* line 553, C:/Users/usuario.delomba/Documents/SVN-Referencias/Desarrollo/Entorno Back/src/main/webapp/css/style.scss */
 #cajaNueva {
   line-height: 45px;
   font-size: 15px; }
 
+/* line 557, C:/Users/usuario.delomba/Documents/SVN-Referencias/Desarrollo/Entorno Back/src/main/webapp/css/style.scss */
 md-content {
   display: block;
   position: relative;
   overflow: auto; }
 
+/* line 562, C:/Users/usuario.delomba/Documents/SVN-Referencias/Desarrollo/Entorno Back/src/main/webapp/css/style.scss */
 #layout-padding {
   font-size: 15px;
   width: 36px;
   position: relative;
   padding: 8px; }
 
+/* line 568, C:/Users/usuario.delomba/Documents/SVN-Referencias/Desarrollo/Entorno Back/src/main/webapp/css/style.scss */
 .para1 {
   margin-left: 130px;
   margin-right: 130px;
   margin-bottom: 50px; }
 
+/* line 573, C:/Users/usuario.delomba/Documents/SVN-Referencias/Desarrollo/Entorno Back/src/main/webapp/css/style.scss */
 .contenedorBoton {
   width: 95%;
   text-align: center; }
 
+/* line 577, C:/Users/usuario.delomba/Documents/SVN-Referencias/Desarrollo/Entorno Back/src/main/webapp/css/style.scss */
 md-input-container {
   padding: 1px;
   position: relative; }
 
+/* line 582, C:/Users/usuario.delomba/Documents/SVN-Referencias/Desarrollo/Entorno Back/src/main/webapp/css/style.scss */
 .fixed-size {
   width: 305px;
   height: 40px; }
 
+/* line 586, C:/Users/usuario.delomba/Documents/SVN-Referencias/Desarrollo/Entorno Back/src/main/webapp/css/style.scss */
 .fixed-size-denominacion {
   width: 920px;
   height: 40px; }
 
+/* line 590, C:/Users/usuario.delomba/Documents/SVN-Referencias/Desarrollo/Entorno Back/src/main/webapp/css/style.scss */
 .fixed-size-resumen {
   width: 460px;
   height: 40px; }
 
+/* line 594, C:/Users/usuario.delomba/Documents/SVN-Referencias/Desarrollo/Entorno Back/src/main/webapp/css/style.scss */
 .fixed-size-solucion {
   width: 920px;
   height: 40px; }
 
+/* line 598, C:/Users/usuario.delomba/Documents/SVN-Referencias/Desarrollo/Entorno Back/src/main/webapp/css/style.scss */
 md-radio-button.md-default-theme.md-checked .md-off, md-radio-button.md-checked .md-off {
   border-color: #F07F0A; }
 
+/* line 601, C:/Users/usuario.delomba/Documents/SVN-Referencias/Desarrollo/Entorno Back/src/main/webapp/css/style.scss */
 md-radio-button.md-default-theme .md-on, md-radio-button .md-on {
   background-color: #F07F0A; }
 
+/* line 604, C:/Users/usuario.delomba/Documents/SVN-Referencias/Desarrollo/Entorno Back/src/main/webapp/css/style.scss */
 md-radio-button.md-default-theme.md-checked .md-ink-ripple, md-radio-button.md-checked .md-ink-ripple {
   color: #F07F0A; }
 
+/* line 607, C:/Users/usuario.delomba/Documents/SVN-Referencias/Desarrollo/Entorno Back/src/main/webapp/css/style.scss */
 md-icon.md-default-theme, md-icon {
   color: #F07F0A; }
 
+/* line 610, C:/Users/usuario.delomba/Documents/SVN-Referencias/Desarrollo/Entorno Back/src/main/webapp/css/style.scss */
 .md-default-theme .md-datepicker-open .md-datepicker-calendar-icon, .md-datepicker-open .md-datepicker-calendar-icon {
   fill: #F07F0A; }
 
+/* line 613, C:/Users/usuario.delomba/Documents/SVN-Referencias/Desarrollo/Entorno Back/src/main/webapp/css/style.scss */
 .md-default-theme .md-calendar-date.md-calendar-selected-date .md-calendar-date-selection-indicator, .md-calendar-date.md-calendar-selected-date .md-calendar-date-selection-indicator, .md-default-theme .md-calendar-date.md-focus.md-calendar-selected-date .md-calendar-date-selection-indicator, .md-calendar-date.md-focus.md-calendar-selected-date .md-calendar-date-selection-indicator {
   background: #F07F0A;
   color: rgba(255, 255, 255, 0.87);
   border-color: transparent; }
 
+/* line 618, C:/Users/usuario.delomba/Documents/SVN-Referencias/Desarrollo/Entorno Back/src/main/webapp/css/style.scss */
 .md-default-theme .md-calendar-date.md-calendar-date-today .md-calendar-date-selection-indicator, .md-calendar-date.md-calendar-date-today .md-calendar-date-selection-indicator {
   border: 1px solid #F07F0A; }
 
+/* line 621, C:/Users/usuario.delomba/Documents/SVN-Referencias/Desarrollo/Entorno Back/src/main/webapp/css/style.scss */
 .md-datepicker-input {
   width: 230px; }
 
+/* line 625, C:/Users/usuario.delomba/Documents/SVN-Referencias/Desarrollo/Entorno Back/src/main/webapp/css/style.scss */
 #resumen {
   float: left; }
 
+/* line 628, C:/Users/usuario.delomba/Documents/SVN-Referencias/Desarrollo/Entorno Back/src/main/webapp/css/style.scss */
 #problematica {
   float: left; }
 
+/* line 631, C:/Users/usuario.delomba/Documents/SVN-Referencias/Desarrollo/Entorno Back/src/main/webapp/css/style.scss */
 .botonesCrear {
   margin-top: 10px;
   text-align: center; }
 
+/* line 635, C:/Users/usuario.delomba/Documents/SVN-Referencias/Desarrollo/Entorno Back/src/main/webapp/css/style.scss */
 #mensajeEstado {
   font-family: verdana;
   font-size: 12px;
@@ -515,59 +625,73 @@ md-icon.md-default-theme, md-icon {
   text-align: center;
   font-weight: bold; }
 
+/* line 642, C:/Users/usuario.delomba/Documents/SVN-Referencias/Desarrollo/Entorno Back/src/main/webapp/css/style.scss */
 md-input-container.md-default-theme:not(.md-input-invalid).md-input-focused .md-input, md-input-container:not(.md-input-invalid).md-input-focused .md-input {
   border-color: #F07F0A; }
 
+/* line 645, C:/Users/usuario.delomba/Documents/SVN-Referencias/Desarrollo/Entorno Back/src/main/webapp/css/style.scss */
 .txtSimilarMD {
   font-size: 13px;
   color: darkgray; }
 
+/* line 649, C:/Users/usuario.delomba/Documents/SVN-Referencias/Desarrollo/Entorno Back/src/main/webapp/css/style.scss */
 .selecTec {
   float: left;
   width: 925px;
   height: 60px; }
 
+/* line 654, C:/Users/usuario.delomba/Documents/SVN-Referencias/Desarrollo/Entorno Back/src/main/webapp/css/style.scss */
 .selecCli {
   float: left;
   width: 925px;
   height: 60px; }
 
+/* line 659, C:/Users/usuario.delomba/Documents/SVN-Referencias/Desarrollo/Entorno Back/src/main/webapp/css/style.scss */
 .contImg {
   width: 460px;
   height: 40px;
   margin-left: 20px;
   margin-bottom: 20px; }
 
+/* line 665, C:/Users/usuario.delomba/Documents/SVN-Referencias/Desarrollo/Entorno Back/src/main/webapp/css/style.scss */
 .contQr {
   width: 460px;
   height: 40px; }
 
+/* line 669, C:/Users/usuario.delomba/Documents/SVN-Referencias/Desarrollo/Entorno Back/src/main/webapp/css/style.scss */
 .contTec {
   width: 460px;
   height: 40px; }
 
+/* line 673, C:/Users/usuario.delomba/Documents/SVN-Referencias/Desarrollo/Entorno Back/src/main/webapp/css/style.scss */
 .contCom {
   width: 470px;
   height: 80px; }
 
+/* line 677, C:/Users/usuario.delomba/Documents/SVN-Referencias/Desarrollo/Entorno Back/src/main/webapp/css/style.scss */
 .ImgQr {
   width: 920px;
   height: 450px; }
 
+/* line 681, C:/Users/usuario.delomba/Documents/SVN-Referencias/Desarrollo/Entorno Back/src/main/webapp/css/style.scss */
 .contenedor-tecnologia {
   margin-top: 40px;
   margin-bottom: 100px; }
 
+/* line 685, C:/Users/usuario.delomba/Documents/SVN-Referencias/Desarrollo/Entorno Back/src/main/webapp/css/style.scss */
 md-input-container.md-default-theme:not(.md-input-invalid).md-input-has-value label, md-input-container:not(.md-input-invalid).md-input-has-value label {
   color: #F07F0A; }
 
+/* line 688, C:/Users/usuario.delomba/Documents/SVN-Referencias/Desarrollo/Entorno Back/src/main/webapp/css/style.scss */
 md-input-container.md-default-theme:not(.md-input-invalid).md-input-focused label, md-input-container:not(.md-input-invalid).md-input-focused label {
   color: #F07F0A; }
 
+/* line 691, C:/Users/usuario.delomba/Documents/SVN-Referencias/Desarrollo/Entorno Back/src/main/webapp/css/style.scss */
 md-select:not([disabled]):focus .md-select-value {
   border-bottom-color: #F07F0A;
   color: rgba(0, 0, 0, 0.87); }
 
+/* line 695, C:/Users/usuario.delomba/Documents/SVN-Referencias/Desarrollo/Entorno Back/src/main/webapp/css/style.scss */
 md-input-container .md-char-counter {
   font-size: 12px;
   line-height: 14px;
@@ -575,9 +699,11 @@ md-input-container .md-char-counter {
   padding-top: 5px;
   color: rgba(0, 0, 0, 0.26); }
 
+/* line 702, C:/Users/usuario.delomba/Documents/SVN-Referencias/Desarrollo/Entorno Back/src/main/webapp/css/style.scss */
 .md-datepicker-input-container.md-datepicker-focused {
   border-bottom-color: #F07F0A; }
 
+/* line 705, C:/Users/usuario.delomba/Documents/SVN-Referencias/Desarrollo/Entorno Back/src/main/webapp/css/style.scss */
 .md-autocomplete-suggestions li {
   font-size: 14px;
   overflow: hidden;
@@ -597,9 +723,11 @@ md-input-container .md-char-counter {
   cursor: pointer;
   border-radius: 3px; }
 
+/* line 727, C:/Users/usuario.delomba/Documents/SVN-Referencias/Desarrollo/Entorno Back/src/main/webapp/css/style.scss */
 .md-autocomplete-suggestions li:focus {
   outline: none; }
 
+/* line 730, C:/Users/usuario.delomba/Documents/SVN-Referencias/Desarrollo/Entorno Back/src/main/webapp/css/style.scss */
 .autocompletedemoCustomTemplate .autocomplete-custom-template li {
   border-bottom: 1px solid #ccc;
   height: auto;
@@ -607,13 +735,16 @@ md-input-container .md-char-counter {
   padding-bottom: 8px;
   white-space: normal; }
 
+/* line 737, C:/Users/usuario.delomba/Documents/SVN-Referencias/Desarrollo/Entorno Back/src/main/webapp/css/style.scss */
 .autocompletedemoCustomTemplate .autocomplete-custom-template li:last-child {
   border-bottom-width: 0; }
 
+/* line 741, C:/Users/usuario.delomba/Documents/SVN-Referencias/Desarrollo/Entorno Back/src/main/webapp/css/style.scss */
 .autocompletedemoCustomTemplate .autocomplete-custom-template .item-title, .autocompletedemoCustomTemplate .autocomplete-custom-template .item-metadata {
   display: block;
   line-height: 2; }
 
+/* line 745, C:/Users/usuario.delomba/Documents/SVN-Referencias/Desarrollo/Entorno Back/src/main/webapp/css/style.scss */
 .autocompletedemoCustomTemplate .autocomplete-custom-template .item-title md-icon {
   height: 18px;
   width: 18px; }
@@ -631,16 +762,20 @@ md-input-container .md-char-counter {
     right: 0;
     top: 0; 
 }*/
+/* line 761, C:/Users/usuario.delomba/Documents/SVN-Referencias/Desarrollo/Entorno Back/src/main/webapp/css/style.scss */
 .md-virtual-repeat-container.md-orient-horizontal .md-virtual-repeat-scroller {
   overflow-x: hidden;
   overflow-y: hidden; }
 
+/* line 765, C:/Users/usuario.delomba/Documents/SVN-Referencias/Desarrollo/Entorno Back/src/main/webapp/css/style.scss */
 md-select-menu md-option[selected] {
   color: #F07F0A; }
 
+/* line 768, C:/Users/usuario.delomba/Documents/SVN-Referencias/Desarrollo/Entorno Back/src/main/webapp/css/style.scss */
 md-select-menu.md-default-theme md-option[selected]:focus, md-select-menu md-option[selected]:focus {
   color: #ee941a; }
 
+/* line 771, C:/Users/usuario.delomba/Documents/SVN-Referencias/Desarrollo/Entorno Back/src/main/webapp/css/style.scss */
 .botones {
   margin-left: 30px;
   margin-bottom: 30px;
@@ -654,6 +789,7 @@ md-select-menu.md-default-theme md-option[selected]:focus, md-select-menu md-opt
   border-radius: 3px 3px 3px 3px;
   border: none; }
 
+/* line 784, C:/Users/usuario.delomba/Documents/SVN-Referencias/Desarrollo/Entorno Back/src/main/webapp/css/style.scss */
 .botones:hover {
   margin-left: 30px;
   margin-bottom: 30px;
@@ -667,6 +803,7 @@ md-select-menu.md-default-theme md-option[selected]:focus, md-select-menu md-opt
   border-radius: 3px 3px 3px 3px;
   border: none; }
 
+/* line 797, C:/Users/usuario.delomba/Documents/SVN-Referencias/Desarrollo/Entorno Back/src/main/webapp/css/style.scss */
 .centrado-QR {
   margin-left: 110px; }
 
@@ -680,33 +817,42 @@ md-select-menu.md-default-theme md-option[selected]:focus, md-select-menu md-opt
 .md-virtual-repeat-container.md-autocomplete-suggestions-container {
 	min-height: 26px;
 }*/
+/* line 811, C:/Users/usuario.delomba/Documents/SVN-Referencias/Desarrollo/Entorno Back/src/main/webapp/css/style.scss */
 md-chips .md-chips.md-focused {
   box-shadow: 0 2px #F07F0A; }
 
+/* line 815, C:/Users/usuario.delomba/Documents/SVN-Referencias/Desarrollo/Entorno Back/src/main/webapp/css/style.scss */
 md-chips .md-chip.md-focused {
   background: #F07F0A; }
 
+/* line 819, C:/Users/usuario.delomba/Documents/SVN-Referencias/Desarrollo/Entorno Back/src/main/webapp/css/style.scss */
 #motivoRechazo {
   border: 3px solid maroon; }
 
+/* line 823, C:/Users/usuario.delomba/Documents/SVN-Referencias/Desarrollo/Entorno Back/src/main/webapp/css/style.scss */
 .labelGrande {
   font-size: initial; }
 
+/* line 827, C:/Users/usuario.delomba/Documents/SVN-Referencias/Desarrollo/Entorno Back/src/main/webapp/css/style.scss */
 .espaciadoTop {
   margin-top: 3%; }
 
 /*--------------------- VALIDAR REFERENCIA -------------------------*/
+/* line 833, C:/Users/usuario.delomba/Documents/SVN-Referencias/Desarrollo/Entorno Back/src/main/webapp/css/style.scss */
 .quitarEstiloDeshabilitado {
   color: #242424 !important; }
 
 /*--------------------- ESTILOS POPUPS -------------------------*/
+/* line 838, C:/Users/usuario.delomba/Documents/SVN-Referencias/Desarrollo/Entorno Back/src/main/webapp/css/style.scss */
 #popUpError {
   background-color: #CE0000; }
 
+/* line 841, C:/Users/usuario.delomba/Documents/SVN-Referencias/Desarrollo/Entorno Back/src/main/webapp/css/style.scss */
 #listaError li {
   list-style-type: disc;
   margin-bottom: 0.5%; }
 
+/* line 845, C:/Users/usuario.delomba/Documents/SVN-Referencias/Desarrollo/Entorno Back/src/main/webapp/css/style.scss */
 #tecDialog {
   margin: auto;
   min-width: 1100px;
@@ -714,76 +860,93 @@ md-chips .md-chip.md-focused {
   max-height: 1000px;
   overflow-y: scroll; }
 
+/* line 852, C:/Users/usuario.delomba/Documents/SVN-Referencias/Desarrollo/Entorno Back/src/main/webapp/css/style.scss */
 #rejectDialog {
   margin: auto;
   min-width: 700px;
   min-height: 300px;
   max-height: 700px; }
 
+/* line 858, C:/Users/usuario.delomba/Documents/SVN-Referencias/Desarrollo/Entorno Back/src/main/webapp/css/style.scss */
 #errorDialog {
   margin: auto;
   min-width: 700px;
   min-height: 375px;
   max-height: 700px; }
 
+/* line 864, C:/Users/usuario.delomba/Documents/SVN-Referencias/Desarrollo/Entorno Back/src/main/webapp/css/style.scss */
 #textoRechazar {
   display: block; }
 
+/* line 867, C:/Users/usuario.delomba/Documents/SVN-Referencias/Desarrollo/Entorno Back/src/main/webapp/css/style.scss */
 .botonesRechazar {
   display: inline-block;
   margin-left: 33%; }
 
+/* line 872, C:/Users/usuario.delomba/Documents/SVN-Referencias/Desarrollo/Entorno Back/src/main/webapp/css/style.scss */
 md-dialog {
   width: 400px;
   height: 220px;
   overflow: hidden;
   border-radius: 20px 20px 20px 20px; }
 
+/* line 878, C:/Users/usuario.delomba/Documents/SVN-Referencias/Desarrollo/Entorno Back/src/main/webapp/css/style.scss */
 md-dialog.md-default-theme, md-dialog {
   border-radius: 20px 20px 20px 20px;
   background-color: white; }
 
+/* line 882, C:/Users/usuario.delomba/Documents/SVN-Referencias/Desarrollo/Entorno Back/src/main/webapp/css/style.scss */
 md-dialog md-dialog-content {
   height: 200px;
   padding: 30px;
   font-size: 13px;
   overflow: hidden; }
 
+/* line 888, C:/Users/usuario.delomba/Documents/SVN-Referencias/Desarrollo/Entorno Back/src/main/webapp/css/style.scss */
 md-dialog md-dialog-content .md-dialog-content-body {
   width: 100%;
   padding: 40px;
   font-size: 15px; }
 
+/* line 893, C:/Users/usuario.delomba/Documents/SVN-Referencias/Desarrollo/Entorno Back/src/main/webapp/css/style.scss */
 md-toolbar:not(.md-menu-toolbar) {
   background-color: #F07F0A;
   color: rgba(255, 255, 255, 0.87);
   font-size: 15px;
   padding: 25px; }
 
+/* line 899, C:/Users/usuario.delomba/Documents/SVN-Referencias/Desarrollo/Entorno Back/src/main/webapp/css/style.scss */
 .md-button.md-default-theme.md-primary, .md-button.md-primary {
   color: #F07F0A; }
 
+/* line 902, C:/Users/usuario.delomba/Documents/SVN-Referencias/Desarrollo/Entorno Back/src/main/webapp/css/style.scss */
 #dialogCabecera {
   font-size: 13px; }
 
+/* line 905, C:/Users/usuario.delomba/Documents/SVN-Referencias/Desarrollo/Entorno Back/src/main/webapp/css/style.scss */
 #dialogContenido {
   font-size: 12px; }
 
 /*------------------------------ ESTILOS BUSCAR REFERENCIA ---------------------------------*/
+/* line 911, C:/Users/usuario.delomba/Documents/SVN-Referencias/Desarrollo/Entorno Back/src/main/webapp/css/style.scss */
 .chipSelecTecnologias {
   width: 70.4%; }
 
+/* line 915, C:/Users/usuario.delomba/Documents/SVN-Referencias/Desarrollo/Entorno Back/src/main/webapp/css/style.scss */
 #busquedaRef {
   background-color: transparent; }
 
+/* line 919, C:/Users/usuario.delomba/Documents/SVN-Referencias/Desarrollo/Entorno Back/src/main/webapp/css/style.scss */
 #busquedaProductoTecnologia {
   display: block; }
 
+/* line 923, C:/Users/usuario.delomba/Documents/SVN-Referencias/Desarrollo/Entorno Back/src/main/webapp/css/style.scss */
 .mensajeNoExisteReferencias {
   margin-left: 42%;
   margin-top: 2%;
   margin-bottom: 10%; }
 
+/* line 929, C:/Users/usuario.delomba/Documents/SVN-Referencias/Desarrollo/Entorno Back/src/main/webapp/css/style.scss */
 #tituloBotonBusquedaAvanzada {
   margin-top: 1%;
   margin-left: 0.5%;
@@ -791,33 +954,41 @@ md-toolbar:not(.md-menu-toolbar) {
   height: 18;
   vertical-align: top; }
 
+/* line 937, C:/Users/usuario.delomba/Documents/SVN-Referencias/Desarrollo/Entorno Back/src/main/webapp/css/style.scss */
 #botonBusqueda {
   margin-bottom: 2.3%; }
 
+/* line 941, C:/Users/usuario.delomba/Documents/SVN-Referencias/Desarrollo/Entorno Back/src/main/webapp/css/style.scss */
 .selectBusqueda {
   width: 70%; }
 
+/* line 945, C:/Users/usuario.delomba/Documents/SVN-Referencias/Desarrollo/Entorno Back/src/main/webapp/css/style.scss */
 #cuerpoBusquedaAvanzada {
   margin-left: 5%; }
 
+/* line 949, C:/Users/usuario.delomba/Documents/SVN-Referencias/Desarrollo/Entorno Back/src/main/webapp/css/style.scss */
 #clienteBusqueda {
   width: 90%; }
 
+/* line 953, C:/Users/usuario.delomba/Documents/SVN-Referencias/Desarrollo/Entorno Back/src/main/webapp/css/style.scss */
 #duracionBusqueda {
   width: 277%; }
 
 /* ESTILOS TABLAS */
+/* line 957, C:/Users/usuario.delomba/Documents/SVN-Referencias/Desarrollo/Entorno Back/src/main/webapp/css/style.scss */
 .tablasReferencias th, td {
   border: none;
   border-collapse: collapse;
   padding: 5px; }
 
+/* line 963, C:/Users/usuario.delomba/Documents/SVN-Referencias/Desarrollo/Entorno Back/src/main/webapp/css/style.scss */
 .tablasReferencias th {
   background-color: #F07F0A;
   color: #ececec;
   text-align: center;
   font-weight: bold; }
 
+/* line 969, C:/Users/usuario.delomba/Documents/SVN-Referencias/Desarrollo/Entorno Back/src/main/webapp/css/style.scss */
 .tablasReferencias {
   margin: 0 auto;
   width: 95%;
@@ -826,83 +997,103 @@ md-toolbar:not(.md-menu-toolbar) {
   border: 1px solid black;
   border-radius: 0px 0px 10px 10px; }
 
+/* line 978, C:/Users/usuario.delomba/Documents/SVN-Referencias/Desarrollo/Entorno Back/src/main/webapp/css/style.scss */
 .tablasReferencias tr:nth-child(odd) {
   background: #D8D8D8; }
 
 /*ESTILOS REFERENCIAS PENDIENTES*/
+/* line 982, C:/Users/usuario.delomba/Documents/SVN-Referencias/Desarrollo/Entorno Back/src/main/webapp/css/style.scss */
 #selPendientes {
   cursor: pointer; }
 
+/* line 985, C:/Users/usuario.delomba/Documents/SVN-Referencias/Desarrollo/Entorno Back/src/main/webapp/css/style.scss */
 .pagination > li > a {
   color: #303F48; }
 
+/* line 988, C:/Users/usuario.delomba/Documents/SVN-Referencias/Desarrollo/Entorno Back/src/main/webapp/css/style.scss */
 .pagination > .active > a, .pagination > .active > span, .pagination > .active > a:hover, .pagination > .active > span:hover, .pagination > .active > a:focus, .pagination > .active > span:focus {
   background-color: #F07F0A;
   border-color: #F07F0A; }
 
+/* line 992, C:/Users/usuario.delomba/Documents/SVN-Referencias/Desarrollo/Entorno Back/src/main/webapp/css/style.scss */
 .pagination > li > a:hover, .pagination > li > span:hover, .pagination > li > a:focus, .pagination > li > span:focus {
   color: #303F48;
   background-color: #eee;
   border-color: #ddd; }
 
 /*--------------------- ESTILOS POP UP AÑADIR TEC NO VALIDA -------------------------*/
+/* line 1001, C:/Users/usuario.delomba/Documents/SVN-Referencias/Desarrollo/Entorno Back/src/main/webapp/css/style.scss */
 #nombreTecnologiaNueva {
   width: 40%; }
 
+/* line 1005, C:/Users/usuario.delomba/Documents/SVN-Referencias/Desarrollo/Entorno Back/src/main/webapp/css/style.scss */
 #inputNombreTecnologia {
   border-bottom-color: #303F48;
   color: #303F48;
   background-image: none; }
 
+/* line 1011, C:/Users/usuario.delomba/Documents/SVN-Referencias/Desarrollo/Entorno Back/src/main/webapp/css/style.scss */
 #tipoNuevaTec {
   margin-bottom: 6.2%;
   margin-left: 12%;
   width: 40%; }
 
+/* line 1017, C:/Users/usuario.delomba/Documents/SVN-Referencias/Desarrollo/Entorno Back/src/main/webapp/css/style.scss */
 #cbProducto {
   bottom: 23px; }
 
+/* line 1021, C:/Users/usuario.delomba/Documents/SVN-Referencias/Desarrollo/Entorno Back/src/main/webapp/css/style.scss */
 #cbProducto:focus {
   outline: none; }
 
 /*--------------------- ESTILOS ARBOL TECNOLOGIAS -------------------------*/
+/* line 1029, C:/Users/usuario.delomba/Documents/SVN-Referencias/Desarrollo/Entorno Back/src/main/webapp/css/style.scss */
 #ContenedporTipoTecnologiaYNombre {
   max-height: 18%; }
 
+/* line 1034, C:/Users/usuario.delomba/Documents/SVN-Referencias/Desarrollo/Entorno Back/src/main/webapp/css/style.scss */
 #cBProductoTecnologia:focus {
   outline: none; }
 
+/* line 1039, C:/Users/usuario.delomba/Documents/SVN-Referencias/Desarrollo/Entorno Back/src/main/webapp/css/style.scss */
 #productoTecnologia {
   font-size: initial;
   margin-top: 5%; }
 
 @-moz-document url-prefix() {
+  /* line 1045, C:/Users/usuario.delomba/Documents/SVN-Referencias/Desarrollo/Entorno Back/src/main/webapp/css/style.scss */
   .mozillaAutocompleteTecnologias {
     display: inline-flex !important; } }
 
+/* line 1049, C:/Users/usuario.delomba/Documents/SVN-Referencias/Desarrollo/Entorno Back/src/main/webapp/css/style.scss */
 #autocompleteTecnologias {
   width: 40%;
   margin-right: 2%;
   margin-left: 2%;
   display: inline-block; }
 
+/* line 1057, C:/Users/usuario.delomba/Documents/SVN-Referencias/Desarrollo/Entorno Back/src/main/webapp/css/style.scss */
 md-checkbox.md-checked .md-icon {
   background-color: #ee941a; }
 
+/* line 1061, C:/Users/usuario.delomba/Documents/SVN-Referencias/Desarrollo/Entorno Back/src/main/webapp/css/style.scss */
 .btn {
   margin-right: 8px; }
 
+/* line 1065, C:/Users/usuario.delomba/Documents/SVN-Referencias/Desarrollo/Entorno Back/src/main/webapp/css/style.scss */
 .angular-ui-tree-handle {
   background: #f8faff;
   border: 1px solid #dae2ea;
   color: #7c9eb2;
   padding: 10px 10px; }
 
+/* line 1072, C:/Users/usuario.delomba/Documents/SVN-Referencias/Desarrollo/Entorno Back/src/main/webapp/css/style.scss */
 .angular-ui-tree-handle:hover {
   color: #438eb9;
   background: #f4f6f7;
   border-color: #dce2e8; }
 
+/* line 1078, C:/Users/usuario.delomba/Documents/SVN-Referencias/Desarrollo/Entorno Back/src/main/webapp/css/style.scss */
 .angular-ui-tree-placeholder {
   background: #f0f9ff;
   border: 2px dashed #bed2db;
@@ -910,32 +1101,39 @@ md-checkbox.md-checked .md-icon {
   -moz-box-sizing: border-box;
   box-sizing: border-box; }
 
+/* line 1086, C:/Users/usuario.delomba/Documents/SVN-Referencias/Desarrollo/Entorno Back/src/main/webapp/css/style.scss */
 tr.angular-ui-tree-empty {
   height: 100px; }
 
+/* line 1090, C:/Users/usuario.delomba/Documents/SVN-Referencias/Desarrollo/Entorno Back/src/main/webapp/css/style.scss */
 .group-title {
   background-color: #687074 !important;
   color: #FFF !important; }
 
 /* --- Tree --- */
+/* line 1097, C:/Users/usuario.delomba/Documents/SVN-Referencias/Desarrollo/Entorno Back/src/main/webapp/css/style.scss */
 .tree-node {
   border: 1px solid #dae2ea;
   background: #f8faff;
   color: #7c9eb2; }
 
+/* line 1103, C:/Users/usuario.delomba/Documents/SVN-Referencias/Desarrollo/Entorno Back/src/main/webapp/css/style.scss */
 .nodrop {
   background-color: #f2dede; }
 
+/* line 1107, C:/Users/usuario.delomba/Documents/SVN-Referencias/Desarrollo/Entorno Back/src/main/webapp/css/style.scss */
 .tree-node-content {
   margin: 1.5%;
   padding: 1%; }
 
+/* line 1111, C:/Users/usuario.delomba/Documents/SVN-Referencias/Desarrollo/Entorno Back/src/main/webapp/css/style.scss */
 .tree-handle {
   padding: 10px;
   background: #428bca;
   color: #FFF;
   margin-right: 10px; }
 
+/* line 1121, C:/Users/usuario.delomba/Documents/SVN-Referencias/Desarrollo/Entorno Back/src/main/webapp/css/style.scss */
 .angular-ui-tree-placeholder {
   background: #f0f9ff;
   border: 2px dashed #bed2db;
@@ -943,37 +1141,47 @@ tr.angular-ui-tree-empty {
   -moz-box-sizing: border-box;
   box-sizing: border-box; }
 
+/* line 1129, C:/Users/usuario.delomba/Documents/SVN-Referencias/Desarrollo/Entorno Back/src/main/webapp/css/style.scss */
 .hoja {
   color: black;
   background-color: rgba(66, 220, 105, 0.42); }
 
+/* line 1134, C:/Users/usuario.delomba/Documents/SVN-Referencias/Desarrollo/Entorno Back/src/main/webapp/css/style.scss */
 .nodo {
   color: black;
   background-color: rgba(130, 205, 243, 0.55); }
 
+/* line 1139, C:/Users/usuario.delomba/Documents/SVN-Referencias/Desarrollo/Entorno Back/src/main/webapp/css/style.scss */
 .hojaInvalida {
   background-color: rgba(244, 54, 54, 0.55);
   color: black; }
 
+/* line 1144, C:/Users/usuario.delomba/Documents/SVN-Referencias/Desarrollo/Entorno Back/src/main/webapp/css/style.scss */
 .elementoSeleccionado {
   text-decoration: underline;
   border-style: none; }
 
+/* line 1149, C:/Users/usuario.delomba/Documents/SVN-Referencias/Desarrollo/Entorno Back/src/main/webapp/css/style.scss */
 .imagenSeleccionado {
   float: right; }
 
+/* line 1153, C:/Users/usuario.delomba/Documents/SVN-Referencias/Desarrollo/Entorno Back/src/main/webapp/css/style.scss */
 .ocultarImagen {
   display: none; }
 
+/* line 1157, C:/Users/usuario.delomba/Documents/SVN-Referencias/Desarrollo/Entorno Back/src/main/webapp/css/style.scss */
 .hoja.elementoSeleccionado {
   background-color: #42dc69; }
 
+/* line 1161, C:/Users/usuario.delomba/Documents/SVN-Referencias/Desarrollo/Entorno Back/src/main/webapp/css/style.scss */
 .hojaInvalida.elementoSeleccionado {
   background-color: #f43636; }
 
+/* line 1164, C:/Users/usuario.delomba/Documents/SVN-Referencias/Desarrollo/Entorno Back/src/main/webapp/css/style.scss */
 .nodo.elementoSeleccionado {
   background-color: #82cdf3; }
 
+/* line 1168, C:/Users/usuario.delomba/Documents/SVN-Referencias/Desarrollo/Entorno Back/src/main/webapp/css/style.scss */
 .btn {
   margin-right: 2%;
   border-width: 4%; }
@@ -984,37 +1192,46 @@ li:hover{
     border-style: dashed;
     border-color: blue;
 }*/
+/* line 1179, C:/Users/usuario.delomba/Documents/SVN-Referencias/Desarrollo/Entorno Back/src/main/webapp/css/style.scss */
 #tecnologias .btnAniadirNodo {
   margin-right: 8%; }
 
+/* line 1183, C:/Users/usuario.delomba/Documents/SVN-Referencias/Desarrollo/Entorno Back/src/main/webapp/css/style.scss */
 #datosTecnologia md-input-container {
   width: 90%;
   font-size: 120%; }
 
+/* line 1187, C:/Users/usuario.delomba/Documents/SVN-Referencias/Desarrollo/Entorno Back/src/main/webapp/css/style.scss */
 #datosTecnologia button {
   width: 40%;
   margin-left: 2%;
   margin-right: 2%;
   display: inline; }
 
+/* line 1194, C:/Users/usuario.delomba/Documents/SVN-Referencias/Desarrollo/Entorno Back/src/main/webapp/css/style.scss */
 #tituloDatosTecnologia {
   font-size: 150%;
   font-style: italic;
   font-weight: bold; }
 
+/* line 1200, C:/Users/usuario.delomba/Documents/SVN-Referencias/Desarrollo/Entorno Back/src/main/webapp/css/style.scss */
 md-checkbox[disabled].md-checked .md-icon {
   background-color: #F07F0A; }
 
+/* line 1204, C:/Users/usuario.delomba/Documents/SVN-Referencias/Desarrollo/Entorno Back/src/main/webapp/css/style.scss */
 md-checkbox[disabled] .md-label {
   color: black; }
 
+/* line 1208, C:/Users/usuario.delomba/Documents/SVN-Referencias/Desarrollo/Entorno Back/src/main/webapp/css/style.scss */
 md-toast.md-default-theme .md-toast-content, md-toast .md-toast-content {
   background-color: #F07F0A;
   color: black; }
 
+/* line 1213, C:/Users/usuario.delomba/Documents/SVN-Referencias/Desarrollo/Entorno Back/src/main/webapp/css/style.scss */
 .leyenda {
   display: block; }
 
+/* line 1216, C:/Users/usuario.delomba/Documents/SVN-Referencias/Desarrollo/Entorno Back/src/main/webapp/css/style.scss */
 #colorRaiz {
   background-color: #F8FAFF;
   border: 1px solid black;
@@ -1025,6 +1242,7 @@ md-toast.md-default-theme .md-toast-content, md-toast .md-toast-content {
   padding-bottom: 1.5%;
   display: inline-block; }
 
+/* line 1227, C:/Users/usuario.delomba/Documents/SVN-Referencias/Desarrollo/Entorno Back/src/main/webapp/css/style.scss */
 #colorNodo {
   background-color: #82CDF3;
   border: 1px solid black;
@@ -1035,6 +1253,7 @@ md-toast.md-default-theme .md-toast-content, md-toast .md-toast-content {
   padding-bottom: 1.5%;
   display: inline-block; }
 
+/* line 1238, C:/Users/usuario.delomba/Documents/SVN-Referencias/Desarrollo/Entorno Back/src/main/webapp/css/style.scss */
 #colorHoja {
   background-color: #42DC69;
   border: 1px solid black;
@@ -1045,6 +1264,7 @@ md-toast.md-default-theme .md-toast-content, md-toast .md-toast-content {
   padding-bottom: 1.5%;
   display: inline-block; }
 
+/* line 1249, C:/Users/usuario.delomba/Documents/SVN-Referencias/Desarrollo/Entorno Back/src/main/webapp/css/style.scss */
 #colorHojaInvalida {
   background-color: #F43636;
   border: 1px solid black;
@@ -1055,6 +1275,7 @@ md-toast.md-default-theme .md-toast-content, md-toast .md-toast-content {
   padding-bottom: 1.5%;
   display: inline-block; }
 
+/* line 1260, C:/Users/usuario.delomba/Documents/SVN-Referencias/Desarrollo/Entorno Back/src/main/webapp/css/style.scss */
 .glyphicon {
   top: 0; }
 

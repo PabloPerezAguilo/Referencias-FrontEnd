@@ -1,14 +1,8 @@
 app.controller ('controladorBuscarReferencias', function (servicioRest,utils, config, $scope, $http, $location, $rootScope, $mdDialog) {  
     
     setTimeout(function(){
-         console.log(document.getElementsByTagName("md-chips-wrap")[0].classList.add("chipSelecTecnologias"));
+        document.getElementsByTagName("md-chips-wrap")[0].classList.add("chipSelecTecnologias");
     },1);
-  /* angular.ready(function() {
- console.log(document.getElementsByClassName("md-input")[2]);
-});*/
-    //Voy a inicializar unas clases que no se ven en tiempo de compilacion
-	//console.log("AQUI");
-	//document.getElementById("margenSi").children[1].classList.add("prueba");
 	
     $rootScope.opcion = 'validar';
     $scope.titulo = 'Buscar referencias';
@@ -54,7 +48,6 @@ app.controller ('controladorBuscarReferencias', function (servicioRest,utils, co
     $scope.referencia.tecnologiasSeleccionadas = [];
     $scope.seleccionarTecnologias=function (){
         tecSeleccionados.hojas=$scope.referencia.tecnologiasSeleccionadas;
-        console.log(tecSeleccionados);
         $mdDialog.show({
             locals: {
                 tecnologiasSelecIniciales: angular.copy(tecSeleccionados)
@@ -65,7 +58,6 @@ app.controller ('controladorBuscarReferencias', function (servicioRest,utils, co
             clickOutsideToClose: true
         })
         .then(function(tecnologiasElegidas) {
-            console.log("resultado", tecnologiasElegidas);
             $scope.referencia.tecnologiasSeleccionadas = tecnologiasElegidas.hojas;
             tecSeleccionados = tecnologiasElegidas;
         })
@@ -139,7 +131,6 @@ app.controller ('controladorBuscarReferencias', function (servicioRest,utils, co
             clickOutsideToClose: true
         })
         .then(function(tipoDocumento) {
-                console.log($scope.referencias[0]._id);
                 var aux="";
                 for(var i = 0;i<$scope.referencias.length;i++){
                     if(i+1<$scope.referencias.length){
@@ -148,13 +139,11 @@ app.controller ('controladorBuscarReferencias', function (servicioRest,utils, co
                         aux += $scope.referencias[i]._id
                     }
                 }
-                console.log(aux);
                 servicioRest.exportarReferencia(aux, tipoDocumento);
             })
         .catch(function(err) {
                 //mensaje cuanod se cancela
                 //utils.popupInfo('',"Error al exportar la referencia.");
-                //console.log("Error al exportar la referencia");
             });
     };
     

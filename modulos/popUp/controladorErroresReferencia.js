@@ -1,5 +1,4 @@
 app.controller('controladorErroresReferencia', function ($scope, $mdDialog, listaErrores, errorCliente, errorTecnologias) {
-    console.log(listaErrores);
     $scope.errores=listaErrores;
     $scope.errorCliente=errorCliente;
     $scope.errorTecnologias=errorTecnologias;

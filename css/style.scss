@@ -19,6 +19,7 @@ time, mark, audio, video {
   font: inherit;
   vertical-align: baseline; }
 
+
 /* HTML5 display-role reset for older browsers */
 article, aside, details, figcaption, figure,
 footer, header, hgroup, menu, nav, section {
@@ -213,7 +214,7 @@ footer #lineaFooter{
 }
 
 /* --------------------------- ESTILOS MENÚ ---------------------- */
-#menu{
+#menu{	
     width:45%;
     height: auto;
     color: $colorLetra;
@@ -221,6 +222,10 @@ footer #lineaFooter{
     background: $colorDetalles;
     border-radius: 0 0 20px 0 ;
     box-shadow: 1px 1px 1px 1px #777;  
+}
+
+#menuA{
+	display: block;
 }
 .textoHipervinculo {
     color:$colorOscuro;
@@ -496,6 +501,27 @@ label{
     width: 18px; 
 }
 
+
+/*--------------------- ESTILOS ClIENTES -------------------------*/
+
+#permisoUso{
+	padding-left: 25px;
+  	padding-top: 25px;
+}
+
+#cBAlias:focus{
+    
+    outline: none;
+
+}
+
+
+/*--------------------- ESTILOS GERENTES -------------------------*/
+
+
+#cabeceraTipo{ 
+    margin-bottom: 2%;
+}
 
 
 /*------------------------------ ESTILOS NUEVA REFERENCIA ---------------------------------*/

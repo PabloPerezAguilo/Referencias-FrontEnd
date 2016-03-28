@@ -4,17 +4,6 @@ app.controller ('controladorGestionTecnologias', function (servicioRest, utils, 
     $scope.nodoSeleccionado={};
     $scope.nodoSeleccionado.clase="raiz";
     $scope.clientes={};
-    //$scope.clientes.elemSeleccionado={};
-    //console.log($scope.clientes.elemSeleccionado.value);
-	$scope.aux = document.getElementById("tree-root").children;
-	console.log($scope.aux);
-	//console.log($scope.aux[0].childNodes);
-	
-	//console.log(document.getElementById("tree-root").children);
-	
-	//console.log($scope.aux[0].childNodes[3].childNodes[3].textContent);
-	
-	console.log("a")
     
     function toast(texto) {
 		$mdToast.show(
@@ -53,7 +42,6 @@ app.controller ('controladorGestionTecnologias', function (servicioRest, utils, 
     
     $scope.ocultarHijos = function (nodo){
         toggle(nodo);
-        console.log("aa");
     }
     
     $scope.eventosArbol = {
@@ -68,7 +56,7 @@ app.controller ('controladorGestionTecnologias', function (servicioRest, utils, 
             
             try{
                // return true;
-                console.log("DESTINO:");/* Si se trata del elemento que contienen la raíz, será un array. Soi no, no tendrá $modelValue y dará unerror que recogeremos en el catch
+               /* Si se trata del elemento que contienen la raíz, será un array. Soi no, no tendrá $modelValue y dará unerror que recogeremos en el catch
                 */
                 return destino.$parent.$modelValue.nombre!=undefined 
                         && origen.$parentNodeScope != undefined 
@@ -83,7 +71,6 @@ app.controller ('controladorGestionTecnologias', function (servicioRest, utils, 
         
         //Cuando se ha movido el nodo
         dropped: function(e) {
-            console.log("dropped");
             try{
                 // Ponemos el nodo seleccionado a  null para que la introducción de datos desaparezca, ya que se pierde el knodo seleccionado al arrastrar
                 $scope.nodoSeleccionado=null;
@@ -104,7 +91,6 @@ app.controller ('controladorGestionTecnologias', function (servicioRest, utils, 
 
                 }).catch(function(err) {
                     utils.popupInfo('',"Error al mover tecnologia.");
-                    console.log("Error al mover tecnologia");
                     servicioRest.getTecnologias().then(
                     function (response) {
                         actualizarArbol(response);
@@ -132,9 +118,7 @@ app.controller ('controladorGestionTecnologias', function (servicioRest, utils, 
                 toast("Tecnologia eliminada");
 
                 }).catch(function(err) {
-                console.log(err);
                     utils.popupInfo('',err);
-                    console.log("Error al eliminar tecnologia");
                     servicioRest.getTecnologias().then(
                     function (response) {
                         actualizarArbol(response);
@@ -205,21 +189,13 @@ app.controller ('controladorGestionTecnologias', function (servicioRest, utils, 
             clase: nodeData.clase
             };
         }
-        //console.log("aqui", nodo.nombre);
-		if(nodo.nombre == "prueba1"){
-			
-			console.log(document.getElementsByClassName("glyphicon-chevron-right"));
-			console.log("aqui", nodo.nombre);
-		}
         servicioRest.getReferenciasAsociadas(nodo.nombre)
                 .then(function(data) {
             //if(data!=[]){
                     
             $scope.hayRefAsociadas=data;
-            console.log("data",data);
             //}
                 }).catch(function(err) {
-            console.log("err",err);
             //$scope.hayRefAsociadas=true;
                     
                 });
@@ -285,7 +261,6 @@ app.controller ('controladorGestionTecnologias', function (servicioRest, utils, 
                         actualizarArbol(response);
                     });
                     utils.popupInfo('',"Error al añadir tecnologia.");
-                    console.log("Error al añadir tecnologia");
                 }); 
             }
              //------------Editar elemento
@@ -309,7 +284,6 @@ app.controller ('controladorGestionTecnologias', function (servicioRest, utils, 
                         actualizarArbol(response);
                     });
                     utils.popupInfo('',"Error al editar tecnologia.");
-                    console.log("Error al editar tecnologia");
                 }); 
             }
             $scope.nodoSeleccionado=null;
@@ -350,7 +324,6 @@ app.controller ('controladorGestionTecnologias', function (servicioRest, utils, 
                         display: tec.nombre
                     };
                 });
-                //console.log($scope.clientes.lista);
             });
     }
     getHojasValidadas();
@@ -391,7 +364,6 @@ app.controller ('controladorGestionTecnologias', function (servicioRest, utils, 
 
                         }).catch(function(err) {
                             utils.popupInfo('',"Error al rechazar tecnologia.");
-                            console.log("Error al rechazar tecnologia");
                             servicioRest.getTecnologias().then(
                             function (response) {
                                 actualizarArbol(response);
@@ -412,7 +384,6 @@ app.controller ('controladorGestionTecnologias', function (servicioRest, utils, 
 
                     }).catch(function(err) {
                         utils.popupInfo('',"Error al rechazar tecnologia.");
-                        console.log("Error al rechazar tecnologia");
                         servicioRest.getTecnologias().then(
                         function (response) {
                             actualizarArbol(response);
@@ -424,7 +395,6 @@ app.controller ('controladorGestionTecnologias', function (servicioRest, utils, 
        
     //pulsar intro crea  la tecnologia si es posible
     $scope.intro = function (pressEvent){    
-        console.log("111");
         if(pressEvent.keyCode == 13){ 
             $scope.guardarElem();   
           }

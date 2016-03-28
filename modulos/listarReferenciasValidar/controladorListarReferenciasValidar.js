@@ -9,7 +9,6 @@ app.controller ('controladorListarReferenciasValidar', function (servicioRest,ut
         function (response) {           
             $scope.referencias = response;
             $scope.totalItems = $scope.referencias.length;
-            console.log($scope.referencias.length);
         });
     
     $scope.currentPage = 1;
@@ -35,16 +34,16 @@ app.controller ('controladorListarReferenciasValidar', function (servicioRest,ut
     
     $scope.introOptions.steps = [
             {
-                element: '.cabeceraPagina',
-                intro: 'Esta seccion muestra un listado con las tecnologias pendientes de validar.'
+              element: '.cabeceraPagina',
+              intro: 'Esta funcionalidad permite realizar una validación del contenido y la calidad de la redacción de las referencias que se han creado o se han modificado sustancialmente. Esta pantalla muestra el listado de las referencias que están en estado pendiente de validar. Una vez elegida una de la lista, mostrará la información de la misma para que se pueda dar por validada o, por el contrario, rechazarla detallando el motivo del rechazo'
             },
             {
                 element: '#referenciasPendientes',
-                intro: 'Haciendo click en cualquier fila accederemos a la referencia seleccionada para poder validarla.'
+                intro: 'Pulsando en cualquiera de las referencias mostradas, se accede a su información detallada y permitirá validarla o rechazarla.'
             },
             {
                 element: '.pagination-sm',
-                intro: 'Esta seccion de aqui permite movernos entre distintas paginas por si el numero de referencias pendientes de validar fuera muy extenso.'
+                intro: 'Desde las opciones de paginación, se permitirá al usuario navegar por las diferentes páginas de resultados. En el caso de haya varias páginas, se podrá navegar a la primera o última página o ir avanzando o retrocediendo de una en una. Así mismo se podrá acceder a una página concreta de las mostradas en el centro.'
             }
             ];
     

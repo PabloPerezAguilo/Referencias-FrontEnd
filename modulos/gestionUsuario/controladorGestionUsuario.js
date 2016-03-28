@@ -1,29 +1,34 @@
 app.controller('controladorGestionUsuario', function(servicioRest,config,utils, $scope, $http, $rootScope, $timeout, $q, $log,$mdDialog, $interval) {
 	
-	
-	//console.log(usuarios[$scope.posicionEnArray].nick);
-    
    $scope.title = "";
    $scope.descripcion = "";
     var self = this,  j= 0, counter = 0;
     $scope.mensaje='';
     $scope.activado = self.activated;
-    $scope.modificar = function (evento) {
+    $scope.modificarUsuario = function (evento) {
         var mensaje='';
         if($scope.posicionEnArray!==-1 && $scope.posicionEnArray!=undefined && $scope.role!=undefined){
 
             $scope.usuario = {
                 "nick":$scope.usuarios[$scope.posicionEnArray].nick,
-                "name":$scope.usuarios[$scope.posicionEnArray].usuario,
+                "name":$scope.usuarios[$scope.posicionEnArray].name,
                 "role":$scope.role
             };
             servicioRest.putUsuario($scope.usuario)
             .then(function(data) {
                 $scope.mensaje='Usuario modificado con éxito';
-                utils.popupInfo('','Usuario modificado con éxito');
+                utils.popupInfo('','Usuario modificado con éxito');	
+				
+				if(localStorage.getItem("nick")!==null && $rootScope.usuarioLS.nick ===
+				$scope.usuarios[$scope.posicionEnArray].nick){
+					localStorage.clear();					
+				}				
+				if(sessionStorage.getItem("nick")!==null && $rootScope.usuarioLS.nick === $scope.usuarios[$scope.posicionEnArray].nick){
+					sessionStorage.clear();					
+				}				
 				setTimeout(function(){ 
    				location.reload();
-				}, 1000)
+				}, 1000)			
 				
             })
             .catch(function(err) {
@@ -41,23 +46,38 @@ app.controller('controladorGestionUsuario', function(servicioRest,config,utils, 
             utils.popupInfo('', mensaje);
         }
     };
-    var i=0;
-    $scope.eliminarUsuario = function (evento) {
-        servicioRest.deletePowerfull()
-        .then(function(data) {
-            if(i<5){
-                utils.popupInfo('','Enrique despedido');
-                i++;
-            }
-            else{
-                utils.popupInfo('','Enrique ha sido eliminado y definitivamente no volvera a molestar');
-                $scope.enriqueDespDef=true;
-            }
+	
+    $scope.borrarUsuario = function (evento) {
+        var mensaje='';
+        if($scope.posicionEnArray!==-1 && $scope.posicionEnArray!=undefined && $scope.usuarios[$scope.posicionEnArray].nick!=undefined){
+			
+            servicioRest.deleteUsuario($scope.usuarios[$scope.posicionEnArray].nick)
+            .then(function(data) {
+                $scope.mensaje='Usuario borrado con éxito';
+                utils.popupInfo('','Usuario borrado con éxito');	
+				
+				if(localStorage.getItem("nick")!==null && $rootScope.usuarioLS.nick ===
+				$scope.usuarios[$scope.posicionEnArray].nick){
+					localStorage.clear();					
+				}				
+				if(sessionStorage.getItem("nick")!==null && $rootScope.usuarioLS.nick === $scope.usuarios[$scope.posicionEnArray].nick){
+					sessionStorage.clear();					
+				}				
+				setTimeout(function(){ 
+   				location.reload();
+				}, 1000)			
+				
             })
-        .catch(function(err) {
-                utils.popupInfo('','Error al eliminar usuario');
-        });
-    }
+            .catch(function(err) {
+                utils.popupInfo('','No se ha podido borrar el usuario');
+            });
+        }else{
+            if($scope.posicionEnArray===-1|| $scope.posicionEnArray==undefined){
+                mensaje+='-Usuario inválido </br>';
+            }
+            utils.popupInfo('', mensaje);
+        }
+    };
       
     /*Autocomplete*/ 
     $scope.miUsuarioSeleccionado = null 
@@ -66,7 +86,6 @@ app.controller('controladorGestionUsuario', function(servicioRest,config,utils, 
         $scope.usuarios = response;
         $scope.arrayDatos = cargarDatos();
         $scope.activado = false;
-        toggleActivation();
     })
     .catch(function(err) {
         $scope.mensaje='error al cargar los usuarios';
@@ -142,36 +161,7 @@ app.controller('controladorGestionUsuario', function(servicioRest,config,utils, 
     self.modes = [ ];
     self.activated = true;
     self.determinateValue = 100;
-
-      //Apaga o enciende el loader
-       
-    function toggleActivation() {
-          if ( !$scope.activated ) self.modes = [ ];
-          if (  $scope.activated ) j = counter = 0; 
-    }
-    self.toggleActivation = function() {
-          if ( !self.activated ) self.modes = [ ];
-          if (  self.activated ) j = counter = 0;
-      };
-
-      // Se mueve cada 100ms sin parar.
-      $interval(function() {
-
-        // Incrementa el moviento de loader
-
-        self.determinateValue += 1;
-        if (self.determinateValue > 100) {
-          self.determinateValue = 100;
-        }
-        // Incia la animación en 5
-
-        if ( (j < 5) && !self.modes[j] && self.activated ) {
-          self.modes[j] = 'indeterminate';
-        }
-        if ( counter++ % 4 == 0 ) j++;
-
-      }, 100, 0, true);
-    
+   
     
     /* ayuda de nuevo usuario*/
     
@@ -193,6 +183,10 @@ app.controller('controladorGestionUsuario', function(servicioRest,config,utils, 
             {
                 element: '#modificar',
                 intro: 'Al pulsar en este boton modifica el usuario seleccionado con el rol asignado en nuestra aplicacion.'
+            },
+            {
+                element: '#borrar',
+                intro: 'Al pulsar en este boton borra el usuario seleccionado de nuestra aplicacion.'
             }
         ];
 

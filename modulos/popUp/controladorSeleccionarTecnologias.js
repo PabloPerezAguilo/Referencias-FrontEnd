@@ -6,16 +6,13 @@ app.controller('controladorSeleccionarTecnologias', function ($scope, $mdDialog,
     tecSelec.nodos = [];
     tecSelec.hojas = [];
     var tecIni = [];
-    console.log(tecnologiasSelecIniciales);
     
-    //console.log(tecnologiasSelecIniciales);
     var nodeData;
     var operacion;
     $scope.nodoSeleccionado={};
     $scope.nodoSeleccionado.clase="raiz";
     $scope.clientes={};
     //$scope.clientes.elemSeleccionado={};
-    //console.log($scope.clientes.elemSeleccionado.value);
     
 
     servicioRest.getTecnologias().then(
@@ -25,25 +22,20 @@ app.controller('controladorSeleccionarTecnologias', function ($scope, $mdDialog,
     
     function actualizarArbol(arbol){ 
             if(tecnologiasSelecIniciales != undefined){
-                console.log("tec1",tecnologiasSelecIniciales);
+
                 tecSelec = tecnologiasSelecIniciales;
                 tecIni = angular.copy(tecnologiasSelecIniciales.hojas);
-                console.log("tec2",tecIni);
-                console.log("tec2",tecnologiasSelecIniciales.nodos);
                 tecIni = tecIni.concat(angular.copy(tecnologiasSelecIniciales.nodos));
-                console.log("tec3",tecIni);
+
             }
         
                                   
             $scope.data = [];                      
             $scope.data[0] = arbol; 
         setTimeout(function(){ 
-            recorrerArbol(arbol, document.getElementById("arbol").children[0].children[1]);      //console.log(document.getElementById("arbol").children[0].children[1].children[0].children[1].children[0].firstElementChild.classList.add("elementoSeleccionado"));
-//console.log(document.getElementById("arbol").children[0].children[1].children[0].children[1].children);
+            recorrerArbol(arbol, document.getElementById("arbol").children[0].children[1]);      //document.getElementById("arbol").children[0].children[1].children[0].children[1].children[0].firstElementChild.classList.add("elementoSeleccionado");
         
         }, 1)
-        
-        //console.log($scope.data[0]);
     };
     
     function recorrerArbol(response, padre){
@@ -53,7 +45,7 @@ app.controller('controladorSeleccionarTecnologias', function ($scope, $mdDialog,
             for(var i=0; i<response.nodosHijos.length; i++){
                 if(existeElemento(padre.children[i])){
                     padre.children[i].firstElementChild.classList.add("elementoSeleccionado");
-                    console.log("pruebatick",padre.children[i].firstElementChild.children[0].classList.remove("ocultarImagen"));
+                    padre.children[i].firstElementChild.children[0].classList.remove("ocultarImagen");
                     //padre.children[i].firstElementChild.classList.add("elementoSeleccionado");
                 }
                 
@@ -63,7 +55,6 @@ app.controller('controladorSeleccionarTecnologias', function ($scope, $mdDialog,
         
         //angular.element(response).addClass("elementoSeleccionado");
         
-        //console.log($scope.data[0].$element);
     };
     
     function existeElemento(padre){
@@ -85,10 +76,8 @@ app.controller('controladorSeleccionarTecnologias', function ($scope, $mdDialog,
         for(var i=0; i<elemActual.childNodes().length; i++){
             if(!marcar){
                 if(elemActual.childNodes()[i].$element[0].firstElementChild.classList.contains("elementoSeleccionado")){
-                    //console.log("selec");
                     elemActual.childNodes()[i].$element[0].firstElementChild.classList.remove("elementoSeleccionado");
                     elemActual.childNodes()[i].$element[0].children[0].children[0].classList.add("ocultarImagen");
-                    //console.log("indexHijo",tecSelec.indexOf(elemActual.$modelValue.nombre));
                     if(elemActual.childNodes()[i].$modelValue.clase === "nodo"){
                         tecSelec.nodos.splice(tecSelec.nodos.indexOf(elemActual.childNodes()[i].$modelValue.nombre),1);
                     }else{
@@ -98,7 +87,6 @@ app.controller('controladorSeleccionarTecnologias', function ($scope, $mdDialog,
                 }
             }else{
                 if(!elemActual.childNodes()[i].$element[0].firstElementChild.classList.contains("elementoSeleccionado")){
-                    //console.log("no selec");
                     elemActual.childNodes()[i].$element[0].firstElementChild.classList.add("elementoSeleccionado");
                     elemActual.childNodes()[i].$element[0].children[0].children[0].classList.remove("ocultarImagen");
                     if(elemActual.childNodes()[i].$modelValue.clase === "nodo"){
@@ -123,13 +111,10 @@ app.controller('controladorSeleccionarTecnologias', function ($scope, $mdDialog,
         var tipo;
         var marcar;
         nodeData=nodo;
-        var elemActual = elem;//   elem.childNodes()[0];
-        //console.log("AQUI",elemActual);
-            //console.log("AQUI",elemActual.$element[0]);
+        var elemActual = elem;
         if(elemActual.$element[0].classList.contains("elementoSeleccionado")){
             elemActual.$element.removeClass("elementoSeleccionado");
             elemActual.$element[0].childNodes[1].classList.add("ocultarImagen");
-            //console.log("indexPadre",tecSelec.indexOf(elemActual.$modelValue.nombre));
             if(elemActual.$modelValue.clase === "nodo"){
                 tecSelec.nodos.splice(tecSelec.nodos.indexOf(elemActual.$modelValue.nombre),1);
             }else{
@@ -138,7 +123,6 @@ app.controller('controladorSeleccionarTecnologias', function ($scope, $mdDialog,
             
             marcar=false;
         }else{
-            console.log("aqui",elemActual.$element[0].childNodes[1].classList);
             elemActual.$element.addClass("elementoSeleccionado");
             elemActual.$element[0].childNodes[1].classList.remove("ocultarImagen");
             if(elemActual.$modelValue.clase === "nodo"){
@@ -155,25 +139,17 @@ app.controller('controladorSeleccionarTecnologias', function ($scope, $mdDialog,
         }
         /*while(elemActual.hasChild()){
             elemActual = elemActual.childNodes()[0];
-            //console.log("AQUI",elemActual);
-            //console.log("AQUI",elemActual.$element[0].firstElementChild.classList);
-            //console.log("AQUI",elemActual.$element[0].classList);
             if(elemActual.$element[0].firstElementChild.classList.contains("elementoSeleccionado")){
-                //console.log("selec");
                 elemActual.$element[0].firstElementChild.classList.remove("elementoSeleccionado");
-                //console.log("indexHijo",tecSelec.indexOf(elemActual.$modelValue.nombre));
                 tecSelec.splice(tecSelec.indexOf(elemActual.$modelValue.nombre),1);
             }else{
-                //console.log("no selec");
                 elemActual.$element[0].firstElementChild.classList.add("elementoSeleccionado");
                 tecSelec.push(elemActual.$modelValue.nombre);
             }
             //tecSelec.push(elemActual.$modelValue.nombre);
             //elemActual.$element.addClass("elementoSeleccionado");
-            //console.log(elemActual.$element);
-            //console.log(elemActual.$modelValue);
         }*/
-        //console.log(tecSelec);
+
     
     
     

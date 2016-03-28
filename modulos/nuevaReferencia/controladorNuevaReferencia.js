@@ -12,7 +12,6 @@ app.controller('controladorNuevaReferencia', function(servicioRest,utils, config
         document.getElementById("clienteReferencia").childNodes[1].childNodes[2].focus();
     },1);
     
-    console.log(document.getElementById("clienteReferencia").childNodes[1].childNodes[2]);
     $scope.tecnologiasSeleccionadas=[];
     // list of `state` value/display objects
     $scope.clientes={
@@ -29,8 +28,8 @@ app.controller('controladorNuevaReferencia', function(servicioRest,utils, config
     $scope.activarScroll=function(){     
         $scope.scroll=true;     
     };
-
-      
+	
+	      
     //Habilitar/deshabilitar los campos del formulario
     $scope.deshabilitarForm=false;
     
@@ -40,7 +39,7 @@ app.controller('controladorNuevaReferencia', function(servicioRest,utils, config
     //Como no conocemos los datos que tendrá la refrencia pero queremos poner valores por defecto,
     //la asignamos un objeto vacío al que le metemos los valores por defecto
 
-    $scope.referencia={}
+    $scope.referencia={};
     
     //inicializamos el valor del certificado a 'si' para que salga esa opción seleccionada por defecto
     $scope.referencia.certificado='no';
@@ -479,6 +478,7 @@ app.controller('controladorNuevaReferencia', function(servicioRest,utils, config
             clickOutsideToClose: true
         })
     };
+	
     
      //---------AYUDA DE LA PAGINA--------
   

@@ -1,14 +1,29 @@
 <data md-toolbar class="md-menu-toolbar">
     <md-menu ng-show="menuUsuarios">
-        <md-button id="UsuariosBotonMenu" ng-click="$mdOpenMenu()">Usuarios</md-button>
-        <md-menu-content>
+        <md-button id="UsuariosBotonMenu" ng-click="$mdOpenMenu()">ADMINISTRACIÓN</md-button>
+        <md-menu-content id="menuA">
             <md-menu-item ng-show="menuUsuariosAlta">
-                <a id="altaUsuariosBotonMenu" class="textoHipervinculo" href="#/alta"><md-button>Alta</md-button></a>
+                <a id="altaUsuariosBotonMenu" class="textoHipervinculo" href="#/altaUsuario"><md-button>Alta Usuarios</md-button></a>
             </md-menu-item>
             <md-menu-divider></md-menu-divider>
             <md-menu-item ng-show="menuUsuariosGestion">
-                <a class="textoHipervinculo" href="#/gestionUsuario"><md-button>Gestión</md-button></a>
-            </md-menu-item>             
+                <a class="textoHipervinculo" href="#/gestionUsuario"><md-button>Gestión Usuarios</md-button></a>
+            </md-menu-item> 
+			<md-menu-divider></md-menu-divider>
+			<md-menu-item ng-show="menuClientesAlta">
+                <a class="textoHipervinculo" href="#/altaCliente"><md-button>Alta Clientes</md-button></a>
+            </md-menu-item>
+			<md-menu-divider></md-menu-divider>
+            <md-menu-item ng-show="menuClientesGestion">
+                <a class="textoHipervinculo" href="#/gestionCliente"><md-button>Gestión Clientes</md-button></a>
+            </md-menu-item>
+			<md-menu-divider></md-menu-divider>
+            <md-menu-item ng-show="menuGerentesAlta">
+                <a class="textoHipervinculo" href="#/altaGerente"><md-button>Alta Gerentes</md-button></a>
+            </md-menu-item>
+            <md-menu-item ng-show="menuGerentesGestion">
+                <a class="textoHipervinculo" href="#/gestionGerente"><md-button>Gestión Gerentes</md-button></a>
+            </md-menu-item>            
         </md-menu-content>
     </md-menu>
     <md-menu-divider></md-menu-divider>  

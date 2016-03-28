@@ -51,10 +51,6 @@ function ServicioREST( utils, config, $http,$q, $rootScope) {
     
     function exportarReferencia(listaId,tipoDocumento) {
         
-        console.log("aqui");
-        console.log(listaId);
-        console.log(tipoDocumento);
-        
         window.URL = window.URL || window.webkitURL;  // Take care of vendor prefixes. encodeURIComponent(listaId)
 
         var xhr = new XMLHttpRequest();
@@ -198,7 +194,6 @@ function ServicioREST( utils, config, $http,$q, $rootScope) {
 		var defered = $q.defer();
 		var promise = defered.promise;
         datos = {'estado' : estado, 'motivoRechazo' : motivoRechazo}
-        console.log(datos);
 		$http({
 			method: 'PUT',
 			url: url + '/referencia/' + key,
@@ -233,6 +228,15 @@ function ServicioREST( utils, config, $http,$q, $rootScope) {
 		});
 
 	}
+	function getLDAPGerentes(){
+
+		return llamadaHTTP({
+			method: 'GET',
+			url: url + '/usuariosldap/gerentes'
+		});
+
+	}
+	
 	
 	function getUsuarios(){
 
@@ -271,12 +275,99 @@ function ServicioREST( utils, config, $http,$q, $rootScope) {
 
     }
 	
+    function postGerente(gerente){
+        
+       return llamadaHTTP({
+			method: 'POST',
+			url: url + '/catalogo/gerentes',
+			data: gerente
+		});
+
+    }
+	
+    function putGerente(gerente){
+        
+       return llamadaHTTP({
+			method: 'PUT',
+			url: url + '/catalogo/gerentes',
+			data: gerente
+		});
+
+    }
+	
+    function getGerentes(){
+        
+       return llamadaHTTP({
+			method: 'GET',
+			url: url + '/catalogo/gerentes'
+		});
+
+    }
+	
+    function deleteGerente(gerente){
+        
+       return llamadaHTTP({
+			method: 'DELETE',
+			url: url + '/catalogo/gerentes',
+			data: gerente
+		});
+
+    }
+	
+	function postCliente(cliente){
+        
+       return llamadaHTTP({
+			method: 'POST',
+			url: url + '/catalogo/clientes',
+			data: cliente
+		});
+
+    }
+	
+	function getClientes(){
+        
+       return llamadaHTTP({
+			method: 'GET',
+			url: url + '/catalogo/clientes'			
+		});
+
+    }
+	
+	function deleteCliente(cliente){
+        
+       return llamadaHTTP({
+			method: 'DELETE',
+			url: url + '/catalogo/clientes',
+			data: cliente
+		});
+
+    }
+	
+	function putCliente(value, cliente){
+        datos = {value: value, cliente: cliente};
+       return llamadaHTTP({
+			method: 'PUT',
+			url: url + '/catalogo/clientes',
+		   data: datos
+		});
+
+    }
+	
 	 function putUsuario(usuario){
         
        return llamadaHTTP({
 			method: 'PUT',
 			url: url + '/usuarios',
 			data: usuario
+		});
+
+    }
+	
+	 function deleteUsuario(usuario){
+        
+       return llamadaHTTP({
+			method: 'DELETE',
+			url: url + '/usuarios/' + usuario
 		});
 
     }
@@ -382,26 +473,7 @@ function ServicioREST( utils, config, $http,$q, $rootScope) {
 
 		return promise;
 	}
-    
-    /************ TEMPORAL **************/
-     
-    function deletePowerfull() {
-		var defered = $q.defer();
-		var promise = defered.promise;
-		$http({
-			method: 'DELETE',
-			url: url + '/usuarios/efromojaro/'
-		})
-		.success(function(data, status, headers, config) {
-			defered.resolve(data);
-		})
-		.error(function(data, status, headers, config) {
-			tratarError(data, status, defered);
-		});
-
-		return promise;
-	}
-		
+    	
 	return {
         getTecnologiasFinales: getTecnologiasFinales,
         postTecnologia: postTecnologia,
@@ -422,14 +494,23 @@ function ServicioREST( utils, config, $http,$q, $rootScope) {
         getCatalogos: getCatalogos,
         getTecnologias: getTecnologias,
         postUsuario: postUsuario,
-        getUsuarios: getUsuarios,
+		postGerente:postGerente,
+		putGerente:putGerente,
+		getGerentes:getGerentes,
+		deleteGerente:deleteGerente,
+		postCliente:postCliente,
+		getClientes:getClientes,
+		putCliente:putCliente,
+		deleteCliente:deleteCliente,
 		putUsuario: putUsuario,
+		deleteUsuario:deleteUsuario,
+        getUsuarios: getUsuarios,
         postLogin : postLogin,
         rechazarTecnologia: rechazarTecnologia,
         getReferenciasAsociadas: getReferenciasAsociadas,
         updateEstadoReferencia: updateEstadoReferencia,
         getReferenciasValidadas: getReferenciasValidadas,
         exportarReferencia:exportarReferencia,
-        deletePowerfull: deletePowerfull
+		getLDAPGerentes:getLDAPGerentes
 	}
 }

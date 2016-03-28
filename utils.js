@@ -20,6 +20,10 @@ function utils($rootScope, $mdDialog){
                 $rootScope.menuUsuarios = true;
                 $rootScope.menuUsuariosAlta = true;
                 $rootScope.menuUsuariosGestion = true;
+				$rootScope.menuClientesAlta = true;
+				$rootScope.menuClientesGestion = true;
+				$rootScope.menuGerentesAlta = true;
+				$rootScope.menuGerentesGestion = true;
                 $rootScope.menuReferencias = true;
                 $rootScope.menuReferenciasBuscar = true;
                 $rootScope.menuReferenciasNueva = true;

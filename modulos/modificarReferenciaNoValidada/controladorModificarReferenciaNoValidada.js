@@ -504,7 +504,6 @@ app.controller('controladorModificarReferenciaNoValidada', function(servicioRest
     
     //por reutilización se llamará a esta función cuando se quiera mandar la refrencia a crear al back
     function enviarReferencia(referencia, mensajeEstado){
-        console.log(referencia);
         servicioRest.updateReferencia(referencia)
         .then(function(data){
             utils.popupInfo('', mensajeEstado);
@@ -643,12 +642,10 @@ app.controller('controladorModificarReferenciaNoValidada', function(servicioRest
                     utils.popupInfo('', "Referencia exportada a word");
                 }).catch(function(err) {
                     utils.popupInfo('',"Error al exportar la referencia.");
-                    console.log("Error al exportar la referencia");
                 });  
             })
         .catch(function(err) {
                 utils.popupInfo('',"Error al exportar la referencia.");
-                console.log("Error al exportar la referencia");
             });
     };
     
