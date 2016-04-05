@@ -783,20 +783,28 @@ app.controller('controladorModificarReferencia', function(servicioRest,utils, co
     }
     
     $scope.exportarRefPopUp = function(ev) {
-        $mdDialog.show({
-            controller: 'controladorExportarReferencia',
-            templateUrl: 'modulos/popUp/exportarReferencia.html',
-            parent: angular.element(document.body),
-            targetEvent: ev,
-            clickOutsideToClose: true
-        })
-        .then(function(tipoDocumento) {
-                var aux =[$scope.referencia._id];
-                servicioRest.exportarReferencia(aux, tipoDocumento);
+         servicioRest.getPlantillasPublicas()
+             .then(function(data){
+                 $mdDialog.show({
+                    controller: 'controladorExportarReferencia',
+                    templateUrl: 'modulos/popUp/exportarReferencia.html',
+                    parent: angular.element(document.body),
+                    targetEvent: ev,
+                    locals: {
+                    plantillas: data},
+                    clickOutsideToClose: true
+                })
+                .then(function(documento) {
+                    var aux =[$scope.referencia._id];
+                    servicioRest.exportarReferencia(aux, documento);
+                })
+                .catch(function(err) {
+                    //mensaje cuanod se cancela
+                    //utils.popupInfo('',"Error al exportar la referencia.");
+                });
             })
-        .catch(function(err) {
-                //mensaje cuanod se cancela
-                //utils.popupInfo('',"Error al exportar la referencia.");
+            .catch(function(data){
+                utils.popupInfo('', 'Error en la carga de las plantillas publicas');
             });
     };
     

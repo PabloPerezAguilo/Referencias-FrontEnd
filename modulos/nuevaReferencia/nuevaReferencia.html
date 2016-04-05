@@ -106,13 +106,20 @@
                 </md-input-container>
             </div>
             <!--    Fecha inicio-->
-
-            <div id="fecha" class="inBlock" >
+            
             <!--Fecha inicio, Usa la libreria Moment.js-->
+            
+            <div id="fecha" class="inBlock" >
                 <md-datepicker id="fecha" ng-model="referencia.fechaInicio" md-placeholder="Fecha de Inicio *" 
                                readonly="true"></md-datepicker>
             </div>
-					
+            <!--    Prueba
+            
+         <input type="text" class="form-control bootstrapDatepicker" uib-datepicker-popup="{{format}}" ng-model="dt" is-open="popup1.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" />
+          <span class="input-group-btn">
+            <button type="button" class="btn btn-default" ng-click="open1()"><i class="glyphicon glyphicon-calendar"></i></button>
+          </span>
+            
             <!--    Duración-->    
             <div id="Duracion" class="inBlock" >
                 <md-input-container title="Duración en meses" class="fixed-size" >

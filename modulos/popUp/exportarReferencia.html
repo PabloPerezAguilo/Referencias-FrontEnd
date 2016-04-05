@@ -12,8 +12,8 @@
                                ng-required="true"
                                ng-focus="hayError=false">
 
-                        <md-option ng-value="doc" ng-repeat="doc in tipoDocumentos">
-                            {{doc}}
+                        <md-option ng-value="doc" ng-repeat="doc in documentos">
+                            {{doc.nombre}}
                         </md-option>
                     </md-select>
               </md-input-container>

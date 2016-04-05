@@ -16,7 +16,8 @@ app.controller('controladorModificarReferenciaNoValidada', function(servicioRest
         $location.path('/listarNoValidadas');
     }
     $scope.referenciaOld={};
-    
+    console.log("AQUI");
+    console.log($rootScope.referenciaCargada);
     $scope.referenciaOld.cliente = $rootScope.referenciaCargada.cliente;
     $scope.referenciaOld.sociedad = $rootScope.referenciaCargada.sociedad;
     $scope.referenciaOld.sectorEmpresarial = $rootScope.referenciaCargada.sectorEmpresarial;

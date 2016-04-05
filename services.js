@@ -49,20 +49,20 @@ function ServicioREST( utils, config, $http,$q, $rootScope) {
 	/* ---------- SERVICIOS REFERENCIA ---------- */
     
     
-    function exportarReferencia(listaId,tipoDocumento) {
+    function exportarReferencia(listaId,documento) {
         
         window.URL = window.URL || window.webkitURL;  // Take care of vendor prefixes. encodeURIComponent(listaId)
 
         var xhr = new XMLHttpRequest();
-        xhr.open('GET', url + '/referencia/plantillas'+'?listaId=' + listaId+'&tipoDocumento=' + encodeURIComponent(tipoDocumento), true);
+        xhr.open('GET', url + '/referencia/plantillas'+'?listaId=' + listaId+'&tipoDocumento=' + encodeURIComponent(documento.tipoDocumento)+'&idDocumento=' + encodeURIComponent(documento._id), true);
         xhr.responseType = 'blob';
         xhr.setRequestHeader("Authorization", 'Basic ' + btoa($rootScope.usuarioLS.nick + ':' + $rootScope.usuarioLS.password));
         xhr.onload = function(e) {
             if (this.status == 200) {
-                if(tipoDocumento=="Excel"){
+                if(documento.tipoDocumento=="Excel"){
                     var blob = this.response;
                     saveAs(blob, "SharonReport.xlsx");
-                }else if(tipoDocumento=="Word"){
+                }else if(documento.tipoDocumento=="Word"){
                     var blob = this.response;
                     saveAs(blob, "SharonReport.docx"); 
                 }
@@ -73,7 +73,7 @@ function ServicioREST( utils, config, $http,$q, $rootScope) {
         
         xhr.onreadystatechange = function() {
         if(xhr.readyState == 4 && xhr.status == 200){
-            utils.popupInfo('', "Referencia exportada a :"+tipoDocumento);
+            utils.popupInfo('', "Referencia exportada a :"+documento.tipoDocumento);
         }else if(xhr.readyState == 4 && xhr.status != 200){
             utils.popupInfo('',"Error al exportar la referencia.");
         }}
@@ -81,7 +81,7 @@ function ServicioREST( utils, config, $http,$q, $rootScope) {
 		llamadaHTTP({
 			method: 'DELETE',
 			url: url + '/referencia/plantillas',
-			params: { tipoDocumento: tipoDocumento}
+			params: { tipoDocumento: documento.tipoDocumento}
 		});
 
 	}
@@ -101,6 +101,15 @@ function ServicioREST( utils, config, $http,$q, $rootScope) {
 		return llamadaHTTP({
 			method: 'GET',
 			url: url + '/referencia'
+		});
+
+	}
+    
+    function getPlantillasPublicas() {
+
+		return llamadaHTTP({
+			method: 'GET',
+			url: url + '/plantillas/publicas'
 		});
 
 	}
@@ -511,6 +520,7 @@ function ServicioREST( utils, config, $http,$q, $rootScope) {
         updateEstadoReferencia: updateEstadoReferencia,
         getReferenciasValidadas: getReferenciasValidadas,
         exportarReferencia:exportarReferencia,
+        getPlantillasPublicas:getPlantillasPublicas,
 		getLDAPGerentes:getLDAPGerentes
 	}
 }
